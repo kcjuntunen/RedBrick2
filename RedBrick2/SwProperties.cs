@@ -45,7 +45,7 @@ namespace RedBrick2 {
 
     public SwProperty GetProperty(string name) {
       if (Contains(name)) {
-        return _innerDict[@"name"];
+        return _innerDict[name];
       } else {
         return null;
       }
@@ -53,7 +53,7 @@ namespace RedBrick2 {
 
     public SwProperty GetProperty(string name, bool addIfNotExists) {
       if (Contains(name)) {
-        return _innerDict[@"name"];
+        return _innerDict[name];
       } else if (addIfNotExists) {
         throw new NotImplementedException(@"Cannot create a default SWProperty.");
       } else {
@@ -70,11 +70,15 @@ namespace RedBrick2 {
       return res;
     }
 
+    public void GetProperties(Component2 comp) {
+      GetProperties(comp.GetModelDoc2());
+    }
+
     public void GetProperties(ModelDoc2 md) {
       //IntProperty crc32 = new IntProperty(@"CRC32", true, SwApp, md, @"CUT_PARTS", @"HASH");
       //crc32.Data = crc32.Hash;
       StringProperty department = new StringProperty(@"DEPARTMENT", true, SwApp, md, @"TYPE");
-      IntProperty blankQty = new IntProperty(@"BLAND QTY", true, SwApp, md, @"CUT_PARTS", @"BLANKQTY");
+      IntProperty blankQty = new IntProperty(@"BLANK QTY", true, SwApp, md, @"CUT_PARTS", @"BLANKQTY");
 
       StringProperty material = new StringProperty(@"MATERIAL", true, SwApp, md, string.Empty);
       StringProperty weight = new StringProperty(@"WEIGHT", true, SwApp, md, string.Empty);
@@ -106,12 +110,17 @@ namespace RedBrick2 {
         length, width, thickness, wallThickness, overL, overW,
         cutlistMaterial, edgelf, edgelb, edgewr, edgewl
       }) {
+        item.Get();
         AddProperty(item);
       }
     }
 
     public bool Contains(string name) {
       return _innerDict.ContainsKey(name);
+    }
+
+    public void Clear() {
+      _innerDict.Clear();
     }
 
     public ENGINEERINGDataSet.CUT_PARTSRow PartsData {
@@ -164,7 +173,7 @@ namespace RedBrick2 {
         int count = 0;
         foreach (KeyValuePair<string, SwProperty> item in _innerDict) {
           if (item.Value.Global) {
-            result += string.Format(@"{0}={1}", item.Key, item.Value.Data);
+            result += string.Format(@"{0}={1}", item.Key, item.Value.Data.ToString());
             if (count++ < GlobalCount) {
               result += @"&";
             }
@@ -180,7 +189,7 @@ namespace RedBrick2 {
         int count = 0;
         foreach (KeyValuePair<string, SwProperty> item in _innerDict) {
           if (!item.Value.Global) {
-            result += string.Format(@"{0}={1}", item.Key, item.Value.Data);
+            result += string.Format(@"{0}={1}", item.Key, item.Value.Data.ToString());
             if (count++ < NonGlobalCount) {
               result += @"&";
             }
