@@ -12219,7 +12219,7 @@ SELECT ID, USERID, FUNCID, ODO FROM GEN_ODOMETER WHERE (ID = @ID)";
             }
             if (((returnValue == null) 
                         || (returnValue.GetType() == typeof(global::System.DBNull)))) {
-                return new global::System.Nullable<double>();
+                return new global::System.Nullable<double>(0);
             }
             else {
                 return new global::System.Nullable<double>(((double)(returnValue)));
@@ -12253,7 +12253,7 @@ SELECT ID, USERID, FUNCID, ODO FROM GEN_ODOMETER WHERE (ID = @ID)";
             }
             if (((returnValue == null) 
                         || (returnValue.GetType() == typeof(global::System.DBNull)))) {
-                return new global::System.Nullable<int>();
+                return new global::System.Nullable<int>(0);
             }
             else {
                 return new global::System.Nullable<int>(((int)(returnValue)));
@@ -12293,7 +12293,7 @@ SELECT ID, USERID, FUNCID, ODO FROM GEN_ODOMETER WHERE (ID = @ID)";
             }
             if (((returnValue == null) 
                         || (returnValue.GetType() == typeof(global::System.DBNull)))) {
-                return new global::System.Nullable<int>();
+                return new global::System.Nullable<int>(0);
             }
             else {
                 return new global::System.Nullable<int>(((int)(returnValue)));
@@ -13769,7 +13769,7 @@ SELECT UID, USERNAME, ACTIVE, FIRST, LAST, SUFFIX, INITIAL, DEPT, CUST1, CUST2, 
             }
             if (((returnValue == null) 
                         || (returnValue.GetType() == typeof(global::System.DBNull)))) {
-                return new global::System.Nullable<int>();
+                return new global::System.Nullable<int>(0);
             }
             else {
                 return new global::System.Nullable<int>(((int)(returnValue)));
