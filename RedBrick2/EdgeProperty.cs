@@ -12,13 +12,20 @@ namespace RedBrick2 {
       FieldName = fieldName;
     }
 
-    new public int Data {
-      get { return Data; }
+    protected int _data = 0;
+
+    public override object Data {
+      get { return _data; }
       set {
         ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter ceta =
           new ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter();
-        Data = value;
-        Value = (string)ceta.GetDataByEdgeID(Data).Rows[0][@"DESCR"];
+        try {
+          _data = int.Parse(value.ToString());
+          Value = (string)ceta.GetDataByEdgeID(_data).Rows[0][@"DESCR"];
+        } catch (Exception) {
+          _data = 0;
+          Value = @"0";
+        }
       }
     }
   }

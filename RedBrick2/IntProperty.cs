@@ -15,16 +15,29 @@ namespace RedBrick2 {
     public override SwProperty Get() {
       InnerGet();
       int res = 0;
-      res = int.Parse(Value);
-      Data = res;
+      try {
+        res = int.Parse(Value);
+      } catch (Exception) {
+        // Probably an empty string.
+      }
+      _data = res;
       return this;
     }
 
-    new public int Data {
-      get { return Data; }
+    protected int _data = 0;
+
+    public override object Data {
+      get {
+        return _data == null ? int.Parse(Value) : _data;
+      }
       set {
-        Data = value;
-        Value = value.ToString();
+        try {
+          _data = int.Parse(value.ToString());
+          Value = value.ToString();
+        } catch (Exception) {
+          _data = 0;
+          Value = @"0";
+        }
       }
     }
   }

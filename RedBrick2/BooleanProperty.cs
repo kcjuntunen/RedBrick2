@@ -19,6 +19,14 @@ namespace RedBrick2 {
       return this;
     }
 
-    public bool Data { get; set; }
+    protected bool _data = false;
+
+    public override object Data {
+      get { return _data; }
+      set {
+        _data = value.ToString().ToUpper().Contains(@"Y");
+        Value = _data ? @"Yes" : @"NO";
+      }
+    }
   }
 }

@@ -111,20 +111,28 @@ namespace RedBrick2 {
 
     public string FieldName { get; protected set; }
 
-    public object Data { get; private set; }
+    protected object _data = "Data goes here.";
+    public virtual object Data { 
+      get { return _data;}
+      set { _data = value;}
+    }
 
     public Configuration Config { get; set; }
 
     public CustomPropertyManager PropertyManager { get; set; }
 
+    public ModelDoc2 _activeDoc;
+
     public ModelDoc2 ActiveDoc {
-      get { return ActiveDoc; } 
-      protected set { ActiveDoc = value; }
+      get { return _activeDoc; }
+      protected set { _activeDoc = value; }
     }
 
+    protected SldWorks _swApp;
+
     public  SldWorks SwApp {
-      get { return SwApp;  } 
-      protected set { SwApp = value; }
+      get { return _swApp; }
+      protected set { _swApp = value; }
     }
 
   }

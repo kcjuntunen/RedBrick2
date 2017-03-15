@@ -16,11 +16,13 @@ namespace RedBrick2 {
       return base.Get();
     }
 
-    new public string Data {
-      get { return Data; }
+    protected string _data;
+
+    public override object Data {
+      get { return _data; }
       set {
-        Data = value;
-        Value = value;
+        _data = value.ToString();
+        Value = value.ToString();
       }
     }
   }

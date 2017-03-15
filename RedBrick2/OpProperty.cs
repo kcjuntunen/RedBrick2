@@ -27,15 +27,17 @@ namespace RedBrick2 {
       return this;
     }
 
-    new public int Data {
-      get { return Data; }
+    protected int _data = 0;
+
+    public override object Data {
+      get { return _data; }
       set {
         ENGINEERINGDataSet.CUT_PARTSDataTable cpdt =
           new ENGINEERINGDataSet.CUT_PARTSDataTable();
         cpdt = cpta.GetDataByPartID(PartID);
         int tp = (int)cpdt.Rows[0][@"TYPE"];
-        Data = value;
-        Value = (string)cota.GetDataByOpID(value, tp).Rows[0][@"OPNAME"];
+        _data = int.Parse(value.ToString());
+        Value = (string)cota.GetDataByOpID(int.Parse(value.ToString()), tp).Rows[0][@"OPNAME"];
       }
     }
 

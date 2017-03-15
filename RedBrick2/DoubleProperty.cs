@@ -16,10 +16,20 @@ namespace RedBrick2 {
       InnerGet();
       double res = 0.0F;
       res = double.Parse(ResolvedValue);
-      Data = res;
+      _data = res;
       return this;
     }
 
-    public double Data { get; set; }
+    protected double _data = 0.0F;
+
+    public override object Data {
+      get {
+        return _data == null ? double.Parse(ResolvedValue) : _data;
+      }
+      set {
+        _data = double.Parse(value.ToString());
+        Value = value.ToString();
+      }
+    }
   }
 }
