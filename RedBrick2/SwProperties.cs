@@ -6,7 +6,10 @@ using System.Data;
 using SolidWorks.Interop.sldworks;
 
 namespace RedBrick2 {
-  public class SwProperties {
+  /// <summary>
+  /// A set of properties associated with a model.
+  /// </summary>
+  public class SwProperties : IDictionary<string, SwProperty> {
     private ENGINEERINGDataSet.CUT_PARTSDataTable cpdt = new ENGINEERINGDataSet.CUT_PARTSDataTable();
     private ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable ccpdt = new ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable();
     private Dictionary<string, SwProperty> _innerDict = new Dictionary<string, SwProperty>();
@@ -14,35 +17,19 @@ namespace RedBrick2 {
     private int totalCount = 0;
     private int nonGlobalCount = 0;
 
+    /// <summary>
+    /// Constructor for a new <see cref="RedBrick2.SwProperties"/> object.
+    /// </summary>
+    /// <param name="sw">A running <see cref="SolidWorks.Interop.sldworks.SldWorks"/> object.</param>
     public SwProperties(SldWorks sw) {
       SwApp = sw;
     }
 
-    public bool AddProperty(SwProperty property) {
-      AddResult = false;
-      try {
-        _innerDict.Add(property.Name, property);
-        if (property.Global) {
-          globalCount++;
-        } else {
-          nonGlobalCount++;
-        }
-        totalCount++;
-        AddResult = true;
-      } catch (Exception e) {
-        AddException = e;
-      }
-      return AddResult;
-    }
-
-    public bool AddPropertyRange(List<SwProperty> prps) {
-      AddResult = false;
-      foreach (SwProperty item in prps) {
-        AddResult |= AddProperty(item);
-      }
-      return AddResult;
-    }
-
+    /// <summary>
+    /// Returns the named property, but returns null if it's not present.
+    /// </summary>
+    /// <param name="name">the name of the desired property.</param>
+    /// <returns>a <see cref="RedBrick2.SwProperty"/>.</returns>
     public SwProperty GetProperty(string name) {
       if (Contains(name)) {
         return _innerDict[name];
@@ -51,6 +38,13 @@ namespace RedBrick2 {
       }
     }
 
+    /// <summary>
+    /// Returns the named property, but maybe creates it and returns the new one.
+    /// </summary>
+    /// <remarks>The add behavior isn't implemented.</remarks>
+    /// <param name="name">the name of the desired property.</param>
+    /// <param name="addIfNotExists">add or don't if the property isn't in the set.</param>
+    /// <returns></returns>
     public SwProperty GetProperty(string name, bool addIfNotExists) {
       if (Contains(name)) {
         return _innerDict[name];
@@ -61,6 +55,10 @@ namespace RedBrick2 {
       }
     }
 
+    /// <summary>
+    /// Write the whole set to a model.
+    /// </summary>
+    /// <returns>A <see cref="SolidWorks.Interop.swconst.swCustomInfoAddResult_e"/></returns>
     public int Write() {
       int res = 1;
       foreach (KeyValuePair<string, SwProperty> item in _innerDict) {
@@ -70,13 +68,20 @@ namespace RedBrick2 {
       return res;
     }
 
+    /// <summary>
+    /// Pull down all pertinent data from a model.
+    /// </summary>
+    /// <param name="comp">A <see cref="SolidWorks.Interop.sldworks.Component2"/> from which we'll
+    /// get a <see cref="SolidWorks.Interop.sldworks.ModelDoc2"/>.</param>
     public void GetProperties(Component2 comp) {
       GetProperties(comp.GetModelDoc2());
     }
 
+    /// <summary>
+    /// Pull down all pertinent data from a model.
+    /// </summary>
+    /// <param name="md">A <see cref="SolidWorks.Interop.sldworks.ModelDoc2"/>.</param>
     public void GetProperties(ModelDoc2 md) {
-      //IntProperty crc32 = new IntProperty(@"CRC32", true, SwApp, md, @"CUT_PARTS", @"HASH");
-      //crc32.Data = crc32.Hash;
       StringProperty department = new StringProperty(@"DEPARTMENT", true, SwApp, md, @"TYPE");
       IntProperty blankQty = new IntProperty(@"BLANK QTY", true, SwApp, md, @"CUT_PARTS", @"BLANKQTY");
 
@@ -111,18 +116,186 @@ namespace RedBrick2 {
         cutlistMaterial, edgelf, edgelb, edgewr, edgewl
       }) {
         item.Get();
-        AddProperty(item);
+        Add(item);
+      }
+    }
+    #region inherited
+    /// <summary>
+    /// Add a new property to a set of properties.
+    /// </summary>
+    /// <remarks>This is here to fully implement IDictionary.</remarks>
+    /// <param name="property">A KeyValuePair.</param>
+    public void Add(KeyValuePair<string, SwProperty> pair) {
+      Add(pair.Value);
+    }
+
+    /// <summary>
+    /// Add a new property to a set of properties.
+    /// </summary>
+    /// <remarks>This is here to fully implement IDictionary.</remarks>
+    /// <param name="property">Name of property.</param>
+    /// <param name="property">An SwProperty.</param>
+    public void Add(string name, SwProperty value) {
+      Add(new KeyValuePair<string, SwProperty>(name, value));
+    }
+
+    /// <summary>
+    /// Add a new property to a set of properties.
+    /// </summary>
+    /// <param name="property">The <see cref="Redbrick2.SwProperty"/> to be added.</param>
+    public void Add(SwProperty property) {
+      try {
+        _innerDict.Add(property.Name, property);
+        if (property.Global) {
+          globalCount++;
+        } else {
+          nonGlobalCount++;
+        }
+        totalCount++;
+      } catch (Exception e) {
+        AddException = e;
       }
     }
 
+    /// <summary>
+    /// Add a list of properties to a set of properties.
+    /// </summary>
+    /// <param name="prps">A <see cref="System.Collections.Generic.List"/> of
+    /// properties to be added.</param>
+    public void AddPropertyRange(List<SwProperty> prps) {
+      foreach (SwProperty item in prps) {
+        Add(item);
+      }
+    }
+
+    public bool Contains(KeyValuePair<string, SwProperty> pair) {
+      return _innerDict.ContainsKey(pair.Key);
+    }
+
+    /// <summary>
+    /// Check if a key is in the set of properties.
+    /// </summary>
+    /// <param name="name">the name of the key you're looking for.</param>
+    /// <returns>a <see cref="System.Boolean"/>, of course.</returns>
     public bool Contains(string name) {
       return _innerDict.ContainsKey(name);
     }
 
+    /// <summary>
+    /// Empty out the set.
+    /// </summary>
     public void Clear() {
       _innerDict.Clear();
     }
 
+    /// <summary>
+    /// Returns the full count of items in the set.
+    /// </summary>
+    public int Count {
+      get { return _innerDict.Count; }
+    }
+
+    public bool Remove(KeyValuePair<string, SwProperty> pair) {
+      return _innerDict.Remove(pair.Key);
+    }
+
+    /// <summary>
+    /// Remove an item.
+    /// </summary>
+    /// <param name="item">The whole property you're looking to remove. 
+    /// It really only needs to have the same name the property you want to remove.</param>
+    /// <returns>sucess or failure.</returns>
+    public bool Remove(SwProperty item) {
+      return _innerDict.Remove(item.Name);
+    }
+
+    /// <summary>
+    /// Remove an item.
+    /// </summary>
+    /// <param name="item">The name of the property you're looking to remove.</param>
+    /// <returns>sucess or failure.</returns>
+    public bool Remove(string name) {
+      return _innerDict.Remove(name);
+    }
+
+    /// <summary>
+    /// Query set of properties for a particular property by name.
+    /// </summary>
+    /// <param name="key">The name of the target property.</param>
+    /// <returns>True or false.</returns>
+    public bool ContainsKey(string key) {
+      return _innerDict.ContainsKey(key);
+    }
+
+    /// <summary>
+    /// A collection of all the names in the set.
+    /// </summary>
+    public ICollection<string> Keys {
+      get { return _innerDict.Keys; }
+    }
+
+    /// <summary>
+    /// Attempt to get a Property.
+    /// </summary>
+    /// <param name="key">The name you're looking for.</param>
+    /// <param name="value">An object to be populated.</param>
+    /// <returns>Success or failure.</returns>
+    public bool TryGetValue(string key, out SwProperty value) {
+      return _innerDict.TryGetValue(key, out value);
+    }
+
+    /// <summary>
+    /// A collection of all the <see cref="RedBrick2.SwProperty"/>s in the set.
+    /// </summary>
+    public ICollection<SwProperty> Values {
+      get { return _innerDict.Values; }
+    }
+
+    /// <summary>
+    /// Get or set SwProperty by direct reference.
+    /// </summary>
+    /// <param name="key">The name of the target property.</param>
+    /// <returns>A <see cref="RedBrick2.SwProperty"/>.</returns>
+    public SwProperty this[string key] {
+      get {
+        return _innerDict[key];
+      }
+      set {
+        _innerDict[key] = value;
+      }
+    }
+
+    /// <summary>
+    /// Not implemented yet.
+    /// </summary>
+    /// <param name="array"></param>
+    /// <param name="arrayIndex"></param>
+    public void CopyTo(KeyValuePair<string, SwProperty>[] array, int arrayIndex) {
+      throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// Returns stuff so we can do foreach loops.
+    /// </summary>
+    /// <returns>An IEnumerator.</returns>
+    public IEnumerator<KeyValuePair<string, SwProperty>> GetEnumerator() {
+      return _innerDict.GetEnumerator();
+    }
+
+    System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
+      return _innerDict.GetEnumerator();
+    }
+
+    public bool IsReadOnly {
+      get { return false; }
+      set { ; }
+    }
+
+    #endregion
+    #region properties
+    /// <summary>
+    /// Generate a DataRow of part data from a property set.
+    /// </summary>
     public ENGINEERINGDataSet.CUT_PARTSRow PartsData {
       get {
         ENGINEERINGDataSet.CUT_PARTSRow cpr = cpdt.NewCUT_PARTSRow();
@@ -135,6 +308,9 @@ namespace RedBrick2 {
       }
     }
 
+    /// <summary>
+    /// Generate a DataRow of cutlist-part data from a property set.
+    /// </summary>
     public ENGINEERINGDataSet.CUT_CUTLIST_PARTSRow CutlistPartsData {
       get {
         ENGINEERINGDataSet.CUT_CUTLIST_PARTSRow cpr = ccpdt.NewCUT_CUTLIST_PARTSRow();
@@ -150,6 +326,9 @@ namespace RedBrick2 {
       }
     }
 
+    /// <summary>
+    /// Returns an array of DataRows of part-ops data from a property set.
+    /// </summary>
     public ENGINEERINGDataSet.CUT_PART_OPSRow[] PartOpsRows {
       get {
         ENGINEERINGDataSet.CUT_PART_OPSDataTable cpodt =
@@ -167,6 +346,9 @@ namespace RedBrick2 {
       }
     }
 
+    /// <summary>
+    /// A URL-friendly string of global property data.
+    /// </summary>
     public string GlobalTokenString {
       get {
         string result = string.Empty;
@@ -183,6 +365,9 @@ namespace RedBrick2 {
       }
     }
 
+    /// <summary>
+    /// A URL-friendly string of non-global property data.
+    /// </summary>
     public string SpecificTokenString {
       get {
         string result = string.Empty;
@@ -199,6 +384,9 @@ namespace RedBrick2 {
       }
     }
 
+    /// <summary>
+    /// The ID of the cutlist in question.
+    /// </summary>
     public int CutlistID { get; set; }
 
     public int CutlistQty {
@@ -209,22 +397,34 @@ namespace RedBrick2 {
       }
     }
 
+    /// <summary>
+    /// Return a list of ops with their data.
+    /// </summary>
     public List<OpSet> OpSets { get; set; }
 
+    /// <summary>
+    /// Count of global properies in the set.
+    /// </summary>
     public int GlobalCount {
       get { return globalCount; }
     }
 
+    /// <summary>
+    /// Count of non-global properties in the set.
+    /// </summary>
     public int NonGlobalCount {
       get { return nonGlobalCount; }
     }
 
-    public int TotalCount {
-      get { return totalCount; }
-    }
-
-    public bool AddResult { get; private set; }
+    /// <summary>
+    /// Exception caused by the last added operation, if any.
+    /// </summary>
     public Exception AddException { get; private set; }
+
+    /// <summary>
+    /// Live SldWorks object.
+    /// </summary>
     public SldWorks SwApp { get; private set; }
+    #endregion
   }
 }
