@@ -14,12 +14,30 @@ namespace RedBrick2 {
     protected ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cpta =
       new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
 
+    /// <summary>
+    /// Constructor for a new <see cref="RedBrick2.SwProperty"/>.
+    /// </summary>
+    /// <param name="name">The name of the property. This will be the name used in the property summary page.</param>
+    /// <param name="global">A general property, or configuration specific property.</param>
+    /// <param name="sw">A running <see cref="SolidWorks.Interop.sldworks.SldWorks"/> object.</param>
+    /// <param name="md">The <see cref="SolidWorks.Interop.sldworks.ModelDoc2"/> to which this property belongs.</param>
     public SwProperty(string name, bool global, SldWorks sw, ModelDoc2 md) {
       Name = name;
       SWType = swCustomInfoType_e.swCustomInfoUnknown;
       Global = global;
       SwApp = sw;
       ActiveDoc = md;
+      GetPropertyManager();
+      GetFileInfo();
+      SetDefaults();
+    }
+
+    public SwProperty(string name, bool global, SldWorks sw, Component2 comp) {
+      Name = name;
+      SWType = swCustomInfoType_e.swCustomInfoUnknown;
+      Global = global;
+      SwApp = sw;
+      ActiveDoc = comp.GetModelDoc2();
       GetPropertyManager();
       GetFileInfo();
       SetDefaults();
@@ -51,7 +69,7 @@ namespace RedBrick2 {
       }
     }
 
-    public void InnerGet() {
+    protected void InnerGet() {
       CustomPropertyManager _g = ActiveDoc.Extension.get_CustomPropertyManager(string.Empty);
       Configuration _c = (Configuration)ActiveDoc.ConfigurationManager.ActiveConfiguration;
       CustomPropertyManager _s = ActiveDoc.Extension.get_CustomPropertyManager(_c.Name);
@@ -61,12 +79,29 @@ namespace RedBrick2 {
       }
     }
 
+    /// <summary>
+    /// Pulls property data from SolidWorks.
+    /// </summary>
+    /// <returns>Returns a <see cref="RedBrick2.SwProperty"/> object.</returns>
     public virtual SwProperty Get() {
       InnerGet();
       Data = Value;
       return this;
     }
 
+    /// <summary>
+    /// Sets the Data, and Value fields.
+    /// </summary>
+    /// <param name="data">A <see cref="System.Object"/> and attempts to interpret it into the correct type.</param>
+    /// <param name="val">A <see cref="System.String"/>.</param>
+    public virtual void Set(object data, string val) {
+      Data = data;
+      Value = val;
+    }
+
+    /// <summary>
+    /// Write the property data to SolidWorks.
+    /// </summary>
     public virtual void Write() {
       WriteResult = 
         (swCustomInfoAddResult_e)PropertyManager.Add3(Name, 

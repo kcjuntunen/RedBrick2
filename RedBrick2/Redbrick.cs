@@ -21,6 +21,7 @@ namespace RedBrick2 {
       private bool askedToUpdate = false;
       private string UpdateMessage = string.Empty;
 
+      //private int count = 0;
       public bool ConnectToSW(object ThisSW, int Cookie) {
         swApp = (SldWorks)ThisSW;
         cookie = Cookie;
@@ -37,6 +38,10 @@ namespace RedBrick2 {
         }
       }
 
+      /// <summary>
+      /// Try to find the company network.
+      /// </summary>
+      /// <returns>True or false.</returns>
       public static bool CheckNetwork() {
         bool res = System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable();
         System.Net.NetworkInformation.Ping p = new System.Net.NetworkInformation.Ping();
@@ -84,7 +89,7 @@ namespace RedBrick2 {
               string.Format(Properties.Resources.Title, ver));
 
           taskpaneHost = (SWTaskpaneHost)taskpaneView.AddControl(SWTaskpaneHost.SWTASKPANE_PROGID, string.Empty);
-          taskpaneHost.OnRequestSW += new Func<SldWorks>(delegate { return this.swApp; });
+          taskpaneHost.OnRequestSW += new Func<SldWorks>(delegate { return swApp; });
 
           bool result = taskpaneView.AddStandardButton((int)swTaskPaneBitmapsOptions_e.swTaskPaneBitmapsOptions_Ok, "OK");
           result = taskpaneView.AddStandardButton((int)swTaskPaneBitmapsOptions_e.swTaskPaneBitmapsOptions_Options, "Configuration");
@@ -151,6 +156,11 @@ namespace RedBrick2 {
         nfi.CopyTo(Properties.Settings.Default.EngineeringDir + @"\InstallRedBrick.exe", true);
       }
 
+      /// <summary>
+      /// Pull down the last odometer reset date.
+      /// </summary>
+      /// <param name="t">Full path of the proper XML file.</param>
+      /// <returns>A DateTime object.</returns>
       public static DateTime GetOdometerStart(string t) {
         DateTime dt = Properties.Settings.Default.OdometerStart;
         System.IO.FileInfo pi = new System.IO.FileInfo(t);
@@ -167,6 +177,9 @@ namespace RedBrick2 {
         return dt;
       }
 
+      /// <summary>
+      /// Possible functions for the odometer.
+      /// </summary>
       public enum Functions {
         GreenCheck,
         ArchivePDF,
@@ -239,7 +252,7 @@ namespace RedBrick2 {
       }
 
       /// <summary>
-      /// Ask user if update is wanted.
+      /// Ask user if upgrade is wanted.
       /// </summary>
       public void Update() {
         string chge = string.Format(Properties.Resources.Update, currentVersion.ToString(), publicVersion.Key.ToString());
@@ -363,6 +376,10 @@ namespace RedBrick2 {
         }
       }
 
+      /// <summary>
+      /// The Archiver needs a bunch of settings. It's done in an old, stupid way. Maybe I'll change it someday.
+      /// </summary>
+      /// <returns>A <see cref="ArchivePDF.csproj.PathSet"/> object.</returns>
       static public ArchivePDF.csproj.PathSet GeneratePathSet() {
         ArchivePDF.csproj.PathSet ps = new ArchivePDF.csproj.PathSet();
         ps.GaugePath = Properties.Settings.Default.GaugePath;
@@ -381,6 +398,10 @@ namespace RedBrick2 {
         return ps;
       }
 
+      /// <summary>
+      /// Generate and insert a fresh BOM from the first view in the current drawing.
+      /// </summary>
+      /// <param name="swApp">A running <see cref="SolidWorks.Interop.sldworks.SldWorks"/> object.</param>
       public static void InsertBOM(SldWorks swApp) {
         ModelDoc2 md = (ModelDoc2)swApp.ActiveDoc;
         DrawingDoc dd = (DrawingDoc)swApp.ActiveDoc;
@@ -405,6 +426,8 @@ namespace RedBrick2 {
         }
       }
 
+      /// <summary>
+      /// Get the first view from a drawing.
       /// </summary>
       /// <param name="sw">Active SldWorks object.</param>
       /// <returns>A View object.</returns>
@@ -466,8 +489,8 @@ namespace RedBrick2 {
         string keyPath = String.Format(@"SOFTWARE\SolidWorks\AddIns\{0:b}", t.GUID);
 
         using (Microsoft.Win32.RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(keyPath)) {
-          rk.SetValue(null, 1); // Load at startup
-          rk.SetValue("Title", "Redbrick");
+          rk.SetValue(null, 0); // Load at startup
+          rk.SetValue("Title", "Redbrick2");
           rk.SetValue("Description", "Change properties the Amstore way.");
         }
       }
