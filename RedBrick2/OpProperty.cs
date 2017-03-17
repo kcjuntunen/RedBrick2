@@ -4,7 +4,7 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
-  class OpProperty : SwProperty {
+  class OpProperty : IntProperty {
     ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter cota =
       new ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter();
 
@@ -12,10 +12,8 @@ namespace RedBrick2 {
       new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter();
 
     public OpProperty(string name, bool global, SldWorks sw, ModelDoc2 md, string fieldName)
-      : base(name, global, sw, md) {
+      : base(name, global, sw, md, @"CUT_PART_OPS", fieldName) {
       SWType = swCustomInfoType_e.swCustomInfoYesOrNo;
-      TableName = @"CUT_PART_OPS";
-      FieldName = fieldName;
     }
 
     public override SwProperty Get() {
@@ -27,17 +25,36 @@ namespace RedBrick2 {
       return this;
     }
 
+    private int _type = 1;
+
+    public int OpType {
+      get { return _type;}
+      set { _type = value;} 
+    }
+
     protected int _data = 0;
 
     public override object Data {
       get { return _data; }
       set {
-        ENGINEERINGDataSet.CUT_PARTSDataTable cpdt =
-          new ENGINEERINGDataSet.CUT_PARTSDataTable();
-        cpdt = cpta.GetDataByPartID(PartID);
-        int tp = (int)cpdt.Rows[0][@"TYPE"];
-        _data = int.Parse(value.ToString());
-        Value = (string)cota.GetDataByOpID(int.Parse(value.ToString()), tp).Rows[0][@"OPNAME"];
+        if (value is string) {
+          try {
+            ENGINEERINGDataSet.CUT_PARTSDataTable cpdt =
+              new ENGINEERINGDataSet.CUT_PARTSDataTable();
+            cpdt = cpta.GetDataByPartID(PartID);
+            OpType = (int)cpdt.Rows[0][@"TYPE"];
+          } catch (Exception) {
+          
+          }
+          _data = (int)cota.GetOpIDByName(value.ToString(), OpType);
+        } else {
+          try {
+            _data = int.Parse(value.ToString());
+            Value = cota.GetOpNameByID(_data).ToString();
+          } catch (Exception) {
+
+          }
+        }
       }
     }
 

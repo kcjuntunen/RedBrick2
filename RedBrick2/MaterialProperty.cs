@@ -4,12 +4,19 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
-  class MaterialProperty : SwProperty {
+  class MaterialProperty : IntProperty {
     public MaterialProperty(string name, bool global, SldWorks sw, ModelDoc2 md, string fieldName)
-      : base(name, global, sw, md) {
+      : base(name, global, sw, md, @"CUT_CUTLIST_PARTS", fieldName) {
       SWType = swCustomInfoType_e.swCustomInfoNumber;
-      TableName = @"CUT_CUTLIST_PARTS";
-      FieldName = fieldName;
+    }
+
+    public override SwProperty Get() {
+      SwProperty p = base.Get();
+      if (_data == 0) {
+        Data = Value;
+      }
+
+      return base.Get();
     }
 
     protected int _data = 0;
@@ -20,11 +27,10 @@ namespace RedBrick2 {
         ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cmta =
           new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter();
         try {
-          _data = int.Parse(value.ToString());
-          Value = (string)cmta.GetDataByMatID(_data).Rows[0][@"DESCR"];
+          _data = (int)cmta.GetMaterialID(value.ToString());
+          Value = value.ToString();
         } catch (Exception) {
           _data = Properties.Settings.Default.DefaultMaterial;
-          Value = Properties.Settings.Default.DefaultMaterial.ToString();
         }
       }
     }
