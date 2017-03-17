@@ -10,15 +10,6 @@ namespace RedBrick2 {
       SWType = swCustomInfoType_e.swCustomInfoNumber;
     }
 
-    public override SwProperty Get() {
-      SwProperty p = base.Get();
-      if (_data == 0) {
-        Data = Value;
-      }
-
-      return base.Get();
-    }
-
     protected int _data = 0;
 
     public override object Data {
