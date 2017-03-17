@@ -102,6 +102,12 @@
     <Compile Include="MaterialProperty.cs" />
     <Compile Include="DoubleProperty.cs" />
     <Compile Include="IntProperty.cs" />
+    <Compile Include="ModelRedbrick.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ModelRedbrick.Designer.cs">
+      <DependentUpon>ModelRedbrick.cs</DependentUpon>
+    </Compile>
     <Compile Include="OpProperty.cs" />
     <Compile Include="OpSet.cs" />
     <Compile Include="RedbrickConfiguration.cs">
@@ -161,6 +167,9 @@
   <ItemGroup>
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelRedbrick.resx">
+      <DependentUpon>ModelRedbrick.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

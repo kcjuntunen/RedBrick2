@@ -59,17 +59,23 @@ namespace RedBrick2 {
         if (comp != null) {
           ModelDoc2 cmd = (ModelDoc2)comp.GetModelDoc2();
           docT = (swDocumentTypes_e)cmd.GetType();
-          PropertySet.GetProperties(comp);
-          comp = null;
+          ActiveDoc = cmd;
+          //PropertySet.GetProperties(comp);
         } else {
-          PropertySet.GetProperties(ActiveDoc);
+          //PropertySet.GetProperties(ActiveDoc);
         }
       } else {
         swSelMgr = null;
-        PropertySet.GetProperties(ActiveDoc);
+        //PropertySet.GetProperties(ActiveDoc);
       }
       d = docT;
       od = overDocT;
+    }
+
+    private void BuildStuff() {
+      ModelRedbrick mrb = new ModelRedbrick(ActiveDoc);
+      Controls.Add(mrb);
+      mrb.Dock = DockStyle.Fill;
     }
 
     internal void ConnectSelection() {
@@ -85,11 +91,7 @@ namespace RedBrick2 {
           swDocumentTypes_e docT = swDocumentTypes_e.swDocNONE;
           swDocumentTypes_e overDocT = swDocumentTypes_e.swDocNONE;
           GetTypes(ref docT, ref overDocT);
-
-          label1.Text = filename;
-
-          label2.Text = PropertySet.GlobalTokenString;
-          label3.Text = PropertySet.SpecificTokenString;
+          BuildStuff();
           PropertySet.Clear();
         }
       }

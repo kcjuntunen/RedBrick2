@@ -3,6 +3,8 @@ namespace RedBrick2 {
 
 
   public partial class ENGINEERINGDataSet {
+    partial class CutlistPartsDataTable {
+    }
 
     public void IncrementOdometer(Redbrick.Functions func) {
       ENGINEERINGDataSetTableAdapters.GEN_ODOMETERTableAdapter gota =
