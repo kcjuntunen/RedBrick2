@@ -24,6 +24,21 @@ namespace RedBrick2 {
       return this;
     }
 
+    public override void Set(object data, string val) {
+      Value = val;
+      if (data is int) {
+        _data = (int)data;
+      } else {
+        int res = 0;
+        try {
+          res = int.Parse(data.ToString());
+        } catch (Exception) {
+          //
+        }
+        _data = res;
+      }
+    }
+
     protected int _data = 0;
 
     public override object Data {
