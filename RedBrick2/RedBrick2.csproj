@@ -93,6 +93,7 @@
     </Compile>
     <Compile Include="BooleanProperty.cs" />
     <Compile Include="Crc32.cs" />
+    <Compile Include="DepartmentProperty.cs" />
     <Compile Include="EdgeProperty.cs" />
     <Compile Include="ENGINEERINGDataSet.cs">
       <DependentUpon>ENGINEERINGDataSet.xsd</DependentUpon>
@@ -167,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RedbrickConfiguration.resx">
       <DependentUpon>RedbrickConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SWTaskpaneHost.resx">
+      <DependentUpon>SWTaskpaneHost.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
