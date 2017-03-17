@@ -86,11 +86,11 @@ namespace RedBrick2 {
           swDocumentTypes_e overDocT = swDocumentTypes_e.swDocNONE;
           GetTypes(ref docT, ref overDocT);
 
-          PropertySet.Clear();
           label1.Text = filename;
 
           label2.Text = PropertySet.GlobalTokenString;
           label3.Text = PropertySet.SpecificTokenString;
+          PropertySet.Clear();
         }
       }
     }
@@ -177,7 +177,12 @@ namespace RedBrick2 {
     }
 
     internal void ReStart() {
-      throw new NotImplementedException();
+      ModelDocs.Clear();
+      if (SwApp == null) {
+        SwApp = RequestSW();
+      }
+      ConnectSelection();
     }
+
   }
 }
