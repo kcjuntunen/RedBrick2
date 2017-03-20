@@ -15,8 +15,10 @@ namespace RedBrick2 {
     public override SwProperty Get() {
       InnerGet();
       double res = 0.0F;
-      res = double.Parse(ResolvedValue);
-      _data = res;
+      if (!double.TryParse(ResolvedValue, out res)) {
+        _data = res;
+      }
+
       return this;
     }
 
