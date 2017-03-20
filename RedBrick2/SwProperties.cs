@@ -25,6 +25,10 @@ namespace RedBrick2 {
       SwApp = sw;
     }
 
+    public SwProperties(SldWorks sw, ModelDoc2 md) : this (sw) {
+      ActiveDoc = md;
+    }
+
     /// <summary>
     /// Returns the named property, but returns null if it's not present.
     /// </summary>
@@ -420,6 +424,9 @@ namespace RedBrick2 {
     /// Exception caused by the last added operation, if any.
     /// </summary>
     public Exception AddException { get; private set; }
+
+
+    public ModelDoc2 ActiveDoc { get; private set; }
 
     /// <summary>
     /// Live SldWorks object.

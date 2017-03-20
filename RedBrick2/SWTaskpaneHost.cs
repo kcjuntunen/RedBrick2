@@ -19,6 +19,8 @@ namespace RedBrick2 {
   public partial class SWTaskpaneHost : UserControl {
     public const string SWTASKPANE_PROGID = "Redbrick2.SWTaskpane";
     public int cookie;
+    private ModelRedbrick mrb;
+    private bool initialated = false;
 
     public SWTaskpaneHost() {
       InitializeComponent();
@@ -33,6 +35,7 @@ namespace RedBrick2 {
       SwApp.DestroyNotify += SwApp_DestroyNotify;
       SwApp.FileCloseNotify += SwApp_FileCloseNotify;
       SwApp.CommandCloseNotify += SwApp_CommandCloseNotify;
+      SwApp.FileOpenPostNotify += SwApp_FileOpenPostNotify;
       ActiveDoc = SwApp.ActiveDoc;
 
       if (ModelDocs == null) {
@@ -42,7 +45,18 @@ namespace RedBrick2 {
       if (!ModelDocs.Contains(ActiveDoc)) {
         ModelDocs.Add(ActiveDoc);
       }
-      ConnectSelection();
+      if (ActiveDoc != null) {
+        BuildStuff();
+        ConnectSelection();
+      }
+    }
+
+    int SwApp_FileOpenPostNotify(string FileName) {
+      if (mrb == null) {
+        BuildStuff();
+        ConnectSelection();
+      }
+      return 0;
     }
     
     /// <summary>
@@ -73,9 +87,12 @@ namespace RedBrick2 {
     }
 
     private void BuildStuff() {
-      ModelRedbrick mrb = new ModelRedbrick(ActiveDoc);
-      Controls.Add(mrb);
-      mrb.Dock = DockStyle.Fill;
+      if (!initialated) {
+        mrb = new ModelRedbrick(SwApp, ActiveDoc);
+        Controls.Add(mrb);
+        mrb.Dock = DockStyle.Fill;
+        initialated = true;
+      }
     }
 
     internal void ConnectSelection() {
@@ -87,12 +104,11 @@ namespace RedBrick2 {
       ActiveDoc = SwApp.ActiveDoc;
       if (ActiveDoc != null) {
         string filename = ActiveDoc.GetPathName();
-        if (ActiveDoc != ModelDocs[ModelDocs.Count - 1]) {
-          swDocumentTypes_e docT = swDocumentTypes_e.swDocNONE;
-          swDocumentTypes_e overDocT = swDocumentTypes_e.swDocNONE;
-          GetTypes(ref docT, ref overDocT);
+        if (ModelDocs.Count < 1 || ActiveDoc != ModelDocs[ModelDocs.Count - 1]) {
+          //swDocumentTypes_e docT = swDocumentTypes_e.swDocNONE;
+          //swDocumentTypes_e overDocT = swDocumentTypes_e.swDocNONE;
+          //GetTypes(ref docT, ref overDocT);
           BuildStuff();
-          PropertySet.Clear();
         }
       }
     }
