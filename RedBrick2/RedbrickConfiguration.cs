@@ -127,11 +127,31 @@ namespace RedBrick2 {
       workDays = WorkDays(); 
       foreach (object item in Enum.GetValues(typeof(Redbrick.Functions))) {
         string x = Enum.GetName(typeof(Redbrick.Functions), (Redbrick.Functions)item);
-        int f = (int)gota.GetOdometerTotalValue((int)item);
-        int mf = (int)gota.GetOdometerValue((int)item, guta.GetUID(Environment.UserName));
+        int f = 0;
+        int mf = 0;
+
+        try {
+          f = (int)gota.GetOdometerTotalValue((int)item);
+        } catch (Exception) {
+          //
+        }
+
+        try {
+          mf = (int)gota.GetOdometerValue((int)item, guta.GetUID(Environment.UserName));
+        } catch (Exception) {
+          //
+        }
+
         double y = f / workDays;
         double my = mf / workDays;
-        double σ = (double)gota.GetOdometerStdDev((int)item);
+        double σ = 0;
+
+        try {
+          σ = (double)gota.GetOdometerStdDev((int)item);
+        } catch (Exception) {
+          //
+        }
+
         if (y > 0) {
           DataRow dr = dt.NewRow();
           dr["Function"] = x;
