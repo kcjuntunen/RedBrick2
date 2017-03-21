@@ -7,7 +7,7 @@ namespace RedBrick2 {
   class DimensionProperty : SwProperty {
     public DimensionProperty(string name, bool global, SldWorks sw, ModelDoc2 md, string fieldName)
       : base(name, global, sw, md) {
-      SWType = swCustomInfoType_e.swCustomInfoDouble;
+      SWType = swCustomInfoType_e.swCustomInfoText;
       TableName = @"CUT_PARTS";
       FieldName = fieldName;
     }
@@ -22,8 +22,17 @@ namespace RedBrick2 {
       return this;
     }
 
-    protected double _data = 0.0F;
+    public override void Set(object data, string val) {
+      double res;
+      if (!double.TryParse((string)data, out res)) {
+        res = 0.0f;
+      }
+      _data = res;
+      Value = val;
+    }
 
+    protected double _data = 0.0F;
+    // TODO: This needs to take a SW type dimension string, and try to parse it.
     public override object Data {
       get {
         return _data == null ? double.Parse(ResolvedValue) : _data;

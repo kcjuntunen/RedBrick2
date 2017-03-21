@@ -7,7 +7,7 @@ namespace RedBrick2 {
   class EdgeProperty : IntProperty {
     public EdgeProperty(string name, bool global, SldWorks sw, ModelDoc2 md, string fieldName)
       : base(name, global, sw, md, @"CUT_CUTLIST_PARTS", fieldName) {
-      SWType = swCustomInfoType_e.swCustomInfoNumber;
+      SWType = swCustomInfoType_e.swCustomInfoText;
     }
 
     protected int _data = 0;
@@ -27,8 +27,12 @@ namespace RedBrick2 {
           ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter ce =
             new ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter();
           try {
-            _data = int.Parse(value.ToString());
-            Value = (string)ce.GetEdgeDescrByID(_data);
+            int res;
+            if (!int.TryParse(value.ToString(), out res)) {
+              res = 0;
+            }
+            _data = res;
+            Value = (string)ce.GetEdgeDescrByID(res);
           } catch (Exception) {
             _data = 0;
           }
