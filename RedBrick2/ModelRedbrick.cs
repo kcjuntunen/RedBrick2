@@ -28,13 +28,45 @@ namespace RedBrick2 {
       ActiveDoc = md;
       tabPage1.Text = @"Model Properties";
       tabPage2.Text = @"DrawingProperties";
+      groupBox1.MouseClick += groupBox1_MouseClick;
+      label6.MouseDown += clip_click;
+      label7.MouseDown += clip_click;
+      label8.MouseDown += clip_click;
+      label9.MouseDown += clip_click;
+      label10.MouseDown += clip_click;
+
+      textBox9.TextChanged += textBox9_TextChanged;
+      textBox10.TextChanged += textBox10_TextChanged;
+    }
+
+    void groupBox1_MouseClick(object sender, MouseEventArgs e) {
+      Redbrick.Clip((sender as GroupBox).Text.Split(new string [] {@" - "},StringSplitOptions.RemoveEmptyEntries)[0].Trim());
+    }
+
+    void textBox10_TextChanged(object sender, EventArgs e) {
+      try {
+        textBox13.Text = (double.Parse(label19.Text) +
+          double.Parse((sender as TextBox).Text)).ToString();
+      } catch (Exception) {
+        textBox13.Text = @"#VALUE!";
+      }
+    }
+
+    void textBox9_TextChanged(object sender, EventArgs e) {
+      try {
+        textBox12.Text = (double.Parse(label18.Text) +
+          double.Parse((sender as TextBox).Text)).ToString();
+      } catch (Exception) {
+        textBox12.Text = @"#VALUE!";
+      }
+    }
+
+    public void ReQuery(ModelDoc2 md) {
+      ActiveDoc = md;
     }
 
     private void ReQuery() {
       if (ActiveDoc != null) {
-        PropertySet = new SwProperties(SwApp);
-        PropertySet.GetProperties(ActiveDoc);
-
         textBox2.Text = PropertySet.GetProperty(@"LENGTH").Value;
         textBox3.Text = PropertySet.GetProperty(@"WIDTH").Value;
         textBox4.Text = PropertySet.GetProperty(@"THICKNESS").Value;
@@ -43,6 +75,7 @@ namespace RedBrick2 {
         GetCutlistData();
         //DisconnectEvents();
         SelectTab();
+
       } else {
         Enabled = false;
       }
@@ -71,19 +104,8 @@ namespace RedBrick2 {
             case swDocumentTypes_e.swDocASSEMBLY:
               ConnectPartEvents();
               break;
-            case swDocumentTypes_e.swDocDRAWING:
-              ((Control)tabPage1).Enabled = false;
-              ((Control)tabPage2).Enabled = true;
-              tabControl1.SelectedTab = tabPage2;
-              break;
-            case swDocumentTypes_e.swDocLAYOUT:
-              break;
-            case swDocumentTypes_e.swDocNONE:
-              break;
             case swDocumentTypes_e.swDocPART:
               ConnectPartEvents();
-              break;
-            case swDocumentTypes_e.swDocSDM:
               break;
             default:
               break;
@@ -237,13 +259,11 @@ namespace RedBrick2 {
           ModelDoc2 cmd = (ModelDoc2)comp.GetModelDoc2();
           docT = (swDocumentTypes_e)cmd.GetType();
           ActiveDoc = cmd;
-          PropertySet.GetProperties(comp);
         } else {
-          PropertySet.GetProperties(ActiveDoc);
+
         }
       } else {
         swSelMgr = null;
-        PropertySet.GetProperties(ActiveDoc);
       }
       d = docT;
       od = overDocT;
@@ -259,6 +279,12 @@ namespace RedBrick2 {
       get { return _activeDoc; }
       set {
         _activeDoc = value;
+        if (PropertySet == null) {
+          PropertySet = new SwProperties(SwApp);
+        } else {
+          PropertySet.Clear();
+        }
+        PropertySet.GetProperties(_activeDoc);
         PartFileInfo = new FileInfo(_activeDoc.GetPathName());
 
         groupBox1.Text = string.Format(@"{0} - {1}",
@@ -288,13 +314,42 @@ namespace RedBrick2 {
         (sender as ComboBox).SelectedIndex = -1;
       }
     }
+
+    private string GetDim(string prp) {
+      Dimension d = ActiveDoc.Parameter(prp);
+      if (d != null) {
+        return d.Value.ToString();
+      } else {
+        return DimensionByEquation(prp);
+      }
+    }
+
+    private string DimensionByEquation(string equation) {
+      string res = string.Empty;
+      EquationMgr eqm = ActiveDoc.GetEquationMgr();
+      for (int i = 0; i < eqm.GetCount(); i++) {
+        if (eqm.get_Equation(i).Contains(equation)) {
+          return eqm.get_Value(i).ToString();
+        }
+      }
+      return @"#VALUE!";
+    }
+
     private void textBox_TextChanged(string dim, Label l) {
       try {
-        Dimension d = ActiveDoc.Parameter(dim + "@" + PartFileInfo.Name);
-        l.Text = d.Value.ToString();
+        string dimension = dim.
+          Replace(@"@" + PartFileInfo.Name, string.Empty).
+          Replace(@"@" + ActiveDoc.ConfigurationManager.ActiveConfiguration.Name, string.Empty).
+          Trim('"');
+
+        l.Text = string.Format("{0:0,0.000}", GetDim(dimension));
       } catch (Exception) {
         l.Text = @"#VALUE!";
       }
+    }
+
+    private void clip_click(object sender, EventArgs e) {
+      Redbrick.Clip((sender as Control).Text);
     }
 
     private void textBox2_TextChanged(object sender, EventArgs e) {
@@ -349,7 +404,39 @@ namespace RedBrick2 {
       }
     }
 
+    private void label1_Click(object sender, EventArgs e) {
+      Redbrick.Clip(comboBox1.Text);
+    }
 
+    private void label2_Click(object sender, EventArgs e) {
+      Redbrick.Clip(comboBox2.Text);
+    }
+
+    private void label3_Click(object sender, EventArgs e) {
+      Redbrick.Clip(comboBox3.Text);
+    }
+
+    private void label4_Click(object sender, EventArgs e) {
+      Redbrick.Clip(comboBox4.Text);
+    }
+
+    private void label5_Click(object sender, EventArgs e) {
+      Redbrick.Clip(comboBox5.Text);
+    }
+
+    private void label11_Click(object sender, EventArgs e) {
+      Redbrick.Clip(comboBox6.Text);
+    }
+
+    private void label12_Click(object sender, EventArgs e) {
+      Redbrick.Clip(textBox1.Text);
+    }
+
+    private void button1_Click(object sender, EventArgs e) {
+      Machine_Priority_Control.MachinePriority mp =
+        new Machine_Priority_Control.MachinePriority(Path.GetFileNameWithoutExtension(PartFileInfo.Name));
+      mp.Show(this);
+    }
 
   }
 }
