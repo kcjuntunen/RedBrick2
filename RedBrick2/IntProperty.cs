@@ -14,11 +14,9 @@ namespace RedBrick2 {
 
     public override SwProperty Get() {
       InnerGet();
-      int res = 0;
-      try {
-        res = int.Parse(Value);
-      } catch (Exception) {
-        // Probably an empty string.
+      int res;
+      if (!int.TryParse(Value, out res)) {
+        res = 0;
       }
       _data = res;
       return this;
