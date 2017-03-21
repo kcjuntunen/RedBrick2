@@ -94,6 +94,12 @@
     <Compile Include="BooleanProperty.cs" />
     <Compile Include="Crc32.cs" />
     <Compile Include="DepartmentProperty.cs" />
+    <Compile Include="DrawingRedbrick.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawingRedbrick.Designer.cs">
+      <DependentUpon>DrawingRedbrick.cs</DependentUpon>
+    </Compile>
     <Compile Include="EdgeProperty.cs" />
     <Compile Include="ENGINEERINGDataSet.cs">
       <DependentUpon>ENGINEERINGDataSet.xsd</DependentUpon>
@@ -167,6 +173,9 @@
   <ItemGroup>
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawingRedbrick.resx">
+      <DependentUpon>DrawingRedbrick.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModelRedbrick.resx">
       <DependentUpon>ModelRedbrick.cs</DependentUpon>
