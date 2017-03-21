@@ -30,7 +30,6 @@ namespace RedBrick2 {
       if (SwApp == null) {
         SwApp = RequestSW();
       }
-      PropertySet = new SwProperties(SwApp);
       SwApp.ActiveDocChangeNotify += SwApp_ActiveDocChangeNotify;
       SwApp.DestroyNotify += SwApp_DestroyNotify;
       SwApp.FileCloseNotify += SwApp_FileCloseNotify;
@@ -97,7 +96,6 @@ namespace RedBrick2 {
 
     internal void ConnectSelection() {
       System.GC.Collect(2, GCCollectionMode.Forced);
-      PropertySet.CutlistID = 0;
       if (SwApp == null) {
         SwApp = RequestSW();
       }
@@ -109,18 +107,21 @@ namespace RedBrick2 {
           //swDocumentTypes_e overDocT = swDocumentTypes_e.swDocNONE;
           //GetTypes(ref docT, ref overDocT);
           BuildStuff();
+          mrb.ReQuery(ActiveDoc);
+          Visible = true;
         }
       }
     }
 
     private int SwApp_CommandCloseNotify(int Command, int reason) {
       if ((swCommands_e)Command == swCommands_e.swCommands_Close || (swCommands_e)Command == swCommands_e.swCommands_Close_) {
-        Enabled = false;
+        Visible = false;
       }
 
       if ((swCommands_e)Command == swCommands_e.swCommands_Make_Lightweight ||
         (swCommands_e)Command == swCommands_e.swCommands_Lightweight_Toggle ||
         (swCommands_e)Command == swCommands_e.swCommands_Lightweight_All) {
+          Visible = true;
         ReStart();
       }
 
@@ -128,12 +129,12 @@ namespace RedBrick2 {
     }
 
     private int SwApp_FileCloseNotify(string FileName, int reason) {
-      Enabled = false;
+      Visible = false;
       return 0;
     }
 
     private int SwApp_DestroyNotify() {
-      Enabled = false;
+      Visible = false;
       return 0;
     }
 
