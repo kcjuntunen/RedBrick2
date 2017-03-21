@@ -489,7 +489,7 @@ namespace RedBrick2 {
         string keyPath = String.Format(@"SOFTWARE\SolidWorks\AddIns\{0:b}", t.GUID);
 
         using (Microsoft.Win32.RegistryKey rk = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(keyPath)) {
-          rk.SetValue(null, 0); // Load at startup
+          rk.SetValue(null, 1); // Load at startup
           rk.SetValue("Title", "Redbrick2");
           rk.SetValue("Description", "Change properties the Amstore way.");
         }
