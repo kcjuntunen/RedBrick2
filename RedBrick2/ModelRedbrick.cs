@@ -13,12 +13,26 @@ using SolidWorks.Interop.swconst;
 namespace RedBrick2 {
   public partial class ModelRedbrick : UserControl {
     private SwProperties PropertySet;
+    private bool initialated = false;
     private bool AssemblyEventsAssigned = false;
     private bool PartEventsAssigned = false;
+    private bool DrawingEventsAssigned = false;
+    private bool ModelSetup = false;
+    private bool DrawingSetup = false;
+
     private SelectionMgr swSelMgr;
     private Component2 swSelComp;
     private AssemblyDoc ad;
     private PartDoc pd;
+    private DrawingDoc dd;
+
+    private DrawingRedbrick drawingRedbrick;
+
+    private string partLookup;
+    private Point scrollOffset;
+
+    private const int WM_PAINT = 0x000F;
+    private bool allowPaint;
 
     private ModelDoc2 lastModelDoc = null;
 
@@ -39,25 +53,37 @@ namespace RedBrick2 {
       textBox10.TextChanged += textBox10_TextChanged;
     }
 
+    protected override void WndProc(ref Message m) {
+      if ((m.Msg != WM_PAINT || (allowPaint && m.Msg == WM_PAINT))) {
+        base.WndProc(ref m); 
+      }
+    }
+
     void groupBox1_MouseClick(object sender, MouseEventArgs e) {
-      Redbrick.Clip((sender as GroupBox).Text.Split(new string [] {@" - "},StringSplitOptions.RemoveEmptyEntries)[0].Trim());
+      Redbrick.Clip(partLookup);
     }
 
     void textBox10_TextChanged(object sender, EventArgs e) {
-      try {
-        textBox13.Text = (double.Parse(label19.Text) +
-          double.Parse((sender as TextBox).Text)).ToString();
-      } catch (Exception) {
-        textBox13.Text = @"#VALUE!";
+      if (initialated) {
+        try {
+          double _val = (double.Parse(label19.Text) +
+             double.Parse((sender as TextBox).Text));
+          textBox13.Text = string.Format(Properties.Settings.Default.NumberFormat, _val);
+        } catch (Exception) {
+          textBox13.Text = @"#VALUE!";
+        }
       }
     }
 
     void textBox9_TextChanged(object sender, EventArgs e) {
-      try {
-        textBox12.Text = (double.Parse(label18.Text) +
-          double.Parse((sender as TextBox).Text)).ToString();
-      } catch (Exception) {
-        textBox12.Text = @"#VALUE!";
+      if (initialated) {
+        try {
+          double _val = (double.Parse(label18.Text) +
+            double.Parse((sender as TextBox).Text));
+          textBox12.Text = string.Format(Properties.Settings.Default.NumberFormat, _val);
+        } catch (Exception) {
+          textBox12.Text = @"#VALUE!";
+        }
       }
     }
 
@@ -66,73 +92,69 @@ namespace RedBrick2 {
     }
 
     private void ReQuery() {
+      GetCutlistData();
+      flowLayoutPanel1.Controls.Clear();
       if (ActiveDoc != null) {
-        textBox2.Text = PropertySet.GetProperty(@"LENGTH").Value;
-        textBox3.Text = PropertySet.GetProperty(@"WIDTH").Value;
-        textBox4.Text = PropertySet.GetProperty(@"THICKNESS").Value;
-        textBox5.Text = PropertySet.GetProperty(@"WALL THICKNESS").Value;
+        textBox2.Text = PropertySet[@"LENGTH"].Value;
+        textBox3.Text = PropertySet[@"WIDTH"].Value;
+        textBox4.Text = PropertySet[@"THICKNESS"].Value;
+        textBox5.Text = PropertySet[@"WALL THICKNESS"].Value;
 
-        GetCutlistData();
+        GetOps();
+
         //DisconnectEvents();
-        SelectTab();
+        //SelectTab();
+        textBox_TextChanged(PropertySet[@"LENGTH"].Value, label18);
+        textBox_TextChanged(PropertySet[@"WIDTH"].Value, label19);
+        textBox_TextChanged(PropertySet[@"THICKNESS"].Value, label20);
+        textBox_TextChanged(PropertySet[@"WALL THICKNESS"].Value, label21);
 
+        flowLayoutPanel1.VerticalScroll.Value = scrollOffset.Y;
       } else {
         Enabled = false;
       }
     }
 
     private void GetCutlistData() {
-      string partLookup = Path.GetFileNameWithoutExtension(PartFileInfo.Name).Split(' ')[0];
-
       cutlistPartsTableAdapter.FillByPartNum(eNGINEERINGDataSet.CutlistParts, partLookup);
       cutlistPartsBindingSource.DataSource = cutlistPartsTableAdapter.GetDataByPartNum(partLookup);
       cUTPARTSBindingSource.DataSource = cUT_PARTSTableAdapter.GetDataByPartnum(partLookup);
     }
 
-    private void SelectTab() {
-      swDocumentTypes_e overdoctype = swDocumentTypes_e.swDocNONE;
-      swDocumentTypes_e doctype = swDocumentTypes_e.swDocNONE;
-      GetTypes(ref doctype, ref overdoctype);
-      switch (overdoctype) {
-        case swDocumentTypes_e.swDocASSEMBLY:
-          Enabled = true;
-          ((Control)tabPage1).Enabled = true;
-          ((Control)tabPage2).Enabled = false;
-          tabControl1.SelectedTab = tabPage1;
-          ConnectAssemblyEvents();
-          switch (doctype) {
-            case swDocumentTypes_e.swDocASSEMBLY:
-              ConnectPartEvents();
-              break;
-            case swDocumentTypes_e.swDocPART:
-              ConnectPartEvents();
-              break;
-            default:
-              break;
-          }
-          break;
-        case swDocumentTypes_e.swDocDRAWING:
-          Enabled = true;
-          ((Control)tabPage1).Enabled = false;
-          ((Control)tabPage2).Enabled = true;
-          tabControl1.SelectedTab = tabPage2;
-          break;
-        case swDocumentTypes_e.swDocLAYOUT:
-          break;
-        case swDocumentTypes_e.swDocNONE:
-          break;
-        case swDocumentTypes_e.swDocPART:
-          Enabled = true;
-          ((Control)tabPage1).Enabled = true;
-          ((Control)tabPage2).Enabled = false;
-          tabControl1.SelectedTab = tabPage1;
-          break;
-        case swDocumentTypes_e.swDocSDM:
-          break;
-        default:
-          Enabled = false;
-          break;
+    private void GetOps() {
+      ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpo =
+        new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
+      ENGINEERINGDataSet.CutPartOpsDataTable cpodt =
+        new ENGINEERINGDataSet.CutPartOpsDataTable();
+      cpo.FillBy(cpodt, partLookup);
+      foreach (ENGINEERINGDataSet.CutPartOpsRow row in cpodt) {
+        OpControl opc = new OpControl(row);
+        flowLayoutPanel1.Controls.Add(opc);
+        flowLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        opc.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
       }
+    }
+
+    private void ConnectDrawingEvents() {
+      if (!DrawingEventsAssigned) {
+        dd = (DrawingDoc)ActiveDoc;
+        swSelMgr = ActiveDoc.SelectionManager;
+        dd.NewSelectionNotify += dd_UserSelectionPostNotify;
+        //dd.UserSelectionPostNotify += dd_UserSelectionPostNotify;
+        DrawingEventsAssigned = true;
+      }
+    }
+
+    int dd_UserSelectionPostNotify() {
+      swSelMgr = ActiveDoc.SelectionManager;
+      DrawingComponent dc = swSelMgr.GetSelectedObject6(1, -1);
+      if (dc != null) {
+        Component2 _c = dc.Component;
+        ActiveDoc = _c.GetModelDoc2();
+      } else {
+        ActiveDoc = SwApp.ActiveDoc;
+      }
+      return 0;
     }
 
     private void ConnectPartEvents() {
@@ -165,6 +187,11 @@ namespace RedBrick2 {
         lastModelDoc = SwApp.ActiveDoc;
       }
       DisconnectPartEvents();
+      DisconnectDrawingEvents();
+    }
+
+    private void DisconnectDrawingEvents() {
+      dd.UserSelectionPostNotify -= dd_UserSelectionPostNotify;
     }
 
     private void ConnectAssemblyEvents() {
@@ -197,6 +224,7 @@ namespace RedBrick2 {
     }
 
     private int ad_DestroyNotify2(int DestroyType) {
+      Visible = false;
       return 0;
     }
 
@@ -204,8 +232,8 @@ namespace RedBrick2 {
       // What do we got?
       if (swSelMgr == null) {
         swSelMgr = ActiveDoc.SelectionManager;
-        swSelComp = swSelMgr.GetSelectedObjectsComponent4(1, -1);
       }
+      swSelComp = swSelMgr.GetSelectedObjectsComponent4(1, -1);
       if (swSelComp != null) {
         ActiveDoc = swSelComp.GetModelDoc2();
       } else {
@@ -243,30 +271,75 @@ namespace RedBrick2 {
       return 0;
     }
 
-    /// <summary>
-    /// Run this function after this.Document is populated. It fills two ref vars with swDocumentTypes_e.
-    /// </summary>
-    /// <param name="d">The document type.</param>
-    /// <param name="od">The top-level document type.</param>
-    private void GetTypes(ref swDocumentTypes_e d, ref swDocumentTypes_e od) {
-      swDocumentTypes_e docT = (swDocumentTypes_e)ActiveDoc.GetType();
-      ModelDoc2 overDoc = (ModelDoc2)SwApp.ActiveDoc;
-      swDocumentTypes_e overDocT = (swDocumentTypes_e)overDoc.GetType();
-      swSelMgr = ActiveDoc.SelectionManager;
-      if ((docT != swDocumentTypes_e.swDocDRAWING && swSelMgr != null) && swSelMgr.GetSelectedObjectCount2(-1) > 0) {
-        Component2 comp = (Component2)swSelMgr.GetSelectedObjectsComponent4(1, -1);
-        if (comp != null) {
-          ModelDoc2 cmd = (ModelDoc2)comp.GetModelDoc2();
-          docT = (swDocumentTypes_e)cmd.GetType();
-          ActiveDoc = cmd;
-        } else {
+    public void Commit() {
+      PropertySet[@"Description"].Data = textBox1.Text;
 
-        }
+      // Dimensions get special treatment since the mgr stores weird strings, and DB stores doubles.
+      PropertySet[@"LENGTH"].Set(label18.Text, textBox2.Text);
+      PropertySet[@"WIDTH"].Set(label19.Text, textBox3.Text);
+      PropertySet[@"THICKNESS"].Set(label20.Text, textBox4.Text);
+      PropertySet[@"WALL THICKNESS"].Set(label21.Text, textBox5.Text);
+
+      PropertySet[@"COMMENT"].Data = textBox6.Text;
+      
+      PropertySet[@"CNC1"].Data = textBox7.Text;
+      PropertySet[@"CNC2"].Data = textBox8.Text;
+      PropertySet[@"OVERL"].Data = textBox9.Text;
+      PropertySet[@"OVERW"].Data = textBox10.Text;
+      PropertySet[@"BLANK QTY"].Data = textBox11.Text;
+      PropertySet[@"UPDATE CNC"].Data = checkBox1.Checked;
+
+      PropertySet[@"CUTLIST MATERIAL"].Data = comboBox1.SelectedValue;
+      PropertySet[@"EDGE FRONT (L)"].Data = comboBox2.SelectedValue;
+      PropertySet[@"EDGE BACK (L)"].Data = comboBox3.SelectedValue;
+      PropertySet[@"EDGE LEFT (W)"].Data = comboBox4.SelectedValue;
+      PropertySet[@"EDGE RIGHT (W)"].Data = comboBox5.SelectedValue;
+      PropertySet.Write();
+    }
+
+    private void SetupDrawing() {
+      if (!DrawingSetup) {
+        drawingRedbrick = new DrawingRedbrick(ActiveDoc, SwApp);
+        tabPage2.Controls.Add(drawingRedbrick);
+        drawingRedbrick.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
       } else {
-        swSelMgr = null;
+        drawingRedbrick.ReLoad(SwApp.ActiveDoc);
       }
-      d = docT;
-      od = overDocT;
+
+      if (!DrawingEventsAssigned) {
+        ConnectDrawingEvents();
+      }
+
+      tabControl1.SelectedTab = tabPage2;
+    }
+
+    private void SetupPart() {
+      scrollOffset = new Point(0, flowLayoutPanel1.VerticalScroll.Value);
+
+      if (PropertySet == null) {
+        PropertySet = new SwProperties(SwApp);
+      } else {
+        PropertySet.Clear();
+      }
+
+      PropertySet.GetProperties(_activeDoc);
+      string _configname = string.Empty;
+
+      if (!(_activeDoc is DrawingDoc)) {
+        _configname = ActiveDoc.ConfigurationManager.ActiveConfiguration.Name;
+      }
+
+      groupBox1.Text = string.Format(@"{0} - {1}",
+        partLookup, _configname);
+
+      Hash = Redbrick.GetHash(PartFileInfo.FullName);
+      if (lastModelDoc != ActiveDoc) {
+        ReQuery();
+      }
+      lastModelDoc = ActiveDoc;
+      tabControl1.SelectedTab = tabPage1;
+      DisconnectPartEvents();
+      ConnectPartEvents();
     }
 
     public int PartID { get; set; }
@@ -278,21 +351,52 @@ namespace RedBrick2 {
     public ModelDoc2 ActiveDoc {
       get { return _activeDoc; }
       set {
+        allowPaint = false;
+        Visible = true;
         _activeDoc = value;
-        if (PropertySet == null) {
-          PropertySet = new SwProperties(SwApp);
-        } else {
-          PropertySet.Clear();
-        }
-        PropertySet.GetProperties(_activeDoc);
+
         PartFileInfo = new FileInfo(_activeDoc.GetPathName());
+        partLookup = Path.GetFileNameWithoutExtension(PartFileInfo.Name).Split(' ')[0];
 
-        groupBox1.Text = string.Format(@"{0} - {1}",
-          Path.GetFileNameWithoutExtension(PartFileInfo.Name).Split(' ')[0],
-          ActiveDoc.ConfigurationManager.ActiveConfiguration.Name);
-
-        Hash = Redbrick.GetHash(PartFileInfo.FullName);
-        ReQuery();
+        swDocumentTypes_e dType = (swDocumentTypes_e)_activeDoc.GetType();
+        swDocumentTypes_e odType = (swDocumentTypes_e)(SwApp.ActiveDoc as ModelDoc2).GetType();
+        switch (dType) {
+          case swDocumentTypes_e.swDocASSEMBLY:
+            (tabPage1 as Control).Enabled = true;
+            if (odType != swDocumentTypes_e.swDocDRAWING) {
+              (tabPage2 as Control).Enabled = false;
+            } else {
+              (tabPage2 as Control).Enabled = true;
+            }
+            DisconnectAssemblyEvents();
+            ConnectAssemblyEvents();
+            SetupPart();
+            break;
+          case swDocumentTypes_e.swDocDRAWING:
+            (tabPage2 as Control).Enabled = true;
+            SetupDrawing();
+            break;
+          case swDocumentTypes_e.swDocLAYOUT:
+            break;
+          case swDocumentTypes_e.swDocNONE:
+            break;
+          case swDocumentTypes_e.swDocPART:
+            (tabPage1 as Control).Enabled = true;
+            if (odType != swDocumentTypes_e.swDocDRAWING) {
+              (tabPage2 as Control).Enabled = false;
+            } else {
+              (tabPage2 as Control).Enabled = true;
+            }
+            SetupPart();
+            break;
+          case swDocumentTypes_e.swDocSDM:
+            break;
+          default:
+            (tabPage1 as Control).Enabled = false;
+            (tabPage2 as Control).Enabled = false;
+            break;
+        }
+        allowPaint = true;
       } 
     }
 
@@ -302,7 +406,8 @@ namespace RedBrick2 {
       cUT_MATERIALSTableAdapter.Fill(eNGINEERINGDataSet.CUT_MATERIALS);
       cUT_EDGESTableAdapter.Fill(eNGINEERINGDataSet.CUT_EDGES);
       GetCutlistData();
-      SelectTab();
+      //SelectTab();
+      initialated = true;
     }
 
     private void comboBox_KeyDown(object sender, KeyEventArgs e) {
@@ -336,15 +441,17 @@ namespace RedBrick2 {
     }
 
     private void textBox_TextChanged(string dim, Label l) {
-      try {
+      if (initialated && ActiveDoc.GetType() != (int)swDocumentTypes_e.swDocDRAWING) {
         string dimension = dim.
           Replace(@"@" + PartFileInfo.Name, string.Empty).
           Replace(@"@" + ActiveDoc.ConfigurationManager.ActiveConfiguration.Name, string.Empty).
           Trim('"');
-
-        l.Text = string.Format("{0:0,0.000}", GetDim(dimension));
-      } catch (Exception) {
-        l.Text = @"#VALUE!";
+        double _val;
+        if (double.TryParse(GetDim(dimension), out _val)) {
+          l.Text = string.Format(Properties.Settings.Default.NumberFormat, _val);
+        } else {
+          l.Text = @"#VALUE!";
+        }
       }
     }
 

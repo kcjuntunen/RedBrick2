@@ -91,8 +91,11 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="AuthorProperty.cs" />
     <Compile Include="BooleanProperty.cs" />
     <Compile Include="Crc32.cs" />
+    <Compile Include="CustomerProperty.cs" />
+    <Compile Include="DateProperty.cs" />
     <Compile Include="DepartmentProperty.cs" />
     <Compile Include="DrawingRedbrick.cs">
       <SubType>UserControl</SubType>
@@ -113,6 +116,12 @@
     </Compile>
     <Compile Include="ModelRedbrick.Designer.cs">
       <DependentUpon>ModelRedbrick.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OpControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OpControl.Designer.cs">
+      <DependentUpon>OpControl.cs</DependentUpon>
     </Compile>
     <Compile Include="OpProperty.cs" />
     <Compile Include="OpSet.cs" />
@@ -179,6 +188,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ModelRedbrick.resx">
       <DependentUpon>ModelRedbrick.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OpControl.resx">
+      <DependentUpon>OpControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

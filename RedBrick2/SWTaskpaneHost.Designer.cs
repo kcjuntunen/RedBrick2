@@ -31,6 +31,8 @@ namespace RedBrick2 {
       this.tableAdapterManager1.BackupDataSetBeforeUpdate = false;
       this.tableAdapterManager1.Connection = null;
       this.tableAdapterManager1.CUT_CUTLIST_PARTSTableAdapter = null;
+      this.tableAdapterManager1.CUT_CUTLISTSTableAdapter = null;
+      this.tableAdapterManager1.CUT_DRAWING_MATERIALSTableAdapter = null;
       this.tableAdapterManager1.CUT_EDGES_XREFTableAdapter = null;
       this.tableAdapterManager1.CUT_EDGESTableAdapter = null;
       this.tableAdapterManager1.CUT_MATERIALSTableAdapter = null;
@@ -40,6 +42,10 @@ namespace RedBrick2 {
       this.tableAdapterManager1.CUT_PART_OPSTableAdapter = null;
       this.tableAdapterManager1.CUT_PART_TYPESTableAdapter = null;
       this.tableAdapterManager1.CUT_PARTSTableAdapter = null;
+      this.tableAdapterManager1.CUT_STATESTableAdapter = null;
+      this.tableAdapterManager1.CutPartOpsTableAdapter = null;
+      this.tableAdapterManager1.FriendlyCutOpsTableAdapter = null;
+      this.tableAdapterManager1.GEN_CUSTOMERSTableAdapter = null;
       this.tableAdapterManager1.GEN_ODOMETERTableAdapter = null;
       this.tableAdapterManager1.GEN_USERSTableAdapter = null;
       this.tableAdapterManager1.UpdateOrder = RedBrick2.ENGINEERINGDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
