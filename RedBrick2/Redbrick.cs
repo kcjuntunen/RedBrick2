@@ -125,10 +125,8 @@ namespace RedBrick2 {
             taskpaneHost.ReStart();
             break;
           case 3:
-            //CutlistData cd = new CutlistData();
-            //cd.IncrementOdometer(CutlistData.Functions.ArchivePDF);
-            //cd.Dispose();
-            //cd = null;
+            ENGINEERINGDataSet ds = new ENGINEERINGDataSet();
+            ds.IncrementOdometer(Functions.ArchivePDF);
             ArchivePDF.csproj.ArchivePDFWrapper apw = new ArchivePDF.csproj.ArchivePDFWrapper(swApp, GeneratePathSet());
             apw.Archive();
             break;
@@ -181,17 +179,18 @@ namespace RedBrick2 {
       /// Possible functions for the odometer.
       /// </summary>
       public enum Functions {
-        GreenCheck,
-        ArchivePDF,
-        InsertECR,
-        ExamineBOM,
-        MaterialList,
-        UpdateCutlistPart,
-        UpdateCutlist,
-        DrawingCollector,
-        ExportPrograms,
-        MachinePrioritySW,
-        MachinePriorityACAD
+        GreenCheck,         //0
+        ArchivePDF,         //1
+        InsertECR,          //2
+        ExamineBOM,         //3
+        MaterialList,       //4
+        UpdateCutlistPart,  //5
+        UpdateCutlist,      //6
+        DrawingCollector,   //7
+        ExportPrograms,     //8
+        ConvertPrograms,    //9
+        MachinePrioritySW,  //10
+        MachinePriorityACAD //11
       }
 
       /// <summary>
@@ -459,6 +458,26 @@ namespace RedBrick2 {
           throw new Exception("I couldn't find a model anywhere in this document.");
         }
         return v;
+      }
+
+      public static string GetDim(ModelDoc2 md, string prp) {
+        Dimension d = md.Parameter(prp);
+        if (d != null) {
+          return d.Value.ToString();
+        } else {
+          return DimensionByEquation(md, prp);
+        }
+      }
+
+      public static string DimensionByEquation(ModelDoc2 md, string equation) {
+        string res = string.Empty;
+        EquationMgr eqm = md.GetEquationMgr();
+        for (int i = 0; i < eqm.GetCount(); i++) {
+          if (eqm.get_Equation(i).Contains(equation)) {
+            return eqm.get_Value(i).ToString();
+          }
+        }
+        return @"#VALUE!";
       }
 
       /// <summary>
