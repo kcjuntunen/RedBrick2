@@ -142,6 +142,7 @@ namespace RedBrick2 {
       if (SwApp == null) {
         SwApp = RequestSW();
       }
+      Visible = true;
       ConnectSelection();
       return 0;
     }
@@ -192,7 +193,7 @@ namespace RedBrick2 {
     }
 
     internal void Write() {
-      throw new NotImplementedException();
+      mrb.Commit();
     }
 
     internal void ReStart() {
