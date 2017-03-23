@@ -521,5 +521,29 @@ namespace RedBrick2.Properties {
                 this["RBConfigSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{0:0.000}")]
+        public string NumberFormat {
+            get {
+                return ((string)(this["NumberFormat"]));
+            }
+            set {
+                this["NumberFormat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public string DefaultRev {
+            get {
+                return ((string)(this["DefaultRev"]));
+            }
+            set {
+                this["DefaultRev"] = value;
+            }
+        }
     }
 }

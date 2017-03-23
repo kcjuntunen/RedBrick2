@@ -143,5 +143,11 @@
     <Setting Name="RBConfigSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">453, 488</Value>
     </Setting>
+    <Setting Name="NumberFormat" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0:0.000}</Value>
+    </Setting>
+    <Setting Name="DefaultRev" Type="System.String" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
