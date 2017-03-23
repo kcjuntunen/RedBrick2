@@ -50,8 +50,8 @@ namespace RedBrick2 {
     public override object Data {
       get { return _data; }
       set {
-        _data = value.ToString().ToUpper().Contains(@"Y");
-        Value = _data ? @"Yes" : @"NO";
+        _data = (bool)value;
+        Value = _data ? @"Yes" : @"N";
       }
     }
   }

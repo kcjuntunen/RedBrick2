@@ -7,7 +7,7 @@ namespace RedBrick2 {
   class IntProperty : SwProperty {
     public IntProperty(string name, bool global, SldWorks sw, ModelDoc2 md, string tableName, string fieldName)
       : base(name, global, sw, md) {
-      SWType = swCustomInfoType_e.swCustomInfoYesOrNo;
+      SWType = swCustomInfoType_e.swCustomInfoNumber;
       TableName = tableName;
       FieldName = fieldName;
     }
