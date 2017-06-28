@@ -143,7 +143,8 @@ namespace RedBrick2 {
         SwApp = RequestSW();
       }
       Visible = true;
-      ConnectSelection();
+      BuildStuff();
+      mrb.ReQuery(SwApp.ActiveDoc);
       return 0;
     }
 
