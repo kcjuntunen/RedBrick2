@@ -19,20 +19,31 @@ namespace RedBrick2 {
 
     public override SwProperty Get() {
       InnerGet();
-      string searchTerm = ResolvedValue.Split('-')[0].Trim();
 
+      ENGINEERINGDataSet.GEN_USERSDataTable dt = null;
       ENGINEERINGDataSet.GEN_USERSRow row = null;
-      try {
+      dt = gu.GetDataByInitial(Value);
+
+      if (dt.Rows.Count > 0) {
         row = gu.GetDataByInitial(Value)[0];
-      } catch (Exception) {
-        //
       }
 
       if (row != null) {
         _data = (int)row[@"UID"];
+        FullName = Redbrick.TitleCase((string)row[@"Fullname"]);
       }
 
       return this;
+    }
+
+    public string FullName {
+      get { return Value; }
+      private set { Value = value; }
+    }
+
+    public string Initials {
+      get { return Value; }
+      private set { Value = value; }
     }
 
     protected int _data;
