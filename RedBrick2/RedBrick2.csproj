@@ -131,6 +131,8 @@
     <Compile Include="RedbrickConfiguration.Designer.cs">
       <DependentUpon>RedbrickConfiguration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Rev.cs" />
+    <Compile Include="Revs.cs" />
     <Compile Include="StringProperty.cs" />
     <Compile Include="DimensionProperty.cs" />
     <Compile Include="ENGINEERINGDataSet.Designer.cs">
