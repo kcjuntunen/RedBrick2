@@ -381,12 +381,12 @@ namespace RedBrick2.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("25")]
-        public int RevLimit {
+        public int LvlLimit {
             get {
-                return ((int)(this["RevLimit"]));
+                return ((int)(this["LvlLimit"]));
             }
             set {
-                this["RevLimit"] = value;
+                this["LvlLimit"] = value;
             }
         }
         
