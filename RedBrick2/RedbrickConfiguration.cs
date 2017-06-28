@@ -47,7 +47,7 @@ namespace RedBrick2 {
       chbFlameWar.Checked = Properties.Settings.Default.FlameWar;
       chbTestingMode.Checked = true;
       cbDept.SelectedValue = Properties.Settings.Default.UserDept;
-      cbRevLimit.SelectedIndex = Properties.Settings.Default.RevLimit - 1;
+      cbRevLimit.SelectedIndex = Properties.Settings.Default.LvlLimit - 1;
       chbSounds.Checked = Properties.Settings.Default.MakeSounds;
       chbWarnings.Checked = Properties.Settings.Default.Warn;
       chbOpWarnings.Checked = Properties.Settings.Default.ProgWarn;
@@ -205,7 +205,7 @@ namespace RedBrick2 {
     /// <param name="sender">Who triggered this event?</param>
     /// <param name="e">Any data come with it?</param>
     private void cbRevLimit_SelectedIndexChanged(object sender, EventArgs e) {
-      Properties.Settings.Default.RevLimit = (int)cbRevLimit.SelectedIndex + 1;
+      Properties.Settings.Default.LvlLimit = (int)cbRevLimit.SelectedIndex + 1;
     }
 
     /// <summary>
