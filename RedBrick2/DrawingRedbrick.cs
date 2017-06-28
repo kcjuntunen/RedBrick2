@@ -13,6 +13,7 @@ using SolidWorks.Interop.swconst;
 namespace RedBrick2 {
   public partial class DrawingRedbrick : UserControl {
     private string partLookup;
+    private Revs revSet;
 
     public DrawingRedbrick(ModelDoc2 md, SldWorks sw) {
       ActiveDoc = md;
@@ -87,6 +88,24 @@ namespace RedBrick2 {
       }
     }
 
+    public void Commit() {
+      PropertySet[@"CUSTOMER"].Data = comboBox12.SelectedValue;
+      PropertySet[@"REVISION LEVEL"].Data = comboBox14.Text;
+      PropertySet[@"DrawnBy"].Data = comboBox13.SelectedValue;
+      PropertySet[@"DATE"].Data = dateTimePicker1.Value;
+
+      ComboBox[] _cboxes = new ComboBox[] { comboBox7, comboBox8, comboBox9, comboBox10, comboBox11 };
+      TextBox[] _tboxes = new TextBox[] { textBox14, textBox15, textBox16, textBox17, textBox18 };
+
+      for (int i = 0; i < 5; i++) {
+        string _mat = string.Format(@"M{0}", i + 1);
+        string _fin = string.Format(@"FINISH {0}", i + 1);
+        PropertySet[_mat].Data = _cboxes[i].Text;
+        PropertySet[_fin].Data = _tboxes[i].Text;
+      }
+      PropertySet.Write();
+    }
+
     private void DrawingRedbrick_Load(object sender, EventArgs e) {
       gEN_CUSTOMERSTableAdapter.Fill(eNGINEERINGDataSet.GEN_CUSTOMERS);
       gEN_USERSTableAdapter.Fill(eNGINEERINGDataSet.GEN_USERS);
@@ -126,8 +145,38 @@ namespace RedBrick2 {
       FigureOutDate();
       FigureOutStatus();
       FigureOutMatFinish();
+      BuildTree();
     }
 
+    private void BuildTree() {
+      RevSet = new Revs(SwApp);
+      foreach (Rev r in RevSet) {
+        TreeNode topNode = new TreeNode(r.Level);
+        TreeNode ecoNode = new TreeNode(string.Format(@"ECR #: {0}", r.ECO));
+        TreeNode lNode = new TreeNode(string.Format(@"By: {0}", r.AuthorFullName));
+        TreeNode dNode = new TreeNode(string.Format(@"Date: {0}", r.Date.ToShortDateString()));
+        foreach (KeyValuePair<string, string> kvp in r.ecoData) {
+          if (kvp.Value.Contains("\n")) {
+            TreeNode subNode = new TreeNode(Redbrick.TitleCase(kvp.Key));
+            foreach (string subs in kvp.Value.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries)) {
+              TreeNode subsubNode = new TreeNode(subs);
+              subNode.Nodes.Add(subsubNode);
+            }
+            ecoNode.Nodes.Add(subNode);
+          } else {
+            TreeNode subNode = new TreeNode(string.Format(@"{0}: {1}", Redbrick.TitleCase(kvp.Key), kvp.Value));
+            ecoNode.Nodes.Add(subNode);
+          }
+        }
+        topNode.Nodes.AddRange(new TreeNode[] { ecoNode, lNode, dNode });
+        treeView1.Nodes.Add(topNode);
+      }
+    }
+
+    private Revs RevSet {
+      get { return revSet; }
+      set { revSet = value; }
+    }
     public SwProperties PropertySet { get; set; }
     public string RevFromFile { get; set; }
     public string RevFromDrw { get; set; }
