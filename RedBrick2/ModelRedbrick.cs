@@ -36,6 +36,8 @@ namespace RedBrick2 {
 
     private ModelDoc2 lastModelDoc = null;
 
+    private bool userediting = false;
+
     public ModelRedbrick(SldWorks sw, ModelDoc2 md) {
       SwApp = sw;
       InitializeComponent();
@@ -116,9 +118,11 @@ namespace RedBrick2 {
     }
 
     private void GetCutlistData() {
-      cutlistPartsTableAdapter.FillByPartNum(eNGINEERINGDataSet.CutlistParts, partLookup);
-      cutlistPartsBindingSource.DataSource = cutlistPartsTableAdapter.GetDataByPartNum(partLookup);
-      cUTPARTSBindingSource.DataSource = cUT_PARTSTableAdapter.GetDataByPartnum(partLookup);
+      if (partLookup != null) {
+        cutlistPartsTableAdapter.FillByPartNum(eNGINEERINGDataSet.CutlistParts, partLookup);
+        cutlistPartsBindingSource.DataSource = cutlistPartsTableAdapter.GetDataByPartNum(partLookup);
+        cUTPARTSBindingSource.DataSource = cUT_PARTSTableAdapter.GetDataByPartnum(partLookup);
+      }
     }
 
     private void GetOps() {
@@ -147,12 +151,15 @@ namespace RedBrick2 {
 
     int dd_UserSelectionPostNotify() {
       swSelMgr = ActiveDoc.SelectionManager;
-      DrawingComponent dc = swSelMgr.GetSelectedObject6(1, -1);
-      if (dc != null) {
-        Component2 _c = dc.Component;
-        ActiveDoc = _c.GetModelDoc2();
-      } else {
-        ActiveDoc = SwApp.ActiveDoc;
+      object selectedObject = swSelMgr.GetSelectedObject6(1, -1);
+      if (selectedObject is DrawingComponent) {
+        DrawingComponent dc = selectedObject as DrawingComponent;
+        if (dc != null) {
+          Component2 _c = dc.Component;
+          ActiveDoc = _c.GetModelDoc2();
+        } else {
+          ActiveDoc = SwApp.ActiveDoc;
+        }
       }
       return 0;
     }
@@ -192,12 +199,13 @@ namespace RedBrick2 {
 
     private void DisconnectDrawingEvents() {
       dd.UserSelectionPostNotify -= dd_UserSelectionPostNotify;
+      DrawingEventsAssigned = false;
     }
 
-    private void ConnectAssemblyEvents() {
-      if ((ActiveDoc.GetType() == (int)swDocumentTypes_e.swDocASSEMBLY) && !AssemblyEventsAssigned) {
-        ad = (AssemblyDoc)ActiveDoc;
-        swSelMgr = ActiveDoc.SelectionManager;
+    private void ConnectAssemblyEvents(ModelDoc2 md) {
+      if ((md.GetType() == (int)swDocumentTypes_e.swDocASSEMBLY) && !AssemblyEventsAssigned) {
+        ad = (AssemblyDoc)md;
+        swSelMgr = md.SelectionManager;
         //ad.UserSelectionPreNotify += ad_UserSelectionPreNotify;
 
         // user clicks part/subassembly
@@ -234,6 +242,9 @@ namespace RedBrick2 {
         swSelMgr = ActiveDoc.SelectionManager;
       }
       swSelComp = swSelMgr.GetSelectedObjectsComponent4(1, -1);
+      if (swSelComp == null) {
+        swSelComp = swSelMgr.GetSelectedObject6(1, -1);
+      }
       if (swSelComp != null) {
         ActiveDoc = swSelComp.GetModelDoc2();
       } else {
@@ -258,43 +269,50 @@ namespace RedBrick2 {
     }
 
     private int pd_DestroyNotify2(int DestroyType) {
+      Visible = false;
       return 0;
     }
 
     private int pd_FileSavePostNotify(int saveType, string FileName) {
+      lastModelDoc = null;
       ActiveDoc = SwApp.ActiveDoc;
       return 0;
     }
 
     private int pd_ActiveConfigChangePostNotify() {
+      lastModelDoc = null;
       ActiveDoc = SwApp.ActiveDoc;
       return 0;
     }
 
     public void Commit() {
-      PropertySet[@"Description"].Data = textBox1.Text;
+      if ((tabPage1 as Control).Enabled) {
+        PropertySet[@"Description"].Data = textBox1.Text;
 
-      // Dimensions get special treatment since the mgr stores weird strings, and DB stores doubles.
-      PropertySet[@"LENGTH"].Set(label18.Text, textBox2.Text);
-      PropertySet[@"WIDTH"].Set(label19.Text, textBox3.Text);
-      PropertySet[@"THICKNESS"].Set(label20.Text, textBox4.Text);
-      PropertySet[@"WALL THICKNESS"].Set(label21.Text, textBox5.Text);
+        // Dimensions get special treatment since the mgr stores weird strings, and DB stores doubles.
+        PropertySet[@"LENGTH"].Set(label18.Text, textBox2.Text);
+        PropertySet[@"WIDTH"].Set(label19.Text, textBox3.Text);
+        PropertySet[@"THICKNESS"].Set(label20.Text, textBox4.Text);
+        PropertySet[@"WALL THICKNESS"].Set(label21.Text, textBox5.Text);
 
-      PropertySet[@"COMMENT"].Data = textBox6.Text;
-      
-      PropertySet[@"CNC1"].Data = textBox7.Text;
-      PropertySet[@"CNC2"].Data = textBox8.Text;
-      PropertySet[@"OVERL"].Data = textBox9.Text;
-      PropertySet[@"OVERW"].Data = textBox10.Text;
-      PropertySet[@"BLANK QTY"].Data = textBox11.Text;
-      PropertySet[@"UPDATE CNC"].Data = checkBox1.Checked;
+        PropertySet[@"COMMENT"].Data = textBox6.Text;
 
-      PropertySet[@"CUTLIST MATERIAL"].Data = comboBox1.SelectedValue;
-      PropertySet[@"EDGE FRONT (L)"].Data = comboBox2.SelectedValue;
-      PropertySet[@"EDGE BACK (L)"].Data = comboBox3.SelectedValue;
-      PropertySet[@"EDGE LEFT (W)"].Data = comboBox4.SelectedValue;
-      PropertySet[@"EDGE RIGHT (W)"].Data = comboBox5.SelectedValue;
-      PropertySet.Write();
+        PropertySet[@"CNC1"].Data = textBox7.Text;
+        PropertySet[@"CNC2"].Data = textBox8.Text;
+        PropertySet[@"OVERL"].Data = textBox9.Text;
+        PropertySet[@"OVERW"].Data = textBox10.Text;
+        PropertySet[@"BLANK QTY"].Data = textBox11.Text;
+        PropertySet[@"UPDATE CNC"].Data = checkBox1.Checked;
+
+        PropertySet[@"CUTLIST MATERIAL"].Data = comboBox1.SelectedValue;
+        PropertySet[@"EDGE FRONT (L)"].Data = comboBox2.SelectedValue;
+        PropertySet[@"EDGE BACK (L)"].Data = comboBox3.SelectedValue;
+        PropertySet[@"EDGE LEFT (W)"].Data = comboBox4.SelectedValue;
+        PropertySet[@"EDGE RIGHT (W)"].Data = comboBox5.SelectedValue;
+        PropertySet.Write();
+      } else if ((tabPage2 as Control).Enabled) {
+        //drawingRedbrick.comm
+      }
     }
 
     private void SetupDrawing() {
@@ -352,52 +370,70 @@ namespace RedBrick2 {
       get { return _activeDoc; }
       set {
         allowPaint = false;
-        Visible = true;
-        _activeDoc = value;
+        if (value != null && value != ActiveDoc) {
+          Visible = true;
+          _activeDoc = value;
 
-        PartFileInfo = new FileInfo(_activeDoc.GetPathName());
-        partLookup = Path.GetFileNameWithoutExtension(PartFileInfo.Name).Split(' ')[0];
+          PartFileInfo = new FileInfo(_activeDoc.GetPathName());
+          partLookup = Path.GetFileNameWithoutExtension(PartFileInfo.Name).Split(' ')[0];
 
-        swDocumentTypes_e dType = (swDocumentTypes_e)_activeDoc.GetType();
-        swDocumentTypes_e odType = (swDocumentTypes_e)(SwApp.ActiveDoc as ModelDoc2).GetType();
-        switch (dType) {
-          case swDocumentTypes_e.swDocASSEMBLY:
-            (tabPage1 as Control).Enabled = true;
-            if (odType != swDocumentTypes_e.swDocDRAWING) {
-              (tabPage2 as Control).Enabled = false;
-            } else {
+          swDocumentTypes_e dType = (swDocumentTypes_e)_activeDoc.GetType();
+          swDocumentTypes_e odType = (swDocumentTypes_e)(SwApp.ActiveDoc as ModelDoc2).GetType();
+          switch (odType) {
+            case swDocumentTypes_e.swDocASSEMBLY:                     //Window looking at assembly.
+              (tabPage1 as Control).Enabled = true;
+                  DisconnectAssemblyEvents();
+                  ConnectAssemblyEvents(SwApp.ActiveDoc as ModelDoc2);
+              switch (dType) {
+                case swDocumentTypes_e.swDocASSEMBLY:                     //Selected sub-assembly in window.
+                  (tabPage1 as Control).Enabled = true;
+                  SetupPart();
+                  break;
+                case swDocumentTypes_e.swDocDRAWING:
+                  break;
+                case swDocumentTypes_e.swDocPART:                         //Selected on part in window.
+                  (tabPage1 as Control).Enabled = true;
+                  SetupPart();
+                  break;
+                default:
+                  break;
+	              }
+              break;
+            case swDocumentTypes_e.swDocDRAWING:                      //Window looking at drawing.
+              switch (dType) {
+                case swDocumentTypes_e.swDocASSEMBLY:                     //Selected assembly in drawing.
+                  (tabPage1 as Control).Enabled = true;
+                  SetupPart();
+                  break;
+                case swDocumentTypes_e.swDocDRAWING:
+                  break;
+                case swDocumentTypes_e.swDocPART:                         //Selected part in drawing.
+                  (tabPage1 as Control).Enabled = true;
+                  SetupPart();
+                  break;
+                default:
+                  break;
+              }
               (tabPage2 as Control).Enabled = true;
-            }
-            DisconnectAssemblyEvents();
-            ConnectAssemblyEvents();
-            SetupPart();
-            break;
-          case swDocumentTypes_e.swDocDRAWING:
-            (tabPage2 as Control).Enabled = true;
-            SetupDrawing();
-            break;
-          case swDocumentTypes_e.swDocLAYOUT:
-            break;
-          case swDocumentTypes_e.swDocNONE:
-            break;
-          case swDocumentTypes_e.swDocPART:
-            (tabPage1 as Control).Enabled = true;
-            if (odType != swDocumentTypes_e.swDocDRAWING) {
+              SetupDrawing();
+              break;
+            case swDocumentTypes_e.swDocPART:                         //Window looking at part.
+              (tabPage1 as Control).Enabled = true;
+              if (odType != swDocumentTypes_e.swDocDRAWING) {
+                (tabPage2 as Control).Enabled = false;
+              } else {
+                (tabPage2 as Control).Enabled = true;
+              }
+              SetupPart();
+              break;
+            default:
+              (tabPage1 as Control).Enabled = false;
               (tabPage2 as Control).Enabled = false;
-            } else {
-              (tabPage2 as Control).Enabled = true;
-            }
-            SetupPart();
-            break;
-          case swDocumentTypes_e.swDocSDM:
-            break;
-          default:
-            (tabPage1 as Control).Enabled = false;
-            (tabPage2 as Control).Enabled = false;
-            break;
+              break;
+          }
         }
         allowPaint = true;
-      } 
+      }
     }
 
     public SldWorks SwApp { get; set; }
@@ -431,6 +467,9 @@ namespace RedBrick2 {
 
     private string DimensionByEquation(string equation) {
       string res = string.Empty;
+      if (ActiveDoc == null) {
+        return @"#VALUE!";
+      }
       EquationMgr eqm = ActiveDoc.GetEquationMgr();
       for (int i = 0; i < eqm.GetCount(); i++) {
         if (eqm.get_Equation(i).Contains(equation)) {
@@ -441,7 +480,7 @@ namespace RedBrick2 {
     }
 
     private void textBox_TextChanged(string dim, Label l) {
-      if (initialated && ActiveDoc.GetType() != (int)swDocumentTypes_e.swDocDRAWING) {
+      if (userediting && initialated && ActiveDoc.GetType() != (int)swDocumentTypes_e.swDocDRAWING) {
         string dimension = dim.
           Replace(@"@" + PartFileInfo.Name, string.Empty).
           Replace(@"@" + ActiveDoc.ConfigurationManager.ActiveConfiguration.Name, string.Empty).
@@ -543,6 +582,14 @@ namespace RedBrick2 {
       Machine_Priority_Control.MachinePriority mp =
         new Machine_Priority_Control.MachinePriority(Path.GetFileNameWithoutExtension(PartFileInfo.Name));
       mp.Show(this);
+    }
+
+    private void textBox_Enter(object sender, EventArgs e) {
+      userediting = true;
+    }
+
+    private void textBox_Leave(object sender, EventArgs e) {
+      userediting = true;
     }
 
   }
