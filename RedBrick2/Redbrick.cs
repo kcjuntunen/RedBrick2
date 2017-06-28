@@ -125,8 +125,9 @@ namespace RedBrick2 {
             taskpaneHost.ReStart();
             break;
           case 3:
-            ENGINEERINGDataSet ds = new ENGINEERINGDataSet();
-            ds.IncrementOdometer(Functions.ArchivePDF);
+            ENGINEERINGDataSet.GEN_ODOMETERDataTable gota =
+              new ENGINEERINGDataSet.GEN_ODOMETERDataTable();
+            gota.IncrementOdometer(Functions.ArchivePDF);
             ArchivePDF.csproj.ArchivePDFWrapper apw = new ArchivePDF.csproj.ArchivePDFWrapper(swApp, GeneratePathSet());
             apw.Archive();
             break;
@@ -311,6 +312,11 @@ namespace RedBrick2 {
         System.Diagnostics.Process p = new System.Diagnostics.Process();
         p.StartInfo.FileName = Properties.Settings.Default.EngineeringDir + @"\InstallRedBrick.exe";
         p.Start();
+      }
+
+      static public string TitleCase(string allCapsInput) {
+        var t = new System.Globalization.CultureInfo("en-US", false).TextInfo;
+        return t.ToTitleCase(allCapsInput.ToLower());
       }
 
       /// <summary>
