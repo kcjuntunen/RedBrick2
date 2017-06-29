@@ -2257,6 +2257,22 @@ FROM          ECR_LEGACY</CommandText>
               </DbSource>
             </Sources>
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="RevListTableAdapter" GeneratorDataComponentClassName="RevListTableAdapter" Name="RevList" UserDataComponentName="RevListTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ENGINEERINGConnectionString (Settings)" DbObjectName="ENGINEERING.dbo.CUT_CUTLISTS" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT DISTINCT REV FROM CUT_CUTLISTS ORDER BY REV;</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="REV" DataSetColumn="REV" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -2970,6 +2986,19 @@ FROM          ECR_LEGACY</CommandText>
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RevList" msprop:Generator_TableClassName="RevListDataTable" msprop:Generator_TableVarName="tableRevList" msprop:Generator_TablePropName="RevList" msprop:Generator_RowDeletingName="RevListRowDeleting" msprop:Generator_RowChangingName="RevListRowChanging" msprop:Generator_RowEvHandlerName="RevListRowChangeEventHandler" msprop:Generator_RowDeletedName="RevListRowDeleted" msprop:Generator_UserTableName="RevList" msprop:Generator_RowChangedName="RevListRowChanged" msprop:Generator_RowEvArgName="RevListRowChangeEvent" msprop:Generator_RowClassName="RevListRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="REV" msprop:Generator_ColumnVarNameInTable="columnREV" msprop:Generator_ColumnPropNameInRow="REV" msprop:Generator_ColumnPropNameInTable="REVColumn" msprop:Generator_UserColumnName="REV" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>

@@ -108,6 +108,11 @@
       <DependentUpon>ENGINEERINGDataSet.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ENGINEERINGDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ENGINEERINGDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="MaterialProperty.cs" />
     <Compile Include="DoubleProperty.cs" />
     <Compile Include="IntProperty.cs" />
@@ -135,11 +140,6 @@
     <Compile Include="Revs.cs" />
     <Compile Include="StringProperty.cs" />
     <Compile Include="DimensionProperty.cs" />
-    <Compile Include="ENGINEERINGDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ENGINEERINGDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -168,8 +168,8 @@
     </None>
     <None Include="ENGINEERINGDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ENGINEERINGDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>ENGINEERINGDataSet1.Designer.cs</LastGenOutput>
     </None>
     <None Include="ENGINEERINGDataSet.xss">
       <DependentUpon>ENGINEERINGDataSet.xsd</DependentUpon>
