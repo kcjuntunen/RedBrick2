@@ -14,11 +14,56 @@ namespace RedBrick2 {
   public partial class DrawingRedbrick : UserControl {
     private string partLookup;
     private Revs revSet;
+    Dictionary<string, string> translation = new Dictionary<string,string>();
+    Dictionary<string, Format> action = new Dictionary<string,Format>();
+
+    enum Format {
+      NAME,
+      STRING,
+      DATE,
+      SKIP
+    }
 
     public DrawingRedbrick(ModelDoc2 md, SldWorks sw) {
       ActiveDoc = md;
       SwApp = sw;
       InitializeComponent();
+      SetupTranslationAndActionTables();
+    }
+
+    private void SetupTranslationAndActionTables() {
+      translation.Add(@"LGCYID", @"Legacy ID");
+      translation.Add(@"DateRequested", @"Date Requested");
+      translation.Add(@"DateStarted", @"Date Started");
+      translation.Add(@"DateCompleted", @"Date Completed");
+      translation.Add(@"AffectedParts", @"Affected Parts");
+      translation.Add(@"Change", @"Change");
+      translation.Add(@"Engineer", @"Engineer");
+      translation.Add(@"Holder", @"Holder");
+      translation.Add(@"ECR_NUM", @"ECR Number");
+      translation.Add(@"ReqBy", @"Requested By");
+      translation.Add(@"CHANGES", @"Change");
+      translation.Add(@"STATUS", @"Status");
+      translation.Add(@"ERR_DESC", @"Error Description");
+      translation.Add(@"REVISION", @"Revision");
+      translation.Add(@"DATE_CREATE", @"Date Created");
+
+
+      action.Add(@"LGCYID", Format.SKIP);
+      action.Add(@"DateRequested", Format.DATE);
+      action.Add(@"DateStarted", Format.DATE);
+      action.Add(@"DateCompleted", Format.DATE);
+      action.Add(@"AffectedParts", Format.STRING);
+      action.Add(@"Change", Format.STRING);
+      action.Add(@"Engineer", Format.NAME);
+      action.Add(@"Holder", Format.STRING);
+      action.Add(@"ECR_NUM", Format.SKIP);
+      action.Add(@"ReqBy", Format.NAME);
+      action.Add(@"CHANGES", Format.STRING);
+      action.Add(@"STATUS", Format.STRING);
+      action.Add(@"ERR_DESC", Format.STRING);
+      action.Add(@"REVISION", Format.STRING);
+      action.Add(@"DATE_CREATE", Format.DATE);
     }
 
     private void InitData() {
@@ -149,6 +194,7 @@ namespace RedBrick2 {
     }
 
     private void BuildTree() {
+      treeView1.Nodes.Clear();
       RevSet = new Revs(SwApp);
       foreach (Rev r in RevSet) {
         TreeNode topNode = new TreeNode(r.Level);
@@ -156,16 +202,37 @@ namespace RedBrick2 {
         TreeNode lNode = new TreeNode(string.Format(@"By: {0}", r.AuthorFullName));
         TreeNode dNode = new TreeNode(string.Format(@"Date: {0}", r.Date.ToShortDateString()));
         foreach (KeyValuePair<string, string> kvp in r.ecoData) {
-          if (kvp.Value.Contains("\n")) {
-            TreeNode subNode = new TreeNode(Redbrick.TitleCase(kvp.Key));
-            foreach (string subs in kvp.Value.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries)) {
-              TreeNode subsubNode = new TreeNode(subs);
-              subNode.Nodes.Add(subsubNode);
-            }
-            ecoNode.Nodes.Add(subNode);
-          } else {
-            TreeNode subNode = new TreeNode(string.Format(@"{0}: {1}", Redbrick.TitleCase(kvp.Key), kvp.Value));
-            ecoNode.Nodes.Add(subNode);
+          switch (action[kvp.Key]) {
+            case Format.NAME:
+              ecoNode.Nodes.Add(
+                new TreeNode(string.Format(@"{0}: {1}", translation[kvp.Key], Redbrick.TitleCase(kvp.Value))));
+              break;
+            case Format.STRING:
+              if (kvp.Value.Contains("\n")) {
+                TreeNode subNode = new TreeNode(translation[kvp.Key]);
+                foreach (string subs in kvp.Value.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries)) {
+                  TreeNode subsubNode = new TreeNode(subs);
+                  subNode.Nodes.Add(subsubNode);
+                }
+                ecoNode.Nodes.Add(subNode);
+              } else {
+                ecoNode.Nodes.Add(
+                  new TreeNode(string.Format(@"{0}: {1}", translation[kvp.Key], kvp.Value)));
+              }
+              break;
+            case Format.DATE:
+              DateTime _dt = new DateTime();
+              if (DateTime.TryParse(kvp.Value, out _dt)) {
+                ecoNode.Nodes.Add(
+                  new TreeNode(string.Format(@"{0}: {1}", translation[kvp.Key], _dt.ToShortDateString())));
+              }
+              break;
+            case Format.SKIP:
+              continue;
+            default:
+              break;
+            //TreeNode subNode = new TreeNode(string.Format(@"{0}: {1}", Redbrick.TitleCase(kvp.Key), kvp.Value));
+            //ecoNode.Nodes.Add(subNode);
           }
         }
         topNode.Nodes.AddRange(new TreeNode[] { ecoNode, lNode, dNode });
