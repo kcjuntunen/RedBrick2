@@ -199,7 +199,7 @@ namespace RedBrick2 {
       foreach (Rev r in RevSet) {
         TreeNode topNode = new TreeNode(r.Level);
         TreeNode ecoNode = new TreeNode(string.Format(@"ECR #: {0}", r.ECO));
-        TreeNode lNode = new TreeNode(string.Format(@"By: {0}", r.AuthorFullName));
+        TreeNode lNode = new TreeNode(string.Format(@"By: {0}", Redbrick.TitleCase(r.AuthorFullName)));
         TreeNode dNode = new TreeNode(string.Format(@"Date: {0}", r.Date.ToShortDateString()));
         foreach (KeyValuePair<string, string> kvp in r.ecoData) {
           switch (action[kvp.Key]) {
