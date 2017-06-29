@@ -30,7 +30,7 @@ namespace RedBrick2 {
 
       if (row != null) {
         _data = (int)row[@"UID"];
-        FullName = Redbrick.TitleCase((string)row[@"Fullname"]);
+        FullName = (string)row[@"Fullname"];
       }
 
       return this;
