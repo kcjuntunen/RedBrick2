@@ -144,9 +144,15 @@ namespace RedBrick2 {
         dd = (DrawingDoc)ActiveDoc;
         swSelMgr = ActiveDoc.SelectionManager;
         dd.NewSelectionNotify += dd_UserSelectionPostNotify;
+        dd.DestroyNotify2 += dd_DestroyNotify2;
         //dd.UserSelectionPostNotify += dd_UserSelectionPostNotify;
         DrawingEventsAssigned = true;
       }
+    }
+
+    int dd_DestroyNotify2(int DestroyType) {
+      Hide();
+      return 0;
     }
 
     int dd_UserSelectionPostNotify() {
@@ -319,7 +325,7 @@ namespace RedBrick2 {
       if (!DrawingSetup) {
         drawingRedbrick = new DrawingRedbrick(ActiveDoc, SwApp);
         tabPage2.Controls.Add(drawingRedbrick);
-        drawingRedbrick.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
+        drawingRedbrick.Dock = DockStyle.Fill;
       } else {
         drawingRedbrick.ReLoad(SwApp.ActiveDoc);
       }

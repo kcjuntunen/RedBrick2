@@ -108,20 +108,20 @@ namespace RedBrick2 {
           //GetTypes(ref docT, ref overDocT);
           BuildStuff();
           mrb.ReQuery(ActiveDoc);
-          Visible = true;
+          mrb.Show();
         }
       }
     }
 
     private int SwApp_CommandCloseNotify(int Command, int reason) {
       if ((swCommands_e)Command == swCommands_e.swCommands_Close || (swCommands_e)Command == swCommands_e.swCommands_Close_) {
-        Visible = false;
+        mrb.Hide();
       }
 
       if ((swCommands_e)Command == swCommands_e.swCommands_Make_Lightweight ||
         (swCommands_e)Command == swCommands_e.swCommands_Lightweight_Toggle ||
         (swCommands_e)Command == swCommands_e.swCommands_Lightweight_All) {
-          Visible = true;
+          mrb.Show();
         ReStart();
       }
 
@@ -129,12 +129,12 @@ namespace RedBrick2 {
     }
 
     private int SwApp_FileCloseNotify(string FileName, int reason) {
-      Visible = false;
+      mrb.Hide();
       return 0;
     }
 
     private int SwApp_DestroyNotify() {
-      Visible = false;
+      mrb.Hide();
       return 0;
     }
 
@@ -142,8 +142,8 @@ namespace RedBrick2 {
       if (SwApp == null) {
         SwApp = RequestSW();
       }
-      Visible = true;
       BuildStuff();
+      mrb.Show();
       mrb.ReQuery(SwApp.ActiveDoc);
       return 0;
     }
