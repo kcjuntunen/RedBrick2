@@ -31,7 +31,8 @@ namespace RedBrick2 {
       PartFileInfo = new FileInfo(ActiveDoc.GetPathName());
       string[] fi = Path.GetFileNameWithoutExtension(PartFileInfo.Name).Split(' ');
       partLookup = fi[0];
-      string[] revcheck = fi[0].Split(new string[] { @"REV" }, StringSplitOptions.RemoveEmptyEntries);
+      string[] revcheck = Path.GetFileNameWithoutExtension(PartFileInfo.Name).
+        Split(new string[] { @"REV", @" " }, StringSplitOptions.RemoveEmptyEntries);
       RevFromFile = revcheck.Length > 1 ? revcheck[1] : Properties.Settings.Default.DefaultRev;
       groupBox5.Text = partLookup;
     }
@@ -49,13 +50,19 @@ namespace RedBrick2 {
     }
 
     private void FigureOutRev() {
+      ENGINEERINGDataSetTableAdapters.RevListTableAdapter rl =
+        new ENGINEERINGDataSetTableAdapters.RevListTableAdapter();
+      comboBox14.DataSource = rl.GetData();
+      comboBox14.DisplayMember = @"REV";
+      comboBox14.ValueMember = @"REV";
       SwProperty _p = new StringProperty(@"REVISION LEVEL", true, SwApp, ActiveDoc, string.Empty);
       PropertySet.Add(_p.Get());
       RevFromDrw = _p.Value;
       if (RevFromDrw != RevFromFile) {
-        System.Windows.Forms.MessageBox.Show(@"AAAAAAA!");
+        comboBox14.Text = RevFromFile;
+      } else {
+        comboBox14.Text = RevFromDrw;
       }
-      comboBox14.Text = RevFromDrw;
     }
 
     private void FigureOutDate() {
@@ -176,5 +183,33 @@ namespace RedBrick2 {
       (sender as ComboBox).DroppedDown = false;
     }
 
+    private void treeView1_DrawNode(object sender, DrawTreeNodeEventArgs e) {
+      Color nodeColor = Color.Black;
+      if ((e.State & TreeNodeStates.Selected) != 0)
+        nodeColor = SystemColors.HighlightText;
+      foreach (KeyValuePair<string, Redbrick.Format> item in Redbrick.action) {
+        switch (item.Value) {
+          case Redbrick.Format.NAME:
+            nodeColor = Color.Gray;
+            break;
+          case Redbrick.Format.STRING:
+            break;
+          case Redbrick.Format.DATE:
+            nodeColor = Color.Green;
+            break;
+          case Redbrick.Format.SKIP:
+            break;
+          default:
+            break;
+        }
+      }
+      TextRenderer.DrawText(e.Graphics,
+                            e.Node.Text,
+                            e.Node.NodeFont,
+                            e.Bounds,
+                            nodeColor,
+                            Color.Empty,
+                            TextFormatFlags.VerticalCenter);
+    }
   }
 }
