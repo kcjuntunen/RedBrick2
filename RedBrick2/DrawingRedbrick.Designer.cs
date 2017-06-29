@@ -275,7 +275,7 @@ namespace RedBrick2 {
       this.tableLayoutPanel7.SetColumnSpan(this.dateTimePicker1, 2);
       this.dateTimePicker1.Location = new System.Drawing.Point(3, 56);
       this.dateTimePicker1.Name = "dateTimePicker1";
-      this.dateTimePicker1.Size = new System.Drawing.Size(198, 20);
+      this.dateTimePicker1.Size = new System.Drawing.Size(198, 22);
       this.dateTimePicker1.TabIndex = 7;
       // 
       // comboBox14
@@ -418,7 +418,7 @@ namespace RedBrick2 {
       this.label31.AutoSize = true;
       this.label31.Location = new System.Drawing.Point(3, 0);
       this.label31.Name = "label31";
-      this.label31.Size = new System.Drawing.Size(53, 13);
+      this.label31.Size = new System.Drawing.Size(58, 13);
       this.label31.TabIndex = 0;
       this.label31.Text = "Material 1";
       // 
@@ -427,79 +427,79 @@ namespace RedBrick2 {
       this.label32.AutoSize = true;
       this.label32.Location = new System.Drawing.Point(105, 0);
       this.label32.Name = "label32";
-      this.label32.Size = new System.Drawing.Size(43, 13);
+      this.label32.Size = new System.Drawing.Size(47, 13);
       this.label32.TabIndex = 1;
       this.label32.Text = "Finish 1";
       // 
       // label33
       // 
       this.label33.AutoSize = true;
-      this.label33.Location = new System.Drawing.Point(3, 40);
+      this.label33.Location = new System.Drawing.Point(3, 41);
       this.label33.Name = "label33";
-      this.label33.Size = new System.Drawing.Size(53, 13);
+      this.label33.Size = new System.Drawing.Size(58, 13);
       this.label33.TabIndex = 2;
       this.label33.Text = "Material 2";
       // 
       // label34
       // 
       this.label34.AutoSize = true;
-      this.label34.Location = new System.Drawing.Point(105, 40);
+      this.label34.Location = new System.Drawing.Point(105, 41);
       this.label34.Name = "label34";
-      this.label34.Size = new System.Drawing.Size(43, 13);
+      this.label34.Size = new System.Drawing.Size(47, 13);
       this.label34.TabIndex = 3;
       this.label34.Text = "Finish 2";
       // 
       // label35
       // 
       this.label35.AutoSize = true;
-      this.label35.Location = new System.Drawing.Point(3, 80);
+      this.label35.Location = new System.Drawing.Point(3, 82);
       this.label35.Name = "label35";
-      this.label35.Size = new System.Drawing.Size(53, 13);
+      this.label35.Size = new System.Drawing.Size(58, 13);
       this.label35.TabIndex = 4;
       this.label35.Text = "Material 3";
       // 
       // label36
       // 
       this.label36.AutoSize = true;
-      this.label36.Location = new System.Drawing.Point(105, 80);
+      this.label36.Location = new System.Drawing.Point(105, 82);
       this.label36.Name = "label36";
-      this.label36.Size = new System.Drawing.Size(43, 13);
+      this.label36.Size = new System.Drawing.Size(47, 13);
       this.label36.TabIndex = 5;
       this.label36.Text = "Finish 3";
       // 
       // label37
       // 
       this.label37.AutoSize = true;
-      this.label37.Location = new System.Drawing.Point(3, 120);
+      this.label37.Location = new System.Drawing.Point(3, 123);
       this.label37.Name = "label37";
-      this.label37.Size = new System.Drawing.Size(53, 13);
+      this.label37.Size = new System.Drawing.Size(58, 13);
       this.label37.TabIndex = 6;
       this.label37.Text = "Material 4";
       // 
       // label38
       // 
       this.label38.AutoSize = true;
-      this.label38.Location = new System.Drawing.Point(105, 120);
+      this.label38.Location = new System.Drawing.Point(105, 123);
       this.label38.Name = "label38";
-      this.label38.Size = new System.Drawing.Size(43, 13);
+      this.label38.Size = new System.Drawing.Size(47, 13);
       this.label38.TabIndex = 7;
       this.label38.Text = "Finish 4";
       // 
       // label39
       // 
       this.label39.AutoSize = true;
-      this.label39.Location = new System.Drawing.Point(3, 160);
+      this.label39.Location = new System.Drawing.Point(3, 164);
       this.label39.Name = "label39";
-      this.label39.Size = new System.Drawing.Size(53, 13);
+      this.label39.Size = new System.Drawing.Size(58, 13);
       this.label39.TabIndex = 8;
       this.label39.Text = "Material 5";
       // 
       // label40
       // 
       this.label40.AutoSize = true;
-      this.label40.Location = new System.Drawing.Point(105, 160);
+      this.label40.Location = new System.Drawing.Point(105, 164);
       this.label40.Name = "label40";
-      this.label40.Size = new System.Drawing.Size(43, 13);
+      this.label40.Size = new System.Drawing.Size(47, 13);
       this.label40.TabIndex = 9;
       this.label40.Text = "Finish 5";
       // 
@@ -533,7 +533,7 @@ namespace RedBrick2 {
       this.comboBox8.DataSource = this.cUTDRAWINGMATERIALSBindingSource1;
       this.comboBox8.DisplayMember = "DMATDESCR";
       this.comboBox8.FormattingEnabled = true;
-      this.comboBox8.Location = new System.Drawing.Point(3, 56);
+      this.comboBox8.Location = new System.Drawing.Point(3, 57);
       this.comboBox8.Name = "comboBox8";
       this.comboBox8.Size = new System.Drawing.Size(96, 21);
       this.comboBox8.TabIndex = 11;
@@ -554,7 +554,7 @@ namespace RedBrick2 {
       this.comboBox9.DataSource = this.cUTDRAWINGMATERIALSBindingSource2;
       this.comboBox9.DisplayMember = "DMATDESCR";
       this.comboBox9.FormattingEnabled = true;
-      this.comboBox9.Location = new System.Drawing.Point(3, 96);
+      this.comboBox9.Location = new System.Drawing.Point(3, 98);
       this.comboBox9.Name = "comboBox9";
       this.comboBox9.Size = new System.Drawing.Size(96, 21);
       this.comboBox9.TabIndex = 12;
@@ -575,7 +575,7 @@ namespace RedBrick2 {
       this.comboBox10.DataSource = this.cUTDRAWINGMATERIALSBindingSource3;
       this.comboBox10.DisplayMember = "DMATDESCR";
       this.comboBox10.FormattingEnabled = true;
-      this.comboBox10.Location = new System.Drawing.Point(3, 136);
+      this.comboBox10.Location = new System.Drawing.Point(3, 139);
       this.comboBox10.Name = "comboBox10";
       this.comboBox10.Size = new System.Drawing.Size(96, 21);
       this.comboBox10.TabIndex = 13;
@@ -596,7 +596,7 @@ namespace RedBrick2 {
       this.comboBox11.DataSource = this.cUTDRAWINGMATERIALSBindingSource4;
       this.comboBox11.DisplayMember = "DMATDESCR";
       this.comboBox11.FormattingEnabled = true;
-      this.comboBox11.Location = new System.Drawing.Point(3, 176);
+      this.comboBox11.Location = new System.Drawing.Point(3, 180);
       this.comboBox11.Name = "comboBox11";
       this.comboBox11.Size = new System.Drawing.Size(96, 21);
       this.comboBox11.TabIndex = 14;
@@ -616,7 +616,7 @@ namespace RedBrick2 {
       this.textBox14.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
       this.textBox14.Location = new System.Drawing.Point(105, 16);
       this.textBox14.Name = "textBox14";
-      this.textBox14.Size = new System.Drawing.Size(233, 20);
+      this.textBox14.Size = new System.Drawing.Size(233, 22);
       this.textBox14.TabIndex = 15;
       // 
       // textBox15
@@ -625,9 +625,9 @@ namespace RedBrick2 {
             | System.Windows.Forms.AnchorStyles.Right)));
       this.textBox15.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
       this.textBox15.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
-      this.textBox15.Location = new System.Drawing.Point(105, 56);
+      this.textBox15.Location = new System.Drawing.Point(105, 57);
       this.textBox15.Name = "textBox15";
-      this.textBox15.Size = new System.Drawing.Size(233, 20);
+      this.textBox15.Size = new System.Drawing.Size(233, 22);
       this.textBox15.TabIndex = 16;
       // 
       // textBox16
@@ -636,9 +636,9 @@ namespace RedBrick2 {
             | System.Windows.Forms.AnchorStyles.Right)));
       this.textBox16.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
       this.textBox16.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
-      this.textBox16.Location = new System.Drawing.Point(105, 96);
+      this.textBox16.Location = new System.Drawing.Point(105, 98);
       this.textBox16.Name = "textBox16";
-      this.textBox16.Size = new System.Drawing.Size(233, 20);
+      this.textBox16.Size = new System.Drawing.Size(233, 22);
       this.textBox16.TabIndex = 17;
       // 
       // textBox17
@@ -647,9 +647,9 @@ namespace RedBrick2 {
             | System.Windows.Forms.AnchorStyles.Right)));
       this.textBox17.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
       this.textBox17.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
-      this.textBox17.Location = new System.Drawing.Point(105, 136);
+      this.textBox17.Location = new System.Drawing.Point(105, 139);
       this.textBox17.Name = "textBox17";
-      this.textBox17.Size = new System.Drawing.Size(233, 20);
+      this.textBox17.Size = new System.Drawing.Size(233, 22);
       this.textBox17.TabIndex = 18;
       // 
       // textBox18
@@ -658,9 +658,9 @@ namespace RedBrick2 {
             | System.Windows.Forms.AnchorStyles.Right)));
       this.textBox18.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
       this.textBox18.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
-      this.textBox18.Location = new System.Drawing.Point(105, 176);
+      this.textBox18.Location = new System.Drawing.Point(105, 180);
       this.textBox18.Name = "textBox18";
-      this.textBox18.Size = new System.Drawing.Size(233, 20);
+      this.textBox18.Size = new System.Drawing.Size(233, 22);
       this.textBox18.TabIndex = 19;
       // 
       // treeView1
@@ -672,6 +672,7 @@ namespace RedBrick2 {
       this.treeView1.Name = "treeView1";
       this.treeView1.Size = new System.Drawing.Size(347, 241);
       this.treeView1.TabIndex = 2;
+      this.treeView1.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.treeView1_DrawNode);
       // 
       // tableLayoutPanel1
       // 
@@ -748,6 +749,7 @@ namespace RedBrick2 {
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.Controls.Add(this.tableLayoutPanel5);
+      this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.Name = "DrawingRedbrick";
       this.Size = new System.Drawing.Size(353, 789);
       this.Load += new System.EventHandler(this.DrawingRedbrick_Load);
