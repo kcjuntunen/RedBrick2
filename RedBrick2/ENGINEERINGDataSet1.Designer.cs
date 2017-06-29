@@ -27580,7 +27580,7 @@ SELECT DateRequested, DateStarted, DateCompleted, AffectedParts, Change, Enginee
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual string GetLastLegactECR() {
+        public virtual object GetLastLegacyECR() {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -27601,7 +27601,7 @@ SELECT DateRequested, DateStarted, DateCompleted, AffectedParts, Change, Enginee
                 return null;
             }
             else {
-                return ((string)(returnValue));
+                return ((object)(returnValue));
             }
         }
     }
