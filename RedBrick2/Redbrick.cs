@@ -20,6 +20,9 @@ namespace RedBrick2 {
       private Version currentVersion;
       private bool askedToUpdate = false;
       private string UpdateMessage = string.Empty;
+      static public Dictionary<string, string> translation = new Dictionary<string, string>();
+      static public Dictionary<string, Format> action = new Dictionary<string, Format>();
+      static private bool translationSetup = false;
 
       //private int count = 0;
       public bool ConnectToSW(object ThisSW, int Cookie) {
@@ -82,6 +85,7 @@ namespace RedBrick2 {
       }
 
       private void UISetup() {
+        SetupTranslationAndActionTables();
         try {
           Version cv = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
           string ver = cv.ToString();
@@ -192,6 +196,51 @@ namespace RedBrick2 {
         ConvertPrograms,    //9
         MachinePrioritySW,  //10
         MachinePriorityACAD //11
+      }
+      
+      public enum Format {
+        NAME,
+        STRING,
+        DATE,
+        SKIP
+      }
+
+      private void SetupTranslationAndActionTables() {
+        if (!translationSetup) {
+          translation.Add(@"LGCYID", @"Legacy ID");
+          translation.Add(@"DateRequested", @"Date Requested");
+          translation.Add(@"DateStarted", @"Date Started");
+          translation.Add(@"DateCompleted", @"Date Completed");
+          translation.Add(@"AffectedParts", @"Affected Parts");
+          translation.Add(@"Change", @"Change");
+          translation.Add(@"Engineer", @"Engineer");
+          translation.Add(@"Holder", @"Holder");
+          translation.Add(@"ECR_NUM", @"ECR Number");
+          translation.Add(@"ReqBy", @"Requested By");
+          translation.Add(@"CHANGES", @"Change");
+          translation.Add(@"STATUS", @"Status");
+          translation.Add(@"ERR_DESC", @"Error Description");
+          translation.Add(@"REVISION", @"Revision");
+          translation.Add(@"DATE_CREATE", @"Date Created");
+
+
+          action.Add(@"LGCYID", Format.SKIP);
+          action.Add(@"DateRequested", Format.DATE);
+          action.Add(@"DateStarted", Format.DATE);
+          action.Add(@"DateCompleted", Format.DATE);
+          action.Add(@"AffectedParts", Format.STRING);
+          action.Add(@"Change", Format.STRING);
+          action.Add(@"Engineer", Format.NAME);
+          action.Add(@"Holder", Format.STRING);
+          action.Add(@"ECR_NUM", Format.SKIP);
+          action.Add(@"ReqBy", Format.NAME);
+          action.Add(@"CHANGES", Format.STRING);
+          action.Add(@"STATUS", Format.STRING);
+          action.Add(@"ERR_DESC", Format.STRING);
+          action.Add(@"REVISION", Format.STRING);
+          action.Add(@"DATE_CREATE", Format.DATE);
+          translationSetup = true;
+        }
       }
 
       /// <summary>
