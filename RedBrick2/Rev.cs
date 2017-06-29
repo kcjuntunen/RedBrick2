@@ -15,7 +15,6 @@ namespace RedBrick2 {
     private StringProperty description;
     private AuthorProperty author;
     private DateProperty date;
-    private bool translationSetup = false;
     private Dictionary<string, string> ecoData = new Dictionary<string, string>();
     private ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter eol =
       new ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter();
@@ -82,27 +81,24 @@ namespace RedBrick2 {
         ecoData.Clear();
       }
       if (int.TryParse(ECO, out _ecrn)) {
-        int _maxecr = 0;
-        if (int.TryParse(leol.GetLastLegactECR(), out _maxecr)) {
-          if (_ecrn > _maxecr) {
-            ENGINEERINGDataSet.ECRObjLookupDataTable dt = eol.GetDataByECO(_ecrn);
-            ENGINEERINGDataSet.ECRObjLookupRow r = (ENGINEERINGDataSet.ECRObjLookupRow)dt.Rows[0];
-            foreach (System.Data.DataColumn col in dt.Columns) {
-              if (col.ToString().Contains(@"ReqBy")) {
-                ecoData.Add(col.ToString(), Redbrick.TitleCase(r[col.ToString()].ToString()));
-              } else {
-                ecoData.Add(col.ToString(), r[col.ToString()].ToString());
-              }
+        if (_ecrn > Redbrick.LastLegacyECR) {
+          ENGINEERINGDataSet.ECRObjLookupDataTable dt = eol.GetDataByECO(_ecrn);
+          ENGINEERINGDataSet.ECRObjLookupRow r = (ENGINEERINGDataSet.ECRObjLookupRow)dt.Rows[0];
+          foreach (System.Data.DataColumn col in dt.Columns) {
+            if (col.ToString().Contains(@"ReqBy")) {
+              ecoData.Add(col.ToString(), Redbrick.TitleCase(r[col.ToString()].ToString()));
+            } else {
+              ecoData.Add(col.ToString(), r[col.ToString()].ToString());
             }
-          } else {
-            ENGINEERINGDataSet.LegacyECRObjLookupDataTable dt = leol.GetDataByECO(ECO);
-            ENGINEERINGDataSet.LegacyECRObjLookupRow r = (ENGINEERINGDataSet.LegacyECRObjLookupRow)dt.Rows[0];
-            foreach (System.Data.DataColumn col in dt.Columns) {
-              if (col.ToString().Contains(@"Engineer") || col.ToString().Contains(@"Holder")) {
-                ecoData.Add(col.ToString(), Redbrick.TitleCase(r[col.ToString()].ToString()));
-              } else {
-                ecoData.Add(col.ToString(), r[col.ToString()].ToString());
-              }
+          }
+        } else {
+          ENGINEERINGDataSet.LegacyECRObjLookupDataTable dt = leol.GetDataByECO(ECO);
+          ENGINEERINGDataSet.LegacyECRObjLookupRow r = (ENGINEERINGDataSet.LegacyECRObjLookupRow)dt.Rows[0];
+          foreach (System.Data.DataColumn col in dt.Columns) {
+            if (col.ToString().Contains(@"Engineer") || col.ToString().Contains(@"Holder")) {
+              ecoData.Add(col.ToString(), Redbrick.TitleCase(r[col.ToString()].ToString()));
+            } else {
+              ecoData.Add(col.ToString(), r[col.ToString()].ToString());
             }
           }
         }
@@ -163,8 +159,15 @@ namespace RedBrick2 {
 
     public TreeNode Node {
       get {
+        ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter leol =
+          new ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter();
+        int eco = 0;
+        string legacy = string.Empty;
+        if (int.TryParse(ECO, out eco)) {
+          legacy = Redbrick.LastLegacyECR < eco ? string.Empty : @"(Legacy)";
+        }
         TreeNode topNode = new TreeNode(Level);
-        TreeNode ecoNode = new TreeNode(string.Format(@"ECR #: {0}", ECO));
+        TreeNode ecoNode = new TreeNode(string.Format(@"ECR #: {0} {1}", ECO, legacy));
         TreeNode lNode = new TreeNode(string.Format(@"By: {0}", Redbrick.TitleCase(AuthorFullName)));
         TreeNode dNode = new TreeNode(string.Format(@"Date: {0}", Date.ToShortDateString()));
         foreach (KeyValuePair<string, string> kvp in ecoData) {

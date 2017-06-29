@@ -86,6 +86,13 @@ namespace RedBrick2 {
 
       private void UISetup() {
         SetupTranslationAndActionTables();
+        ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter leol =
+          new ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter();
+        int _maxecr = 0;
+        if (int.TryParse(leol.GetLastLegacyECR().ToString(), out _maxecr)) {
+          LastLegacyECR = _maxecr;
+        }
+
         try {
           Version cv = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
           string ver = cv.ToString();
@@ -534,6 +541,8 @@ namespace RedBrick2 {
         }
         return @"#VALUE!";
       }
+
+      static public int LastLegacyECR { get; set; }
 
       /// <summary>
       /// Convert a specialized StringCollection to an array of strings.
