@@ -27,9 +27,11 @@ namespace RedBrick2 {
       Global = global;
       SwApp = sw;
       ActiveDoc = md;
-      GetPropertyManager();
-      GetFileInfo();
-      SetDefaults();
+      if (ActiveDoc != null) {
+        GetPropertyManager();
+        GetFileInfo();
+        SetDefaults();
+      }
     }
 
     public SwProperty(string name, bool global, SldWorks sw, Component2 comp) {
@@ -38,9 +40,11 @@ namespace RedBrick2 {
       Global = global;
       SwApp = sw;
       ActiveDoc = comp.GetModelDoc2();
-      GetPropertyManager();
-      GetFileInfo();
-      SetDefaults();
+      if (ActiveDoc != null) {
+        GetPropertyManager();
+        GetFileInfo();
+        SetDefaults();
+      }
     }
 
     private void SetDefaults() {

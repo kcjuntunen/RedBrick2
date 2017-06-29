@@ -326,6 +326,7 @@ namespace RedBrick2 {
         drawingRedbrick = new DrawingRedbrick(ActiveDoc, SwApp);
         tabPage2.Controls.Add(drawingRedbrick);
         drawingRedbrick.Dock = DockStyle.Fill;
+        DrawingSetup = true;
       } else {
         drawingRedbrick.ReLoad(SwApp.ActiveDoc);
       }
@@ -377,7 +378,7 @@ namespace RedBrick2 {
       set {
         allowPaint = false;
         if (value != null && value != ActiveDoc) {
-          Visible = true;
+          Show();
           _activeDoc = value;
 
           PartFileInfo = new FileInfo(_activeDoc.GetPathName());
@@ -437,6 +438,8 @@ namespace RedBrick2 {
               (tabPage2 as Control).Enabled = false;
               break;
           }
+        } else {
+          Hide();
         }
         allowPaint = true;
       }
