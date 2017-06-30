@@ -259,5 +259,20 @@ namespace RedBrick2 {
       eo.ShowDialog(this);
       BuildTree();
     }
+
+    private void button6_Click(object sender, EventArgs e) {
+      TreeNode node = treeView1.SelectedNode;
+      if (node != null) {
+        while (node.Parent != null) {
+          node = node.Parent;
+        }
+        EditRev er = new EditRev(node.Index, RevSet);
+        er.ShowDialog(this);
+      } else {
+        EditRev er = new EditRev(0, RevSet);
+        er.ShowDialog(this);
+      }
+      BuildTree();
+    }
   }
 }
