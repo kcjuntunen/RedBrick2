@@ -731,6 +731,7 @@ namespace RedBrick2 {
       this.button7.TabIndex = 2;
       this.button7.Text = "Delete...";
       this.button7.UseVisualStyleBackColor = true;
+      this.button7.Click += new System.EventHandler(this.button7_Click);
       // 
       // gEN_USERSTableAdapter
       // 

@@ -114,5 +114,12 @@ namespace RedBrick2 {
         innerList[index] = value;
       }
     }
+
+    internal void Delete(int p) {
+      int startIdx = Count - 1;
+      for (int i = startIdx; i >= p; i--) {
+        RemoveAt(i);
+      }
+    }
   }
 }
