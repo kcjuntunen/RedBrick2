@@ -69,32 +69,38 @@ namespace RedBrick2 {
     }
 
     private void GetPropertyManager() {
-      CustomPropertyManager _g = ActiveDoc.Extension.get_CustomPropertyManager(string.Empty);
-      Configuration _c = (Configuration)ActiveDoc.ConfigurationManager.ActiveConfiguration;
-      CustomPropertyManager _s;
-      if (ActiveDoc is DrawingDoc) {
-        _s = _g;
-      } else {
-        _s = ActiveDoc.Extension.get_CustomPropertyManager(_c.Name);
-      }
-      if (Global || (ActiveDoc is DrawingDoc)) {
-        PropertyManager = _g;
-      } else {
-        PropertyManager = _s;
+      ModelDocExtension ext = ActiveDoc.Extension;
+      if (ext != null) {
+        CustomPropertyManager _g = ext.get_CustomPropertyManager(string.Empty);
+        Configuration _c = (Configuration)ActiveDoc.ConfigurationManager.ActiveConfiguration;
+        CustomPropertyManager _s;
+        if (ActiveDoc is DrawingDoc) {
+          _s = _g;
+        } else {
+          _s = ext.get_CustomPropertyManager(_c.Name);
+        }
+        if (Global || (ActiveDoc is DrawingDoc)) {
+          PropertyManager = _g;
+        } else {
+          PropertyManager = _s;
+        }
       }
     }
 
     protected void InnerGet() {
       if (ActiveDoc is DrawingDoc) {
-        CustomPropertyManager _g = ActiveDoc.Extension.get_CustomPropertyManager(string.Empty);
-        GetResult = (swCustomInfoGetResult_e)_g.Get5(Name, false, out v, out resolvedV, out wasResolved);
-      } else {
-        CustomPropertyManager _g = ActiveDoc.Extension.get_CustomPropertyManager(string.Empty);
-        Configuration _c = (Configuration)ActiveDoc.ConfigurationManager.ActiveConfiguration;
-        CustomPropertyManager _s = ActiveDoc.Extension.get_CustomPropertyManager(_c.Name);
-        GetResult = (swCustomInfoGetResult_e)_g.Get5(Name, false, out v, out resolvedV, out wasResolved);
-        if (v == string.Empty) {
-          GetResult = (swCustomInfoGetResult_e)_s.Get5(Name, false, out v, out resolvedV, out wasResolved);
+        ModelDocExtension ext = ActiveDoc.Extension;
+        if (ext != null) {
+          CustomPropertyManager _g = ext.get_CustomPropertyManager(string.Empty);
+          GetResult = (swCustomInfoGetResult_e)_g.Get5(Name, false, out v, out resolvedV, out wasResolved);
+        } else {
+          CustomPropertyManager _g = ext.get_CustomPropertyManager(string.Empty);
+          Configuration _c = (Configuration)ActiveDoc.ConfigurationManager.ActiveConfiguration;
+          CustomPropertyManager _s = ext.get_CustomPropertyManager(_c.Name);
+          GetResult = (swCustomInfoGetResult_e)_g.Get5(Name, false, out v, out resolvedV, out wasResolved);
+          if (v == string.Empty) {
+            GetResult = (swCustomInfoGetResult_e)_s.Get5(Name, false, out v, out resolvedV, out wasResolved);
+          }
         }
       }
     }
