@@ -83,6 +83,7 @@ namespace RedBrick2 {
     }
 
     public bool Remove(Rev item) {
+      item.Delete();
       return innerList.Remove(item);
     }
 
@@ -103,6 +104,7 @@ namespace RedBrick2 {
     }
 
     public void RemoveAt(int index) {
+      innerList[index].Delete();
       innerList.RemoveAt(index);
     }
 

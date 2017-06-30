@@ -136,6 +136,10 @@ namespace RedBrick2 {
         (int)swCustomPropertyAddOption_e.swCustomPropertyDeleteAndAdd);
     }
 
+    public virtual void Delete() {
+      DeleteResult = (swCustomInfoDeleteResult_e)PropertyManager.Delete2(Name);
+    }
+
     public bool ToDB { get; set; }
 
     public bool Old { get; set; }
@@ -147,6 +151,8 @@ namespace RedBrick2 {
     public int PartID { get; set; }
 
     public bool WasResolved { get; set; }
+
+    public swCustomInfoDeleteResult_e DeleteResult { get; set; }
 
     public swCustomInfoAddResult_e WriteResult { get; set; }
 

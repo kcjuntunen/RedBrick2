@@ -123,6 +123,14 @@ namespace RedBrick2 {
       date.Write();
     }
 
+    public void Delete() {
+      level.Delete();
+      eco.Delete();
+      description.Delete();
+      author.Delete();
+      date.Delete();
+    }
+
     public void SetAuthor(int id) {
       author.Data = id;
     }
