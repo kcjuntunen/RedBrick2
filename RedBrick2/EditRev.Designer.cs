@@ -91,6 +91,8 @@ namespace RedBrick2 {
       // 
       // comboBox1
       // 
+      this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.comboBox1.FormattingEnabled = true;
       this.comboBox1.Location = new System.Drawing.Point(3, 16);
       this.comboBox1.Name = "comboBox1";
@@ -109,6 +111,8 @@ namespace RedBrick2 {
       // 
       // textBox1
       // 
+      this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.textBox1.Location = new System.Drawing.Point(3, 56);
       this.textBox1.Name = "textBox1";
       this.textBox1.Size = new System.Drawing.Size(186, 20);
@@ -125,6 +129,8 @@ namespace RedBrick2 {
       // 
       // textBox2
       // 
+      this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.textBox2.Location = new System.Drawing.Point(3, 95);
       this.textBox2.Name = "textBox2";
       this.textBox2.Size = new System.Drawing.Size(186, 20);
@@ -141,6 +147,8 @@ namespace RedBrick2 {
       // 
       // comboBox2
       // 
+      this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.comboBox2.DataSource = this.gENUSERSBindingSource;
       this.comboBox2.DisplayMember = "Fullname";
       this.comboBox2.FormattingEnabled = true;
@@ -171,6 +179,8 @@ namespace RedBrick2 {
       // 
       // dateTimePicker1
       // 
+      this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.dateTimePicker1.Location = new System.Drawing.Point(3, 174);
       this.dateTimePicker1.Name = "dateTimePicker1";
       this.dateTimePicker1.Size = new System.Drawing.Size(186, 20);
