@@ -11,6 +11,10 @@ namespace RedBrick2 {
     private string v;
     private string resolvedV;
     private bool wasResolved;
+    private CustomPropertyManager globlProperty;
+    private CustomPropertyManager localProperty;
+    private Configuration config;
+
     protected ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cpta =
       new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
 
@@ -69,38 +73,36 @@ namespace RedBrick2 {
     }
 
     private void GetPropertyManager() {
-      ModelDocExtension ext = ActiveDoc.Extension;
+      ModelDocExtension ext = null;
+      while (ext == null) {
+        ext = ActiveDoc.Extension;
+      }
       if (ext != null) {
-        CustomPropertyManager _g = ext.get_CustomPropertyManager(string.Empty);
-        Configuration _c = (Configuration)ActiveDoc.ConfigurationManager.ActiveConfiguration;
-        CustomPropertyManager _s;
+        globlProperty = ext.get_CustomPropertyManager(string.Empty);
+        config = (Configuration)ActiveDoc.ConfigurationManager.ActiveConfiguration;
         if (ActiveDoc is DrawingDoc) {
-          _s = _g;
+          PropertyManager = globlProperty;
         } else {
-          _s = ext.get_CustomPropertyManager(_c.Name);
+          localProperty = ext.get_CustomPropertyManager(config.Name);
         }
         if (Global || (ActiveDoc is DrawingDoc)) {
-          PropertyManager = _g;
+          PropertyManager = globlProperty;
         } else {
-          PropertyManager = _s;
+          PropertyManager = localProperty;
         }
       }
     }
 
     protected void InnerGet() {
+      if (PropertyManager == null) {
+        GetPropertyManager();
+      }
       if (ActiveDoc is DrawingDoc) {
-        ModelDocExtension ext = ActiveDoc.Extension;
-        if (ext != null) {
-          CustomPropertyManager _g = ext.get_CustomPropertyManager(string.Empty);
-          GetResult = (swCustomInfoGetResult_e)_g.Get5(Name, false, out v, out resolvedV, out wasResolved);
-        } else {
-          CustomPropertyManager _g = ext.get_CustomPropertyManager(string.Empty);
-          Configuration _c = (Configuration)ActiveDoc.ConfigurationManager.ActiveConfiguration;
-          CustomPropertyManager _s = ext.get_CustomPropertyManager(_c.Name);
-          GetResult = (swCustomInfoGetResult_e)_g.Get5(Name, false, out v, out resolvedV, out wasResolved);
-          if (v == string.Empty) {
-            GetResult = (swCustomInfoGetResult_e)_s.Get5(Name, false, out v, out resolvedV, out wasResolved);
-          }
+        GetResult = (swCustomInfoGetResult_e)globlProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
+      } else {
+        GetResult = (swCustomInfoGetResult_e)globlProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
+        if (v == string.Empty) {
+          GetResult = (swCustomInfoGetResult_e)localProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
         }
       }
     }
@@ -111,7 +113,9 @@ namespace RedBrick2 {
     /// <returns>Returns a <see cref="RedBrick2.SwProperty"/> object.</returns>
     public virtual SwProperty Get() {
       InnerGet();
-      Data = Value;
+      if (Value != null) {
+        Data = Value;
+      }
       return this;
     }
 
