@@ -122,6 +122,12 @@
     <Compile Include="ModelRedbrick.Designer.cs">
       <DependentUpon>ModelRedbrick.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditRev.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditRev.Designer.cs">
+      <DependentUpon>EditRev.cs</DependentUpon>
+    </Compile>
     <Compile Include="OpControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -190,6 +196,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ModelRedbrick.resx">
       <DependentUpon>ModelRedbrick.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditRev.resx">
+      <DependentUpon>EditRev.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OpControl.resx">
       <DependentUpon>OpControl.cs</DependentUpon>

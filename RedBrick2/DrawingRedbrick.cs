@@ -253,7 +253,7 @@ namespace RedBrick2 {
     }
 
     private void button1_Click(object sender, EventArgs e) {
-      EditOp eo = new EditOp(RevSet);
+      EditRev eo = new EditRev(RevSet);
       eo.ShowDialog(this);
       treeView1.Nodes.Add(RevSet[RevSet.Count - 1].Node);
     }
