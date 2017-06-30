@@ -44,6 +44,7 @@ namespace RedBrick2 {
       index = RevSet.NewRev(string.Empty, string.Empty, (int)uid, DateTime.Now);
       ThisRev = RevSet[RevSet.Count - 1];
       comboBox1.Text = ThisRev.Level;
+      Text = string.Format(@"Creating Revision Level {0}", comboBox1.Text);
       comboBox2.SelectedIndex = comboBox2.FindString(ThisRev.AuthorFullName);
     }
 
