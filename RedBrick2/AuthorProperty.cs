@@ -31,6 +31,8 @@ namespace RedBrick2 {
       if (row != null) {
         _data = (int)row[@"UID"];
         FullName = (string)row[@"Fullname"];
+      } else {
+        FullName = Value;
       }
 
       return this;
@@ -58,6 +60,8 @@ namespace RedBrick2 {
         if (row != null) {
           Value = (string)row[@"INITIAL"];
           FullName = (string)row[@"Fullname"];
+        } else {
+          FullName = Value;
         }
       }
     }
