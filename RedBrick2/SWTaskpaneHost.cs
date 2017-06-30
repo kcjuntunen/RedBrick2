@@ -45,16 +45,49 @@ namespace RedBrick2 {
         ModelDocs.Add(ActiveDoc);
       }
       if (ActiveDoc != null) {
-        BuildStuff();
-        ConnectSelection();
+        //BuildStuff();
+        //ConnectSelection();
       }
     }
 
-    int SwApp_FileOpenPostNotify(string FileName) {
+    private int SwApp_FileOpenPostNotify(string FileName) {
       if (mrb == null) {
-        BuildStuff();
-        ConnectSelection();
+        //BuildStuff();
+        //ConnectSelection();
       }
+      ConnectSelection();
+      return 0;
+    }
+
+    private int SwApp_CommandCloseNotify(int Command, int reason) {
+      if ((swCommands_e)Command == swCommands_e.swCommands_Close || (swCommands_e)Command == swCommands_e.swCommands_Close_) {
+        mrb.Hide();
+      }
+
+      if ((swCommands_e)Command == swCommands_e.swCommands_Make_Lightweight ||
+        (swCommands_e)Command == swCommands_e.swCommands_Lightweight_Toggle ||
+        (swCommands_e)Command == swCommands_e.swCommands_Lightweight_All) {
+        mrb.Hide();
+      }
+
+      return 0;
+    }
+
+    private int SwApp_FileCloseNotify(string FileName, int reason) {
+      mrb.Hide();
+      return 0;
+    }
+
+    private int SwApp_DestroyNotify() {
+      mrb.Hide();
+      return 0;
+    }
+
+    private int SwApp_ActiveDocChangeNotify() {
+      if (SwApp == null) {
+        SwApp = RequestSW();
+      }
+      ConnectSelection();
       return 0;
     }
     
@@ -103,49 +136,11 @@ namespace RedBrick2 {
       if (ActiveDoc != null) {
         string filename = ActiveDoc.GetPathName();
         if (ModelDocs.Count < 1 || ActiveDoc != ModelDocs[ModelDocs.Count - 1]) {
-          //swDocumentTypes_e docT = swDocumentTypes_e.swDocNONE;
-          //swDocumentTypes_e overDocT = swDocumentTypes_e.swDocNONE;
-          //GetTypes(ref docT, ref overDocT);
           BuildStuff();
           mrb.ReQuery(ActiveDoc);
           mrb.Show();
         }
       }
-    }
-
-    private int SwApp_CommandCloseNotify(int Command, int reason) {
-      if ((swCommands_e)Command == swCommands_e.swCommands_Close || (swCommands_e)Command == swCommands_e.swCommands_Close_) {
-        mrb.Hide();
-      }
-
-      if ((swCommands_e)Command == swCommands_e.swCommands_Make_Lightweight ||
-        (swCommands_e)Command == swCommands_e.swCommands_Lightweight_Toggle ||
-        (swCommands_e)Command == swCommands_e.swCommands_Lightweight_All) {
-          mrb.Show();
-        ReStart();
-      }
-
-      return 0;
-    }
-
-    private int SwApp_FileCloseNotify(string FileName, int reason) {
-      mrb.Hide();
-      return 0;
-    }
-
-    private int SwApp_DestroyNotify() {
-      mrb.Hide();
-      return 0;
-    }
-
-    private int SwApp_ActiveDocChangeNotify() {
-      if (SwApp == null) {
-        SwApp = RequestSW();
-      }
-      BuildStuff();
-      mrb.Show();
-      mrb.ReQuery(SwApp.ActiveDoc);
-      return 0;
     }
 
     protected SldWorks RequestSW() {
