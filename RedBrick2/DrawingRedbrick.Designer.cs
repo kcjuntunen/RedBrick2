@@ -367,7 +367,7 @@ namespace RedBrick2 {
       this.groupBox6.Controls.Add(this.tableLayoutPanel6);
       this.groupBox6.Location = new System.Drawing.Point(3, 226);
       this.groupBox6.Name = "groupBox6";
-      this.groupBox6.Size = new System.Drawing.Size(347, 254);
+      this.groupBox6.Size = new System.Drawing.Size(347, 260);
       this.groupBox6.TabIndex = 1;
       this.groupBox6.TabStop = false;
       this.groupBox6.Text = "Materials";
@@ -412,7 +412,7 @@ namespace RedBrick2 {
       this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      this.tableLayoutPanel6.Size = new System.Drawing.Size(341, 232);
+      this.tableLayoutPanel6.Size = new System.Drawing.Size(341, 238);
       this.tableLayoutPanel6.TabIndex = 0;
       // 
       // label31
