@@ -6,7 +6,7 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
-  class DepartmentProperty : IntProperty {
+  public class DepartmentProperty : IntProperty {
     public DepartmentProperty(string name, bool global, SldWorks sw, ModelDoc2 md, string fieldName)
       : base(name, global, sw, md, @"CUT_PARTS", fieldName) {
 

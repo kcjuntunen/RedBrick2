@@ -6,7 +6,7 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
-  class Revs : IList<Rev> {
+  public class Revs : IList<Rev> {
     private SldWorks SwApp;
     private List<Rev> innerList = new List<Rev>();
 
@@ -44,31 +44,12 @@ namespace RedBrick2 {
       }
     }
 
-    public Rev NewRev(string ev, string dev, int aut, DateTime dt) {
+    public int NewRev(string ev, string dev, int aut, DateTime dt) {
       ModelDoc2 md = (ModelDoc2)SwApp.ActiveDoc;
-      int idx = Count;
+      int idx = Count - 1;
       Rev r = new Rev(idx, ev, dev, aut, dt, SwApp, md);
       Add(r);
-      return innerList[idx];
-    }
-
-    private Rev newRev2(string ev, string dev, int aut, DateTime dt) {
-      ModelDoc2 md = (ModelDoc2)SwApp.ActiveDoc;
-      int idx = Count + 1;
-      string lvl = string.Format("REVISION {0}", (char)(idx + 65));
-      string e = string.Format("ECO {0}", idx);
-      string de = string.Format("DESCRIPTION {0}", idx);
-      string l = string.Format("LIST {0}", idx);
-      string da = string.Format("DATE {0}", idx);
-
-      StringProperty lvlp = new StringProperty(lvl, true, SwApp, md, string.Empty);
-      StringProperty ep = new StringProperty(e, true, SwApp, md, string.Empty);
-      StringProperty dep = new StringProperty(de, true, SwApp, md, string.Empty);
-      AuthorProperty lp = new AuthorProperty(l, true, SwApp, md);
-      DateProperty dap = new DateProperty(da, true, SwApp, md);
-
-      Add(new Rev(lvlp, ep, dep, lp, dap));
-      return innerList[idx];
+      return idx;
     }
 
     public void Write() {

@@ -4,7 +4,7 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
-  class OpProperty : IntProperty {
+  public class OpProperty : IntProperty {
     ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter cota =
       new ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter();
 

@@ -6,7 +6,7 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
-  class DateProperty : SwProperty {
+  public class DateProperty : SwProperty {
     public DateProperty(string name, bool global, SldWorks sw, ModelDoc2 md)
       : base(name, global, sw, md) {
         SWType = swCustomInfoType_e.swCustomInfoDate;

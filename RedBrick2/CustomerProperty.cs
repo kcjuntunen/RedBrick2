@@ -6,7 +6,7 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
-  class CustomerProperty : StringProperty {
+  public class CustomerProperty : StringProperty {
     ENGINEERINGDataSetTableAdapters.GEN_CUSTOMERSTableAdapter gc =
       new ENGINEERINGDataSetTableAdapters.GEN_CUSTOMERSTableAdapter();
 

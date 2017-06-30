@@ -4,7 +4,7 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
-  class BooleanProperty : SwProperty {
+  public class BooleanProperty : SwProperty {
     /// <summary>
     /// Constructor for a new <see cref="RedBrick2.BooleanProperty"/>.
     /// </summary>

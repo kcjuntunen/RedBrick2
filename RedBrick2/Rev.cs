@@ -7,7 +7,7 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
-  class Rev {
+  public class Rev {
     private SldWorks SwApp;
     private ModelDoc2 ActiveDoc;
     private StringProperty level;

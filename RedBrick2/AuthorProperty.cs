@@ -8,7 +8,7 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
-  class AuthorProperty : StringProperty {
+  public class AuthorProperty : StringProperty {
     ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu =
       new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
 

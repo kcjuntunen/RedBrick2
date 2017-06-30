@@ -4,7 +4,7 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
-  class EdgeProperty : IntProperty {
+  public class EdgeProperty : IntProperty {
     public EdgeProperty(string name, bool global, SldWorks sw, ModelDoc2 md, string fieldName)
       : base(name, global, sw, md, @"CUT_CUTLIST_PARTS", fieldName) {
       SWType = swCustomInfoType_e.swCustomInfoText;

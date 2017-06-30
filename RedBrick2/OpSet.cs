@@ -16,7 +16,7 @@ namespace RedBrick2 {
       SpecificPropertyManager = ActiveDoc.Extension.get_CustomPropertyManager(Config.Name);
     }
 
-    public OpSet Create(int opNo) {
+    public OpSet NewOp(int opNo) {
       Order = opNo;
       OpProperty op = new OpProperty(string.Format(@"OP{0}", opNo), true, SwApp, ActiveDoc, @"POPOP");
       PartID = op.PartID;
