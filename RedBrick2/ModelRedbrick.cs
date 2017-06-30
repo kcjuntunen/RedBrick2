@@ -292,7 +292,7 @@ namespace RedBrick2 {
     }
 
     public void Commit() {
-      if ((tabPage1 as Control).Enabled) {
+      if (tabControl1.SelectedTab == tabPage1) {
         PropertySet[@"Description"].Data = textBox1.Text;
 
         // Dimensions get special treatment since the mgr stores weird strings, and DB stores doubles.
@@ -316,7 +316,7 @@ namespace RedBrick2 {
         PropertySet[@"EDGE LEFT (W)"].Data = comboBox4.SelectedValue;
         PropertySet[@"EDGE RIGHT (W)"].Data = comboBox5.SelectedValue;
         PropertySet.Write();
-      } else if ((tabPage2 as Control).Enabled) {
+      } else if (tabControl1.SelectedTab == tabPage2) {
         //drawingRedbrick.comm
       }
     }
