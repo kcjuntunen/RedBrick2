@@ -13,6 +13,7 @@ using SolidWorks.Interop.swconst;
 namespace RedBrick2 {
   public partial class DrawingRedbrick : UserControl {
     private string partLookup;
+    private string projectDescr;
     private Revs revSet;
 
     public DrawingRedbrick(ModelDoc2 md, SldWorks sw) {
@@ -22,6 +23,7 @@ namespace RedBrick2 {
     }
 
     private void InitData() {
+      treeView1.ImageList = Redbrick.TreeViewIcons;
       foreach (TreeNode tn in treeView1.Nodes) {
         if (tn != null) {
           tn.Remove();
@@ -35,7 +37,7 @@ namespace RedBrick2 {
         Split(new string[] { @"REV", @" " }, StringSplitOptions.RemoveEmptyEntries);
       RevFromFile = revcheck.Length > 1 ? revcheck[1] : Properties.Settings.Default.DefaultRev;
       ProjectCustomer = GetCorrectCustomer();
-      groupBox5.Text = partLookup;
+      groupBox5.Text = string.Format(@"{0} - {1}", partLookup, projectDescr);
     }
 
     private int GetCorrectCustomer() {
@@ -46,6 +48,7 @@ namespace RedBrick2 {
         ENGINEERINGDataSetTableAdapters.SCH_PROJECTSTableAdapter spta =
           new ENGINEERINGDataSetTableAdapters.SCH_PROJECTSTableAdapter();
         ENGINEERINGDataSet.SCH_PROJECTSRow row = spta.GetDataByProject(matches.Groups[1].ToString())[0];
+        projectDescr = (string)row[@"DESCRIPTION"];
         return (int)row[@"CUSTID"];
       }
       return 0;
@@ -55,7 +58,13 @@ namespace RedBrick2 {
       SwProperty _p = new CustomerProperty(@"CUSTOMER", true, SwApp, ActiveDoc);
       PropertySet.Add(_p.Get());
       comboBox12.SelectedValue = (int)_p.Data;
-      if ((int)comboBox12.SelectedValue != ProjectCustomer) {
+      if (comboBox12.SelectedItem != null) {
+        if ((ProjectCustomer != 0) && ((int)comboBox12.SelectedValue != ProjectCustomer)) {
+          comboBox12.BackColor = Color.Red;
+          comboBox12.ForeColor = Color.Yellow;
+        }
+      } else {
+        comboBox12.Text = _p.Value;
         comboBox12.BackColor = Color.Red;
         comboBox12.ForeColor = Color.Yellow;
       }
@@ -70,9 +79,9 @@ namespace RedBrick2 {
     private void FigureOutRev() {
       ENGINEERINGDataSetTableAdapters.RevListTableAdapter rl =
         new ENGINEERINGDataSetTableAdapters.RevListTableAdapter();
-      comboBox14.DataSource = rl.GetData();
       comboBox14.DisplayMember = @"REV";
       comboBox14.ValueMember = @"REV";
+      comboBox14.DataSource = rl.GetData();
       SwProperty _p = new StringProperty(@"REVISION LEVEL", true, SwApp, ActiveDoc, string.Empty);
       PropertySet.Add(_p.Get());
       RevFromDrw = _p.Value;
@@ -245,10 +254,16 @@ namespace RedBrick2 {
     }
 
     private void comboBox12_SelectedIndexChanged(object sender, EventArgs e) {
-      if (ProjectCustomer == 0 || (int)(sender as ComboBox).SelectedValue == ProjectCustomer) {
-        (sender as ComboBox).BackColor = Color.White;
-        (sender as ComboBox).ForeColor = Color.Black;
+      if ((sender as ComboBox).SelectedItem != null) {
+        if ((ProjectCustomer == 0) || (int)(sender as ComboBox).SelectedValue == ProjectCustomer) {
+          (sender as ComboBox).BackColor = Color.White;
+          (sender as ComboBox).ForeColor = Color.Black;
+        } else {
+          (sender as ComboBox).BackColor = Color.Red;
+          (sender as ComboBox).ForeColor = Color.Yellow;
+        }
       } else {
+        (sender as ComboBox).Text = PropertySet[@"CUSTOMER"].Value;
         (sender as ComboBox).BackColor = Color.Red;
         (sender as ComboBox).ForeColor = Color.Yellow;
       }

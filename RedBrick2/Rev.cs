@@ -177,35 +177,48 @@ namespace RedBrick2 {
         if (int.TryParse(ECO, out eco)) {
           legacy = Redbrick.LastLegacyECR < eco ? string.Empty : @"(Legacy)";
         }
-        TreeNode topNode = new TreeNode(Level);
-        TreeNode ecoNode = new TreeNode(string.Format(@"ECR #: {0} {1}", ECO, legacy));
-        TreeNode dNode = new TreeNode(string.Format(@"Date: {0}", Date.ToShortDateString()));
-        TreeNode lNode = new TreeNode(string.Format(@"By: {0}", Redbrick.TitleCase(AuthorFullName)));
-        TreeNode descr = new TreeNode(string.Format(@"Description: {0}", Description));
+        TreeNode topNode = new TreeNode(Level, 0, 0);
+        TreeNode ecoNode = new TreeNode(string.Format(@"ECR #: {0} {1}", ECO, legacy), 1, 1);
+        TreeNode dNode = new TreeNode(string.Format(@"Date: {0}", Date.ToLongDateString()), 2, 2);
+        TreeNode lNode = new TreeNode(string.Format(@"By: {0}", Redbrick.TitleCase(AuthorFullName)), 3, 3);
+        TreeNode descr = new TreeNode(string.Format(@"Description: {0}", Description), 4, 4);
         foreach (KeyValuePair<string, string> kvp in ecoData) {
+          int iconidx = 0;
+          if (kvp.Key.ToUpper().Contains(@"DESCR") ||
+            kvp.Key.ToUpper().Contains(@"REVISION") ||
+            kvp.Key.ToUpper().Contains(@"CHANGE")) {
+            iconidx = 4;
+          }
           switch (Redbrick.action[kvp.Key]) {
             case Redbrick.Format.NAME:
               ecoNode.Nodes.Add(
-                new TreeNode(string.Format(@"{0}: {1}", Redbrick.translation[kvp.Key], Redbrick.TitleCase(kvp.Value))));
+                new TreeNode(string.Format(@"{0}: {1}", Redbrick.translation[kvp.Key], Redbrick.TitleCase(kvp.Value)), 3, 3));
               break;
             case Redbrick.Format.STRING:
+              if (kvp.Value == string.Empty) {
+                continue;
+              }
               if (kvp.Value.Contains("\n")) {
-                TreeNode subNode = new TreeNode(Redbrick.translation[kvp.Key]);
+                TreeNode subNode = new TreeNode(Redbrick.translation[kvp.Key], iconidx, iconidx);
                 foreach (string subs in kvp.Value.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries)) {
-                  TreeNode subsubNode = new TreeNode(subs);
+                  if (subs.ToUpper().Contains(@"ITEM"))
+                    iconidx = 5;
+                  if (subs.ToUpper().Contains(@"DESCR"))
+                    iconidx = 4;
+                  TreeNode subsubNode = new TreeNode(subs, iconidx, iconidx);
                   subNode.Nodes.Add(subsubNode);
                 }
                 ecoNode.Nodes.Add(subNode);
               } else {
                 ecoNode.Nodes.Add(
-                  new TreeNode(string.Format(@"{0}: {1}", Redbrick.translation[kvp.Key], kvp.Value)));
+                  new TreeNode(string.Format(@"{0}: {1}", Redbrick.translation[kvp.Key], kvp.Value), iconidx, iconidx));
               }
               break;
             case Redbrick.Format.DATE:
               DateTime _dt = new DateTime();
               if (DateTime.TryParse(kvp.Value, out _dt)) {
                 ecoNode.Nodes.Add(
-                  new TreeNode(string.Format(@"{0}: {1}", Redbrick.translation[kvp.Key], _dt.ToShortDateString())));
+                  new TreeNode(string.Format(@"{0}: {1}", Redbrick.translation[kvp.Key], _dt.ToLongDateString()), 2, 2));
               }
               break;
             case Redbrick.Format.SKIP:

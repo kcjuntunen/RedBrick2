@@ -93,6 +93,16 @@ namespace RedBrick2 {
           LastLegacyECR = _maxecr;
         }
 
+        TreeViewIcons = new System.Windows.Forms.ImageList();
+        TreeViewIcons.ImageSize = new System.Drawing.Size(20, 20);
+        TreeViewIcons.Images.Add(System.Drawing.Image.FromFile(@"G:\Solid Works\Amstore_Macros\ICONS\rev.png"));
+        TreeViewIcons.Images.Add(System.Drawing.Image.FromFile(@"G:\Solid Works\Amstore_Macros\ICONS\ecr.png"));
+        TreeViewIcons.Images.Add(System.Drawing.Image.FromFile(@"G:\Solid Works\Amstore_Macros\ICONS\calendar_icon.png"));
+        TreeViewIcons.Images.Add(System.Drawing.Image.FromFile(@"G:\Solid Works\Amstore_Macros\ICONS\freelance-icon.bmp"));
+        TreeViewIcons.Images.Add(System.Drawing.Image.FromFile(@"G:\Solid Works\Amstore_Macros\ICONS\icon_discuss.bmp"));
+        TreeViewIcons.Images.Add(System.Drawing.Image.FromFile(@"G:\Solid Works\Amstore_Macros\ICONS\21-128.png"));
+        
+
         try {
           Version cv = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
           string ver = cv.ToString();
@@ -541,6 +551,8 @@ namespace RedBrick2 {
         }
         return @"#VALUE!";
       }
+
+      static public System.Windows.Forms.ImageList TreeViewIcons { get; set; }
 
       static public int LastLegacyECR { get; set; }
 
