@@ -217,6 +217,7 @@ namespace RedBrick2 {
           }
         }
         topNode.Nodes.AddRange(new TreeNode[] { ecoNode, descr, dNode, lNode });
+        topNode.Expand();
         return topNode;
       }
       set { Node = value; }
