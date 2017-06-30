@@ -158,6 +158,9 @@ namespace RedBrick2 {
     int dd_UserSelectionPostNotify() {
       swSelMgr = ActiveDoc.SelectionManager;
       object selectedObject = swSelMgr.GetSelectedObject6(1, -1);
+      if (selectedObject == null) {
+        selectedObject = swSelMgr.GetSelectedObjectsComponent4(1, -1);
+      }
       if (selectedObject is DrawingComponent) {
         DrawingComponent dc = selectedObject as DrawingComponent;
         if (dc != null) {
@@ -166,6 +169,9 @@ namespace RedBrick2 {
         } else {
           ActiveDoc = SwApp.ActiveDoc;
         }
+      } else if (selectedObject is SolidWorks.Interop.sldworks.View) {
+        SolidWorks.Interop.sldworks.View v = (selectedObject as SolidWorks.Interop.sldworks.View);
+        ActiveDoc = v.ReferencedDocument;
       }
       return 0;
     }
@@ -347,13 +353,13 @@ namespace RedBrick2 {
         PropertySet.Clear();
       }
 
-      PropertySet.GetProperties(_activeDoc);
       string _configname = string.Empty;
 
-      if (!(_activeDoc is DrawingDoc)) {
+      if (!(ActiveDoc is DrawingDoc)) {
         _configname = ActiveDoc.ConfigurationManager.ActiveConfiguration.Name;
       }
 
+      PropertySet.GetProperties(ActiveDoc);
       groupBox1.Text = string.Format(@"{0} - {1}",
         partLookup, _configname);
 
@@ -361,6 +367,7 @@ namespace RedBrick2 {
       if (lastModelDoc != ActiveDoc) {
         ReQuery();
       }
+
       lastModelDoc = ActiveDoc;
       tabControl1.SelectedTab = tabPage1;
       DisconnectPartEvents();
@@ -376,7 +383,7 @@ namespace RedBrick2 {
     public ModelDoc2 ActiveDoc {
       get { return _activeDoc; }
       set {
-        allowPaint = false;
+        //allowPaint = false;
         if (value != null && value != ActiveDoc) {
           Show();
           _activeDoc = value;
@@ -436,6 +443,7 @@ namespace RedBrick2 {
             default:
               (tabPage1 as Control).Enabled = false;
               (tabPage2 as Control).Enabled = false;
+              Hide();
               break;
           }
         } else {
