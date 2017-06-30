@@ -317,7 +317,7 @@ namespace RedBrick2 {
         PropertySet[@"EDGE RIGHT (W)"].Data = comboBox5.SelectedValue;
         PropertySet.Write();
       } else if (tabControl1.SelectedTab == tabPage2) {
-        //drawingRedbrick.comm
+        drawingRedbrick.Commit();
       }
     }
 

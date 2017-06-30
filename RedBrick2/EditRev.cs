@@ -10,6 +10,7 @@ namespace RedBrick2 {
   public partial class EditRev : Form {
     private int index = 0;
     private Revs RevSet;
+    private Rev ThisRev;
     private ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter guta =
       new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
 
@@ -41,15 +42,17 @@ namespace RedBrick2 {
         throw new NullReferenceException(@"Hmm... Maybe you're not in the DB.");
       }
       index = RevSet.NewRev(string.Empty, string.Empty, (int)uid, DateTime.Now);
-      comboBox1.Text = RevSet[index].Level;
-      comboBox2.SelectedText = RevSet[index].AuthorFullName;
+      ThisRev = RevSet[RevSet.Count - 1];
+      comboBox1.Text = ThisRev.Level;
+      comboBox2.SelectedIndex = comboBox2.FindString(ThisRev.AuthorFullName);
     }
 
     private void button1_Click(object sender, EventArgs e) {
-      Rev r = RevSet[index];
-      r.ECO = textBox1.Text;
-      r.Description = textBox2.Text;
-      r.Date = dateTimePicker1.Value;
+      ThisRev.ECO = textBox1.Text;
+      ThisRev.Description = textBox2.Text;
+      ThisRev.SetAuthor((int)comboBox2.SelectedValue);
+      ThisRev.Date = dateTimePicker1.Value;
+      Close();
     }
 
     private void EditOp_Load(object sender, EventArgs e) {
@@ -59,7 +62,12 @@ namespace RedBrick2 {
     }
 
     private void button2_Click(object sender, EventArgs e) {
+      RevSet.Remove(ThisRev);
       Close();
+    }
+
+    private void comboBox1_TextUpdate(object sender, EventArgs e) {
+      Text = string.Format(@"Creating Revision Level {0}", comboBox1.Text);
     }
   }
 }

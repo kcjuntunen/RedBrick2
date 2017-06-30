@@ -46,10 +46,10 @@ namespace RedBrick2 {
 
     public int NewRev(string ev, string dev, int aut, DateTime dt) {
       ModelDoc2 md = (ModelDoc2)SwApp.ActiveDoc;
-      int idx = Count - 1;
+      int idx = Count;
       Rev r = new Rev(idx, ev, dev, aut, dt, SwApp, md);
       Add(r);
-      return idx;
+      return idx - 1;
     }
 
     public void Write() {

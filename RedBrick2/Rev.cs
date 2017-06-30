@@ -134,7 +134,10 @@ namespace RedBrick2 {
 
     public string ECO {
       get { return eco.Data.ToString(); }
-      set { eco.Data = value; }
+      set {
+        eco.Data = value;
+        GetECOData();
+      }
     }
 
     public string Description {
@@ -168,8 +171,9 @@ namespace RedBrick2 {
         }
         TreeNode topNode = new TreeNode(Level);
         TreeNode ecoNode = new TreeNode(string.Format(@"ECR #: {0} {1}", ECO, legacy));
-        TreeNode lNode = new TreeNode(string.Format(@"By: {0}", Redbrick.TitleCase(AuthorFullName)));
         TreeNode dNode = new TreeNode(string.Format(@"Date: {0}", Date.ToShortDateString()));
+        TreeNode lNode = new TreeNode(string.Format(@"By: {0}", Redbrick.TitleCase(AuthorFullName)));
+        TreeNode descr = new TreeNode(string.Format(@"Description: {0}", Description));
         foreach (KeyValuePair<string, string> kvp in ecoData) {
           switch (Redbrick.action[kvp.Key]) {
             case Redbrick.Format.NAME:
@@ -204,7 +208,7 @@ namespace RedBrick2 {
             //ecoNode.Nodes.Add(subNode);
           }
         }
-        topNode.Nodes.AddRange(new TreeNode[] { ecoNode, lNode, dNode });
+        topNode.Nodes.AddRange(new TreeNode[] { ecoNode, descr, dNode, lNode });
         return topNode;
       }
       set { Node = value; }

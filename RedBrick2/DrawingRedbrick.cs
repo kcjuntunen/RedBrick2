@@ -136,6 +136,7 @@ namespace RedBrick2 {
       }
       PropertySet.Write();
       RevSet.Write();
+      (ActiveDoc as DrawingDoc).ForceRebuild();
     }
 
     private void DrawingRedbrick_Load(object sender, EventArgs e) {
@@ -177,11 +178,12 @@ namespace RedBrick2 {
       FigureOutDate();
       FigureOutStatus();
       FigureOutMatFinish();
+      RevSet = new Revs(SwApp);
       BuildTree();
     }
 
     private void BuildTree() {
-      RevSet = new Revs(SwApp);
+      treeView1.Nodes.Clear();
       foreach (Rev r in RevSet) {
         treeView1.Nodes.Add(r.Node);
       }
@@ -255,7 +257,7 @@ namespace RedBrick2 {
     private void button1_Click(object sender, EventArgs e) {
       EditRev eo = new EditRev(RevSet);
       eo.ShowDialog(this);
-      treeView1.Nodes.Add(RevSet[RevSet.Count - 1].Node);
+      BuildTree();
     }
   }
 }

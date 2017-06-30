@@ -33,18 +33,18 @@ namespace RedBrick2 {
       this.textBox2 = new System.Windows.Forms.TextBox();
       this.label4 = new System.Windows.Forms.Label();
       this.comboBox2 = new System.Windows.Forms.ComboBox();
+      this.gENUSERSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+      this.eNGINEERINGDataSet = new RedBrick2.ENGINEERINGDataSet();
       this.label5 = new System.Windows.Forms.Label();
       this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
       this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
       this.button2 = new System.Windows.Forms.Button();
       this.button1 = new System.Windows.Forms.Button();
-      this.eNGINEERINGDataSet = new RedBrick2.ENGINEERINGDataSet();
-      this.gENUSERSBindingSource = new System.Windows.Forms.BindingSource(this.components);
       this.gEN_USERSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
       this.tableLayoutPanel1.SuspendLayout();
-      this.tableLayoutPanel2.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSet)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.gENUSERSBindingSource)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSet)).BeginInit();
+      this.tableLayoutPanel2.SuspendLayout();
       this.SuspendLayout();
       // 
       // tableLayoutPanel1
@@ -96,6 +96,7 @@ namespace RedBrick2 {
       this.comboBox1.Name = "comboBox1";
       this.comboBox1.Size = new System.Drawing.Size(186, 21);
       this.comboBox1.TabIndex = 1;
+      this.comboBox1.TextUpdate += new System.EventHandler(this.comboBox1_TextUpdate);
       // 
       // label2
       // 
@@ -148,6 +149,16 @@ namespace RedBrick2 {
       this.comboBox2.Size = new System.Drawing.Size(186, 21);
       this.comboBox2.TabIndex = 7;
       this.comboBox2.ValueMember = "UID";
+      // 
+      // gENUSERSBindingSource
+      // 
+      this.gENUSERSBindingSource.DataMember = "GEN_USERS";
+      this.gENUSERSBindingSource.DataSource = this.eNGINEERINGDataSet;
+      // 
+      // eNGINEERINGDataSet
+      // 
+      this.eNGINEERINGDataSet.DataSetName = "ENGINEERINGDataSet";
+      this.eNGINEERINGDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
       // 
       // label5
       // 
@@ -207,35 +218,25 @@ namespace RedBrick2 {
       this.button1.UseVisualStyleBackColor = true;
       this.button1.Click += new System.EventHandler(this.button1_Click);
       // 
-      // eNGINEERINGDataSet
-      // 
-      this.eNGINEERINGDataSet.DataSetName = "ENGINEERINGDataSet";
-      this.eNGINEERINGDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-      // 
-      // gENUSERSBindingSource
-      // 
-      this.gENUSERSBindingSource.DataMember = "GEN_USERS";
-      this.gENUSERSBindingSource.DataSource = this.eNGINEERINGDataSet;
-      // 
       // gEN_USERSTableAdapter
       // 
       this.gEN_USERSTableAdapter.ClearBeforeFill = true;
       // 
-      // EditOp
+      // EditRev
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(192, 253);
       this.Controls.Add(this.tableLayoutPanel1);
       this.MinimumSize = new System.Drawing.Size(200, 280);
-      this.Name = "EditOp";
+      this.Name = "EditRev";
       this.Text = "NewOp";
       this.Load += new System.EventHandler(this.EditOp_Load);
       this.tableLayoutPanel1.ResumeLayout(false);
       this.tableLayoutPanel1.PerformLayout();
-      this.tableLayoutPanel2.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSet)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.gENUSERSBindingSource)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSet)).EndInit();
+      this.tableLayoutPanel2.ResumeLayout(false);
       this.ResumeLayout(false);
 
     }

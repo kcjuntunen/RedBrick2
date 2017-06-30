@@ -36,10 +36,7 @@ namespace RedBrick2 {
       return this;
     }
 
-    public string FullName {
-      get { return Value; }
-      private set { Value = value; }
-    }
+    public string FullName { get; set; }
 
     public string Initials {
       get { return Value; }
@@ -60,6 +57,7 @@ namespace RedBrick2 {
         }
         if (row != null) {
           Value = (string)row[@"INITIAL"];
+          FullName = (string)row[@"Fullname"];
         }
       }
     }
