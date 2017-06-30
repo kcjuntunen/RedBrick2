@@ -245,7 +245,7 @@ namespace RedBrick2 {
     }
 
     private void comboBox12_SelectedIndexChanged(object sender, EventArgs e) {
-      if ((int)(sender as ComboBox).SelectedValue == ProjectCustomer) {
+      if (ProjectCustomer == 0 || (int)(sender as ComboBox).SelectedValue == ProjectCustomer) {
         (sender as ComboBox).BackColor = Color.White;
         (sender as ComboBox).ForeColor = Color.Black;
       } else {
