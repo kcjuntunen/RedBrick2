@@ -34,13 +34,31 @@ namespace RedBrick2 {
       string[] revcheck = Path.GetFileNameWithoutExtension(PartFileInfo.Name).
         Split(new string[] { @"REV", @" " }, StringSplitOptions.RemoveEmptyEntries);
       RevFromFile = revcheck.Length > 1 ? revcheck[1] : Properties.Settings.Default.DefaultRev;
+      ProjectCustomer = GetCorrectCustomer();
       groupBox5.Text = partLookup;
+    }
+
+    private int GetCorrectCustomer() {
+      string pattern = @"([A-Z]{3,4})(\d{4})";
+      System.Text.RegularExpressions.Regex r = new System.Text.RegularExpressions.Regex(pattern);
+      System.Text.RegularExpressions.Match matches = System.Text.RegularExpressions.Regex.Match(partLookup, pattern);
+      if (r.IsMatch(partLookup)) {
+        ENGINEERINGDataSetTableAdapters.SCH_PROJECTSTableAdapter spta =
+          new ENGINEERINGDataSetTableAdapters.SCH_PROJECTSTableAdapter();
+        ENGINEERINGDataSet.SCH_PROJECTSRow row = spta.GetDataByProject(matches.Groups[1].ToString())[0];
+        return (int)row[@"CUSTID"];
+      }
+      return 0;
     }
 
     private void FigureOutCustomer() {
       SwProperty _p = new CustomerProperty(@"CUSTOMER", true, SwApp, ActiveDoc);
       PropertySet.Add(_p.Get());
       comboBox12.SelectedValue = (int)_p.Data;
+      if ((int)comboBox12.SelectedValue != ProjectCustomer) {
+        comboBox12.BackColor = Color.Red;
+        comboBox12.ForeColor = Color.Yellow;
+      }
     }
 
     private void FigureOutAuthor() {
@@ -58,10 +76,10 @@ namespace RedBrick2 {
       SwProperty _p = new StringProperty(@"REVISION LEVEL", true, SwApp, ActiveDoc, string.Empty);
       PropertySet.Add(_p.Get());
       RevFromDrw = _p.Value;
+      comboBox14.Text = RevFromDrw;
       if (RevFromDrw != RevFromFile) {
-        comboBox14.Text = RevFromFile;
-      } else {
-        comboBox14.Text = RevFromDrw;
+        comboBox14.BackColor = Color.Red;
+        comboBox14.ForeColor = Color.Yellow;
       }
     }
 
@@ -117,6 +135,7 @@ namespace RedBrick2 {
         PropertySet[_fin].Data = _tboxes[i].Text;
       }
       PropertySet.Write();
+      RevSet.Write();
     }
 
     private void DrawingRedbrick_Load(object sender, EventArgs e) {
@@ -173,6 +192,7 @@ namespace RedBrick2 {
       set { revSet = value; }
     }
     public SwProperties PropertySet { get; set; }
+    public int ProjectCustomer { get; set; }
     public string RevFromFile { get; set; }
     public string RevFromDrw { get; set; }
     public FileInfo PartFileInfo { get; set; }
@@ -210,6 +230,32 @@ namespace RedBrick2 {
                             nodeColor,
                             Color.Empty,
                             TextFormatFlags.VerticalCenter);
+    }
+
+    private void comboBox14_SelectedIndexChanged(object sender, EventArgs e) {
+      if ((sender as ComboBox).Text == RevFromFile) {
+        (sender as ComboBox).BackColor = Color.White;
+        (sender as ComboBox).ForeColor = Color.Black;
+      } else {
+        (sender as ComboBox).BackColor = Color.Red;
+        (sender as ComboBox).ForeColor = Color.Yellow;
+      }
+    }
+
+    private void comboBox12_SelectedIndexChanged(object sender, EventArgs e) {
+      if ((int)(sender as ComboBox).SelectedValue == ProjectCustomer) {
+        (sender as ComboBox).BackColor = Color.White;
+        (sender as ComboBox).ForeColor = Color.Black;
+      } else {
+        (sender as ComboBox).BackColor = Color.Red;
+        (sender as ComboBox).ForeColor = Color.Yellow;
+      }
+    }
+
+    private void button1_Click(object sender, EventArgs e) {
+      EditOp eo = new EditOp(RevSet);
+      eo.ShowDialog(this);
+      treeView1.Nodes.Add(RevSet[RevSet.Count - 1].Node);
     }
   }
 }

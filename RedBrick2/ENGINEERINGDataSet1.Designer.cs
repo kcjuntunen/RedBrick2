@@ -70,6 +70,8 @@ namespace RedBrick2 {
         
         private RevListDataTable tableRevList;
         
+        private SCH_PROJECTSDataTable tableSCH_PROJECTS;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -166,6 +168,9 @@ namespace RedBrick2 {
                 }
                 if ((ds.Tables["RevList"] != null)) {
                     base.Tables.Add(new RevListDataTable(ds.Tables["RevList"]));
+                }
+                if ((ds.Tables["SCH_PROJECTS"] != null)) {
+                    base.Tables.Add(new SCH_PROJECTSDataTable(ds.Tables["SCH_PROJECTS"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -417,6 +422,16 @@ namespace RedBrick2 {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SCH_PROJECTSDataTable SCH_PROJECTS {
+            get {
+                return this.tableSCH_PROJECTS;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -550,6 +565,9 @@ namespace RedBrick2 {
                 }
                 if ((ds.Tables["RevList"] != null)) {
                     base.Tables.Add(new RevListDataTable(ds.Tables["RevList"]));
+                }
+                if ((ds.Tables["SCH_PROJECTS"] != null)) {
+                    base.Tables.Add(new SCH_PROJECTSDataTable(ds.Tables["SCH_PROJECTS"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -722,6 +740,12 @@ namespace RedBrick2 {
                     this.tableRevList.InitVars();
                 }
             }
+            this.tableSCH_PROJECTS = ((SCH_PROJECTSDataTable)(base.Tables["SCH_PROJECTS"]));
+            if ((initTable == true)) {
+                if ((this.tableSCH_PROJECTS != null)) {
+                    this.tableSCH_PROJECTS.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -778,6 +802,8 @@ namespace RedBrick2 {
             base.Tables.Add(this.tableLegacyECRObjLookup);
             this.tableRevList = new RevListDataTable();
             base.Tables.Add(this.tableRevList);
+            this.tableSCH_PROJECTS = new SCH_PROJECTSDataTable();
+            base.Tables.Add(this.tableSCH_PROJECTS);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -920,6 +946,12 @@ namespace RedBrick2 {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeSCH_PROJECTS() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -1041,6 +1073,9 @@ namespace RedBrick2 {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void RevListRowChangeEventHandler(object sender, RevListRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void SCH_PROJECTSRowChangeEventHandler(object sender, SCH_PROJECTSRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -6984,6 +7019,8 @@ namespace RedBrick2 {
             
             private global::System.Data.DataColumn columnCUSTPATH;
             
+            private global::System.Data.DataColumn columnDisplayName;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public GEN_CUSTOMERSDataTable() {
@@ -7091,6 +7128,14 @@ namespace RedBrick2 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DisplayNameColumn {
+                get {
+                    return this.columnDisplayName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -7126,7 +7171,7 @@ namespace RedBrick2 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GEN_CUSTOMERSRow AddGEN_CUSTOMERSRow(int CUSTNUM, string CUSTOMER, bool CUSTACTIVE, int CUSTLEAD, int CUSTPRJMGR, string CUSTSHORT, string CUSTPRE, string CUSTPATH) {
+            public GEN_CUSTOMERSRow AddGEN_CUSTOMERSRow(int CUSTNUM, string CUSTOMER, bool CUSTACTIVE, int CUSTLEAD, int CUSTPRJMGR, string CUSTSHORT, string CUSTPRE, string CUSTPATH, string DisplayName) {
                 GEN_CUSTOMERSRow rowGEN_CUSTOMERSRow = ((GEN_CUSTOMERSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -7137,7 +7182,8 @@ namespace RedBrick2 {
                         CUSTPRJMGR,
                         CUSTSHORT,
                         CUSTPRE,
-                        CUSTPATH};
+                        CUSTPATH,
+                        DisplayName};
                 rowGEN_CUSTOMERSRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGEN_CUSTOMERSRow);
                 return rowGEN_CUSTOMERSRow;
@@ -7176,6 +7222,7 @@ namespace RedBrick2 {
                 this.columnCUSTSHORT = base.Columns["CUSTSHORT"];
                 this.columnCUSTPRE = base.Columns["CUSTPRE"];
                 this.columnCUSTPATH = base.Columns["CUSTPATH"];
+                this.columnDisplayName = base.Columns["DisplayName"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7199,6 +7246,8 @@ namespace RedBrick2 {
                 base.Columns.Add(this.columnCUSTPRE);
                 this.columnCUSTPATH = new global::System.Data.DataColumn("CUSTPATH", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCUSTPATH);
+                this.columnDisplayName = new global::System.Data.DataColumn("DisplayName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDisplayName);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnCUSTID}, true));
                 this.columnCUSTID.AutoIncrement = true;
@@ -7212,6 +7261,8 @@ namespace RedBrick2 {
                 this.columnCUSTSHORT.MaxLength = 40;
                 this.columnCUSTPRE.MaxLength = 2;
                 this.columnCUSTPATH.MaxLength = 255;
+                this.columnDisplayName.ReadOnly = true;
+                this.columnDisplayName.MaxLength = 46;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9657,6 +9708,341 @@ namespace RedBrick2 {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "RevListDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SCH_PROJECTSDataTable : global::System.Data.TypedTableBase<SCH_PROJECTSRow> {
+            
+            private global::System.Data.DataColumn columnPID;
+            
+            private global::System.Data.DataColumn columnPROJECT;
+            
+            private global::System.Data.DataColumn columnCUSTID;
+            
+            private global::System.Data.DataColumn columnDESCRIPTION;
+            
+            private global::System.Data.DataColumn columnDATE_ADD;
+            
+            private global::System.Data.DataColumn columnHAS_FIXTURES;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SCH_PROJECTSDataTable() {
+                this.TableName = "SCH_PROJECTS";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal SCH_PROJECTSDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected SCH_PROJECTSDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PIDColumn {
+                get {
+                    return this.columnPID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PROJECTColumn {
+                get {
+                    return this.columnPROJECT;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CUSTIDColumn {
+                get {
+                    return this.columnCUSTID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DESCRIPTIONColumn {
+                get {
+                    return this.columnDESCRIPTION;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DATE_ADDColumn {
+                get {
+                    return this.columnDATE_ADD;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn HAS_FIXTURESColumn {
+                get {
+                    return this.columnHAS_FIXTURES;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SCH_PROJECTSRow this[int index] {
+                get {
+                    return ((SCH_PROJECTSRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event SCH_PROJECTSRowChangeEventHandler SCH_PROJECTSRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event SCH_PROJECTSRowChangeEventHandler SCH_PROJECTSRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event SCH_PROJECTSRowChangeEventHandler SCH_PROJECTSRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event SCH_PROJECTSRowChangeEventHandler SCH_PROJECTSRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddSCH_PROJECTSRow(SCH_PROJECTSRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SCH_PROJECTSRow AddSCH_PROJECTSRow(string PROJECT, int CUSTID, string DESCRIPTION, System.DateTime DATE_ADD, bool HAS_FIXTURES) {
+                SCH_PROJECTSRow rowSCH_PROJECTSRow = ((SCH_PROJECTSRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        PROJECT,
+                        CUSTID,
+                        DESCRIPTION,
+                        DATE_ADD,
+                        HAS_FIXTURES};
+                rowSCH_PROJECTSRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSCH_PROJECTSRow);
+                return rowSCH_PROJECTSRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SCH_PROJECTSRow FindByPID(int PID) {
+                return ((SCH_PROJECTSRow)(this.Rows.Find(new object[] {
+                            PID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SCH_PROJECTSDataTable cln = ((SCH_PROJECTSDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SCH_PROJECTSDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnPID = base.Columns["PID"];
+                this.columnPROJECT = base.Columns["PROJECT"];
+                this.columnCUSTID = base.Columns["CUSTID"];
+                this.columnDESCRIPTION = base.Columns["DESCRIPTION"];
+                this.columnDATE_ADD = base.Columns["DATE ADD"];
+                this.columnHAS_FIXTURES = base.Columns["HAS FIXTURES"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnPID = new global::System.Data.DataColumn("PID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPID);
+                this.columnPROJECT = new global::System.Data.DataColumn("PROJECT", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPROJECT);
+                this.columnCUSTID = new global::System.Data.DataColumn("CUSTID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCUSTID);
+                this.columnDESCRIPTION = new global::System.Data.DataColumn("DESCRIPTION", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDESCRIPTION);
+                this.columnDATE_ADD = new global::System.Data.DataColumn("DATE ADD", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDATE_ADD);
+                this.columnHAS_FIXTURES = new global::System.Data.DataColumn("HAS FIXTURES", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHAS_FIXTURES);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnPID}, true));
+                this.columnPID.AutoIncrement = true;
+                this.columnPID.AutoIncrementSeed = -1;
+                this.columnPID.AutoIncrementStep = -1;
+                this.columnPID.AllowDBNull = false;
+                this.columnPID.ReadOnly = true;
+                this.columnPID.Unique = true;
+                this.columnPROJECT.MaxLength = 10;
+                this.columnDESCRIPTION.MaxLength = 30;
+                this.columnHAS_FIXTURES.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SCH_PROJECTSRow NewSCH_PROJECTSRow() {
+                return ((SCH_PROJECTSRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SCH_PROJECTSRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SCH_PROJECTSRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SCH_PROJECTSRowChanged != null)) {
+                    this.SCH_PROJECTSRowChanged(this, new SCH_PROJECTSRowChangeEvent(((SCH_PROJECTSRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SCH_PROJECTSRowChanging != null)) {
+                    this.SCH_PROJECTSRowChanging(this, new SCH_PROJECTSRowChangeEvent(((SCH_PROJECTSRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SCH_PROJECTSRowDeleted != null)) {
+                    this.SCH_PROJECTSRowDeleted(this, new SCH_PROJECTSRowChangeEvent(((SCH_PROJECTSRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SCH_PROJECTSRowDeleting != null)) {
+                    this.SCH_PROJECTSRowDeleting(this, new SCH_PROJECTSRowChangeEvent(((SCH_PROJECTSRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveSCH_PROJECTSRow(SCH_PROJECTSRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                ENGINEERINGDataSet ds = new ENGINEERINGDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SCH_PROJECTSDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -13513,6 +13899,22 @@ namespace RedBrick2 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DisplayName {
+                get {
+                    try {
+                        return ((string)(this[this.tableGEN_CUSTOMERS.DisplayNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DisplayName\' in table \'GEN_CUSTOMERS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGEN_CUSTOMERS.DisplayNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsCUSTNUMNull() {
                 return this.IsNull(this.tableGEN_CUSTOMERS.CUSTNUMColumn);
             }
@@ -13593,6 +13995,18 @@ namespace RedBrick2 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCUSTPATHNull() {
                 this[this.tableGEN_CUSTOMERS.CUSTPATHColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDisplayNameNull() {
+                return this.IsNull(this.tableGEN_CUSTOMERS.DisplayNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDisplayNameNull() {
+                this[this.tableGEN_CUSTOMERS.DisplayNameColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -14781,6 +15195,155 @@ namespace RedBrick2 {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SCH_PROJECTSRow : global::System.Data.DataRow {
+            
+            private SCH_PROJECTSDataTable tableSCH_PROJECTS;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal SCH_PROJECTSRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSCH_PROJECTS = ((SCH_PROJECTSDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int PID {
+                get {
+                    return ((int)(this[this.tableSCH_PROJECTS.PIDColumn]));
+                }
+                set {
+                    this[this.tableSCH_PROJECTS.PIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string PROJECT {
+                get {
+                    try {
+                        return ((string)(this[this.tableSCH_PROJECTS.PROJECTColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PROJECT\' in table \'SCH_PROJECTS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSCH_PROJECTS.PROJECTColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int CUSTID {
+                get {
+                    try {
+                        return ((int)(this[this.tableSCH_PROJECTS.CUSTIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CUSTID\' in table \'SCH_PROJECTS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSCH_PROJECTS.CUSTIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DESCRIPTION {
+                get {
+                    try {
+                        return ((string)(this[this.tableSCH_PROJECTS.DESCRIPTIONColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DESCRIPTION\' in table \'SCH_PROJECTS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSCH_PROJECTS.DESCRIPTIONColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime DATE_ADD {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableSCH_PROJECTS.DATE_ADDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DATE ADD\' in table \'SCH_PROJECTS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSCH_PROJECTS.DATE_ADDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool HAS_FIXTURES {
+                get {
+                    return ((bool)(this[this.tableSCH_PROJECTS.HAS_FIXTURESColumn]));
+                }
+                set {
+                    this[this.tableSCH_PROJECTS.HAS_FIXTURESColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPROJECTNull() {
+                return this.IsNull(this.tableSCH_PROJECTS.PROJECTColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPROJECTNull() {
+                this[this.tableSCH_PROJECTS.PROJECTColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCUSTIDNull() {
+                return this.IsNull(this.tableSCH_PROJECTS.CUSTIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCUSTIDNull() {
+                this[this.tableSCH_PROJECTS.CUSTIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDESCRIPTIONNull() {
+                return this.IsNull(this.tableSCH_PROJECTS.DESCRIPTIONColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDESCRIPTIONNull() {
+                this[this.tableSCH_PROJECTS.DESCRIPTIONColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDATE_ADDNull() {
+                return this.IsNull(this.tableSCH_PROJECTS.DATE_ADDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDATE_ADDNull() {
+                this[this.tableSCH_PROJECTS.DATE_ADDColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -15548,6 +16111,40 @@ namespace RedBrick2 {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public RevListRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class SCH_PROJECTSRowChangeEvent : global::System.EventArgs {
+            
+            private SCH_PROJECTSRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SCH_PROJECTSRowChangeEvent(SCH_PROJECTSRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SCH_PROJECTSRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -24350,6 +24947,7 @@ WHERE        (CUT_PART_OPS.POPPART = @partID)";
             tableMapping.ColumnMappings.Add("CUSTSHORT", "CUSTSHORT");
             tableMapping.ColumnMappings.Add("CUSTPRE", "CUSTPRE");
             tableMapping.ColumnMappings.Add("CUSTPATH", "CUSTPATH");
+            tableMapping.ColumnMappings.Add("DisplayName", "DisplayName");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -24374,7 +24972,7 @@ WHERE        (CUT_PART_OPS.POPPART = @partID)";
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = @"INSERT INTO [GEN_CUSTOMERS] ([CUSTNUM], [CUSTOMER], [CUSTACTIVE], [CUSTLEAD], [CUSTPRJMGR], [CUSTSHORT], [CUSTPRE], [CUSTPATH]) VALUES (@CUSTNUM, @CUSTOMER, @CUSTACTIVE, @CUSTLEAD, @CUSTPRJMGR, @CUSTSHORT, @CUSTPRE, @CUSTPATH);
-SELECT CUSTID, CUSTNUM, CUSTOMER, CUSTACTIVE, CUSTLEAD, CUSTPRJMGR, CUSTSHORT, CUSTPRE, CUSTPATH FROM GEN_CUSTOMERS WHERE (CUSTID = SCOPE_IDENTITY()) ORDER BY CUSTOMER";
+SELECT CUSTID, CUSTNUM, CUSTOMER, CUSTACTIVE, CUSTLEAD, CUSTPRJMGR, CUSTSHORT, CUSTPRE, CUSTPATH, ISNULL(CUSTOMER, '') + ' - ' + ISNULL(CAST(CUSTNUM AS char(3)), '') AS DisplayName FROM GEN_CUSTOMERS WHERE (CUSTID = SCOPE_IDENTITY()) ORDER BY CUSTOMER";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CUSTNUM", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUSTNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CUSTOMER", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUSTOMER", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -24387,7 +24985,7 @@ SELECT CUSTID, CUSTNUM, CUSTOMER, CUSTACTIVE, CUSTLEAD, CUSTPRJMGR, CUSTSHORT, C
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = @"UPDATE [GEN_CUSTOMERS] SET [CUSTNUM] = @CUSTNUM, [CUSTOMER] = @CUSTOMER, [CUSTACTIVE] = @CUSTACTIVE, [CUSTLEAD] = @CUSTLEAD, [CUSTPRJMGR] = @CUSTPRJMGR, [CUSTSHORT] = @CUSTSHORT, [CUSTPRE] = @CUSTPRE, [CUSTPATH] = @CUSTPATH WHERE (([CUSTID] = @Original_CUSTID) AND ((@IsNull_CUSTNUM = 1 AND [CUSTNUM] IS NULL) OR ([CUSTNUM] = @Original_CUSTNUM)) AND ((@IsNull_CUSTOMER = 1 AND [CUSTOMER] IS NULL) OR ([CUSTOMER] = @Original_CUSTOMER)) AND ([CUSTACTIVE] = @Original_CUSTACTIVE) AND ((@IsNull_CUSTLEAD = 1 AND [CUSTLEAD] IS NULL) OR ([CUSTLEAD] = @Original_CUSTLEAD)) AND ((@IsNull_CUSTPRJMGR = 1 AND [CUSTPRJMGR] IS NULL) OR ([CUSTPRJMGR] = @Original_CUSTPRJMGR)) AND ((@IsNull_CUSTSHORT = 1 AND [CUSTSHORT] IS NULL) OR ([CUSTSHORT] = @Original_CUSTSHORT)) AND ((@IsNull_CUSTPRE = 1 AND [CUSTPRE] IS NULL) OR ([CUSTPRE] = @Original_CUSTPRE)) AND ((@IsNull_CUSTPATH = 1 AND [CUSTPATH] IS NULL) OR ([CUSTPATH] = @Original_CUSTPATH)));
-SELECT CUSTID, CUSTNUM, CUSTOMER, CUSTACTIVE, CUSTLEAD, CUSTPRJMGR, CUSTSHORT, CUSTPRE, CUSTPATH FROM GEN_CUSTOMERS WHERE (CUSTID = @CUSTID) ORDER BY CUSTOMER";
+SELECT CUSTID, CUSTNUM, CUSTOMER, CUSTACTIVE, CUSTLEAD, CUSTPRJMGR, CUSTSHORT, CUSTPRE, CUSTPATH, ISNULL(CUSTOMER, '') + ' - ' + ISNULL(CAST(CUSTNUM AS char(3)), '') AS DisplayName FROM GEN_CUSTOMERS WHERE (CUSTID = @CUSTID) ORDER BY CUSTOMER";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CUSTNUM", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUSTNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CUSTOMER", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUSTOMER", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -24429,21 +25027,21 @@ SELECT CUSTID, CUSTNUM, CUSTOMER, CUSTACTIVE, CUSTLEAD, CUSTPRJMGR, CUSTSHORT, C
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        CUSTID, CUSTNUM, CUSTOMER, CUSTACTIVE, CUSTLEAD, CUSTPRJMGR, CUSTSH" +
-                "ORT, CUSTPRE, CUSTPATH\r\nFROM            GEN_CUSTOMERS\r\nORDER BY CUSTOMER";
+            this._commandCollection[0].CommandText = @"SELECT      CUSTID, CUSTNUM, CUSTOMER, CUSTACTIVE, CUSTLEAD, CUSTPRJMGR, CUSTSHORT, CUSTPRE, CUSTPATH, ISNULL(CUSTOMER, '') 
+                        + ' - ' + ISNULL(CAST(CUSTNUM AS char(3)), '') AS DisplayName
+FROM          GEN_CUSTOMERS
+ORDER BY CUSTOMER";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        CUSTID, CUSTNUM, CUSTOMER, CUSTACTIVE, CUSTLEAD, CUSTPRJMGR, CUSTSH" +
-                "ORT, CUSTPRE, CUSTPATH\r\nFROM            GEN_CUSTOMERS\r\nWHERE        (CUSTID = @c" +
-                "ustID)\r\nORDER BY CUSTOMER";
+            this._commandCollection[1].CommandText = @"SELECT CUSTID, CUSTNUM, CUSTOMER, CUSTACTIVE, CUSTLEAD, CUSTPRJMGR, CUSTSHORT, CUSTPRE, CUSTPATH, ISNULL(CUSTOMER, '') 
+                        + ' - ' + ISNULL(CAST(CUSTNUM AS char(3)), '') AS DisplayName FROM GEN_CUSTOMERS WHERE (CUSTID = @custID) ORDER BY CUSTOMER";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@custID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "CUSTID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT        CUSTID, CUSTNUM, CUSTOMER, CUSTACTIVE, CUSTLEAD, CUSTPRJMGR, CUSTSH" +
-                "ORT, CUSTPRE, CUSTPATH\r\nFROM            GEN_CUSTOMERS\r\nWHERE        (CUSTOMER LI" +
-                "KE @searchTerm)\r\nORDER BY CUSTOMER";
+            this._commandCollection[2].CommandText = @"SELECT CUSTID, CUSTNUM, CUSTOMER, CUSTACTIVE, CUSTLEAD, CUSTPRJMGR, CUSTSHORT, CUSTPRE, CUSTPATH, ISNULL(CUSTOMER, '') 
+                        + ' - ' + ISNULL(CAST(CUSTNUM AS char(3)), '') AS DisplayName FROM GEN_CUSTOMERS WHERE (CUSTOMER LIKE @searchTerm) ORDER BY CUSTOMER";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@searchTerm", global::System.Data.SqlDbType.NVarChar, 40, global::System.Data.ParameterDirection.Input, 0, 0, "CUSTOMER", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -27761,6 +28359,484 @@ SELECT DateRequested, DateStarted, DateCompleted, AffectedParts, Change, Enginee
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SCH_PROJECTSTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public SCH_PROJECTSTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "SCH_PROJECTS";
+            tableMapping.ColumnMappings.Add("PID", "PID");
+            tableMapping.ColumnMappings.Add("PROJECT", "PROJECT");
+            tableMapping.ColumnMappings.Add("CUSTID", "CUSTID");
+            tableMapping.ColumnMappings.Add("DESCRIPTION", "DESCRIPTION");
+            tableMapping.ColumnMappings.Add("DATE ADD", "DATE ADD");
+            tableMapping.ColumnMappings.Add("HAS FIXTURES", "HAS FIXTURES");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [SCH_PROJECTS] WHERE (([PID] = @Original_PID) AND ((@IsNull_PROJECT = 1 AND [PROJECT] IS NULL) OR ([PROJECT] = @Original_PROJECT)) AND ((@IsNull_CUSTID = 1 AND [CUSTID] IS NULL) OR ([CUSTID] = @Original_CUSTID)) AND ((@IsNull_DESCRIPTION = 1 AND [DESCRIPTION] IS NULL) OR ([DESCRIPTION] = @Original_DESCRIPTION)) AND ((@IsNull_DATE_ADD = 1 AND [DATE ADD] IS NULL) OR ([DATE ADD] = @Original_DATE_ADD)) AND ([HAS FIXTURES] = @Original_HAS_FIXTURES))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_PROJECT", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PROJECT", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PROJECT", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PROJECT", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CUSTID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUSTID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CUSTID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUSTID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DESCRIPTION", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DESCRIPTION", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DESCRIPTION", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DESCRIPTION", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DATE_ADD", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DATE ADD", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DATE_ADD", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DATE ADD", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_HAS_FIXTURES", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HAS FIXTURES", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [SCH_PROJECTS] ([PROJECT], [CUSTID], [DESCRIPTION], [DATE ADD], [HAS FIXTURES]) VALUES (@PROJECT, @CUSTID, @DESCRIPTION, @DATE_ADD, @HAS_FIXTURES);
+SELECT PID, PROJECT, CUSTID, DESCRIPTION, [DATE ADD], [HAS FIXTURES] FROM SCH_PROJECTS WHERE (PID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PROJECT", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PROJECT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CUSTID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUSTID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DESCRIPTION", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DESCRIPTION", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DATE_ADD", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DATE ADD", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@HAS_FIXTURES", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HAS FIXTURES", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [SCH_PROJECTS] SET [PROJECT] = @PROJECT, [CUSTID] = @CUSTID, [DESCRIPTION] = @DESCRIPTION, [DATE ADD] = @DATE_ADD, [HAS FIXTURES] = @HAS_FIXTURES WHERE (([PID] = @Original_PID) AND ((@IsNull_PROJECT = 1 AND [PROJECT] IS NULL) OR ([PROJECT] = @Original_PROJECT)) AND ((@IsNull_CUSTID = 1 AND [CUSTID] IS NULL) OR ([CUSTID] = @Original_CUSTID)) AND ((@IsNull_DESCRIPTION = 1 AND [DESCRIPTION] IS NULL) OR ([DESCRIPTION] = @Original_DESCRIPTION)) AND ((@IsNull_DATE_ADD = 1 AND [DATE ADD] IS NULL) OR ([DATE ADD] = @Original_DATE_ADD)) AND ([HAS FIXTURES] = @Original_HAS_FIXTURES));
+SELECT PID, PROJECT, CUSTID, DESCRIPTION, [DATE ADD], [HAS FIXTURES] FROM SCH_PROJECTS WHERE (PID = @PID)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PROJECT", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PROJECT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CUSTID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUSTID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DESCRIPTION", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DESCRIPTION", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DATE_ADD", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DATE ADD", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@HAS_FIXTURES", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HAS FIXTURES", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_PROJECT", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PROJECT", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PROJECT", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PROJECT", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CUSTID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUSTID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CUSTID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CUSTID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DESCRIPTION", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DESCRIPTION", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DESCRIPTION", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DESCRIPTION", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DATE_ADD", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DATE ADD", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DATE_ADD", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DATE ADD", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_HAS_FIXTURES", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HAS FIXTURES", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "PID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::RedBrick2.Properties.Settings.Default.ENGINEERINGConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT      SCH_PROJECTS.*\r\nFROM          SCH_PROJECTS";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT      PID, PROJECT, CUSTID, DESCRIPTION, [DATE ADD], [HAS FIXTURES]\r\nFROM  " +
+                "        SCH_PROJECTS\r\nWHERE      (PROJECT = @project)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@project", global::System.Data.SqlDbType.NVarChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, "PROJECT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(ENGINEERINGDataSet.SCH_PROJECTSDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual ENGINEERINGDataSet.SCH_PROJECTSDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            ENGINEERINGDataSet.SCH_PROJECTSDataTable dataTable = new ENGINEERINGDataSet.SCH_PROJECTSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByProject(ENGINEERINGDataSet.SCH_PROJECTSDataTable dataTable, string project) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((project == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(project));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ENGINEERINGDataSet.SCH_PROJECTSDataTable GetDataByProject(string project) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((project == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(project));
+            }
+            ENGINEERINGDataSet.SCH_PROJECTSDataTable dataTable = new ENGINEERINGDataSet.SCH_PROJECTSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(ENGINEERINGDataSet.SCH_PROJECTSDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(ENGINEERINGDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "SCH_PROJECTS");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_PID, string Original_PROJECT, global::System.Nullable<int> Original_CUSTID, string Original_DESCRIPTION, global::System.Nullable<global::System.DateTime> Original_DATE_ADD, bool Original_HAS_FIXTURES) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_PID));
+            if ((Original_PROJECT == null)) {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_PROJECT));
+            }
+            if ((Original_CUSTID.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_CUSTID.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((Original_DESCRIPTION == null)) {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_DESCRIPTION));
+            }
+            if ((Original_DATE_ADD.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((System.DateTime)(Original_DATE_ADD.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.DeleteCommand.Parameters[9].Value = ((bool)(Original_HAS_FIXTURES));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(string PROJECT, global::System.Nullable<int> CUSTID, string DESCRIPTION, global::System.Nullable<global::System.DateTime> DATE_ADD, bool HAS_FIXTURES) {
+            if ((PROJECT == null)) {
+                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(PROJECT));
+            }
+            if ((CUSTID.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(CUSTID.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((DESCRIPTION == null)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(DESCRIPTION));
+            }
+            if ((DATE_ADD.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(DATE_ADD.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.InsertCommand.Parameters[4].Value = ((bool)(HAS_FIXTURES));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string PROJECT, global::System.Nullable<int> CUSTID, string DESCRIPTION, global::System.Nullable<global::System.DateTime> DATE_ADD, bool HAS_FIXTURES, int Original_PID, string Original_PROJECT, global::System.Nullable<int> Original_CUSTID, string Original_DESCRIPTION, global::System.Nullable<global::System.DateTime> Original_DATE_ADD, bool Original_HAS_FIXTURES, int PID) {
+            if ((PROJECT == null)) {
+                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(PROJECT));
+            }
+            if ((CUSTID.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(CUSTID.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((DESCRIPTION == null)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(DESCRIPTION));
+            }
+            if ((DATE_ADD.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(DATE_ADD.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((bool)(HAS_FIXTURES));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_PID));
+            if ((Original_PROJECT == null)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_PROJECT));
+            }
+            if ((Original_CUSTID.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_CUSTID.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((Original_DESCRIPTION == null)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_DESCRIPTION));
+            }
+            if ((Original_DATE_ADD.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((System.DateTime)(Original_DATE_ADD.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((bool)(Original_HAS_FIXTURES));
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(PID));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string PROJECT, global::System.Nullable<int> CUSTID, string DESCRIPTION, global::System.Nullable<global::System.DateTime> DATE_ADD, bool HAS_FIXTURES, int Original_PID, string Original_PROJECT, global::System.Nullable<int> Original_CUSTID, string Original_DESCRIPTION, global::System.Nullable<global::System.DateTime> Original_DATE_ADD, bool Original_HAS_FIXTURES) {
+            return this.Update(PROJECT, CUSTID, DESCRIPTION, DATE_ADD, HAS_FIXTURES, Original_PID, Original_PROJECT, Original_CUSTID, Original_DESCRIPTION, Original_DATE_ADD, Original_HAS_FIXTURES, Original_PID);
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -27811,6 +28887,8 @@ SELECT DateRequested, DateStarted, DateCompleted, AffectedParts, Change, Enginee
         private ECR_LEGACYTableAdapter _eCR_LEGACYTableAdapter;
         
         private LegacyECRObjLookupTableAdapter _legacyECRObjLookupTableAdapter;
+        
+        private SCH_PROJECTSTableAdapter _sCH_PROJECTSTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -28109,6 +29187,20 @@ SELECT DateRequested, DateStarted, DateCompleted, AffectedParts, Change, Enginee
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public SCH_PROJECTSTableAdapter SCH_PROJECTSTableAdapter {
+            get {
+                return this._sCH_PROJECTSTableAdapter;
+            }
+            set {
+                this._sCH_PROJECTSTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -28206,6 +29298,10 @@ SELECT DateRequested, DateStarted, DateCompleted, AffectedParts, Change, Enginee
                             && (this._legacyECRObjLookupTableAdapter.Connection != null))) {
                     return this._legacyECRObjLookupTableAdapter.Connection;
                 }
+                if (((this._sCH_PROJECTSTableAdapter != null) 
+                            && (this._sCH_PROJECTSTableAdapter.Connection != null))) {
+                    return this._sCH_PROJECTSTableAdapter.Connection;
+                }
                 return null;
             }
             set {
@@ -28279,6 +29375,9 @@ SELECT DateRequested, DateStarted, DateCompleted, AffectedParts, Change, Enginee
                 if ((this._legacyECRObjLookupTableAdapter != null)) {
                     count = (count + 1);
                 }
+                if ((this._sCH_PROJECTSTableAdapter != null)) {
+                    count = (count + 1);
+                }
                 return count;
             }
         }
@@ -28296,6 +29395,15 @@ SELECT DateRequested, DateStarted, DateCompleted, AffectedParts, Change, Enginee
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._cUT_OPSTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._legacyECRObjLookupTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.LegacyECRObjLookup.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._legacyECRObjLookupTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -28362,21 +29470,21 @@ SELECT DateRequested, DateStarted, DateCompleted, AffectedParts, Change, Enginee
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._legacyECRObjLookupTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.LegacyECRObjLookup.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._legacyECRObjLookupTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._cUT_PART_TYPESTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.CUT_PART_TYPES.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._cUT_PART_TYPESTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._cUT_EDGES_XREFTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.CUT_EDGES_XREF.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._cUT_EDGES_XREFTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -28461,12 +29569,12 @@ SELECT DateRequested, DateStarted, DateCompleted, AffectedParts, Change, Enginee
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._cUT_EDGES_XREFTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.CUT_EDGES_XREF.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._sCH_PROJECTSTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.SCH_PROJECTS.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._cUT_EDGES_XREFTableAdapter.Update(updatedRows));
+                    result = (result + this._sCH_PROJECTSTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -28485,6 +29593,14 @@ SELECT DateRequested, DateStarted, DateCompleted, AffectedParts, Change, Enginee
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._cUT_OPSTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._legacyECRObjLookupTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.LegacyECRObjLookup.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._legacyECRObjLookupTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -28544,19 +29660,19 @@ SELECT DateRequested, DateStarted, DateCompleted, AffectedParts, Change, Enginee
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._legacyECRObjLookupTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.LegacyECRObjLookup.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._legacyECRObjLookupTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._cUT_PART_TYPESTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.CUT_PART_TYPES.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._cUT_PART_TYPESTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._cUT_EDGES_XREFTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.CUT_EDGES_XREF.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._cUT_EDGES_XREFTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -28632,11 +29748,11 @@ SELECT DateRequested, DateStarted, DateCompleted, AffectedParts, Change, Enginee
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._cUT_EDGES_XREFTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.CUT_EDGES_XREF.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._sCH_PROJECTSTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.SCH_PROJECTS.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._cUT_EDGES_XREFTableAdapter.Update(addedRows));
+                    result = (result + this._sCH_PROJECTSTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -28650,11 +29766,11 @@ SELECT DateRequested, DateStarted, DateCompleted, AffectedParts, Change, Enginee
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(ENGINEERINGDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._cUT_EDGES_XREFTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.CUT_EDGES_XREF.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._sCH_PROJECTSTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.SCH_PROJECTS.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._cUT_EDGES_XREFTableAdapter.Update(deletedRows));
+                    result = (result + this._sCH_PROJECTSTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -28730,19 +29846,19 @@ SELECT DateRequested, DateStarted, DateCompleted, AffectedParts, Change, Enginee
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._cUT_EDGES_XREFTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.CUT_EDGES_XREF.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._cUT_EDGES_XREFTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._cUT_PART_TYPESTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.CUT_PART_TYPES.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._cUT_PART_TYPESTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._legacyECRObjLookupTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.LegacyECRObjLookup.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._legacyECRObjLookupTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -28799,6 +29915,14 @@ SELECT DateRequested, DateStarted, DateCompleted, AffectedParts, Change, Enginee
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._eCR_LEGACYTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._legacyECRObjLookupTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.LegacyECRObjLookup.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._legacyECRObjLookupTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -28946,6 +30070,11 @@ SELECT DateRequested, DateStarted, DateCompleted, AffectedParts, Change, Enginee
             }
             if (((this._legacyECRObjLookupTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._legacyECRObjLookupTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._sCH_PROJECTSTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._sCH_PROJECTSTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -29161,6 +30290,15 @@ SELECT DateRequested, DateStarted, DateCompleted, AffectedParts, Change, Enginee
                         adaptersWithAcceptChangesDuringUpdate.Add(this._legacyECRObjLookupTableAdapter.Adapter);
                     }
                 }
+                if ((this._sCH_PROJECTSTableAdapter != null)) {
+                    revertConnections.Add(this._sCH_PROJECTSTableAdapter, this._sCH_PROJECTSTableAdapter.Connection);
+                    this._sCH_PROJECTSTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._sCH_PROJECTSTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._sCH_PROJECTSTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._sCH_PROJECTSTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._sCH_PROJECTSTableAdapter.Adapter);
+                    }
+                }
                 // 
                 //---- Perform updates -----------
                 //
@@ -29298,6 +30436,10 @@ SELECT DateRequested, DateStarted, DateCompleted, AffectedParts, Change, Enginee
                 if ((this._legacyECRObjLookupTableAdapter != null)) {
                     this._legacyECRObjLookupTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._legacyECRObjLookupTableAdapter]));
                     this._legacyECRObjLookupTableAdapter.Transaction = null;
+                }
+                if ((this._sCH_PROJECTSTableAdapter != null)) {
+                    this._sCH_PROJECTSTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._sCH_PROJECTSTableAdapter]));
+                    this._sCH_PROJECTSTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

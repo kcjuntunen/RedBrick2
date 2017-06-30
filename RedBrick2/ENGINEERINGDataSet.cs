@@ -3,6 +3,9 @@ namespace RedBrick2 {
 
 
   public partial class ENGINEERINGDataSet {
+    partial class GEN_CUSTOMERSDataTable {
+    }
+  
     partial class ECRObjLookupDataTable {
     }
   

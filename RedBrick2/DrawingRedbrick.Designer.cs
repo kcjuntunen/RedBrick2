@@ -228,13 +228,14 @@ namespace RedBrick2 {
       this.comboBox12.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
       this.tableLayoutPanel7.SetColumnSpan(this.comboBox12, 2);
       this.comboBox12.DataSource = this.gENCUSTOMERSBindingSource;
-      this.comboBox12.DisplayMember = "CUSTOMER";
+      this.comboBox12.DisplayMember = "DisplayName";
       this.comboBox12.FormattingEnabled = true;
       this.comboBox12.Location = new System.Drawing.Point(3, 16);
       this.comboBox12.Name = "comboBox12";
       this.comboBox12.Size = new System.Drawing.Size(198, 21);
       this.comboBox12.TabIndex = 5;
       this.comboBox12.ValueMember = "CUSTID";
+      this.comboBox12.SelectedIndexChanged += new System.EventHandler(this.comboBox12_SelectedIndexChanged);
       this.comboBox12.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
       // 
       // gENCUSTOMERSBindingSource
@@ -289,6 +290,7 @@ namespace RedBrick2 {
       this.comboBox14.Name = "comboBox14";
       this.comboBox14.Size = new System.Drawing.Size(130, 21);
       this.comboBox14.TabIndex = 8;
+      this.comboBox14.SelectedIndexChanged += new System.EventHandler(this.comboBox14_SelectedIndexChanged);
       this.comboBox14.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
       // 
       // comboBox15
@@ -703,6 +705,7 @@ namespace RedBrick2 {
       this.button1.TabIndex = 0;
       this.button1.Text = "New...";
       this.button1.UseVisualStyleBackColor = true;
+      this.button1.Click += new System.EventHandler(this.button1_Click);
       // 
       // button6
       // 
