@@ -35,7 +35,7 @@ namespace RedBrick2 {
       partLookup = fi[0];
       string[] revcheck = Path.GetFileNameWithoutExtension(PartFileInfo.Name).
         Split(new string[] { @"REV", @" " }, StringSplitOptions.RemoveEmptyEntries);
-      RevFromFile = revcheck.Length > 1 ? revcheck[1] : Properties.Settings.Default.DefaultRev;
+      RevFromFile = revcheck.Length > 1 ? revcheck[1] : null;
       ProjectCustomer = GetCorrectCustomer();
       groupBox5.Text = string.Format(@"{0} - {1}", partLookup, projectDescr);
     }
@@ -86,7 +86,7 @@ namespace RedBrick2 {
       PropertySet.Add(_p.Get());
       RevFromDrw = _p.Value;
       comboBox14.Text = RevFromDrw;
-      if (RevFromDrw != RevFromFile) {
+      if (RevFromFile != null && RevFromDrw != RevFromFile) {
         comboBox14.BackColor = Color.Red;
         comboBox14.ForeColor = Color.Yellow;
       }
@@ -244,7 +244,7 @@ namespace RedBrick2 {
     }
 
     private void comboBox14_SelectedIndexChanged(object sender, EventArgs e) {
-      if ((sender as ComboBox).Text == RevFromFile) {
+      if (RevFromFile == null || (sender as ComboBox).Text == RevFromFile) {
         (sender as ComboBox).BackColor = Color.White;
         (sender as ComboBox).ForeColor = Color.Black;
       } else {
