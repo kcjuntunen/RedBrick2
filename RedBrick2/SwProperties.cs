@@ -86,7 +86,7 @@ namespace RedBrick2 {
     /// </summary>
     /// <param name="md">A <see cref="SolidWorks.Interop.sldworks.ModelDoc2"/>.</param>
     public void GetProperties(ModelDoc2 md) {
-      StringProperty department = new StringProperty(@"DEPARTMENT", true, SwApp, md, @"TYPE");
+      DepartmentProperty department = new DepartmentProperty(@"DEPARTMENT", true, SwApp, md, @"TYPE");
       IntProperty blankQty = new IntProperty(@"BLANK QTY", true, SwApp, md, @"CUT_PARTS", @"BLANKQTY");
 
       StringProperty material = new StringProperty(@"MATERIAL", true, SwApp, md, string.Empty);
@@ -304,7 +304,7 @@ namespace RedBrick2 {
       get {
         ENGINEERINGDataSet.CUT_PARTSRow cpr = cpdt.NewCUT_PARTSRow();
         foreach (var item in _innerDict) {
-          if (item.Value.TableName == @"CUT_PARTS") {
+          if (item.Value.TableName == @"CUT_PARTS" && item.Value.FieldName != string.Empty) {
             cpr[item.Value.FieldName] = item.Value.Data;
           }
         }
