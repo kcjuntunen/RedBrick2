@@ -12,6 +12,14 @@ namespace RedBrick2 {
 
     }
 
+    public override SwProperty Get() {
+      InnerGet();
+      ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cpt =
+        new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
+      _data = (int)cpt.GetIDByDescr(Value);
+      return this;
+    }
+
     protected int _data = 0;
 
     public override object Data {
