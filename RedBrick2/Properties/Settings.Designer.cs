@@ -545,5 +545,41 @@ namespace RedBrick2.Properties {
                 this["DefaultRev"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
+        public global::System.Drawing.Point EditWindowLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["EditWindowLocation"]));
+            }
+            set {
+                this["EditWindowLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("200, 280")]
+        public global::System.Drawing.Size EditRevSize {
+            get {
+                return ((global::System.Drawing.Size)(this["EditRevSize"]));
+            }
+            set {
+                this["EditRevSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("200, 260")]
+        public global::System.Drawing.Size EditOpSize {
+            get {
+                return ((global::System.Drawing.Size)(this["EditOpSize"]));
+            }
+            set {
+                this["EditOpSize"] = value;
+            }
+        }
     }
 }

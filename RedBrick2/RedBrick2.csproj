@@ -104,6 +104,12 @@
       <DependentUpon>DrawingRedbrick.cs</DependentUpon>
     </Compile>
     <Compile Include="EdgeProperty.cs" />
+    <Compile Include="EditOp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditOp.Designer.cs">
+      <DependentUpon>EditOp.cs</DependentUpon>
+    </Compile>
     <Compile Include="ENGINEERINGDataSet.cs">
       <DependentUpon>ENGINEERINGDataSet.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -193,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DrawingRedbrick.resx">
       <DependentUpon>DrawingRedbrick.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditOp.resx">
+      <DependentUpon>EditOp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModelRedbrick.resx">
       <DependentUpon>ModelRedbrick.cs</DependentUpon>

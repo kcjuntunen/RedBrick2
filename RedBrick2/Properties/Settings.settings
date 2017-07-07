@@ -149,5 +149,14 @@
     <Setting Name="DefaultRev" Type="System.String" Scope="User">
       <Value Profile="(Default)">100</Value>
     </Setting>
+    <Setting Name="EditWindowLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">100, 100</Value>
+    </Setting>
+    <Setting Name="EditRevSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">200, 280</Value>
+    </Setting>
+    <Setting Name="EditOpSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">200, 260</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

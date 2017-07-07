@@ -126,16 +126,15 @@ namespace RedBrick2 {
     }
 
     private void GetOps() {
+      flowLayoutPanel1.Controls.Clear();
       ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpo =
         new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
-      ENGINEERINGDataSet.CutPartOpsDataTable cpodt =
-        new ENGINEERINGDataSet.CutPartOpsDataTable();
-      cpo.FillBy(cpodt, partLookup);
-      foreach (ENGINEERINGDataSet.CutPartOpsRow row in cpodt) {
-        OpControl opc = new OpControl(row);
+      foreach (ENGINEERINGDataSet.CutPartOpsRow row in cpo.GetDataBy(partLookup)) {
+        OpControl opc = new OpControl(row, PropertySet);
+        opc.Width = flowLayoutPanel1.Width - 25;
         flowLayoutPanel1.Controls.Add(opc);
         flowLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-        opc.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        opc.Anchor = AnchorStyles.Left | AnchorStyles.Right;
       }
     }
 
@@ -609,5 +608,10 @@ namespace RedBrick2 {
       userediting = true;
     }
 
+    private void button2_Click(object sender, EventArgs e) {
+      EditOp eo = new EditOp(PropertySet);
+      eo.ShowDialog(this);
+      GetOps();
+    }
   }
 }

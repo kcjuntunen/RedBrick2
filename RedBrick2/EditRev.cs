@@ -37,6 +37,8 @@ namespace RedBrick2 {
     }
 
     private void EditOp_Load(object sender, EventArgs e) {
+      Location = Properties.Settings.Default.EditWindowLocation;
+      Size = Properties.Settings.Default.EditRevSize;
       // TODO: This line of code loads data into the 'eNGINEERINGDataSet.GEN_USERS' table. You can move, or remove it, as needed.
       this.gEN_USERSTableAdapter.Fill(this.eNGINEERINGDataSet.GEN_USERS);
 
@@ -79,6 +81,12 @@ namespace RedBrick2 {
 
     private void comboBox1_TextUpdate(object sender, EventArgs e) {
       Text = string.Format(@"Creating Revision Level {0}", comboBox1.Text);
+    }
+
+    private void EditRev_FormClosing(object sender, FormClosingEventArgs e) {
+      Properties.Settings.Default.EditWindowLocation = Location;
+      Properties.Settings.Default.EditRevSize = Size;
+      Properties.Settings.Default.Save();
     }
   }
 }
