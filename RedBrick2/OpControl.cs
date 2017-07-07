@@ -16,6 +16,7 @@ namespace RedBrick2 {
     private int department = 1;
     private double tb1val = 0.0f;
     private double tb2val = 0.0f;
+    private SwProperties PropertySet;
 
     private bool initialated = false;
 
@@ -23,15 +24,16 @@ namespace RedBrick2 {
       new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
     private ENGINEERINGDataSet.CutPartOpsRow currentrow;
 
-    public OpControl(ENGINEERINGDataSet.CutPartOpsRow row) {
+    public OpControl(ENGINEERINGDataSet.CutPartOpsRow row, SwProperties props) {
       InitializeComponent();
       currentrow = row;
+      PropertySet = props;
       partopid = (int)row[@"POPID"];
       partid = (int)row[@"POPPART"];
       index = (int)row[@"POPORDER"];
       department = (int)row[@"TYPEID"];
     }
-
+    
     private void OpControl_Load(object sender, EventArgs e) {
       this.friendlyCutOpsTableAdapter.Fill(this.eNGINEERINGDataSet.FriendlyCutOps);
       this.cUT_PART_TYPESTableAdapter.Fill(this.eNGINEERINGDataSet.CUT_PART_TYPES);
@@ -99,6 +101,68 @@ namespace RedBrick2 {
       }
     }
 
+    public ENGINEERINGDataSet.CutPartOpsRow MyRow { 
+      get { return currentrow; }
+      private set { currentrow = value; }
+    }
+
+    private void label5_Click(object sender, EventArgs e) {
+
+    }
+
+    private void button1_Click(object sender, EventArgs e) {
+      EditOp eo = new EditOp(MyRow);
+      eo.ShowDialog(this);
+    }
+
+    private void GetOps() {
+      FlowLayoutPanel flowLayoutPanel1 = Parent as FlowLayoutPanel;
+      flowLayoutPanel1.Controls.Clear();
+      foreach (ENGINEERINGDataSet.CutPartOpsRow row in cpo.GetDataByPartID(partid)) {
+        OpControl opc = new OpControl(row, PropertySet);
+        opc.Width = flowLayoutPanel1.Width - 25;
+        flowLayoutPanel1.Controls.Add(opc);
+        flowLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        opc.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+      }
+    }
+
+    private void button2_Click(object sender, EventArgs e) {
+      // UP
+      int _me_ordr = MyRow.POPORDER;
+      int _me_idx = _me_ordr - 1;
+      int _othr_idx = _me_ordr - 2;
+      if (_me_ordr > 1) {
+        ENGINEERINGDataSet.CutPartOpsRow _other = (ENGINEERINGDataSet.CutPartOpsRow)MyRow.Table.Rows[_othr_idx];
+        int _other_ordr = _other.POPORDER;
+        _other.POPORDER = _me_ordr;
+        MyRow.POPORDER = _other_ordr;
+        (Parent.Controls[_othr_idx] as OpControl).label5.Text = _me_ordr.ToString();
+        label5.Text = _other_ordr.ToString();
+        cpo.Update(MyRow);
+        cpo.Update(_other);
+      }
+      GetOps();
+    }
+
+    private void button3_Click(object sender, EventArgs e) {
+      // DOWN
+      int _me_ordr = MyRow.POPORDER;
+      int _me_idx = _me_ordr - 1;
+      int _othr_idx = _me_ordr;
+      int count = MyRow.Table.Rows.Count;
+      if (_me_ordr + 1 <= count) {
+        ENGINEERINGDataSet.CutPartOpsRow _other = (ENGINEERINGDataSet.CutPartOpsRow)MyRow.Table.Rows[_othr_idx];
+        int _other_ordr = _other.POPORDER;
+        _other.POPORDER = _me_ordr;
+        MyRow.POPORDER = _other_ordr;
+        (Parent.Controls[_othr_idx] as OpControl).label5.Text = _me_ordr.ToString();
+        label5.Text = _other_ordr.ToString();
+        cpo.Update(MyRow);
+        cpo.Update(_other);
+      }
+      GetOps();
+    }
 
   }
 }
