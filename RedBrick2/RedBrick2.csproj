@@ -142,6 +142,7 @@
     </Compile>
     <Compile Include="OpProperty.cs" />
     <Compile Include="OpSet.cs" />
+    <Compile Include="OpSets.cs" />
     <Compile Include="RedbrickConfiguration.cs">
       <SubType>Form</SubType>
     </Compile>

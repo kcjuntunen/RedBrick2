@@ -16394,7 +16394,7 @@ SELECT OPID, OPNAME, OPDESCR, OPTYPE, OPMETHOD, OPSETUP, OPRUN, OPPROG FROM CUT_
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ottype", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "OTTYPE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT        OPID, OPNAME\r\nFROM            CUT_OPS\r\nWHERE        (OPID = @opid)";
+            this._commandCollection[4].CommandText = "SELECT        OPNAME\r\nFROM            CUT_OPS\r\nWHERE        (OPID = @opid)";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@opid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "OPID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }

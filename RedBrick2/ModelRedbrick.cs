@@ -127,10 +127,10 @@ namespace RedBrick2 {
 
     private void GetOps() {
       flowLayoutPanel1.Controls.Clear();
-      ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpo =
-        new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
-      foreach (ENGINEERINGDataSet.CutPartOpsRow row in cpo.GetDataBy(partLookup)) {
-        OpControl opc = new OpControl(row, PropertySet);
+      OpSets ops = new OpSets(PropertySet, partLookup);
+      PropertySet.opSets = ops;
+      foreach (OpSet op in ops) {
+        OpControl opc = op.OperationControl;
         opc.Width = flowLayoutPanel1.Width - 25;
         flowLayoutPanel1.Controls.Add(opc);
         flowLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -321,6 +321,7 @@ namespace RedBrick2 {
         PropertySet[@"EDGE LEFT (W)"].Data = comboBox4.SelectedValue;
         PropertySet[@"EDGE RIGHT (W)"].Data = comboBox5.SelectedValue;
         PropertySet.Write();
+        PropertySet.opSets.Write();
       } else if (tabControl1.SelectedTab == tabPage2) {
         drawingRedbrick.Commit();
       }

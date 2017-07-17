@@ -13,7 +13,7 @@ namespace RedBrick2 {
 
     public OpProperty(string name, bool global, SldWorks sw, ModelDoc2 md, string fieldName)
       : base(name, global, sw, md, @"CUT_PART_OPS", fieldName) {
-      SWType = swCustomInfoType_e.swCustomInfoYesOrNo;
+      SWType = swCustomInfoType_e.swCustomInfoText;
     }
 
     public override SwProperty Get() {
@@ -30,6 +30,24 @@ namespace RedBrick2 {
     public int OpType {
       get { return _type;}
       set { _type = value;} 
+    }
+
+    public override void Write() {
+      int intVal = 0;
+      if (int.TryParse(Value, out intVal)) {
+        string op = (string)cota.GetOpNameByID(intVal);
+        WriteResult =
+          (swCustomInfoAddResult_e)PropertyManager.Add3(Name,
+          (int)SWType,
+          op,
+          (int)swCustomPropertyAddOption_e.swCustomPropertyDeleteAndAdd);
+      } else {
+        WriteResult =
+          (swCustomInfoAddResult_e)PropertyManager.Add3(Name,
+          (int)SWType,
+          Value,
+          (int)swCustomPropertyAddOption_e.swCustomPropertyDeleteAndAdd);
+      }
     }
 
     protected int _data = 0;

@@ -24,14 +24,16 @@ namespace RedBrick2 {
       new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
     private ENGINEERINGDataSet.CutPartOpsRow currentrow;
 
-    public OpControl(ENGINEERINGDataSet.CutPartOpsRow row, SwProperties props) {
+    public OpControl(ENGINEERINGDataSet.CutPartOpsRow row, OpSet opSet) {
       InitializeComponent();
       currentrow = row;
-      PropertySet = props;
+      MyOpSet = opSet;
+      PropertySet = opSet.PropertySet;
       partopid = (int)row[@"POPID"];
       partid = (int)row[@"POPPART"];
       index = (int)row[@"POPORDER"];
       department = (int)row[@"TYPEID"];
+      Anchor = AnchorStyles.Left | AnchorStyles.Right;
     }
     
     private void OpControl_Load(object sender, EventArgs e) {
@@ -106,6 +108,8 @@ namespace RedBrick2 {
       private set { currentrow = value; }
     }
 
+    public OpSet MyOpSet { get; set; }
+
     private void label5_Click(object sender, EventArgs e) {
 
     }
@@ -119,7 +123,7 @@ namespace RedBrick2 {
       FlowLayoutPanel flowLayoutPanel1 = Parent as FlowLayoutPanel;
       flowLayoutPanel1.Controls.Clear();
       foreach (ENGINEERINGDataSet.CutPartOpsRow row in cpo.GetDataByPartID(partid)) {
-        OpControl opc = new OpControl(row, PropertySet);
+        OpControl opc = new OpControl(row, MyOpSet);
         opc.Width = flowLayoutPanel1.Width - 25;
         flowLayoutPanel1.Controls.Add(opc);
         flowLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;

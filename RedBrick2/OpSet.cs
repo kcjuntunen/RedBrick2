@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
@@ -14,6 +15,21 @@ namespace RedBrick2 {
       GlobalPropertyManager = ActiveDoc.Extension.get_CustomPropertyManager(string.Empty);
       Config = (Configuration)ActiveDoc.ConfigurationManager.ActiveConfiguration;
       SpecificPropertyManager = ActiveDoc.Extension.get_CustomPropertyManager(Config.Name);
+    }
+
+    public OpSet(SwProperties prps, 
+      ENGINEERINGDataSet.CutPartOpsRow row,
+      OpProperty op,
+      IntProperty ordr,
+      DoubleProperty stp,
+      DoubleProperty run) {
+      SwApp = prps.SwApp;
+      ActiveDoc = prps.ActiveDoc;
+      Row = row;
+      Add(op);
+      Add(ordr);
+      Add(stp);
+      Add(run);
     }
 
     public OpSet NewOp(int opNo) {
@@ -40,21 +56,9 @@ namespace RedBrick2 {
       OpProperty op = new OpProperty(string.Format(@"OP{0}", opNo), true, SwApp, ActiveDoc, @"POPOP");
       PartID = op.PartID;
       IntProperty oporder = new IntProperty(string.Format(@"OP{0}ORDER", opNo), true, SwApp, ActiveDoc, @"CUT_PART_OPS", @"POPORDER");
-      IntProperty opsetup = new IntProperty(string.Format(@"OP{0}SETUP", opNo), true, SwApp, ActiveDoc, @"CUT_PART_OPS", @"POPSETUP");
-      IntProperty oprun = new IntProperty(string.Format(@"OP{0}RUN", opNo), true, SwApp, ActiveDoc, @"CUT_PART_OPS", @"POPRUN");
+      DoubleProperty opsetup = new DoubleProperty(string.Format(@"OP{0}SETUP", opNo), true, SwApp, ActiveDoc, @"CUT_PART_OPS", @"POPSETUP");
+      DoubleProperty oprun = new DoubleProperty(string.Format(@"OP{0}RUN", opNo), true, SwApp, ActiveDoc, @"CUT_PART_OPS", @"POPRUN");
       return this;
-    }
-
-    public void GetOps() {
-      int res = 0;
-      object propNames = null;
-      object propTypes = null;
-      object propValues = null;
-      object resolved = null;
-      res = GlobalPropertyManager.GetAll2(ref propNames, ref propTypes, ref propValues, ref resolved);
-      foreach (var item in (propNames as string[])) {
-
-      }
     }
 
     public void Add(SwProperty item) {
@@ -107,11 +111,27 @@ namespace RedBrick2 {
     }
       private set { PropertyList = value; } 
     }
+
     public Configuration Config { get; set; }
     public CustomPropertyManager GlobalPropertyManager { get; set; }
     public CustomPropertyManager SpecificPropertyManager { get; set; }
-
     public int PartID { get; set; }
+    public ENGINEERINGDataSet.CutPartOpsRow Row { get; set; }
+    public SwProperties PropertySet { get; set; }
+
+    private OpControl opControl = null;
+    public OpControl OperationControl {
+      get {
+        if (opControl == null) {
+          opControl = new OpControl(Row, this);
+
+        }
+        return opControl;
+      }
+      set {
+        opControl = value;
+      }
+    }
 
     public int Order {
       get { return Order; }

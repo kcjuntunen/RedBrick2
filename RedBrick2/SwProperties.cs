@@ -69,6 +69,9 @@ namespace RedBrick2 {
         item.Value.Write();
         res &= (int)item.Value.WriteResult;
       }
+      foreach (OpSet _opSet in opSets) {
+        _opSet.Write();
+      }
       return res;
     }
 
@@ -86,6 +89,7 @@ namespace RedBrick2 {
     /// </summary>
     /// <param name="md">A <see cref="SolidWorks.Interop.sldworks.ModelDoc2"/>.</param>
     public void GetProperties(ModelDoc2 md) {
+      ActiveDoc = md;
       DepartmentProperty department = new DepartmentProperty(@"DEPARTMENT", true, SwApp, md, @"TYPE");
       IntProperty blankQty = new IntProperty(@"BLANK QTY", true, SwApp, md, @"CUT_PARTS", @"BLANKQTY");
 
@@ -339,7 +343,7 @@ namespace RedBrick2 {
           new ENGINEERINGDataSet.CUT_PART_OPSDataTable();
         List<ENGINEERINGDataSet.CUT_PART_OPSRow> rows =
           new List<ENGINEERINGDataSet.CUT_PART_OPSRow>();
-        foreach (OpSet opset in OpSets) {
+        foreach (OpSet opset in opSets) {
           ENGINEERINGDataSet.CUT_PART_OPSRow row = cpodt.NewCUT_PART_OPSRow();
           foreach (OpProperty op in opset) {
             row[op.FieldName] = op.Data;
@@ -404,7 +408,7 @@ namespace RedBrick2 {
     /// <summary>
     /// Return a list of ops with their data.
     /// </summary>
-    public List<OpSet> OpSets { get; set; }
+    public OpSets opSets { get; set; }
 
     /// <summary>
     /// Count of global properies in the set.
