@@ -20,21 +20,23 @@ namespace RedBrick2 {
 
       for (int i = 1; i <= Properties.Settings.Default.LvlLimit; i++) {
         string lvl = string.Format("REVISION {0}", (char)(i + 64));
-        string e = string.Format("ECO {0}", i);
-        string de = string.Format("DESCRIPTION {0}", i);
-        string l = string.Format("LIST {0}", i);
-        string da = string.Format("DATE {0}", i);
-
         StringProperty lvlp = new StringProperty(lvl, true, SwApp, md, string.Empty);
-        StringProperty ep = new StringProperty(e, true, SwApp, md, string.Empty);
-        StringProperty dep = new StringProperty(de, true, SwApp, md, string.Empty);
-        AuthorProperty lp = new AuthorProperty(l, true, SwApp, md);
-        DateProperty dap = new DateProperty(da, true, SwApp, md);
-
         lvlp.Get();
         if (lvlp.Value == string.Empty) {
           break;
         }
+
+        string e = string.Format("ECO {0}", i);
+        StringProperty ep = new StringProperty(e, true, SwApp, md, string.Empty);
+
+        string de = string.Format("DESCRIPTION {0}", i);
+        StringProperty dep = new StringProperty(de, true, SwApp, md, string.Empty);
+
+        string l = string.Format("LIST {0}", i);
+        AuthorProperty lp = new AuthorProperty(l, true, SwApp, md);
+
+        string da = string.Format("DATE {0}", i);
+        DateProperty dap = new DateProperty(da, true, SwApp, md);
 
         ep.Get();
         dep.Get();
