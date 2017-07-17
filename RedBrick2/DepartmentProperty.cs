@@ -16,7 +16,12 @@ namespace RedBrick2 {
       InnerGet();
       ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cpt =
         new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
-      _data = (int)cpt.GetIDByDescr(Value);
+      int? _id = cpt.GetIDByDescr(Value);
+      if (_id != null) {
+        _data = (int)_id;
+      } else {
+        _data = 1;
+      }
       return this;
     }
 
