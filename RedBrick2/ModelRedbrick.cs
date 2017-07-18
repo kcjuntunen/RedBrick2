@@ -13,12 +13,9 @@ using SolidWorks.Interop.swconst;
 namespace RedBrick2 {
   public partial class ModelRedbrick : UserControl {
     private SwProperties PropertySet;
-    private bool initialated = false;
-    private bool AssemblyEventsAssigned = false;
-    private bool PartEventsAssigned = false;
-    private bool DrawingEventsAssigned = false;
-    private bool ModelSetup = false;
-    private bool DrawingSetup = false;
+    private ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cpta =
+      new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
+    private ENGINEERINGDataSet.CUT_PARTSRow Row = null;
 
     private SelectionMgr swSelMgr;
     private Component2 swSelComp;
@@ -29,6 +26,10 @@ namespace RedBrick2 {
     private DrawingRedbrick drawingRedbrick;
 
     private string partLookup;
+    private Single length = 0.0F;
+    private Single width = 0.0F;
+    private Single thickness = 0.0F;
+
     private Point scrollOffset;
 
     private const int WM_PAINT = 0x000F;
@@ -36,7 +37,15 @@ namespace RedBrick2 {
 
     private ModelDoc2 lastModelDoc = null;
 
-    private bool userediting = false;
+    private string numberFormat = @"{0:0.000}";
+    private bool initialated = false;
+    private bool AssemblyEventsAssigned = false;
+    private bool PartEventsAssigned = false;
+    private bool DrawingEventsAssigned = false;
+    private bool ModelSetup = false;
+    private bool DrawingSetup = false;
+    private bool ov_userediting = false;
+    private bool bl_userediting = false;
 
     public ModelRedbrick(SldWorks sw, ModelDoc2 md) {
       SwApp = sw;
@@ -65,26 +74,49 @@ namespace RedBrick2 {
       Redbrick.Clip(partLookup);
     }
 
-    void textBox10_TextChanged(object sender, EventArgs e) {
+    void textBox9_TextChanged(object sender, EventArgs e) {
       if (initialated) {
         try {
-          double _val = (double.Parse(label19.Text) +
-             double.Parse((sender as TextBox).Text));
-          textBox13.Text = string.Format(Properties.Settings.Default.NumberFormat, _val);
+          Single _edge_thickness = 0.0F;
+          if (comboBox4.SelectedItem != null) {
+            _edge_thickness += (Single)(comboBox4.SelectedItem as DataRowView)[@"THICKNESS"];
+          }
+
+          if (comboBox5.SelectedItem != null) {
+            _edge_thickness += (Single)(comboBox5.SelectedItem as DataRowView)[@"THICKNESS"];
+          }
+
+          double _val = ((double.Parse(label18.Text) +
+            double.Parse((sender as TextBox).Text))) - _edge_thickness;
+          if (ov_userediting) {
+            textBox12.Text = enforce_number_format(_val);
+            ov_userediting = false;
+          }
         } catch (Exception) {
-          textBox13.Text = @"#VALUE!";
+          textBox12.Text = @"#VALUE!";
         }
       }
     }
 
-    void textBox9_TextChanged(object sender, EventArgs e) {
+    void textBox10_TextChanged(object sender, EventArgs e) {
       if (initialated) {
         try {
-          double _val = (double.Parse(label18.Text) +
-            double.Parse((sender as TextBox).Text));
-          textBox12.Text = string.Format(Properties.Settings.Default.NumberFormat, _val);
+          Single _edge_thickness = 0.0F;
+          if (comboBox2.SelectedItem != null) {
+            _edge_thickness += (Single)(comboBox2.SelectedItem as DataRowView)[@"THICKNESS"];
+          }
+
+          if (comboBox3.SelectedItem != null) {
+            _edge_thickness += (Single)(comboBox3.SelectedItem as DataRowView)[@"THICKNESS"];
+          }
+          double _val = ((double.Parse(label19.Text) +
+             double.Parse((sender as TextBox).Text))) - _edge_thickness;
+          if (ov_userediting) {
+            textBox13.Text = enforce_number_format(_val);
+            ov_userediting = false;
+          }
         } catch (Exception) {
-          textBox12.Text = @"#VALUE!";
+          textBox13.Text = @"#VALUE!";
         }
       }
     }
@@ -104,11 +136,19 @@ namespace RedBrick2 {
 
         GetOps();
 
+        length = (Single)Row[@"FIN_L"];
+        width = (Single)Row[@"FIN_W"];
+        thickness = (Single)Row[@"THICKNESS"];
+
+        label18.Text = enforce_number_format(length);
+        label19.Text = enforce_number_format(width);
+        label20.Text = enforce_number_format(thickness);
+
         //DisconnectEvents();
         //SelectTab();
-        textBox_TextChanged(PropertySet[@"LENGTH"].Value, label18);
-        textBox_TextChanged(PropertySet[@"WIDTH"].Value, label19);
-        textBox_TextChanged(PropertySet[@"THICKNESS"].Value, label20);
+        //textBox_TextChanged(PropertySet[@"LENGTH"].Value, label18);
+        //textBox_TextChanged(PropertySet[@"WIDTH"].Value, label19);
+        //textBox_TextChanged(PropertySet[@"THICKNESS"].Value, label20);
         textBox_TextChanged(PropertySet[@"WALL THICKNESS"].Value, label21);
 
         flowLayoutPanel1.VerticalScroll.Value = scrollOffset.Y;
@@ -119,6 +159,7 @@ namespace RedBrick2 {
 
     private void GetCutlistData() {
       if (partLookup != null) {
+        Row = cpta.GetDataByPartnum(partLookup)[0];
         cutlistPartsTableAdapter.FillByPartNum(eNGINEERINGDataSet.CutlistParts, partLookup);
         cutlistPartsBindingSource.DataSource = cutlistPartsTableAdapter.GetDataByPartNum(partLookup);
         cUTPARTSBindingSource.DataSource = cUT_PARTSTableAdapter.GetDataByPartnum(partLookup);
@@ -395,18 +436,20 @@ namespace RedBrick2 {
           swDocumentTypes_e odType = (swDocumentTypes_e)(SwApp.ActiveDoc as ModelDoc2).GetType();
           switch (odType) {
             case swDocumentTypes_e.swDocASSEMBLY:                     //Window looking at assembly.
-              (tabPage1 as Control).Enabled = true;
-                  DisconnectAssemblyEvents();
-                  ConnectAssemblyEvents(SwApp.ActiveDoc as ModelDoc2);
+              tabControl1.SelectedTab = tabPage1;
+              DisconnectAssemblyEvents();
+              ConnectAssemblyEvents(SwApp.ActiveDoc as ModelDoc2);
               switch (dType) {
                 case swDocumentTypes_e.swDocASSEMBLY:                     //Selected sub-assembly in window.
                   (tabPage1 as Control).Enabled = true;
+                  (tabPage2 as Control).Enabled = false;
                   SetupPart();
                   break;
                 case swDocumentTypes_e.swDocDRAWING:
                   break;
                 case swDocumentTypes_e.swDocPART:                         //Selected on part in window.
                   (tabPage1 as Control).Enabled = true;
+                  (tabPage2 as Control).Enabled = false;
                   SetupPart();
                   break;
                 default:
@@ -416,26 +459,33 @@ namespace RedBrick2 {
             case swDocumentTypes_e.swDocDRAWING:                      //Window looking at drawing.
               switch (dType) {
                 case swDocumentTypes_e.swDocASSEMBLY:                     //Selected assembly in drawing.
+                  tabControl1.SelectedTab = tabPage2;
                   (tabPage1 as Control).Enabled = true;
+                  (tabPage2 as Control).Enabled = false;
                   SetupPart();
                   break;
                 case swDocumentTypes_e.swDocDRAWING:
                   break;
                 case swDocumentTypes_e.swDocPART:                         //Selected part in drawing.
                   (tabPage1 as Control).Enabled = true;
+                  (tabPage2 as Control).Enabled = false;
                   SetupPart();
                   break;
                 default:
                   break;
               }
+              (tabPage1 as Control).Enabled = false;
               (tabPage2 as Control).Enabled = true;
               SetupDrawing();
               break;
             case swDocumentTypes_e.swDocPART:                         //Window looking at part.
+              tabControl1.SelectedTab = tabPage1;
               (tabPage1 as Control).Enabled = true;
               if (odType != swDocumentTypes_e.swDocDRAWING) {
+                (tabPage1 as Control).Enabled = true;
                 (tabPage2 as Control).Enabled = false;
               } else {
+                (tabPage1 as Control).Enabled = false;
                 (tabPage2 as Control).Enabled = true;
               }
               SetupPart();
@@ -497,14 +547,14 @@ namespace RedBrick2 {
     }
 
     private void textBox_TextChanged(string dim, Label l) {
-      if (userediting && initialated && ActiveDoc.GetType() != (int)swDocumentTypes_e.swDocDRAWING) {
+      if (ov_userediting && initialated && ActiveDoc.GetType() != (int)swDocumentTypes_e.swDocDRAWING) {
         string dimension = dim.
           Replace(@"@" + PartFileInfo.Name, string.Empty).
           Replace(@"@" + ActiveDoc.ConfigurationManager.ActiveConfiguration.Name, string.Empty).
           Trim('"');
         double _val;
         if (double.TryParse(GetDim(dimension), out _val)) {
-          l.Text = string.Format(Properties.Settings.Default.NumberFormat, _val);
+          l.Text = enforce_number_format(_val);
         } else {
           l.Text = @"#VALUE!";
         }
@@ -602,17 +652,101 @@ namespace RedBrick2 {
     }
 
     private void textBox_Enter(object sender, EventArgs e) {
-      userediting = true;
+      ov_userediting = true;
     }
 
     private void textBox_Leave(object sender, EventArgs e) {
-      userediting = true;
+      ov_userediting = false;
     }
 
     private void button2_Click(object sender, EventArgs e) {
       EditOp eo = new EditOp(PropertySet);
       eo.ShowDialog(this);
       GetOps();
+    }
+
+    private void textBox12_TextChanged(object sender, EventArgs e) {
+      TextBox _me = (sender as TextBox);
+      Single _test = 0.0F;
+      Single _length = 0.0F;
+
+      if (bl_userediting && Single.TryParse(_me.Text, out _test) && Single.TryParse(label18.Text, out _length)) {
+        Single _edge_thickness = 0.0F;
+
+        if (comboBox4.SelectedItem != null) {
+          _edge_thickness += (Single)(comboBox4.SelectedItem as DataRowView)[@"THICKNESS"];
+        }
+
+        if (comboBox5.SelectedItem != null) {
+          _edge_thickness += (Single)(comboBox5.SelectedItem as DataRowView)[@"THICKNESS"];
+        }
+        bl_userediting = false;
+        calculate_oversize_from_blanksize(_test, textBox9, length, _edge_thickness);
+      }
+    }
+
+    private void textBox13_TextChanged(object sender, EventArgs e) {
+      TextBox _me = (sender as TextBox);
+      Single _test = 0.0F;
+      Single _width = 0.0F;
+      if (bl_userediting && Single.TryParse(_me.Text, out _test) && Single.TryParse(label19.Text, out _width)) {
+        Single _edge_thickness = 0.0F;
+
+        if (comboBox2.SelectedItem != null) {
+          _edge_thickness += (Single)(comboBox2.SelectedItem as DataRowView)[@"THICKNESS"];
+        }
+
+        if (comboBox3.SelectedItem != null) {
+          _edge_thickness += (Single)(comboBox3.SelectedItem as DataRowView)[@"THICKNESS"];
+        }
+        bl_userediting = false;
+        calculate_oversize_from_blanksize(_test, textBox10, width, _edge_thickness);
+      }
+    }
+
+    private void calculate_oversize_from_blanksize(Single bl_box_val, TextBox ov_box, Single length, Single total_edging) {
+      Decimal _val = Math.Round(Convert.ToDecimal((bl_box_val - length) + total_edging), 3);
+      ov_box.Text = enforce_number_format(_val);
+    }
+
+    private void bl_textBox_KeyDown(object sender, KeyEventArgs e) {
+      //TextBox _me = (sender as TextBox);
+      bl_userediting = true;
+    }
+
+    private void bl_textBox_KeyUp(object sender, KeyEventArgs e) {
+      //TextBox _me = (sender as TextBox);
+      bl_userediting = false;
+    }
+
+    private void ov_textBox_KeyDown(object sender, KeyEventArgs e) {
+      ov_userediting = true;
+    }
+
+    private void dimension_textBox_Leave(object sender, EventArgs e) {
+      TextBox _me = (sender as TextBox);
+      string _text = enforce_number_format(_me.Text);
+      _me.Text = enforce_number_format(_text);
+    }
+
+    private string enforce_number_format(string input) {
+      double _val = 0.0F;
+      if (double.TryParse(input, out _val)) {
+        return string.Format(Properties.Settings.Default.NumberFormat, _val);
+      }
+      return @"#VALUE!";
+    }
+
+    private string enforce_number_format(double input) {
+      return string.Format(Properties.Settings.Default.NumberFormat, input);
+    }
+
+    private string enforce_number_format(Single input) {
+      return string.Format(Properties.Settings.Default.NumberFormat, input);
+    }
+
+    private string enforce_number_format(decimal input) {
+      return string.Format(Properties.Settings.Default.NumberFormat, input);
     }
   }
 }

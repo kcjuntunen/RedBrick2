@@ -96,6 +96,7 @@ namespace RedBrick2 {
       this.groupBox4 = new System.Windows.Forms.GroupBox();
       this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
       this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+      this.button2 = new System.Windows.Forms.Button();
       this.cUTMATERIALSBindingSource = new System.Windows.Forms.BindingSource(this.components);
       this.cUT_MATERIALSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter();
       this.cUT_EDGESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter();
@@ -106,7 +107,6 @@ namespace RedBrick2 {
       this.tabPage1 = new System.Windows.Forms.TabPage();
       this.tabPage2 = new System.Windows.Forms.TabPage();
       this.cUT_PARTSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
-      this.button2 = new System.Windows.Forms.Button();
       this.tableLayoutPanel1.SuspendLayout();
       this.groupBox1.SuspendLayout();
       this.tableLayoutPanel2.SuspendLayout();
@@ -823,6 +823,9 @@ namespace RedBrick2 {
       this.textBox9.Name = "textBox9";
       this.textBox9.Size = new System.Drawing.Size(97, 22);
       this.textBox9.TabIndex = 15;
+      this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
+      this.textBox9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ov_textBox_KeyDown);
+      this.textBox9.Leave += new System.EventHandler(this.dimension_textBox_Leave);
       // 
       // label28
       // 
@@ -845,6 +848,9 @@ namespace RedBrick2 {
       this.textBox12.Name = "textBox12";
       this.textBox12.Size = new System.Drawing.Size(78, 22);
       this.textBox12.TabIndex = 0;
+      this.textBox12.TextChanged += new System.EventHandler(this.textBox12_TextChanged);
+      this.textBox12.KeyDown += new System.Windows.Forms.KeyEventHandler(this.bl_textBox_KeyDown);
+      this.textBox12.Leave += new System.EventHandler(this.dimension_textBox_Leave);
       // 
       // textBox10
       // 
@@ -856,6 +862,9 @@ namespace RedBrick2 {
       this.textBox10.Name = "textBox10";
       this.textBox10.Size = new System.Drawing.Size(104, 22);
       this.textBox10.TabIndex = 16;
+      this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
+      this.textBox10.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ov_textBox_KeyDown);
+      this.textBox10.Leave += new System.EventHandler(this.dimension_textBox_Leave);
       // 
       // label26
       // 
@@ -965,6 +974,9 @@ namespace RedBrick2 {
       this.textBox13.Name = "textBox13";
       this.textBox13.Size = new System.Drawing.Size(85, 22);
       this.textBox13.TabIndex = 0;
+      this.textBox13.TextChanged += new System.EventHandler(this.textBox13_TextChanged);
+      this.textBox13.KeyDown += new System.Windows.Forms.KeyEventHandler(this.bl_textBox_KeyDown);
+      this.textBox13.Leave += new System.EventHandler(this.dimension_textBox_Leave);
       // 
       // groupBox4
       // 
@@ -1006,6 +1018,16 @@ namespace RedBrick2 {
       this.flowLayoutPanel1.Name = "flowLayoutPanel1";
       this.flowLayoutPanel1.Size = new System.Drawing.Size(296, 176);
       this.flowLayoutPanel1.TabIndex = 0;
+      // 
+      // button2
+      // 
+      this.button2.Location = new System.Drawing.Point(3, 185);
+      this.button2.Name = "button2";
+      this.button2.Size = new System.Drawing.Size(94, 29);
+      this.button2.TabIndex = 1;
+      this.button2.Text = "New...";
+      this.button2.UseVisualStyleBackColor = true;
+      this.button2.Click += new System.EventHandler(this.button2_Click);
       // 
       // cUTMATERIALSBindingSource
       // 
@@ -1070,16 +1092,6 @@ namespace RedBrick2 {
       // cUT_PARTSTableAdapter
       // 
       this.cUT_PARTSTableAdapter.ClearBeforeFill = true;
-      // 
-      // button2
-      // 
-      this.button2.Location = new System.Drawing.Point(3, 185);
-      this.button2.Name = "button2";
-      this.button2.Size = new System.Drawing.Size(94, 29);
-      this.button2.TabIndex = 1;
-      this.button2.Text = "New...";
-      this.button2.UseVisualStyleBackColor = true;
-      this.button2.Click += new System.EventHandler(this.button2_Click);
       // 
       // ModelRedbrick
       // 
