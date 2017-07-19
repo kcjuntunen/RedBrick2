@@ -105,6 +105,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
       this.comboBox2.DataSource = this.cUTPARTTYPESBindingSource;
       this.comboBox2.DisplayMember = "TYPEDESC";
+      this.comboBox2.Enabled = false;
       this.comboBox2.FormattingEnabled = true;
       this.comboBox2.Location = new System.Drawing.Point(145, 16);
       this.comboBox2.Name = "comboBox2";
