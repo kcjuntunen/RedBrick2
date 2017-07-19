@@ -14,17 +14,28 @@ namespace RedBrick2 {
       new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
     private ENGINEERINGDataSet.CutPartOpsRow currentRow;
     private SwProperties PropertySet;
+    private int PartID;
     private bool NewOp = false;
 
     public EditOp(SwProperties props) {
       InitializeComponent();
       PropertySet = props;
+      PartID = PropertySet[@"DEPARTMENT"].PartID;
       NewOp = true;
+
       ENGINEERINGDataSet.CutPartOpsDataTable dt = new ENGINEERINGDataSet.CutPartOpsDataTable();
+      int _next = 1;
       currentRow = (ENGINEERINGDataSet.CutPartOpsRow)dt.NewRow();
       currentRow.POPPART = props.PartsData.PARTID;
-      if (props.PartsData.PARTID > 0) {
-        currentRow.POPORDER = (int)cpota.GetNextInOrder(props.PartsData.PARTID);
+
+      if (PartID > 0) {
+        try {
+          _next = (int)cpota.GetNextInOrder(PartID);
+        } catch (Exception) {
+          // We found no rows.
+        }
+        currentRow.POPORDER = _next;
+        currentRow.POPPART = props.PartsData.PARTID;
       } else {
         currentRow.POPORDER = 1;
       }
@@ -80,7 +91,16 @@ namespace RedBrick2 {
       }
 
       currentRow.POPOP = (int)comboBox2.SelectedValue;
+      currentRow.POPPART = PartID;
+
+      currentRow.PARTNUM = string.Empty;
+
+      currentRow.OPPROG = false;
+      currentRow.OPRUN = 0.0F;
+      currentRow.OPSETUP = 0.0F;
+
       if (NewOp) {
+        currentRow.Table.Rows.Add(currentRow);
         cpota.Update((ENGINEERINGDataSet.CutPartOpsDataTable)currentRow.Table);
       } else {
         cpota.Update(currentRow);
@@ -93,14 +113,6 @@ namespace RedBrick2 {
       Properties.Settings.Default.EditOpSize = Size;
       Properties.Settings.Default.Save();
     }
-
-    //private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
-
-    //}
-
-    //private void comboBox1_Resize(object sender, EventArgs e) {
-
-    //}
 
     private void comboBox_Resize(object sender, EventArgs e) {
       ComboBox _me = (sender as ComboBox);

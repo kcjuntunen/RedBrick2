@@ -24655,15 +24655,10 @@ WHERE        (CUT_PART_OPS.POPPART = @partID)";
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "POPPART", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = @"SELECT      MAX(CUT_PART_OPS.POPORDER) + 1 AS NEXT_IN_ORDER
-FROM          CUT_OPS INNER JOIN
-                        CUT_PARTS INNER JOIN
-                        CUT_PART_OPS ON CUT_PARTS.PARTID = CUT_PART_OPS.POPPART INNER JOIN
-                        CUT_OPS_TYPES ON CUT_PART_OPS.POPOP = CUT_OPS_TYPES.OTOP AND CUT_PARTS.TYPE = CUT_OPS_TYPES.OTTYPE INNER JOIN
-                        CUT_PART_TYPES ON CUT_PARTS.TYPE = CUT_PART_TYPES.TYPEID ON CUT_OPS.OPID = CUT_OPS_TYPES.OTOP
-WHERE      (CUT_PARTS.PARTID = @partID)";
+            this._commandCollection[4].CommandText = "SELECT      MAX(POPORDER) + 1 AS NEXT_IN_ORDER\r\nFROM          CUT_PART_OPS\r\nWHERE" +
+                "      (POPPART = @partID)";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "PARTID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "POPPART", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -24842,9 +24837,14 @@ WHERE      (CUT_PARTS.PARTID = @partID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual object GetNextInOrder(int partID) {
+        public virtual object GetNextInOrder(global::System.Nullable<int> partID) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
-            command.Parameters[0].Value = ((int)(partID));
+            if ((partID.HasValue == true)) {
+                command.Parameters[0].Value = ((int)(partID.Value));
+            }
+            else {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
