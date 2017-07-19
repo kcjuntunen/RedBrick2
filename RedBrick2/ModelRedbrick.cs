@@ -139,13 +139,20 @@ namespace RedBrick2 {
 
         GetOps();
 
-        length = (Single)Row[@"FIN_L"];
-        width = (Single)Row[@"FIN_W"];
-        thickness = (Single)Row[@"THICKNESS"];
+        if (Row != null) {
+          length = (Single)Row[@"FIN_L"];
+          width = (Single)Row[@"FIN_W"];
+          thickness = (Single)Row[@"THICKNESS"];
 
-        label18.Text = enforce_number_format(length);
-        label19.Text = enforce_number_format(width);
-        label20.Text = enforce_number_format(thickness);
+          label18.Text = enforce_number_format(length);
+          label19.Text = enforce_number_format(width);
+          label20.Text = enforce_number_format(thickness);
+        } else {
+          label18.Text = enforce_number_format(PropertySet[@"LENGTH"].Value);
+          label19.Text = enforce_number_format(PropertySet[@"WIDTH"].Value);
+          label20.Text = enforce_number_format(PropertySet[@"THICKNESS"].Value);
+        }
+
         label21.Text = enforce_number_format(GetDim(textBox5.Text));
 
         textBox_TextChanged(PropertySet[@"WALL THICKNESS"].Value, label21);
@@ -158,7 +165,14 @@ namespace RedBrick2 {
 
     private void GetCutlistData() {
       if (partLookup != null) {
-        Row = cpta.GetDataByPartnum(partLookup)[0];
+        ENGINEERINGDataSet.CUT_PARTSDataTable dt =
+          new ENGINEERINGDataSet.CUT_PARTSDataTable();
+        cpta.FillByPartnum(dt, partLookup);
+        if (dt.Count > 0) {
+          Row = cpta.GetDataByPartnum(partLookup)[0];
+        } else {
+          Row = null;
+        }
         cutlistPartsTableAdapter.FillByPartNum(eNGINEERINGDataSet.CutlistParts, partLookup);
         cutlistPartsBindingSource.DataSource = cutlistPartsTableAdapter.GetDataByPartNum(partLookup);
         cUTPARTSBindingSource.DataSource = cUT_PARTSTableAdapter.GetDataByPartnum(partLookup);
