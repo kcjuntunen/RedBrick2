@@ -112,7 +112,7 @@
       this.comboBox1.Size = new System.Drawing.Size(186, 21);
       this.comboBox1.TabIndex = 1;
       this.comboBox1.ValueMember = "TYPEID";
-      this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+      this.comboBox1.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // cUTPARTTYPESBindingSource
       // 
@@ -151,6 +151,7 @@
       this.comboBox2.Size = new System.Drawing.Size(186, 21);
       this.comboBox2.TabIndex = 3;
       this.comboBox2.ValueMember = "OPID";
+      this.comboBox2.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // friendlyCutOpsBindingSource
       // 

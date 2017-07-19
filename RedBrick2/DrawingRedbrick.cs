@@ -306,5 +306,10 @@ namespace RedBrick2 {
       RevSet.Delete(SelectedNode());
       BuildTree();
     }
+
+    private void comboBox_Resize(object sender, EventArgs e) {
+      ComboBox _me = (sender as ComboBox);
+      _me.SelectionLength = 0;
+    }
   }
 }

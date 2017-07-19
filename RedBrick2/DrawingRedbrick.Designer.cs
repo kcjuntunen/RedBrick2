@@ -237,6 +237,7 @@ namespace RedBrick2 {
       this.comboBox12.ValueMember = "CUSTID";
       this.comboBox12.SelectedIndexChanged += new System.EventHandler(this.comboBox12_SelectedIndexChanged);
       this.comboBox12.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+      this.comboBox12.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // gENCUSTOMERSBindingSource
       // 
@@ -263,6 +264,7 @@ namespace RedBrick2 {
       this.comboBox13.TabIndex = 6;
       this.comboBox13.ValueMember = "UID";
       this.comboBox13.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+      this.comboBox13.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // gENUSERSBindingSource
       // 
@@ -292,6 +294,7 @@ namespace RedBrick2 {
       this.comboBox14.TabIndex = 8;
       this.comboBox14.SelectedIndexChanged += new System.EventHandler(this.comboBox14_SelectedIndexChanged);
       this.comboBox14.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+      this.comboBox14.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // comboBox15
       // 
@@ -308,6 +311,7 @@ namespace RedBrick2 {
       this.comboBox15.TabIndex = 9;
       this.comboBox15.ValueMember = "ID";
       this.comboBox15.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+      this.comboBox15.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // cUTSTATESBindingSource
       // 
@@ -520,6 +524,7 @@ namespace RedBrick2 {
       this.comboBox7.TabIndex = 10;
       this.comboBox7.ValueMember = "DMATID";
       this.comboBox7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+      this.comboBox7.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // cUTDRAWINGMATERIALSBindingSource
       // 
@@ -541,6 +546,7 @@ namespace RedBrick2 {
       this.comboBox8.TabIndex = 11;
       this.comboBox8.ValueMember = "DMATID";
       this.comboBox8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+      this.comboBox8.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // cUTDRAWINGMATERIALSBindingSource1
       // 
@@ -562,6 +568,7 @@ namespace RedBrick2 {
       this.comboBox9.TabIndex = 12;
       this.comboBox9.ValueMember = "DMATID";
       this.comboBox9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+      this.comboBox9.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // cUTDRAWINGMATERIALSBindingSource2
       // 
@@ -583,6 +590,7 @@ namespace RedBrick2 {
       this.comboBox10.TabIndex = 13;
       this.comboBox10.ValueMember = "DMATID";
       this.comboBox10.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+      this.comboBox10.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // cUTDRAWINGMATERIALSBindingSource3
       // 
@@ -604,6 +612,7 @@ namespace RedBrick2 {
       this.comboBox11.TabIndex = 14;
       this.comboBox11.ValueMember = "DMATID";
       this.comboBox11.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+      this.comboBox11.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // cUTDRAWINGMATERIALSBindingSource4
       // 

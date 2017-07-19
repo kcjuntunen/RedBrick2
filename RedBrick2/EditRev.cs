@@ -88,5 +88,10 @@ namespace RedBrick2 {
       Properties.Settings.Default.EditRevSize = Size;
       Properties.Settings.Default.Save();
     }
+
+    private void combobox_Resize(object sender, EventArgs e) {
+      ComboBox _me = (sender as ComboBox);
+      _me.SelectionLength = 0;
+    }
   }
 }

@@ -94,10 +94,17 @@ namespace RedBrick2 {
       Properties.Settings.Default.Save();
     }
 
-    private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
-      if ((sender as ComboBox).SelectedValue != null) {
-        friendlyCutOpsBindingSource.Filter = string.Format(@"OPTYPE = {0}", (sender as ComboBox).SelectedValue); 
-      }
+    //private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
+
+    //}
+
+    //private void comboBox1_Resize(object sender, EventArgs e) {
+
+    //}
+
+    private void comboBox_Resize(object sender, EventArgs e) {
+      ComboBox _me = (sender as ComboBox);
+      _me.SelectionLength = 0;
     }
   }
 }

@@ -101,6 +101,7 @@ namespace RedBrick2 {
       this.comboBox1.Size = new System.Drawing.Size(186, 21);
       this.comboBox1.TabIndex = 1;
       this.comboBox1.TextUpdate += new System.EventHandler(this.comboBox1_TextUpdate);
+      this.comboBox1.Resize += new System.EventHandler(this.combobox_Resize);
       // 
       // label2
       // 
