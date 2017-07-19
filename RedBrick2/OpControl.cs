@@ -43,8 +43,8 @@ namespace RedBrick2 {
       label5.Text = currentrow[@"POPORDER"].ToString();
       comboBox1.SelectedValue = (int)currentrow[@"POPOP"];
       comboBox2.SelectedValue = (int)currentrow[@"TYPEID"];
-      textBox1.Text = string.Format(@"{0:0.000}", (double)currentrow[@"POPSETUP"] * 60);
-      textBox2.Text = string.Format(@"{0:0.000}", (double)currentrow[@"POPRUN"] * 60);
+      textBox1.Text = string.Format(Properties.Settings.Default.NumberFormat, (double)currentrow[@"POPSETUP"] * 60);
+      textBox2.Text = string.Format(Properties.Settings.Default.NumberFormat, (double)currentrow[@"POPRUN"] * 60);
       initialated = true;
     }
 
@@ -60,8 +60,8 @@ namespace RedBrick2 {
         ComboBox cb = (sender as ComboBox);
         if (cb.SelectedItem != null) {
           currentrow[@"POPOP"] = cb.SelectedValue;
-          textBox1.Text = string.Format(@"{0:0.000}", (double)currentrow[@"OPSETUP"] * 60);
-          textBox2.Text = string.Format(@"{0:0.000}", (double)currentrow[@"OPRUN"] * 60);
+          textBox1.Text = string.Format(Properties.Settings.Default.NumberFormat, (double)currentrow[@"OPSETUP"] * 60);
+          textBox2.Text = string.Format(Properties.Settings.Default.NumberFormat, (double)currentrow[@"OPRUN"] * 60);
         }
           //cpo.Update(currentrow);
       }

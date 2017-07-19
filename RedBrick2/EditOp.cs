@@ -63,12 +63,12 @@ namespace RedBrick2 {
       if (NewOp) {
         comboBox2.SelectedIndex = 0;
         currentRow.POPOP = (int)comboBox2.SelectedValue;
-        textBox1.Text = string.Format(@"{0:0.000}", 0.0F);
-        textBox2.Text = string.Format(@"{0:0.000}", 0.0F);
+        textBox1.Text = string.Format(Properties.Settings.Default.NumberFormat, 0.0F);
+        textBox2.Text = string.Format(Properties.Settings.Default.NumberFormat, 0.0F);
       } else {
         comboBox2.SelectedValue = currentRow.POPOP;
-        textBox1.Text = string.Format(@"{0:0.000}", currentRow.POPSETUP * 60);
-        textBox2.Text = string.Format(@"{0:0.000}", currentRow.POPRUN * 60);
+        textBox1.Text = string.Format(Properties.Settings.Default.NumberFormat, currentRow.POPSETUP * 60);
+        textBox2.Text = string.Format(Properties.Settings.Default.NumberFormat, currentRow.POPRUN * 60);
       }
     }
 

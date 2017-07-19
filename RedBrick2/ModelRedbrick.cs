@@ -37,7 +37,6 @@ namespace RedBrick2 {
 
     private ModelDoc2 lastModelDoc = null;
 
-    private string numberFormat = @"{0:0.000}";
     private bool initialated = false;
     private bool AssemblyEventsAssigned = false;
     private bool PartEventsAssigned = false;
