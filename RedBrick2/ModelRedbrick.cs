@@ -86,10 +86,12 @@ namespace RedBrick2 {
             _edge_thickness += (Single)(comboBox5.SelectedItem as DataRowView)[@"THICKNESS"];
           }
 
-          double _val = ((double.Parse(label18.Text) +
-            double.Parse((sender as TextBox).Text))) - _edge_thickness;
+          //double _val = ((double.Parse(label18.Text) +
+          //  double.Parse((sender as TextBox).Text))) - _edge_thickness;
+          
           if (ov_userediting) {
-            textBox12.Text = enforce_number_format(_val);
+            calculate_blanksize_from_oversize(float.Parse((sender as TextBox).Text), textBox12, length, _edge_thickness);
+            //textBox12.Text = enforce_number_format(_val);
             ov_userediting = false;
           }
         } catch (Exception) {
@@ -109,10 +111,11 @@ namespace RedBrick2 {
           if (comboBox3.SelectedItem != null) {
             _edge_thickness += (Single)(comboBox3.SelectedItem as DataRowView)[@"THICKNESS"];
           }
-          double _val = ((double.Parse(label19.Text) +
-             double.Parse((sender as TextBox).Text))) - _edge_thickness;
+          //double _val = ((double.Parse(label19.Text) +
+          //   double.Parse((sender as TextBox).Text))) - _edge_thickness;
           if (ov_userediting) {
-            textBox13.Text = enforce_number_format(_val);
+            calculate_blanksize_from_oversize(float.Parse((sender as TextBox).Text), textBox13, width, _edge_thickness);
+            //textBox13.Text = enforce_number_format(_val);
             ov_userediting = false;
           }
         } catch (Exception) {
@@ -143,12 +146,8 @@ namespace RedBrick2 {
         label18.Text = enforce_number_format(length);
         label19.Text = enforce_number_format(width);
         label20.Text = enforce_number_format(thickness);
+        label21.Text = enforce_number_format(GetDim(textBox5.Text));
 
-        //DisconnectEvents();
-        //SelectTab();
-        //textBox_TextChanged(PropertySet[@"LENGTH"].Value, label18);
-        //textBox_TextChanged(PropertySet[@"WIDTH"].Value, label19);
-        //textBox_TextChanged(PropertySet[@"THICKNESS"].Value, label20);
         textBox_TextChanged(PropertySet[@"WALL THICKNESS"].Value, label21);
 
         flowLayoutPanel1.VerticalScroll.Value = scrollOffset.Y;
@@ -413,6 +412,15 @@ namespace RedBrick2 {
       tabControl1.SelectedTab = tabPage1;
       DisconnectPartEvents();
       ConnectPartEvents();
+
+      float _val = 0.0F;
+      if (float.TryParse(textBox9.Text, out _val)) {
+        calculate_blanksize_from_oversize(_val, textBox12, length, get_edge_thickness_total(comboBox4, comboBox5));
+      }
+
+      if (float.TryParse(textBox10.Text, out _val)) {
+        calculate_blanksize_from_oversize(_val, textBox13, width, get_edge_thickness_total(comboBox2, comboBox3));
+      }
     }
 
     public int PartID { get; set; }
@@ -704,11 +712,6 @@ namespace RedBrick2 {
       }
     }
 
-    private void calculate_oversize_from_blanksize(Single bl_box_val, TextBox ov_box, Single length, Single total_edging) {
-      Decimal _val = Math.Round(Convert.ToDecimal((bl_box_val - length) + total_edging), 3);
-      ov_box.Text = enforce_number_format(_val);
-    }
-
     private void bl_textBox_KeyDown(object sender, KeyEventArgs e) {
       //TextBox _me = (sender as TextBox);
       bl_userediting = true;
@@ -729,7 +732,29 @@ namespace RedBrick2 {
       _me.Text = enforce_number_format(_text);
     }
 
-    private string enforce_number_format(string input) {
+    static private Single get_edge_thickness_total(ComboBox c1, ComboBox c2) {
+      Single _edge_thickness = 0.0F;
+      if (c1.SelectedItem != null) {
+        _edge_thickness += (Single)(c1.SelectedItem as DataRowView)[@"THICKNESS"];
+      }
+
+      if (c2.SelectedItem != null) {
+        _edge_thickness += (Single)(c2.SelectedItem as DataRowView)[@"THICKNESS"];
+      }
+      return _edge_thickness;
+    }
+
+    static private void calculate_blanksize_from_oversize(Single ov_box_val, TextBox bl_box, Single length, Single total_edging) {
+      Decimal _val = Math.Round(Convert.ToDecimal((length + ov_box_val) - total_edging), 3);
+      bl_box.Text = enforce_number_format(_val);
+    }
+
+    static private void calculate_oversize_from_blanksize(Single bl_box_val, TextBox ov_box, Single length, Single total_edging) {
+      Decimal _val = Math.Round(Convert.ToDecimal((bl_box_val - length) + total_edging), 3);
+      ov_box.Text = enforce_number_format(_val);
+    }
+
+    static private string enforce_number_format(string input) {
       double _val = 0.0F;
       if (double.TryParse(input, out _val)) {
         return string.Format(Properties.Settings.Default.NumberFormat, _val);
@@ -737,16 +762,21 @@ namespace RedBrick2 {
       return @"#VALUE!";
     }
 
-    private string enforce_number_format(double input) {
+    static private string enforce_number_format(double input) {
       return string.Format(Properties.Settings.Default.NumberFormat, input);
     }
 
-    private string enforce_number_format(Single input) {
+    static private string enforce_number_format(Single input) {
       return string.Format(Properties.Settings.Default.NumberFormat, input);
     }
 
-    private string enforce_number_format(decimal input) {
+    static private string enforce_number_format(decimal input) {
       return string.Format(Properties.Settings.Default.NumberFormat, input);
+    }
+
+    private void comboBox_Resize(object sender, EventArgs e) {
+      ComboBox _me = (sender as ComboBox);
+      _me.SelectionLength = 0;
     }
   }
 }

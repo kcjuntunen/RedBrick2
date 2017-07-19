@@ -232,6 +232,7 @@ namespace RedBrick2 {
       this.comboBox1.TabIndex = 1;
       this.comboBox1.ValueMember = "MATID";
       this.comboBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+      this.comboBox1.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // cutlistPartsBindingSource
       // 
@@ -275,6 +276,7 @@ namespace RedBrick2 {
       this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
       this.comboBox2.TextChanged += new System.EventHandler(this.comboBox_TextChanged);
       this.comboBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+      this.comboBox2.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // cUTEDGESBindingSource
       // 
@@ -308,6 +310,7 @@ namespace RedBrick2 {
       this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
       this.comboBox3.TextChanged += new System.EventHandler(this.comboBox_TextChanged);
       this.comboBox3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+      this.comboBox3.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // cUTEDGESBindingSource1
       // 
@@ -351,6 +354,7 @@ namespace RedBrick2 {
       this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
       this.comboBox4.TextChanged += new System.EventHandler(this.comboBox_TextChanged);
       this.comboBox4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+      this.comboBox4.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // cUTEDGESBindingSource2
       // 
@@ -379,6 +383,7 @@ namespace RedBrick2 {
       this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
       this.comboBox5.TextChanged += new System.EventHandler(this.comboBox_TextChanged);
       this.comboBox5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+      this.comboBox5.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // cUTEDGESBindingSource3
       // 
@@ -481,6 +486,7 @@ namespace RedBrick2 {
       this.comboBox6.ValueMember = "CLID";
       this.comboBox6.TextChanged += new System.EventHandler(this.comboBox_TextChanged);
       this.comboBox6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+      this.comboBox6.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // label30
       // 
@@ -677,6 +683,7 @@ namespace RedBrick2 {
       this.textBox5.Size = new System.Drawing.Size(207, 22);
       this.textBox5.TabIndex = 10;
       this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
+      this.textBox5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ov_textBox_KeyDown);
       // 
       // label21
       // 
