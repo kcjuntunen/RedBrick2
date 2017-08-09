@@ -403,6 +403,7 @@ namespace RedBrick2 {
       this.label6.TabIndex = 0;
       this.label6.Text = "label6";
       this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+      this.label6.Click += new System.EventHandler(this.label6_Click);
       // 
       // label7
       // 
