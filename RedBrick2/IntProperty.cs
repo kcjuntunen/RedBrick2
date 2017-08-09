@@ -45,8 +45,15 @@ namespace RedBrick2 {
       }
       set {
         try {
-          _data = int.Parse(value.ToString());
-          Value = value.ToString();
+          if (value is string) {
+            _data = int.Parse(value.ToString());
+            Value = value.ToString();
+          }
+
+          if (value is int) {
+            _data = (int)value;
+            Value = value.ToString();
+          }
         } catch (Exception) {
           _data = 0;
           Value = @"0";
