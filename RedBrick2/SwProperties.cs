@@ -16,6 +16,7 @@ namespace RedBrick2 {
     private int globalCount = 0;
     private int totalCount = 0;
     private int nonGlobalCount = 0;
+    public string Configuration = string.Empty;
 
     /// <summary>
     /// Constructor for a new <see cref="RedBrick2.SwProperties"/> object.
@@ -69,18 +70,21 @@ namespace RedBrick2 {
         item.Value.Write();
         res &= (int)item.Value.WriteResult;
       }
-      foreach (OpSet _opSet in opSets) {
-        _opSet.Write();
+      if (opSets != null) {
+        foreach (OpSet _opSet in opSets) {
+          _opSet.Write();
+        }
       }
       return res;
     }
-
+    
     /// <summary>
     /// Pull down all pertinent data from a model.
     /// </summary>
     /// <param name="comp">A <see cref="SolidWorks.Interop.sldworks.Component2"/> from which we'll
     /// get a <see cref="SolidWorks.Interop.sldworks.ModelDoc2"/>.</param>
     public void GetProperties(Component2 comp) {
+      Configuration = comp.ReferencedConfiguration;
       GetProperties(comp.GetModelDoc2());
     }
 
@@ -123,6 +127,7 @@ namespace RedBrick2 {
         length, width, thickness, wallThickness, overL, overW,
         cutlistMaterial, edgelf, edgelb, edgewr, edgewl
       }) {
+        item.Configuration = Configuration;
         item.Get();
         Add(item);
       }
