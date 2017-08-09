@@ -195,9 +195,8 @@ namespace RedBrick2 {
       if (!DrawingEventsAssigned) {
         dd = (DrawingDoc)ActiveDoc;
         swSelMgr = ActiveDoc.SelectionManager;
-        dd.NewSelectionNotify += dd_UserSelectionPostNotify;
+        dd.UserSelectionPostNotify += dd_UserSelectionPostNotify;
         dd.DestroyNotify2 += dd_DestroyNotify2;
-        //dd.UserSelectionPostNotify += dd_UserSelectionPostNotify;
         DrawingEventsAssigned = true;
       }
     }
@@ -208,22 +207,26 @@ namespace RedBrick2 {
     }
 
     int dd_UserSelectionPostNotify() {
-      swSelMgr = ActiveDoc.SelectionManager;
+      if (swSelMgr == null) {
+        swSelMgr = ActiveDoc.SelectionManager;
+      }
+      object pt = swSelMgr.GetSelectionPoint2(swSelMgr.GetSelectedObjectCount2(-1), -1);
       object selectedObject = swSelMgr.GetSelectedObject6(1, -1);
       if (selectedObject == null) {
         selectedObject = swSelMgr.GetSelectedObjectsComponent4(1, -1);
       }
-      if (selectedObject is DrawingComponent) {
-        DrawingComponent dc = selectedObject as DrawingComponent;
-        if (dc != null) {
-          Component2 _c = dc.Component;
-          ActiveDoc = _c.GetModelDoc2();
-        } else {
-          ActiveDoc = SwApp.ActiveDoc;
-        }
-      } else if (selectedObject is SolidWorks.Interop.sldworks.View) {
+      if (selectedObject is SolidWorks.Interop.sldworks.View) {
         SolidWorks.Interop.sldworks.View v = (selectedObject as SolidWorks.Interop.sldworks.View);
         ActiveDoc = v.ReferencedDocument;
+      } else if (selectedObject is DrawingComponent) {
+        DrawingComponent dc = selectedObject as DrawingComponent;
+        if (dc != null) {
+          Component = dc.Component;
+          ActiveDoc = Component.GetModelDoc2();
+        } else {
+          Component = null;
+          ActiveDoc = SwApp.ActiveDoc;
+        }
       }
       return 0;
     }
@@ -394,7 +397,7 @@ namespace RedBrick2 {
         ConnectDrawingEvents();
       }
 
-      tabControl1.SelectedTab = tabPage2;
+      //tabControl1.SelectedTab = tabPage2;
     }
 
     private void SetupPart() {
@@ -411,8 +414,15 @@ namespace RedBrick2 {
       if (!(ActiveDoc is DrawingDoc)) {
         _configname = ActiveDoc.ConfigurationManager.ActiveConfiguration.Name;
       }
-
-      PropertySet.GetProperties(ActiveDoc);
+      if (Component != null) {
+        _configname = (Component.GetModelDoc2() as ModelDoc2).ConfigurationManager.ActiveConfiguration.Name;
+        PropertySet.Configuration = _configname;
+        PropertySet.GetProperties(Component);
+      } else {
+        _configname = ActiveDoc.ConfigurationManager.ActiveConfiguration.Name;
+        PropertySet.Configuration = _configname;
+        PropertySet.GetProperties(ActiveDoc);
+      }
       groupBox1.Text = string.Format(@"{0} - {1}",
         partLookup, _configname);
 
@@ -422,7 +432,7 @@ namespace RedBrick2 {
       }
 
       lastModelDoc = ActiveDoc;
-      tabControl1.SelectedTab = tabPage1;
+      //tabControl1.SelectedTab = tabPage1;
       DisconnectPartEvents();
       ConnectPartEvents();
 
@@ -439,6 +449,15 @@ namespace RedBrick2 {
     public int PartID { get; set; }
     public int Hash { get; set; }
     public FileInfo PartFileInfo { get; set; }
+
+    private Component2 _component;
+
+    public Component2 Component {
+      get { return _component; }
+      set {
+        _component = value;
+      }
+    }
 
     private ModelDoc2 _activeDoc;
 
@@ -458,18 +477,17 @@ namespace RedBrick2 {
           switch (odType) {
             case swDocumentTypes_e.swDocASSEMBLY:                     //Window looking at assembly.
               tabControl1.SelectedTab = tabPage1;
+                  (tabPage1 as Control).Enabled = true;
               DisconnectAssemblyEvents();
               ConnectAssemblyEvents(SwApp.ActiveDoc as ModelDoc2);
               switch (dType) {
                 case swDocumentTypes_e.swDocASSEMBLY:                     //Selected sub-assembly in window.
-                  (tabPage1 as Control).Enabled = true;
                   (tabPage2 as Control).Enabled = false;
                   SetupPart();
                   break;
                 case swDocumentTypes_e.swDocDRAWING:
                   break;
                 case swDocumentTypes_e.swDocPART:                         //Selected on part in window.
-                  (tabPage1 as Control).Enabled = true;
                   (tabPage2 as Control).Enabled = false;
                   SetupPart();
                   break;
@@ -478,47 +496,44 @@ namespace RedBrick2 {
 	              }
               break;
             case swDocumentTypes_e.swDocDRAWING:                      //Window looking at drawing.
+              (tabPage2 as Control).Enabled = true;
+              tabControl1.SelectedTab = tabPage2;
               switch (dType) {
                 case swDocumentTypes_e.swDocASSEMBLY:                     //Selected assembly in drawing.
-                  tabControl1.SelectedTab = tabPage2;
+                  tabControl1.SelectedTab = tabPage1;
                   (tabPage1 as Control).Enabled = true;
-                  (tabPage2 as Control).Enabled = false;
                   SetupPart();
                   break;
                 case swDocumentTypes_e.swDocDRAWING:
                   break;
                 case swDocumentTypes_e.swDocPART:                         //Selected part in drawing.
+                  tabControl1.SelectedTab = tabPage1;
                   (tabPage1 as Control).Enabled = true;
-                  (tabPage2 as Control).Enabled = false;
                   SetupPart();
                   break;
                 default:
                   break;
               }
-              (tabPage1 as Control).Enabled = false;
-              (tabPage2 as Control).Enabled = true;
               SetupDrawing();
               break;
             case swDocumentTypes_e.swDocPART:                         //Window looking at part.
               tabControl1.SelectedTab = tabPage1;
               (tabPage1 as Control).Enabled = true;
               if (odType != swDocumentTypes_e.swDocDRAWING) {
-                (tabPage1 as Control).Enabled = true;
                 (tabPage2 as Control).Enabled = false;
               } else {
-                (tabPage1 as Control).Enabled = false;
                 (tabPage2 as Control).Enabled = true;
               }
               SetupPart();
               break;
             default:
-              (tabPage1 as Control).Enabled = false;
-              (tabPage2 as Control).Enabled = false;
               Hide();
               break;
           }
         } else {
-          Hide();
+          if (value == null) {
+            Hide();
+          }
         }
         allowPaint = true;
       }
@@ -790,6 +805,15 @@ namespace RedBrick2 {
     private void comboBox_Resize(object sender, EventArgs e) {
       ComboBox _me = (sender as ComboBox);
       _me.SelectionLength = 0;
+    }
+
+    private void label6_Click(object sender, EventArgs e) {
+      if (!(SwApp.ActiveDoc is PartDoc)) {
+        CreateCutlist c = new CreateCutlist(SwApp);
+        c.ShowDialog(this);
+      } else {
+        SwApp.SendMsgToUser2(@"Can't do that with part docs.", (int)swMessageBoxIcon_e.swMbStop, (int)swMessageBoxBtn_e.swMbOk);
+      }
     }
   }
 }

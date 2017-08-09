@@ -94,6 +94,12 @@
     <Compile Include="AuthorProperty.cs" />
     <Compile Include="BooleanProperty.cs" />
     <Compile Include="Crc32.cs" />
+    <Compile Include="CreateCutlist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateCutlist.Designer.cs">
+      <DependentUpon>CreateCutlist.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomerProperty.cs" />
     <Compile Include="DateProperty.cs" />
     <Compile Include="DepartmentProperty.cs" />
@@ -197,6 +203,9 @@
   <ItemGroup>
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateCutlist.resx">
+      <DependentUpon>CreateCutlist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DrawingRedbrick.resx">
       <DependentUpon>DrawingRedbrick.cs</DependentUpon>

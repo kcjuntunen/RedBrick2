@@ -79,11 +79,11 @@ namespace RedBrick2 {
       }
       if (ext != null) {
         globlProperty = ext.get_CustomPropertyManager(string.Empty);
-        config = (Configuration)ActiveDoc.ConfigurationManager.ActiveConfiguration;
+        //config = (Configuration)ActiveDoc.GetConfigurationByName(Configuration);
         if (ActiveDoc is DrawingDoc) {
           PropertyManager = globlProperty;
         } else {
-          localProperty = ext.get_CustomPropertyManager(config.Name);
+          localProperty = ext.get_CustomPropertyManager(Configuration);
         }
         if (Global || (ActiveDoc is DrawingDoc)) {
           PropertyManager = globlProperty;
@@ -186,6 +186,17 @@ namespace RedBrick2 {
     public virtual object Data { 
       get { return _data;}
       set { _data = value;}
+    }
+
+    private string _configuration = string.Empty;
+    public string Configuration {
+      get {
+        return _configuration;
+      }
+      set { 
+        _configuration = value;
+        GetPropertyManager();
+      }
     }
 
     public Configuration Config { get; set; }
