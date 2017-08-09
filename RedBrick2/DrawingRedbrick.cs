@@ -36,7 +36,11 @@ namespace RedBrick2 {
       string[] revcheck = Path.GetFileNameWithoutExtension(PartFileInfo.Name).
         Split(new string[] { @"REV", @" " }, StringSplitOptions.RemoveEmptyEntries);
       RevFromFile = revcheck.Length > 1 ? revcheck[1] : null;
-      ProjectCustomer = GetCorrectCustomer();
+      ENGINEERINGDataSet.SCH_PROJECTSRow r = 
+        (new ENGINEERINGDataSet.SCH_PROJECTSDataTable()).GetCorrectCustomer(partLookup);
+      ProjectCustomer = (int)r[@"CUSTID"];
+      projectDescr = (string)r[@"DESCRIPTION"];
+      //ProjectCustomer = GetCorrectCustomer();
       groupBox5.Text = string.Format(@"{0} - {1}", partLookup, projectDescr);
     }
 

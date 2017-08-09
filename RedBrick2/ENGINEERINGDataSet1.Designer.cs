@@ -23368,7 +23368,7 @@ SELECT TYPEID, TYPEDESC, TYPEINC, TYPEREP FROM CUT_PART_TYPES WHERE (TYPEID = @T
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        CUT_PART_TYPES.*\r\nFROM            CUT_PART_TYPES";
@@ -23385,6 +23385,10 @@ SELECT TYPEID, TYPEDESC, TYPEINC, TYPEREP FROM CUT_PART_TYPES WHERE (TYPEID = @T
                 "escr)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@descr", global::System.Data.SqlDbType.NVarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "TYPEDESC", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = "SELECT COUNT(*) FROM CUT_PART_TYPES";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -23634,6 +23638,34 @@ SELECT TYPEID, TYPEDESC, TYPEINC, TYPEREP FROM CUT_PART_TYPES WHERE (TYPEID = @T
             }
             else {
                 return new global::System.Nullable<int>(((int)(returnValue)));
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual object TypeCount() {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
             }
         }
     }
@@ -26029,7 +26061,7 @@ SELECT ID, STATE, STATENUMBER FROM CUT_STATES WHERE (ID = @ID)";
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = @"INSERT INTO [CUT_CUTLISTS] ([PARTNUM], [REV], [DRAWING], [CUSTID], [CDATE], [DESCR], [LENGTH], [WIDTH], [HEIGHT], [SETUP_BY], [STATE_BY], [STATEID]) VALUES (@PARTNUM, @REV, @DRAWING, @CUSTID, @CDATE, @DESCR, @LENGTH, @WIDTH, @HEIGHT, @SETUP_BY, @STATE_BY, @STATEID);
-SELECT CLID, PARTNUM, REV, DRAWING, CUSTID, CDATE, DESCR, LENGTH, WIDTH, HEIGHT, SETUP_BY, STATE_BY, STATEID, CLTS FROM CUT_CUTLISTS WHERE (CLID = SCOPE_IDENTITY())";
+SELECT CLID, PARTNUM, REV, DRAWING, CUSTID, CDATE, DESCR, LENGTH, WIDTH, HEIGHT, SETUP_BY, STATE_BY, STATEID, CLTS FROM CUT_CUTLISTS WHERE (CLID = SCOPE_IDENTITY()) ORDER BY PARTNUM";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PARTNUM", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PARTNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@REV", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "REV", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -26046,7 +26078,7 @@ SELECT CLID, PARTNUM, REV, DRAWING, CUSTID, CDATE, DESCR, LENGTH, WIDTH, HEIGHT,
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = @"UPDATE [CUT_CUTLISTS] SET [PARTNUM] = @PARTNUM, [REV] = @REV, [DRAWING] = @DRAWING, [CUSTID] = @CUSTID, [CDATE] = @CDATE, [DESCR] = @DESCR, [LENGTH] = @LENGTH, [WIDTH] = @WIDTH, [HEIGHT] = @HEIGHT, [SETUP_BY] = @SETUP_BY, [STATE_BY] = @STATE_BY, [STATEID] = @STATEID WHERE (([CLID] = @Original_CLID) AND ((@IsNull_CLTS = 1 AND [CLTS] IS NULL) OR ([CLTS] = @Original_CLTS)));
-SELECT CLID, PARTNUM, REV, DRAWING, CUSTID, CDATE, DESCR, LENGTH, WIDTH, HEIGHT, SETUP_BY, STATE_BY, STATEID, CLTS FROM CUT_CUTLISTS WHERE (CLID = @CLID)";
+SELECT CLID, PARTNUM, REV, DRAWING, CUSTID, CDATE, DESCR, LENGTH, WIDTH, HEIGHT, SETUP_BY, STATE_BY, STATEID, CLTS FROM CUT_CUTLISTS WHERE (CLID = @CLID) ORDER BY PARTNUM";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PARTNUM", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PARTNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@REV", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "REV", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -26076,19 +26108,24 @@ SELECT CLID, PARTNUM, REV, DRAWING, CUSTID, CDATE, DESCR, LENGTH, WIDTH, HEIGHT,
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        CUT_CUTLISTS.*\r\nFROM            CUT_CUTLISTS";
+            this._commandCollection[0].CommandText = "SELECT        CUT_CUTLISTS.*\r\nFROM            CUT_CUTLISTS ORDER BY PARTNUM";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        CLID, PARTNUM, REV, DRAWING, CUSTID, CDATE, DESCR, LENGTH, WIDTH, H" +
-                "EIGHT, SETUP_BY, STATE_BY, STATEID, CLTS\r\nFROM            CUT_CUTLISTS\r\nWHERE   " +
-                "     (PARTNUM = @cutlistName) AND (REV = @revision)";
+            this._commandCollection[1].CommandText = "SELECT CDATE, CLID, CLTS, CUSTID, DESCR, DRAWING, HEIGHT, LENGTH, PARTNUM, REV, S" +
+                "ETUP_BY, STATEID, STATE_BY, WIDTH FROM CUT_CUTLISTS WHERE (PARTNUM = @cutlistNam" +
+                "e) AND (REV = @revision)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cutlistName", global::System.Data.SqlDbType.NVarChar, 35, global::System.Data.ParameterDirection.Input, 0, 0, "PARTNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@revision", global::System.Data.SqlDbType.NVarChar, 3, global::System.Data.ParameterDirection.Input, 0, 0, "REV", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT CDATE, CLID, CLTS, CUSTID, DESCR, DRAWING, HEIGHT, LENGTH, REV, SETUP_BY, " +
+                "STATEID, STATE_BY, WIDTH FROM CUT_CUTLISTS";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -26158,6 +26195,30 @@ SELECT CLID, PARTNUM, REV, DRAWING, CUSTID, CDATE, DESCR, LENGTH, WIDTH, HEIGHT,
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((string)(revision));
             }
+            ENGINEERINGDataSet.CUT_CUTLISTSDataTable dataTable = new ENGINEERINGDataSet.CUT_CUTLISTSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillWithRevs(ENGINEERINGDataSet.CUT_CUTLISTSDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ENGINEERINGDataSet.CUT_CUTLISTSDataTable GetDataWithRevs() {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             ENGINEERINGDataSet.CUT_CUTLISTSDataTable dataTable = new ENGINEERINGDataSet.CUT_CUTLISTSDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -28396,6 +28457,19 @@ SELECT DateRequested, DateStarted, DateCompleted, AffectedParts, Change, Enginee
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT DISTINCT REV FROM CUT_CUTLISTS ORDER BY REV;";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(ENGINEERINGDataSet.RevListDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

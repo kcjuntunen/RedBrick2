@@ -3,6 +3,21 @@ namespace RedBrick2 {
 
 
   public partial class ENGINEERINGDataSet {
+    partial class SCH_PROJECTSDataTable {
+      public SCH_PROJECTSRow GetCorrectCustomer(string partLookup) {
+        string pattern = @"([A-Z]{3,4})(\d{4})";
+        System.Text.RegularExpressions.Regex r = new System.Text.RegularExpressions.Regex(pattern);
+        System.Text.RegularExpressions.Match matches = System.Text.RegularExpressions.Regex.Match(partLookup, pattern);
+        if (r.IsMatch(partLookup)) {
+          ENGINEERINGDataSetTableAdapters.SCH_PROJECTSTableAdapter spta =
+            new ENGINEERINGDataSetTableAdapters.SCH_PROJECTSTableAdapter();
+          ENGINEERINGDataSet.SCH_PROJECTSRow row = spta.GetDataByProject(matches.Groups[1].ToString())[0];
+          return row;
+        }
+        return null;
+      }
+    }
+  
     partial class GEN_CUSTOMERSDataTable {
     }
   
