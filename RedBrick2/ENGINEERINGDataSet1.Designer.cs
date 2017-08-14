@@ -6209,15 +6209,11 @@ namespace RedBrick2 {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class FriendlyCutOpsDataTable : global::System.Data.TypedTableBase<FriendlyCutOpsRow> {
             
-            private global::System.Data.DataColumn columnOPID;
-            
             private global::System.Data.DataColumn columnFRIENDLYNAME;
             
             private global::System.Data.DataColumn columnOPNAME;
             
             private global::System.Data.DataColumn columnOPDESCR;
-            
-            private global::System.Data.DataColumn columnOPTYPE;
             
             private global::System.Data.DataColumn columnOPMETHOD;
             
@@ -6226,6 +6222,14 @@ namespace RedBrick2 {
             private global::System.Data.DataColumn columnOPRUN;
             
             private global::System.Data.DataColumn columnOPPROG;
+            
+            private global::System.Data.DataColumn columnTYPEID;
+            
+            private global::System.Data.DataColumn columnOPTYPE;
+            
+            private global::System.Data.DataColumn columnOTID;
+            
+            private global::System.Data.DataColumn columnOPID;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -6262,14 +6266,6 @@ namespace RedBrick2 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn OPIDColumn {
-                get {
-                    return this.columnOPID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn FRIENDLYNAMEColumn {
                 get {
                     return this.columnFRIENDLYNAME;
@@ -6289,14 +6285,6 @@ namespace RedBrick2 {
             public global::System.Data.DataColumn OPDESCRColumn {
                 get {
                     return this.columnOPDESCR;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn OPTYPEColumn {
-                get {
-                    return this.columnOPTYPE;
                 }
             }
             
@@ -6329,6 +6317,38 @@ namespace RedBrick2 {
             public global::System.Data.DataColumn OPPROGColumn {
                 get {
                     return this.columnOPPROG;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TYPEIDColumn {
+                get {
+                    return this.columnTYPEID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn OPTYPEColumn {
+                get {
+                    return this.columnOPTYPE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn OTIDColumn {
+                get {
+                    return this.columnOTID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn OPIDColumn {
+                get {
+                    return this.columnOPID;
                 }
             }
             
@@ -6369,28 +6389,23 @@ namespace RedBrick2 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public FriendlyCutOpsRow AddFriendlyCutOpsRow(string FRIENDLYNAME, string OPNAME, string OPDESCR, int OPTYPE, int OPMETHOD, double OPSETUP, double OPRUN, bool OPPROG) {
+            public FriendlyCutOpsRow AddFriendlyCutOpsRow(string FRIENDLYNAME, string OPNAME, string OPDESCR, int OPMETHOD, double OPSETUP, double OPRUN, bool OPPROG, int OPTYPE) {
                 FriendlyCutOpsRow rowFriendlyCutOpsRow = ((FriendlyCutOpsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
                         FRIENDLYNAME,
                         OPNAME,
                         OPDESCR,
-                        OPTYPE,
                         OPMETHOD,
                         OPSETUP,
                         OPRUN,
-                        OPPROG};
+                        OPPROG,
+                        null,
+                        OPTYPE,
+                        null,
+                        null};
                 rowFriendlyCutOpsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowFriendlyCutOpsRow);
                 return rowFriendlyCutOpsRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public FriendlyCutOpsRow FindByOPID(int OPID) {
-                return ((FriendlyCutOpsRow)(this.Rows.Find(new object[] {
-                            OPID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6410,30 +6425,28 @@ namespace RedBrick2 {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnOPID = base.Columns["OPID"];
                 this.columnFRIENDLYNAME = base.Columns["FRIENDLYNAME"];
                 this.columnOPNAME = base.Columns["OPNAME"];
                 this.columnOPDESCR = base.Columns["OPDESCR"];
-                this.columnOPTYPE = base.Columns["OPTYPE"];
                 this.columnOPMETHOD = base.Columns["OPMETHOD"];
                 this.columnOPSETUP = base.Columns["OPSETUP"];
                 this.columnOPRUN = base.Columns["OPRUN"];
                 this.columnOPPROG = base.Columns["OPPROG"];
+                this.columnTYPEID = base.Columns["TYPEID"];
+                this.columnOPTYPE = base.Columns["OPTYPE"];
+                this.columnOTID = base.Columns["OTID"];
+                this.columnOPID = base.Columns["OPID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnOPID = new global::System.Data.DataColumn("OPID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOPID);
                 this.columnFRIENDLYNAME = new global::System.Data.DataColumn("FRIENDLYNAME", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFRIENDLYNAME);
                 this.columnOPNAME = new global::System.Data.DataColumn("OPNAME", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOPNAME);
                 this.columnOPDESCR = new global::System.Data.DataColumn("OPDESCR", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOPDESCR);
-                this.columnOPTYPE = new global::System.Data.DataColumn("OPTYPE", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOPTYPE);
                 this.columnOPMETHOD = new global::System.Data.DataColumn("OPMETHOD", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOPMETHOD);
                 this.columnOPSETUP = new global::System.Data.DataColumn("OPSETUP", typeof(double), null, global::System.Data.MappingType.Element);
@@ -6442,18 +6455,36 @@ namespace RedBrick2 {
                 base.Columns.Add(this.columnOPRUN);
                 this.columnOPPROG = new global::System.Data.DataColumn("OPPROG", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOPPROG);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnOPID}, true));
+                this.columnTYPEID = new global::System.Data.DataColumn("TYPEID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTYPEID);
+                this.columnOPTYPE = new global::System.Data.DataColumn("OPTYPE", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOPTYPE);
+                this.columnOTID = new global::System.Data.DataColumn("OTID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOTID);
+                this.columnOPID = new global::System.Data.DataColumn("OPID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOPID);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
+                                this.columnOTID}, false));
+                this.columnFRIENDLYNAME.ReadOnly = true;
+                this.columnFRIENDLYNAME.MaxLength = 41;
+                this.columnOPNAME.MaxLength = 3;
+                this.columnOPDESCR.MaxLength = 35;
+                this.columnTYPEID.AutoIncrement = true;
+                this.columnTYPEID.AutoIncrementSeed = -1;
+                this.columnTYPEID.AutoIncrementStep = -1;
+                this.columnTYPEID.AllowDBNull = false;
+                this.columnTYPEID.ReadOnly = true;
+                this.columnOTID.AutoIncrement = true;
+                this.columnOTID.AutoIncrementSeed = -1;
+                this.columnOTID.AutoIncrementStep = -1;
+                this.columnOTID.AllowDBNull = false;
+                this.columnOTID.ReadOnly = true;
+                this.columnOTID.Unique = true;
                 this.columnOPID.AutoIncrement = true;
                 this.columnOPID.AutoIncrementSeed = -1;
                 this.columnOPID.AutoIncrementStep = -1;
                 this.columnOPID.AllowDBNull = false;
                 this.columnOPID.ReadOnly = true;
-                this.columnOPID.Unique = true;
-                this.columnFRIENDLYNAME.ReadOnly = true;
-                this.columnFRIENDLYNAME.MaxLength = 41;
-                this.columnOPNAME.MaxLength = 3;
-                this.columnOPDESCR.MaxLength = 35;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13215,17 +13246,6 @@ namespace RedBrick2 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int OPID {
-                get {
-                    return ((int)(this[this.tableFriendlyCutOps.OPIDColumn]));
-                }
-                set {
-                    this[this.tableFriendlyCutOps.OPIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string FRIENDLYNAME {
                 get {
                     try {
@@ -13269,22 +13289,6 @@ namespace RedBrick2 {
                 }
                 set {
                     this[this.tableFriendlyCutOps.OPDESCRColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int OPTYPE {
-                get {
-                    try {
-                        return ((int)(this[this.tableFriendlyCutOps.OPTYPEColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'OPTYPE\' in table \'FriendlyCutOps\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableFriendlyCutOps.OPTYPEColumn] = value;
                 }
             }
             
@@ -13354,6 +13358,55 @@ namespace RedBrick2 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int TYPEID {
+                get {
+                    return ((int)(this[this.tableFriendlyCutOps.TYPEIDColumn]));
+                }
+                set {
+                    this[this.tableFriendlyCutOps.TYPEIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int OPTYPE {
+                get {
+                    try {
+                        return ((int)(this[this.tableFriendlyCutOps.OPTYPEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OPTYPE\' in table \'FriendlyCutOps\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableFriendlyCutOps.OPTYPEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int OTID {
+                get {
+                    return ((int)(this[this.tableFriendlyCutOps.OTIDColumn]));
+                }
+                set {
+                    this[this.tableFriendlyCutOps.OTIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int OPID {
+                get {
+                    return ((int)(this[this.tableFriendlyCutOps.OPIDColumn]));
+                }
+                set {
+                    this[this.tableFriendlyCutOps.OPIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsFRIENDLYNAMENull() {
                 return this.IsNull(this.tableFriendlyCutOps.FRIENDLYNAMEColumn);
             }
@@ -13386,18 +13439,6 @@ namespace RedBrick2 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetOPDESCRNull() {
                 this[this.tableFriendlyCutOps.OPDESCRColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsOPTYPENull() {
-                return this.IsNull(this.tableFriendlyCutOps.OPTYPEColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetOPTYPENull() {
-                this[this.tableFriendlyCutOps.OPTYPEColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13446,6 +13487,18 @@ namespace RedBrick2 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetOPPROGNull() {
                 this[this.tableFriendlyCutOps.OPPROGColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsOPTYPENull() {
+                return this.IsNull(this.tableFriendlyCutOps.OPTYPEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetOPTYPENull() {
+                this[this.tableFriendlyCutOps.OPTYPEColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -24038,75 +24091,18 @@ WHERE        (CUT_PARTS.PARTNUM = @partnum)";
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "FriendlyCutOps";
-            tableMapping.ColumnMappings.Add("OPID", "OPID");
             tableMapping.ColumnMappings.Add("FRIENDLYNAME", "FRIENDLYNAME");
             tableMapping.ColumnMappings.Add("OPNAME", "OPNAME");
             tableMapping.ColumnMappings.Add("OPDESCR", "OPDESCR");
-            tableMapping.ColumnMappings.Add("OPTYPE", "OPTYPE");
             tableMapping.ColumnMappings.Add("OPMETHOD", "OPMETHOD");
             tableMapping.ColumnMappings.Add("OPSETUP", "OPSETUP");
             tableMapping.ColumnMappings.Add("OPRUN", "OPRUN");
             tableMapping.ColumnMappings.Add("OPPROG", "OPPROG");
+            tableMapping.ColumnMappings.Add("TYPEID", "TYPEID");
+            tableMapping.ColumnMappings.Add("OPTYPE", "OPTYPE");
+            tableMapping.ColumnMappings.Add("OTID", "OTID");
+            tableMapping.ColumnMappings.Add("OPID", "OPID");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [CUT_OPS] WHERE (([OPID] = @Original_OPID) AND ((@IsNull_OPNAME = 1 AND [OPNAME] IS NULL) OR ([OPNAME] = @Original_OPNAME)) AND ((@IsNull_OPDESCR = 1 AND [OPDESCR] IS NULL) OR ([OPDESCR] = @Original_OPDESCR)) AND ((@IsNull_OPTYPE = 1 AND [OPTYPE] IS NULL) OR ([OPTYPE] = @Original_OPTYPE)) AND ((@IsNull_OPMETHOD = 1 AND [OPMETHOD] IS NULL) OR ([OPMETHOD] = @Original_OPMETHOD)) AND ((@IsNull_OPSETUP = 1 AND [OPSETUP] IS NULL) OR ([OPSETUP] = @Original_OPSETUP)) AND ((@IsNull_OPRUN = 1 AND [OPRUN] IS NULL) OR ([OPRUN] = @Original_OPRUN)) AND ((@IsNull_OPPROG = 1 AND [OPPROG] IS NULL) OR ([OPPROG] = @Original_OPPROG)))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OPID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OPNAME", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPNAME", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OPNAME", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPNAME", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OPDESCR", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPDESCR", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OPDESCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPDESCR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OPTYPE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPTYPE", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OPTYPE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPTYPE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OPMETHOD", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPMETHOD", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OPMETHOD", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPMETHOD", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OPSETUP", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPSETUP", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OPSETUP", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPSETUP", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OPRUN", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPRUN", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OPRUN", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPRUN", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OPPROG", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPPROG", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OPPROG", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPPROG", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [CUT_OPS] ([OPNAME], [OPDESCR], [OPTYPE], [OPMETHOD], [OPSETUP], [OPRUN], [OPPROG]) VALUES (@OPNAME, @OPDESCR, @OPTYPE, @OPMETHOD, @OPSETUP, @OPRUN, @OPPROG);
-SELECT OPID, OPNAME + ' - ' + OPDESCR AS FRIENDLYNAME, OPNAME, OPDESCR, OPTYPE, OPMETHOD, OPSETUP, OPRUN, OPPROG FROM CUT_OPS WHERE (OPID = SCOPE_IDENTITY()) ORDER BY FRIENDLYNAME";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OPNAME", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPNAME", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OPDESCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPDESCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OPTYPE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPTYPE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OPMETHOD", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPMETHOD", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OPSETUP", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPSETUP", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OPRUN", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPRUN", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OPPROG", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPPROG", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [CUT_OPS] SET [OPNAME] = @OPNAME, [OPDESCR] = @OPDESCR, [OPTYPE] = @OPTYPE, [OPMETHOD] = @OPMETHOD, [OPSETUP] = @OPSETUP, [OPRUN] = @OPRUN, [OPPROG] = @OPPROG WHERE (([OPID] = @Original_OPID) AND ((@IsNull_OPNAME = 1 AND [OPNAME] IS NULL) OR ([OPNAME] = @Original_OPNAME)) AND ((@IsNull_OPDESCR = 1 AND [OPDESCR] IS NULL) OR ([OPDESCR] = @Original_OPDESCR)) AND ((@IsNull_OPTYPE = 1 AND [OPTYPE] IS NULL) OR ([OPTYPE] = @Original_OPTYPE)) AND ((@IsNull_OPMETHOD = 1 AND [OPMETHOD] IS NULL) OR ([OPMETHOD] = @Original_OPMETHOD)) AND ((@IsNull_OPSETUP = 1 AND [OPSETUP] IS NULL) OR ([OPSETUP] = @Original_OPSETUP)) AND ((@IsNull_OPRUN = 1 AND [OPRUN] IS NULL) OR ([OPRUN] = @Original_OPRUN)) AND ((@IsNull_OPPROG = 1 AND [OPPROG] IS NULL) OR ([OPPROG] = @Original_OPPROG)));
-SELECT OPID, OPNAME + ' - ' + OPDESCR AS FRIENDLYNAME, OPNAME, OPDESCR, OPTYPE, OPMETHOD, OPSETUP, OPRUN, OPPROG FROM CUT_OPS WHERE (OPID = @OPID) ORDER BY FRIENDLYNAME";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OPNAME", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPNAME", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OPDESCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPDESCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OPTYPE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPTYPE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OPMETHOD", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPMETHOD", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OPSETUP", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPSETUP", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OPRUN", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPRUN", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OPPROG", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPPROG", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OPID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OPNAME", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPNAME", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OPNAME", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPNAME", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OPDESCR", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPDESCR", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OPDESCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPDESCR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OPTYPE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPTYPE", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OPTYPE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPTYPE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OPMETHOD", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPMETHOD", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OPMETHOD", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPMETHOD", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OPSETUP", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPSETUP", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OPSETUP", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPSETUP", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OPRUN", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPRUN", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OPRUN", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPRUN", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OPPROG", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPPROG", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OPPROG", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OPPROG", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OPID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "OPID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -24119,13 +24115,40 @@ SELECT OPID, OPNAME + ' - ' + OPDESCR AS FRIENDLYNAME, OPNAME, OPDESCR, OPTYPE, 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        OPID, OPNAME + \' - \' + OPDESCR AS FRIENDLYNAME, OPNAME, OPDESCR, OP" +
-                "TYPE, OPMETHOD, OPSETUP, OPRUN, OPPROG\r\nFROM            CUT_OPS\r\nORDER BY FRIEND" +
-                "LYNAME";
+            this._commandCollection[0].CommandText = @"SELECT      CUT_OPS_TYPES.OTID, CUT_OPS.OPNAME + ' - ' + CUT_OPS.OPDESCR AS FRIENDLYNAME, CUT_OPS.OPNAME, CUT_OPS.OPDESCR, 
+                        CUT_OPS.OPTYPE, CUT_PART_TYPES.TYPEID, CUT_OPS.OPMETHOD, CUT_OPS.OPSETUP, CUT_OPS.OPRUN, CUT_OPS.OPPROG, 
+                        CUT_OPS.OPID
+FROM          CUT_OPS INNER JOIN
+                        CUT_OPS_TYPES ON CUT_OPS.OPID = CUT_OPS_TYPES.OTOP INNER JOIN
+                        CUT_PART_TYPES ON CUT_OPS_TYPES.OTTYPE = CUT_PART_TYPES.TYPEID
+ORDER BY CUT_OPS.OPNAME";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT      CUT_OPS_TYPES.OTID, CUT_OPS.OPID, CUT_OPS.OPNAME + ' - ' + CUT_OPS.OPDESCR AS FRIENDLYNAME, CUT_OPS.OPNAME, 
+                        CUT_OPS.OPDESCR, CUT_OPS.OPTYPE, CUT_PART_TYPES.TYPEID, CUT_OPS.OPMETHOD, CUT_OPS.OPSETUP, CUT_OPS.OPRUN, 
+                        CUT_OPS.OPPROG
+FROM          CUT_OPS INNER JOIN
+                        CUT_OPS_TYPES ON CUT_OPS.OPID = CUT_OPS_TYPES.OTOP INNER JOIN
+                        CUT_PART_TYPES ON CUT_OPS_TYPES.OTTYPE = CUT_PART_TYPES.TYPEID
+WHERE      (CUT_PART_TYPES.TYPEID = @typeid)
+ORDER BY CUT_OPS.OPNAME";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@typeid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "TYPEID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = @"SELECT      CUT_OPS_TYPES.OTID
+FROM          CUT_OPS INNER JOIN
+                        CUT_OPS_TYPES ON CUT_OPS.OPID = CUT_OPS_TYPES.OTOP INNER JOIN
+                        CUT_PART_TYPES ON CUT_OPS_TYPES.OTTYPE = CUT_PART_TYPES.TYPEID
+WHERE      (CUT_OPS.OPID = @opid) AND (CUT_PART_TYPES.TYPEID = @typeid); 
+";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@opid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "OPID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@typeid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "TYPEID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -24155,316 +24178,57 @@ SELECT OPID, OPNAME + ' - ' + OPDESCR AS FRIENDLYNAME, OPNAME, OPDESCR, OPTYPE, 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(ENGINEERINGDataSet.FriendlyCutOpsDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByType(ENGINEERINGDataSet.FriendlyCutOpsDataTable dataTable, int typeid) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(typeid));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(ENGINEERINGDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "FriendlyCutOps");
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ENGINEERINGDataSet.FriendlyCutOpsDataTable GetDataByType(int typeid) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(typeid));
+            ENGINEERINGDataSet.FriendlyCutOpsDataTable dataTable = new ENGINEERINGDataSet.FriendlyCutOpsDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_OPID, string Original_OPNAME, string Original_OPDESCR, global::System.Nullable<int> Original_OPTYPE, global::System.Nullable<int> Original_OPMETHOD, global::System.Nullable<double> Original_OPSETUP, global::System.Nullable<double> Original_OPRUN, global::System.Nullable<bool> Original_OPPROG) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_OPID));
-            if ((Original_OPNAME == null)) {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_OPNAME));
-            }
-            if ((Original_OPDESCR == null)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_OPDESCR));
-            }
-            if ((Original_OPTYPE.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_OPTYPE.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((Original_OPMETHOD.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((int)(Original_OPMETHOD.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            if ((Original_OPSETUP.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((double)(Original_OPSETUP.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            if ((Original_OPRUN.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[12].Value = ((double)(Original_OPRUN.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[12].Value = global::System.DBNull.Value;
-            }
-            if ((Original_OPPROG.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[14].Value = ((bool)(Original_OPPROG.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[14].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+        public virtual object GetOpID(int opid, int typeid) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
+            command.Parameters[0].Value = ((int)(opid));
+            command.Parameters[1].Value = ((int)(typeid));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
+                command.Connection.Open();
             }
+            object returnValue;
             try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
+                    command.Connection.Close();
                 }
             }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string OPNAME, string OPDESCR, global::System.Nullable<int> OPTYPE, global::System.Nullable<int> OPMETHOD, global::System.Nullable<double> OPSETUP, global::System.Nullable<double> OPRUN, global::System.Nullable<bool> OPPROG) {
-            if ((OPNAME == null)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(OPNAME));
+                return ((object)(returnValue));
             }
-            if ((OPDESCR == null)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(OPDESCR));
-            }
-            if ((OPTYPE.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(OPTYPE.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((OPMETHOD.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((int)(OPMETHOD.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((OPSETUP.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((double)(OPSETUP.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((OPRUN.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((double)(OPRUN.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            if ((OPPROG.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((bool)(OPPROG.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    string OPNAME, 
-                    string OPDESCR, 
-                    global::System.Nullable<int> OPTYPE, 
-                    global::System.Nullable<int> OPMETHOD, 
-                    global::System.Nullable<double> OPSETUP, 
-                    global::System.Nullable<double> OPRUN, 
-                    global::System.Nullable<bool> OPPROG, 
-                    int Original_OPID, 
-                    string Original_OPNAME, 
-                    string Original_OPDESCR, 
-                    global::System.Nullable<int> Original_OPTYPE, 
-                    global::System.Nullable<int> Original_OPMETHOD, 
-                    global::System.Nullable<double> Original_OPSETUP, 
-                    global::System.Nullable<double> Original_OPRUN, 
-                    global::System.Nullable<bool> Original_OPPROG, 
-                    int OPID) {
-            if ((OPNAME == null)) {
-                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(OPNAME));
-            }
-            if ((OPDESCR == null)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(OPDESCR));
-            }
-            if ((OPTYPE.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(OPTYPE.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((OPMETHOD.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(OPMETHOD.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((OPSETUP.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((double)(OPSETUP.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((OPRUN.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((double)(OPRUN.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            if ((OPPROG.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(OPPROG.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_OPID));
-            if ((Original_OPNAME == null)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_OPNAME));
-            }
-            if ((Original_OPDESCR == null)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_OPDESCR));
-            }
-            if ((Original_OPTYPE.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_OPTYPE.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
-            }
-            if ((Original_OPMETHOD.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(Original_OPMETHOD.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
-            }
-            if ((Original_OPSETUP.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((double)(Original_OPSETUP.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
-            }
-            if ((Original_OPRUN.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((double)(Original_OPRUN.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
-            }
-            if ((Original_OPPROG.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((bool)(Original_OPPROG.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[22].Value = ((int)(OPID));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string OPNAME, string OPDESCR, global::System.Nullable<int> OPTYPE, global::System.Nullable<int> OPMETHOD, global::System.Nullable<double> OPSETUP, global::System.Nullable<double> OPRUN, global::System.Nullable<bool> OPPROG, int Original_OPID, string Original_OPNAME, string Original_OPDESCR, global::System.Nullable<int> Original_OPTYPE, global::System.Nullable<int> Original_OPMETHOD, global::System.Nullable<double> Original_OPSETUP, global::System.Nullable<double> Original_OPRUN, global::System.Nullable<bool> Original_OPPROG) {
-            return this.Update(OPNAME, OPDESCR, OPTYPE, OPMETHOD, OPSETUP, OPRUN, OPPROG, Original_OPID, Original_OPNAME, Original_OPDESCR, Original_OPTYPE, Original_OPMETHOD, Original_OPSETUP, Original_OPRUN, Original_OPPROG, Original_OPID);
         }
     }
     
@@ -24636,33 +24400,40 @@ SELECT OPID, OPNAME + ' - ' + OPDESCR AS FRIENDLYNAME, OPNAME, OPDESCR, OPTYPE, 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[5];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[6];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        CUT_PART_OPS.POPID, CUT_PART_OPS.POPPART, CUT_PARTS.PARTNUM, CUT_PART_OPS.POPORDER, CUT_PART_OPS.POPOP, CUT_PART_OPS.POPSETUP, 
-                         CUT_PART_OPS.POPRUN, CUT_PART_TYPES.TYPEID, CUT_PART_TYPES.TYPEDESC, CUT_OPS.OPPROG, CUT_OPS.OPSETUP, CUT_OPS.OPRUN
-FROM            CUT_OPS INNER JOIN
-                         CUT_PARTS INNER JOIN
-                         CUT_PART_OPS ON CUT_PARTS.PARTID = CUT_PART_OPS.POPPART INNER JOIN
-                         CUT_OPS_TYPES ON CUT_PART_OPS.POPOP = CUT_OPS_TYPES.OTOP AND CUT_PARTS.TYPE = CUT_OPS_TYPES.OTTYPE INNER JOIN
-                         CUT_PART_TYPES ON CUT_PARTS.TYPE = CUT_PART_TYPES.TYPEID ON CUT_OPS.OPID = CUT_OPS_TYPES.OTOP";
+            this._commandCollection[0].CommandText = @"SELECT      CUT_PART_OPS.POPID, CUT_PART_OPS.POPPART, CUT_PARTS.PARTNUM, CUT_PART_OPS.POPORDER, CUT_PART_OPS.POPOP, 
+                        CUT_PART_OPS.POPSETUP, CUT_PART_OPS.POPRUN, CUT_PART_TYPES.TYPEID, CUT_PART_TYPES.TYPEDESC, CUT_OPS.OPPROG, 
+                        CUT_OPS.OPSETUP, CUT_OPS.OPRUN
+FROM          CUT_OPS INNER JOIN
+                        CUT_PARTS INNER JOIN
+                        CUT_PART_OPS ON CUT_PARTS.PARTID = CUT_PART_OPS.POPPART INNER JOIN
+                        CUT_OPS_TYPES ON CUT_PART_OPS.POPOP = CUT_OPS_TYPES.OTOP AND CUT_PARTS.TYPE = CUT_OPS_TYPES.OTTYPE INNER JOIN
+                        CUT_PART_TYPES ON CUT_PARTS.TYPE = CUT_PART_TYPES.TYPEID ON CUT_OPS.OPID = CUT_OPS_TYPES.OTOP";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT        CUT_PART_OPS.POPID, CUT_PART_OPS.POPPART, CUT_PARTS.PARTNUM, CUT_PART_OPS.POPORDER, CUT_PART_OPS.POPOP, CUT_PART_OPS.POPSETUP, 
-                         CUT_PART_OPS.POPRUN, CUT_PART_TYPES.TYPEID, CUT_PART_TYPES.TYPEDESC, CUT_OPS.OPPROG, CUT_OPS.OPSETUP, CUT_OPS.OPRUN
-FROM            CUT_OPS INNER JOIN
-                         CUT_PARTS INNER JOIN
-                         CUT_PART_OPS ON CUT_PARTS.PARTID = CUT_PART_OPS.POPPART INNER JOIN
-                         CUT_OPS_TYPES ON CUT_PART_OPS.POPOP = CUT_OPS_TYPES.OTOP AND CUT_PARTS.TYPE = CUT_OPS_TYPES.OTTYPE INNER JOIN
-                         CUT_PART_TYPES ON CUT_PARTS.TYPE = CUT_PART_TYPES.TYPEID ON CUT_OPS.OPID = CUT_OPS_TYPES.OTOP
-WHERE        (CUT_PARTS.PARTNUM = @partnum)
-ORDER BY CUT_PART_OPS.POPORDER";
+            this._commandCollection[1].CommandText = "DELETE FROM CUT_PART_OPS\r\nWHERE      (POPID = @popid)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partnum", global::System.Data.SqlDbType.NVarChar, 25, global::System.Data.ParameterDirection.Input, 0, 0, "PARTNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@popid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "POPID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @"SELECT        CUT_PART_OPS.POPID, CUT_PART_OPS.POPPART, CUT_PARTS.PARTNUM, CUT_PART_OPS.POPORDER, CUT_PART_OPS.POPOP, CUT_PART_OPS.POPSETUP, 
+            this._commandCollection[2].CommandText = @"SELECT      CUT_PART_OPS.POPID, CUT_PART_OPS.POPPART, CUT_PARTS.PARTNUM, CUT_PART_OPS.POPORDER, CUT_PART_OPS.POPOP, 
+                        CUT_PART_OPS.POPSETUP, CUT_PART_OPS.POPRUN, CUT_PART_TYPES.TYPEID, CUT_PART_TYPES.TYPEDESC, CUT_OPS.OPPROG, 
+                        CUT_OPS.OPSETUP, CUT_OPS.OPRUN
+FROM          CUT_OPS INNER JOIN
+                        CUT_PARTS INNER JOIN
+                        CUT_PART_OPS ON CUT_PARTS.PARTID = CUT_PART_OPS.POPPART INNER JOIN
+                        CUT_OPS_TYPES ON CUT_PART_OPS.POPOP = CUT_OPS_TYPES.OTOP AND CUT_PARTS.TYPE = CUT_OPS_TYPES.OTTYPE INNER JOIN
+                        CUT_PART_TYPES ON CUT_PARTS.TYPE = CUT_PART_TYPES.TYPEID ON CUT_OPS.OPID = CUT_OPS_TYPES.OTOP
+WHERE      (CUT_PARTS.PARTNUM = @partnum)
+ORDER BY CUT_PART_OPS.POPORDER";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partnum", global::System.Data.SqlDbType.NVarChar, 25, global::System.Data.ParameterDirection.Input, 0, 0, "PARTNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = @"SELECT        CUT_PART_OPS.POPID, CUT_PART_OPS.POPPART, CUT_PARTS.PARTNUM, CUT_PART_OPS.POPORDER, CUT_PART_OPS.POPOP, CUT_PART_OPS.POPSETUP, 
                          CUT_PART_OPS.POPRUN, CUT_PART_TYPES.TYPEID, CUT_PART_TYPES.TYPEDESC, CUT_OPS.OPPROG, CUT_OPS.OPSETUP, CUT_OPS.OPRUN
 FROM            CUT_OPS INNER JOIN
                          CUT_PARTS INNER JOIN
@@ -24670,27 +24441,29 @@ FROM            CUT_OPS INNER JOIN
                          CUT_OPS_TYPES ON CUT_PART_OPS.POPOP = CUT_OPS_TYPES.OTOP AND CUT_PARTS.TYPE = CUT_OPS_TYPES.OTTYPE INNER JOIN
                          CUT_PART_TYPES ON CUT_PARTS.TYPE = CUT_PART_TYPES.TYPEID ON CUT_OPS.OPID = CUT_OPS_TYPES.OTOP
 WHERE        (CUT_PART_OPS.POPPART = @partID) AND (CUT_PART_OPS.POPORDER = @opIndex)";
-            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "POPPART", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@opIndex", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "POPORDER", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = @"SELECT        CUT_PART_OPS.POPID, CUT_PART_OPS.POPPART, CUT_PARTS.PARTNUM, CUT_PART_OPS.POPORDER, CUT_PART_OPS.POPOP, CUT_PART_OPS.POPSETUP, 
-                         CUT_PART_OPS.POPRUN, CUT_PART_TYPES.TYPEID, CUT_PART_TYPES.TYPEDESC, CUT_OPS.OPPROG, CUT_OPS.OPSETUP, CUT_OPS.OPRUN
-FROM            CUT_OPS INNER JOIN
-                         CUT_PARTS INNER JOIN
-                         CUT_PART_OPS ON CUT_PARTS.PARTID = CUT_PART_OPS.POPPART AND CUT_PARTS.PARTID = CUT_PART_OPS.POPPART INNER JOIN
-                         CUT_OPS_TYPES ON CUT_PART_OPS.POPOP = CUT_OPS_TYPES.OTOP AND CUT_PARTS.TYPE = CUT_OPS_TYPES.OTTYPE INNER JOIN
-                         CUT_PART_TYPES ON CUT_PARTS.TYPE = CUT_PART_TYPES.TYPEID ON CUT_OPS.OPID = CUT_OPS_TYPES.OTOP
-WHERE        (CUT_PART_OPS.POPPART = @partID)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "POPPART", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@opIndex", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "POPORDER", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT      MAX(POPORDER) + 1 AS NEXT_IN_ORDER\r\nFROM          CUT_PART_OPS\r\nWHERE" +
-                "      (POPPART = @partID)";
+            this._commandCollection[4].CommandText = @"SELECT      CUT_PART_OPS.POPID, CUT_PART_OPS.POPPART, CUT_PARTS.PARTNUM, CUT_PART_OPS.POPORDER, CUT_PART_OPS.POPOP, 
+                        CUT_PART_OPS.POPSETUP, CUT_PART_OPS.POPRUN, CUT_PART_TYPES.TYPEID, CUT_PART_TYPES.TYPEDESC, CUT_OPS.OPPROG, 
+                        CUT_OPS.OPSETUP, CUT_OPS.OPRUN
+FROM          CUT_OPS INNER JOIN
+                        CUT_PARTS INNER JOIN
+                        CUT_PART_OPS ON CUT_PARTS.PARTID = CUT_PART_OPS.POPPART AND CUT_PARTS.PARTID = CUT_PART_OPS.POPPART INNER JOIN
+                        CUT_OPS_TYPES ON CUT_PART_OPS.POPOP = CUT_OPS_TYPES.OTOP AND CUT_PARTS.TYPE = CUT_OPS_TYPES.OTTYPE INNER JOIN
+                        CUT_PART_TYPES ON CUT_PARTS.TYPE = CUT_PART_TYPES.TYPEID ON CUT_OPS.OPID = CUT_OPS_TYPES.OTOP
+WHERE      (CUT_PART_OPS.POPPART = @partID)
+ORDER BY CUT_PART_OPS.POPORDER";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "POPPART", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[5].Connection = this.Connection;
+            this._commandCollection[5].CommandText = "SELECT      MAX(POPORDER) + 1 AS NEXT_IN_ORDER\r\nFROM          CUT_PART_OPS\r\nWHERE" +
+                "      (POPPART = @partID)";
+            this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "POPPART", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -24722,7 +24495,7 @@ WHERE        (CUT_PART_OPS.POPPART = @partID)";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int FillBy(ENGINEERINGDataSet.CutPartOpsDataTable dataTable, string partnum) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             if ((partnum == null)) {
                 throw new global::System.ArgumentNullException("partnum");
             }
@@ -24740,8 +24513,8 @@ WHERE        (CUT_PART_OPS.POPPART = @partID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual ENGINEERINGDataSet.CutPartOpsDataTable GetDataBy(string partnum) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
+        public virtual ENGINEERINGDataSet.CutPartOpsDataTable GetDataBy1(string partnum) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             if ((partnum == null)) {
                 throw new global::System.ArgumentNullException("partnum");
             }
@@ -24758,7 +24531,7 @@ WHERE        (CUT_PART_OPS.POPPART = @partID)";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int FillByIDnOrder(ENGINEERINGDataSet.CutPartOpsDataTable dataTable, global::System.Nullable<int> partID, global::System.Nullable<int> opIndex) {
-            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand = this.CommandCollection[3];
             if ((partID.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(partID.Value));
             }
@@ -24783,7 +24556,7 @@ WHERE        (CUT_PART_OPS.POPPART = @partID)";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual ENGINEERINGDataSet.CutPartOpsDataTable GetDataByIDnOrder(global::System.Nullable<int> partID, global::System.Nullable<int> opIndex) {
-            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand = this.CommandCollection[3];
             if ((partID.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(partID.Value));
             }
@@ -24806,7 +24579,7 @@ WHERE        (CUT_PART_OPS.POPPART = @partID)";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int FillByPartID(ENGINEERINGDataSet.CutPartOpsDataTable dataTable, global::System.Nullable<int> partID) {
-            this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand = this.CommandCollection[4];
             if ((partID.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(partID.Value));
             }
@@ -24825,7 +24598,7 @@ WHERE        (CUT_PART_OPS.POPPART = @partID)";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual ENGINEERINGDataSet.CutPartOpsDataTable GetDataByPartID(global::System.Nullable<int> partID) {
-            this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand = this.CommandCollection[4];
             if ((partID.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(partID.Value));
             }
@@ -24869,8 +24642,32 @@ WHERE        (CUT_PART_OPS.POPPART = @partID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
+        public virtual int DeleteRowAt(int popid) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
+            command.Parameters[0].Value = ((int)(popid));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual object GetNextInOrder(global::System.Nullable<int> partID) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[5];
             if ((partID.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(partID.Value));
             }
@@ -28998,8 +28795,6 @@ SELECT PID, PROJECT, CUSTID, DESCRIPTION, [DATE ADD], [HAS FIXTURES] FROM SCH_PR
         
         private CUT_PART_TYPESTableAdapter _cUT_PART_TYPESTableAdapter;
         
-        private FriendlyCutOpsTableAdapter _friendlyCutOpsTableAdapter;
-        
         private CutPartOpsTableAdapter _cutPartOpsTableAdapter;
         
         private GEN_CUSTOMERSTableAdapter _gEN_CUSTOMERSTableAdapter;
@@ -29204,20 +28999,6 @@ SELECT PID, PROJECT, CUSTID, DESCRIPTION, [DATE ADD], [HAS FIXTURES] FROM SCH_PR
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public FriendlyCutOpsTableAdapter FriendlyCutOpsTableAdapter {
-            get {
-                return this._friendlyCutOpsTableAdapter;
-            }
-            set {
-                this._friendlyCutOpsTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
         public CutPartOpsTableAdapter CutPartOpsTableAdapter {
             get {
                 return this._cutPartOpsTableAdapter;
@@ -29392,10 +29173,6 @@ SELECT PID, PROJECT, CUSTID, DESCRIPTION, [DATE ADD], [HAS FIXTURES] FROM SCH_PR
                             && (this._cUT_PART_TYPESTableAdapter.Connection != null))) {
                     return this._cUT_PART_TYPESTableAdapter.Connection;
                 }
-                if (((this._friendlyCutOpsTableAdapter != null) 
-                            && (this._friendlyCutOpsTableAdapter.Connection != null))) {
-                    return this._friendlyCutOpsTableAdapter.Connection;
-                }
                 if (((this._cutPartOpsTableAdapter != null) 
                             && (this._cutPartOpsTableAdapter.Connection != null))) {
                     return this._cutPartOpsTableAdapter.Connection;
@@ -29475,9 +29252,6 @@ SELECT PID, PROJECT, CUSTID, DESCRIPTION, [DATE ADD], [HAS FIXTURES] FROM SCH_PR
                     count = (count + 1);
                 }
                 if ((this._cUT_PART_TYPESTableAdapter != null)) {
-                    count = (count + 1);
-                }
-                if ((this._friendlyCutOpsTableAdapter != null)) {
                     count = (count + 1);
                 }
                 if ((this._cutPartOpsTableAdapter != null)) {
@@ -29584,15 +29358,6 @@ SELECT PID, PROJECT, CUSTID, DESCRIPTION, [DATE ADD], [HAS FIXTURES] FROM SCH_PR
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._cutPartOpsTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._friendlyCutOpsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.FriendlyCutOps.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._friendlyCutOpsTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -29775,14 +29540,6 @@ SELECT PID, PROJECT, CUSTID, DESCRIPTION, [DATE ADD], [HAS FIXTURES] FROM SCH_PR
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._cutPartOpsTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._friendlyCutOpsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.FriendlyCutOps.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._friendlyCutOpsTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -29988,14 +29745,6 @@ SELECT PID, PROJECT, CUSTID, DESCRIPTION, [DATE ADD], [HAS FIXTURES] FROM SCH_PR
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._friendlyCutOpsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.FriendlyCutOps.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._friendlyCutOpsTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._cutPartOpsTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.CutPartOps.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -30156,11 +29905,6 @@ SELECT PID, PROJECT, CUSTID, DESCRIPTION, [DATE ADD], [HAS FIXTURES] FROM SCH_PR
             }
             if (((this._cUT_PART_TYPESTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._cUT_PART_TYPESTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
-            if (((this._friendlyCutOpsTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._friendlyCutOpsTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -30344,15 +30088,6 @@ SELECT PID, PROJECT, CUSTID, DESCRIPTION, [DATE ADD], [HAS FIXTURES] FROM SCH_PR
                         adaptersWithAcceptChangesDuringUpdate.Add(this._cUT_PART_TYPESTableAdapter.Adapter);
                     }
                 }
-                if ((this._friendlyCutOpsTableAdapter != null)) {
-                    revertConnections.Add(this._friendlyCutOpsTableAdapter, this._friendlyCutOpsTableAdapter.Connection);
-                    this._friendlyCutOpsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._friendlyCutOpsTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._friendlyCutOpsTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._friendlyCutOpsTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._friendlyCutOpsTableAdapter.Adapter);
-                    }
-                }
                 if ((this._cutPartOpsTableAdapter != null)) {
                     revertConnections.Add(this._cutPartOpsTableAdapter, this._cutPartOpsTableAdapter.Connection);
                     this._cutPartOpsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
@@ -30530,10 +30265,6 @@ SELECT PID, PROJECT, CUSTID, DESCRIPTION, [DATE ADD], [HAS FIXTURES] FROM SCH_PR
                 if ((this._cUT_PART_TYPESTableAdapter != null)) {
                     this._cUT_PART_TYPESTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._cUT_PART_TYPESTableAdapter]));
                     this._cUT_PART_TYPESTableAdapter.Transaction = null;
-                }
-                if ((this._friendlyCutOpsTableAdapter != null)) {
-                    this._friendlyCutOpsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._friendlyCutOpsTableAdapter]));
-                    this._friendlyCutOpsTableAdapter.Transaction = null;
                 }
                 if ((this._cutPartOpsTableAdapter != null)) {
                     this._cutPartOpsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._cutPartOpsTableAdapter]));

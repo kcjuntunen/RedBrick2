@@ -3,6 +3,7 @@ namespace RedBrick2 {
 
 
   public partial class ENGINEERINGDataSet {
+  
     partial class SCH_PROJECTSDataTable {
       public SCH_PROJECTSRow GetCorrectCustomer(string partLookup) {
         string pattern = @"([A-Z]{3,4})(\d{4})";
@@ -16,12 +17,6 @@ namespace RedBrick2 {
         }
         return null;
       }
-    }
-  
-    partial class GEN_CUSTOMERSDataTable {
-    }
-  
-    partial class ECRObjLookupDataTable {
     }
   
     partial class GEN_ODOMETERDataTable {
