@@ -38,8 +38,10 @@ namespace RedBrick2 {
       RevFromFile = revcheck.Length > 1 ? revcheck[1] : null;
       ENGINEERINGDataSet.SCH_PROJECTSRow r = 
         (new ENGINEERINGDataSet.SCH_PROJECTSDataTable()).GetCorrectCustomer(partLookup);
-      ProjectCustomer = (int)r[@"CUSTID"];
-      projectDescr = (string)r[@"DESCRIPTION"];
+      if (r != null) {
+        ProjectCustomer = r.CUSTID;
+        projectDescr = r.DESCRIPTION;
+      }
       //ProjectCustomer = GetCorrectCustomer();
       groupBox5.Text = string.Format(@"{0} - {1}", partLookup, projectDescr);
     }
@@ -52,8 +54,8 @@ namespace RedBrick2 {
         ENGINEERINGDataSetTableAdapters.SCH_PROJECTSTableAdapter spta =
           new ENGINEERINGDataSetTableAdapters.SCH_PROJECTSTableAdapter();
         ENGINEERINGDataSet.SCH_PROJECTSRow row = spta.GetDataByProject(matches.Groups[1].ToString())[0];
-        projectDescr = (string)row[@"DESCRIPTION"];
-        return (int)row[@"CUSTID"];
+        projectDescr = row.DESCRIPTION;
+        return row.CUSTID;
       }
       return 0;
     }
@@ -128,7 +130,7 @@ namespace RedBrick2 {
         //
       }
       if (_row != null) {
-        comboBox15.SelectedValue = _row[@"STATEID"];
+        comboBox15.SelectedValue = _row.STATEID;
       }
     }
 

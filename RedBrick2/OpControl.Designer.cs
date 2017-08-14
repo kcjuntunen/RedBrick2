@@ -216,13 +216,12 @@
       // 
       // button1
       // 
+      this.button1.Image = global::RedBrick2.Properties.Resources.delete_icon;
       this.button1.Location = new System.Drawing.Point(3, 84);
       this.button1.Name = "button1";
       this.button1.Size = new System.Drawing.Size(24, 31);
       this.button1.TabIndex = 9;
-      this.button1.Text = "Edit";
       this.button1.UseVisualStyleBackColor = true;
-      this.button1.Visible = false;
       this.button1.Click += new System.EventHandler(this.button1_Click);
       // 
       // button2
@@ -320,7 +319,7 @@
     private System.Windows.Forms.BindingSource cUTPARTTYPESBindingSource;
     private ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cUT_PART_TYPESTableAdapter;
     private System.Windows.Forms.Label label5;
-    private System.Windows.Forms.Button button1;
+    public System.Windows.Forms.Button button1;
     private System.Windows.Forms.Button button2;
     private System.Windows.Forms.Button button3;
   }
