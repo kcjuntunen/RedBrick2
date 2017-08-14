@@ -43,8 +43,8 @@ namespace RedBrick2 {
       this.tableAdapterManager1.CUT_PART_TYPESTableAdapter = null;
       this.tableAdapterManager1.CUT_PARTSTableAdapter = null;
       this.tableAdapterManager1.CUT_STATESTableAdapter = null;
-      this.tableAdapterManager1.CutPartOpsTableAdapter = null;
-      this.tableAdapterManager1.FriendlyCutOpsTableAdapter = null;
+      //this.tableAdapterManager1.CutPartOpsTableAdapter = null;
+      //this.tableAdapterManager1.FriendlyCutOpsTableAdapter = null;
       this.tableAdapterManager1.GEN_CUSTOMERSTableAdapter = null;
       this.tableAdapterManager1.GEN_ODOMETERTableAdapter = null;
       this.tableAdapterManager1.GEN_USERSTableAdapter = null;

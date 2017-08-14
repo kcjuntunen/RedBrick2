@@ -28,7 +28,7 @@ namespace RedBrick2 {
       int opNo = 1;
       string test = string.Empty;
       string partLookup = Path.GetFileNameWithoutExtension(this.partLookup).Split(' ')[0];
-      foreach (ENGINEERINGDataSet.CutPartOpsRow row in cpo.GetDataBy(partLookup)) {
+      foreach (ENGINEERINGDataSet.CutPartOpsRow row in cpo.GetDataBy1(partLookup)) {
         string opn = string.Format(@"OP{0}", opNo);
         OpProperty op = new OpProperty(opn, true, SwApp, ActiveDoc, @"POPOP");
         string odr = string.Format(@"OP{0}ORDER", opNo);
