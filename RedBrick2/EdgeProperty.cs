@@ -26,14 +26,14 @@ namespace RedBrick2 {
         } else {
           ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter ce =
             new ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter();
-          try {
+          if (value != null) {
             int res;
             if (!int.TryParse(value.ToString(), out res)) {
               res = 0;
             }
             _data = res;
             Value = (string)ce.GetEdgeDescrByID(res);
-          } catch (Exception) {
+          } else {
             _data = 0;
           }
         }
