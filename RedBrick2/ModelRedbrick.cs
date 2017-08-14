@@ -377,7 +377,10 @@ namespace RedBrick2 {
         PropertySet[@"EDGE LEFT (W)"].Data = comboBox4.SelectedValue;
         PropertySet[@"EDGE RIGHT (W)"].Data = comboBox5.SelectedValue;
         PropertySet.Write();
-        PropertySet.opSets.Write();
+        foreach (OpControl item in flowLayoutPanel1.Controls) {
+          item.Write();
+        }
+        //PropertySet.opSets.Write();
       } else if (tabControl1.SelectedTab == tabPage2) {
         drawingRedbrick.Commit();
       }
