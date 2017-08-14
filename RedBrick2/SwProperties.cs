@@ -70,11 +70,11 @@ namespace RedBrick2 {
         item.Value.Write();
         res &= (int)item.Value.WriteResult;
       }
-      if (opSets != null) {
-        foreach (OpSet _opSet in opSets) {
-          _opSet.Write();
-        }
-      }
+      //if (opSets != null) {
+      //  foreach (OpSet _opSet in opSets) {
+      //    _opSet.Write();
+      //  }
+      //}
       return res;
     }
     
