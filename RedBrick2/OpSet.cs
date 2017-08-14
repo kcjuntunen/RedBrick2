@@ -47,8 +47,14 @@ namespace RedBrick2 {
     }
 
     public void Write() {
-      foreach (KeyValuePair<string, SwProperty> item in _innerDict) {
-        item.Value.Write();
+      foreach (SwProperty item in _innerDict.Values) {
+        item.Write();
+      }
+    }
+
+    public void Delete() {
+      foreach (SwProperty item in _innerDict.Values) {
+        item.Delete();
       }
     }
 
@@ -133,31 +139,56 @@ namespace RedBrick2 {
       }
     }
 
+    private int _order = 0;
     public int Order {
-      get { return Order; }
+      get { return _order; }
       set {
-        Order = value;
-        _innerDict[string.Format(@"OP{0}ORDER", Order)].Value = Order.ToString();
+        _order = value;
+        string propName = string.Format(@"OP{0}ORDER", _order);
+        if (_innerDict.ContainsKey(propName)) {
+        _innerDict[propName].Value = _order.ToString();
+        }
       }
     }
 
+    private int _op = 0;
     public int Op {
-      get { return Op; }
+      get { return _op; }
       set {
-        Op = value;
-        _innerDict[string.Format(@"OP{0}", Order)].Value = Op.ToString();
+        _op = value;
+        string propName = string.Format(@"OP{0}", Order);
+        if (_innerDict.ContainsKey(propName)) {
+          _innerDict[propName].Value = _op.ToString();
+        }
       }
     }
 
-    public int SetupTime {
-      get { return SetupTime; }
+    private double _setupTime = 0.0F;
+    public double SetupTime {
+      get { return _setupTime; }
       set {
-        SetupTime = value;
-        _innerDict[string.Format(@"OP{0}SETUP", Order)].Value = SetupTime.ToString();
+        _setupTime = value;
+        string propName = string.Format(@"OP{0}SETUP", Order);
+        if (_innerDict.ContainsKey(propName)) {
+          _innerDict[propName].Value = _setupTime.ToString();
+        }
       }
     }
 
-    public int RunTime { get; set; }
+    private double _runTime = 0.0F;
+    public double RunTime {
+      get {
+        return _runTime;
+      }
+      set {
+        _runTime = value;
+        string propName = string.Format(@"OP{0}RUN", Order);
+        if (_innerDict.ContainsKey(propName)) {
+          _innerDict[propName].Value = _runTime.ToString();
+        }
+      }
+    }
+
     public ModelDoc2 ActiveDoc { get; set; }
     public SldWorks SwApp { get; set; }
   }
