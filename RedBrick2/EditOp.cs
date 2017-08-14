@@ -12,6 +12,10 @@ namespace RedBrick2 {
   public partial class EditOp : Form {
     private ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpota =
       new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
+
+    private ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter cpo =
+      new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter();
+
     private ENGINEERINGDataSet.CutPartOpsRow currentRow;
     private SwProperties PropertySet;
     private int PartID;
@@ -58,15 +62,17 @@ namespace RedBrick2 {
       Text = string.Format(@"Edit Operation {0}", currentRow.POPORDER);
       comboBox1.SelectedValue = currentRow.TYPEID;
       comboBox1.Enabled = currentRow.POPORDER == 1 && currentRow.Table.Rows.Count < 1;
-      friendlyCutOpsBindingSource.Filter = string.Format(@"OPTYPE = {0}", currentRow.TYPEID);
+      friendlyCutOpsBindingSource.Filter = string.Format(@"TYPEID = {0}", currentRow.TYPEID);
 
       if (NewOp) {
         comboBox2.SelectedIndex = 0;
+        //DataRowView cb2 = (comboBox2.SelectedItem as DataRowView);
         currentRow.POPOP = (int)comboBox2.SelectedValue;
+        //currentRow.POPOP = (int)cb2[@"OPID"];
         textBox1.Text = string.Format(Properties.Settings.Default.NumberFormat, 0.0F);
         textBox2.Text = string.Format(Properties.Settings.Default.NumberFormat, 0.0F);
       } else {
-        comboBox2.SelectedValue = currentRow.POPOP;
+        comboBox2.SelectedValue = friendlyCutOpsTableAdapter.GetOpID(currentRow.POPOP, currentRow.TYPEID);
         textBox1.Text = string.Format(Properties.Settings.Default.NumberFormat, currentRow.POPSETUP * 60);
         textBox2.Text = string.Format(Properties.Settings.Default.NumberFormat, currentRow.POPRUN * 60);
       }
@@ -90,7 +96,9 @@ namespace RedBrick2 {
         currentRow.POPRUN = _popr;
       }
 
+      //DataRowView cb2 = (comboBox2.SelectedItem as DataRowView);
       currentRow.POPOP = (int)comboBox2.SelectedValue;
+      //currentRow.POPOP = (int)cb2[@"OPID"];
       currentRow.POPPART = PartID;
 
       currentRow.PARTNUM = string.Empty;
@@ -99,9 +107,11 @@ namespace RedBrick2 {
       currentRow.OPRUN = 0.0F;
       currentRow.OPSETUP = 0.0F;
 
-      if (NewOp) {
+      if (NewOp && PartID > 0) {
         currentRow.Table.Rows.Add(currentRow);
-        cpota.Update((ENGINEERINGDataSet.CutPartOpsDataTable)currentRow.Table);
+        foreach (ENGINEERINGDataSet.CutPartOpsRow row in currentRow.Table.Rows) {
+          cpota.Update(row);
+        }
       } else {
         cpota.Update(currentRow);
       }
