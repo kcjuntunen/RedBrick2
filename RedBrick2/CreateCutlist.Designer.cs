@@ -199,6 +199,7 @@ namespace RedBrick2 {
       this.comboBox3.Size = new System.Drawing.Size(43, 21);
       this.comboBox3.TabIndex = 6;
       this.comboBox3.ValueMember = "REV";
+      this.comboBox3.SelectedValueChanged += new System.EventHandler(this.comboBox3_SelectedValueChanged);
       // 
       // revListBindingSource
       // 

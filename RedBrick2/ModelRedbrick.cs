@@ -152,9 +152,9 @@ namespace RedBrick2 {
           label20.Text = enforce_number_format(PropertySet[@"THICKNESS"].Value);
         }
 
-        label21.Text = enforce_number_format(GetDim(textBox5.Text));
+        label21.Text = enforce_number_format(PropertySet[@"WALL THICKNESS"].Value);
 
-        textBox_TextChanged(PropertySet[@"WALL THICKNESS"].Value, label21);
+        //textBox_TextChanged(PropertySet[@"WALL THICKNESS"].Value, label21);
 
         flowLayoutPanel1.VerticalScroll.Value = scrollOffset.Y;
       } else {
@@ -811,12 +811,8 @@ namespace RedBrick2 {
     }
 
     private void label6_Click(object sender, EventArgs e) {
-      if (!(SwApp.ActiveDoc is PartDoc)) {
-        CreateCutlist c = new CreateCutlist(SwApp);
-        c.ShowDialog(this);
-      } else {
-        SwApp.SendMsgToUser2(@"Can't do that with part docs.", (int)swMessageBoxIcon_e.swMbStop, (int)swMessageBoxBtn_e.swMbOk);
-      }
+      CreateCutlist c = new CreateCutlist(SwApp);
+      c.ShowDialog(this);
     }
   }
 }

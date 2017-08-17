@@ -20,6 +20,9 @@ namespace RedBrick2 {
 
     private FileInfo PartFileInfo;
     private string partLookup = string.Empty;
+    private string _revFromFile = string.Empty;
+    private string _revFromProperties = string.Empty;
+    private string rev = @"100";
     private bool user_changed_item = false;
     private int included_parts = 0;
     int total_parts = 0;
@@ -32,18 +35,27 @@ namespace RedBrick2 {
       Configuration swConf;
       Component2 swRootComp;
       ModelDoc2 m = _swApp.ActiveDoc;
+      if (_swApp.ActiveDoc is DrawingDoc) {
+        SolidWorks.Interop.sldworks.View _v = Redbrick.GetFirstView(_swApp);
+        m = _v.ReferencedDocument;
+      }
       swConfMgr = (ConfigurationManager)m.ConfigurationManager;
       swConf = (Configuration)swConfMgr.ActiveConfiguration;
       swRootComp = (Component2)swConf.GetRootComponent();
 
       PartFileInfo = new FileInfo(m.GetPathName());
-      string[] fi = Path.GetFileNameWithoutExtension(PartFileInfo.Name).Split(' ');
-      partLookup = fi[0];
+      string _pnwe = Path.GetFileNameWithoutExtension(PartFileInfo.Name);
+      partLookup = _pnwe.Split(new string[] { @" " }, StringSplitOptions.RemoveEmptyEntries)[0];
+      settle_rev(_pnwe);
 
       //TraverseModelFeatures(m, 1);
       _swApp.GetUserProgressBar(out pb);
-      if (m.GetType() == (int)swDocumentTypes_e.swDocASSEMBLY) {
+      if (m is AssemblyDoc) {
         TraverseComponent(swRootComp, 1);
+      }
+
+      if (m is PartDoc) {
+        GetPart(m);
       }
       //dataGridView1.DataSource = ToDataTable(_dict, _partlist);
       pb.End();
@@ -51,6 +63,23 @@ namespace RedBrick2 {
       FillTable(_dict, _partlist);
       toolStripStatusLabel2.Text = string.Format("Included Parts: {0}", count_includes());
       toolStripStatusLabel1.Text = string.Format("Total Unique Parts: {0}", dataGridView1.Rows.Count - 1);
+    }
+
+    private void settle_rev(string pnwe) {
+      if (pnwe.ToUpper().Contains(@"REV")) {
+        _revFromFile = pnwe.Split(new string[] { @"REV" }, StringSplitOptions.RemoveEmptyEntries)[1];
+      }
+
+      SwProperty _s = new SwProperty(@"REVISION LEVEL", true, _swApp, _swApp.ActiveDoc);
+      _s.Get();
+      _revFromProperties = _s.Value;
+      rev = _revFromProperties;
+
+      comboBox3.Text = rev;
+      if (_revFromFile != string.Empty && _revFromFile != _revFromProperties) {
+        comboBox3.BackColor = Color.Red;
+        comboBox3.ForeColor = Color.Yellow;
+      }
     }
 
     private int count_includes() {
@@ -73,6 +102,18 @@ namespace RedBrick2 {
         }
       }
       return x;
+    }
+
+    private void GetPart(ModelDoc2 m) {
+      pb.Start(0, 1, @"Enumerating parts...");
+      string name = Path.GetFileNameWithoutExtension(m.GetPathName());
+      SwProperties s = new SwProperties(_swApp);
+      s.GetProperties(m);
+      comboBox5.Text = s[@"DESCRIPTION"].Value;
+      _dict.Add(name, 1);
+      _partlist.Add(name, s);
+      pb.UpdateTitle(m.GetTitle());
+      pb.UpdateProgress(1);
     }
 
     private void TraverseComponent(Component2 swComp, long nLevel) {
@@ -295,7 +336,7 @@ namespace RedBrick2 {
       this.revListTableAdapter.Fill(this.eNGINEERINGDataSet.RevList);
 
       comboBox1.SelectedValue = (new ENGINEERINGDataSet.SCH_PROJECTSDataTable()).GetCorrectCustomer(partLookup)[@"CUSTID"];
-      comboBox2.Text = string.Empty;
+      comboBox2.Text = partLookup;
       dateTimePicker1.Value = DateTime.Now;
       comboBox4.Text = partLookup;
       StringProperty stpr = new StringProperty(@"Description", true, _swApp, _swApp.ActiveDoc as ModelDoc2, string.Empty);
@@ -331,6 +372,14 @@ namespace RedBrick2 {
       if (name == @"Include") {
         int add = (bool)(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewCheckBoxCell).Value ? -1 : 1;
         toolStripStatusLabel2.Text = string.Format("Included Parts: {0}", count_includes(add));
+      }
+    }
+
+    private void comboBox3_SelectedValueChanged(object sender, EventArgs e) {
+      ComboBox _cb = sender as ComboBox;
+      if (_revFromFile == string.Empty || _cb.Text == _revFromFile) {
+        _cb.BackColor = Color.White;
+        _cb.ForeColor = Color.Black;
       }
     }
 
