@@ -12,6 +12,7 @@ namespace RedBrick2 {
     private ModelDoc2 ActiveDoc = null;
     public SwProperties PropertySet;
     private string partLookup = string.Empty;
+    private ENGINEERINGDataSet.CutPartOpsDataTable cpodt;
     private List<OpSet> innerList = new List<OpSet>();
 
     public OpSets(SwProperties props, string partLookup) {
@@ -20,6 +21,38 @@ namespace RedBrick2 {
       PropertySet = props;
       this.partLookup = partLookup;
       Init();
+    }
+
+    public OpSets(SwProperties props, string partLookup, ENGINEERINGDataSet.CutPartOpsDataTable cdt) {
+      cpodt = cdt;
+      SwApp = props.SwApp;
+      ActiveDoc = props.ActiveDoc;
+      PropertySet = props;
+      this.partLookup = partLookup;
+      Init(cpodt);
+    }
+
+    private void Init(ENGINEERINGDataSet.CutPartOpsDataTable dt) {
+      int opNo = 1;
+      string test = string.Empty;
+      string partLookup = Path.GetFileNameWithoutExtension(this.partLookup).Split(' ')[0];
+      foreach (ENGINEERINGDataSet.CutPartOpsRow row in dt.Rows) {
+        string opn = string.Format(@"OP{0}", opNo);
+        OpProperty op = new OpProperty(opn, true, SwApp, ActiveDoc, @"POPOP");
+        string odr = string.Format(@"OP{0}ORDER", opNo);
+        IntProperty oporder = new IntProperty(odr, true, SwApp, ActiveDoc, @"CUT_PART_OPS", @"POPORDER");
+        string stp = string.Format(@"OP{0}SETUP", opNo);
+        DoubleProperty opsetup = new DoubleProperty(stp, true, SwApp, ActiveDoc, @"CUT_PART_OPS", @"POPSETUP");
+        string run = string.Format(@"OP{0}RUN", opNo++);
+        DoubleProperty oprun = new DoubleProperty(run, true, SwApp, ActiveDoc, @"CUT_PART_OPS", @"POPRUN");
+        op.Data = row[@"POPOP"];
+        Add(new OpSet(PropertySet, row, op, oporder, opsetup, oprun));
+        //OpControl opc = new OpControl(row, PropertySet);
+        //opc.Width = flowLayoutPanel1.Width - 25;
+        //flowLayoutPanel1.Controls.Add(opc);
+        //flowLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+        //opc.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+      }
     }
 
     private void Init() {
