@@ -41,24 +41,27 @@ namespace RedBrick2 {
       if (r != null) {
         ProjectCustomer = r.CUSTID;
         projectDescr = r.DESCRIPTION;
+      } else {
+        ProjectCustomer = 0;
+        projectDescr = string.Empty;
       }
       //ProjectCustomer = GetCorrectCustomer();
-      groupBox5.Text = string.Format(@"{0} - {1}", partLookup, projectDescr);
+      groupBox5.Text = projectDescr != string.Empty ? string.Format(@"{0} - {1}", partLookup, projectDescr) : partLookup;
     }
 
-    private int GetCorrectCustomer() {
-      string pattern = @"([A-Z]{3,4})(\d{4})";
-      System.Text.RegularExpressions.Regex r = new System.Text.RegularExpressions.Regex(pattern);
-      System.Text.RegularExpressions.Match matches = System.Text.RegularExpressions.Regex.Match(partLookup, pattern);
-      if (r.IsMatch(partLookup)) {
-        ENGINEERINGDataSetTableAdapters.SCH_PROJECTSTableAdapter spta =
-          new ENGINEERINGDataSetTableAdapters.SCH_PROJECTSTableAdapter();
-        ENGINEERINGDataSet.SCH_PROJECTSRow row = spta.GetDataByProject(matches.Groups[1].ToString())[0];
-        projectDescr = row.DESCRIPTION;
-        return row.CUSTID;
-      }
-      return 0;
-    }
+    //private int GetCorrectCustomer() {
+    //  string pattern = @"([A-Z]{3,4})(\d{4})";
+    //  System.Text.RegularExpressions.Regex r = new System.Text.RegularExpressions.Regex(pattern);
+    //  System.Text.RegularExpressions.Match matches = System.Text.RegularExpressions.Regex.Match(partLookup, pattern);
+    //  if (r.IsMatch(partLookup)) {
+    //    ENGINEERINGDataSetTableAdapters.SCH_PROJECTSTableAdapter spta =
+    //      new ENGINEERINGDataSetTableAdapters.SCH_PROJECTSTableAdapter();
+    //    ENGINEERINGDataSet.SCH_PROJECTSRow row = spta.GetDataByProject(matches.Groups[1].ToString())[0];
+    //    projectDescr = row.DESCRIPTION;
+    //    return row.CUSTID;
+    //  }
+    //  return 0;
+    //}
 
     private void FigureOutCustomer() {
       SwProperty _p = new CustomerProperty(@"CUSTOMER", true, SwApp, ActiveDoc);
@@ -316,6 +319,16 @@ namespace RedBrick2 {
     private void comboBox_Resize(object sender, EventArgs e) {
       ComboBox _me = (sender as ComboBox);
       _me.SelectionLength = 0;
+    }
+
+    private void button2_Click(object sender, EventArgs e) {
+
+    }
+
+    private void button4_Click(object sender, EventArgs e) {
+      SolidWorks.Interop.sldworks.View _v = Redbrick.GetFirstView(SwApp);
+      CreateCutlist c = new CreateCutlist(SwApp);
+      c.ShowDialog(this);      
     }
   }
 }
