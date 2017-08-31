@@ -347,8 +347,10 @@ namespace RedBrick2 {
     }
 
     private int pd_ActiveConfigChangePostNotify() {
+      ModelDoc2 md = ActiveDoc;
       lastModelDoc = null;
-      ActiveDoc = SwApp.ActiveDoc;
+      _activeDoc = null;
+      ReQuery(md);
       return 0;
     }
 
@@ -472,8 +474,14 @@ namespace RedBrick2 {
           Show();
           _activeDoc = value;
 
-          PartFileInfo = new FileInfo(_activeDoc.GetPathName());
-          partLookup = Path.GetFileNameWithoutExtension(PartFileInfo.Name).Split(' ')[0];
+          string _fn = _activeDoc.GetPathName();
+          if (_fn != string.Empty) {
+            PartFileInfo = new FileInfo(_fn);
+            partLookup = Path.GetFileNameWithoutExtension(PartFileInfo.Name).Split(' ')[0];
+          } else {
+            partLookup = null;
+            PartFileInfo = new FileInfo(Path.GetTempFileName());
+          }
 
           swDocumentTypes_e dType = (swDocumentTypes_e)_activeDoc.GetType();
           swDocumentTypes_e odType = (swDocumentTypes_e)(SwApp.ActiveDoc as ModelDoc2).GetType();
