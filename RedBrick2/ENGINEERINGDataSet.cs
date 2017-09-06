@@ -3,6 +3,44 @@ namespace RedBrick2 {
 
 
   public partial class ENGINEERINGDataSet {
+    partial class CUT_EDGESDataTable {
+      public int GetEdgeIDByDescr(string descr) {
+        if (descr != string.Empty) {
+          ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter ceta =
+            new ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter();
+          ENGINEERINGDataSetTableAdapters.CUT_EDGES_XREFTableAdapter cexta =
+            new ENGINEERINGDataSetTableAdapters.CUT_EDGES_XREFTableAdapter();
+          int id = (int)cexta.GetEdgeID(descr);
+          ENGINEERINGDataSet.CUT_EDGESDataTable dt = ceta.GetDataByEdgeID(id);
+          if (dt.Rows.Count > 0) {
+            return dt[0].EDGEID;
+          }
+        }
+        return -1;
+      }
+    }
+    
+    partial class CUT_MATERIALSDataTable {
+      public int GetMaterialIDByDescr(string descr) {
+        if (descr != string.Empty) {
+          ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cmta =
+            new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter();
+          ENGINEERINGDataSet.CUT_MATERIALSDataTable dt = cmta.GetDataByDescr(descr);
+          if (dt.Rows.Count > 0)
+            return dt[0].MATID;
+        }
+        return -1;
+      }
+
+      public CUT_MATERIALSRow GetMaterial(int id) {
+        ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cmta =
+          new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter();
+        ENGINEERINGDataSet.CUT_MATERIALSDataTable dt = cmta.GetDataByMatID(id);
+        if (dt.Rows.Count > 0)
+          return dt[0];
+        return null;
+      }
+    }
   
     partial class SCH_PROJECTSDataTable {
       public SCH_PROJECTSRow GetCorrectCustomer(string partLookup) {

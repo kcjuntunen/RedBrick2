@@ -19,6 +19,8 @@ namespace RedBrick2 {
 
     private SelectionMgr swSelMgr;
     private Component2 swSelComp;
+    private ConfigurationManager configurationManager;
+    private string configuration;
     private AssemblyDoc ad;
     private PartDoc pd;
     private DrawingDoc dd;
@@ -123,6 +125,11 @@ namespace RedBrick2 {
       }
     }
 
+    public void DumpActiveDoc() {
+      lastModelDoc = null;
+      _activeDoc = null;
+    }
+
     public void ReQuery(ModelDoc2 md) {
       ActiveDoc = md;
     }
@@ -147,12 +154,12 @@ namespace RedBrick2 {
           label19.Text = enforce_number_format(width);
           label20.Text = enforce_number_format(thickness);
         } else {
-          label18.Text = enforce_number_format(PropertySet[@"LENGTH"].Value);
-          label19.Text = enforce_number_format(PropertySet[@"WIDTH"].Value);
-          label20.Text = enforce_number_format(PropertySet[@"THICKNESS"].Value);
+          label18.Text = enforce_number_format(PropertySet[@"LENGTH"].ResolvedValue);
+          label19.Text = enforce_number_format(PropertySet[@"WIDTH"].ResolvedValue);
+          label20.Text = enforce_number_format(PropertySet[@"THICKNESS"].ResolvedValue);
         }
 
-        label21.Text = enforce_number_format(PropertySet[@"WALL THICKNESS"].Value);
+        label21.Text = enforce_number_format(PropertySet[@"WALL THICKNESS"].ResolvedValue);
 
         //textBox_TextChanged(PropertySet[@"WALL THICKNESS"].Value, label21);
 
@@ -175,6 +182,33 @@ namespace RedBrick2 {
         cutlistPartsTableAdapter.FillByPartNum(eNGINEERINGDataSet.CutlistParts, partLookup);
         cutlistPartsBindingSource.DataSource = cutlistPartsTableAdapter.GetDataByPartNum(partLookup);
         cUTPARTSBindingSource.DataSource = cUT_PARTSTableAdapter.GetDataByPartnum(partLookup);
+      }
+      if (Row == null) {
+        ENGINEERINGDataSet.CUT_MATERIALSDataTable md =
+          new ENGINEERINGDataSet.CUT_MATERIALSDataTable();
+        int mr = md.GetMaterialIDByDescr(PropertySet["CUTLIST MATERIAL"].Value);
+        comboBox1.SelectedValue = mr;
+        ENGINEERINGDataSet.CUT_EDGESDataTable ed =
+          new ENGINEERINGDataSet.CUT_EDGESDataTable();
+        int er = ed.GetEdgeIDByDescr(PropertySet["EDGE FRONT (L)"].Value);
+        comboBox2.SelectedValue = er;
+        er = ed.GetEdgeIDByDescr(PropertySet["EDGE BACK (L)"].Value);
+        comboBox3.SelectedValue = er;
+        er = ed.GetEdgeIDByDescr(PropertySet["EDGE RIGHT (W)"].Value);
+        comboBox5.SelectedValue = er;
+        er = ed.GetEdgeIDByDescr(PropertySet["EDGE LEFT (W)"].Value);
+        comboBox4.SelectedValue = er;
+
+        textBox1.Text = PropertySet["Description"].Value;
+        textBox6.Text = PropertySet["COMMENT"].Value;
+        textBox7.Text = PropertySet["CNC1"].Value;
+        textBox8.Text = PropertySet["CNC2"].Value;
+        ov_userediting = true;
+        textBox9.Text = enforce_number_format(PropertySet["OVERL"].Value);
+        ov_userediting = true;
+        textBox10.Text = enforce_number_format(PropertySet["OVERW"].Value);
+        textBox11.Text = PropertySet["BLANK QTY"].Value;
+        checkBox1.Checked = (bool)PropertySet["UPDATE CNC"].Data;
       }
     }
 
@@ -258,7 +292,7 @@ namespace RedBrick2 {
     private void DisconnectEvents() {
       if (SwApp.ActiveDoc != lastModelDoc) {
         DisconnectAssemblyEvents();
-        lastModelDoc = SwApp.ActiveDoc;
+        //lastModelDoc = SwApp.ActiveDoc;
       }
       DisconnectPartEvents();
       DisconnectDrawingEvents();
@@ -313,10 +347,17 @@ namespace RedBrick2 {
         swSelComp = swSelMgr.GetSelectedObject6(1, -1);
       }
       if (swSelComp != null) {
+        Component = swSelComp;
+        configurationManager = (swSelComp.GetModelDoc2() as ModelDoc2).ConfigurationManager;
+        configuration = swSelComp.ReferencedConfiguration;
         ActiveDoc = swSelComp.GetModelDoc2();
       } else {
         // Nothing's selected?
         // Just look at the root item then.
+        configurationManager = SwApp.ActiveDoc.ConfigurationManager;
+        configuration = configurationManager.ActiveConfiguration.Name;
+        groupBox1.Text = string.Format(@"{0} - {1}",
+          partLookup, PropertySet.Configuration);
         ActiveDoc = SwApp.ActiveDoc;
       }
       return 0;
@@ -341,14 +382,14 @@ namespace RedBrick2 {
     }
 
     private int pd_FileSavePostNotify(int saveType, string FileName) {
-      lastModelDoc = null;
+      DumpActiveDoc();
       ActiveDoc = SwApp.ActiveDoc;
       return 0;
     }
 
     private int pd_ActiveConfigChangePostNotify() {
       ModelDoc2 md = ActiveDoc;
-      lastModelDoc = null;
+      DumpActiveDoc();
       _activeDoc = null;
       ReQuery(md);
       return 0;
@@ -414,29 +455,28 @@ namespace RedBrick2 {
         PropertySet.Clear();
       }
 
-      string _configname = string.Empty;
-
-      if (!(ActiveDoc is DrawingDoc)) {
-        _configname = ActiveDoc.ConfigurationManager.ActiveConfiguration.Name;
+      if (!(_activeDoc is DrawingDoc)) {
+        configuration = _activeDoc.ConfigurationManager.ActiveConfiguration.Name;
       }
+
       if (Component != null) {
-        _configname = (Component.GetModelDoc2() as ModelDoc2).ConfigurationManager.ActiveConfiguration.Name;
-        PropertySet.Configuration = _configname;
+        //AssemblyDoc ad = (AssemblyDoc)SwApp.ActiveDoc;
+
+        configuration = Component.ReferencedConfiguration;
+        PropertySet.Configuration = configuration;
         PropertySet.GetProperties(Component);
       } else {
-        _configname = ActiveDoc.ConfigurationManager.ActiveConfiguration.Name;
-        PropertySet.Configuration = _configname;
-        PropertySet.GetProperties(ActiveDoc);
+        configuration = _activeDoc.ConfigurationManager.ActiveConfiguration.Name;
+        PropertySet.Configuration = configuration;
+        PropertySet.GetProperties(_activeDoc);
       }
-      groupBox1.Text = string.Format(@"{0} - {1}",
-        partLookup, _configname);
 
       Hash = Redbrick.GetHash(PartFileInfo.FullName);
-      if (lastModelDoc != ActiveDoc) {
+      if (lastModelDoc != _activeDoc) {
         ReQuery();
       }
 
-      lastModelDoc = ActiveDoc;
+      lastModelDoc = _activeDoc;
       //tabControl1.SelectedTab = tabPage1;
       DisconnectPartEvents();
       ConnectPartEvents();
@@ -449,6 +489,9 @@ namespace RedBrick2 {
       if (float.TryParse(textBox10.Text, out _val)) {
         calculate_blanksize_from_oversize(_val, textBox13, width, get_edge_thickness_total(comboBox2, comboBox3));
       }
+
+      groupBox1.Text = string.Format(@"{0} - {1}",
+        partLookup, configuration);
     }
 
     public int PartID { get; set; }
@@ -472,6 +515,7 @@ namespace RedBrick2 {
         //allowPaint = false;
         if (value != null && value != ActiveDoc) {
           Show();
+          lastModelDoc = _activeDoc;
           _activeDoc = value;
 
           string _fn = _activeDoc.GetPathName();
@@ -538,12 +582,12 @@ namespace RedBrick2 {
               SetupPart();
               break;
             default:
-              Hide();
+              //Hide();
               break;
           }
         } else {
           if (value == null) {
-            Hide();
+            //Hide();
           }
         }
         allowPaint = true;

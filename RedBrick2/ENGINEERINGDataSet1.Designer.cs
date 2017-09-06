@@ -19995,7 +19995,7 @@ SELECT MATID, DESCR, COLOR, THICKNESS, GRAIN, TYPE, OLD_DESCR FROM CUT_MATERIALS
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT MATID, DESCR, COLOR, THICKNESS, GRAIN, TYPE, OLD_DESCR FROM dbo.CUT_MATERI" +
@@ -20003,16 +20003,22 @@ SELECT MATID, DESCR, COLOR, THICKNESS, GRAIN, TYPE, OLD_DESCR FROM CUT_MATERIALS
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        MATID, DESCR, COLOR, THICKNESS, GRAIN, TYPE, OLD_DESCR\r\nFROM       " +
-                "     CUT_MATERIALS\r\nWHERE        (MATID = @matID)";
+            this._commandCollection[1].CommandText = "SELECT      MATID, DESCR, COLOR, THICKNESS, GRAIN, TYPE, OLD_DESCR\r\nFROM         " +
+                " CUT_MATERIALS\r\nWHERE      (DESCR = @descr)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@matID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "MATID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@descr", global::System.Data.SqlDbType.NVarChar, 45, global::System.Data.ParameterDirection.Input, 0, 0, "DESCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT        MATID\r\nFROM            CUT_MATERIALS\r\nWHERE        (OLD_DESCR = @de" +
-                "scr)";
+            this._commandCollection[2].CommandText = "SELECT        MATID, DESCR, COLOR, THICKNESS, GRAIN, TYPE, OLD_DESCR\r\nFROM       " +
+                "     CUT_MATERIALS\r\nWHERE        (MATID = @matID)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@descr", global::System.Data.SqlDbType.NVarChar, 45, global::System.Data.ParameterDirection.Input, 0, 0, "OLD_DESCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@matID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "MATID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = "SELECT        MATID\r\nFROM            CUT_MATERIALS\r\nWHERE        (OLD_DESCR = @de" +
+                "scr)";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@descr", global::System.Data.SqlDbType.NVarChar, 45, global::System.Data.ParameterDirection.Input, 0, 0, "OLD_DESCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -20043,8 +20049,44 @@ SELECT MATID, DESCR, COLOR, THICKNESS, GRAIN, TYPE, OLD_DESCR FROM CUT_MATERIALS
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByMatID(ENGINEERINGDataSet.CUT_MATERIALSDataTable dataTable, int matID) {
+        public virtual int FillByDescr(ENGINEERINGDataSet.CUT_MATERIALSDataTable dataTable, string descr) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((descr == null)) {
+                throw new global::System.ArgumentNullException("descr");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(descr));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ENGINEERINGDataSet.CUT_MATERIALSDataTable GetDataByDescr(string descr) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((descr == null)) {
+                throw new global::System.ArgumentNullException("descr");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(descr));
+            }
+            ENGINEERINGDataSet.CUT_MATERIALSDataTable dataTable = new ENGINEERINGDataSet.CUT_MATERIALSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByMatID(ENGINEERINGDataSet.CUT_MATERIALSDataTable dataTable, int matID) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(matID));
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -20058,7 +20100,7 @@ SELECT MATID, DESCR, COLOR, THICKNESS, GRAIN, TYPE, OLD_DESCR FROM CUT_MATERIALS
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual ENGINEERINGDataSet.CUT_MATERIALSDataTable GetDataByMatID(int matID) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(matID));
             ENGINEERINGDataSet.CUT_MATERIALSDataTable dataTable = new ENGINEERINGDataSet.CUT_MATERIALSDataTable();
             this.Adapter.Fill(dataTable);
@@ -20284,7 +20326,7 @@ SELECT MATID, DESCR, COLOR, THICKNESS, GRAIN, TYPE, OLD_DESCR FROM CUT_MATERIALS
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual global::System.Nullable<int> GetMaterialID(string descr) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
             if ((descr == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
