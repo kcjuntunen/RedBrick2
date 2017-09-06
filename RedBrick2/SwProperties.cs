@@ -132,6 +132,7 @@ namespace RedBrick2 {
         Add(item);
       }
     }
+
     #region inherited
     /// <summary>
     /// Add a new property to a set of properties.

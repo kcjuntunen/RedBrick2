@@ -67,7 +67,7 @@ namespace RedBrick2 {
       if ((swCommands_e)Command == swCommands_e.swCommands_Make_Lightweight ||
         (swCommands_e)Command == swCommands_e.swCommands_Lightweight_Toggle ||
         (swCommands_e)Command == swCommands_e.swCommands_Lightweight_All) {
-        mrb.Hide();
+          mrb.Enabled = false;
       }
 
       return 0;
@@ -194,6 +194,7 @@ namespace RedBrick2 {
 
     internal void ReStart() {
       ModelDocs.Clear();
+      mrb.DumpActiveDoc();
       if (SwApp == null) {
         SwApp = RequestSW();
       }
