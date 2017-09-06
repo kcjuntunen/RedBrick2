@@ -158,5 +158,17 @@
     <Setting Name="EditOpSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">200, 260</Value>
     </Setting>
+    <Setting Name="WarnBackground" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Red</Value>
+    </Setting>
+    <Setting Name="WarnForeground" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Yellow</Value>
+    </Setting>
+    <Setting Name="NormalBackground" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">White</Value>
+    </Setting>
+    <Setting Name="NormalForeground" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

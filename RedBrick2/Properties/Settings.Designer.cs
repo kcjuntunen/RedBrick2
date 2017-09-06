@@ -582,5 +582,53 @@ namespace RedBrick2.Properties {
                 this["EditOpSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Red")]
+        public global::System.Drawing.Color WarnBackground {
+            get {
+                return ((global::System.Drawing.Color)(this["WarnBackground"]));
+            }
+            set {
+                this["WarnBackground"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Yellow")]
+        public global::System.Drawing.Color WarnForeground {
+            get {
+                return ((global::System.Drawing.Color)(this["WarnForeground"]));
+            }
+            set {
+                this["WarnForeground"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color NormalBackground {
+            get {
+                return ((global::System.Drawing.Color)(this["NormalBackground"]));
+            }
+            set {
+                this["NormalBackground"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color NormalForeground {
+            get {
+                return ((global::System.Drawing.Color)(this["NormalForeground"]));
+            }
+            set {
+                this["NormalForeground"] = value;
+            }
+        }
     }
 }
