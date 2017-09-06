@@ -19,10 +19,13 @@ namespace RedBrick2 {
     private SldWorks _swApp;
 
     private FileInfo PartFileInfo;
+    private string topName = string.Empty;
     private string partLookup = string.Empty;
     private string _revFromFile = string.Empty;
     private string _revFromProperties = string.Empty;
     private string rev = @"100";
+    private bool rev_changed_by_user = false;
+    private bool rev_in_filename = false;
     private bool user_changed_item = false;
     private int included_parts = 0;
     int total_parts = 0;
@@ -35,6 +38,10 @@ namespace RedBrick2 {
       Configuration swConf;
       Component2 swRootComp;
       ModelDoc2 m = _swApp.ActiveDoc;
+
+      topName = Path.GetFileNameWithoutExtension(m.GetPathName());
+      rev_in_filename = topName.Contains(@"REV");
+
       if (_swApp.ActiveDoc is DrawingDoc) {
         SolidWorks.Interop.sldworks.View _v = Redbrick.GetFirstView(_swApp);
         m = _v.ReferencedDocument;
@@ -46,7 +53,6 @@ namespace RedBrick2 {
       PartFileInfo = new FileInfo(m.GetPathName());
       string _pnwe = Path.GetFileNameWithoutExtension(PartFileInfo.Name);
       partLookup = _pnwe.Split(new string[] { @" " }, StringSplitOptions.RemoveEmptyEntries)[0];
-      settle_rev(_pnwe);
 
       //TraverseModelFeatures(m, 1);
       _swApp.GetUserProgressBar(out pb);
@@ -65,9 +71,55 @@ namespace RedBrick2 {
       toolStripStatusLabel1.Text = string.Format("Total Unique Parts: {0}", dataGridView1.Rows.Count - 1);
     }
 
+    private void CreateCutlist_Load(object sender, EventArgs e) {
+      // TODO: This line of code loads data into the 'eNGINEERINGDataSet.CUT_CUTLISTS' table. You can move, or remove it, as needed.
+      //this.cUT_CUTLISTSTableAdapter.Fill(this.eNGINEERINGDataSet.CUT_CUTLISTS);
+      // TODO: This line of code loads data into the 'eNGINEERINGDataSet.GEN_CUSTOMERS' table. You can move, or remove it, as needed.
+      this.gEN_CUSTOMERSTableAdapter.Fill(this.eNGINEERINGDataSet.GEN_CUSTOMERS);
+      if (Properties.Settings.Default.OnlyCurrentCustomers) {
+        gENCUSTOMERSBindingSource.Filter = @"CUSTACTIVE = True";
+      }
+      this.revListTableAdapter.Fill(this.eNGINEERINGDataSet.RevList);
+
+      ENGINEERINGDataSet.SCH_PROJECTSRow spr = (new ENGINEERINGDataSet.SCH_PROJECTSDataTable()).GetCorrectCustomer(partLookup);
+      if (spr != null) {
+        comboBox1.SelectedValue = spr.CUSTID;
+      } else {
+        CustomerProperty _cp = new CustomerProperty(@"CUSTOMER", true, _swApp, _swApp.ActiveDoc);
+        _cp.Get();
+        comboBox1.SelectedIndex = comboBox1.FindString(_cp.Value.Split('-')[0].Trim());
+      }
+      dateTimePicker1.Value = DateTime.Now;
+      settle_rev(topName);
+      get_names();
+    }
+
+    private void get_names() {
+      StringProperty stpr = null;
+      if (_swApp.ActiveDoc is DrawingDoc) {
+        SolidWorks.Interop.sldworks.View _v = Redbrick.GetFirstView(_swApp);
+        stpr = new StringProperty(@"Description", true, _swApp, _v.ReferencedDocument, string.Empty);
+      } else {
+        stpr = new StringProperty(@"Description", true, _swApp, _swApp.ActiveDoc, string.Empty);
+      }
+
+      stpr.Get();
+
+      comboBox5.Text = stpr.Value;
+      comboBox2.Text = topName;
+      if (rev_in_filename) {
+        comboBox4.Text = string.Format(@"{0} REV {1}", topName, rev);
+      } else {
+        comboBox4.Text = topName;
+      }
+
+    }
+
     private void settle_rev(string pnwe) {
-      if (pnwe.ToUpper().Contains(@"REV")) {
-        _revFromFile = pnwe.Split(new string[] { @"REV" }, StringSplitOptions.RemoveEmptyEntries)[1];
+      string[] strings = pnwe.Split(new string[] { @"REV" }, StringSplitOptions.RemoveEmptyEntries);
+      topName = strings[0];
+      if (rev_in_filename) {
+        _revFromFile = strings[1].Trim();
       }
 
       SwProperty _s = new SwProperty(@"REVISION LEVEL", true, _swApp, _swApp.ActiveDoc);
@@ -75,10 +127,19 @@ namespace RedBrick2 {
       _revFromProperties = _s.Value;
       rev = _revFromProperties;
 
-      comboBox3.Text = rev;
       if (_revFromFile != string.Empty && _revFromFile != _revFromProperties) {
-        comboBox3.BackColor = Color.Red;
-        comboBox3.ForeColor = Color.Yellow;
+        warn(comboBox3);
+      }
+
+      set_rev(rev);
+    }
+
+    private void set_rev(string r) {
+      int idx = comboBox3.FindString(r);
+      if (idx > -1) {
+        comboBox3.SelectedIndex = idx;
+      } else {
+        comboBox3.Text = r;
       }
     }
 
@@ -109,6 +170,8 @@ namespace RedBrick2 {
       string name = Path.GetFileNameWithoutExtension(m.GetPathName());
       SwProperties s = new SwProperties(_swApp);
       s.GetProperties(m);
+      comboBox2.Text = partLookup;
+      comboBox4.Text = partLookup;
       comboBox5.Text = s[@"DESCRIPTION"].Value;
       _dict.Add(name, 1);
       _partlist.Add(name, s);
@@ -138,9 +201,7 @@ namespace RedBrick2 {
         if (name.Contains("/")) {
           name = name.Substring(name.LastIndexOf('/') + 1);
         }
-        //Frame f = _swApp.Frame();
         pb.UpdateTitle(name);
-        //f.SetStatusBarText(name);
 
         ModelDoc2 md = (swChildComp.GetModelDoc2() as ModelDoc2);
         if (md != null && md.GetType() == (int)swDocumentTypes_e.swDocPART) {
@@ -309,6 +370,16 @@ namespace RedBrick2 {
       }
     }
 
+    private void warn(Control c) {
+      c.ForeColor = Properties.Settings.Default.WarnForeground;
+      c.BackColor = Properties.Settings.Default.WarnBackground;
+    }
+
+    private void unwarn(Control c) {
+      c.ForeColor = Properties.Settings.Default.NormalForeground;
+      c.BackColor = Properties.Settings.Default.NormalBackground;
+    }
+
     private void CreateCutlist_Shown(object sender, EventArgs e) {
       dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.DisplayedCells);
     }
@@ -325,31 +396,11 @@ namespace RedBrick2 {
       }
     }
 
-    private void CreateCutlist_Load(object sender, EventArgs e) {
-      // TODO: This line of code loads data into the 'eNGINEERINGDataSet.CUT_CUTLISTS' table. You can move, or remove it, as needed.
-      //this.cUT_CUTLISTSTableAdapter.Fill(this.eNGINEERINGDataSet.CUT_CUTLISTS);
-      // TODO: This line of code loads data into the 'eNGINEERINGDataSet.GEN_CUSTOMERS' table. You can move, or remove it, as needed.
-      this.gEN_CUSTOMERSTableAdapter.Fill(this.eNGINEERINGDataSet.GEN_CUSTOMERS);
-      if (Properties.Settings.Default.OnlyCurrentCustomers) {
-        gENCUSTOMERSBindingSource.Filter = @"CUSTACTIVE = True";
-      }
-      this.revListTableAdapter.Fill(this.eNGINEERINGDataSet.RevList);
-
-      comboBox1.SelectedValue = (new ENGINEERINGDataSet.SCH_PROJECTSDataTable()).GetCorrectCustomer(partLookup)[@"CUSTID"];
-      comboBox2.Text = partLookup;
-      dateTimePicker1.Value = DateTime.Now;
-      comboBox4.Text = partLookup;
-      StringProperty stpr = new StringProperty(@"Description", true, _swApp, _swApp.ActiveDoc as ModelDoc2, string.Empty);
-      stpr.Get();
-      comboBox5.Text = stpr.Value;
-
-    }
-
     private void comboBox2_SelectedIndexChanged(object sender, EventArgs e) {
       if (user_changed_item) {
         ComboBox c = sender as ComboBox;
         DataRowView dr = c.SelectedItem as DataRowView;
-        comboBox3.Text = dr[@"REV"].ToString();
+        set_rev(dr[@"REV"].ToString());
         comboBox1.SelectedValue = (int)dr[@"CUSTID"];
         dateTimePicker1.Value = DateTime.Parse(dr[@"CDATE"].ToString());
         user_changed_item = false;
@@ -358,10 +409,14 @@ namespace RedBrick2 {
 
     private void comboBox1_MouseClick(object sender, MouseEventArgs e) {
       user_changed_item = true;
+      if (sender is Control) {
+        unwarn((Control)sender);
+      }
     }
 
     private void comboBox2_KeyDown(object sender, KeyEventArgs e) {
       user_changed_item = true;
+      unwarn((Control)sender);
     }
 
     private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e) {
@@ -376,11 +431,21 @@ namespace RedBrick2 {
     }
 
     private void comboBox3_SelectedValueChanged(object sender, EventArgs e) {
-      ComboBox _cb = sender as ComboBox;
-      if (_revFromFile == string.Empty || _cb.Text == _revFromFile) {
-        _cb.BackColor = Color.White;
-        _cb.ForeColor = Color.Black;
+      if (rev_changed_by_user) {
+        ComboBox _cb = sender as ComboBox;
+        if (_revFromFile == string.Empty || _cb.Text == _revFromFile) {
+          unwarn(_cb);
+        }
+        rev = _cb.Text;
+        if (rev_in_filename) {
+          comboBox4.Text = string.Format(@"{0} REV {1}", topName, rev);
+        }
+        rev_changed_by_user = false;
       }
+    }
+
+    private void comboBox3_MouseClick(object sender, MouseEventArgs e) {
+      rev_changed_by_user = true;
     }
 
     //public object DataSource {

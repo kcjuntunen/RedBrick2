@@ -200,6 +200,7 @@ namespace RedBrick2 {
       this.comboBox3.TabIndex = 6;
       this.comboBox3.ValueMember = "REV";
       this.comboBox3.SelectedValueChanged += new System.EventHandler(this.comboBox3_SelectedValueChanged);
+      this.comboBox3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox3_MouseClick);
       // 
       // revListBindingSource
       // 
