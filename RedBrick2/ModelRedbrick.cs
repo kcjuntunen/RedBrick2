@@ -186,17 +186,33 @@ namespace RedBrick2 {
       if (Row == null) {
         ENGINEERINGDataSet.CUT_MATERIALSDataTable md =
           new ENGINEERINGDataSet.CUT_MATERIALSDataTable();
-        int mr = md.GetMaterialIDByDescr(PropertySet["CUTLIST MATERIAL"].Value);
+        int mr = (int)PropertySet["MATID"].Data;
+        if (mr < 1) {
+          mr = md.GetMaterialIDByDescr(PropertySet["CUTLIST MATERIAL"].Value);
+        }
         comboBox1.SelectedValue = mr;
         ENGINEERINGDataSet.CUT_EDGESDataTable ed =
           new ENGINEERINGDataSet.CUT_EDGESDataTable();
-        int er = ed.GetEdgeIDByDescr(PropertySet["EDGE FRONT (L)"].Value);
+        int er = (int)PropertySet["EFID"].Data;
+        if (er < 1) {
+          er = ed.GetEdgeIDByDescr(PropertySet["EDGE FRONT (L)"].Value);
+        }
         comboBox2.SelectedValue = er;
-        er = ed.GetEdgeIDByDescr(PropertySet["EDGE BACK (L)"].Value);
+        er = (int)PropertySet["EBID"].Data;
+        if (er < 1) {
+          er = ed.GetEdgeIDByDescr(PropertySet["EDGE BACK (L)"].Value);
+        }
         comboBox3.SelectedValue = er;
-        er = ed.GetEdgeIDByDescr(PropertySet["EDGE RIGHT (W)"].Value);
+        er = (int)PropertySet["ERID"].Data;
+        if (er < 1) {
+          er = ed.GetEdgeIDByDescr(PropertySet["EDGE RIGHT (W)"].Value);
+        }
         comboBox5.SelectedValue = er;
-        er = ed.GetEdgeIDByDescr(PropertySet["EDGE LEFT (W)"].Value);
+        
+        er = (int)PropertySet["ELID"].Data;
+        if (er < 1) {
+          er = ed.GetEdgeIDByDescr(PropertySet["EDGE LEFT (W)"].Value);
+        }
         comboBox4.SelectedValue = er;
 
         textBox1.Text = PropertySet["Description"].Value;
