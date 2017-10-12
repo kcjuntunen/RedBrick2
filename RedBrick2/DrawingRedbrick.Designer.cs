@@ -372,7 +372,7 @@ namespace RedBrick2 {
       this.groupBox6.Controls.Add(this.tableLayoutPanel6);
       this.groupBox6.Location = new System.Drawing.Point(3, 226);
       this.groupBox6.Name = "groupBox6";
-      this.groupBox6.Size = new System.Drawing.Size(347, 260);
+      this.groupBox6.Size = new System.Drawing.Size(347, 271);
       this.groupBox6.TabIndex = 1;
       this.groupBox6.TabStop = false;
       this.groupBox6.Text = "Materials";
@@ -525,6 +525,7 @@ namespace RedBrick2 {
       this.comboBox7.TabIndex = 10;
       this.comboBox7.ValueMember = "DMATID";
       this.comboBox7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+      this.comboBox7.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyUp);
       this.comboBox7.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // cUTDRAWINGMATERIALSBindingSource
@@ -547,6 +548,7 @@ namespace RedBrick2 {
       this.comboBox8.TabIndex = 11;
       this.comboBox8.ValueMember = "DMATID";
       this.comboBox8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+      this.comboBox8.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyUp);
       this.comboBox8.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // cUTDRAWINGMATERIALSBindingSource1
@@ -569,6 +571,7 @@ namespace RedBrick2 {
       this.comboBox9.TabIndex = 12;
       this.comboBox9.ValueMember = "DMATID";
       this.comboBox9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+      this.comboBox9.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyUp);
       this.comboBox9.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // cUTDRAWINGMATERIALSBindingSource2
@@ -591,6 +594,7 @@ namespace RedBrick2 {
       this.comboBox10.TabIndex = 13;
       this.comboBox10.ValueMember = "DMATID";
       this.comboBox10.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+      this.comboBox10.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyUp);
       this.comboBox10.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // cUTDRAWINGMATERIALSBindingSource3
@@ -613,6 +617,7 @@ namespace RedBrick2 {
       this.comboBox11.TabIndex = 14;
       this.comboBox11.ValueMember = "DMATID";
       this.comboBox11.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+      this.comboBox11.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyUp);
       this.comboBox11.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // cUTDRAWINGMATERIALSBindingSource4
@@ -630,6 +635,7 @@ namespace RedBrick2 {
       this.textBox14.Name = "textBox14";
       this.textBox14.Size = new System.Drawing.Size(233, 22);
       this.textBox14.TabIndex = 15;
+      this.textBox14.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyUp);
       // 
       // textBox15
       // 
@@ -641,6 +647,7 @@ namespace RedBrick2 {
       this.textBox15.Name = "textBox15";
       this.textBox15.Size = new System.Drawing.Size(233, 22);
       this.textBox15.TabIndex = 16;
+      this.textBox15.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyUp);
       // 
       // textBox16
       // 
@@ -652,6 +659,7 @@ namespace RedBrick2 {
       this.textBox16.Name = "textBox16";
       this.textBox16.Size = new System.Drawing.Size(233, 22);
       this.textBox16.TabIndex = 17;
+      this.textBox16.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyUp);
       // 
       // textBox17
       // 
@@ -663,6 +671,7 @@ namespace RedBrick2 {
       this.textBox17.Name = "textBox17";
       this.textBox17.Size = new System.Drawing.Size(233, 22);
       this.textBox17.TabIndex = 18;
+      this.textBox17.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyUp);
       // 
       // textBox18
       // 
@@ -674,6 +683,7 @@ namespace RedBrick2 {
       this.textBox18.Name = "textBox18";
       this.textBox18.Size = new System.Drawing.Size(233, 22);
       this.textBox18.TabIndex = 19;
+      this.textBox18.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyUp);
       // 
       // treeView1
       // 

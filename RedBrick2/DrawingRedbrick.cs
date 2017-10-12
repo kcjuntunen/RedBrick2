@@ -328,7 +328,49 @@ namespace RedBrick2 {
     private void button4_Click(object sender, EventArgs e) {
       SolidWorks.Interop.sldworks.View _v = Redbrick.GetFirstView(SwApp);
       CreateCutlist c = new CreateCutlist(SwApp);
-      c.ShowDialog(this);      
+      c.ShowDialog(this);
+    }
+
+    private void enterJump(object sender, object[] boxes) {
+      for (int i = 0; i < boxes.Length; i++) {
+        if (sender == boxes[i] && i < boxes.Length) {
+          if (sender is TextBox) {
+            TextBox cur = sender as TextBox;
+            TextBox nxt = boxes[i + 1] as TextBox;
+            if (cur.SelectionStart < cur.TextLength) {
+              int curPos = cur.SelectionStart;
+              cur.SelectionLength = cur.TextLength - curPos;
+              string selectedText = cur.SelectedText;
+              cur.Text = cur.Text.Remove(curPos);
+              nxt.Text = string.Format(@"{0}{1}", selectedText, nxt.Text);
+            }
+            nxt.Focus();
+            nxt.SelectionLength = 0;
+          } else if (sender is ComboBox) {
+            (boxes[i + 1] as ComboBox).Focus();
+          }
+        }
+      }
+    }
+
+    private void textBox_KeyUp(object sender, KeyEventArgs e) {
+      if (e.KeyCode == Keys.Enter && e.Shift) {
+        TextBox[] tbs = { textBox18, textBox17, textBox16, textBox15, textBox14 };
+        enterJump((sender as TextBox), tbs);
+      } else if (e.KeyCode == Keys.Enter) {
+        TextBox[] tbs = { textBox14, textBox15, textBox16, textBox17, textBox18 };
+        enterJump((sender as TextBox), tbs);
+      }
+    }
+
+    private void comboBox_KeyUp(object sender, KeyEventArgs e) {
+      if (e.KeyCode == Keys.Enter && e.Shift) {
+        ComboBox[] cbs = { comboBox11, comboBox10, comboBox9, comboBox8, comboBox7 };
+        enterJump((sender as ComboBox), cbs);
+      } else if (e.KeyCode == Keys.Enter) {
+        ComboBox[] cbs = { comboBox7, comboBox8, comboBox9, comboBox10, comboBox11 };
+        enterJump((sender as ComboBox), cbs);
+      }
     }
   }
 }
