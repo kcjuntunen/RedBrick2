@@ -164,6 +164,17 @@ namespace RedBrick2 {
         //textBox_TextChanged(PropertySet[@"WALL THICKNESS"].Value, label21);
 
         flowLayoutPanel1.VerticalScroll.Value = scrollOffset.Y;
+        float _val = 0.0F;
+        if (float.TryParse(textBox9.Text, out _val)) {
+          calculate_blanksize_from_oversize(_val, textBox12, length, get_edge_thickness_total(comboBox4, comboBox5));
+        }
+
+        if (float.TryParse(textBox10.Text, out _val)) {
+          calculate_blanksize_from_oversize(_val, textBox13, width, get_edge_thickness_total(comboBox2, comboBox3));
+        }
+
+        groupBox1.Text = string.Format(@"{0} - {1}",
+          partLookup, configuration);
       } else {
         Enabled = false;
       }
@@ -184,48 +195,76 @@ namespace RedBrick2 {
         cUTPARTSBindingSource.DataSource = cUT_PARTSTableAdapter.GetDataByPartnum(partLookup);
       }
       if (Row == null) {
-        ENGINEERINGDataSet.CUT_MATERIALSDataTable md =
-          new ENGINEERINGDataSet.CUT_MATERIALSDataTable();
-        int mr = (int)PropertySet["MATID"].Data;
-        if (mr < 1) {
-          mr = md.GetMaterialIDByDescr(PropertySet["CUTLIST MATERIAL"].Value);
-        }
-        comboBox1.SelectedValue = mr;
-        ENGINEERINGDataSet.CUT_EDGESDataTable ed =
-          new ENGINEERINGDataSet.CUT_EDGESDataTable();
-        int er = (int)PropertySet["EFID"].Data;
-        if (er < 1) {
-          er = ed.GetEdgeIDByDescr(PropertySet["EDGE FRONT (L)"].Value);
-        }
-        comboBox2.SelectedValue = er;
-        er = (int)PropertySet["EBID"].Data;
-        if (er < 1) {
-          er = ed.GetEdgeIDByDescr(PropertySet["EDGE BACK (L)"].Value);
-        }
-        comboBox3.SelectedValue = er;
-        er = (int)PropertySet["ERID"].Data;
-        if (er < 1) {
-          er = ed.GetEdgeIDByDescr(PropertySet["EDGE RIGHT (W)"].Value);
-        }
-        comboBox5.SelectedValue = er;
-        
-        er = (int)PropertySet["ELID"].Data;
-        if (er < 1) {
-          er = ed.GetEdgeIDByDescr(PropertySet["EDGE LEFT (W)"].Value);
-        }
-        comboBox4.SelectedValue = er;
-
-        textBox1.Text = PropertySet["Description"].Value;
-        textBox6.Text = PropertySet["COMMENT"].Value;
-        textBox7.Text = PropertySet["CNC1"].Value;
-        textBox8.Text = PropertySet["CNC2"].Value;
-        ov_userediting = true;
-        textBox9.Text = enforce_number_format(PropertySet["OVERL"].Value);
-        ov_userediting = true;
-        textBox10.Text = enforce_number_format(PropertySet["OVERW"].Value);
-        textBox11.Text = PropertySet["BLANK QTY"].Value;
-        checkBox1.Checked = (bool)PropertySet["UPDATE CNC"].Data;
+        GetDataFromPart();
       }
+    }
+
+    private int IntTryProp(string propname) {
+      int _out = 0;
+      if (PropertySet.ContainsKey(propname)) {
+        if (int.TryParse(PropertySet[propname].Value, out _out)) {
+          return _out; 
+        }
+      }
+      return Properties.Settings.Default.DefaultMaterial;
+    }
+
+    private string StrTryProp(string propname) {
+      if (PropertySet.ContainsKey(propname)) {
+        return PropertySet[propname].Value;
+      }
+      return string.Empty;
+    }
+
+    private bool BoolTryProp(string propname) {
+      if (PropertySet.ContainsKey(propname)) {
+        return PropertySet[propname].Value.ToUpper().Contains("YES");
+      }
+      return false;
+    }
+
+    private void GetDataFromPart() {
+      ENGINEERINGDataSet.CUT_MATERIALSDataTable md =
+        new ENGINEERINGDataSet.CUT_MATERIALSDataTable();
+      int mr = (int)IntTryProp("MATID");
+      if (mr < 1) {
+        mr = md.GetMaterialIDByDescr(StrTryProp("CUTLIST MATERIAL"));
+      }
+      comboBox1.SelectedValue = mr;
+      ENGINEERINGDataSet.CUT_EDGESDataTable ed =
+        new ENGINEERINGDataSet.CUT_EDGESDataTable();
+      int er = IntTryProp("EFID");
+      if (er < 1) {
+        er = ed.GetEdgeIDByDescr(StrTryProp("EDGE FRONT (L)"));
+      }
+      comboBox2.SelectedValue = er;
+      er = IntTryProp("EBID");
+      if (er < 1) {
+        er = ed.GetEdgeIDByDescr(StrTryProp("EDGE BACK (L)"));
+      }
+      comboBox3.SelectedValue = er;
+      er = IntTryProp("ERID");
+      if (er < 1) {
+        er = ed.GetEdgeIDByDescr(StrTryProp("EDGE RIGHT (W)"));
+      }
+      comboBox5.SelectedValue = er;
+
+      er = IntTryProp("ELID");
+      if (er < 1) {
+        er = ed.GetEdgeIDByDescr(StrTryProp("EDGE LEFT (W)"));
+      }
+      comboBox4.SelectedValue = er;
+
+      textBox1.Text = StrTryProp("Description");
+      textBox6.Text = StrTryProp("COMMENT");
+      textBox7.Text = StrTryProp("CNC1");
+      textBox8.Text = StrTryProp("CNC2");
+      ov_userediting = true;
+      textBox9.Text = enforce_number_format(StrTryProp("OVERL"));
+      ov_userediting = true;
+      textBox10.Text = enforce_number_format(StrTryProp("OVERW"));
+      textBox11.Text = StrTryProp("BLANK QTY");
+      checkBox1.Checked = BoolTryProp("UPDATE CNC");
     }
 
     private void GetOps() {
@@ -267,15 +306,15 @@ namespace RedBrick2 {
       }
       if (selectedObject is SolidWorks.Interop.sldworks.View) {
         SolidWorks.Interop.sldworks.View v = (selectedObject as SolidWorks.Interop.sldworks.View);
-        ActiveDoc = v.ReferencedDocument;
+        ReQuery(v.ReferencedDocument);
       } else if (selectedObject is DrawingComponent) {
         DrawingComponent dc = selectedObject as DrawingComponent;
         if (dc != null) {
           Component = dc.Component;
-          ActiveDoc = Component.GetModelDoc2();
+          ReQuery(Component.GetModelDoc2());
         } else {
           Component = null;
-          ActiveDoc = SwApp.ActiveDoc;
+          ReQuery(SwApp.ActiveDoc);
         }
       }
       return 0;
@@ -366,7 +405,7 @@ namespace RedBrick2 {
         Component = swSelComp;
         configurationManager = (swSelComp.GetModelDoc2() as ModelDoc2).ConfigurationManager;
         configuration = swSelComp.ReferencedConfiguration;
-        ActiveDoc = swSelComp.GetModelDoc2();
+        ReQuery(swSelComp.GetModelDoc2());
       } else {
         // Nothing's selected?
         // Just look at the root item then.
@@ -374,7 +413,7 @@ namespace RedBrick2 {
         configuration = configurationManager.ActiveConfiguration.Name;
         groupBox1.Text = string.Format(@"{0} - {1}",
           partLookup, PropertySet.Configuration);
-        ActiveDoc = SwApp.ActiveDoc;
+        ReQuery(SwApp.ActiveDoc);
       }
       return 0;
     }
@@ -464,20 +503,13 @@ namespace RedBrick2 {
 
     private void SetupPart() {
       scrollOffset = new Point(0, flowLayoutPanel1.VerticalScroll.Value);
-
-      if (PropertySet == null) {
-        PropertySet = new SwProperties(SwApp);
-      } else {
-        PropertySet.Clear();
-      }
+      PropertySet = new SwProperties(SwApp, ActiveDoc);
 
       if (!(_activeDoc is DrawingDoc)) {
         configuration = _activeDoc.ConfigurationManager.ActiveConfiguration.Name;
       }
 
       if (Component != null) {
-        //AssemblyDoc ad = (AssemblyDoc)SwApp.ActiveDoc;
-
         configuration = Component.ReferencedConfiguration;
         PropertySet.Configuration = configuration;
         PropertySet.GetProperties(Component);
@@ -487,27 +519,10 @@ namespace RedBrick2 {
         PropertySet.GetProperties(_activeDoc);
       }
 
-      Hash = Redbrick.GetHash(PartFileInfo.FullName);
-      if (lastModelDoc != _activeDoc) {
-        ReQuery();
-      }
-
       lastModelDoc = _activeDoc;
-      //tabControl1.SelectedTab = tabPage1;
       DisconnectPartEvents();
       ConnectPartEvents();
-
-      float _val = 0.0F;
-      if (float.TryParse(textBox9.Text, out _val)) {
-        calculate_blanksize_from_oversize(_val, textBox12, length, get_edge_thickness_total(comboBox4, comboBox5));
-      }
-
-      if (float.TryParse(textBox10.Text, out _val)) {
-        calculate_blanksize_from_oversize(_val, textBox13, width, get_edge_thickness_total(comboBox2, comboBox3));
-      }
-
-      groupBox1.Text = string.Format(@"{0} - {1}",
-        partLookup, configuration);
+      ReQuery();
     }
 
     public int PartID { get; set; }
@@ -541,13 +556,14 @@ namespace RedBrick2 {
           } else {
             partLookup = null;
             PartFileInfo = new FileInfo(Path.GetTempFileName());
+            Hash = Redbrick.GetHash(PartFileInfo.FullName);
           }
 
           swDocumentTypes_e dType = (swDocumentTypes_e)_activeDoc.GetType();
           swDocumentTypes_e odType = (swDocumentTypes_e)(SwApp.ActiveDoc as ModelDoc2).GetType();
+          PropertySet = new SwProperties(SwApp, _activeDoc);
           switch (odType) {
             case swDocumentTypes_e.swDocASSEMBLY:                     //Window looking at assembly.
-              tabControl1.SelectedTab = tabPage1;
                   (tabPage1 as Control).Enabled = true;
               DisconnectAssemblyEvents();
               ConnectAssemblyEvents(SwApp.ActiveDoc as ModelDoc2);
@@ -565,22 +581,23 @@ namespace RedBrick2 {
                 default:
                   break;
 	              }
+              tabControl1.SelectedTab = tabPage1;
               break;
             case swDocumentTypes_e.swDocDRAWING:                      //Window looking at drawing.
               (tabPage2 as Control).Enabled = true;
-              tabControl1.SelectedTab = tabPage2;
               switch (dType) {
                 case swDocumentTypes_e.swDocASSEMBLY:                     //Selected assembly in drawing.
-                  tabControl1.SelectedTab = tabPage1;
                   (tabPage1 as Control).Enabled = true;
                   SetupPart();
+                  tabControl1.SelectedTab = tabPage1;
                   break;
                 case swDocumentTypes_e.swDocDRAWING:
+                  tabControl1.SelectedTab = tabPage2;
                   break;
                 case swDocumentTypes_e.swDocPART:                         //Selected part in drawing.
-                  tabControl1.SelectedTab = tabPage1;
                   (tabPage1 as Control).Enabled = true;
                   SetupPart();
+                  tabControl1.SelectedTab = tabPage1;
                   break;
                 default:
                   break;
@@ -588,7 +605,6 @@ namespace RedBrick2 {
               SetupDrawing();
               break;
             case swDocumentTypes_e.swDocPART:                         //Window looking at part.
-              tabControl1.SelectedTab = tabPage1;
               (tabPage1 as Control).Enabled = true;
               if (odType != swDocumentTypes_e.swDocDRAWING) {
                 (tabPage2 as Control).Enabled = false;
@@ -596,6 +612,7 @@ namespace RedBrick2 {
                 (tabPage2 as Control).Enabled = true;
               }
               SetupPart();
+              tabControl1.SelectedTab = tabPage1;
               break;
             default:
               //Hide();
@@ -615,7 +632,8 @@ namespace RedBrick2 {
     private void ModelRedbrick_Load(object sender, EventArgs e) {
       cUT_MATERIALSTableAdapter.Fill(eNGINEERINGDataSet.CUT_MATERIALS);
       cUT_EDGESTableAdapter.Fill(eNGINEERINGDataSet.CUT_EDGES);
-      GetCutlistData();
+      
+      //GetCutlistData();
       //SelectTab();
       initialated = true;
     }

@@ -37,24 +37,12 @@ namespace RedBrick2 {
       SwApp.FileOpenPostNotify += SwApp_FileOpenPostNotify;
       ActiveDoc = SwApp.ActiveDoc;
 
-      if (ModelDocs == null) {
-        ModelDocs = new List<ModelDoc2>();
-      }
-
-      if (!ModelDocs.Contains(ActiveDoc)) {
-        ModelDocs.Add(ActiveDoc);
-      }
       if (ActiveDoc != null) {
-        //BuildStuff();
-        //ConnectSelection();
+        ConnectSelection();
       }
     }
 
     private int SwApp_FileOpenPostNotify(string FileName) {
-      if (mrb == null) {
-        //BuildStuff();
-        //ConnectSelection();
-      }
       ConnectSelection();
       return 0;
     }
@@ -129,18 +117,8 @@ namespace RedBrick2 {
 
     internal void ConnectSelection() {
       System.GC.Collect(2, GCCollectionMode.Forced);
-      if (SwApp == null) {
-        SwApp = RequestSW();
-      }
-      ActiveDoc = SwApp.ActiveDoc;
-      if (ActiveDoc != null) {
-        string filename = ActiveDoc.GetPathName();
-        if (ModelDocs.Count < 1 || ActiveDoc != ModelDocs[ModelDocs.Count - 1]) {
-          BuildStuff();
-          mrb.ReQuery(ActiveDoc);
-          mrb.Show();
-        }
-      }
+      BuildStuff();
+      mrb.ReQuery(SwApp.ActiveDoc);
     }
 
     protected SldWorks RequestSW() {
@@ -193,7 +171,6 @@ namespace RedBrick2 {
     }
 
     internal void ReStart() {
-      ModelDocs.Clear();
       mrb.DumpActiveDoc();
       if (SwApp == null) {
         SwApp = RequestSW();
