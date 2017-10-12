@@ -85,7 +85,7 @@ namespace RedBrick2 {
     /// get a <see cref="SolidWorks.Interop.sldworks.ModelDoc2"/>.</param>
     public void GetProperties(Component2 comp) {
       Configuration = comp.ReferencedConfiguration;
-      GetProperties(comp.GetModelDoc2());
+      GetProperties((ModelDoc2)comp.GetModelDoc2());
     }
 
     /// <summary>
@@ -120,12 +120,20 @@ namespace RedBrick2 {
       EdgeProperty edgelb = new EdgeProperty(@"EDGE BACK (L)", false, SwApp, md, @"EDGEID_LB");
       EdgeProperty edgewr = new EdgeProperty(@"EDGE RIGHT (W)", false, SwApp, md, @"EDGEID_WR");
       EdgeProperty edgewl = new EdgeProperty(@"EDGE LEFT (W)", false, SwApp, md, @"EDGEID_WL");
+
+      MaterialProperty matid = new MaterialProperty("MATID", false, SwApp, md, @"MATID");
+      EdgeProperty efid = new EdgeProperty(@"EFID", false, SwApp, md, @"EDGEID_LF");
+      EdgeProperty ebid = new EdgeProperty(@"EBID", false, SwApp, md, @"EDGEID_LB");
+      EdgeProperty erid = new EdgeProperty(@"ERID", false, SwApp, md, @"EDGEID_WR");
+      EdgeProperty elid = new EdgeProperty(@"ELID", false, SwApp, md, @"EDGEID_WL");
+
       foreach (SwProperty item in new SwProperty [] {
         department, blankQty,
         material, weight, volume, description, comment, cnc1, cnc2,
         includeInCutlist, updateCNC,
         length, width, thickness, wallThickness, overL, overW,
-        cutlistMaterial, edgelf, edgelb, edgewr, edgewl
+        cutlistMaterial, edgelf, edgelb, edgewr, edgewl,
+        matid, efid, ebid, erid, elid
       }) {
         item.Configuration = Configuration;
         item.Get();
