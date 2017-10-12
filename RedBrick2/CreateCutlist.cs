@@ -172,7 +172,7 @@ namespace RedBrick2 {
       s.GetProperties(m);
       comboBox2.Text = partLookup;
       comboBox4.Text = partLookup;
-      comboBox5.Text = s[@"DESCRIPTION"].Value;
+      comboBox5.Text = s[@"Description"].Value;
       _dict.Add(name, 1);
       _partlist.Add(name, s);
       pb.UpdateTitle(m.GetTitle());
