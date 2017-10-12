@@ -102,36 +102,39 @@ namespace RedBrick2 {
       // 
       this.tableLayoutPanel5.ColumnCount = 1;
       this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel5.Controls.Add(this.groupBox5, 0, 0);
       this.tableLayoutPanel5.Controls.Add(this.groupBox6, 0, 1);
       this.tableLayoutPanel5.Controls.Add(this.treeView1, 0, 2);
       this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel1, 0, 3);
+      this.tableLayoutPanel5.Controls.Add(this.groupBox5, 0, 0);
       this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
       this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
       this.tableLayoutPanel5.Name = "tableLayoutPanel5";
       this.tableLayoutPanel5.RowCount = 4;
-      this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 29.89691F));
-      this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 37.1134F));
-      this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 32.98969F));
+      this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.28726F));
+      this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.02439F));
+      this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 34.68835F));
       this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
       this.tableLayoutPanel5.Size = new System.Drawing.Size(353, 789);
       this.tableLayoutPanel5.TabIndex = 1;
       // 
       // groupBox5
       // 
-      this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+      this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.groupBox5.Controls.Add(this.tableLayoutPanel7);
+      this.groupBox5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.groupBox5.Location = new System.Drawing.Point(3, 3);
       this.groupBox5.Name = "groupBox5";
-      this.groupBox5.Size = new System.Drawing.Size(347, 208);
+      this.groupBox5.Size = new System.Drawing.Size(347, 190);
       this.groupBox5.TabIndex = 0;
       this.groupBox5.TabStop = false;
       this.groupBox5.Text = "groupBox5";
       // 
       // tableLayoutPanel7
       // 
-      this.tableLayoutPanel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+      this.tableLayoutPanel7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.tableLayoutPanel7.ColumnCount = 3;
       this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -161,7 +164,7 @@ namespace RedBrick2 {
       this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      this.tableLayoutPanel7.Size = new System.Drawing.Size(341, 189);
+      this.tableLayoutPanel7.Size = new System.Drawing.Size(341, 168);
       this.tableLayoutPanel7.TabIndex = 0;
       // 
       // label41
@@ -370,7 +373,8 @@ namespace RedBrick2 {
       this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.groupBox6.Controls.Add(this.tableLayoutPanel6);
-      this.groupBox6.Location = new System.Drawing.Point(3, 226);
+      this.groupBox6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.groupBox6.Location = new System.Drawing.Point(3, 199);
       this.groupBox6.Name = "groupBox6";
       this.groupBox6.Size = new System.Drawing.Size(347, 271);
       this.groupBox6.TabIndex = 1;
@@ -690,9 +694,9 @@ namespace RedBrick2 {
       this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.treeView1.Location = new System.Drawing.Point(3, 503);
+      this.treeView1.Location = new System.Drawing.Point(3, 491);
       this.treeView1.Name = "treeView1";
-      this.treeView1.Size = new System.Drawing.Size(347, 241);
+      this.treeView1.Size = new System.Drawing.Size(347, 253);
       this.treeView1.TabIndex = 2;
       this.treeView1.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.treeView1_DrawNode);
       // 
