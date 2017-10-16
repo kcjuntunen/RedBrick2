@@ -342,7 +342,7 @@ namespace RedBrick2 {
               cur.SelectionLength = cur.TextLength - curPos;
               string selectedText = cur.SelectedText;
               cur.Text = cur.Text.Remove(curPos);
-              nxt.Text = string.Format(@"{0}{1}", selectedText, nxt.Text);
+              nxt.Text = string.Format(@"{0}{1}", selectedText, nxt.Text).Trim();
             }
             nxt.Focus();
             nxt.SelectionLength = 0;
