@@ -74,7 +74,7 @@ namespace RedBrick2 {
       this.cUT_PART_TYPESTableAdapter.Fill(this.eNGINEERINGDataSet.CUT_PART_TYPES);
       friendlyCutOpsBindingSource.Filter = string.Format(@"TYPEID = {0}", department);
       label5.Text = currentrow.POPORDER.ToString();
-      comboBox1.SelectedValue = friendlyCutOpsTableAdapter.GetOpID(currentrow.POPOP, currentrow.TYPEID);
+      comboBox1.SelectedValue = currentrow.POPOP;//friendlyCutOpsTableAdapter.GetOpID(currentrow.POPOP, currentrow.TYPEID);
       comboBox2.SelectedValue = currentrow.TYPEID;
       textBox1.Text = string.Format(Properties.Settings.Default.NumberFormat, currentrow.POPSETUP * 60);
       textBox2.Text = string.Format(Properties.Settings.Default.NumberFormat, currentrow.POPRUN * 60);
