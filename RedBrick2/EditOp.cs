@@ -128,5 +128,17 @@ namespace RedBrick2 {
       ComboBox _me = (sender as ComboBox);
       _me.SelectionLength = 0;
     }
+
+    private void comboBox2_SelectedIndexChanged(object sender, EventArgs e) {
+      ComboBox cbx = sender as ComboBox;
+      DataRowView drv = cbx.SelectedItem as DataRowView;
+      float tmp = 0.0F;
+      if (float.TryParse(drv[4].ToString(), out tmp)) {
+        textBox1.Text = string.Format(Properties.Settings.Default.NumberFormat, tmp * 60);
+      }
+      if (float.TryParse(drv[5].ToString(), out tmp)) {
+        textBox2.Text = string.Format(Properties.Settings.Default.NumberFormat, tmp * 60);
+      }
+    }
   }
 }

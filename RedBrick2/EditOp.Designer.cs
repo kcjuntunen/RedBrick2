@@ -151,6 +151,7 @@
       this.comboBox2.Size = new System.Drawing.Size(186, 21);
       this.comboBox2.TabIndex = 3;
       this.comboBox2.ValueMember = "OPID";
+      this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
       this.comboBox2.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // friendlyCutOpsBindingSource
