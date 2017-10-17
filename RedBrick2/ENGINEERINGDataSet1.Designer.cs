@@ -24186,7 +24186,7 @@ ORDER BY CUT_OPS.OPNAME";
 FROM          CUT_OPS INNER JOIN
                         CUT_OPS_TYPES ON CUT_OPS.OPID = CUT_OPS_TYPES.OTOP INNER JOIN
                         CUT_PART_TYPES ON CUT_OPS_TYPES.OTTYPE = CUT_PART_TYPES.TYPEID
-WHERE      (CUT_OPS.OPID = @opid) AND (CUT_PART_TYPES.TYPEID = @typeid); 
+WHERE      (CUT_OPS.OPID = @opid) AND (CUT_PART_TYPES.TYPEID = @typeid);
 ";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@opid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "OPID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
