@@ -205,7 +205,7 @@ namespace RedBrick2 {
 
         ModelDoc2 md = (swChildComp.GetModelDoc2() as ModelDoc2);
         if (md != null && md.GetType() == (int)swDocumentTypes_e.swDocPART) {
-          SwProperties s = new SwProperties(_swApp);
+          SwProperties s = new SwProperties(_swApp, md);
           s.GetProperties(md);
           if (!_dict.ContainsKey(name)) {
             _dict.Add(name, 1);
@@ -318,6 +318,12 @@ namespace RedBrick2 {
       descr.ValueType = typeof(string);
       descr.SortMode = DataGridViewColumnSortMode.Programmatic;
 
+      DataGridViewColumn mat = new DataGridViewColumn();
+      mat.Name = @"Material";
+      mat.CellTemplate = new DataGridViewTextBoxCell();
+      mat.ValueType = typeof(string);
+      mat.SortMode = DataGridViewColumnSortMode.Programmatic;
+
       DataGridViewColumn blank_qty = new DataGridViewColumn();
       blank_qty.Name = @"Blank Qty";
       blank_qty.CellTemplate = new DataGridViewTextBoxCell();
@@ -342,7 +348,7 @@ namespace RedBrick2 {
       inc.HeaderText = @"Include";
       inc.SortMode = DataGridViewColumnSortMode.Programmatic;
 
-      foreach (var item in new object[] { part_number, descr, blank_qty, col, inc }) {
+      foreach (var item in new object[] { part_number, descr, mat, blank_qty, col, inc }) {
         dataGridView1.Columns.Add((DataGridViewColumn)item);
       }
     }
@@ -360,11 +366,12 @@ namespace RedBrick2 {
         DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
         row.Cells[0].Value = name;
         row.Cells[1].Value = val[@"Description"].Value;
-        row.Cells[2].Value = item.Value;
+        row.Cells[2].Value = val[@"CUTLIST MATERIAL"].Value;
+        row.Cells[3].Value = item.Value;
         if ((int)val[@"DEPARTMENT"].Data > 0 && (int)val[@"DEPARTMENT"].Data <= (int)cpt.TypeCount()) {
-          row.Cells[3].Value = val[@"DEPARTMENT"].Data;
+          row.Cells[4].Value = val[@"DEPARTMENT"].Data;
         }
-        row.Cells[4].Value = r.IsMatch(name);
+        row.Cells[5].Value = r.IsMatch(name);
         dataGridView1.Rows.Add(row);
         //dataGridView1.Rows.Add(name, val[@"Description"].Value, item.Value, val[@"DEPARTMENT"].Data, r.IsMatch(name));
       }
