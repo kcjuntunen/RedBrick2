@@ -221,19 +221,21 @@ namespace RedBrick2 {
     }
 
     private void SelectLastCutlist() {
-      bool contains = false;
-      foreach (var item in comboBox6.Items) {
-        DataRowView drv = (item as DataRowView);
-        if ((int)drv[@"CLID"] == Properties.Settings.Default.LastCutlist) {
-          contains = true;
-          break;
-        }
-      }
-      if (contains) {
+      if (ComboBoxContainsValue(Properties.Settings.Default.LastCutlist, comboBox6)) {
         comboBox6.SelectedValue = Properties.Settings.Default.LastCutlist;
       } else {
         comboBox6.SelectedValue = -1;
       }
+    }
+
+    public static bool ComboBoxContainsValue(int value, ComboBox comboBox) {
+      foreach (var item in comboBox.Items) {
+        DataRowView drv = (item as DataRowView);
+        if ((int)drv[comboBox.ValueMember] == value) {
+          return true;
+        }
+      }
+      return false;
     }
 
     private int IntTryProp(string propname) {
