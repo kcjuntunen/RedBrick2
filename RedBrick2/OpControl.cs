@@ -113,8 +113,8 @@ namespace RedBrick2 {
 
     private void textBox1_Validated(object sender, EventArgs e) {
       if (initialated) {
-        currentrow.POPSETUP = tb1val;
-        //cpo.Update(currentrow);
+        currentrow.POPSETUP = tb1val / 60;
+        cpo.Update(currentrow);
       }
     }
 
@@ -131,8 +131,8 @@ namespace RedBrick2 {
 
     private void textBox2_Validated(object sender, EventArgs e) {
       if (initialated) {
-        currentrow.POPRUN = tb2val;
-        //cpo.Update(currentrow);
+        currentrow.POPRUN = tb2val / 60;
+        cpo.Update(currentrow);
       }
     }
 
