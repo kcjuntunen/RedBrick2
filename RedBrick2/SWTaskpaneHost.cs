@@ -42,6 +42,12 @@ namespace RedBrick2 {
       }
     }
 
+    public void ToggleFlameWar(bool on) {
+      if (mrb != null) {
+        mrb.ToggleFlameWar(on);
+      }
+    }
+
     private int SwApp_FileOpenPostNotify(string FileName) {
       ConnectSelection();
       return 0;

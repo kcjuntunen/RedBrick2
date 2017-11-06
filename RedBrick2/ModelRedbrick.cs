@@ -53,6 +53,8 @@ namespace RedBrick2 {
     public ModelRedbrick(SldWorks sw, ModelDoc2 md) {
       SwApp = sw;
       InitializeComponent();
+      ToggleFlameWar(Properties.Settings.Default.FlameWar);
+
       ActiveDoc = md;
       tabPage1.Text = @"Model Properties";
       tabPage2.Text = @"DrawingProperties";
@@ -65,6 +67,21 @@ namespace RedBrick2 {
 
       textBox9.TextChanged += textBox9_TextChanged;
       textBox10.TextChanged += textBox10_TextChanged;
+    }
+
+    public void ToggleFlameWar(bool on) {
+      if (drawingRedbrick != null) {
+        drawingRedbrick.ToggleFlameWar(on);
+      }
+      if (on) {
+        textBox6.CharacterCasing = CharacterCasing.Upper;
+        textBox7.CharacterCasing = CharacterCasing.Upper;
+        textBox8.CharacterCasing = CharacterCasing.Upper;
+      } else {
+        textBox6.CharacterCasing = CharacterCasing.Normal;
+        textBox7.CharacterCasing = CharacterCasing.Normal;
+        textBox8.CharacterCasing = CharacterCasing.Normal;
+      }
     }
 
     protected override void WndProc(ref Message m) {

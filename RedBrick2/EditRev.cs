@@ -20,13 +20,25 @@ namespace RedBrick2 {
       index = idx;
       RevSet = revSet;
       NewRev = false;
+      ToggleFlameWar(Properties.Settings.Default.FlameWar);
     }
 
     public EditRev(Revs revSet) {
       InitializeComponent();
       RevSet = revSet;
       NewRev = true;
+      ToggleFlameWar(Properties.Settings.Default.FlameWar);
     }
+
+    public void ToggleFlameWar(bool on) {
+    if (on) {
+      textBox1.CharacterCasing = CharacterCasing.Upper;
+      textBox2.CharacterCasing = CharacterCasing.Upper;
+    } else {
+      textBox1.CharacterCasing = CharacterCasing.Normal;
+      textBox2.CharacterCasing = CharacterCasing.Normal;
+    }
+  }
 
     private void button1_Click(object sender, EventArgs e) {
       ThisRev.ECO = textBox1.Text;

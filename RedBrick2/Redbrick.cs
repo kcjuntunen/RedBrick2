@@ -141,6 +141,7 @@ namespace RedBrick2 {
             RedbrickConfiguration rbc = new RedbrickConfiguration();
             rbc.ShowDialog();
             taskpaneHost.ConnectSelection();
+            taskpaneHost.ToggleFlameWar(Properties.Settings.Default.FlameWar);
             break;
           case 2:
             taskpaneHost.ReStart();

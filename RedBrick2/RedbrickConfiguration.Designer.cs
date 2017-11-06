@@ -129,7 +129,7 @@ namespace RedBrick2 {
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableLayoutPanel1.Size = new System.Drawing.Size(380, 328);
+      this.tableLayoutPanel1.Size = new System.Drawing.Size(381, 398);
       this.tableLayoutPanel1.TabIndex = 0;
       // 
       // chbDBEnabled
@@ -171,7 +171,7 @@ namespace RedBrick2 {
       this.cbRevLimit.FormattingEnabled = true;
       this.cbRevLimit.Location = new System.Drawing.Point(3, 62);
       this.cbRevLimit.Name = "cbRevLimit";
-      this.cbRevLimit.Size = new System.Drawing.Size(374, 21);
+      this.cbRevLimit.Size = new System.Drawing.Size(375, 21);
       this.cbRevLimit.TabIndex = 7;
       this.cbRevLimit.SelectedIndexChanged += new System.EventHandler(this.cbRevLimit_SelectedIndexChanged);
       // 
@@ -192,7 +192,7 @@ namespace RedBrick2 {
       this.cbDefaultMaterial.FormattingEnabled = true;
       this.cbDefaultMaterial.Location = new System.Drawing.Point(3, 102);
       this.cbDefaultMaterial.Name = "cbDefaultMaterial";
-      this.cbDefaultMaterial.Size = new System.Drawing.Size(374, 21);
+      this.cbDefaultMaterial.Size = new System.Drawing.Size(375, 21);
       this.cbDefaultMaterial.TabIndex = 9;
       this.cbDefaultMaterial.SelectedIndexChanged += new System.EventHandler(this.cbDefaultMaterial_SelectedIndexChanged);
       this.cbDefaultMaterial.KeyDown += new System.Windows.Forms.KeyEventHandler(this.combobox_KeyDown);
@@ -251,7 +251,7 @@ namespace RedBrick2 {
       this.cbDept.FormattingEnabled = true;
       this.cbDept.Location = new System.Drawing.Point(3, 234);
       this.cbDept.Name = "cbDept";
-      this.cbDept.Size = new System.Drawing.Size(374, 21);
+      this.cbDept.Size = new System.Drawing.Size(375, 21);
       this.cbDept.TabIndex = 3;
       this.cbDept.Visible = false;
       this.cbDept.SelectedIndexChanged += new System.EventHandler(this.cbDept_SelectedIndexChanged);
@@ -276,7 +276,7 @@ namespace RedBrick2 {
       this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
       this.textBox3.Location = new System.Drawing.Point(3, 281);
       this.textBox3.Name = "textBox3";
-      this.textBox3.Size = new System.Drawing.Size(374, 22);
+      this.textBox3.Size = new System.Drawing.Size(375, 22);
       this.textBox3.TabIndex = 22;
       this.textBox3.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox3_MouseDoubleClick);
       // 
@@ -307,7 +307,7 @@ namespace RedBrick2 {
             | System.Windows.Forms.AnchorStyles.Right)));
       this.btnOK.Location = new System.Drawing.Point(279, 3);
       this.btnOK.Name = "btnOK";
-      this.btnOK.Size = new System.Drawing.Size(133, 23);
+      this.btnOK.Size = new System.Drawing.Size(134, 23);
       this.btnOK.TabIndex = 1;
       this.btnOK.Text = "OK";
       this.btnOK.UseVisualStyleBackColor = true;
@@ -321,7 +321,7 @@ namespace RedBrick2 {
       this.groupBox1.Controls.Add(this.tableLayoutPanel1);
       this.groupBox1.Location = new System.Drawing.Point(9, 6);
       this.groupBox1.Name = "groupBox1";
-      this.groupBox1.Size = new System.Drawing.Size(392, 355);
+      this.groupBox1.Size = new System.Drawing.Size(393, 425);
       this.groupBox1.TabIndex = 2;
       this.groupBox1.TabStop = false;
       this.groupBox1.Text = "General Options";
@@ -338,7 +338,7 @@ namespace RedBrick2 {
       this.tabControl1.Location = new System.Drawing.Point(3, 3);
       this.tabControl1.Name = "tabControl1";
       this.tabControl1.SelectedIndex = 0;
-      this.tabControl1.Size = new System.Drawing.Size(415, 393);
+      this.tabControl1.Size = new System.Drawing.Size(416, 463);
       this.tabControl1.TabIndex = 2;
       // 
       // tabPage1
@@ -347,7 +347,7 @@ namespace RedBrick2 {
       this.tabPage1.Location = new System.Drawing.Point(4, 22);
       this.tabPage1.Name = "tabPage1";
       this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage1.Size = new System.Drawing.Size(407, 367);
+      this.tabPage1.Size = new System.Drawing.Size(408, 437);
       this.tabPage1.TabIndex = 0;
       this.tabPage1.Text = "General Options";
       this.tabPage1.UseVisualStyleBackColor = true;
@@ -358,7 +358,7 @@ namespace RedBrick2 {
       this.tabPage2.Location = new System.Drawing.Point(4, 22);
       this.tabPage2.Name = "tabPage2";
       this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage2.Size = new System.Drawing.Size(407, 367);
+      this.tabPage2.Size = new System.Drawing.Size(408, 437);
       this.tabPage2.TabIndex = 1;
       this.tabPage2.Text = "Validation Options";
       this.tabPage2.UseVisualStyleBackColor = true;
@@ -371,7 +371,7 @@ namespace RedBrick2 {
       this.groupBox2.Controls.Add(this.tableLayoutPanel4);
       this.groupBox2.Location = new System.Drawing.Point(8, 6);
       this.groupBox2.Name = "groupBox2";
-      this.groupBox2.Size = new System.Drawing.Size(393, 355);
+      this.groupBox2.Size = new System.Drawing.Size(394, 425);
       this.groupBox2.TabIndex = 4;
       this.groupBox2.TabStop = false;
       this.groupBox2.Text = "Validation Options";
@@ -401,7 +401,7 @@ namespace RedBrick2 {
       this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      this.tableLayoutPanel4.Size = new System.Drawing.Size(380, 327);
+      this.tableLayoutPanel4.Size = new System.Drawing.Size(381, 397);
       this.tableLayoutPanel4.TabIndex = 0;
       // 
       // label4
@@ -418,7 +418,7 @@ namespace RedBrick2 {
       this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.textBox1.Location = new System.Drawing.Point(3, 16);
       this.textBox1.Name = "textBox1";
-      this.textBox1.Size = new System.Drawing.Size(374, 22);
+      this.textBox1.Size = new System.Drawing.Size(375, 22);
       this.textBox1.TabIndex = 19;
       // 
       // chbFlameWar
@@ -428,10 +428,11 @@ namespace RedBrick2 {
       this.chbFlameWar.CheckState = System.Windows.Forms.CheckState.Checked;
       this.chbFlameWar.Location = new System.Drawing.Point(3, 44);
       this.chbFlameWar.Name = "chbFlameWar";
-      this.chbFlameWar.Size = new System.Drawing.Size(162, 17);
+      this.chbFlameWar.Size = new System.Drawing.Size(142, 17);
       this.chbFlameWar.TabIndex = 10;
-      this.chbFlameWar.Text = "Filter comments to all caps";
+      this.chbFlameWar.Text = "Make text look terrible";
       this.chbFlameWar.UseVisualStyleBackColor = true;
+      this.chbFlameWar.CheckedChanged += new System.EventHandler(this.chbFlameWar_CheckedChanged);
       // 
       // chbRememberCustomer
       // 
@@ -487,7 +488,7 @@ namespace RedBrick2 {
       this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableLayoutPanel5.Size = new System.Drawing.Size(374, 188);
+      this.tableLayoutPanel5.Size = new System.Drawing.Size(375, 258);
       this.tableLayoutPanel5.TabIndex = 22;
       // 
       // checkBox1
@@ -698,11 +699,11 @@ namespace RedBrick2 {
       this.tableLayoutPanel3.Controls.Add(this.btnCancel, 0, 0);
       this.tableLayoutPanel3.Controls.Add(this.btnOK, 2, 0);
       this.tableLayoutPanel3.Controls.Add(this.button1, 1, 0);
-      this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 402);
+      this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 472);
       this.tableLayoutPanel3.Name = "tableLayoutPanel3";
       this.tableLayoutPanel3.RowCount = 1;
       this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel3.Size = new System.Drawing.Size(415, 29);
+      this.tableLayoutPanel3.Size = new System.Drawing.Size(416, 29);
       this.tableLayoutPanel3.TabIndex = 3;
       // 
       // button1
@@ -732,14 +733,14 @@ namespace RedBrick2 {
       this.tableLayoutPanel2.RowCount = 2;
       this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-      this.tableLayoutPanel2.Size = new System.Drawing.Size(421, 434);
+      this.tableLayoutPanel2.Size = new System.Drawing.Size(422, 504);
       this.tableLayoutPanel2.TabIndex = 4;
       // 
       // RedbrickConfiguration
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(445, 458);
+      this.ClientSize = new System.Drawing.Size(446, 528);
       this.Controls.Add(this.tableLayoutPanel2);
       this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

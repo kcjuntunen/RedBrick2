@@ -20,6 +20,23 @@ namespace RedBrick2 {
       ActiveDoc = md;
       SwApp = sw;
       InitializeComponent();
+      ToggleFlameWar(Properties.Settings.Default.FlameWar);
+    }
+
+    public void ToggleFlameWar(bool on) {
+      if (on) {
+        textBox14.CharacterCasing = CharacterCasing.Upper;
+        textBox15.CharacterCasing = CharacterCasing.Upper;
+        textBox16.CharacterCasing = CharacterCasing.Upper;
+        textBox17.CharacterCasing = CharacterCasing.Upper;
+        textBox18.CharacterCasing = CharacterCasing.Upper;
+      } else {
+        textBox14.CharacterCasing = CharacterCasing.Normal;
+        textBox15.CharacterCasing = CharacterCasing.Normal;
+        textBox16.CharacterCasing = CharacterCasing.Normal;
+        textBox17.CharacterCasing = CharacterCasing.Normal;
+        textBox18.CharacterCasing = CharacterCasing.Normal;
+      }
     }
 
     private void InitData() {
