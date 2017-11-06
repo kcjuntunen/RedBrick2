@@ -278,6 +278,9 @@ namespace RedBrick2 {
         flowLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         opc.Anchor = AnchorStyles.Left | AnchorStyles.Right;
       }
+      groupBox4.Text = string.Format("Routing (Setup: {0:0} min/Run: {1:0} min)",
+        ops.TotalSetupTime * 60,
+        ops.TotalRunTime * 60);
     }
 
     private void ConnectDrawingEvents() {

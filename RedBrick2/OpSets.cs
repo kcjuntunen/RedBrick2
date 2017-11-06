@@ -46,6 +46,8 @@ namespace RedBrick2 {
         string run = string.Format(@"OP{0}RUN", opNo++);
         DoubleProperty oprun = new DoubleProperty(run, true, SwApp, ActiveDoc, @"CUT_PART_OPS", @"POPRUN");
         op.Data = row[@"POPOP"];
+        TotalSetupTime += row.POPSETUP;
+        TotalRunTime += row.POPRUN;
         Add(new OpSet(PropertySet, row, op, oporder, opsetup, oprun));
         //OpControl opc = new OpControl(row, PropertySet);
         //opc.Width = flowLayoutPanel1.Width - 25;
@@ -71,6 +73,8 @@ namespace RedBrick2 {
         string run = string.Format(@"OP{0}RUN", opNo++);
         DoubleProperty oprun = new DoubleProperty(run, true, SwApp, ActiveDoc, @"CUT_PART_OPS", @"POPRUN");
         op.Data = row[@"POPOP"];
+        TotalSetupTime += row.POPSETUP;
+        TotalRunTime += row.POPRUN;
         Add(new OpSet(PropertySet, row, op, oporder, opsetup, oprun));
         //OpControl opc = new OpControl(row, PropertySet);
         //opc.Width = flowLayoutPanel1.Width - 25;
@@ -79,6 +83,10 @@ namespace RedBrick2 {
         //opc.Anchor = AnchorStyles.Left | AnchorStyles.Right;
       }
     }
+
+    public double TotalSetupTime;
+
+    public double TotalRunTime;
 
     public int IndexOf(OpSet item) {
       return innerList.IndexOf(item);
