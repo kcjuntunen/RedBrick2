@@ -157,10 +157,10 @@ namespace RedBrick2 {
       GetCutlistData();
       flowLayoutPanel1.Controls.Clear();
       if (ActiveDoc != null) {
-        textBox2.Text = PropertySet[@"LENGTH"].Value;
-        textBox3.Text = PropertySet[@"WIDTH"].Value;
-        textBox4.Text = PropertySet[@"THICKNESS"].Value;
-        textBox5.Text = PropertySet[@"WALL THICKNESS"].Value;
+        textBox2.Text = PropertySet[@"LENGTH"].Value.Replace("\"", string.Empty);
+        textBox3.Text = PropertySet[@"WIDTH"].Value.Replace("\"", string.Empty);
+        textBox4.Text = PropertySet[@"THICKNESS"].Value.Replace("\"", string.Empty);
+        textBox5.Text = PropertySet[@"WALL THICKNESS"].Value.Replace("\"", string.Empty);
 
         GetOps();
 
@@ -492,15 +492,19 @@ namespace RedBrick2 {
       return 0;
     }
 
+    private string EnQuote(string stuff) {
+      return string.Format("\"{0}\"", stuff.Replace("\"", string.Empty));
+    }
+
     public void Commit() {
       if (tabControl1.SelectedTab == tabPage1) {
         PropertySet[@"Description"].Data = textBox1.Text;
 
         // Dimensions get special treatment since the mgr stores weird strings, and DB stores doubles.
-        PropertySet[@"LENGTH"].Set(label18.Text, textBox2.Text);
-        PropertySet[@"WIDTH"].Set(label19.Text, textBox3.Text);
-        PropertySet[@"THICKNESS"].Set(label20.Text, textBox4.Text);
-        PropertySet[@"WALL THICKNESS"].Set(label21.Text, textBox5.Text);
+        PropertySet[@"LENGTH"].Set(label18.Text, EnQuote(textBox2.Text));
+        PropertySet[@"WIDTH"].Set(label19.Text, EnQuote(textBox3.Text));
+        PropertySet[@"THICKNESS"].Set(label20.Text, EnQuote(textBox4.Text));
+        PropertySet[@"WALL THICKNESS"].Set(label21.Text, EnQuote(textBox5.Text));
 
         PropertySet[@"COMMENT"].Data = textBox6.Text;
 

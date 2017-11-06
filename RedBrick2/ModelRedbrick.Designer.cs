@@ -667,6 +667,8 @@ namespace RedBrick2 {
       this.textBox3.Size = new System.Drawing.Size(207, 22);
       this.textBox3.TabIndex = 9;
       this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+      this.textBox3.Enter += new System.EventHandler(this.textBox_Enter);
+      this.textBox3.Leave += new System.EventHandler(this.textBox_Leave);
       // 
       // textBox4
       // 
@@ -677,6 +679,8 @@ namespace RedBrick2 {
       this.textBox4.Size = new System.Drawing.Size(207, 22);
       this.textBox4.TabIndex = 10;
       this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+      this.textBox4.Enter += new System.EventHandler(this.textBox_Enter);
+      this.textBox4.Leave += new System.EventHandler(this.textBox_Leave);
       // 
       // textBox5
       // 
@@ -687,7 +691,9 @@ namespace RedBrick2 {
       this.textBox5.Size = new System.Drawing.Size(207, 22);
       this.textBox5.TabIndex = 10;
       this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
+      this.textBox5.Enter += new System.EventHandler(this.textBox_Enter);
       this.textBox5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ov_textBox_KeyDown);
+      this.textBox5.Leave += new System.EventHandler(this.textBox_Leave);
       // 
       // label21
       // 
