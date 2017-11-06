@@ -40,6 +40,7 @@ namespace RedBrick2 {
     private ModelDoc2 lastModelDoc = null;
 
     private bool initialated = false;
+    private bool cutlistMatChanged = false;
     private bool AssemblyEventsAssigned = false;
     private bool PartEventsAssigned = false;
     private bool DrawingEventsAssigned = false;
@@ -47,6 +48,7 @@ namespace RedBrick2 {
     private bool DrawingSetup = false;
     private bool ov_userediting = false;
     private bool bl_userediting = false;
+    private bool cl_userediting = false;
 
     public ModelRedbrick(SldWorks sw, ModelDoc2 md) {
       SwApp = sw;
@@ -193,9 +195,27 @@ namespace RedBrick2 {
         cutlistPartsTableAdapter.FillByPartNum(eNGINEERINGDataSet.CutlistParts, partLookup);
         cutlistPartsBindingSource.DataSource = cutlistPartsTableAdapter.GetDataByPartNum(partLookup);
         cUTPARTSBindingSource.DataSource = cUT_PARTSTableAdapter.GetDataByPartnum(partLookup);
+
+        SelectLastCutlist();
       }
       if (Row == null) {
         GetDataFromPart();
+      }
+    }
+
+    private void SelectLastCutlist() {
+      bool contains = false;
+      foreach (var item in comboBox6.Items) {
+        DataRowView drv = (item as DataRowView);
+        if ((int)drv[@"CLID"] == Properties.Settings.Default.LastCutlist) {
+          contains = true;
+          break;
+        }
+      }
+      if (contains) {
+        comboBox6.SelectedValue = Properties.Settings.Default.LastCutlist;
+      } else {
+        comboBox6.SelectedValue = -1;
       }
     }
 
@@ -902,6 +922,22 @@ namespace RedBrick2 {
     private void label6_Click(object sender, EventArgs e) {
       CreateCutlist c = new CreateCutlist(SwApp);
       c.ShowDialog(this);
+    }
+
+    private void comboBox_SelectedIndexChanged(object sender, EventArgs e) {
+      cutlistMatChanged = true;
+    }
+
+    private void comboBox6_SelectedIndexChanged(object sender, EventArgs e) {
+      if (cl_userediting) {
+        Properties.Settings.Default.LastCutlist = (int)(sender as ComboBox).SelectedValue;
+        Properties.Settings.Default.Save();
+        cl_userediting = false;
+      }
+    }
+
+    private void comboBox6_MouseClick(object sender, MouseEventArgs e) {
+      cl_userediting = true;
     }
   }
 }

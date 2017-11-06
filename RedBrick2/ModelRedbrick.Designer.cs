@@ -231,6 +231,7 @@ namespace RedBrick2 {
       this.comboBox1.Size = new System.Drawing.Size(207, 21);
       this.comboBox1.TabIndex = 1;
       this.comboBox1.ValueMember = "MATID";
+      this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
       this.comboBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
       this.comboBox1.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
@@ -485,8 +486,10 @@ namespace RedBrick2 {
       this.comboBox6.Size = new System.Drawing.Size(207, 21);
       this.comboBox6.TabIndex = 6;
       this.comboBox6.ValueMember = "CLID";
+      this.comboBox6.SelectedIndexChanged += new System.EventHandler(this.comboBox6_SelectedIndexChanged);
       this.comboBox6.TextChanged += new System.EventHandler(this.comboBox_TextChanged);
       this.comboBox6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+      this.comboBox6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox6_MouseClick);
       this.comboBox6.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // label30

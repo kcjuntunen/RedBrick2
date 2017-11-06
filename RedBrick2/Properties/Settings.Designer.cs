@@ -630,5 +630,17 @@ namespace RedBrick2.Properties {
                 this["NormalForeground"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int LastCutlist {
+            get {
+                return ((int)(this["LastCutlist"]));
+            }
+            set {
+                this["LastCutlist"] = value;
+            }
+        }
     }
 }
