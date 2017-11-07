@@ -4,7 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using System.IO;
 using System.Windows.Forms;
+
+using SolidWorks.Interop.sldworks;
+using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
   public partial class EditRev : Form {
@@ -12,6 +16,7 @@ namespace RedBrick2 {
     private bool NewRev = false;
     private Revs RevSet;
     private Rev ThisRev;
+    private StringProperty level;
     private ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter guta =
       new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
 
@@ -20,6 +25,8 @@ namespace RedBrick2 {
       index = idx;
       RevSet = revSet;
       NewRev = false;
+      level = new StringProperty(@"REVISION LEVEL", true, RevSet.SwApp, (RevSet.SwApp.ActiveDoc as ModelDoc2), @"REV");
+      level.Get();
       ToggleFlameWar(Properties.Settings.Default.FlameWar);
     }
 
@@ -27,6 +34,8 @@ namespace RedBrick2 {
       InitializeComponent();
       RevSet = revSet;
       NewRev = true;
+      level = new StringProperty(@"REVISION LEVEL", true, RevSet.SwApp, (RevSet.SwApp.ActiveDoc as ModelDoc2), @"REV");
+      level.Get();
       ToggleFlameWar(Properties.Settings.Default.FlameWar);
     }
 
@@ -45,7 +54,32 @@ namespace RedBrick2 {
       ThisRev.Description = textBox2.Text;
       ThisRev.SetAuthor((int)comboBox2.SelectedValue);
       ThisRev.Date = dateTimePicker1.Value;
+      if (NewRev) {
+        AddECRItem();
+      }
       Close();
+    }
+
+    private void AddECRItem() {
+      string question = string.Format(Properties.Resources.InsertIntoEcrItems, ThisRev.PartNumber, ThisRev.ECO);
+
+      DialogResult mbr = DialogResult.No;
+      ENGINEERINGDataSet.ECRObjLookupDataTable eoldt =
+        new ENGINEERINGDataSet.ECRObjLookupDataTable();
+      ENGINEERINGDataSet.ECR_ITEMSDataTable eidt =
+        new ENGINEERINGDataSet.ECR_ITEMSDataTable();
+      int en = 0;
+      if (int.TryParse(ThisRev.ECO, out en) &&
+        !eoldt.ECRIsBogus(en) &&
+        !eidt.ECRItemExists(en, ThisRev.PartNumber, level.Value)) {
+          mbr = (DialogResult)MessageBox.Show(this, question, @"Insert ECR?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+      }
+      if (mbr == DialogResult.Yes) {
+        ENGINEERINGDataSet.inmastDataTable idt =
+          new ENGINEERINGDataSet.inmastDataTable();
+        int parttype = idt.GetPartType(ThisRev.PartNumber, level.Value);
+        MessageBox.Show(string.Format(@"Pretending to insert. parttype = {0}", parttype));
+      }
     }
 
     private void EditOp_Load(object sender, EventArgs e) {
@@ -61,7 +95,7 @@ namespace RedBrick2 {
       }
 
       if (NewRev) {
-        int? uid = guta.GetUID(Environment.UserName);
+        int? uid = guta.GetUID(System.Environment.UserName);
         if (uid == null) {
           throw new NullReferenceException(@"Hmm... Maybe you're not in the DB.");
         }

@@ -3,6 +3,95 @@ namespace RedBrick2 {
 
 
   public partial class ENGINEERINGDataSet {
+    partial class inmastDataTable {
+      public int GetPartType(string prtno, string prtrv) {
+        ENGINEERINGDataSetTableAdapters.inmastTableAdapter ita =
+          new ENGINEERINGDataSetTableAdapters.inmastTableAdapter();
+        string prdclass = ita.GetProductClass(prtno, prtrv);
+        int parttype = 7;
+        if (prdclass != null) {
+          switch (prdclass) {
+            case "01":
+              if (prtno.StartsWith("Z"))
+                parttype = 1;
+              else
+                parttype = 3;
+              break;
+            case "02":
+              parttype = 3;
+              break;
+            case "03":
+              if (prtno.StartsWith("Z"))
+                parttype = 1;
+              else
+                parttype = 3;
+              break;
+            case "04":
+              if (ita.GetPurchased(prtno, prtrv) == @"Y")
+                parttype = 4;
+              else
+                parttype = 3;
+              break;
+            case "06":
+              if (ita.GetPurchased(prtno, prtrv) == @"Y") 
+                parttype = 4;
+              else
+                parttype = 3;
+              break;
+            case "09":
+              if (ita.GetPurchased(prtno, prtrv) == @"Y")
+                parttype = 2;
+              else
+                parttype = 1;
+              break;
+            case "10":
+              parttype = 4;
+              break;
+            default:
+              parttype = 7;
+              break;
+          }
+        } else {
+          ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter ccl =
+            new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
+          if (ccl.GetDataByName(prtno, prtrv).Rows.Count > 0) {
+            parttype = 5;
+          } else {
+            ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cp =
+              new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
+            if (cp.GetDataByPartnum(prtno).Rows.Count > 0)
+              parttype = 6;
+          }
+        }
+        return parttype;
+      }
+    }
+  
+    partial class ECR_ITEMSDataTable {
+      public bool ECRItemExists(int ecrno, string partnum, string rev) {
+        bool exists = false;
+        ENGINEERINGDataSetTableAdapters.ECR_ITEMSTableAdapter eita =
+          new ENGINEERINGDataSetTableAdapters.ECR_ITEMSTableAdapter();
+        int? r = eita.GetECRItem((int)ecrno, partnum, rev);
+        if (r != null) {
+          exists = true;
+        }
+        return exists;
+      }
+    }
+  
+    partial class ECRObjLookupDataTable {
+      public bool ECRIsBogus(int econumber) {
+        bool bogus = true;
+        ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter eolta =
+          new ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter();
+        if (eolta.GetDataByECO(econumber).Rows.Count > 0) {
+          bogus = false;
+        }
+        return bogus;
+      }
+    }
+  
     partial class CUT_EDGESDataTable {
       public int GetEdgeIDByDescr(string descr) {
         if (descr != string.Empty) {

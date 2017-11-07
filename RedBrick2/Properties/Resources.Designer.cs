@@ -71,6 +71,15 @@ namespace RedBrick2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Insert &apos;{0}&apos; into ECR# {1} items?.
+        /// </summary>
+        internal static string InsertIntoEcrItems {
+            get {
+                return ResourceManager.GetString("InsertIntoEcrItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Necessary network resources are not available. Redbrick not starting..
         /// </summary>
         internal static string NetworkNotAvailable {

@@ -7,7 +7,7 @@ using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
   public class Revs : IList<Rev> {
-    private SldWorks SwApp;
+    public SldWorks SwApp;
     private List<Rev> innerList = new List<Rev>();
 
     public Revs(SldWorks sw) {

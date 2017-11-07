@@ -654,5 +654,15 @@ namespace RedBrick2.Properties {
                 this["SPQ"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=AMSTORE-SQL-07;Initial Catalog=M2MDATA01;Integrated Security=True")]
+        public string M2MDATA01ConnectionString {
+            get {
+                return ((string)(this["M2MDATA01ConnectionString"]));
+            }
+        }
     }
 }

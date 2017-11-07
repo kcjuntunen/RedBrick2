@@ -93,12 +93,14 @@ namespace RedBrick2 {
           }
         } else {
           ENGINEERINGDataSet.LegacyECRObjLookupDataTable dt = leol.GetDataByECO(ECO);
-          ENGINEERINGDataSet.LegacyECRObjLookupRow r = (ENGINEERINGDataSet.LegacyECRObjLookupRow)dt.Rows[0];
-          foreach (System.Data.DataColumn col in dt.Columns) {
-            if (col.ToString().Contains(@"Engineer") || col.ToString().Contains(@"Holder")) {
-              ecoData.Add(col.ToString(), Redbrick.TitleCase(r[col.ToString()].ToString()));
-            } else {
-              ecoData.Add(col.ToString(), r[col.ToString()].ToString());
+          if (dt.Rows.Count > 0) {
+            ENGINEERINGDataSet.LegacyECRObjLookupRow r = (ENGINEERINGDataSet.LegacyECRObjLookupRow)dt.Rows[0];
+            foreach (System.Data.DataColumn col in dt.Columns) {
+              if (col.ToString().Contains(@"Engineer") || col.ToString().Contains(@"Holder")) {
+                ecoData.Add(col.ToString(), Redbrick.TitleCase(r[col.ToString()].ToString()));
+              } else {
+                ecoData.Add(col.ToString(), r[col.ToString()].ToString());
+              }
             }
           }
         }
@@ -166,6 +168,18 @@ namespace RedBrick2 {
     public DateTime Date {
       get { return (DateTime)date.Data; }
       set { date.Data = value; }
+    }
+
+    public System.IO.FileInfo ReferencedFile {
+      get { return new System.IO.FileInfo((SwApp.ActiveDoc as ModelDoc2).GetPathName()); }
+      private set { ReferencedFile = value; }
+    }
+
+    public string PartNumber {
+      get {
+        return System.IO.Path.GetFileNameWithoutExtension(ReferencedFile.FullName).Split(' ')[0];
+      }
+      private set { PartNumber = value; }
     }
 
     public TreeNode Node {
