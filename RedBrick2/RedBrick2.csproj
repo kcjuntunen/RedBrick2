@@ -53,8 +53,9 @@
     <ApplicationIcon>redlego.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ArchivePDF">
-      <HintPath>..\..\ArchivePDF\ArchivePDF\bin\Release\ArchivePDF.dll</HintPath>
+    <Reference Include="ArchivePDF, Version=2.1.0.0, Culture=neutral, PublicKeyToken=3dbf4f27f46e74d2, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ArchivePDF\ArchivePDF\bin\Debug\ArchivePDF.dll</HintPath>
     </Reference>
     <Reference Include="Machine Priority Control">
       <HintPath>..\..\Machine.Priority.Control\Machine Priority Control\bin\Release\Machine Priority Control.dll</HintPath>
