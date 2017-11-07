@@ -642,5 +642,17 @@ namespace RedBrick2.Properties {
                 this["LastCutlist"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public int SPQ {
+            get {
+                return ((int)(this["SPQ"]));
+            }
+            set {
+                this["SPQ"] = value;
+            }
+        }
     }
 }

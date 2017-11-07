@@ -74,6 +74,8 @@ namespace RedBrick2 {
       this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
       this.button1 = new System.Windows.Forms.Button();
       this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+      this.label8 = new System.Windows.Forms.Label();
+      this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
       this.tableLayoutPanel1.SuspendLayout();
       this.groupBox1.SuspendLayout();
       this.tabControl1.SuspendLayout();
@@ -89,6 +91,7 @@ namespace RedBrick2 {
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.tableLayoutPanel3.SuspendLayout();
       this.tableLayoutPanel2.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
       this.SuspendLayout();
       // 
       // tableLayoutPanel1
@@ -112,9 +115,11 @@ namespace RedBrick2 {
       this.tableLayoutPanel1.Controls.Add(this.chbSounds, 0, 9);
       this.tableLayoutPanel1.Controls.Add(this.textBox3, 0, 13);
       this.tableLayoutPanel1.Controls.Add(this.label6, 0, 12);
+      this.tableLayoutPanel1.Controls.Add(this.label8, 0, 14);
+      this.tableLayoutPanel1.Controls.Add(this.numericUpDown1, 0, 15);
       this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 21);
       this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-      this.tableLayoutPanel1.RowCount = 14;
+      this.tableLayoutPanel1.RowCount = 16;
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -127,7 +132,9 @@ namespace RedBrick2 {
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+      this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableLayoutPanel1.Size = new System.Drawing.Size(381, 398);
       this.tableLayoutPanel1.TabIndex = 0;
@@ -274,7 +281,7 @@ namespace RedBrick2 {
       // textBox3
       // 
       this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.textBox3.Location = new System.Drawing.Point(3, 281);
+      this.textBox3.Location = new System.Drawing.Point(3, 274);
       this.textBox3.Name = "textBox3";
       this.textBox3.Size = new System.Drawing.Size(375, 22);
       this.textBox3.TabIndex = 22;
@@ -540,7 +547,7 @@ namespace RedBrick2 {
       this.tabPage3.Location = new System.Drawing.Point(4, 22);
       this.tabPage3.Name = "tabPage3";
       this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage3.Size = new System.Drawing.Size(407, 367);
+      this.tabPage3.Size = new System.Drawing.Size(408, 437);
       this.tabPage3.TabIndex = 2;
       this.tabPage3.Text = "PDF Archive Options";
       this.tabPage3.UseVisualStyleBackColor = true;
@@ -646,7 +653,7 @@ namespace RedBrick2 {
       this.tabPage4.Location = new System.Drawing.Point(4, 22);
       this.tabPage4.Name = "tabPage4";
       this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage4.Size = new System.Drawing.Size(407, 367);
+      this.tabPage4.Size = new System.Drawing.Size(408, 437);
       this.tabPage4.TabIndex = 3;
       this.tabPage4.Text = "Stats";
       this.tabPage4.UseVisualStyleBackColor = true;
@@ -663,7 +670,7 @@ namespace RedBrick2 {
       this.tableLayoutPanel7.RowCount = 2;
       this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
       this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tableLayoutPanel7.Size = new System.Drawing.Size(401, 361);
+      this.tableLayoutPanel7.Size = new System.Drawing.Size(402, 431);
       this.tableLayoutPanel7.TabIndex = 0;
       // 
       // label7
@@ -685,7 +692,7 @@ namespace RedBrick2 {
       this.dataGridView1.Location = new System.Drawing.Point(3, 23);
       this.dataGridView1.Name = "dataGridView1";
       this.dataGridView1.ReadOnly = true;
-      this.dataGridView1.Size = new System.Drawing.Size(395, 335);
+      this.dataGridView1.Size = new System.Drawing.Size(396, 405);
       this.dataGridView1.TabIndex = 1;
       // 
       // tableLayoutPanel3
@@ -736,6 +743,30 @@ namespace RedBrick2 {
       this.tableLayoutPanel2.Size = new System.Drawing.Size(422, 504);
       this.tableLayoutPanel2.TabIndex = 4;
       // 
+      // label8
+      // 
+      this.label8.AutoSize = true;
+      this.label8.Location = new System.Drawing.Point(3, 299);
+      this.label8.Name = "label8";
+      this.label8.Size = new System.Drawing.Size(28, 13);
+      this.label8.TabIndex = 24;
+      this.label8.Text = "SPQ";
+      // 
+      // numericUpDown1
+      // 
+      this.numericUpDown1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.numericUpDown1.Location = new System.Drawing.Point(3, 315);
+      this.numericUpDown1.Name = "numericUpDown1";
+      this.numericUpDown1.Size = new System.Drawing.Size(375, 22);
+      this.numericUpDown1.TabIndex = 25;
+      this.numericUpDown1.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+      this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+      // 
       // RedbrickConfiguration
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -771,6 +802,7 @@ namespace RedBrick2 {
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
       this.tableLayoutPanel3.ResumeLayout(false);
       this.tableLayoutPanel2.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -826,5 +858,7 @@ namespace RedBrick2 {
     private System.Windows.Forms.Label label7;
     private System.Windows.Forms.DataGridView dataGridView1;
     private System.Windows.Forms.Button button1;
+    private System.Windows.Forms.Label label8;
+    private System.Windows.Forms.NumericUpDown numericUpDown1;
   }
 }

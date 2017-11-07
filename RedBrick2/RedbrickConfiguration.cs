@@ -66,6 +66,7 @@ namespace RedBrick2 {
       checkBox6.Checked = Properties.Settings.Default.ExportImg;
       checkBox7.Checked = Properties.Settings.Default.CutlistNotSelectedWarning;
       checkBox8.Checked = Properties.Settings.Default.AutoOpenPriority;
+      numericUpDown1.Value = Properties.Settings.Default.SPQ;
 
       ToolTip tt = new ToolTip();
       tt.ShowAlways = true;
@@ -456,6 +457,10 @@ namespace RedBrick2 {
     private void button1_Click(object sender, EventArgs e) {
       AboutBox ab = new AboutBox();
       ab.ShowDialog();
+    }
+
+    private void numericUpDown1_ValueChanged(object sender, EventArgs e) {
+      Properties.Settings.Default.SPQ = (int)numericUpDown1.Value;
     }
   }
 }

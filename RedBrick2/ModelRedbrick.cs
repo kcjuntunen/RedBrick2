@@ -324,8 +324,11 @@ namespace RedBrick2 {
         flowLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         opc.Anchor = AnchorStyles.Left | AnchorStyles.Right;
       }
+      
+      double setup = ops.TotalSetupTime / Properties.Settings.Default.SPQ;
+
       groupBox4.Text = string.Format("Routing (Setup: {0:0} min/Run: {1:0} min)",
-        ops.TotalSetupTime * 60,
+        setup * 60,
         ops.TotalRunTime * 60);
     }
 
