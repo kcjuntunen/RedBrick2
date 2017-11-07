@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using System.IO;
 using System.Windows.Forms;
 
 namespace RedBrick2 {
@@ -165,6 +166,10 @@ namespace RedBrick2 {
       textBox1.Text = Properties.Settings.Default.BOMFilter[0].ToString();
       textBox2.Text = Properties.Settings.Default.GaugePath;
       textBox3.Text = Properties.Settings.Default.BOMTemplatePath;
+      textBox4.Text = Properties.Settings.Default.JPGPath;
+      textBox5.Text = Properties.Settings.Default.KPath;
+      textBox6.Text = Properties.Settings.Default.GPath;
+      textBox7.Text = Properties.Settings.Default.MetalPath;
       checkBox3.Checked = Properties.Settings.Default.SaveFirst;
       checkBox4.Checked = Properties.Settings.Default.SilenceGaugeErrors;
       checkBox5.Checked = Properties.Settings.Default.ExportEDrw;
@@ -419,20 +424,6 @@ namespace RedBrick2 {
       Properties.Settings.Default.CutlistNotSelectedWarning = checkBox7.Checked;
     }
 
-    private void textBox3_MouseDoubleClick(object sender, MouseEventArgs e) {
-      OpenFileDialog ofd = new OpenFileDialog();
-      ofd.InitialDirectory = System.IO.Path.GetDirectoryName(Properties.Settings.Default.BOMTemplatePath);
-      ofd.FileName = System.IO.Path.GetFileName(Properties.Settings.Default.BOMTemplatePath);
-      ofd.Filter = "Table Template Files (*.sldbomtbt)|*.sldbomtbt";
-      if (ofd.ShowDialog() == DialogResult.OK) {
-        textBox3.Text = ofd.FileName;
-        Properties.Settings.Default.BOMTemplatePath = ofd.FileName;
-        Properties.Settings.Default.Save();
-      } else {
-
-      }
-    }
-
     private void checkBox1_CheckedChanged_1(object sender, EventArgs e) {
       Properties.Settings.Default.WarnExcludeAssy = checkBox1.Checked;
     }
@@ -462,6 +453,70 @@ namespace RedBrick2 {
 
     private void numericUpDown1_ValueChanged(object sender, EventArgs e) {
       Properties.Settings.Default.SPQ = (int)numericUpDown1.Value;
+    }
+
+    private void textBox3_MouseDoubleClick(object sender, MouseEventArgs e) {
+      OpenFileDialog ofd = new OpenFileDialog();
+      ofd.InitialDirectory = System.IO.Path.GetDirectoryName(Properties.Settings.Default.BOMTemplatePath);
+      ofd.FileName = System.IO.Path.GetFileName(Properties.Settings.Default.BOMTemplatePath);
+      ofd.Filter = "Table Template Files (*.sldbomtbt)|*.sldbomtbt";
+      if (ofd.ShowDialog(this) == DialogResult.OK) {
+        textBox3.Text = ofd.FileName;
+        Properties.Settings.Default.BOMTemplatePath = ofd.FileName;
+        Properties.Settings.Default.Save();
+      }
+    }
+
+    private void textBox4_MouseDoubleClick(object sender, MouseEventArgs e) {
+      TextBox tb = (sender as TextBox);
+      FolderBrowserDialog fbd = new FolderBrowserDialog();
+      fbd.RootFolder = Environment.SpecialFolder.Desktop;
+      FileInfo f = new FileInfo(tb.Text);
+      fbd.SelectedPath = f.FullName;
+      if (fbd.ShowDialog(this) == System.Windows.Forms.DialogResult.OK) {
+        tb.Text = fbd.SelectedPath;
+        Properties.Settings.Default.JPGPath = fbd.SelectedPath;
+        Properties.Settings.Default.Save();
+      }
+    }
+
+    private void textBox5_MouseDoubleClick(object sender, MouseEventArgs e) {
+      TextBox tb = (sender as TextBox);
+      FolderBrowserDialog fbd = new FolderBrowserDialog();
+      fbd.RootFolder = Environment.SpecialFolder.Desktop;
+      FileInfo f = new FileInfo(tb.Text);
+      fbd.SelectedPath = f.FullName;
+      if (fbd.ShowDialog(this) == System.Windows.Forms.DialogResult.OK) {
+        tb.Text = fbd.SelectedPath;
+        Properties.Settings.Default.KPath = fbd.SelectedPath;
+        Properties.Settings.Default.Save();
+      }
+    }
+
+    private void textBox6_MouseDoubleClick(object sender, MouseEventArgs e) {
+      TextBox tb = (sender as TextBox);
+      FolderBrowserDialog fbd = new FolderBrowserDialog();
+      fbd.RootFolder = Environment.SpecialFolder.Desktop;
+      FileInfo f = new FileInfo(tb.Text);
+      fbd.SelectedPath = f.FullName;
+      if (fbd.ShowDialog(this) == System.Windows.Forms.DialogResult.OK) {
+        tb.Text = fbd.SelectedPath;
+        Properties.Settings.Default.GPath = fbd.SelectedPath;
+        Properties.Settings.Default.Save();
+      }
+    }
+
+    private void textBox7_MouseDoubleClick(object sender, MouseEventArgs e) {
+      TextBox tb = (sender as TextBox);
+      FolderBrowserDialog fbd = new FolderBrowserDialog();
+      fbd.RootFolder = Environment.SpecialFolder.Desktop;
+      FileInfo f = new FileInfo(tb.Text);
+      fbd.SelectedPath = f.FullName;
+      if (fbd.ShowDialog(this) == System.Windows.Forms.DialogResult.OK) {
+        tb.Text = fbd.SelectedPath;
+        Properties.Settings.Default.MetalPath = fbd.SelectedPath;
+        Properties.Settings.Default.Save();
+      }
     }
   }
 }

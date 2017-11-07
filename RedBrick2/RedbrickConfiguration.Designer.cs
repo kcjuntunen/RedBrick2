@@ -40,6 +40,7 @@ namespace RedBrick2 {
       this.checkBox2 = new System.Windows.Forms.CheckBox();
       this.label1 = new System.Windows.Forms.Label();
       this.cbDept = new System.Windows.Forms.ComboBox();
+      this.gENDEPTSBindingSource = new System.Windows.Forms.BindingSource(this.components);
       this.chbSounds = new System.Windows.Forms.CheckBox();
       this.textBox3 = new System.Windows.Forms.TextBox();
       this.label6 = new System.Windows.Forms.Label();
@@ -80,11 +81,19 @@ namespace RedBrick2 {
       this.button1 = new System.Windows.Forms.Button();
       this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
       this.cUT_MATERIALSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter();
-      this.gENDEPTSBindingSource = new System.Windows.Forms.BindingSource(this.components);
       this.gEN_DEPTSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.GEN_DEPTSTableAdapter();
+      this.label9 = new System.Windows.Forms.Label();
+      this.label10 = new System.Windows.Forms.Label();
+      this.label11 = new System.Windows.Forms.Label();
+      this.label12 = new System.Windows.Forms.Label();
+      this.textBox4 = new System.Windows.Forms.TextBox();
+      this.textBox5 = new System.Windows.Forms.TextBox();
+      this.textBox6 = new System.Windows.Forms.TextBox();
+      this.textBox7 = new System.Windows.Forms.TextBox();
       this.tableLayoutPanel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.cUTMATERIALSBindingSource)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSet)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.gENDEPTSBindingSource)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
       this.groupBox1.SuspendLayout();
       this.tabControl1.SuspendLayout();
@@ -100,7 +109,6 @@ namespace RedBrick2 {
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.tableLayoutPanel3.SuspendLayout();
       this.tableLayoutPanel2.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.gENDEPTSBindingSource)).BeginInit();
       this.SuspendLayout();
       // 
       // tableLayoutPanel1
@@ -291,6 +299,11 @@ namespace RedBrick2 {
       this.cbDept.SelectedIndexChanged += new System.EventHandler(this.cbDept_SelectedIndexChanged);
       this.cbDept.KeyDown += new System.Windows.Forms.KeyEventHandler(this.combobox_KeyDown);
       this.cbDept.Resize += new System.EventHandler(this.comboBox_Resize);
+      // 
+      // gENDEPTSBindingSource
+      // 
+      this.gENDEPTSBindingSource.DataMember = "GEN_DEPTS";
+      this.gENDEPTSBindingSource.DataSource = this.eNGINEERINGDataSet;
       // 
       // chbSounds
       // 
@@ -614,19 +627,33 @@ namespace RedBrick2 {
       this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
       this.tableLayoutPanel6.Controls.Add(this.label5, 0, 0);
       this.tableLayoutPanel6.Controls.Add(this.textBox2, 0, 1);
-      this.tableLayoutPanel6.Controls.Add(this.checkBox3, 0, 2);
-      this.tableLayoutPanel6.Controls.Add(this.checkBox4, 1, 2);
-      this.tableLayoutPanel6.Controls.Add(this.checkBox5, 0, 3);
-      this.tableLayoutPanel6.Controls.Add(this.checkBox6, 1, 3);
+      this.tableLayoutPanel6.Controls.Add(this.label9, 0, 2);
+      this.tableLayoutPanel6.Controls.Add(this.label10, 0, 4);
+      this.tableLayoutPanel6.Controls.Add(this.checkBox5, 0, 11);
+      this.tableLayoutPanel6.Controls.Add(this.checkBox6, 1, 11);
+      this.tableLayoutPanel6.Controls.Add(this.checkBox4, 1, 10);
+      this.tableLayoutPanel6.Controls.Add(this.checkBox3, 0, 10);
+      this.tableLayoutPanel6.Controls.Add(this.label11, 0, 6);
+      this.tableLayoutPanel6.Controls.Add(this.label12, 0, 8);
+      this.tableLayoutPanel6.Controls.Add(this.textBox4, 0, 3);
+      this.tableLayoutPanel6.Controls.Add(this.textBox5, 0, 5);
+      this.tableLayoutPanel6.Controls.Add(this.textBox6, 0, 7);
+      this.tableLayoutPanel6.Controls.Add(this.textBox7, 0, 9);
       this.tableLayoutPanel6.Location = new System.Drawing.Point(6, 6);
       this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-      this.tableLayoutPanel6.RowCount = 4;
+      this.tableLayoutPanel6.RowCount = 12;
       this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
-      this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-      this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+      this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
+      this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
+      this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
+      this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
+      this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
+      this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
+      this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
+      this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel6.Size = new System.Drawing.Size(395, 384);
       this.tableLayoutPanel6.TabIndex = 0;
       // 
@@ -641,8 +668,9 @@ namespace RedBrick2 {
       // 
       // textBox2
       // 
+      this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.tableLayoutPanel6.SetColumnSpan(this.textBox2, 2);
-      this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
       this.textBox2.Location = new System.Drawing.Point(3, 16);
       this.textBox2.Name = "textBox2";
       this.textBox2.Size = new System.Drawing.Size(389, 22);
@@ -654,7 +682,7 @@ namespace RedBrick2 {
       this.checkBox3.AutoSize = true;
       this.checkBox3.Checked = true;
       this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.checkBox3.Location = new System.Drawing.Point(3, 44);
+      this.checkBox3.Location = new System.Drawing.Point(3, 208);
       this.checkBox3.Name = "checkBox3";
       this.checkBox3.Size = new System.Drawing.Size(139, 17);
       this.checkBox3.TabIndex = 2;
@@ -665,7 +693,7 @@ namespace RedBrick2 {
       // checkBox4
       // 
       this.checkBox4.AutoSize = true;
-      this.checkBox4.Location = new System.Drawing.Point(200, 44);
+      this.checkBox4.Location = new System.Drawing.Point(200, 208);
       this.checkBox4.Name = "checkBox4";
       this.checkBox4.Size = new System.Drawing.Size(149, 17);
       this.checkBox4.TabIndex = 3;
@@ -678,7 +706,7 @@ namespace RedBrick2 {
       this.checkBox5.AutoSize = true;
       this.checkBox5.Checked = true;
       this.checkBox5.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.checkBox5.Location = new System.Drawing.Point(3, 67);
+      this.checkBox5.Location = new System.Drawing.Point(3, 231);
       this.checkBox5.Name = "checkBox5";
       this.checkBox5.Size = new System.Drawing.Size(143, 17);
       this.checkBox5.TabIndex = 4;
@@ -691,7 +719,7 @@ namespace RedBrick2 {
       this.checkBox6.AutoSize = true;
       this.checkBox6.Checked = true;
       this.checkBox6.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.checkBox6.Location = new System.Drawing.Point(200, 67);
+      this.checkBox6.Location = new System.Drawing.Point(200, 231);
       this.checkBox6.Name = "checkBox6";
       this.checkBox6.Size = new System.Drawing.Size(155, 17);
       this.checkBox6.TabIndex = 5;
@@ -799,14 +827,89 @@ namespace RedBrick2 {
       // 
       this.cUT_MATERIALSTableAdapter.ClearBeforeFill = true;
       // 
-      // gENDEPTSBindingSource
-      // 
-      this.gENDEPTSBindingSource.DataMember = "GEN_DEPTS";
-      this.gENDEPTSBindingSource.DataSource = this.eNGINEERINGDataSet;
-      // 
       // gEN_DEPTSTableAdapter
       // 
       this.gEN_DEPTSTableAdapter.ClearBeforeFill = true;
+      // 
+      // label9
+      // 
+      this.label9.AutoSize = true;
+      this.label9.Location = new System.Drawing.Point(3, 41);
+      this.label9.Name = "label9";
+      this.label9.Size = new System.Drawing.Size(54, 13);
+      this.label9.TabIndex = 6;
+      this.label9.Text = "JPG Path:";
+      // 
+      // label10
+      // 
+      this.label10.AutoSize = true;
+      this.label10.Location = new System.Drawing.Point(3, 82);
+      this.label10.Name = "label10";
+      this.label10.Size = new System.Drawing.Size(45, 13);
+      this.label10.TabIndex = 7;
+      this.label10.Text = "K: Path:";
+      // 
+      // label11
+      // 
+      this.label11.AutoSize = true;
+      this.label11.Location = new System.Drawing.Point(3, 123);
+      this.label11.Name = "label11";
+      this.label11.Size = new System.Drawing.Size(47, 13);
+      this.label11.TabIndex = 8;
+      this.label11.Text = "G: Path:";
+      // 
+      // label12
+      // 
+      this.label12.AutoSize = true;
+      this.label12.Location = new System.Drawing.Point(3, 164);
+      this.label12.Name = "label12";
+      this.label12.Size = new System.Drawing.Size(65, 13);
+      this.label12.TabIndex = 9;
+      this.label12.Text = "Metal Path:";
+      // 
+      // textBox4
+      // 
+      this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.tableLayoutPanel6.SetColumnSpan(this.textBox4, 2);
+      this.textBox4.Location = new System.Drawing.Point(3, 57);
+      this.textBox4.Name = "textBox4";
+      this.textBox4.Size = new System.Drawing.Size(389, 22);
+      this.textBox4.TabIndex = 10;
+      this.textBox4.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox4_MouseDoubleClick);
+      // 
+      // textBox5
+      // 
+      this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.tableLayoutPanel6.SetColumnSpan(this.textBox5, 2);
+      this.textBox5.Location = new System.Drawing.Point(3, 98);
+      this.textBox5.Name = "textBox5";
+      this.textBox5.Size = new System.Drawing.Size(389, 22);
+      this.textBox5.TabIndex = 11;
+      this.textBox5.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox5_MouseDoubleClick);
+      // 
+      // textBox6
+      // 
+      this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.tableLayoutPanel6.SetColumnSpan(this.textBox6, 2);
+      this.textBox6.Location = new System.Drawing.Point(3, 139);
+      this.textBox6.Name = "textBox6";
+      this.textBox6.Size = new System.Drawing.Size(389, 22);
+      this.textBox6.TabIndex = 12;
+      this.textBox6.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox6_MouseDoubleClick);
+      // 
+      // textBox7
+      // 
+      this.textBox7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.tableLayoutPanel6.SetColumnSpan(this.textBox7, 2);
+      this.textBox7.Location = new System.Drawing.Point(3, 180);
+      this.textBox7.Name = "textBox7";
+      this.textBox7.Size = new System.Drawing.Size(389, 22);
+      this.textBox7.TabIndex = 13;
+      this.textBox7.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox7_MouseDoubleClick);
       // 
       // RedbrickConfiguration
       // 
@@ -827,6 +930,7 @@ namespace RedBrick2 {
       this.tableLayoutPanel1.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.cUTMATERIALSBindingSource)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSet)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.gENDEPTSBindingSource)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
       this.groupBox1.ResumeLayout(false);
       this.tabControl1.ResumeLayout(false);
@@ -846,7 +950,6 @@ namespace RedBrick2 {
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
       this.tableLayoutPanel3.ResumeLayout(false);
       this.tableLayoutPanel2.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.gENDEPTSBindingSource)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -909,5 +1012,13 @@ namespace RedBrick2 {
     private ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cUT_MATERIALSTableAdapter;
     private System.Windows.Forms.BindingSource gENDEPTSBindingSource;
     private ENGINEERINGDataSetTableAdapters.GEN_DEPTSTableAdapter gEN_DEPTSTableAdapter;
+    private System.Windows.Forms.Label label9;
+    private System.Windows.Forms.Label label10;
+    private System.Windows.Forms.Label label11;
+    private System.Windows.Forms.Label label12;
+    private System.Windows.Forms.TextBox textBox4;
+    private System.Windows.Forms.TextBox textBox5;
+    private System.Windows.Forms.TextBox textBox6;
+    private System.Windows.Forms.TextBox textBox7;
   }
 }
