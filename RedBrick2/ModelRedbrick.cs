@@ -824,8 +824,10 @@ namespace RedBrick2 {
     }
 
     private void button1_Click(object sender, EventArgs e) {
+      string _filename = Path.GetFileNameWithoutExtension(PartFileInfo.Name);
+      string _lookup = _filename.Split(' ')[0];
       Machine_Priority_Control.MachinePriority mp =
-        new Machine_Priority_Control.MachinePriority(Path.GetFileNameWithoutExtension(PartFileInfo.Name));
+        new Machine_Priority_Control.MachinePriority(_lookup);
       mp.Show(this);
     }
 
