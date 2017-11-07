@@ -30,43 +30,9 @@ namespace RedBrick2 {
     /// Pull data from config resources and populate the form.
     /// </summary>
     private void init() {
-      cbDefaultMaterial.DisplayMember = "DESCR";
-      cbDefaultMaterial.ValueMember = "MATID";
-      //cbDefaultMaterial.DataSource = cd.Materials.Tables[0];
-      cbDefaultMaterial.SelectedValue = Properties.Settings.Default.DefaultMaterial;
-
-      cbDept.DisplayMember = "DEPT_NAME";
-      cbDept.ValueMember = "DEPT_ID";
-      //cbDept.DataSource = cd.GetDepartments().Tables[0];
-
       for (int i = 0; i < 26; i++) {
         cbRevLimit.Items.Add("A" + (char)(i + 65));
       }
-
-      chbDBEnabled.Checked = true;
-      chbFlameWar.Checked = Properties.Settings.Default.FlameWar;
-      chbTestingMode.Checked = true;
-      cbDept.SelectedValue = Properties.Settings.Default.UserDept;
-      cbRevLimit.SelectedIndex = Properties.Settings.Default.LvlLimit - 1;
-      chbSounds.Checked = Properties.Settings.Default.MakeSounds;
-      chbWarnings.Checked = Properties.Settings.Default.Warn;
-      chbOpWarnings.Checked = Properties.Settings.Default.ProgWarn;
-      chbIdiotLight.Checked = Properties.Settings.Default.IdiotLight;
-      chbOnlyActive.Checked = Properties.Settings.Default.OnlyActiveAuthors;
-      chbOnlyActiveCustomers.Checked = Properties.Settings.Default.OnlyCurrentCustomers;
-      chbRememberCustomer.Checked = Properties.Settings.Default.RememberLastCustomer;
-      checkBox1.Checked = Properties.Settings.Default.WarnExcludeAssy;
-      checkBox2.Checked = true;
-      textBox1.Text = Properties.Settings.Default.BOMFilter[0].ToString();
-      textBox2.Text = Properties.Settings.Default.GaugePath;
-      textBox3.Text = Properties.Settings.Default.BOMTemplatePath;
-      checkBox3.Checked = Properties.Settings.Default.SaveFirst;
-      checkBox4.Checked = Properties.Settings.Default.SilenceGaugeErrors;
-      checkBox5.Checked = Properties.Settings.Default.ExportEDrw;
-      checkBox6.Checked = Properties.Settings.Default.ExportImg;
-      checkBox7.Checked = Properties.Settings.Default.CutlistNotSelectedWarning;
-      checkBox8.Checked = Properties.Settings.Default.AutoOpenPriority;
-      numericUpDown1.Value = Properties.Settings.Default.SPQ;
 
       ToolTip tt = new ToolTip();
       tt.ShowAlways = true;
@@ -174,8 +140,38 @@ namespace RedBrick2 {
     /// <param name="sender">Who triggered this event?</param>
     /// <param name="e">Any data come with it?</param>
     private void RedbrickConfiguration_Load(object sender, EventArgs e) {
+      // TODO: This line of code loads data into the 'eNGINEERINGDataSet.GEN_DEPTS' table. You can move, or remove it, as needed.
+      this.gEN_DEPTSTableAdapter.Fill(this.eNGINEERINGDataSet.GEN_DEPTS);
+      // TODO: This line of code loads data into the 'eNGINEERINGDataSet.CUT_MATERIALS' table. You can move, or remove it, as needed.
+      this.cUT_MATERIALSTableAdapter.Fill(this.eNGINEERINGDataSet.CUT_MATERIALS);
       Location = Properties.Settings.Default.RBConfigLocation;
       Size = Properties.Settings.Default.RBConfigSize;
+
+      cbDefaultMaterial.SelectedValue = Properties.Settings.Default.DefaultMaterial;
+      cbDept.SelectedValue = Properties.Settings.Default.UserDept;
+      chbDBEnabled.Checked = true;
+      chbFlameWar.Checked = Properties.Settings.Default.FlameWar;
+      chbTestingMode.Checked = true;
+      cbRevLimit.SelectedIndex = Properties.Settings.Default.LvlLimit - 1;
+      chbSounds.Checked = Properties.Settings.Default.MakeSounds;
+      chbWarnings.Checked = Properties.Settings.Default.Warn;
+      chbOpWarnings.Checked = Properties.Settings.Default.ProgWarn;
+      chbIdiotLight.Checked = Properties.Settings.Default.IdiotLight;
+      chbOnlyActive.Checked = Properties.Settings.Default.OnlyActiveAuthors;
+      chbOnlyActiveCustomers.Checked = Properties.Settings.Default.OnlyCurrentCustomers;
+      chbRememberCustomer.Checked = Properties.Settings.Default.RememberLastCustomer;
+      checkBox1.Checked = Properties.Settings.Default.WarnExcludeAssy;
+      checkBox2.Checked = true;
+      textBox1.Text = Properties.Settings.Default.BOMFilter[0].ToString();
+      textBox2.Text = Properties.Settings.Default.GaugePath;
+      textBox3.Text = Properties.Settings.Default.BOMTemplatePath;
+      checkBox3.Checked = Properties.Settings.Default.SaveFirst;
+      checkBox4.Checked = Properties.Settings.Default.SilenceGaugeErrors;
+      checkBox5.Checked = Properties.Settings.Default.ExportEDrw;
+      checkBox6.Checked = Properties.Settings.Default.ExportImg;
+      checkBox7.Checked = Properties.Settings.Default.CutlistNotSelectedWarning;
+      checkBox8.Checked = Properties.Settings.Default.AutoOpenPriority;
+      numericUpDown1.Value = Properties.Settings.Default.SPQ;
     }
 
     /// <summary>

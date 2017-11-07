@@ -24,6 +24,7 @@ namespace RedBrick2 {
     /// the contents of this method with the code editor.
     /// </summary>
     private void InitializeComponent() {
+      this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RedbrickConfiguration));
       this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
       this.chbDBEnabled = new System.Windows.Forms.CheckBox();
@@ -32,6 +33,8 @@ namespace RedBrick2 {
       this.cbRevLimit = new System.Windows.Forms.ComboBox();
       this.label3 = new System.Windows.Forms.Label();
       this.cbDefaultMaterial = new System.Windows.Forms.ComboBox();
+      this.cUTMATERIALSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+      this.eNGINEERINGDataSet = new RedBrick2.ENGINEERINGDataSet();
       this.chbOnlyActive = new System.Windows.Forms.CheckBox();
       this.chbOnlyActiveCustomers = new System.Windows.Forms.CheckBox();
       this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -40,6 +43,8 @@ namespace RedBrick2 {
       this.chbSounds = new System.Windows.Forms.CheckBox();
       this.textBox3 = new System.Windows.Forms.TextBox();
       this.label6 = new System.Windows.Forms.Label();
+      this.label8 = new System.Windows.Forms.Label();
+      this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
       this.btnCancel = new System.Windows.Forms.Button();
       this.btnOK = new System.Windows.Forms.Button();
       this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -74,9 +79,13 @@ namespace RedBrick2 {
       this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
       this.button1 = new System.Windows.Forms.Button();
       this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-      this.label8 = new System.Windows.Forms.Label();
-      this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+      this.cUT_MATERIALSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter();
+      this.gENDEPTSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+      this.gEN_DEPTSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.GEN_DEPTSTableAdapter();
       this.tableLayoutPanel1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.cUTMATERIALSBindingSource)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSet)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
       this.groupBox1.SuspendLayout();
       this.tabControl1.SuspendLayout();
       this.tabPage1.SuspendLayout();
@@ -91,7 +100,7 @@ namespace RedBrick2 {
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.tableLayoutPanel3.SuspendLayout();
       this.tableLayoutPanel2.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.gENDEPTSBindingSource)).BeginInit();
       this.SuspendLayout();
       // 
       // tableLayoutPanel1
@@ -195,14 +204,27 @@ namespace RedBrick2 {
       // 
       this.cbDefaultMaterial.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
       this.cbDefaultMaterial.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+      this.cbDefaultMaterial.DataSource = this.cUTMATERIALSBindingSource;
+      this.cbDefaultMaterial.DisplayMember = "DESCR";
       this.cbDefaultMaterial.Dock = System.Windows.Forms.DockStyle.Fill;
       this.cbDefaultMaterial.FormattingEnabled = true;
       this.cbDefaultMaterial.Location = new System.Drawing.Point(3, 102);
       this.cbDefaultMaterial.Name = "cbDefaultMaterial";
       this.cbDefaultMaterial.Size = new System.Drawing.Size(375, 21);
       this.cbDefaultMaterial.TabIndex = 9;
+      this.cbDefaultMaterial.ValueMember = "MATID";
       this.cbDefaultMaterial.SelectedIndexChanged += new System.EventHandler(this.cbDefaultMaterial_SelectedIndexChanged);
       this.cbDefaultMaterial.KeyDown += new System.Windows.Forms.KeyEventHandler(this.combobox_KeyDown);
+      // 
+      // cUTMATERIALSBindingSource
+      // 
+      this.cUTMATERIALSBindingSource.DataMember = "CUT_MATERIALS";
+      this.cUTMATERIALSBindingSource.DataSource = this.eNGINEERINGDataSet;
+      // 
+      // eNGINEERINGDataSet
+      // 
+      this.eNGINEERINGDataSet.DataSetName = "ENGINEERINGDataSet";
+      this.eNGINEERINGDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
       // 
       // chbOnlyActive
       // 
@@ -254,12 +276,15 @@ namespace RedBrick2 {
       // 
       this.cbDept.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
       this.cbDept.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+      this.cbDept.DataSource = this.gENDEPTSBindingSource;
+      this.cbDept.DisplayMember = "DEPT_NAME";
       this.cbDept.Dock = System.Windows.Forms.DockStyle.Fill;
       this.cbDept.FormattingEnabled = true;
       this.cbDept.Location = new System.Drawing.Point(3, 234);
       this.cbDept.Name = "cbDept";
       this.cbDept.Size = new System.Drawing.Size(375, 21);
       this.cbDept.TabIndex = 3;
+      this.cbDept.ValueMember = "DEPT_ID";
       this.cbDept.Visible = false;
       this.cbDept.SelectedIndexChanged += new System.EventHandler(this.cbDept_SelectedIndexChanged);
       this.cbDept.KeyDown += new System.Windows.Forms.KeyEventHandler(this.combobox_KeyDown);
@@ -295,6 +320,30 @@ namespace RedBrick2 {
       this.label6.Size = new System.Drawing.Size(85, 13);
       this.label6.TabIndex = 23;
       this.label6.Text = "BOM Template:";
+      // 
+      // label8
+      // 
+      this.label8.AutoSize = true;
+      this.label8.Location = new System.Drawing.Point(3, 299);
+      this.label8.Name = "label8";
+      this.label8.Size = new System.Drawing.Size(28, 13);
+      this.label8.TabIndex = 24;
+      this.label8.Text = "SPQ";
+      // 
+      // numericUpDown1
+      // 
+      this.numericUpDown1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.numericUpDown1.Location = new System.Drawing.Point(3, 315);
+      this.numericUpDown1.Name = "numericUpDown1";
+      this.numericUpDown1.Size = new System.Drawing.Size(375, 22);
+      this.numericUpDown1.TabIndex = 25;
+      this.numericUpDown1.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+      this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
       // 
       // btnCancel
       // 
@@ -743,29 +792,18 @@ namespace RedBrick2 {
       this.tableLayoutPanel2.Size = new System.Drawing.Size(422, 504);
       this.tableLayoutPanel2.TabIndex = 4;
       // 
-      // label8
+      // cUT_MATERIALSTableAdapter
       // 
-      this.label8.AutoSize = true;
-      this.label8.Location = new System.Drawing.Point(3, 299);
-      this.label8.Name = "label8";
-      this.label8.Size = new System.Drawing.Size(28, 13);
-      this.label8.TabIndex = 24;
-      this.label8.Text = "SPQ";
+      this.cUT_MATERIALSTableAdapter.ClearBeforeFill = true;
       // 
-      // numericUpDown1
+      // gENDEPTSBindingSource
       // 
-      this.numericUpDown1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.numericUpDown1.Location = new System.Drawing.Point(3, 315);
-      this.numericUpDown1.Name = "numericUpDown1";
-      this.numericUpDown1.Size = new System.Drawing.Size(375, 22);
-      this.numericUpDown1.TabIndex = 25;
-      this.numericUpDown1.Value = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-      this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+      this.gENDEPTSBindingSource.DataMember = "GEN_DEPTS";
+      this.gENDEPTSBindingSource.DataSource = this.eNGINEERINGDataSet;
+      // 
+      // gEN_DEPTSTableAdapter
+      // 
+      this.gEN_DEPTSTableAdapter.ClearBeforeFill = true;
       // 
       // RedbrickConfiguration
       // 
@@ -784,6 +822,9 @@ namespace RedBrick2 {
       this.Load += new System.EventHandler(this.RedbrickConfiguration_Load);
       this.tableLayoutPanel1.ResumeLayout(false);
       this.tableLayoutPanel1.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.cUTMATERIALSBindingSource)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSet)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
       this.groupBox1.ResumeLayout(false);
       this.tabControl1.ResumeLayout(false);
       this.tabPage1.ResumeLayout(false);
@@ -802,7 +843,7 @@ namespace RedBrick2 {
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
       this.tableLayoutPanel3.ResumeLayout(false);
       this.tableLayoutPanel2.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.gENDEPTSBindingSource)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -860,5 +901,10 @@ namespace RedBrick2 {
     private System.Windows.Forms.Button button1;
     private System.Windows.Forms.Label label8;
     private System.Windows.Forms.NumericUpDown numericUpDown1;
+    private ENGINEERINGDataSet eNGINEERINGDataSet;
+    private System.Windows.Forms.BindingSource cUTMATERIALSBindingSource;
+    private ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cUT_MATERIALSTableAdapter;
+    private System.Windows.Forms.BindingSource gENDEPTSBindingSource;
+    private ENGINEERINGDataSetTableAdapters.GEN_DEPTSTableAdapter gEN_DEPTSTableAdapter;
   }
 }
