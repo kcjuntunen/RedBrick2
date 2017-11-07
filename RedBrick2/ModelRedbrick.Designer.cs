@@ -817,6 +817,7 @@ namespace RedBrick2 {
       this.textBox7.Name = "textBox7";
       this.textBox7.Size = new System.Drawing.Size(97, 22);
       this.textBox7.TabIndex = 12;
+      this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
       // 
       // label25
       // 
@@ -905,6 +906,7 @@ namespace RedBrick2 {
       this.textBox8.Name = "textBox8";
       this.textBox8.Size = new System.Drawing.Size(104, 22);
       this.textBox8.TabIndex = 13;
+      this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
       // 
       // label23
       // 

@@ -69,6 +69,13 @@ namespace RedBrick2 {
       textBox10.TextChanged += textBox10_TextChanged;
     }
 
+    public void TogglePriorityButton() {
+      bool no_cnc1 = (textBox7.Text == @"NA") || (textBox7.Text == string.Empty);
+      bool no_cnc2 = (textBox8.Text == @"NA") || (textBox8.Text == string.Empty);
+      bool enabled = !(no_cnc1 && no_cnc2);
+      button1.Enabled = enabled; 
+    }
+
     public void ToggleFlameWar(bool on) {
       if (drawingRedbrick != null) {
         drawingRedbrick.ToggleFlameWar(on);
@@ -961,6 +968,14 @@ namespace RedBrick2 {
 
     private void comboBox6_MouseClick(object sender, MouseEventArgs e) {
       cl_userediting = true;
+    }
+
+    private void textBox7_TextChanged(object sender, EventArgs e) {
+      TogglePriorityButton();
+    }
+
+    private void textBox8_TextChanged(object sender, EventArgs e) {
+      TogglePriorityButton();
     }
   }
 }
