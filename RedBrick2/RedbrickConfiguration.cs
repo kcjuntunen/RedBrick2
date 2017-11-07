@@ -442,6 +442,11 @@ namespace RedBrick2 {
         (sender as ComboBox).DroppedDown = false;
     }
 
+    private void comboBox_Resize(object sender, EventArgs e) {
+      ComboBox _me = (sender as ComboBox);
+      _me.SelectionLength = 0;
+    }
+
     private void checkBox8_CheckedChanged(object sender, EventArgs e) {
       Properties.Settings.Default.AutoOpenPriority = checkBox8.Checked;
     }

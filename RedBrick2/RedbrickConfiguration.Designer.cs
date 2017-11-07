@@ -190,6 +190,7 @@ namespace RedBrick2 {
       this.cbRevLimit.Size = new System.Drawing.Size(375, 21);
       this.cbRevLimit.TabIndex = 7;
       this.cbRevLimit.SelectedIndexChanged += new System.EventHandler(this.cbRevLimit_SelectedIndexChanged);
+      this.cbRevLimit.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // label3
       // 
@@ -215,6 +216,7 @@ namespace RedBrick2 {
       this.cbDefaultMaterial.ValueMember = "MATID";
       this.cbDefaultMaterial.SelectedIndexChanged += new System.EventHandler(this.cbDefaultMaterial_SelectedIndexChanged);
       this.cbDefaultMaterial.KeyDown += new System.Windows.Forms.KeyEventHandler(this.combobox_KeyDown);
+      this.cbDefaultMaterial.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // cUTMATERIALSBindingSource
       // 
@@ -288,6 +290,7 @@ namespace RedBrick2 {
       this.cbDept.Visible = false;
       this.cbDept.SelectedIndexChanged += new System.EventHandler(this.cbDept_SelectedIndexChanged);
       this.cbDept.KeyDown += new System.Windows.Forms.KeyEventHandler(this.combobox_KeyDown);
+      this.cbDept.Resize += new System.EventHandler(this.comboBox_Resize);
       // 
       // chbSounds
       // 
