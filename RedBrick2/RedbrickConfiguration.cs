@@ -170,6 +170,7 @@ namespace RedBrick2 {
       textBox5.Text = Properties.Settings.Default.KPath;
       textBox6.Text = Properties.Settings.Default.GPath;
       textBox7.Text = Properties.Settings.Default.MetalPath;
+      textBox8.Text = Properties.Settings.Default.GaugeRegex;
       checkBox3.Checked = Properties.Settings.Default.SaveFirst;
       checkBox4.Checked = Properties.Settings.Default.SilenceGaugeErrors;
       checkBox5.Checked = Properties.Settings.Default.ExportEDrw;
@@ -517,6 +518,10 @@ namespace RedBrick2 {
         Properties.Settings.Default.MetalPath = fbd.SelectedPath;
         Properties.Settings.Default.Save();
       }
+    }
+
+    private void textBox8_TextChanged(object sender, EventArgs e) {
+      Properties.Settings.Default.GaugeRegex = textBox8.Text;
     }
   }
 }

@@ -187,5 +187,8 @@
     <Setting Name="ECRDrawingsDestination" Type="System.String" Scope="User">
       <Value Profile="(Default)">\\AMSTORE-SVR-02\shared\shared\general\Engineering Utility\ECR Drawings\</Value>
     </Setting>
+    <Setting Name="GaugeRegex" Type="System.String" Scope="User">
+      <Value Profile="(Default)">^[0-9]{1,2}\ ?GA\.?</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

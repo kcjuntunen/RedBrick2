@@ -676,5 +676,17 @@ namespace RedBrick2.Properties {
                 this["ECRDrawingsDestination"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("^[0-9]{1,2}\\ ?GA\\.?")]
+        public string GaugeRegex {
+            get {
+                return ((string)(this["GaugeRegex"]));
+            }
+            set {
+                this["GaugeRegex"] = value;
+            }
+        }
     }
 }

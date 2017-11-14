@@ -69,10 +69,18 @@ namespace RedBrick2 {
       this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
       this.label5 = new System.Windows.Forms.Label();
       this.textBox2 = new System.Windows.Forms.TextBox();
-      this.checkBox3 = new System.Windows.Forms.CheckBox();
-      this.checkBox4 = new System.Windows.Forms.CheckBox();
+      this.label9 = new System.Windows.Forms.Label();
+      this.label10 = new System.Windows.Forms.Label();
       this.checkBox5 = new System.Windows.Forms.CheckBox();
       this.checkBox6 = new System.Windows.Forms.CheckBox();
+      this.checkBox4 = new System.Windows.Forms.CheckBox();
+      this.checkBox3 = new System.Windows.Forms.CheckBox();
+      this.label11 = new System.Windows.Forms.Label();
+      this.label12 = new System.Windows.Forms.Label();
+      this.textBox4 = new System.Windows.Forms.TextBox();
+      this.textBox5 = new System.Windows.Forms.TextBox();
+      this.textBox6 = new System.Windows.Forms.TextBox();
+      this.textBox7 = new System.Windows.Forms.TextBox();
       this.tabPage4 = new System.Windows.Forms.TabPage();
       this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
       this.label7 = new System.Windows.Forms.Label();
@@ -82,14 +90,8 @@ namespace RedBrick2 {
       this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
       this.cUT_MATERIALSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter();
       this.gEN_DEPTSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.GEN_DEPTSTableAdapter();
-      this.label9 = new System.Windows.Forms.Label();
-      this.label10 = new System.Windows.Forms.Label();
-      this.label11 = new System.Windows.Forms.Label();
-      this.label12 = new System.Windows.Forms.Label();
-      this.textBox4 = new System.Windows.Forms.TextBox();
-      this.textBox5 = new System.Windows.Forms.TextBox();
-      this.textBox6 = new System.Windows.Forms.TextBox();
-      this.textBox7 = new System.Windows.Forms.TextBox();
+      this.label13 = new System.Windows.Forms.Label();
+      this.textBox8 = new System.Windows.Forms.TextBox();
       this.tableLayoutPanel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.cUTMATERIALSBindingSource)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSet)).BeginInit();
@@ -629,19 +631,23 @@ namespace RedBrick2 {
       this.tableLayoutPanel6.Controls.Add(this.textBox2, 0, 1);
       this.tableLayoutPanel6.Controls.Add(this.label9, 0, 2);
       this.tableLayoutPanel6.Controls.Add(this.label10, 0, 4);
-      this.tableLayoutPanel6.Controls.Add(this.checkBox5, 0, 11);
-      this.tableLayoutPanel6.Controls.Add(this.checkBox6, 1, 11);
-      this.tableLayoutPanel6.Controls.Add(this.checkBox4, 1, 10);
-      this.tableLayoutPanel6.Controls.Add(this.checkBox3, 0, 10);
       this.tableLayoutPanel6.Controls.Add(this.label11, 0, 6);
       this.tableLayoutPanel6.Controls.Add(this.label12, 0, 8);
       this.tableLayoutPanel6.Controls.Add(this.textBox4, 0, 3);
       this.tableLayoutPanel6.Controls.Add(this.textBox5, 0, 5);
       this.tableLayoutPanel6.Controls.Add(this.textBox6, 0, 7);
       this.tableLayoutPanel6.Controls.Add(this.textBox7, 0, 9);
+      this.tableLayoutPanel6.Controls.Add(this.checkBox5, 0, 13);
+      this.tableLayoutPanel6.Controls.Add(this.checkBox6, 1, 13);
+      this.tableLayoutPanel6.Controls.Add(this.checkBox4, 1, 12);
+      this.tableLayoutPanel6.Controls.Add(this.checkBox3, 0, 12);
+      this.tableLayoutPanel6.Controls.Add(this.label13, 0, 10);
+      this.tableLayoutPanel6.Controls.Add(this.textBox8, 0, 11);
       this.tableLayoutPanel6.Location = new System.Drawing.Point(6, 6);
       this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-      this.tableLayoutPanel6.RowCount = 12;
+      this.tableLayoutPanel6.RowCount = 14;
+      this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
+      this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
       this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -677,36 +683,30 @@ namespace RedBrick2 {
       this.textBox2.TabIndex = 1;
       this.textBox2.DoubleClick += new System.EventHandler(this.textBox2_DoubleClick);
       // 
-      // checkBox3
+      // label9
       // 
-      this.checkBox3.AutoSize = true;
-      this.checkBox3.Checked = true;
-      this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.checkBox3.Location = new System.Drawing.Point(3, 208);
-      this.checkBox3.Name = "checkBox3";
-      this.checkBox3.Size = new System.Drawing.Size(139, 17);
-      this.checkBox3.TabIndex = 2;
-      this.checkBox3.Text = "Save Before Exporting";
-      this.checkBox3.UseVisualStyleBackColor = true;
-      this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+      this.label9.AutoSize = true;
+      this.label9.Location = new System.Drawing.Point(3, 41);
+      this.label9.Name = "label9";
+      this.label9.Size = new System.Drawing.Size(54, 13);
+      this.label9.TabIndex = 6;
+      this.label9.Text = "JPG Path:";
       // 
-      // checkBox4
+      // label10
       // 
-      this.checkBox4.AutoSize = true;
-      this.checkBox4.Location = new System.Drawing.Point(200, 208);
-      this.checkBox4.Name = "checkBox4";
-      this.checkBox4.Size = new System.Drawing.Size(149, 17);
-      this.checkBox4.TabIndex = 3;
-      this.checkBox4.Text = "Ignore Gauge Mismatch";
-      this.checkBox4.UseVisualStyleBackColor = true;
-      this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
+      this.label10.AutoSize = true;
+      this.label10.Location = new System.Drawing.Point(3, 82);
+      this.label10.Name = "label10";
+      this.label10.Size = new System.Drawing.Size(45, 13);
+      this.label10.TabIndex = 7;
+      this.label10.Text = "K: Path:";
       // 
       // checkBox5
       // 
       this.checkBox5.AutoSize = true;
       this.checkBox5.Checked = true;
       this.checkBox5.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.checkBox5.Location = new System.Drawing.Point(3, 231);
+      this.checkBox5.Location = new System.Drawing.Point(3, 272);
       this.checkBox5.Name = "checkBox5";
       this.checkBox5.Size = new System.Drawing.Size(143, 17);
       this.checkBox5.TabIndex = 4;
@@ -719,13 +719,99 @@ namespace RedBrick2 {
       this.checkBox6.AutoSize = true;
       this.checkBox6.Checked = true;
       this.checkBox6.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.checkBox6.Location = new System.Drawing.Point(200, 231);
+      this.checkBox6.Location = new System.Drawing.Point(200, 272);
       this.checkBox6.Name = "checkBox6";
       this.checkBox6.Size = new System.Drawing.Size(155, 17);
       this.checkBox6.TabIndex = 5;
       this.checkBox6.Text = "Export Thumbnail Images";
       this.checkBox6.UseVisualStyleBackColor = true;
       this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
+      // 
+      // checkBox4
+      // 
+      this.checkBox4.AutoSize = true;
+      this.checkBox4.Location = new System.Drawing.Point(200, 249);
+      this.checkBox4.Name = "checkBox4";
+      this.checkBox4.Size = new System.Drawing.Size(149, 17);
+      this.checkBox4.TabIndex = 3;
+      this.checkBox4.Text = "Ignore Gauge Mismatch";
+      this.checkBox4.UseVisualStyleBackColor = true;
+      this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
+      // 
+      // checkBox3
+      // 
+      this.checkBox3.AutoSize = true;
+      this.checkBox3.Checked = true;
+      this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.checkBox3.Location = new System.Drawing.Point(3, 249);
+      this.checkBox3.Name = "checkBox3";
+      this.checkBox3.Size = new System.Drawing.Size(139, 17);
+      this.checkBox3.TabIndex = 2;
+      this.checkBox3.Text = "Save Before Exporting";
+      this.checkBox3.UseVisualStyleBackColor = true;
+      this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+      // 
+      // label11
+      // 
+      this.label11.AutoSize = true;
+      this.label11.Location = new System.Drawing.Point(3, 123);
+      this.label11.Name = "label11";
+      this.label11.Size = new System.Drawing.Size(47, 13);
+      this.label11.TabIndex = 8;
+      this.label11.Text = "G: Path:";
+      // 
+      // label12
+      // 
+      this.label12.AutoSize = true;
+      this.label12.Location = new System.Drawing.Point(3, 164);
+      this.label12.Name = "label12";
+      this.label12.Size = new System.Drawing.Size(65, 13);
+      this.label12.TabIndex = 9;
+      this.label12.Text = "Metal Path:";
+      // 
+      // textBox4
+      // 
+      this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.tableLayoutPanel6.SetColumnSpan(this.textBox4, 2);
+      this.textBox4.Location = new System.Drawing.Point(3, 57);
+      this.textBox4.Name = "textBox4";
+      this.textBox4.Size = new System.Drawing.Size(389, 22);
+      this.textBox4.TabIndex = 10;
+      this.textBox4.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox4_MouseDoubleClick);
+      // 
+      // textBox5
+      // 
+      this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.tableLayoutPanel6.SetColumnSpan(this.textBox5, 2);
+      this.textBox5.Location = new System.Drawing.Point(3, 98);
+      this.textBox5.Name = "textBox5";
+      this.textBox5.Size = new System.Drawing.Size(389, 22);
+      this.textBox5.TabIndex = 11;
+      this.textBox5.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox5_MouseDoubleClick);
+      // 
+      // textBox6
+      // 
+      this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.tableLayoutPanel6.SetColumnSpan(this.textBox6, 2);
+      this.textBox6.Location = new System.Drawing.Point(3, 139);
+      this.textBox6.Name = "textBox6";
+      this.textBox6.Size = new System.Drawing.Size(389, 22);
+      this.textBox6.TabIndex = 12;
+      this.textBox6.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox6_MouseDoubleClick);
+      // 
+      // textBox7
+      // 
+      this.textBox7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.tableLayoutPanel6.SetColumnSpan(this.textBox7, 2);
+      this.textBox7.Location = new System.Drawing.Point(3, 180);
+      this.textBox7.Name = "textBox7";
+      this.textBox7.Size = new System.Drawing.Size(389, 22);
+      this.textBox7.TabIndex = 13;
+      this.textBox7.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox7_MouseDoubleClick);
       // 
       // tabPage4
       // 
@@ -831,85 +917,25 @@ namespace RedBrick2 {
       // 
       this.gEN_DEPTSTableAdapter.ClearBeforeFill = true;
       // 
-      // label9
+      // label13
       // 
-      this.label9.AutoSize = true;
-      this.label9.Location = new System.Drawing.Point(3, 41);
-      this.label9.Name = "label9";
-      this.label9.Size = new System.Drawing.Size(54, 13);
-      this.label9.TabIndex = 6;
-      this.label9.Text = "JPG Path:";
+      this.label13.AutoSize = true;
+      this.label13.Location = new System.Drawing.Point(3, 205);
+      this.label13.Name = "label13";
+      this.label13.Size = new System.Drawing.Size(102, 13);
+      this.label13.TabIndex = 14;
+      this.label13.Text = "Gauge note regex:";
       // 
-      // label10
+      // textBox8
       // 
-      this.label10.AutoSize = true;
-      this.label10.Location = new System.Drawing.Point(3, 82);
-      this.label10.Name = "label10";
-      this.label10.Size = new System.Drawing.Size(45, 13);
-      this.label10.TabIndex = 7;
-      this.label10.Text = "K: Path:";
-      // 
-      // label11
-      // 
-      this.label11.AutoSize = true;
-      this.label11.Location = new System.Drawing.Point(3, 123);
-      this.label11.Name = "label11";
-      this.label11.Size = new System.Drawing.Size(47, 13);
-      this.label11.TabIndex = 8;
-      this.label11.Text = "G: Path:";
-      // 
-      // label12
-      // 
-      this.label12.AutoSize = true;
-      this.label12.Location = new System.Drawing.Point(3, 164);
-      this.label12.Name = "label12";
-      this.label12.Size = new System.Drawing.Size(65, 13);
-      this.label12.TabIndex = 9;
-      this.label12.Text = "Metal Path:";
-      // 
-      // textBox4
-      // 
-      this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+      this.textBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.tableLayoutPanel6.SetColumnSpan(this.textBox4, 2);
-      this.textBox4.Location = new System.Drawing.Point(3, 57);
-      this.textBox4.Name = "textBox4";
-      this.textBox4.Size = new System.Drawing.Size(389, 22);
-      this.textBox4.TabIndex = 10;
-      this.textBox4.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox4_MouseDoubleClick);
-      // 
-      // textBox5
-      // 
-      this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.tableLayoutPanel6.SetColumnSpan(this.textBox5, 2);
-      this.textBox5.Location = new System.Drawing.Point(3, 98);
-      this.textBox5.Name = "textBox5";
-      this.textBox5.Size = new System.Drawing.Size(389, 22);
-      this.textBox5.TabIndex = 11;
-      this.textBox5.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox5_MouseDoubleClick);
-      // 
-      // textBox6
-      // 
-      this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.tableLayoutPanel6.SetColumnSpan(this.textBox6, 2);
-      this.textBox6.Location = new System.Drawing.Point(3, 139);
-      this.textBox6.Name = "textBox6";
-      this.textBox6.Size = new System.Drawing.Size(389, 22);
-      this.textBox6.TabIndex = 12;
-      this.textBox6.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox6_MouseDoubleClick);
-      // 
-      // textBox7
-      // 
-      this.textBox7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.tableLayoutPanel6.SetColumnSpan(this.textBox7, 2);
-      this.textBox7.Location = new System.Drawing.Point(3, 180);
-      this.textBox7.Name = "textBox7";
-      this.textBox7.Size = new System.Drawing.Size(389, 22);
-      this.textBox7.TabIndex = 13;
-      this.textBox7.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox7_MouseDoubleClick);
+      this.tableLayoutPanel6.SetColumnSpan(this.textBox8, 2);
+      this.textBox8.Location = new System.Drawing.Point(3, 221);
+      this.textBox8.Name = "textBox8";
+      this.textBox8.Size = new System.Drawing.Size(389, 22);
+      this.textBox8.TabIndex = 15;
+      this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
       // 
       // RedbrickConfiguration
       // 
@@ -1020,5 +1046,7 @@ namespace RedBrick2 {
     private System.Windows.Forms.TextBox textBox5;
     private System.Windows.Forms.TextBox textBox6;
     private System.Windows.Forms.TextBox textBox7;
+    private System.Windows.Forms.Label label13;
+    private System.Windows.Forms.TextBox textBox8;
   }
 }

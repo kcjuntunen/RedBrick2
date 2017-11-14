@@ -455,6 +455,7 @@ namespace RedBrick2 {
       static public ArchivePDF.csproj.PathSet GeneratePathSet() {
         ArchivePDF.csproj.PathSet ps = new ArchivePDF.csproj.PathSet();
         ps.GaugePath = Properties.Settings.Default.GaugePath;
+        ps.GaugeRegex = Properties.Settings.Default.GaugeRegex;
         ps.ShtFmtPath = Properties.Settings.Default.ShtFmtPath;
         ps.JPGPath = Properties.Settings.Default.JPGPath;
         ps.KPath = Properties.Settings.Default.KPath;
