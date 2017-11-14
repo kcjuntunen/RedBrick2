@@ -3,6 +3,25 @@ namespace RedBrick2 {
 
 
   public partial class ENGINEERINGDataSet {
+    partial class GEN_DRAWINGSDataTable {
+      public System.IO.FileInfo GetPDFLocation(string partno) {
+        ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter gd =
+          new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter();
+        string lookup = string.Format(@"{0}%", partno);
+        GEN_DRAWINGSDataTable dt = gd.GetDrwgDataByFName(lookup, lookup);
+        if (dt.Rows.Count > 0) {
+          System.Data.DataRow r = dt.Rows[0];
+          System.IO.FileInfo f = new System.IO.FileInfo(
+            string.Format("{0}{1}{2}",
+              r["FPath"].ToString(),
+              @"\",
+              r["FName"].ToString()));
+          return f;
+        }
+        return null;
+      }
+    }
+  
     partial class inmastDataTable {
       public int GetPartType(string prtno, string prtrv) {
         ENGINEERINGDataSetTableAdapters.inmastTableAdapter ita =

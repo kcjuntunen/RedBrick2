@@ -121,7 +121,7 @@
       <DependentUpon>ENGINEERINGDataSet.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ENGINEERINGDataSet1.Designer.cs">
+    <Compile Include="ENGINEERINGDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ENGINEERINGDataSet.xsd</DependentUpon>
@@ -189,7 +189,7 @@
     <None Include="ENGINEERINGDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>ENGINEERINGDataSet1.Designer.cs</LastGenOutput>
+      <LastGenOutput>ENGINEERINGDataSet.Designer.cs</LastGenOutput>
     </None>
     <None Include="ENGINEERINGDataSet.xss">
       <DependentUpon>ENGINEERINGDataSet.xsd</DependentUpon>

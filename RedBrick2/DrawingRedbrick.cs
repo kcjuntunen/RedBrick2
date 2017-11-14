@@ -143,14 +143,12 @@ namespace RedBrick2 {
     private void FigureOutStatus() {
       ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter cc =
         new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
-      ENGINEERINGDataSet.CUT_CUTLISTSRow _row = null;
-      try {
-        _row = cc.GetDataByName(partLookup, RevFromDrw.ToString())[0];
-      } catch (Exception) {
-        //
-      }
-      if (_row != null) {
-        comboBox15.SelectedValue = _row.STATEID;
+      ENGINEERINGDataSet.CUT_CUTLISTSDataTable dt = 
+        cc.GetDataByName(partLookup, RevFromDrw.ToString());
+      if (dt.Rows.Count > 0) {
+        comboBox15.SelectedValue = dt[0].STATEID;
+      } else {
+        comboBox15.SelectedValue = -1;
       }
     }
 

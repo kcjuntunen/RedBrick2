@@ -184,5 +184,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=AMSTORE-SQL-07;Initial Catalog=M2MDATA01;Integrated Security=True</Value>
     </Setting>
+    <Setting Name="ECRDrawingsDestination" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\\AMSTORE-SVR-02\shared\shared\general\Engineering Utility\ECR Drawings\</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

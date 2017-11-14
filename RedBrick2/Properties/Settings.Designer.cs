@@ -664,5 +664,17 @@ namespace RedBrick2.Properties {
                 return ((string)(this["M2MDATA01ConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\\\AMSTORE-SVR-02\\shared\\shared\\general\\Engineering Utility\\ECR Drawings\\")]
+        public string ECRDrawingsDestination {
+            get {
+                return ((string)(this["ECRDrawingsDestination"]));
+            }
+            set {
+                this["ECRDrawingsDestination"] = value;
+            }
+        }
     }
 }

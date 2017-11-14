@@ -77,8 +77,21 @@ namespace RedBrick2 {
       if (mbr == DialogResult.Yes) {
         ENGINEERINGDataSet.inmastDataTable idt =
           new ENGINEERINGDataSet.inmastDataTable();
+        ENGINEERINGDataSetTableAdapters.ECR_ITEMSTableAdapter eit =
+          new ENGINEERINGDataSetTableAdapters.ECR_ITEMSTableAdapter();
         int parttype = idt.GetPartType(ThisRev.PartNumber, level.Value);
-        MessageBox.Show(string.Format(@"Pretending to insert. parttype = {0}", parttype));
+        //int ecr_item_id = eit.InsertECRItem(en, ThisRev.PartNumber, level.Value, parttype);
+        ENGINEERINGDataSet.GEN_DRAWINGSDataTable dt =
+          new ENGINEERINGDataSet.GEN_DRAWINGSDataTable();
+        ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter gd =
+          new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter();
+        ENGINEERINGDataSet.GEN_DRAWINGSDataTable ddt = gd.GetDataByFName(string.Format(@"{0}%", ThisRev.PartNumber));
+        if (ddt.Rows.Count > 0) {
+          System.Data.DataRow r = ddt.Rows[0];
+          FileInfo f = new FileInfo(string.Format(@"{0}\{1}", r[@"FPath"].ToString(), r[@"FName"].ToString()));
+          FileInfo ff = new FileInfo(string.Format(@"{0}\{1}_{2}-{3}.PDF", f.DirectoryName, en, ThisRev.PartNumber, ThisRev.Level));
+          MessageBox.Show(string.Format("{0}\\{1}\nparttype = {2}", ff.DirectoryName, ff.Name, parttype));
+        }
       }
     }
 
