@@ -29,8 +29,8 @@ namespace RedBrick2 {
       }
 
       if (row != null) {
-        _data = (int)row[@"UID"];
-        FullName = (string)row[@"Fullname"];
+        _data = row.UID;
+        FullName = row.Fullname;
       } else {
         FullName = Value;
       }
@@ -51,20 +51,14 @@ namespace RedBrick2 {
       get { return _data; }
       set {
         _data = (int)value;
-        ENGINEERINGDataSet.GEN_USERSRow row = null;
-        try {
-          row = gu.GetDataByUID(_data)[0];
-        } catch (Exception) {
-          //
-        }
-        if (row != null) {
-          Value = (string)row[@"INITIAL"];
-          FullName = (string)row[@"Fullname"];
+        ENGINEERINGDataSet.GEN_USERSDataTable dt = gu.GetDataByUID(_data);
+        if (dt.Rows.Count > 0) {
+          Value = dt[0].INITIAL;
+          FullName = dt[0].Fullname;
         } else {
           FullName = Value;
         }
       }
     }
-
   }
 }
