@@ -99,7 +99,17 @@ namespace RedBrick2 {
     private void FigureOutAuthor() {
       SwProperty _p = new AuthorProperty(@"DrawnBy", true, SwApp, ActiveDoc);
       PropertySet.Add(_p.Get());
-      comboBox13.SelectedValue = (int)_p.Data;
+      if (_p.Value != string.Empty) {
+        comboBox13.SelectedValue = (int)_p.Data;
+      } else {
+        ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu =
+          new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
+        int? uid;
+        uid = gu.GetUID(System.Environment.UserName);
+        if (uid > 0) {
+          comboBox13.SelectedValue = uid;
+        }
+      }
     }
 
     private void FigureOutRev() {
