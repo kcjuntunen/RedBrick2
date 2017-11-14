@@ -49,6 +49,21 @@ namespace RedBrick2 {
     }
   }
 
+    public event EventHandler Added;
+    public event EventHandler AddedLvl;
+
+    protected virtual void OnAdded(EventArgs e) {
+      if (Added != null) {
+        Added(this, e);
+      }
+    }
+
+    protected virtual void OnAddedLvl(EventArgs e) {
+      if (AddedLvl != null) {
+        AddedLvl(this, e);
+      }
+    }
+
     private void button1_Click(object sender, EventArgs e) {
       ThisRev.ECO = textBox1.Text;
       ThisRev.Description = textBox2.Text;
@@ -75,12 +90,16 @@ namespace RedBrick2 {
           mbr = (DialogResult)MessageBox.Show(this, question, @"Insert ECR?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
       }
       if (mbr == DialogResult.Yes) {
+        OnAdded(EventArgs.Empty);
+        ArchivePDF.csproj.ArchivePDFWrapper apw = new ArchivePDF.csproj.ArchivePDFWrapper(RevSet.SwApp);
+        apw.Archive();
         ENGINEERINGDataSet.inmastDataTable idt =
           new ENGINEERINGDataSet.inmastDataTable();
         ENGINEERINGDataSetTableAdapters.ECR_ITEMSTableAdapter eit =
           new ENGINEERINGDataSetTableAdapters.ECR_ITEMSTableAdapter();
         int parttype = idt.GetPartType(ThisRev.PartNumber, level.Value);
-        //int ecr_item_id = eit.InsertECRItem(en, ThisRev.PartNumber, level.Value, parttype);
+        eit.InsertECRItem(en, ThisRev.PartNumber, level.Value, parttype);
+        int ecr_item_id = (int)eit.GetECRItem(en, ThisRev.PartNumber, level.Value);
         ENGINEERINGDataSet.GEN_DRAWINGSDataTable dt =
           new ENGINEERINGDataSet.GEN_DRAWINGSDataTable();
         ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter gd =
@@ -88,11 +107,19 @@ namespace RedBrick2 {
         ENGINEERINGDataSet.GEN_DRAWINGSDataTable ddt = gd.GetDataByFName(string.Format(@"{0}%", ThisRev.PartNumber));
         if (ddt.Rows.Count > 0) {
           System.Data.DataRow r = ddt.Rows[0];
-          FileInfo f = new FileInfo(string.Format(@"{0}\{1}", r[@"FPath"].ToString(), r[@"FName"].ToString()));
-          FileInfo ff = new FileInfo(string.Format(@"{0}\{1}_{2}-{3}.PDF", f.DirectoryName, en, ThisRev.PartNumber, ThisRev.Level));
-          MessageBox.Show(string.Format("{0}\\{1}\nparttype = {2}", ff.DirectoryName, ff.Name, parttype));
+          FileInfo orig_path = new FileInfo(string.Format(@"{0}\{1}", r[@"FPath"].ToString(), r[@"FName"].ToString()));
+          FileInfo drw_file = new FileInfo(string.Format(@"{0}\{1}_{2}-{3}.PDF", orig_path.DirectoryName, en, ThisRev.PartNumber, ThisRev.Level));
+          FileInfo dest_file = new FileInfo(string.Format(@"{0}\{1}", Properties.Settings.Default.ECRDrawingsDestination, drw_file.Name));
+          ENGINEERINGDataSetTableAdapters.ECR_DRAWINGSTableAdapter edta =
+            new ENGINEERINGDataSetTableAdapters.ECR_DRAWINGSTableAdapter();
+          edta.InsertECRDrawing(ecr_item_id, (int)ddt.Rows[0][@"FileID"], ThisRev.Level, drw_file.Name, orig_path.FullName);
+          if (!dest_file.Exists) { // Doublecheck
+            orig_path.CopyTo(dest_file.FullName);
+          }
+          eit.SetNewECRWIP(en);
         }
       }
+      OnAddedLvl(EventArgs.Empty);
     }
 
     private void EditOp_Load(object sender, EventArgs e) {

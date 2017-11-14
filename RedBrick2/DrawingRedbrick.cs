@@ -304,6 +304,7 @@ namespace RedBrick2 {
 
     private void button1_Click(object sender, EventArgs e) {
       EditRev eo = new EditRev(RevSet);
+      eo.Added += er_Added;
       eo.ShowDialog(this);
       BuildTree();
     }
@@ -327,13 +328,24 @@ namespace RedBrick2 {
           node = node.Parent;
         }
         EditRev er = new EditRev(SelectedNode(), RevSet);
+        er.Added += er_Added;
         er.ShowDialog(this);
       } else {
         EditRev er = new EditRev(0, RevSet);
+        er.Added += er_Added;
         er.ShowDialog(this);
       }
       BuildTree();
     }
+
+    void er_Added(object sender, EventArgs e) {
+      DrawingDoc thisdd = (DrawingDoc)SwApp.ActiveDoc;
+      Commit();
+      int lastrev = revSet.Count - 1;
+      treeView1.Nodes.Add(revSet[lastrev].Node);
+      revSet.Write();
+      thisdd.ForceRebuild();
+      }
 
     private void button7_Click(object sender, EventArgs e) {
       RevSet.Delete(SelectedNode());
