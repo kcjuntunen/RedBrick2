@@ -73,7 +73,7 @@ namespace RedBrick2 {
       bool no_cnc1 = (textBox7.Text == @"NA") || (textBox7.Text == string.Empty);
       bool no_cnc2 = (textBox8.Text == @"NA") || (textBox8.Text == string.Empty);
       bool enabled = !(no_cnc1 && no_cnc2);
-      button1.Enabled = enabled; 
+      button1.Enabled = enabled;
     }
 
     public void ToggleFlameWar(bool on) {
@@ -466,18 +466,33 @@ namespace RedBrick2 {
       }
       swSelComp = swSelMgr.GetSelectedObjectsComponent4(1, -1);
       if (swSelComp == null) {
-        swSelComp = swSelMgr.GetSelectedObject6(1, -1);
+        try {
+          swSelComp = swSelMgr.GetSelectedObject6(1, -1);
+          this.Enabled = true;
+        } catch (InvalidCastException i) {
+          // not a modeldoc
+          Frame f = SwApp.Frame();
+          f.SetStatusBarText(i.Message);
+        }
       }
       if (swSelComp != null) {
         Component = swSelComp;
-        configurationManager = (swSelComp.GetModelDoc2() as ModelDoc2).ConfigurationManager;
-        configuration = swSelComp.ReferencedConfiguration;
-        ReQuery(swSelComp.GetModelDoc2());
+        try {
+          configurationManager = (swSelComp.GetModelDoc2() as ModelDoc2).ConfigurationManager;
+          configuration = swSelComp.ReferencedConfiguration;
+          this.Enabled = true;
+          ReQuery(swSelComp.GetModelDoc2());
+        } catch (NullReferenceException e) {
+          Frame f = SwApp.Frame();
+          f.SetStatusBarText(e.Message);
+          this.Enabled = false;
+        }
       } else {
         // Nothing's selected?
         // Just look at the root item then.
         configurationManager = SwApp.ActiveDoc.ConfigurationManager;
         configuration = configurationManager.ActiveConfiguration.Name;
+        this.Enabled = true;
         groupBox1.Text = string.Format(@"{0} - {1}",
           partLookup, PropertySet.Configuration);
         ReQuery(SwApp.ActiveDoc);
@@ -568,7 +583,7 @@ namespace RedBrick2 {
       if (!DrawingEventsAssigned) {
         ConnectDrawingEvents();
       }
-
+      this.Enabled = true;
       //tabControl1.SelectedTab = tabPage2;
     }
 
