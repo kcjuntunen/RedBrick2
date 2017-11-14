@@ -104,8 +104,7 @@ namespace RedBrick2 {
       } else {
         ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu =
           new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
-        int? uid;
-        uid = gu.GetUID(System.Environment.UserName);
+        int? uid = gu.GetUID(System.Environment.UserName);
         if (uid > 0) {
           comboBox13.SelectedValue = uid;
         }
