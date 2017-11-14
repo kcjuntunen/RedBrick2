@@ -117,6 +117,10 @@ namespace RedBrick2 {
         comboBox1.Text = ThisRev.Level;
         Text = string.Format(@"Creating Rev Level {0}", comboBox1.Text);
         comboBox2.SelectedIndex = comboBox2.FindString(ThisRev.AuthorFullName);
+        if (ThisRev.Level == @"AA") {
+          textBox1.Text = @"NA";
+          textBox2.Text = @"RELEASED";
+        }
       } else {
         ThisRev = RevSet[index];
         comboBox1.Text = ThisRev.Level;
