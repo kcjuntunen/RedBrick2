@@ -271,6 +271,16 @@ namespace RedBrick2 {
       return false;
     }
 
+    private float DimTryProp(string propname) {
+      float _out = 0;
+      if (PropertySet.ContainsKey(propname)) {
+        if (float.TryParse(PropertySet[propname].ResolvedValue, out _out)) {
+          return _out;
+        }
+      }
+      return _out;
+    }
+
     private void GetDataFromPart() {
       ENGINEERINGDataSet.CUT_MATERIALSDataTable md =
         new ENGINEERINGDataSet.CUT_MATERIALSDataTable();
@@ -313,6 +323,9 @@ namespace RedBrick2 {
       textBox10.Text = enforce_number_format(StrTryProp("OVERW"));
       textBox11.Text = StrTryProp("BLANK QTY");
       checkBox1.Checked = BoolTryProp("UPDATE CNC");
+      length = DimTryProp(@"LENGTH");
+      width = DimTryProp(@"WIDTH");
+      thickness = DimTryProp(@"THICKNESS");
     }
 
     private void GetOps() {
