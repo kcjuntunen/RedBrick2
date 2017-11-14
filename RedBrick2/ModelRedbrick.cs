@@ -81,10 +81,12 @@ namespace RedBrick2 {
         drawingRedbrick.ToggleFlameWar(on);
       }
       if (on) {
+        textBox1.CharacterCasing = CharacterCasing.Upper;
         textBox6.CharacterCasing = CharacterCasing.Upper;
         textBox7.CharacterCasing = CharacterCasing.Upper;
         textBox8.CharacterCasing = CharacterCasing.Upper;
       } else {
+        textBox1.CharacterCasing = CharacterCasing.Normal;
         textBox6.CharacterCasing = CharacterCasing.Normal;
         textBox7.CharacterCasing = CharacterCasing.Normal;
         textBox8.CharacterCasing = CharacterCasing.Normal;
