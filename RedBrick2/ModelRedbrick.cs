@@ -209,6 +209,7 @@ namespace RedBrick2 {
     }
 
     private void GetCutlistData() {
+      ToggleNotInDBWarn(true);
       if (partLookup != null) {
         ENGINEERINGDataSet.CUT_PARTSDataTable dt =
           new ENGINEERINGDataSet.CUT_PARTSDataTable();
@@ -281,7 +282,19 @@ namespace RedBrick2 {
       return _out;
     }
 
+    private void ToggleNotInDBWarn(bool isIn) {
+      if (isIn) {
+        groupBox1.ForeColor = Properties.Settings.Default.NormalForeground;
+      } else {
+        groupBox1.ForeColor = Properties.Settings.Default.WarnBackground;
+        foreach (Control control in groupBox1.Controls) {
+          control.ForeColor = Properties.Settings.Default.NormalForeground;
+        }
+      }
+    }
+
     private void GetDataFromPart() {
+      ToggleNotInDBWarn(false);
       ENGINEERINGDataSet.CUT_MATERIALSDataTable md =
         new ENGINEERINGDataSet.CUT_MATERIALSDataTable();
       int mr = (int)IntTryProp("MATID");
