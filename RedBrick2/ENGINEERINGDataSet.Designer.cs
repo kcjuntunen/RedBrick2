@@ -5881,6 +5881,8 @@ namespace RedBrick2 {
             
             private global::System.Data.DataColumn columnCutlistDisplayName;
             
+            private global::System.Data.DataColumn columnTYPE;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public CutlistPartsDataTable() {
@@ -6092,6 +6094,14 @@ namespace RedBrick2 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TYPEColumn {
+                get {
+                    return this.columnTYPE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -6147,7 +6157,8 @@ namespace RedBrick2 {
                         int EDGEID_WL, 
                         float QTY, 
                         string CUTLIST, 
-                        string CutlistDisplayName) {
+                        string CutlistDisplayName, 
+                        int TYPE) {
                 CutlistPartsRow rowCutlistPartsRow = ((CutlistPartsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -6171,7 +6182,8 @@ namespace RedBrick2 {
                         EDGEID_WL,
                         QTY,
                         CUTLIST,
-                        CutlistDisplayName};
+                        CutlistDisplayName,
+                        TYPE};
                 rowCutlistPartsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCutlistPartsRow);
                 return rowCutlistPartsRow;
@@ -6216,6 +6228,7 @@ namespace RedBrick2 {
                 this.columnQTY = base.Columns["QTY"];
                 this.columnCUTLIST = base.Columns["CUTLIST"];
                 this.columnCutlistDisplayName = base.Columns["CutlistDisplayName"];
+                this.columnTYPE = base.Columns["TYPE"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6265,6 +6278,8 @@ namespace RedBrick2 {
                 base.Columns.Add(this.columnCUTLIST);
                 this.columnCutlistDisplayName = new global::System.Data.DataColumn("CutlistDisplayName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCutlistDisplayName);
+                this.columnTYPE = new global::System.Data.DataColumn("TYPE", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTYPE);
                 this.columnCLID.AutoIncrement = true;
                 this.columnCLID.AutoIncrementSeed = -1;
                 this.columnCLID.AutoIncrementStep = -1;
@@ -17626,6 +17641,22 @@ namespace RedBrick2 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int TYPE {
+                get {
+                    try {
+                        return ((int)(this[this.tableCutlistParts.TYPEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TYPE\' in table \'CutlistParts\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCutlistParts.TYPEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsREVNull() {
                 return this.IsNull(this.tableCutlistParts.REVColumn);
             }
@@ -17814,6 +17845,18 @@ namespace RedBrick2 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCutlistDisplayNameNull() {
                 this[this.tableCutlistParts.CutlistDisplayNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTYPENull() {
+                return this.IsNull(this.tableCutlistParts.TYPEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTYPENull() {
+                this[this.tableCutlistParts.TYPEColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -31511,6 +31554,7 @@ SELECT TYPEID, TYPEDESC, TYPEINC, TYPEREP FROM CUT_PART_TYPES WHERE (TYPEID = @T
             tableMapping.ColumnMappings.Add("QTY", "QTY");
             tableMapping.ColumnMappings.Add("CUTLIST", "CUTLIST");
             tableMapping.ColumnMappings.Add("CutlistDisplayName", "CutlistDisplayName");
+            tableMapping.ColumnMappings.Add("TYPE", "TYPE");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -31527,27 +31571,28 @@ SELECT TYPEID, TYPEDESC, TYPEINC, TYPEREP FROM CUT_PART_TYPES WHERE (TYPEID = @T
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        CUT_CUTLISTS.CLID, CUT_CUTLISTS.PARTNUM + N' REV' + CUT_CUTLISTS.REV AS CutlistDisplayName, CUT_CUTLISTS.PARTNUM AS CUTLIST, CUT_CUTLISTS.REV, CUT_CUTLISTS.DRAWING, CUT_CUTLISTS.CUSTID, CUT_CUTLISTS.CDATE, 
-                         CUT_CUTLISTS.DESCR, CUT_CUTLISTS.LENGTH, CUT_CUTLISTS.WIDTH, CUT_CUTLISTS.HEIGHT, CUT_CUTLISTS.SETUP_BY, CUT_CUTLISTS.STATE_BY, 
-                         CUT_CUTLISTS.STATEID, CUT_PARTS.PARTID, CUT_PARTS.PARTNUM, CUT_CUTLIST_PARTS.MATID, CUT_CUTLIST_PARTS.EDGEID_LF, 
-                         CUT_CUTLIST_PARTS.EDGEID_LB, CUT_CUTLIST_PARTS.EDGEID_WR, CUT_CUTLIST_PARTS.EDGEID_WL, CUT_CUTLIST_PARTS.QTY
-FROM            CUT_CUTLIST_PARTS INNER JOIN
-                         CUT_CUTLISTS ON CUT_CUTLIST_PARTS.CLID = CUT_CUTLISTS.CLID INNER JOIN
-                         CUT_PARTS ON CUT_CUTLIST_PARTS.PARTID = CUT_PARTS.PARTID
-WHERE        (CUT_PARTS.PARTID = @partID)";
+            this._commandCollection[0].CommandText = @"SELECT      CUT_CUTLISTS.CLID, CUT_CUTLISTS.PARTNUM + N' REV' + CUT_CUTLISTS.REV AS CutlistDisplayName, CUT_CUTLISTS.PARTNUM AS CUTLIST, 
+                        CUT_CUTLISTS.REV, CUT_CUTLISTS.DRAWING, CUT_CUTLISTS.CUSTID, CUT_CUTLISTS.CDATE, CUT_CUTLISTS.DESCR, CUT_CUTLISTS.LENGTH, 
+                        CUT_CUTLISTS.WIDTH, CUT_CUTLISTS.HEIGHT, CUT_CUTLISTS.SETUP_BY, CUT_CUTLISTS.STATE_BY, CUT_CUTLISTS.STATEID, 
+                        CUT_PARTS.PARTID, CUT_PARTS.PARTNUM, CUT_CUTLIST_PARTS.MATID, CUT_CUTLIST_PARTS.EDGEID_LF, CUT_CUTLIST_PARTS.EDGEID_LB, 
+                        CUT_CUTLIST_PARTS.EDGEID_WR, CUT_CUTLIST_PARTS.EDGEID_WL, CUT_CUTLIST_PARTS.QTY, CUT_PARTS.TYPE
+FROM          CUT_CUTLIST_PARTS INNER JOIN
+                        CUT_CUTLISTS ON CUT_CUTLIST_PARTS.CLID = CUT_CUTLISTS.CLID INNER JOIN
+                        CUT_PARTS ON CUT_CUTLIST_PARTS.PARTID = CUT_PARTS.PARTID
+WHERE      (CUT_PARTS.PARTID = @partID)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "PARTID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT        CUT_CUTLISTS.CLID, CUT_CUTLISTS.PARTNUM + N' REV' + CUT_CUTLISTS.REV AS CutlistDisplayName, CUT_CUTLISTS.PARTNUM AS CUTLIST, 
-                         CUT_CUTLISTS.REV, CUT_CUTLISTS.DRAWING, CUT_CUTLISTS.CUSTID, CUT_CUTLISTS.CDATE, CUT_CUTLISTS.DESCR, CUT_CUTLISTS.LENGTH, 
-                         CUT_CUTLISTS.WIDTH, CUT_CUTLISTS.HEIGHT, CUT_CUTLISTS.SETUP_BY, CUT_CUTLISTS.STATE_BY, CUT_CUTLISTS.STATEID, CUT_PARTS.PARTID, 
-                         CUT_PARTS.PARTNUM, CUT_CUTLIST_PARTS.MATID, CUT_CUTLIST_PARTS.EDGEID_LF, CUT_CUTLIST_PARTS.EDGEID_LB, CUT_CUTLIST_PARTS.EDGEID_WR, 
-                         CUT_CUTLIST_PARTS.EDGEID_WL, CUT_CUTLIST_PARTS.QTY
-FROM            CUT_CUTLIST_PARTS INNER JOIN
-                         CUT_CUTLISTS ON CUT_CUTLIST_PARTS.CLID = CUT_CUTLISTS.CLID INNER JOIN
-                         CUT_PARTS ON CUT_CUTLIST_PARTS.PARTID = CUT_PARTS.PARTID
-WHERE        (CUT_PARTS.PARTNUM = @partnum)";
+            this._commandCollection[1].CommandText = @"SELECT      CUT_CUTLISTS.CLID, CUT_CUTLISTS.PARTNUM + N' REV' + CUT_CUTLISTS.REV AS CutlistDisplayName, CUT_CUTLISTS.PARTNUM AS CUTLIST, 
+                        CUT_CUTLISTS.REV, CUT_CUTLISTS.DRAWING, CUT_CUTLISTS.CUSTID, CUT_CUTLISTS.CDATE, CUT_CUTLISTS.DESCR, CUT_CUTLISTS.LENGTH, 
+                        CUT_CUTLISTS.WIDTH, CUT_CUTLISTS.HEIGHT, CUT_CUTLISTS.SETUP_BY, CUT_CUTLISTS.STATE_BY, CUT_CUTLISTS.STATEID, 
+                        CUT_PARTS.PARTID, CUT_PARTS.PARTNUM, CUT_CUTLIST_PARTS.MATID, CUT_CUTLIST_PARTS.EDGEID_LF, CUT_CUTLIST_PARTS.EDGEID_LB, 
+                        CUT_CUTLIST_PARTS.EDGEID_WR, CUT_CUTLIST_PARTS.EDGEID_WL, CUT_CUTLIST_PARTS.QTY, CUT_PARTS.TYPE
+FROM          CUT_CUTLIST_PARTS INNER JOIN
+                        CUT_CUTLISTS ON CUT_CUTLIST_PARTS.CLID = CUT_CUTLISTS.CLID INNER JOIN
+                        CUT_PARTS ON CUT_CUTLIST_PARTS.PARTID = CUT_PARTS.PARTID
+WHERE      (CUT_PARTS.PARTNUM = @partnum)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partnum", global::System.Data.SqlDbType.NVarChar, 25, global::System.Data.ParameterDirection.Input, 0, 0, "PARTNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
