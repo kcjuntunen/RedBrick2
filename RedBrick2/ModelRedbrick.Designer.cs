@@ -1275,6 +1275,7 @@ namespace RedBrick2 {
 			// 
 			this.type_cbx.DataSource = this.cUTPARTTYPESBindingSource;
 			this.type_cbx.DisplayMember = "TYPEDESC";
+			this.type_cbx.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.type_cbx.FormattingEnabled = true;
 			this.type_cbx.Location = new System.Drawing.Point(40, 3);
 			this.type_cbx.Name = "type_cbx";

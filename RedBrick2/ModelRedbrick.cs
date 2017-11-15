@@ -49,6 +49,7 @@ namespace RedBrick2 {
 		private bool ov_userediting = false;
 		private bool bl_userediting = false;
 		private bool cl_userediting = false;
+		private ComboBox[] cbxes;
 
 		public ModelRedbrick(SldWorks sw, ModelDoc2 md) {
 			SwApp = sw;
@@ -354,8 +355,6 @@ namespace RedBrick2 {
 			double setupTime = 0.0f;
 			double runTime = 0.0f;
 
-			ComboBox[] cbxes = { op1_cbx, op2_cbx, op3_cbx, op4_cbx, op5_cbx };
-
 			for (int i = 0; i < cbxes.Length; i++) {
 				ComboBox current = cbxes[i];
 				if (i < eNGINEERINGDataSet.CutPartOps.Rows.Count) {
@@ -615,11 +614,24 @@ namespace RedBrick2 {
 				PropertySet[@"EDGE BACK (L)"].Data = comboBox3.SelectedValue;
 				PropertySet[@"EDGE LEFT (W)"].Data = comboBox4.SelectedValue;
 				PropertySet[@"EDGE RIGHT (W)"].Data = comboBox5.SelectedValue;
-				PropertySet.Write();
-				foreach (OpControl item in flowLayoutPanel1.Controls) {
-					item.Write();
+
+				for (int i = 0; i < cbxes.Length; i++) {
+					ComboBox cbx = cbxes[i];
+					string op = string.Format(@"OP{0}", i + 1);
+					if (cbx.SelectedItem != null) {
+						if (!PropertySet.Contains(op)) {
+							PropertySet.Add(new OpProperty(op, false, SwApp, ActiveDoc, op));
+						}
+						DataRowView drv = (cbx.SelectedItem as DataRowView);
+						PropertySet[string.Format(@"OP{0}", i + 1)].Value = drv[@"OPNAME"].ToString();
+					} else {
+						if (PropertySet.Contains(op)) {
+							PropertySet[op].Delete();
+						}
+					}
 				}
-				//PropertySet.opSets.Write();
+
+				PropertySet.Write();
 			} else if (tabControl1.SelectedTab == tabPage2) {
 				drawingRedbrick.Commit();
 			}
@@ -778,6 +790,7 @@ namespace RedBrick2 {
 
 			//GetCutlistData();
 			//SelectTab();
+			cbxes = new ComboBox[] { op1_cbx, op2_cbx, op3_cbx, op4_cbx, op5_cbx };
 			initialated = true;
 		}
 
