@@ -171,7 +171,7 @@ namespace RedBrick2 {
 				textBox4.Text = PropertySet[@"THICKNESS"].Value.Replace("\"", string.Empty);
 				textBox5.Text = PropertySet[@"WALL THICKNESS"].Value.Replace("\"", string.Empty);
 
-				GetOps();
+				GetRouting();
 
 				if (Row != null) {
 					length = (Single)Row[@"FIN_L"];
@@ -339,6 +339,38 @@ namespace RedBrick2 {
 			length = DimTryProp(@"LENGTH");
 			width = DimTryProp(@"WIDTH");
 			thickness = DimTryProp(@"THICKNESS");
+		}
+
+		private void GetRouting() {
+			if (eNGINEERINGDataSet.CutlistParts.Rows.Count > 0) {
+				ENGINEERINGDataSet.CutlistPartsRow r = 
+					(ENGINEERINGDataSet.CutlistPartsRow)eNGINEERINGDataSet.CutlistParts.Rows[0];
+				type_cbx.SelectedValue = r.TYPE;
+				FilterOps(string.Format(@"TYPEID = {0}", r.TYPE));
+			}
+			ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpota =
+				new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
+			cpota.FillBy(eNGINEERINGDataSet.CutPartOps, partLookup);
+
+			ComboBox[] cbxes = { op1_cbx, op2_cbx, op3_cbx, op4_cbx, op5_cbx };
+
+			for (int i = 0; i < cbxes.Length; i++) {
+				ComboBox current = cbxes[i];
+				if (i < eNGINEERINGDataSet.CutPartOps.Rows.Count) {
+					current.SelectedValue =
+						(eNGINEERINGDataSet.CutPartOps.Rows[i] as ENGINEERINGDataSet.CutPartOpsRow).POPOP;
+				} else {
+					current.SelectedValue = -1;
+				}
+			}
+		}
+
+		private void FilterOps(string filter) {
+			friendlyCutOpsBindingSource.Filter = filter;
+			friendlyCutOpsBindingSource1.Filter = filter;
+			friendlyCutOpsBindingSource2.Filter = filter;
+			friendlyCutOpsBindingSource3.Filter = filter;
+			friendlyCutOpsBindingSource4.Filter = filter;
 		}
 
 		private void GetOps() {
@@ -731,6 +763,8 @@ namespace RedBrick2 {
 		private void ModelRedbrick_Load(object sender, EventArgs e) {
 			cUT_MATERIALSTableAdapter.Fill(eNGINEERINGDataSet.CUT_MATERIALS);
 			cUT_EDGESTableAdapter.Fill(eNGINEERINGDataSet.CUT_EDGES);
+			cUT_PART_TYPESTableAdapter.Fill(eNGINEERINGDataSet.CUT_PART_TYPES);
+			friendlyCutOpsTableAdapter.Fill(eNGINEERINGDataSet.FriendlyCutOps);
 
 			//GetCutlistData();
 			//SelectTab();
@@ -1024,6 +1058,10 @@ namespace RedBrick2 {
 
 		private void textBox8_TextChanged(object sender, EventArgs e) {
 			TogglePriorityButton();
+		}
+
+		private void comboBox12_SelectedIndexChanged(object sender, EventArgs e) {
+			FilterOps(string.Format(@"TYPEID = {0}", (sender as ComboBox).SelectedValue));
 		}
 	}
 }
