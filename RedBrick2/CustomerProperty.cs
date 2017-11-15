@@ -27,7 +27,7 @@ namespace RedBrick2 {
 			}
 
 			if (row != null) {
-				_data = (int)row[@"CUSTID"];
+				_data = row.CUSTID;
 			}
 
 			return this;
@@ -46,8 +46,8 @@ namespace RedBrick2 {
 					//
 				}
 				if (row != null) {
-					string firstWord = row[@"CUSTOMER"].ToString().Split(' ')[0];
-					string shortCustName = string.Format(@"{0} - {1}", firstWord, row[@"CUSTNUM"]);
+					string firstWord = row.CUSTOMER.Split(' ')[0];
+					string shortCustName = string.Format(@"{0} - {1}", firstWord, row.CUSTNUM);
 					Value = shortCustName;
 				}
 			}

@@ -23,7 +23,7 @@ namespace RedBrick2 {
 						res = 0;
 					}
 					_data = res;
-					Value = (string)cmta.GetDataByMatID(res)[0][@"DESCR"];
+					Value = cmta.GetDataByMatID(res)[0].DESCR;
 				} catch (Exception) {
 					_data = Properties.Settings.Default.DefaultMaterial;
 				}
