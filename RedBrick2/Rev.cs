@@ -7,247 +7,247 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
-  public class Rev {
-    private SldWorks SwApp;
-    private ModelDoc2 ActiveDoc;
-    private StringProperty level;
-    private StringProperty eco;
-    private StringProperty description;
-    private AuthorProperty author;
-    private DateProperty date;
-    private Dictionary<string, string> ecoData = new Dictionary<string, string>();
-    private ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter eol =
-      new ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter();
-    private ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter leol =
-      new ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter();
+	public class Rev {
+		private SldWorks SwApp;
+		private ModelDoc2 ActiveDoc;
+		private StringProperty level;
+		private StringProperty eco;
+		private StringProperty description;
+		private AuthorProperty author;
+		private DateProperty date;
+		private Dictionary<string, string> ecoData = new Dictionary<string, string>();
+		private ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter eol =
+			new ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter();
+		private ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter leol =
+			new ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter();
 
-    public Rev(int lvl, string ecrno, string descr, SldWorks sw, ModelDoc2 md) {
-      SwApp = sw;
-      ActiveDoc = md;
+		public Rev(int lvl, string ecrno, string descr, SldWorks sw, ModelDoc2 md) {
+			SwApp = sw;
+			ActiveDoc = md;
 
-      level = new StringProperty(string.Format(@"REVISION {0}", (char)(lvl + 64)), true, SwApp, ActiveDoc, string.Empty);
-      level.Data = string.Format(@"A{0}", (char)(lvl + 64));
+			level = new StringProperty(string.Format(@"REVISION {0}", (char)(lvl + 64)), true, SwApp, ActiveDoc, string.Empty);
+			level.Data = string.Format(@"A{0}", (char)(lvl + 64));
 
-      eco = new StringProperty(string.Format(@"ECO {0}", lvl), true, SwApp, ActiveDoc, string.Empty);
-      ECO = ecrno;
+			eco = new StringProperty(string.Format(@"ECO {0}", lvl), true, SwApp, ActiveDoc, string.Empty);
+			ECO = ecrno;
 
-      description = new StringProperty(string.Format(@"DESCRIPTION {0}", lvl), true, SwApp, ActiveDoc, string.Empty);
-      Description = descr;
+			description = new StringProperty(string.Format(@"DESCRIPTION {0}", lvl), true, SwApp, ActiveDoc, string.Empty);
+			Description = descr;
 
-      author = new AuthorProperty(string.Format(@"LIST {0}", lvl), true, SwApp, ActiveDoc);
+			author = new AuthorProperty(string.Format(@"LIST {0}", lvl), true, SwApp, ActiveDoc);
 
-      date = new DateProperty(string.Format(@"DATE {0}", lvl), true, SwApp, ActiveDoc);
-      Date = DateTime.Now;
+			date = new DateProperty(string.Format(@"DATE {0}", lvl), true, SwApp, ActiveDoc);
+			Date = DateTime.Now;
 
-      GetECOData();
-    }
+			GetECOData();
+		}
 
-    public Rev(int lvl, string ecrno, string descr, int aut, DateTime dt, SldWorks sw, ModelDoc2 md) {
-      SwApp = sw;
-      ActiveDoc = md;
-      int idx = lvl + 1;
-      int ltr = lvl + 65;
+		public Rev(int lvl, string ecrno, string descr, int aut, DateTime dt, SldWorks sw, ModelDoc2 md) {
+			SwApp = sw;
+			ActiveDoc = md;
+			int idx = lvl + 1;
+			int ltr = lvl + 65;
 
-      level = new StringProperty(string.Format(@"REVISION {0}", (char)ltr), true, SwApp, ActiveDoc, string.Empty);
-      level.Data = string.Format(@"A{0}", (char)ltr);
+			level = new StringProperty(string.Format(@"REVISION {0}", (char)ltr), true, SwApp, ActiveDoc, string.Empty);
+			level.Data = string.Format(@"A{0}", (char)ltr);
 
-      eco = new StringProperty(string.Format(@"ECO {0}", idx), true, SwApp, ActiveDoc, string.Empty);
-      ECO = ecrno;
+			eco = new StringProperty(string.Format(@"ECO {0}", idx), true, SwApp, ActiveDoc, string.Empty);
+			ECO = ecrno;
 
-      description = new StringProperty(string.Format(@"DESCRIPTION {0}", idx), true, SwApp, ActiveDoc, string.Empty);
-      Description = descr;
+			description = new StringProperty(string.Format(@"DESCRIPTION {0}", idx), true, SwApp, ActiveDoc, string.Empty);
+			Description = descr;
 
-      author = new AuthorProperty(string.Format(@"LIST {0}", idx), true, SwApp, ActiveDoc);
-      SetAuthor(aut);
+			author = new AuthorProperty(string.Format(@"LIST {0}", idx), true, SwApp, ActiveDoc);
+			SetAuthor(aut);
 
-      date = new DateProperty(string.Format(@"DATE {0}", idx), true, SwApp, ActiveDoc);
-      Date = dt;
+			date = new DateProperty(string.Format(@"DATE {0}", idx), true, SwApp, ActiveDoc);
+			Date = dt;
 
-      GetECOData();
-    }
+			GetECOData();
+		}
 
-    public Rev(StringProperty lvl, StringProperty ecr, StringProperty descr, AuthorProperty aut, DateProperty dt) {
-      level = lvl;
-      eco = ecr;
-      description = descr;
-      author = aut;
-      date = dt;
-      GetECOData();
-    }
+		public Rev(StringProperty lvl, StringProperty ecr, StringProperty descr, AuthorProperty aut, DateProperty dt) {
+			level = lvl;
+			eco = ecr;
+			description = descr;
+			author = aut;
+			date = dt;
+			GetECOData();
+		}
 
-    private void GetECOData() {
-      int _ecrn = 0;
-      if (ecoData.Count > 0) {
-        ecoData.Clear();
-      }
-      if (int.TryParse(ECO, out _ecrn)) {
-        if (_ecrn > Redbrick.LastLegacyECR) {
-          ENGINEERINGDataSet.ECRObjLookupDataTable dt = eol.GetDataByECO(_ecrn);
-          ENGINEERINGDataSet.ECRObjLookupRow r = (ENGINEERINGDataSet.ECRObjLookupRow)dt.Rows[0];
-          foreach (System.Data.DataColumn col in dt.Columns) {
-            if (col.ToString().Contains(@"ReqBy")) {
-              ecoData.Add(col.ToString(), Redbrick.TitleCase(r[col.ToString()].ToString()));
-            } else {
-              ecoData.Add(col.ToString(), r[col.ToString()].ToString());
-            }
-          }
-        } else {
-          ENGINEERINGDataSet.LegacyECRObjLookupDataTable dt = leol.GetDataByECO(ECO);
-          if (dt.Rows.Count > 0) {
-            ENGINEERINGDataSet.LegacyECRObjLookupRow r = (ENGINEERINGDataSet.LegacyECRObjLookupRow)dt.Rows[0];
-            foreach (System.Data.DataColumn col in dt.Columns) {
-              if (col.ToString().Contains(@"Engineer") || col.ToString().Contains(@"Holder")) {
-                ecoData.Add(col.ToString(), Redbrick.TitleCase(r[col.ToString()].ToString()));
-              } else {
-                ecoData.Add(col.ToString(), r[col.ToString()].ToString());
-              }
-            }
-          }
-        }
-      }
-    }
+		private void GetECOData() {
+			int _ecrn = 0;
+			if (ecoData.Count > 0) {
+				ecoData.Clear();
+			}
+			if (int.TryParse(ECO, out _ecrn)) {
+				if (_ecrn > Redbrick.LastLegacyECR) {
+					ENGINEERINGDataSet.ECRObjLookupDataTable dt = eol.GetDataByECO(_ecrn);
+					ENGINEERINGDataSet.ECRObjLookupRow r = (ENGINEERINGDataSet.ECRObjLookupRow)dt.Rows[0];
+					foreach (System.Data.DataColumn col in dt.Columns) {
+						if (col.ToString().Contains(@"ReqBy")) {
+							ecoData.Add(col.ToString(), Redbrick.TitleCase(r[col.ToString()].ToString()));
+						} else {
+							ecoData.Add(col.ToString(), r[col.ToString()].ToString());
+						}
+					}
+				} else {
+					ENGINEERINGDataSet.LegacyECRObjLookupDataTable dt = leol.GetDataByECO(ECO);
+					if (dt.Rows.Count > 0) {
+						ENGINEERINGDataSet.LegacyECRObjLookupRow r = (ENGINEERINGDataSet.LegacyECRObjLookupRow)dt.Rows[0];
+						foreach (System.Data.DataColumn col in dt.Columns) {
+							if (col.ToString().Contains(@"Engineer") || col.ToString().Contains(@"Holder")) {
+								ecoData.Add(col.ToString(), Redbrick.TitleCase(r[col.ToString()].ToString()));
+							} else {
+								ecoData.Add(col.ToString(), r[col.ToString()].ToString());
+							}
+						}
+					}
+				}
+			}
+		}
 
-    private string ProperCase(string allCapsInput) {
-      string fixedOutput = string.Empty;
-      fixedOutput = allCapsInput.ToLower();
-      if (allCapsInput.Length > 1) {
-        return char.ToUpper(fixedOutput[0]) + fixedOutput.Substring(1);
-      } else {
-        return string.Empty;
-      }
-    }
-    
-    public void Write() {
-      level.Write();
-      eco.Write();
-      description.Write();
-      author.Write();
-      date.Write();
-    }
+		private string ProperCase(string allCapsInput) {
+			string fixedOutput = string.Empty;
+			fixedOutput = allCapsInput.ToLower();
+			if (allCapsInput.Length > 1) {
+				return char.ToUpper(fixedOutput[0]) + fixedOutput.Substring(1);
+			} else {
+				return string.Empty;
+			}
+		}
 
-    public void Delete() {
-      level.Delete();
-      eco.Delete();
-      description.Delete();
-      author.Delete();
-      date.Delete();
-    }
+		public void Write() {
+			level.Write();
+			eco.Write();
+			description.Write();
+			author.Write();
+			date.Write();
+		}
 
-    public void SetAuthor(int id) {
-      author.Data = id;
-    }
+		public void Delete() {
+			level.Delete();
+			eco.Delete();
+			description.Delete();
+			author.Delete();
+			date.Delete();
+		}
 
-    public string Level {
-      get { return level.Data.ToString(); }
-      private set { level.Data = value; }
-    }
+		public void SetAuthor(int id) {
+			author.Data = id;
+		}
 
-    public string ECO {
-      get { return eco.Data.ToString(); }
-      set {
-        eco.Data = value;
-        GetECOData();
-      }
-    }
+		public string Level {
+			get { return level.Data.ToString(); }
+			private set { level.Data = value; }
+		}
 
-    public string Description {
-      get { return description.Data.ToString(); }
-      set { description.Data = value; }
-    }
+		public string ECO {
+			get { return eco.Data.ToString(); }
+			set {
+				eco.Data = value;
+				GetECOData();
+			}
+		}
 
-    public string AuthorFullName {
-      get { return author.FullName; }
-      private set { AuthorFullName = value; }
-    }
+		public string Description {
+			get { return description.Data.ToString(); }
+			set { description.Data = value; }
+		}
 
-    public string Author {
-      get { return author.Initials; }
-      private set { author.Data = value; }
-    }
+		public string AuthorFullName {
+			get { return author.FullName; }
+			private set { AuthorFullName = value; }
+		}
 
-    public DateTime Date {
-      get { return (DateTime)date.Data; }
-      set { date.Data = value; }
-    }
+		public string Author {
+			get { return author.Initials; }
+			private set { author.Data = value; }
+		}
 
-    public System.IO.FileInfo ReferencedFile {
-      get { return new System.IO.FileInfo((SwApp.ActiveDoc as ModelDoc2).GetPathName()); }
-      private set { ReferencedFile = value; }
-    }
+		public DateTime Date {
+			get { return (DateTime)date.Data; }
+			set { date.Data = value; }
+		}
 
-    public string PartNumber {
-      get {
-        return System.IO.Path.GetFileNameWithoutExtension(ReferencedFile.FullName).Split(' ')[0];
-      }
-      private set { PartNumber = value; }
-    }
+		public System.IO.FileInfo ReferencedFile {
+			get { return new System.IO.FileInfo((SwApp.ActiveDoc as ModelDoc2).GetPathName()); }
+			private set { ReferencedFile = value; }
+		}
 
-    public TreeNode Node {
-      get {
-        ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter leol =
-          new ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter();
-        int eco = 0;
-        string legacy = string.Empty;
-        if (int.TryParse(ECO, out eco)) {
-          legacy = Redbrick.LastLegacyECR < eco ? string.Empty : @"(Legacy)";
-        }
-        TreeNode topNode = new TreeNode(Level, 0, 0);
-        TreeNode ecoNode = new TreeNode(string.Format(@"ECR #: {0} {1}", ECO, legacy), 1, 1);
-        TreeNode dNode = new TreeNode(string.Format(@"Date: {0}", Date.ToLongDateString()), 2, 2);
-        TreeNode lNode = new TreeNode(string.Format(@"By: {0}", Redbrick.TitleCase(AuthorFullName)), 3, 3);
-        TreeNode descr = new TreeNode(string.Format(@"Description: {0}", Description), 4, 4);
-        foreach (KeyValuePair<string, string> kvp in ecoData) {
-          int iconidx = 0;
-          if (kvp.Key.ToUpper().Contains(@"DESCR") ||
-            kvp.Key.ToUpper().Contains(@"REVISION") ||
-            kvp.Key.ToUpper().Contains(@"CHANGE")) {
-            iconidx = 4;
-          }
-          switch (Redbrick.action[kvp.Key]) {
-            case Redbrick.Format.NAME:
-              ecoNode.Nodes.Add(
-                new TreeNode(string.Format(@"{0}: {1}", Redbrick.translation[kvp.Key], Redbrick.TitleCase(kvp.Value)), 3, 3));
-              break;
-            case Redbrick.Format.STRING:
-              if (kvp.Value == string.Empty) {
-                continue;
-              }
-              if (kvp.Value.Contains("\n")) {
-                TreeNode subNode = new TreeNode(Redbrick.translation[kvp.Key], iconidx, iconidx);
-                foreach (string subs in kvp.Value.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries)) {
-                  if (subs.ToUpper().Contains(@"ITEM"))
-                    iconidx = 5;
-                  if (subs.ToUpper().Contains(@"DESCR"))
-                    iconidx = 4;
-                  TreeNode subsubNode = new TreeNode(subs, iconidx, iconidx);
-                  subNode.Nodes.Add(subsubNode);
-                }
-                ecoNode.Nodes.Add(subNode);
-              } else {
-                ecoNode.Nodes.Add(
-                  new TreeNode(string.Format(@"{0}: {1}", Redbrick.translation[kvp.Key], kvp.Value), iconidx, iconidx));
-              }
-              break;
-            case Redbrick.Format.DATE:
-              DateTime _dt = new DateTime();
-              if (DateTime.TryParse(kvp.Value, out _dt)) {
-                ecoNode.Nodes.Add(
-                  new TreeNode(string.Format(@"{0}: {1}", Redbrick.translation[kvp.Key], _dt.ToLongDateString()), 2, 2));
-              }
-              break;
-            case Redbrick.Format.SKIP:
-              continue;
-            default:
-              break;
-            //TreeNode subNode = new TreeNode(string.Format(@"{0}: {1}", Redbrick.TitleCase(kvp.Key), kvp.Value));
-            //ecoNode.Nodes.Add(subNode);
-          }
-        }
-        topNode.Nodes.AddRange(new TreeNode[] { ecoNode, descr, dNode, lNode });
-        topNode.Expand();
-        return topNode;
-      }
-      set { Node = value; }
-    }
-  }
+		public string PartNumber {
+			get {
+				return System.IO.Path.GetFileNameWithoutExtension(ReferencedFile.FullName).Split(' ')[0];
+			}
+			private set { PartNumber = value; }
+		}
+
+		public TreeNode Node {
+			get {
+				ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter leol =
+					new ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter();
+				int eco = 0;
+				string legacy = string.Empty;
+				if (int.TryParse(ECO, out eco)) {
+					legacy = Redbrick.LastLegacyECR < eco ? string.Empty : @"(Legacy)";
+				}
+				TreeNode topNode = new TreeNode(Level, 0, 0);
+				TreeNode ecoNode = new TreeNode(string.Format(@"ECR #: {0} {1}", ECO, legacy), 1, 1);
+				TreeNode dNode = new TreeNode(string.Format(@"Date: {0}", Date.ToLongDateString()), 2, 2);
+				TreeNode lNode = new TreeNode(string.Format(@"By: {0}", Redbrick.TitleCase(AuthorFullName)), 3, 3);
+				TreeNode descr = new TreeNode(string.Format(@"Description: {0}", Description), 4, 4);
+				foreach (KeyValuePair<string, string> kvp in ecoData) {
+					int iconidx = 0;
+					if (kvp.Key.ToUpper().Contains(@"DESCR") ||
+						kvp.Key.ToUpper().Contains(@"REVISION") ||
+						kvp.Key.ToUpper().Contains(@"CHANGE")) {
+						iconidx = 4;
+					}
+					switch (Redbrick.action[kvp.Key]) {
+						case Redbrick.Format.NAME:
+							ecoNode.Nodes.Add(
+								new TreeNode(string.Format(@"{0}: {1}", Redbrick.translation[kvp.Key], Redbrick.TitleCase(kvp.Value)), 3, 3));
+							break;
+						case Redbrick.Format.STRING:
+							if (kvp.Value == string.Empty) {
+								continue;
+							}
+							if (kvp.Value.Contains("\n")) {
+								TreeNode subNode = new TreeNode(Redbrick.translation[kvp.Key], iconidx, iconidx);
+								foreach (string subs in kvp.Value.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries)) {
+									if (subs.ToUpper().Contains(@"ITEM"))
+										iconidx = 5;
+									if (subs.ToUpper().Contains(@"DESCR"))
+										iconidx = 4;
+									TreeNode subsubNode = new TreeNode(subs, iconidx, iconidx);
+									subNode.Nodes.Add(subsubNode);
+								}
+								ecoNode.Nodes.Add(subNode);
+							} else {
+								ecoNode.Nodes.Add(
+									new TreeNode(string.Format(@"{0}: {1}", Redbrick.translation[kvp.Key], kvp.Value), iconidx, iconidx));
+							}
+							break;
+						case Redbrick.Format.DATE:
+							DateTime _dt = new DateTime();
+							if (DateTime.TryParse(kvp.Value, out _dt)) {
+								ecoNode.Nodes.Add(
+									new TreeNode(string.Format(@"{0}: {1}", Redbrick.translation[kvp.Key], _dt.ToLongDateString()), 2, 2));
+							}
+							break;
+						case Redbrick.Format.SKIP:
+							continue;
+						default:
+							break;
+						//TreeNode subNode = new TreeNode(string.Format(@"{0}: {1}", Redbrick.TitleCase(kvp.Key), kvp.Value));
+						//ecoNode.Nodes.Add(subNode);
+					}
+				}
+				topNode.Nodes.AddRange(new TreeNode[] { ecoNode, descr, dNode, lNode });
+				topNode.Expand();
+				return topNode;
+			}
+			set { Node = value; }
+		}
+	}
 }

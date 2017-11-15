@@ -8,57 +8,57 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
-  public class AuthorProperty : StringProperty {
-    ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu =
-      new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
+	public class AuthorProperty : StringProperty {
+		ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu =
+			new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
 
-    public AuthorProperty(string name, bool global, SldWorks sw, ModelDoc2 md)
-      : base(name, global, sw, md, string.Empty) {
-  
-    }
+		public AuthorProperty(string name, bool global, SldWorks sw, ModelDoc2 md)
+			: base(name, global, sw, md, string.Empty) {
 
-    public override SwProperty Get() {
-      InnerGet();
+		}
 
-      ENGINEERINGDataSet.GEN_USERSDataTable dt = null;
-      ENGINEERINGDataSet.GEN_USERSRow row = null;
-      dt = gu.GetDataByInitial(Value);
+		public override SwProperty Get() {
+			InnerGet();
 
-      if (dt.Rows.Count > 0) {
-        row = gu.GetDataByInitial(Value)[0];
-      }
+			ENGINEERINGDataSet.GEN_USERSDataTable dt = null;
+			ENGINEERINGDataSet.GEN_USERSRow row = null;
+			dt = gu.GetDataByInitial(Value);
 
-      if (row != null) {
-        _data = row.UID;
-        FullName = row.Fullname;
-      } else {
-        FullName = Value;
-      }
+			if (dt.Rows.Count > 0) {
+				row = gu.GetDataByInitial(Value)[0];
+			}
 
-      return this;
-    }
+			if (row != null) {
+				_data = row.UID;
+				FullName = row.Fullname;
+			} else {
+				FullName = Value;
+			}
 
-    public string FullName { get; set; }
+			return this;
+		}
 
-    public string Initials {
-      get { return Value; }
-      private set { Value = value; }
-    }
+		public string FullName { get; set; }
 
-    protected int _data;
+		public string Initials {
+			get { return Value; }
+			private set { Value = value; }
+		}
 
-    public override object Data {
-      get { return _data; }
-      set {
-        _data = (int)value;
-        ENGINEERINGDataSet.GEN_USERSDataTable dt = gu.GetDataByUID(_data);
-        if (dt.Rows.Count > 0) {
-          Value = dt[0].INITIAL;
-          FullName = dt[0].Fullname;
-        } else {
-          FullName = Value;
-        }
-      }
-    }
-  }
+		protected int _data;
+
+		public override object Data {
+			get { return _data; }
+			set {
+				_data = (int)value;
+				ENGINEERINGDataSet.GEN_USERSDataTable dt = gu.GetDataByUID(_data);
+				if (dt.Rows.Count > 0) {
+					Value = dt[0].INITIAL;
+					FullName = dt[0].Fullname;
+				} else {
+					FullName = Value;
+				}
+			}
+		}
+	}
 }
