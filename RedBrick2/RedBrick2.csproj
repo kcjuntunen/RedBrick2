@@ -262,6 +262,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="redlego.ico" />
+    <None Include="Resources\stopwatch.bmp" />
     <None Include="Resources\delete-icon.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

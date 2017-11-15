@@ -115,6 +115,7 @@ namespace RedBrick2 {
 			this.friendlyCutOpsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.type_cbx = new System.Windows.Forms.ComboBox();
 			this.cUTPARTTYPESBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.button3 = new System.Windows.Forms.Button();
 			this.cUTMATERIALSBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.cUT_MATERIALSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter();
 			this.cUT_EDGESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter();
@@ -127,6 +128,10 @@ namespace RedBrick2 {
 			this.cUT_PARTSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
 			this.friendlyCutOpsTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
+			this.button4 = new System.Windows.Forms.Button();
+			this.button5 = new System.Windows.Forms.Button();
+			this.button6 = new System.Windows.Forms.Button();
+			this.button7 = new System.Windows.Forms.Button();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
@@ -176,7 +181,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(317, 1048);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(317, 1089);
 			this.tableLayoutPanel1.TabIndex = 0;
 			// 
 			// groupBox1
@@ -1031,7 +1036,7 @@ namespace RedBrick2 {
 			this.groupBox4.Controls.Add(this.tableLayoutPanel5);
 			this.groupBox4.Location = new System.Drawing.Point(3, 833);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(311, 212);
+			this.groupBox4.Size = new System.Drawing.Size(311, 253);
 			this.groupBox4.TabIndex = 1;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Routing";
@@ -1054,12 +1059,12 @@ namespace RedBrick2 {
 			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
 			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel5.Size = new System.Drawing.Size(302, 187);
+			this.tableLayoutPanel5.Size = new System.Drawing.Size(302, 228);
 			this.tableLayoutPanel5.TabIndex = 1;
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(3, 155);
+			this.button2.Location = new System.Drawing.Point(3, 196);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(94, 29);
 			this.button2.TabIndex = 1;
@@ -1071,7 +1076,7 @@ namespace RedBrick2 {
 			// flowLayoutPanel1
 			// 
 			this.flowLayoutPanel1.AutoScroll = true;
-			this.flowLayoutPanel1.Location = new System.Drawing.Point(103, 155);
+			this.flowLayoutPanel1.Location = new System.Drawing.Point(103, 196);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
 			this.flowLayoutPanel1.Size = new System.Drawing.Size(94, 29);
 			this.flowLayoutPanel1.TabIndex = 0;
@@ -1082,10 +1087,11 @@ namespace RedBrick2 {
 			this.tableLayoutPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tableLayoutPanel6.ColumnCount = 2;
+			this.tableLayoutPanel6.ColumnCount = 3;
 			this.tableLayoutPanel5.SetColumnSpan(this.tableLayoutPanel6, 3);
 			this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+			this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 34F));
 			this.tableLayoutPanel6.Controls.Add(this.op5_cbx, 1, 5);
 			this.tableLayoutPanel6.Controls.Add(this.label36, 0, 5);
 			this.tableLayoutPanel6.Controls.Add(this.label35, 0, 4);
@@ -1097,16 +1103,22 @@ namespace RedBrick2 {
 			this.tableLayoutPanel6.Controls.Add(this.op2_cbx, 1, 2);
 			this.tableLayoutPanel6.Controls.Add(this.op1_cbx, 1, 1);
 			this.tableLayoutPanel6.Controls.Add(this.type_cbx, 1, 0);
+			this.tableLayoutPanel6.Controls.Add(this.button3, 2, 1);
+			this.tableLayoutPanel6.Controls.Add(this.button4, 2, 2);
+			this.tableLayoutPanel6.Controls.Add(this.button5, 2, 3);
+			this.tableLayoutPanel6.Controls.Add(this.button6, 2, 4);
+			this.tableLayoutPanel6.Controls.Add(this.button7, 2, 5);
 			this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 3);
 			this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-			this.tableLayoutPanel6.RowCount = 6;
+			this.tableLayoutPanel6.RowCount = 7;
+			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
+			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
+			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
+			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
+			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
+			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel6.Size = new System.Drawing.Size(296, 146);
+			this.tableLayoutPanel6.Size = new System.Drawing.Size(296, 187);
 			this.tableLayoutPanel6.TabIndex = 2;
 			// 
 			// op5_cbx
@@ -1116,9 +1128,9 @@ namespace RedBrick2 {
 			this.op5_cbx.DataSource = this.friendlyCutOpsBindingSource4;
 			this.op5_cbx.DisplayMember = "FRIENDLYNAME";
 			this.op5_cbx.FormattingEnabled = true;
-			this.op5_cbx.Location = new System.Drawing.Point(40, 103);
+			this.op5_cbx.Location = new System.Drawing.Point(40, 146);
 			this.op5_cbx.Name = "op5_cbx";
-			this.op5_cbx.Size = new System.Drawing.Size(256, 21);
+			this.op5_cbx.Size = new System.Drawing.Size(219, 21);
 			this.op5_cbx.TabIndex = 9;
 			this.op5_cbx.ValueMember = "OPID";
 			// 
@@ -1129,50 +1141,60 @@ namespace RedBrick2 {
 			// 
 			// label36
 			// 
+			this.label36.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.label36.AutoSize = true;
-			this.label36.Location = new System.Drawing.Point(3, 100);
+			this.label36.Location = new System.Drawing.Point(3, 143);
 			this.label36.Name = "label36";
-			this.label36.Size = new System.Drawing.Size(31, 13);
+			this.label36.Size = new System.Drawing.Size(31, 29);
 			this.label36.TabIndex = 4;
 			this.label36.Text = "OP 5";
 			this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// label35
 			// 
+			this.label35.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.label35.AutoSize = true;
-			this.label35.Location = new System.Drawing.Point(3, 80);
+			this.label35.Location = new System.Drawing.Point(3, 114);
 			this.label35.Name = "label35";
-			this.label35.Size = new System.Drawing.Size(31, 13);
+			this.label35.Size = new System.Drawing.Size(31, 29);
 			this.label35.TabIndex = 3;
 			this.label35.Text = "OP 4";
 			this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// label34
 			// 
+			this.label34.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.label34.AutoSize = true;
-			this.label34.Location = new System.Drawing.Point(3, 60);
+			this.label34.Location = new System.Drawing.Point(3, 85);
 			this.label34.Name = "label34";
-			this.label34.Size = new System.Drawing.Size(31, 13);
+			this.label34.Size = new System.Drawing.Size(31, 29);
 			this.label34.TabIndex = 2;
 			this.label34.Text = "OP 3";
 			this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// label33
 			// 
+			this.label33.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.label33.AutoSize = true;
-			this.label33.Location = new System.Drawing.Point(3, 40);
+			this.label33.Location = new System.Drawing.Point(3, 56);
 			this.label33.Name = "label33";
-			this.label33.Size = new System.Drawing.Size(31, 13);
+			this.label33.Size = new System.Drawing.Size(31, 29);
 			this.label33.TabIndex = 1;
 			this.label33.Text = "OP 2";
 			this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// label32
 			// 
+			this.label32.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.label32.AutoSize = true;
-			this.label32.Location = new System.Drawing.Point(3, 20);
+			this.label32.Location = new System.Drawing.Point(3, 27);
 			this.label32.Name = "label32";
-			this.label32.Size = new System.Drawing.Size(31, 13);
+			this.label32.Size = new System.Drawing.Size(31, 29);
 			this.label32.TabIndex = 0;
 			this.label32.Text = "OP 1";
 			this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1184,9 +1206,9 @@ namespace RedBrick2 {
 			this.op4_cbx.DataSource = this.friendlyCutOpsBindingSource3;
 			this.op4_cbx.DisplayMember = "FRIENDLYNAME";
 			this.op4_cbx.FormattingEnabled = true;
-			this.op4_cbx.Location = new System.Drawing.Point(40, 83);
+			this.op4_cbx.Location = new System.Drawing.Point(40, 117);
 			this.op4_cbx.Name = "op4_cbx";
-			this.op4_cbx.Size = new System.Drawing.Size(256, 21);
+			this.op4_cbx.Size = new System.Drawing.Size(219, 21);
 			this.op4_cbx.TabIndex = 8;
 			this.op4_cbx.ValueMember = "OPID";
 			// 
@@ -1202,9 +1224,9 @@ namespace RedBrick2 {
 			this.op3_cbx.DataSource = this.friendlyCutOpsBindingSource2;
 			this.op3_cbx.DisplayMember = "FRIENDLYNAME";
 			this.op3_cbx.FormattingEnabled = true;
-			this.op3_cbx.Location = new System.Drawing.Point(40, 63);
+			this.op3_cbx.Location = new System.Drawing.Point(40, 88);
 			this.op3_cbx.Name = "op3_cbx";
-			this.op3_cbx.Size = new System.Drawing.Size(256, 21);
+			this.op3_cbx.Size = new System.Drawing.Size(219, 21);
 			this.op3_cbx.TabIndex = 7;
 			this.op3_cbx.ValueMember = "OPID";
 			// 
@@ -1220,9 +1242,9 @@ namespace RedBrick2 {
 			this.op2_cbx.DataSource = this.friendlyCutOpsBindingSource1;
 			this.op2_cbx.DisplayMember = "FRIENDLYNAME";
 			this.op2_cbx.FormattingEnabled = true;
-			this.op2_cbx.Location = new System.Drawing.Point(40, 43);
+			this.op2_cbx.Location = new System.Drawing.Point(40, 59);
 			this.op2_cbx.Name = "op2_cbx";
-			this.op2_cbx.Size = new System.Drawing.Size(256, 21);
+			this.op2_cbx.Size = new System.Drawing.Size(219, 21);
 			this.op2_cbx.TabIndex = 6;
 			this.op2_cbx.ValueMember = "OPID";
 			// 
@@ -1238,9 +1260,9 @@ namespace RedBrick2 {
 			this.op1_cbx.DataSource = this.friendlyCutOpsBindingSource;
 			this.op1_cbx.DisplayMember = "FRIENDLYNAME";
 			this.op1_cbx.FormattingEnabled = true;
-			this.op1_cbx.Location = new System.Drawing.Point(40, 23);
+			this.op1_cbx.Location = new System.Drawing.Point(40, 30);
 			this.op1_cbx.Name = "op1_cbx";
-			this.op1_cbx.Size = new System.Drawing.Size(256, 21);
+			this.op1_cbx.Size = new System.Drawing.Size(219, 21);
 			this.op1_cbx.TabIndex = 5;
 			this.op1_cbx.ValueMember = "OPID";
 			// 
@@ -1256,7 +1278,7 @@ namespace RedBrick2 {
 			this.type_cbx.FormattingEnabled = true;
 			this.type_cbx.Location = new System.Drawing.Point(40, 3);
 			this.type_cbx.Name = "type_cbx";
-			this.type_cbx.Size = new System.Drawing.Size(256, 21);
+			this.type_cbx.Size = new System.Drawing.Size(219, 21);
 			this.type_cbx.TabIndex = 10;
 			this.type_cbx.ValueMember = "TYPEID";
 			this.type_cbx.SelectedIndexChanged += new System.EventHandler(this.comboBox12_SelectedIndexChanged);
@@ -1265,6 +1287,16 @@ namespace RedBrick2 {
 			// 
 			this.cUTPARTTYPESBindingSource.DataMember = "CUT_PART_TYPES";
 			this.cUTPARTTYPESBindingSource.DataSource = this.eNGINEERINGDataSet;
+			// 
+			// button3
+			// 
+			this.button3.Image = global::RedBrick2.Properties.Resources.stopwatch;
+			this.button3.Location = new System.Drawing.Point(265, 30);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(28, 23);
+			this.button3.TabIndex = 11;
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button3_Click);
 			// 
 			// cUTMATERIALSBindingSource
 			// 
@@ -1300,7 +1332,7 @@ namespace RedBrick2 {
 			this.tabControl1.Location = new System.Drawing.Point(0, 0);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(328, 1080);
+			this.tabControl1.Size = new System.Drawing.Size(328, 1121);
 			this.tabControl1.TabIndex = 1;
 			// 
 			// tabPage1
@@ -1310,7 +1342,7 @@ namespace RedBrick2 {
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(320, 1054);
+			this.tabPage1.Size = new System.Drawing.Size(320, 1095);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "tabPage1";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -1321,7 +1353,7 @@ namespace RedBrick2 {
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(320, 1096);
+			this.tabPage2.Size = new System.Drawing.Size(320, 1095);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "tabPage2";
 			this.tabPage2.UseVisualStyleBackColor = true;
@@ -1338,6 +1370,46 @@ namespace RedBrick2 {
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
 			// 
+			// button4
+			// 
+			this.button4.Image = global::RedBrick2.Properties.Resources.stopwatch;
+			this.button4.Location = new System.Drawing.Point(265, 59);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(28, 23);
+			this.button4.TabIndex = 12;
+			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.button4_Click);
+			// 
+			// button5
+			// 
+			this.button5.Image = global::RedBrick2.Properties.Resources.stopwatch;
+			this.button5.Location = new System.Drawing.Point(265, 88);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(28, 23);
+			this.button5.TabIndex = 13;
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
+			// 
+			// button6
+			// 
+			this.button6.Image = global::RedBrick2.Properties.Resources.stopwatch;
+			this.button6.Location = new System.Drawing.Point(265, 117);
+			this.button6.Name = "button6";
+			this.button6.Size = new System.Drawing.Size(28, 23);
+			this.button6.TabIndex = 14;
+			this.button6.UseVisualStyleBackColor = true;
+			this.button6.Click += new System.EventHandler(this.button6_Click);
+			// 
+			// button7
+			// 
+			this.button7.Image = global::RedBrick2.Properties.Resources.stopwatch;
+			this.button7.Location = new System.Drawing.Point(265, 146);
+			this.button7.Name = "button7";
+			this.button7.Size = new System.Drawing.Size(28, 23);
+			this.button7.TabIndex = 15;
+			this.button7.UseVisualStyleBackColor = true;
+			this.button7.Click += new System.EventHandler(this.button7_Click);
+			// 
 			// ModelRedbrick
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -1345,7 +1417,7 @@ namespace RedBrick2 {
 			this.Controls.Add(this.tabControl1);
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Name = "ModelRedbrick";
-			this.Size = new System.Drawing.Size(328, 1080);
+			this.Size = new System.Drawing.Size(328, 1121);
 			this.Load += new System.EventHandler(this.ModelRedbrick_Load);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.groupBox1.ResumeLayout(false);
@@ -1490,5 +1562,10 @@ namespace RedBrick2 {
 		private System.Windows.Forms.BindingSource friendlyCutOpsBindingSource3;
 		private System.Windows.Forms.BindingSource friendlyCutOpsBindingSource2;
 		private System.Windows.Forms.BindingSource friendlyCutOpsBindingSource1;
+		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.Button button4;
+		private System.Windows.Forms.Button button5;
+		private System.Windows.Forms.Button button6;
+		private System.Windows.Forms.Button button7;
   }
 }

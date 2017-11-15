@@ -20,6 +20,7 @@ namespace RedBrick2 {
 		private SwProperties PropertySet;
 		private int PartID;
 		private bool NewOp = false;
+		private bool user_edit = false;
 
 		public EditOp(SwProperties props) {
 			InitializeComponent();
@@ -49,6 +50,7 @@ namespace RedBrick2 {
 		public EditOp(ENGINEERINGDataSet.CutPartOpsRow row) {
 			InitializeComponent();
 			currentRow = row;
+			PartID = currentRow.POPPART;
 		}
 
 		private void EditOp_Load(object sender, EventArgs e) {
@@ -72,10 +74,11 @@ namespace RedBrick2 {
 				textBox1.Text = string.Format(Properties.Settings.Default.NumberFormat, 0.0F);
 				textBox2.Text = string.Format(Properties.Settings.Default.NumberFormat, 0.0F);
 			} else {
-				comboBox2.SelectedValue = friendlyCutOpsTableAdapter.GetOpID(currentRow.POPOP, currentRow.TYPEID);
+				comboBox2.SelectedValue = currentRow.POPOP;
 				textBox1.Text = string.Format(Properties.Settings.Default.NumberFormat, currentRow.POPSETUP * 60);
 				textBox2.Text = string.Format(Properties.Settings.Default.NumberFormat, currentRow.POPRUN * 60);
 			}
+			Unselect(comboBox2);
 		}
 
 		private void button2_Click(object sender, EventArgs e) {
@@ -124,21 +127,36 @@ namespace RedBrick2 {
 			Properties.Settings.Default.Save();
 		}
 
+		private void Unselect(ComboBox sender) {
+			sender.SelectionLength = 0;
+		}
+
 		private void comboBox_Resize(object sender, EventArgs e) {
 			ComboBox _me = (sender as ComboBox);
 			_me.SelectionLength = 0;
 		}
 
 		private void comboBox2_SelectedIndexChanged(object sender, EventArgs e) {
-			ComboBox cbx = sender as ComboBox;
-			DataRowView drv = cbx.SelectedItem as DataRowView;
-			float tmp = 0.0F;
-			if (float.TryParse(drv[4].ToString(), out tmp)) {
-				textBox1.Text = string.Format(Properties.Settings.Default.NumberFormat, tmp * 60);
+			if (user_edit) {
+				ComboBox cbx = sender as ComboBox;
+				DataRowView drv = cbx.SelectedItem as DataRowView;
+				float tmp = 0.0F;
+				if (float.TryParse(drv[4].ToString(), out tmp)) {
+					textBox1.Text = string.Format(Properties.Settings.Default.NumberFormat, tmp * 60);
+				}
+				if (float.TryParse(drv[5].ToString(), out tmp)) {
+					textBox2.Text = string.Format(Properties.Settings.Default.NumberFormat, tmp * 60);
+				}
+				user_edit = false;
 			}
-			if (float.TryParse(drv[5].ToString(), out tmp)) {
-				textBox2.Text = string.Format(Properties.Settings.Default.NumberFormat, tmp * 60);
-			}
+		}
+
+		private void user_editing(object sender, MouseEventArgs e) {
+			user_edit = true;
+		}
+
+		private void user_editing(object sender, KeyEventArgs e) {
+			user_edit = true;
 		}
 	}
 }

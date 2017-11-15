@@ -63,9 +63,9 @@ namespace RedBrick2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap delete_icon {
+        internal static System.Drawing.Bitmap delete {
             get {
-                object obj = ResourceManager.GetObject("delete-icon", resourceCulture);
+                object obj = ResourceManager.GetObject("delete", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -104,6 +104,16 @@ namespace RedBrick2.Properties {
         internal static System.Drawing.Bitmap setup {
             get {
                 object obj = ResourceManager.GetObject("setup", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stopwatch {
+            get {
+                object obj = ResourceManager.GetObject("stopwatch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

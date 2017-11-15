@@ -351,18 +351,28 @@ namespace RedBrick2 {
 			ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpota =
 				new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
 			cpota.FillBy(eNGINEERINGDataSet.CutPartOps, partLookup);
+			double setupTime = 0.0f;
+			double runTime = 0.0f;
 
 			ComboBox[] cbxes = { op1_cbx, op2_cbx, op3_cbx, op4_cbx, op5_cbx };
 
 			for (int i = 0; i < cbxes.Length; i++) {
 				ComboBox current = cbxes[i];
 				if (i < eNGINEERINGDataSet.CutPartOps.Rows.Count) {
-					current.SelectedValue =
-						(eNGINEERINGDataSet.CutPartOps.Rows[i] as ENGINEERINGDataSet.CutPartOpsRow).POPOP;
+					ENGINEERINGDataSet.CutPartOpsRow r = 
+						(eNGINEERINGDataSet.CutPartOps.Rows[i] as ENGINEERINGDataSet.CutPartOpsRow);
+					setupTime += r.POPSETUP;
+					runTime += r.POPRUN;
+					current.SelectedValue = r.POPOP;
 				} else {
 					current.SelectedValue = -1;
 				}
 			}
+			double setup = setupTime / Properties.Settings.Default.SPQ;
+
+			groupBox4.Text = string.Format("Routing (Setup: {0:0} min/Run: {1:0} min)",
+				setup * 60,
+				runTime * 60);
 		}
 
 		private void FilterOps(string filter) {
@@ -1062,6 +1072,56 @@ namespace RedBrick2 {
 
 		private void comboBox12_SelectedIndexChanged(object sender, EventArgs e) {
 			FilterOps(string.Format(@"TYPEID = {0}", (sender as ComboBox).SelectedValue));
+		}
+
+		private void button3_Click(object sender, EventArgs e) {
+			if (eNGINEERINGDataSet.CutPartOps.Rows.Count > 0) {
+				ENGINEERINGDataSet.CutPartOpsRow r = 
+					(eNGINEERINGDataSet.CutPartOps.Rows[0] as ENGINEERINGDataSet.CutPartOpsRow);
+				EditOp eo = new EditOp(r);
+				eo.ShowDialog(this);
+			}
+			GetRouting();
+		}
+
+		private void button4_Click(object sender, EventArgs e) {
+			if (eNGINEERINGDataSet.CutPartOps.Rows.Count > 1) {
+				ENGINEERINGDataSet.CutPartOpsRow r =
+					(eNGINEERINGDataSet.CutPartOps.Rows[1] as ENGINEERINGDataSet.CutPartOpsRow);
+				EditOp eo = new EditOp(r);
+				eo.ShowDialog(this);
+			}
+			GetRouting();
+		}
+
+		private void button5_Click(object sender, EventArgs e) {
+			if (eNGINEERINGDataSet.CutPartOps.Rows.Count > 2) {
+				ENGINEERINGDataSet.CutPartOpsRow r =
+					(eNGINEERINGDataSet.CutPartOps.Rows[2] as ENGINEERINGDataSet.CutPartOpsRow);
+				EditOp eo = new EditOp(r);
+				eo.ShowDialog(this);
+			}
+			GetRouting();
+		}
+
+		private void button6_Click(object sender, EventArgs e) {
+			if (eNGINEERINGDataSet.CutPartOps.Rows.Count > 3) {
+				ENGINEERINGDataSet.CutPartOpsRow r =
+					(eNGINEERINGDataSet.CutPartOps.Rows[3] as ENGINEERINGDataSet.CutPartOpsRow);
+				EditOp eo = new EditOp(r);
+				eo.ShowDialog(this);
+			}
+			GetRouting();
+		}
+
+		private void button7_Click(object sender, EventArgs e) {
+			if (eNGINEERINGDataSet.CutPartOps.Rows.Count > 4) {
+				ENGINEERINGDataSet.CutPartOpsRow r =
+					(eNGINEERINGDataSet.CutPartOps.Rows[4] as ENGINEERINGDataSet.CutPartOpsRow);
+				EditOp eo = new EditOp(r);
+				eo.ShowDialog(this);
+			}
+			GetRouting();
 		}
 	}
 }
