@@ -109,7 +109,6 @@ namespace RedBrick2 {
         if (gdt.Rows.Count > 0) {
           System.Data.DataRow r = gdt.Rows[0];
           FileInfo orig_path = gdt.GetPDFLocation(pdf_lookup);
-          //FileInfo orig_path = new FileInfo(string.Format(@"{0}\{1}", r[@"FPath"].ToString(), r[@"FName"].ToString()));
           FileInfo drw_file = new FileInfo(string.Format(@"{0}\{1}_{2}-{3}.PDF", orig_path.DirectoryName, en, ThisRev.PartNumber, ThisRev.Level));
           FileInfo dest_file = new FileInfo(string.Format(@"{0}\{1}", Properties.Settings.Default.ECRDrawingsDestination, drw_file.Name));
           ENGINEERINGDataSetTableAdapters.ECR_DRAWINGSTableAdapter edta =
