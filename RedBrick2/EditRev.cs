@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
+using SolidWorks.Interop.swcommands;
 
 namespace RedBrick2 {
   public partial class EditRev : Form {
@@ -75,7 +76,21 @@ namespace RedBrick2 {
       Close();
     }
 
+    private void CheckSaved() {
+      ModelDoc2 md = (ModelDoc2)RevSet.SwApp.ActiveDoc;
+      string fn = md.GetPathName();
+      if (fn == string.Empty) {
+        string partfilename = md.GetTitle();
+        md.Extension.RunCommand((int)swCommands_e.swCommands_SaveAs, partfilename);
+        fn = md.GetPathName();
+        if (fn == string.Empty) {
+          throw new Exception("Unsaved drawings cannot be added to an ECR.");
+        }
+      }
+    }
+
     private void AddECRItem() {
+      CheckSaved();
       string question = string.Format(Properties.Resources.InsertIntoEcrItems, ThisRev.PartNumber, ThisRev.ECO);
 
       DialogResult mbr = DialogResult.No;
