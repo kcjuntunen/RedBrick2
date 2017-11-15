@@ -2609,7 +2609,7 @@ WHERE      (ECR_NUM = @ecrno) AND (ITEMNUMBER = @partnum) AND (ITEMREV = @rev)</
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ENGINEERINGConnectionString (Settings)" DbObjectName="ENGINEERING.dbo.ECR_MAIN" DbObjectType="Table" GenerateShortCommands="true" GeneratorSourceName="GetECRStatus" Modifier="Public" Name="GetECRStatus" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="GetECRStatus">
+              <DbSource ConnectionRef="ENGINEERINGConnectionString (Settings)" DbObjectName="ENGINEERING.dbo.ECR_MAIN" DbObjectType="Table" GenerateShortCommands="true" GeneratorSourceName="GetECRStatus" Modifier="Public" Name="GetECRStatus" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="GetECRStatus">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT      STATUS
@@ -2621,7 +2621,7 @@ WHERE      (ECR_NUM = @ecr_num)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ENGINEERINGConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertECRItem" Modifier="Public" Name="InsertECRItem" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="InsertECRItem">
+              <DbSource ConnectionRef="ENGINEERINGConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertECRItem" Modifier="Public" Name="InsertECRItem" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="InsertECRItem">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>INSERT INTO ECR_ITEMS
@@ -2637,7 +2637,7 @@ VALUES      (@ecr_num,@itemnumber,@itemrev,@type)</CommandText>
                   </DbCommand>
                 </InsertCommand>
               </DbSource>
-              <DbSource ConnectionRef="ENGINEERINGConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SetNewECRWIP" Modifier="Public" Name="SetNewECRWIP" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="SetNewECRWIP">
+              <DbSource ConnectionRef="ENGINEERINGConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="SetNewECRWIP" Modifier="Public" Name="SetNewECRWIP" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="SetNewECRWIP">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE      ECR_MAIN
@@ -3014,20 +3014,22 @@ WHERE      (FName LIKE @fname)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ENGINEERINGConnectionString (Settings)" DbObjectName="ENGINEERING.dbo.GEN_DRAWINGS_MTL" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillDrwgByFName" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDrwgDataByFName" GeneratorSourceName="FillDrwgByFName" GetMethodModifier="Public" GetMethodName="GetDrwgDataByFName" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDrwgDataByFName" UserSourceName="FillDrwgByFName">
+              <DbSource ConnectionRef="ENGINEERINGConnectionString (Settings)" DbObjectName="SELECT FileID, FName, FPath, DateCreated FROM GEN_DRAWINGS_MTL WHERE (FName LIKE @fname1) UNION SELECT FileID, FName, FPath, DateCreated FROM GEN_DRAWINGS WHERE (FName LIKE @fname2)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillDrwgByFName" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDrwgDataByFName" GeneratorSourceName="FillDrwgByFName" GetMethodModifier="Public" GetMethodName="GetDrwgDataByFName" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDrwgDataByFName" UserSourceName="FillDrwgByFName">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT      FileID, FName, FPath, DateCreated
-FROM          GEN_DRAWINGS_MTL
-WHERE      (FName LIKE @fname1)
-UNION
-SELECT      FileID, FName, FPath, DateCreated
-FROM          GEN_DRAWINGS
-WHERE      (FName LIKE @fname2); 
+FROM          (SELECT      FileID, FName, FPath, DateCreated
+                        FROM           GEN_DRAWINGS_MTL
+                        WHERE       (FName LIKE @fname1)
+                        UNION
+                        SELECT      FileID, FName, FPath, DateCreated
+                        FROM          GEN_DRAWINGS
+                        WHERE      (FName LIKE @fname2)) AS derivedtbl_1
+ORDER BY LEN(FName);   
 </CommandText>
                     <Parameters>
-                      <Parameter AllowDbNull="true" AutogeneratedName="fname1" ColumnName="FName" DataSourceName="ENGINEERING.dbo.GEN_DRAWINGS_MTL" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@fname1" Precision="0" ProviderType="NVarChar" Scale="0" Size="50" SourceColumn="FName" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="fname2" ColumnName="FName" DataSourceName="ENGINEERING.dbo.GEN_DRAWINGS_MTL" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@fname2" Precision="0" ProviderType="NVarChar" Scale="0" Size="50" SourceColumn="FName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="fname1" ColumnName="FName" DataSourceName="SELECT FileID, FName, FPath, DateCreated FROM GEN_DRAWINGS_MTL WHERE (FName LIKE @fname1) UNION SELECT FileID, FName, FPath, DateCreated FROM GEN_DRAWINGS WHERE (FName LIKE @fname2)" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@fname1" Precision="0" Scale="0" Size="50" SourceColumn="FName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="fname2" ColumnName="FName" DataSourceName="SELECT FileID, FName, FPath, DateCreated FROM GEN_DRAWINGS_MTL WHERE (FName LIKE @fname1) UNION SELECT FileID, FName, FPath, DateCreated FROM GEN_DRAWINGS WHERE (FName LIKE @fname2)" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@fname2" Precision="0" Scale="0" Size="50" SourceColumn="FName" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
                   </DbCommand>
                 </SelectCommand>
@@ -3102,7 +3104,7 @@ SELECT FileID, FName, FPath, DateCreated FROM GEN_DRAWINGS_MTL WHERE (FileID = @
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT      FileID, FName, FPath, DateCreated
 FROM          GEN_DRAWINGS_MTL
-WHERE      (FName LIKE @fname)</CommandText>
+WHERE      (FName = @fname)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="true" AutogeneratedName="fname" ColumnName="FName" DataSourceName="ENGINEERING.dbo.GEN_DRAWINGS_MTL" DataTypeServer="nvarchar(50)" DbType="String" Direction="Input" ParameterName="@fname" Precision="0" ProviderType="NVarChar" Scale="0" Size="50" SourceColumn="FName" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>

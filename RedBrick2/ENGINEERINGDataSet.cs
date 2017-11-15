@@ -7,21 +7,37 @@ namespace RedBrick2 {
       public System.IO.FileInfo GetPDFLocation(string partno) {
         ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter gd =
           new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter();
-        string lookup = string.Format(@"{0}%", partno);
-        GEN_DRAWINGSDataTable dt = gd.GetDrwgDataByFName(lookup, lookup);
+        GEN_DRAWINGSDataTable dt = GetPDFData(partno);
         if (dt.Rows.Count > 0) {
           System.Data.DataRow r = dt.Rows[0];
           System.IO.FileInfo f = new System.IO.FileInfo(
-            string.Format("{0}{1}{2}",
+            string.Format("{0}{1}",
               r["FPath"].ToString(),
-              @"\",
               r["FName"].ToString()));
           return f;
         }
         return null;
       }
+
+      public GEN_DRAWINGSDataTable GetPDFData(string partno) {
+        ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter gd =
+          new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter();
+        string lookup = string.Format(@"{0}.PDF", partno);
+        if (partno.StartsWith(@"Z")) {
+          lookup = string.Format(@"{0}%.PDF", partno);
+        }
+          return gd.GetDataByFName(lookup);
+      }
+
+      public GEN_DRAWINGSDataTable GetAllPDFData(string partno) {
+        ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter gd =
+          new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter();
+        string lookup = string.Format(@"{0}%.PDF", partno);
+        GEN_DRAWINGSDataTable dt = gd.GetDrwgDataByFName(lookup, lookup);
+        return dt;
+      }
     }
-  
+
     partial class inmastDataTable {
       public int GetPartType(string prtno, string prtrv) {
         ENGINEERINGDataSetTableAdapters.inmastTableAdapter ita =

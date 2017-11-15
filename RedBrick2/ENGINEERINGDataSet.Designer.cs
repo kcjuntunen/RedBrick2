@@ -38627,9 +38627,16 @@ SELECT FileID, FName, FPath, DateCreated FROM GEN_DRAWINGS WHERE (FileID = @File
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fname", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "FName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT      FileID, FName, FPath, DateCreated\r\nFROM          GEN_DRAWINGS_MTL\r\nWH" +
-                "ERE      (FName LIKE @fname1)\r\nUNION\r\nSELECT      FileID, FName, FPath, DateCrea" +
-                "ted\r\nFROM          GEN_DRAWINGS\r\nWHERE      (FName LIKE @fname2); \r\n";
+            this._commandCollection[2].CommandText = @"SELECT      FileID, FName, FPath, DateCreated
+FROM          (SELECT      FileID, FName, FPath, DateCreated
+                        FROM           GEN_DRAWINGS_MTL
+                        WHERE       (FName LIKE @fname1)
+                        UNION
+                        SELECT      FileID, FName, FPath, DateCreated
+                        FROM          GEN_DRAWINGS
+                        WHERE      (FName LIKE @fname2)) AS derivedtbl_1
+ORDER BY LEN(FName);   
+";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fname1", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "FName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fname2", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "FName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -39113,7 +39120,7 @@ SELECT FileID, FName, FPath, DateCreated FROM GEN_DRAWINGS_MTL WHERE (FileID = @
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
             this._commandCollection[1].CommandText = "SELECT      FileID, FName, FPath, DateCreated\r\nFROM          GEN_DRAWINGS_MTL\r\nWH" +
-                "ERE      (FName LIKE @fname)";
+                "ERE      (FName = @fname)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fname", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "FName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }

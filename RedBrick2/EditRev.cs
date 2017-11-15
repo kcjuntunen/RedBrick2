@@ -95,26 +95,28 @@ namespace RedBrick2 {
         apw.Archive();
         ENGINEERINGDataSet.inmastDataTable idt =
           new ENGINEERINGDataSet.inmastDataTable();
+        ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter gd =
+          new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter();
+        ENGINEERINGDataSet.GEN_DRAWINGSDataTable gdt =
+          new ENGINEERINGDataSet.GEN_DRAWINGSDataTable();
         ENGINEERINGDataSetTableAdapters.ECR_ITEMSTableAdapter eit =
           new ENGINEERINGDataSetTableAdapters.ECR_ITEMSTableAdapter();
         int parttype = idt.GetPartType(ThisRev.PartNumber, level.Value);
         eit.InsertECRItem(en, ThisRev.PartNumber, level.Value, parttype);
         int ecr_item_id = (int)eit.GetECRItem(en, ThisRev.PartNumber, level.Value);
-        ENGINEERINGDataSet.GEN_DRAWINGSDataTable dt =
-          new ENGINEERINGDataSet.GEN_DRAWINGSDataTable();
-        ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter gd =
-          new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter();
-        ENGINEERINGDataSet.GEN_DRAWINGSDataTable ddt = gd.GetDataByFName(string.Format(@"{0}%", ThisRev.PartNumber));
-        if (ddt.Rows.Count > 0) {
-          System.Data.DataRow r = ddt.Rows[0];
-          FileInfo orig_path = new FileInfo(string.Format(@"{0}\{1}", r[@"FPath"].ToString(), r[@"FName"].ToString()));
+        string pdf_lookup = Path.GetFileNameWithoutExtension(ThisRev.ReferencedFile.Name);
+        gdt = gdt.GetPDFData(pdf_lookup);
+        if (gdt.Rows.Count > 0) {
+          System.Data.DataRow r = gdt.Rows[0];
+          FileInfo orig_path = gdt.GetPDFLocation(pdf_lookup);
+          //FileInfo orig_path = new FileInfo(string.Format(@"{0}\{1}", r[@"FPath"].ToString(), r[@"FName"].ToString()));
           FileInfo drw_file = new FileInfo(string.Format(@"{0}\{1}_{2}-{3}.PDF", orig_path.DirectoryName, en, ThisRev.PartNumber, ThisRev.Level));
           FileInfo dest_file = new FileInfo(string.Format(@"{0}\{1}", Properties.Settings.Default.ECRDrawingsDestination, drw_file.Name));
           ENGINEERINGDataSetTableAdapters.ECR_DRAWINGSTableAdapter edta =
             new ENGINEERINGDataSetTableAdapters.ECR_DRAWINGSTableAdapter();
-          edta.InsertECRDrawing(ecr_item_id, (int)ddt.Rows[0][@"FileID"], ThisRev.Level, drw_file.Name, orig_path.FullName);
+          edta.InsertECRDrawing(ecr_item_id, (int)gdt.Rows[0][@"FileID"], ThisRev.Level, drw_file.Name, orig_path.FullName);
           if (!dest_file.Exists) { // Doublecheck
-            orig_path.CopyTo(dest_file.FullName);
+            orig_path.CopyTo(dest_file.FullName, false); // Triplecheck
           }
           eit.SetNewECRWIP(en);
         }
