@@ -50,6 +50,7 @@ namespace RedBrick2 {
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+			this.button1 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gENCUSTOMERSBindingSource)).BeginInit();
@@ -69,7 +70,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel1.SetColumnSpan(this.dataGridView1, 5);
 			this.dataGridView1.Location = new System.Drawing.Point(3, 93);
 			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.Size = new System.Drawing.Size(699, 232);
+			this.dataGridView1.Size = new System.Drawing.Size(705, 232);
 			this.dataGridView1.TabIndex = 0;
 			this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
 			this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
@@ -100,14 +101,16 @@ namespace RedBrick2 {
 			this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 3);
 			this.tableLayoutPanel1.Controls.Add(this.comboBox5, 1, 2);
 			this.tableLayoutPanel1.Controls.Add(this.label6, 2, 0);
+			this.tableLayoutPanel1.Controls.Add(this.button1, 4, 4);
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(13, 13);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-			this.tableLayoutPanel1.RowCount = 4;
+			this.tableLayoutPanel1.RowCount = 5;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(705, 328);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(711, 360);
 			this.tableLayoutPanel1.TabIndex = 1;
 			// 
 			// label1
@@ -116,7 +119,7 @@ namespace RedBrick2 {
 			this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label1.Location = new System.Drawing.Point(3, 0);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(99, 30);
+			this.label1.Size = new System.Drawing.Size(100, 30);
 			this.label1.TabIndex = 1;
 			this.label1.Text = "Customer";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -127,7 +130,7 @@ namespace RedBrick2 {
 			this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label2.Location = new System.Drawing.Point(3, 30);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(99, 30);
+			this.label2.Size = new System.Drawing.Size(100, 30);
 			this.label2.TabIndex = 2;
 			this.label2.Text = "Item Number";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -139,11 +142,12 @@ namespace RedBrick2 {
 			this.comboBox1.DataSource = this.gENCUSTOMERSBindingSource;
 			this.comboBox1.DisplayMember = "CUSTOMER";
 			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(108, 3);
+			this.comboBox1.Location = new System.Drawing.Point(109, 3);
 			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(191, 21);
+			this.comboBox1.Size = new System.Drawing.Size(193, 21);
 			this.comboBox1.TabIndex = 4;
 			this.comboBox1.ValueMember = "CUSTID";
+			this.comboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
 			this.comboBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox1_MouseClick);
 			// 
 			// gENCUSTOMERSBindingSource
@@ -163,13 +167,14 @@ namespace RedBrick2 {
 			this.comboBox2.DataSource = this.cUTCUTLISTSBindingSource;
 			this.comboBox2.DisplayMember = "PARTNUM";
 			this.comboBox2.FormattingEnabled = true;
-			this.comboBox2.Location = new System.Drawing.Point(108, 33);
+			this.comboBox2.Location = new System.Drawing.Point(109, 33);
 			this.comboBox2.Name = "comboBox2";
-			this.comboBox2.Size = new System.Drawing.Size(191, 21);
+			this.comboBox2.Size = new System.Drawing.Size(193, 21);
 			this.comboBox2.TabIndex = 5;
 			this.comboBox2.ValueMember = "CLID";
 			this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
 			this.comboBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox2_KeyDown);
+			this.comboBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
 			this.comboBox2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox1_MouseClick);
 			// 
 			// cUTCUTLISTSBindingSource
@@ -183,7 +188,7 @@ namespace RedBrick2 {
 			this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label3.Location = new System.Drawing.Point(3, 60);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(99, 30);
+			this.label3.Size = new System.Drawing.Size(100, 30);
 			this.label3.TabIndex = 3;
 			this.label3.Text = "Item Description";
 			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -195,12 +200,13 @@ namespace RedBrick2 {
 			this.comboBox3.DataSource = this.revListBindingSource;
 			this.comboBox3.DisplayMember = "REV";
 			this.comboBox3.FormattingEnabled = true;
-			this.comboBox3.Location = new System.Drawing.Point(305, 33);
+			this.comboBox3.Location = new System.Drawing.Point(308, 33);
 			this.comboBox3.Name = "comboBox3";
 			this.comboBox3.Size = new System.Drawing.Size(43, 21);
 			this.comboBox3.TabIndex = 6;
 			this.comboBox3.ValueMember = "REV";
 			this.comboBox3.SelectedValueChanged += new System.EventHandler(this.comboBox3_SelectedValueChanged);
+			this.comboBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
 			this.comboBox3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox3_MouseClick);
 			// 
 			// revListBindingSource
@@ -212,18 +218,18 @@ namespace RedBrick2 {
 			// 
 			this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.dateTimePicker1.Location = new System.Drawing.Point(502, 33);
+			this.dateTimePicker1.Location = new System.Drawing.Point(506, 33);
 			this.dateTimePicker1.Name = "dateTimePicker1";
-			this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+			this.dateTimePicker1.Size = new System.Drawing.Size(202, 22);
 			this.dateTimePicker1.TabIndex = 9;
 			// 
 			// label5
 			// 
 			this.label5.AutoSize = true;
 			this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label5.Location = new System.Drawing.Point(354, 30);
+			this.label5.Location = new System.Drawing.Point(357, 30);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(142, 30);
+			this.label5.Size = new System.Drawing.Size(143, 30);
 			this.label5.TabIndex = 8;
 			this.label5.Text = "Date";
 			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -232,9 +238,9 @@ namespace RedBrick2 {
 			// 
 			this.label4.AutoSize = true;
 			this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label4.Location = new System.Drawing.Point(354, 0);
+			this.label4.Location = new System.Drawing.Point(357, 0);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(142, 30);
+			this.label4.Size = new System.Drawing.Size(143, 30);
 			this.label4.TabIndex = 7;
 			this.label4.Text = "Drawing Reference";
 			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -246,11 +252,12 @@ namespace RedBrick2 {
 			this.comboBox4.DataSource = this.cUTCUTLISTSBindingSource;
 			this.comboBox4.DisplayMember = "DRAWING";
 			this.comboBox4.FormattingEnabled = true;
-			this.comboBox4.Location = new System.Drawing.Point(502, 3);
+			this.comboBox4.Location = new System.Drawing.Point(506, 3);
 			this.comboBox4.Name = "comboBox4";
-			this.comboBox4.Size = new System.Drawing.Size(200, 21);
+			this.comboBox4.Size = new System.Drawing.Size(202, 21);
 			this.comboBox4.TabIndex = 10;
 			this.comboBox4.ValueMember = "CLID";
+			this.comboBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
 			// 
 			// comboBox5
 			// 
@@ -259,18 +266,19 @@ namespace RedBrick2 {
 			this.comboBox5.DataSource = this.cUTCUTLISTSBindingSource;
 			this.comboBox5.DisplayMember = "DESCR";
 			this.comboBox5.FormattingEnabled = true;
-			this.comboBox5.Location = new System.Drawing.Point(108, 63);
+			this.comboBox5.Location = new System.Drawing.Point(109, 63);
 			this.comboBox5.Name = "comboBox5";
-			this.comboBox5.Size = new System.Drawing.Size(191, 21);
+			this.comboBox5.Size = new System.Drawing.Size(193, 21);
 			this.comboBox5.TabIndex = 11;
 			this.comboBox5.ValueMember = "CLID";
 			this.comboBox5.TextChanged += new System.EventHandler(this.comboBox5_TextChanged);
+			this.comboBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
 			// 
 			// label6
 			// 
 			this.label6.AutoSize = true;
 			this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label6.Location = new System.Drawing.Point(305, 0);
+			this.label6.Location = new System.Drawing.Point(308, 0);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(43, 30);
 			this.label6.TabIndex = 12;
@@ -303,9 +311,9 @@ namespace RedBrick2 {
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2});
-			this.statusStrip1.Location = new System.Drawing.Point(0, 344);
+			this.statusStrip1.Location = new System.Drawing.Point(0, 376);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(730, 22);
+			this.statusStrip1.Size = new System.Drawing.Size(736, 22);
 			this.statusStrip1.TabIndex = 2;
 			this.statusStrip1.Text = "statusStrip1";
 			// 
@@ -321,15 +329,32 @@ namespace RedBrick2 {
 			this.toolStripStatusLabel2.Size = new System.Drawing.Size(117, 17);
 			this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
 			// 
+			// button1
+			// 
+			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.button1.Location = new System.Drawing.Point(633, 334);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(75, 23);
+			this.button1.TabIndex = 13;
+			this.button1.Text = "Cancel";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
 			// CreateCutlist
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(730, 366);
+			this.ClientSize = new System.Drawing.Size(736, 398);
+			this.ControlBox = false;
 			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.tableLayoutPanel1);
+			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Name = "CreateCutlist";
-			this.Text = "CreateCutlist";
+			this.ShowIcon = false;
+			this.ShowInTaskbar = false;
+			this.Text = "Create Cutlist";
+			this.TopMost = true;
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CreateCutlist_FormClosing);
 			this.Load += new System.EventHandler(this.CreateCutlist_Load);
 			this.Shown += new System.EventHandler(this.CreateCutlist_Shown);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -375,5 +400,6 @@ namespace RedBrick2 {
     private System.Windows.Forms.StatusStrip statusStrip1;
     private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+		private System.Windows.Forms.Button button1;
   }
 }

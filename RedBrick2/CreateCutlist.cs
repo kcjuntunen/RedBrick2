@@ -31,6 +31,7 @@ namespace RedBrick2 {
 		private bool[] sort_directions = { false, false, false, false, false, false };
 		private ToolTip rev_tooltip = new ToolTip();
 		private ToolTip descr_tooltip = new ToolTip();
+		private ToolTip cust_tooltip = new ToolTip();
 
 		int total_parts = 0;
 		UserProgressBar pb;
@@ -75,6 +76,39 @@ namespace RedBrick2 {
 			toolStripStatusLabel1.Text = string.Format("Total Unique Parts: {0}", dataGridView1.Rows.Count - 1);
 		}
 
+		private void ToggleRevWarn(bool on) {
+			if (on) {
+				Redbrick.Warn(comboBox3);
+				rev_tooltip.SetToolTip(comboBox3, Properties.Resources.RevisionNotMatching);
+				rev_tooltip.SetToolTip(label6, Properties.Resources.RevisionNotMatching);
+			} else {
+				Redbrick.Unwarn(comboBox3 as ComboBox);
+				rev_tooltip.RemoveAll();
+			}
+		}
+
+		private void ToggleCustomerWarn(bool on) {
+			if (on) {
+				Redbrick.Warn(comboBox1);
+				cust_tooltip.SetToolTip(comboBox1, Properties.Resources.CustomerNotMatching);
+				cust_tooltip.SetToolTip(label1, Properties.Resources.CustomerNotMatching);
+			} else {
+				Redbrick.Unwarn(comboBox1);
+				cust_tooltip.RemoveAll();
+			}
+		}
+
+		private void ToggleDescrWarn(bool on) {
+			if (on) {
+				Redbrick.Warn(comboBox5);
+				descr_tooltip.SetToolTip(comboBox5, Properties.Resources.NoDescriptionWarning);
+				descr_tooltip.SetToolTip(label3, Properties.Resources.NoDescriptionWarning);
+			} else {
+				Redbrick.Unwarn(comboBox5);
+				descr_tooltip.RemoveAll();
+			}
+		}
+
 		private void CreateCutlist_Load(object sender, EventArgs e) {
 			// TODO: This line of code loads data into the 'eNGINEERINGDataSet.CUT_CUTLISTS' table. You can move, or remove it, as needed.
 			//this.cUT_CUTLISTSTableAdapter.Fill(this.eNGINEERINGDataSet.CUT_CUTLISTS);
@@ -111,8 +145,7 @@ namespace RedBrick2 {
 
 			comboBox5.Text = stpr.Value;
 			if (comboBox5.Text == string.Empty) {
-				Redbrick.Warn(comboBox5);
-				descr_tooltip.SetToolTip(comboBox5, Properties.Resources.NoDescriptionWarning);
+				ToggleDescrWarn(true);
 			}
 			comboBox2.Text = topName;
 			if (rev_in_filename) {
@@ -421,6 +454,8 @@ namespace RedBrick2 {
 			}
 		}
 
+		
+
 		private void comboBox2_SelectedIndexChanged(object sender, EventArgs e) {
 			if (user_changed_item) {
 				ComboBox c = sender as ComboBox;
@@ -487,12 +522,24 @@ namespace RedBrick2 {
 		private void comboBox5_TextChanged(object sender, EventArgs e) {
 			ComboBox c = (sender as ComboBox);
 			if (c.Text == string.Empty) {
-				Redbrick.Warn(c);
-				descr_tooltip.SetToolTip(c, Properties.Resources.NoDescriptionWarning);
+				ToggleDescrWarn(true);
 			} else {
-				Redbrick.Unwarn(c);
-				descr_tooltip.RemoveAll();
+				ToggleDescrWarn(false);
 			}
+		}
+
+		private void comboBox_KeyPress(object sender, KeyPressEventArgs e) {
+			if (Properties.Settings.Default.FlameWar && char.IsLetter(e.KeyChar)) {
+				e.KeyChar = char.ToUpper(e.KeyChar);
+			}
+		}
+
+		private void button1_Click(object sender, EventArgs e) {
+			Close();
+		}
+
+		private void CreateCutlist_FormClosing(object sender, FormClosingEventArgs e) {
+
 		}
 	}
 }
