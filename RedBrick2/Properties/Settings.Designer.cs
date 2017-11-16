@@ -691,7 +691,7 @@ namespace RedBrick2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
         public global::System.Drawing.Point CreateCutlistLocation {
             get {
                 return ((global::System.Drawing.Point)(this["CreateCutlistLocation"]));
@@ -703,7 +703,7 @@ namespace RedBrick2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("640, 480")]
         public global::System.Drawing.Size CreateCutlistSize {
             get {
                 return ((global::System.Drawing.Size)(this["CreateCutlistSize"]));

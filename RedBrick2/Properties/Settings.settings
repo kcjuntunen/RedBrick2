@@ -191,10 +191,10 @@
       <Value Profile="(Default)">^[0-9]{1,2}\ ?GA\.?</Value>
     </Setting>
     <Setting Name="CreateCutlistLocation" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
+      <Value Profile="(Default)">100, 100</Value>
     </Setting>
     <Setting Name="CreateCutlistSize" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
+      <Value Profile="(Default)">640, 480</Value>
     </Setting>
   </Settings>
 </SettingsFile>
