@@ -200,6 +200,7 @@
     <Compile Include="SWTaskpaneHost.Designer.cs">
       <DependentUpon>SWTaskpaneHost.cs</DependentUpon>
     </Compile>
+    <Compile Include="Traverser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
