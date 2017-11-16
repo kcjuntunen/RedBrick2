@@ -943,9 +943,7 @@ namespace RedBrick2 {
 		}
 
 		private void button2_Click(object sender, EventArgs e) {
-			EditOp eo = new EditOp(PropertySet);
-			eo.ShowDialog(this);
-			GetOps();
+			
 		}
 
 		private void textBox12_TextChanged(object sender, EventArgs e) {
