@@ -110,6 +110,8 @@ namespace RedBrick2 {
 		}
 
 		private void CreateCutlist_Load(object sender, EventArgs e) {
+			Location = Properties.Settings.Default.CreateCutlistLocation;
+			Size = Properties.Settings.Default.CreateCutlistSize;
 			// TODO: This line of code loads data into the 'eNGINEERINGDataSet.CUT_CUTLISTS' table. You can move, or remove it, as needed.
 			//this.cUT_CUTLISTSTableAdapter.Fill(this.eNGINEERINGDataSet.CUT_CUTLISTS);
 			// TODO: This line of code loads data into the 'eNGINEERINGDataSet.GEN_CUSTOMERS' table. You can move, or remove it, as needed.
@@ -539,7 +541,9 @@ namespace RedBrick2 {
 		}
 
 		private void CreateCutlist_FormClosing(object sender, FormClosingEventArgs e) {
-
+			Properties.Settings.Default.CreateCutlistLocation = Location;
+			Properties.Settings.Default.CreateCutlistSize = Size;
+			Properties.Settings.Default.Save();
 		}
 	}
 }

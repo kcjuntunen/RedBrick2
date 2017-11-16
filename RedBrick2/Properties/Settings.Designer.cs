@@ -688,5 +688,29 @@ namespace RedBrick2.Properties {
                 this["GaugeRegex"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point CreateCutlistLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["CreateCutlistLocation"]));
+            }
+            set {
+                this["CreateCutlistLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Size CreateCutlistSize {
+            get {
+                return ((global::System.Drawing.Size)(this["CreateCutlistSize"]));
+            }
+            set {
+                this["CreateCutlistSize"] = value;
+            }
+        }
     }
 }
