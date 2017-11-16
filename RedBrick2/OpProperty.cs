@@ -8,8 +8,8 @@ namespace RedBrick2 {
 		ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter cota =
 			new ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter();
 
-		ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter cpota =
-			new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter();
+		//ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter cpota =
+		//	new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter();
 
 		public OpProperty(string name, bool global, SldWorks sw, ModelDoc2 md, string fieldName)
 			: base(name, global, sw, md, @"CUT_PART_OPS", fieldName) {
@@ -18,10 +18,28 @@ namespace RedBrick2 {
 
 		public override SwProperty Get() {
 			InnerGet();
+			int intval = 0;
+			int tp = 0;
 			ENGINEERINGDataSet.CUT_PARTSDataTable cpdt = new ENGINEERINGDataSet.CUT_PARTSDataTable();
 			cpdt = cpta.GetDataByPartID(PartID);
-			int tp = (int)cpdt.Rows[0][@"TYPE"];
-			Data = (int)cota.GetDataByOpName(Value, tp).Rows[0][@"OPID"];
+
+			if (cpdt.Rows.Count > 0) {
+				tp = (int)cpdt.Rows[0][@"TYPE"];
+			}
+			
+			if (int.TryParse(Value, out intval)) {
+					ENGINEERINGDataSet.CUT_OPSDataTable codt = cota.GetDataByOpID(intval, tp);
+					if (codt.Rows.Count > 0) {
+						FriendlyValue = codt.Rows[0][@"OPNAME"].ToString();
+						Data = intval;
+					}
+			} else {
+				ENGINEERINGDataSet.CUT_OPSDataTable codt = cota.GetDataByOpName(Value, tp);
+				FriendlyValue = Value;
+				if (codt.Rows.Count > 0) {
+					Value = codt.Rows[0][@"OPID"].ToString();
+				}
+			}
 			return this;
 		}
 
@@ -49,6 +67,8 @@ namespace RedBrick2 {
 					(int)swCustomPropertyAddOption_e.swCustomPropertyDeleteAndAdd);
 			}
 		}
+
+		public string FriendlyValue { get; set; }
 
 		protected int _data = 0;
 

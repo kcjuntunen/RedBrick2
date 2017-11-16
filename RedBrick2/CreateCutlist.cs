@@ -28,6 +28,8 @@ namespace RedBrick2 {
 		private bool rev_in_filename = false;
 		private bool user_changed_item = false;
 		private int included_parts = 0;
+		private bool[] sort_directions = { false, false, false, false, false, false };
+
 		int total_parts = 0;
 		UserProgressBar pb;
 
@@ -206,6 +208,8 @@ namespace RedBrick2 {
 				ModelDoc2 md = (swChildComp.GetModelDoc2() as ModelDoc2);
 				if (md != null && md.GetType() == (int)swDocumentTypes_e.swDocPART) {
 					SwProperties s = new SwProperties(_swApp, md);
+					Configuration _c = md.GetActiveConfiguration();
+					s.Configuration = _c.Name;
 					s.GetProperties(md);
 					if (!_dict.ContainsKey(name)) {
 						_dict.Add(name, 1);
@@ -303,6 +307,8 @@ namespace RedBrick2 {
 		}
 
 		private void AddColumns() {
+			ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cm =
+				new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter();
 			ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cpt =
 				new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
 
@@ -318,11 +324,23 @@ namespace RedBrick2 {
 			descr.ValueType = typeof(string);
 			descr.SortMode = DataGridViewColumnSortMode.Programmatic;
 
-			DataGridViewColumn mat = new DataGridViewColumn();
+			//DataGridViewColumn mat = new DataGridViewColumn();
+			//mat.Name = @"Material";
+			//mat.CellTemplate = new DataGridViewTextBoxCell();
+			//mat.ValueType = typeof(string);
+			//mat.SortMode = DataGridViewColumnSortMode.Programmatic;
+
+			DataGridViewComboBoxColumn mat = new DataGridViewComboBoxColumn();
 			mat.Name = @"Material";
-			mat.CellTemplate = new DataGridViewTextBoxCell();
-			mat.ValueType = typeof(string);
+			mat.CellTemplate = new DataGridViewComboBoxCell();
+			mat.HeaderText = @"Material";
+			mat.DropDownWidth = 250;
+			mat.DisplayMember = @"DESCR";
+			mat.ValueMember = @"MATID";
+			mat.AutoComplete = true;
+			mat.DataSource = cm.GetData();
 			mat.SortMode = DataGridViewColumnSortMode.Programmatic;
+			mat.FlatStyle = FlatStyle.Popup;
 
 			DataGridViewColumn blank_qty = new DataGridViewColumn();
 			blank_qty.Name = @"Blank Qty";
@@ -331,16 +349,16 @@ namespace RedBrick2 {
 			blank_qty.SortMode = DataGridViewColumnSortMode.Programmatic;
 
 			DataGridViewComboBoxColumn col = new DataGridViewComboBoxColumn();
-			col.DataSource = cpt.GetData();
 			col.Name = @"Department";
 			col.CellTemplate = new DataGridViewComboBoxCell();
 			col.HeaderText = @"Department";
-			col.DropDownWidth = 200;
+			col.DropDownWidth = 150;
 			col.DisplayMember = @"TYPEDESC";
 			col.ValueMember = @"TYPEID";
 			col.AutoComplete = true;
 			col.DataSource = cpt.GetData();
 			col.SortMode = DataGridViewColumnSortMode.Programmatic;
+			col.FlatStyle = FlatStyle.Popup;
 
 			DataGridViewCheckBoxColumn inc = new DataGridViewCheckBoxColumn();
 			inc.Name = @"Include";
@@ -356,6 +374,8 @@ namespace RedBrick2 {
 		private void FillTable(SortedDictionary<string, int> pl, SortedDictionary<string, SwProperties> sp) {
 			ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cpt =
 				new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
+			ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cmt =
+				new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter();
 			System.Text.RegularExpressions.Regex r =
 				new System.Text.RegularExpressions.Regex(Redbrick.BOMFilter[0]);
 			foreach (KeyValuePair<string, int> item in pl) {
@@ -366,14 +386,15 @@ namespace RedBrick2 {
 				DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
 				row.Cells[0].Value = name;
 				row.Cells[1].Value = val[@"Description"].Value;
-				row.Cells[2].Value = val[@"CUTLIST MATERIAL"].Value;
+				if ((int)val[@"MATID"].Data > 0 && (int)val[@"MATID"].Data <= (int)cmt.MaterialCount()) {
+					row.Cells[2].Value = val[@"MATID"].Data;
+				}
 				row.Cells[3].Value = item.Value;
 				if ((int)val[@"DEPARTMENT"].Data > 0 && (int)val[@"DEPARTMENT"].Data <= (int)cpt.TypeCount()) {
 					row.Cells[4].Value = val[@"DEPARTMENT"].Data;
 				}
 				row.Cells[5].Value = r.IsMatch(name);
 				dataGridView1.Rows.Add(row);
-				//dataGridView1.Rows.Add(name, val[@"Description"].Value, item.Value, val[@"DEPARTMENT"].Data, r.IsMatch(name));
 			}
 		}
 
@@ -431,7 +452,7 @@ namespace RedBrick2 {
 
 		private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) {
 			string name = dataGridView1.Columns[e.ColumnIndex].Name;
-			if (name == @"Include") {
+			if (name == @"Include" && (e.RowIndex > -1 && e.RowIndex < dataGridView1.Rows.Count)) {
 				int add = (bool)(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewCheckBoxCell).Value ? -1 : 1;
 				toolStripStatusLabel2.Text = string.Format("Included Parts: {0}", count_includes(add));
 			}
@@ -455,14 +476,14 @@ namespace RedBrick2 {
 			rev_changed_by_user = true;
 		}
 
-		//public object DataSource {
-		//  get {
-		//    return dataGridView1.DataSource;
-		//  }
-
-		//  set {
-		//    dataGridView1.DataSource = value;
-		//  }
-		//}
+		private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e) {
+			DataGridView d = (sender as DataGridView);
+			if (sort_directions[e.ColumnIndex]) {
+				d.Sort(d.Columns[e.ColumnIndex], ListSortDirection.Descending);
+			} else {
+				d.Sort(d.Columns[e.ColumnIndex], ListSortDirection.Ascending);
+			}
+			sort_directions[e.ColumnIndex] = !sort_directions[e.ColumnIndex];
+		}
 	}
 }

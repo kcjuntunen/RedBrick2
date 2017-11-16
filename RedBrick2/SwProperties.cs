@@ -116,6 +116,18 @@ namespace RedBrick2 {
 			DimensionProperty overL = new DimensionProperty(@"OVERL", true, SwApp, md, @"OVER_L");
 			DimensionProperty overW = new DimensionProperty(@"OVERW", true, SwApp, md, @"OVER_W");
 
+      OpProperty op1 = new OpProperty(@"OP1", true, SwApp, md, @"OP1");
+      OpProperty op2 = new OpProperty(@"OP2", true, SwApp, md, @"OP2");
+      OpProperty op3 = new OpProperty(@"OP3", true, SwApp, md, @"OP3");
+      OpProperty op4 = new OpProperty(@"OP4", true, SwApp, md, @"OP4");
+			OpProperty op5 = new OpProperty(@"OP5", true, SwApp, md, @"OP5");
+
+			OpProperty op1id = new OpProperty(@"OP1ID", true, SwApp, md, @"OP1");
+			OpProperty op2id = new OpProperty(@"OP2ID", true, SwApp, md, @"OP2");
+			OpProperty op3id = new OpProperty(@"OP3ID", true, SwApp, md, @"OP3");
+			OpProperty op4id = new OpProperty(@"OP4ID", true, SwApp, md, @"OP4");
+			OpProperty op5id = new OpProperty(@"OP5ID", true, SwApp, md, @"OP5");
+
 			MaterialProperty cutlistMaterial = new MaterialProperty(@"CUTLIST MATERIAL", false, SwApp, md, @"MATID");
 			EdgeProperty edgelf = new EdgeProperty(@"EDGE FRONT (L)", false, SwApp, md, @"EDGEID_LF");
 			EdgeProperty edgelb = new EdgeProperty(@"EDGE BACK (L)", false, SwApp, md, @"EDGEID_LB");
@@ -133,6 +145,8 @@ namespace RedBrick2 {
         material, weight, volume, description, comment, cnc1, cnc2,
         includeInCutlist, updateCNC,
         length, width, thickness, wallThickness, overL, overW,
+        op1, op2, op3, op4, op5,
+				op1id, op2id, op3id, op4id, op5id,
         cutlistMaterial, edgelf, edgelb, edgewr, edgewl,
         matid, efid, ebid, erid, elid
       }) {
