@@ -31603,7 +31603,7 @@ SELECT TYPEID, TYPEDESC, TYPEINC, TYPEREP FROM CUT_PART_TYPES WHERE (TYPEID = @T
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT      CUT_CUTLISTS.CLID, CUT_CUTLISTS.PARTNUM + N' REV' + CUT_CUTLISTS.REV AS CutlistDisplayName, CUT_CUTLISTS.PARTNUM AS CUTLIST, 
+            this._commandCollection[0].CommandText = @"SELECT      CUT_CUTLISTS.CLID, CUT_CUTLISTS.PARTNUM + N' REV ' + CUT_CUTLISTS.REV AS CutlistDisplayName, CUT_CUTLISTS.PARTNUM AS CUTLIST, 
                         CUT_CUTLISTS.REV, CUT_CUTLISTS.DRAWING, CUT_CUTLISTS.CUSTID, CUT_CUTLISTS.CDATE, CUT_CUTLISTS.DESCR, CUT_CUTLISTS.LENGTH, 
                         CUT_CUTLISTS.WIDTH, CUT_CUTLISTS.HEIGHT, CUT_CUTLISTS.SETUP_BY, CUT_CUTLISTS.STATE_BY, CUT_CUTLISTS.STATEID, 
                         CUT_PARTS.PARTID, CUT_PARTS.PARTNUM, CUT_CUTLIST_PARTS.MATID, CUT_CUTLIST_PARTS.EDGEID_LF, CUT_CUTLIST_PARTS.EDGEID_LB, 
@@ -31616,7 +31616,7 @@ WHERE      (CUT_PARTS.PARTID = @partID)";
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "PARTID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT      CUT_CUTLISTS.CLID, CUT_CUTLISTS.PARTNUM + N' REV' + CUT_CUTLISTS.REV AS CutlistDisplayName, CUT_CUTLISTS.PARTNUM AS CUTLIST, 
+            this._commandCollection[1].CommandText = @"SELECT      CUT_CUTLISTS.CLID, CUT_CUTLISTS.PARTNUM + N' REV ' + CUT_CUTLISTS.REV AS CutlistDisplayName, CUT_CUTLISTS.PARTNUM AS CUTLIST, 
                         CUT_CUTLISTS.REV, CUT_CUTLISTS.DRAWING, CUT_CUTLISTS.CUSTID, CUT_CUTLISTS.CDATE, CUT_CUTLISTS.DESCR, CUT_CUTLISTS.LENGTH, 
                         CUT_CUTLISTS.WIDTH, CUT_CUTLISTS.HEIGHT, CUT_CUTLISTS.SETUP_BY, CUT_CUTLISTS.STATE_BY, CUT_CUTLISTS.STATEID, 
                         CUT_PARTS.PARTID, CUT_PARTS.PARTNUM, CUT_CUTLIST_PARTS.MATID, CUT_CUTLIST_PARTS.EDGEID_LF, CUT_CUTLIST_PARTS.EDGEID_LB, 
