@@ -86,13 +86,11 @@ namespace RedBrick2 {
 			comboBox12.SelectedValue = (int)_p.Data;
 			if (comboBox12.SelectedItem != null) {
 				if ((ProjectCustomer != 0) && ((int)comboBox12.SelectedValue != ProjectCustomer)) {
-					comboBox12.BackColor = Color.Red;
-					comboBox12.ForeColor = Color.Yellow;
+					Redbrick.Warn(comboBox12);
 				}
 			} else {
 				comboBox12.Text = _p.Value;
-				comboBox12.BackColor = Color.Red;
-				comboBox12.ForeColor = Color.Yellow;
+				Redbrick.Warn(comboBox12);
 			}
 		}
 
@@ -122,8 +120,7 @@ namespace RedBrick2 {
 			RevFromDrw = _p.Value;
 			comboBox14.Text = RevFromDrw;
 			if (RevFromFile != null && RevFromDrw != RevFromFile) {
-				comboBox14.BackColor = Color.Red;
-				comboBox14.ForeColor = Color.Yellow;
+				Redbrick.Warn(comboBox14);
 			}
 		}
 
@@ -278,27 +275,22 @@ namespace RedBrick2 {
 
 		private void comboBox14_SelectedIndexChanged(object sender, EventArgs e) {
 			if (RevFromFile == null || (sender as ComboBox).Text == RevFromFile) {
-				(sender as ComboBox).BackColor = Color.White;
-				(sender as ComboBox).ForeColor = Color.Black;
+				Redbrick.Unwarn(sender as ComboBox);
 			} else {
-				(sender as ComboBox).BackColor = Color.Red;
-				(sender as ComboBox).ForeColor = Color.Yellow;
+				Redbrick.Warn(sender as ComboBox);
 			}
 		}
 
 		private void comboBox12_SelectedIndexChanged(object sender, EventArgs e) {
 			if ((sender as ComboBox).SelectedItem != null) {
 				if ((ProjectCustomer == 0) || (int)(sender as ComboBox).SelectedValue == ProjectCustomer) {
-					(sender as ComboBox).BackColor = Color.White;
-					(sender as ComboBox).ForeColor = Color.Black;
+					Redbrick.Unwarn(sender as ComboBox);
 				} else {
-					(sender as ComboBox).BackColor = Color.Red;
-					(sender as ComboBox).ForeColor = Color.Yellow;
+					Redbrick.Warn(sender as ComboBox);
 				}
 			} else {
 				(sender as ComboBox).Text = PropertySet[@"CUSTOMER"].Value;
-				(sender as ComboBox).BackColor = Color.Red;
-				(sender as ComboBox).ForeColor = Color.Yellow;
+				Redbrick.Warn(sender as ComboBox);
 			}
 		}
 

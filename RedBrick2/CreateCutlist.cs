@@ -130,7 +130,7 @@ namespace RedBrick2 {
 			rev = _revFromProperties;
 
 			if (_revFromFile != string.Empty && _revFromFile != _revFromProperties) {
-				warn(comboBox3);
+				Redbrick.Unwarn(comboBox3);
 			}
 
 			set_rev(rev);
@@ -398,16 +398,6 @@ namespace RedBrick2 {
 			}
 		}
 
-		private void warn(Control c) {
-			c.ForeColor = Properties.Settings.Default.WarnForeground;
-			c.BackColor = Properties.Settings.Default.WarnBackground;
-		}
-
-		private void unwarn(Control c) {
-			c.ForeColor = Properties.Settings.Default.NormalForeground;
-			c.BackColor = Properties.Settings.Default.NormalBackground;
-		}
-
 		private void CreateCutlist_Shown(object sender, EventArgs e) {
 			dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.DisplayedCells);
 		}
@@ -438,13 +428,13 @@ namespace RedBrick2 {
 		private void comboBox1_MouseClick(object sender, MouseEventArgs e) {
 			user_changed_item = true;
 			if (sender is Control) {
-				unwarn((Control)sender);
+				Redbrick.Unwarn((Control)sender);
 			}
 		}
 
 		private void comboBox2_KeyDown(object sender, KeyEventArgs e) {
 			user_changed_item = true;
-			unwarn((Control)sender);
+			Redbrick.Unwarn((Control)sender);
 		}
 
 		private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e) {
@@ -462,7 +452,7 @@ namespace RedBrick2 {
 			if (rev_changed_by_user) {
 				ComboBox _cb = sender as ComboBox;
 				if (_revFromFile == string.Empty || _cb.Text == _revFromFile) {
-					unwarn(_cb);
+					Redbrick.Unwarn(_cb);
 				}
 				rev = _cb.Text;
 				if (rev_in_filename) {

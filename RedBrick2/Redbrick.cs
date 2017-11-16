@@ -554,6 +554,16 @@ namespace RedBrick2 {
 			return @"#VALUE!";
 		}
 
+		public static void Warn(System.Windows.Forms.Control c) {
+			c.ForeColor = Properties.Settings.Default.WarnForeground;
+			c.BackColor = Properties.Settings.Default.WarnBackground;
+		}
+
+		public static void Unwarn(System.Windows.Forms.Control c) {
+			c.ForeColor = Properties.Settings.Default.NormalForeground;
+			c.BackColor = Properties.Settings.Default.NormalBackground;
+		}
+
 		static public System.Windows.Forms.ImageList TreeViewIcons { get; set; }
 
 		static public int LastLegacyECR { get; set; }
