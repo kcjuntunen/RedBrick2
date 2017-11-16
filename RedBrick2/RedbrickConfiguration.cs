@@ -37,7 +37,8 @@ namespace RedBrick2 {
 
 			ToolTip tt = new ToolTip();
 			tt.ShowAlways = true;
-			tt.SetToolTip(label4, "You probably don't want to mess with this.");
+			tt.SetToolTip(textBox1, Properties.Resources.RegexHint);
+			tt.SetToolTip(textBox8, Properties.Resources.RegexHint);
 			var t = new System.Globalization.CultureInfo("en-US", false).TextInfo;
 			ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter guta =
 				new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();

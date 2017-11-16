@@ -29,6 +29,8 @@ namespace RedBrick2 {
 		private bool user_changed_item = false;
 		private int included_parts = 0;
 		private bool[] sort_directions = { false, false, false, false, false, false };
+		private ToolTip rev_tooltip = new ToolTip();
+		private ToolTip descr_tooltip = new ToolTip();
 
 		int total_parts = 0;
 		UserProgressBar pb;
@@ -108,6 +110,10 @@ namespace RedBrick2 {
 			stpr.Get();
 
 			comboBox5.Text = stpr.Value;
+			if (comboBox5.Text == string.Empty) {
+				Redbrick.Warn(comboBox5);
+				descr_tooltip.SetToolTip(comboBox5, Properties.Resources.NoDescriptionWarning);
+			}
 			comboBox2.Text = topName;
 			if (rev_in_filename) {
 				comboBox4.Text = string.Format(@"{0} REV {1}", topName, rev);
@@ -131,6 +137,7 @@ namespace RedBrick2 {
 
 			if (_revFromFile != string.Empty && _revFromFile != _revFromProperties) {
 				Redbrick.Unwarn(comboBox3);
+				rev_tooltip.RemoveAll();
 			}
 
 			set_rev(rev);
@@ -453,6 +460,7 @@ namespace RedBrick2 {
 				ComboBox _cb = sender as ComboBox;
 				if (_revFromFile == string.Empty || _cb.Text == _revFromFile) {
 					Redbrick.Unwarn(_cb);
+					rev_tooltip.RemoveAll();
 				}
 				rev = _cb.Text;
 				if (rev_in_filename) {
@@ -474,6 +482,17 @@ namespace RedBrick2 {
 				d.Sort(d.Columns[e.ColumnIndex], ListSortDirection.Ascending);
 			}
 			sort_directions[e.ColumnIndex] = !sort_directions[e.ColumnIndex];
+		}
+
+		private void comboBox5_TextChanged(object sender, EventArgs e) {
+			ComboBox c = (sender as ComboBox);
+			if (c.Text == string.Empty) {
+				Redbrick.Warn(c);
+				descr_tooltip.SetToolTip(c, Properties.Resources.NoDescriptionWarning);
+			} else {
+				Redbrick.Unwarn(c);
+				descr_tooltip.RemoveAll();
+			}
 		}
 	}
 }

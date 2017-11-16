@@ -264,6 +264,7 @@ namespace RedBrick2 {
 			this.comboBox5.Size = new System.Drawing.Size(191, 21);
 			this.comboBox5.TabIndex = 11;
 			this.comboBox5.ValueMember = "CLID";
+			this.comboBox5.TextChanged += new System.EventHandler(this.comboBox5_TextChanged);
 			// 
 			// label6
 			// 

@@ -651,6 +651,7 @@ namespace RedBrick2 {
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(299, 22);
 			this.textBox1.TabIndex = 7;
+			this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
 			// 
 			// cUTPARTSBindingSource
 			// 
@@ -989,6 +990,7 @@ namespace RedBrick2 {
 			this.textBox11.Name = "textBox11";
 			this.textBox11.Size = new System.Drawing.Size(86, 22);
 			this.textBox11.TabIndex = 17;
+			this.textBox11.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
 			// 
 			// button1
 			// 

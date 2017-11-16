@@ -15,6 +15,8 @@ namespace RedBrick2 {
 		private string partLookup;
 		private string projectDescr;
 		private Revs revSet;
+		private ToolTip cust_tooltip = new ToolTip();
+		private ToolTip rev_tooltip = new ToolTip();
 
 		public DrawingRedbrick(ModelDoc2 md, SldWorks sw) {
 			ActiveDoc = md;
@@ -86,11 +88,11 @@ namespace RedBrick2 {
 			comboBox12.SelectedValue = (int)_p.Data;
 			if (comboBox12.SelectedItem != null) {
 				if ((ProjectCustomer != 0) && ((int)comboBox12.SelectedValue != ProjectCustomer)) {
-					Redbrick.Warn(comboBox12);
+					ToggleCustomerWarn(true);
 				}
 			} else {
 				comboBox12.Text = _p.Value;
-				Redbrick.Warn(comboBox12);
+				ToggleCustomerWarn(true);
 			}
 		}
 
@@ -120,7 +122,7 @@ namespace RedBrick2 {
 			RevFromDrw = _p.Value;
 			comboBox14.Text = RevFromDrw;
 			if (RevFromFile != null && RevFromDrw != RevFromFile) {
-				Redbrick.Warn(comboBox14);
+				ToggleRevWarn(true);
 			}
 		}
 
@@ -273,24 +275,46 @@ namespace RedBrick2 {
 														TextFormatFlags.VerticalCenter);
 		}
 
+		private void ToggleRevWarn(bool on) {
+			if (on) {
+				Redbrick.Warn(comboBox14);
+				rev_tooltip.SetToolTip(comboBox14, Properties.Resources.RevisionNotMatching);
+				rev_tooltip.SetToolTip(label44, Properties.Resources.RevisionNotMatching);
+			} else {
+				Redbrick.Unwarn(comboBox14 as ComboBox);
+				rev_tooltip.RemoveAll();
+			}
+		}
+
+		private void ToggleCustomerWarn(bool on) {
+			if (on) {
+				Redbrick.Warn(comboBox12);
+				cust_tooltip.SetToolTip(comboBox12, Properties.Resources.CustomerNotMatching);
+				cust_tooltip.SetToolTip(label41, Properties.Resources.CustomerNotMatching);
+			} else {
+				Redbrick.Unwarn(comboBox12);
+				cust_tooltip.RemoveAll();
+			}
+		}
+
 		private void comboBox14_SelectedIndexChanged(object sender, EventArgs e) {
 			if (RevFromFile == null || (sender as ComboBox).Text == RevFromFile) {
-				Redbrick.Unwarn(sender as ComboBox);
+				ToggleRevWarn(false);
 			} else {
-				Redbrick.Warn(sender as ComboBox);
+				ToggleRevWarn(true);
 			}
 		}
 
 		private void comboBox12_SelectedIndexChanged(object sender, EventArgs e) {
 			if ((sender as ComboBox).SelectedItem != null) {
 				if ((ProjectCustomer == 0) || (int)(sender as ComboBox).SelectedValue == ProjectCustomer) {
-					Redbrick.Unwarn(sender as ComboBox);
+					ToggleCustomerWarn(false);
 				} else {
-					Redbrick.Warn(sender as ComboBox);
+					ToggleCustomerWarn(true);
 				}
 			} else {
 				(sender as ComboBox).Text = PropertySet[@"CUSTOMER"].Value;
-				Redbrick.Warn(sender as ComboBox);
+				ToggleCustomerWarn(true);
 			}
 		}
 

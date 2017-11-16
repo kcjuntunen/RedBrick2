@@ -61,12 +61,48 @@ namespace RedBrick2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Make sure the customer matches the project code in the filename..
+        /// </summary>
+        internal static string CustomerNotMatching {
+            get {
+                return ResourceManager.GetString("CustomerNotMatching", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update will not apply Cutlist Material or Edging changes unless a cutlist is selected..
+        /// </summary>
+        internal static string CutlistNotSelectedWarning {
+            get {
+                return ResourceManager.GetString("CutlistNotSelectedWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap delete {
             get {
                 object obj = ResourceManager.GetObject("delete", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The information in the Property Editor is in the database..
+        /// </summary>
+        internal static string InfoFromDB {
+            get {
+                return ResourceManager.GetString("InfoFromDB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The information in the Property Editor is NOT in the database. It was taken from the part..
+        /// </summary>
+        internal static string InfoNotFromDB {
+            get {
+                return ResourceManager.GetString("InfoNotFromDB", resourceCulture);
             }
         }
         
@@ -89,12 +125,48 @@ namespace RedBrick2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It&apos;s not classy to have no description..
+        /// </summary>
+        internal static string NoDescriptionWarning {
+            get {
+                return ResourceManager.GetString("NoDescriptionWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter an integer greater than 0..
+        /// </summary>
+        internal static string NotNaturalNumberWarning {
+            get {
+                return ResourceManager.GetString("NotNaturalNumberWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap redlego {
             get {
                 object obj = ResourceManager.GetObject("redlego", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You probably don&apos;t want to mess with this..
+        /// </summary>
+        internal static string RegexHint {
+            get {
+                return ResourceManager.GetString("RegexHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make sure the revision matches the revision indicated in the filename..
+        /// </summary>
+        internal static string RevisionNotMatching {
+            get {
+                return ResourceManager.GetString("RevisionNotMatching", resourceCulture);
             }
         }
         

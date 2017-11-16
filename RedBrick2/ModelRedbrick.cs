@@ -50,6 +50,11 @@ namespace RedBrick2 {
 		private bool bl_userediting = false;
 		private bool cl_userediting = false;
 		private ComboBox[] cbxes;
+		private ToolTip groupbox_tooltip = new ToolTip();
+		private ToolTip cutlist_tooltip = new ToolTip();
+		private ToolTip descr_tooltup = new ToolTip();
+		private ToolTip ppb_tooltip = new ToolTip();
+		private ToolTip over_tooltip = new ToolTip();
 
 		public ModelRedbrick(SldWorks sw, ModelDoc2 md) {
 			SwApp = sw;
@@ -234,8 +239,43 @@ namespace RedBrick2 {
 		private void SelectLastCutlist() {
 			if (ComboBoxContainsValue(Properties.Settings.Default.LastCutlist, comboBox6)) {
 				comboBox6.SelectedValue = Properties.Settings.Default.LastCutlist;
+				ToggleCutlistWarn(false);
 			} else {
 				comboBox6.SelectedValue = -1;
+				ToggleCutlistWarn(true);
+			}
+		}
+
+		private void ToggleDescrWarn(bool on) {
+			if (on) {
+				Redbrick.Warn(textBox1);
+				descr_tooltup.SetToolTip(textBox1, Properties.Resources.NoDescriptionWarning);
+				descr_tooltup.SetToolTip(label12, Properties.Resources.NoDescriptionWarning);
+			} else {
+				Redbrick.Unwarn(textBox1);
+				descr_tooltup.RemoveAll();
+			}
+		}
+
+		private void ToggleCutlistWarn(bool on) {
+			if (on) {
+				Redbrick.Warn(comboBox6);
+				cutlist_tooltip.SetToolTip(comboBox6, Properties.Resources.CutlistNotSelectedWarning);
+				cutlist_tooltip.SetToolTip(label11, Properties.Resources.CutlistNotSelectedWarning);
+			} else {
+				Redbrick.Unwarn(comboBox6);
+				cutlist_tooltip.RemoveAll();
+			}
+		}
+
+		private void TogglePPBWarn(bool on) {
+			if (on) {
+				Redbrick.Warn(textBox11);
+				ppb_tooltip.SetToolTip(textBox11, Properties.Resources.NotNaturalNumberWarning);
+				ppb_tooltip.SetToolTip(label27, Properties.Resources.NotNaturalNumberWarning);
+			} else {
+				Redbrick.Unwarn(textBox11);
+				ppb_tooltip.RemoveAll();
 			}
 		}
 
@@ -286,8 +326,10 @@ namespace RedBrick2 {
 		private void ToggleNotInDBWarn(bool isIn) {
 			if (isIn) {
 				groupBox1.ForeColor = Properties.Settings.Default.NormalForeground;
+				groupbox_tooltip.SetToolTip(groupBox1, Properties.Resources.InfoFromDB);
 			} else {
 				groupBox1.ForeColor = Properties.Settings.Default.WarnBackground;
+				groupbox_tooltip.SetToolTip(groupBox1, Properties.Resources.InfoNotFromDB);
 				foreach (Control control in groupBox1.Controls) {
 					control.ForeColor = Properties.Settings.Default.NormalForeground;
 				}
@@ -1063,6 +1105,7 @@ namespace RedBrick2 {
 
 		private void comboBox6_SelectedIndexChanged(object sender, EventArgs e) {
 			if (cl_userediting) {
+				ToggleCutlistWarn(false);
 				Properties.Settings.Default.LastCutlist = (int)(sender as ComboBox).SelectedValue;
 				Properties.Settings.Default.Save();
 				cl_userediting = false;
@@ -1133,6 +1176,22 @@ namespace RedBrick2 {
 				eo.ShowDialog(this);
 			}
 			GetRouting();
+		}
+
+		private void textBox1_TextChanged(object sender, EventArgs e) {
+			if ((sender as TextBox).Text == string.Empty) {
+				ToggleDescrWarn(true);
+			} else {
+				ToggleDescrWarn(false);
+			}
+		}
+
+		private void textBox11_TextChanged(object sender, EventArgs e) {
+			if ((sender as TextBox).Text == string.Empty || (sender as TextBox).Text == @" ") {
+				TogglePPBWarn(true);
+			} else {
+				TogglePPBWarn(false);
+			}
 		}
 	}
 }

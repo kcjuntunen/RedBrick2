@@ -142,4 +142,28 @@
   <data name="stopwatch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\stopwatch.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="CustomerNotMatching" xml:space="preserve">
+    <value>Make sure the customer matches the project code in the filename.</value>
+  </data>
+  <data name="CutlistNotSelectedWarning" xml:space="preserve">
+    <value>Update will not apply Cutlist Material or Edging changes unless a cutlist is selected.</value>
+  </data>
+  <data name="InfoFromDB" xml:space="preserve">
+    <value>The information in the Property Editor is in the database.</value>
+  </data>
+  <data name="InfoNotFromDB" xml:space="preserve">
+    <value>The information in the Property Editor is NOT in the database. It was taken from the part.</value>
+  </data>
+  <data name="NoDescriptionWarning" xml:space="preserve">
+    <value>It's not classy to have no description.</value>
+  </data>
+  <data name="NotNaturalNumberWarning" xml:space="preserve">
+    <value>Please enter an integer greater than 0.</value>
+  </data>
+  <data name="RegexHint" xml:space="preserve">
+    <value>You probably don't want to mess with this.</value>
+  </data>
+  <data name="RevisionNotMatching" xml:space="preserve">
+    <value>Make sure the revision matches the revision indicated in the filename.</value>
+  </data>
 </root>
