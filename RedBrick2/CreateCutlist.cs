@@ -61,6 +61,7 @@ namespace RedBrick2 {
 
 			//TraverseModelFeatures(m, 1);
 			_swApp.GetUserProgressBar(out pb);
+			Cursor.Current = Cursors.WaitCursor;
 			if (m is AssemblyDoc) {
 				TraverseComponent(swRootComp, 1);
 			}
@@ -70,6 +71,7 @@ namespace RedBrick2 {
 			}
 			//dataGridView1.DataSource = ToDataTable(_dict, _partlist);
 			pb.End();
+			Cursor.Current = Cursors.Default;
 			AddColumns();
 			FillTable(_dict, _partlist);
 			toolStripStatusLabel2.Text = string.Format("Included Parts: {0}", count_includes());
