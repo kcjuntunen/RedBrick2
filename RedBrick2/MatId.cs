@@ -1,16 +1,21 @@
 using System;
-
+using System.Collections.Generic;
+using System.Text;
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
-	public class MaterialProperty : StringProperty {
+	class MatId : IntProperty {
 		ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cmta =
 			new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter();
 
-		public MaterialProperty(string name, bool global, SldWorks sw, ModelDoc2 md, string fieldName)
-			: base(name, global, sw, md, fieldName) {
-			SWType = swCustomInfoType_e.swCustomInfoText;
+		public MatId(string name, bool global, SldWorks sw, ModelDoc2 md, string fieldName)
+			: base(name, global, sw, md, @"", fieldName) {
+
+		}
+
+		public override void Write() {
+			base.Write();
 		}
 
 		public override SwProperty Get() {
@@ -31,11 +36,11 @@ namespace RedBrick2 {
 					Data = intval;
 				}
 			} else {
-				//ENGINEERINGDataSet.CUT_MATERIALSDataTable cmdt = cmta.GetDataByDescr(Value);
+				ENGINEERINGDataSet.CUT_MATERIALSDataTable cmdt = cmta.GetDataByDescr(Value);
 				FriendlyValue = Value;
-				//if (cmdt.Rows.Count > 0) {
-				//	Value = cmdt.Rows[0][@"MATID"].ToString();
-				//}
+				if (cmdt.Rows.Count > 0) {
+					Value = cmdt.Rows[0][@"MATID"].ToString();
+				}
 			}
 			return this;
 		}
@@ -55,7 +60,7 @@ namespace RedBrick2 {
 						res = 0;
 					}
 					_data = res;
-					Value = cmta.GetDataByMatID(res)[0].DESCR;
+					Value = cmta.GetDataByMatID(res)[0].MATID.ToString();
 				} catch (Exception) {
 					_data = Properties.Settings.Default.DefaultMaterial;
 				}

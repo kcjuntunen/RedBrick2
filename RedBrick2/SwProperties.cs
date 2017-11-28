@@ -122,11 +122,11 @@ namespace RedBrick2 {
       OpProperty op4 = new OpProperty(@"OP4", true, SwApp, md, @"OP4");
 			OpProperty op5 = new OpProperty(@"OP5", true, SwApp, md, @"OP5");
 
-			OpProperty op1id = new OpProperty(@"OP1ID", true, SwApp, md, @"OP1");
-			OpProperty op2id = new OpProperty(@"OP2ID", true, SwApp, md, @"OP2");
-			OpProperty op3id = new OpProperty(@"OP3ID", true, SwApp, md, @"OP3");
-			OpProperty op4id = new OpProperty(@"OP4ID", true, SwApp, md, @"OP4");
-			OpProperty op5id = new OpProperty(@"OP5ID", true, SwApp, md, @"OP5");
+			OpId op1id = new OpId(@"OP1ID", true, SwApp, md, @"OP1");
+			OpId op2id = new OpId(@"OP2ID", true, SwApp, md, @"OP2");
+			OpId op3id = new OpId(@"OP3ID", true, SwApp, md, @"OP3");
+			OpId op4id = new OpId(@"OP4ID", true, SwApp, md, @"OP4");
+			OpId op5id = new OpId(@"OP5ID", true, SwApp, md, @"OP5");
 
 			MaterialProperty cutlistMaterial = new MaterialProperty(@"CUTLIST MATERIAL", false, SwApp, md, @"MATID");
 			EdgeProperty edgelf = new EdgeProperty(@"EDGE FRONT (L)", false, SwApp, md, @"EDGEID_LF");
@@ -134,11 +134,11 @@ namespace RedBrick2 {
 			EdgeProperty edgewr = new EdgeProperty(@"EDGE RIGHT (W)", false, SwApp, md, @"EDGEID_WR");
 			EdgeProperty edgewl = new EdgeProperty(@"EDGE LEFT (W)", false, SwApp, md, @"EDGEID_WL");
 
-			MaterialProperty matid = new MaterialProperty("MATID", false, SwApp, md, @"MATID");
-			EdgeProperty efid = new EdgeProperty(@"EFID", false, SwApp, md, @"EDGEID_LF");
-			EdgeProperty ebid = new EdgeProperty(@"EBID", false, SwApp, md, @"EDGEID_LB");
-			EdgeProperty erid = new EdgeProperty(@"ERID", false, SwApp, md, @"EDGEID_WR");
-			EdgeProperty elid = new EdgeProperty(@"ELID", false, SwApp, md, @"EDGEID_WL");
+			MatId matid = new MatId("MATID", false, SwApp, md, @"MATID");
+			EdgeId efid = new EdgeId(@"EFID", false, SwApp, md, @"EDGEID_LF");
+			EdgeId ebid = new EdgeId(@"EBID", false, SwApp, md, @"EDGEID_LB");
+			EdgeId erid = new EdgeId(@"ERID", false, SwApp, md, @"EDGEID_WR");
+			EdgeId elid = new EdgeId(@"ELID", false, SwApp, md, @"EDGEID_WL");
 
 			foreach (SwProperty item in new SwProperty[] {
         department, blankQty,

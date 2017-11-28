@@ -130,6 +130,7 @@
     <Compile Include="DrawingRedbrick.Designer.cs">
       <DependentUpon>DrawingRedbrick.cs</DependentUpon>
     </Compile>
+    <Compile Include="EdgeId.cs" />
     <Compile Include="EdgeProperty.cs" />
     <Compile Include="EditOp.cs">
       <SubType>Form</SubType>
@@ -149,6 +150,7 @@
     <Compile Include="MaterialProperty.cs" />
     <Compile Include="DoubleProperty.cs" />
     <Compile Include="IntProperty.cs" />
+    <Compile Include="MatId.cs" />
     <Compile Include="ModelRedbrick.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -167,6 +169,7 @@
     <Compile Include="OpControl.Designer.cs">
       <DependentUpon>OpControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="OpId.cs" />
     <Compile Include="OpProperty.cs" />
     <Compile Include="OpSet.cs" />
     <Compile Include="OpSets.cs" />

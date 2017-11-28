@@ -657,6 +657,12 @@ namespace RedBrick2 {
 				PropertySet[@"EDGE LEFT (W)"].Data = comboBox4.SelectedValue;
 				PropertySet[@"EDGE RIGHT (W)"].Data = comboBox5.SelectedValue;
 
+				PropertySet[@"MATID"].Data = (comboBox1.SelectedItem as DataRowView)[@"MATID"];
+				PropertySet[@"EFID"].Data = (comboBox2.SelectedItem as DataRowView)[@"EDGEID"];
+				PropertySet[@"EBID"].Data = (comboBox3.SelectedItem as DataRowView)[@"EDGEID"];
+				PropertySet[@"ELID"].Data = (comboBox4.SelectedItem as DataRowView)[@"EDGEID"];
+				PropertySet[@"ERID"].Data = (comboBox5.SelectedItem as DataRowView)[@"EDGEID"];
+
 				for (int i = 0; i < cbxes.Length; i++) {
 					ComboBox cbx = cbxes[i];
 					string op = string.Format(@"OP{0}", i + 1);
@@ -665,12 +671,27 @@ namespace RedBrick2 {
 							PropertySet.Add(new OpProperty(op, false, SwApp, ActiveDoc, op));
 						}
 						DataRowView drv = (cbx.SelectedItem as DataRowView);
-						PropertySet[string.Format(@"OP{0}", i + 1)].Value = drv[@"OPNAME"].ToString();
+						PropertySet[op].Value = drv[@"OPNAME"].ToString();
 					} else {
 						if (PropertySet.Contains(op)) {
 							PropertySet[op].Delete();
 						}
 					}
+
+
+					string opid = string.Format(@"OP{0}ID", i + 1);
+					if (cbx.SelectedItem != null) {
+						if (!PropertySet.Contains(opid)) {
+							PropertySet.Add(new OpId(opid, false, SwApp, ActiveDoc, op));
+						}
+						DataRowView drv = (cbx.SelectedItem as DataRowView);
+						PropertySet[opid].Value = drv[@"OPID"].ToString();
+					} else {
+						if (PropertySet.Contains(opid)) {
+							PropertySet[opid].Delete();
+						}
+					}
+
 				}
 
 				PropertySet.Write();

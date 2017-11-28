@@ -1,19 +1,20 @@
 using System;
-
+using System.Collections.Generic;
+using System.Text;
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
-	public class OpProperty : StringProperty {
+	class OpId  : IntProperty {
 		ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter cota =
 			new ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter();
 
 		//ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter cpota =
 		//	new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter();
 
-		public OpProperty(string name, bool global, SldWorks sw, ModelDoc2 md, string fieldName)
-			: base(name, global, sw, md, fieldName) {
-			SWType = swCustomInfoType_e.swCustomInfoText;
+		public OpId(string name, bool global, SldWorks sw, ModelDoc2 md, string fieldName)
+			: base(name, global, sw, md, @"CUT_PART_OPS", fieldName) {
+
 		}
 
 		public override SwProperty Get() {
@@ -34,11 +35,11 @@ namespace RedBrick2 {
 						Data = intval;
 					}
 			} else {
-				//ENGINEERINGDataSet.CUT_OPSDataTable codt = cota.GetDataByOpName(Value, tp);
+				ENGINEERINGDataSet.CUT_OPSDataTable codt = cota.GetDataByOpName(Value, tp);
 				FriendlyValue = Value;
-				//if (codt.Rows.Count > 0) {
-				//	Value = codt.Rows[0][@"OPID"].ToString();
-				//}
+				if (codt.Rows.Count > 0) {
+					Value = codt.Rows[0][@"OPID"].ToString();
+				}
 			}
 			return this;
 		}
@@ -88,7 +89,7 @@ namespace RedBrick2 {
 				} else {
 					try {
 						_data = int.Parse(value.ToString());
-						Value = cota.GetOpNameByID(_data).ToString();
+						Value = value.ToString();
 					} catch (Exception) {
 
 					}
