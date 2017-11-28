@@ -28,22 +28,22 @@ namespace RedBrick2 {
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.label1 = new System.Windows.Forms.Label();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.cutlistMat = new System.Windows.Forms.ComboBox();
 			this.cutlistPartsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.eNGINEERINGDataSet = new RedBrick2.ENGINEERINGDataSet();
 			this.cUTMATERIALSBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.label2 = new System.Windows.Forms.Label();
-			this.comboBox2 = new System.Windows.Forms.ComboBox();
+			this.edgef = new System.Windows.Forms.ComboBox();
 			this.cUTEDGESBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.label3 = new System.Windows.Forms.Label();
-			this.comboBox3 = new System.Windows.Forms.ComboBox();
+			this.edgeb = new System.Windows.Forms.ComboBox();
 			this.cUTEDGESBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
-			this.comboBox4 = new System.Windows.Forms.ComboBox();
+			this.edgel = new System.Windows.Forms.ComboBox();
 			this.cUTEDGESBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
 			this.eNGINEERINGDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.comboBox5 = new System.Windows.Forms.ComboBox();
+			this.edger = new System.Windows.Forms.ComboBox();
 			this.cUTEDGESBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
 			this.label6 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
@@ -51,9 +51,9 @@ namespace RedBrick2 {
 			this.label9 = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
-			this.comboBox6 = new System.Windows.Forms.ComboBox();
+			this.cutlistctl = new System.Windows.Forms.ComboBox();
 			this.label30 = new System.Windows.Forms.Label();
-			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+			this.partq = new System.Windows.Forms.NumericUpDown();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.label12 = new System.Windows.Forms.Label();
@@ -61,14 +61,14 @@ namespace RedBrick2 {
 			this.label14 = new System.Windows.Forms.Label();
 			this.label15 = new System.Windows.Forms.Label();
 			this.label16 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.descriptiontb = new System.Windows.Forms.TextBox();
 			this.cUTPARTSBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.lengthtb = new System.Windows.Forms.TextBox();
 			this.label17 = new System.Windows.Forms.Label();
-			this.textBox6 = new System.Windows.Forms.TextBox();
-			this.textBox3 = new System.Windows.Forms.TextBox();
-			this.textBox4 = new System.Windows.Forms.TextBox();
-			this.textBox5 = new System.Windows.Forms.TextBox();
+			this.commenttb = new System.Windows.Forms.TextBox();
+			this.widthtb = new System.Windows.Forms.TextBox();
+			this.thicknesstb = new System.Windows.Forms.TextBox();
+			this.wallthicknesstb = new System.Windows.Forms.TextBox();
 			this.label21 = new System.Windows.Forms.Label();
 			this.label20 = new System.Windows.Forms.Label();
 			this.label19 = new System.Windows.Forms.Label();
@@ -77,22 +77,22 @@ namespace RedBrick2 {
 			this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
 			this.label31 = new System.Windows.Forms.Label();
 			this.label22 = new System.Windows.Forms.Label();
-			this.textBox7 = new System.Windows.Forms.TextBox();
+			this.cnc1tb = new System.Windows.Forms.TextBox();
 			this.label25 = new System.Windows.Forms.Label();
-			this.textBox9 = new System.Windows.Forms.TextBox();
+			this.overLtb = new System.Windows.Forms.TextBox();
 			this.label28 = new System.Windows.Forms.Label();
-			this.textBox12 = new System.Windows.Forms.TextBox();
-			this.textBox10 = new System.Windows.Forms.TextBox();
+			this.blnkszLtb = new System.Windows.Forms.TextBox();
+			this.overWtb = new System.Windows.Forms.TextBox();
 			this.label26 = new System.Windows.Forms.Label();
-			this.textBox8 = new System.Windows.Forms.TextBox();
+			this.cnc2tb = new System.Windows.Forms.TextBox();
 			this.label23 = new System.Windows.Forms.Label();
 			this.label24 = new System.Windows.Forms.Label();
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
+			this.updateCNCcb = new System.Windows.Forms.CheckBox();
 			this.label27 = new System.Windows.Forms.Label();
-			this.textBox11 = new System.Windows.Forms.TextBox();
-			this.button1 = new System.Windows.Forms.Button();
+			this.ppbtb = new System.Windows.Forms.TextBox();
+			this.prioritybtn = new System.Windows.Forms.Button();
 			this.label29 = new System.Windows.Forms.Label();
-			this.textBox13 = new System.Windows.Forms.TextBox();
+			this.blnkszWtb = new System.Windows.Forms.TextBox();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
 			this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
 			this.button2 = new System.Windows.Forms.Button();
@@ -143,7 +143,7 @@ namespace RedBrick2 {
 			((System.ComponentModel.ISupportInitialize)(this.cUTEDGESBindingSource2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSetBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTEDGESBindingSource3)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.partq)).BeginInit();
 			this.groupBox2.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.cUTPARTSBindingSource)).BeginInit();
@@ -202,24 +202,24 @@ namespace RedBrick2 {
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
 			this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
-			this.tableLayoutPanel2.Controls.Add(this.comboBox1, 0, 1);
+			this.tableLayoutPanel2.Controls.Add(this.cutlistMat, 0, 1);
 			this.tableLayoutPanel2.Controls.Add(this.label2, 0, 2);
-			this.tableLayoutPanel2.Controls.Add(this.comboBox2, 0, 3);
+			this.tableLayoutPanel2.Controls.Add(this.edgef, 0, 3);
 			this.tableLayoutPanel2.Controls.Add(this.label3, 0, 4);
-			this.tableLayoutPanel2.Controls.Add(this.comboBox3, 0, 5);
+			this.tableLayoutPanel2.Controls.Add(this.edgeb, 0, 5);
 			this.tableLayoutPanel2.Controls.Add(this.label4, 0, 6);
 			this.tableLayoutPanel2.Controls.Add(this.label5, 0, 8);
-			this.tableLayoutPanel2.Controls.Add(this.comboBox4, 0, 7);
-			this.tableLayoutPanel2.Controls.Add(this.comboBox5, 0, 9);
+			this.tableLayoutPanel2.Controls.Add(this.edgel, 0, 7);
+			this.tableLayoutPanel2.Controls.Add(this.edger, 0, 9);
 			this.tableLayoutPanel2.Controls.Add(this.label6, 1, 0);
 			this.tableLayoutPanel2.Controls.Add(this.label7, 1, 2);
 			this.tableLayoutPanel2.Controls.Add(this.label8, 1, 4);
 			this.tableLayoutPanel2.Controls.Add(this.label9, 1, 6);
 			this.tableLayoutPanel2.Controls.Add(this.label10, 1, 8);
 			this.tableLayoutPanel2.Controls.Add(this.label11, 0, 10);
-			this.tableLayoutPanel2.Controls.Add(this.comboBox6, 0, 11);
 			this.tableLayoutPanel2.Controls.Add(this.label30, 1, 10);
-			this.tableLayoutPanel2.Controls.Add(this.numericUpDown1, 1, 11);
+			this.tableLayoutPanel2.Controls.Add(this.partq, 1, 11);
+			this.tableLayoutPanel2.Controls.Add(this.cutlistctl, 0, 11);
 			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 18);
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -249,23 +249,23 @@ namespace RedBrick2 {
 			this.label1.Text = "Cutlist Material";
 			this.label1.Click += new System.EventHandler(this.label1_Click);
 			// 
-			// comboBox1
+			// cutlistMat
 			// 
-			this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-			this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-			this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-			this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cutlistPartsBindingSource, "MATID", true));
-			this.comboBox1.DataSource = this.cUTMATERIALSBindingSource1;
-			this.comboBox1.DisplayMember = "DESCR";
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(3, 16);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(183, 21);
-			this.comboBox1.TabIndex = 1;
-			this.comboBox1.ValueMember = "MATID";
-			this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
-			this.comboBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
-			this.comboBox1.Resize += new System.EventHandler(this.comboBox_Resize);
+			this.cutlistMat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.cutlistMat.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.cutlistMat.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.cutlistMat.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cutlistPartsBindingSource, "MATID", true));
+			this.cutlistMat.DataSource = this.cUTMATERIALSBindingSource1;
+			this.cutlistMat.DisplayMember = "DESCR";
+			this.cutlistMat.FormattingEnabled = true;
+			this.cutlistMat.Location = new System.Drawing.Point(3, 16);
+			this.cutlistMat.Name = "cutlistMat";
+			this.cutlistMat.Size = new System.Drawing.Size(183, 21);
+			this.cutlistMat.TabIndex = 1;
+			this.cutlistMat.ValueMember = "MATID";
+			this.cutlistMat.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
+			this.cutlistMat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+			this.cutlistMat.Resize += new System.EventHandler(this.comboBox_Resize);
 			// 
 			// cutlistPartsBindingSource
 			// 
@@ -292,24 +292,24 @@ namespace RedBrick2 {
 			this.label2.Text = "Edge Front (L)";
 			this.label2.Click += new System.EventHandler(this.label2_Click);
 			// 
-			// comboBox2
+			// edgef
 			// 
-			this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-			this.comboBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-			this.comboBox2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-			this.comboBox2.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cutlistPartsBindingSource, "EDGEID_LF", true));
-			this.comboBox2.DataSource = this.cUTEDGESBindingSource;
-			this.comboBox2.DisplayMember = "DESCR";
-			this.comboBox2.FormattingEnabled = true;
-			this.comboBox2.Location = new System.Drawing.Point(3, 56);
-			this.comboBox2.Name = "comboBox2";
-			this.comboBox2.Size = new System.Drawing.Size(183, 21);
-			this.comboBox2.TabIndex = 2;
-			this.comboBox2.ValueMember = "EDGEID";
-			this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
-			this.comboBox2.TextChanged += new System.EventHandler(this.comboBox_TextChanged);
-			this.comboBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
-			this.comboBox2.Resize += new System.EventHandler(this.comboBox_Resize);
+			this.edgef.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.edgef.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.edgef.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.edgef.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cutlistPartsBindingSource, "EDGEID_LF", true));
+			this.edgef.DataSource = this.cUTEDGESBindingSource;
+			this.edgef.DisplayMember = "DESCR";
+			this.edgef.FormattingEnabled = true;
+			this.edgef.Location = new System.Drawing.Point(3, 56);
+			this.edgef.Name = "edgef";
+			this.edgef.Size = new System.Drawing.Size(183, 21);
+			this.edgef.TabIndex = 2;
+			this.edgef.ValueMember = "EDGEID";
+			this.edgef.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+			this.edgef.TextChanged += new System.EventHandler(this.comboBox_TextChanged);
+			this.edgef.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+			this.edgef.Resize += new System.EventHandler(this.comboBox_Resize);
 			// 
 			// cUTEDGESBindingSource
 			// 
@@ -326,24 +326,24 @@ namespace RedBrick2 {
 			this.label3.Text = "Edge Back (L)";
 			this.label3.Click += new System.EventHandler(this.label3_Click);
 			// 
-			// comboBox3
+			// edgeb
 			// 
-			this.comboBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-			this.comboBox3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-			this.comboBox3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-			this.comboBox3.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cutlistPartsBindingSource, "EDGEID_LB", true));
-			this.comboBox3.DataSource = this.cUTEDGESBindingSource1;
-			this.comboBox3.DisplayMember = "DESCR";
-			this.comboBox3.FormattingEnabled = true;
-			this.comboBox3.Location = new System.Drawing.Point(3, 96);
-			this.comboBox3.Name = "comboBox3";
-			this.comboBox3.Size = new System.Drawing.Size(183, 21);
-			this.comboBox3.TabIndex = 3;
-			this.comboBox3.ValueMember = "EDGEID";
-			this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
-			this.comboBox3.TextChanged += new System.EventHandler(this.comboBox_TextChanged);
-			this.comboBox3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
-			this.comboBox3.Resize += new System.EventHandler(this.comboBox_Resize);
+			this.edgeb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.edgeb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.edgeb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.edgeb.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cutlistPartsBindingSource, "EDGEID_LB", true));
+			this.edgeb.DataSource = this.cUTEDGESBindingSource1;
+			this.edgeb.DisplayMember = "DESCR";
+			this.edgeb.FormattingEnabled = true;
+			this.edgeb.Location = new System.Drawing.Point(3, 96);
+			this.edgeb.Name = "edgeb";
+			this.edgeb.Size = new System.Drawing.Size(183, 21);
+			this.edgeb.TabIndex = 3;
+			this.edgeb.ValueMember = "EDGEID";
+			this.edgeb.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
+			this.edgeb.TextChanged += new System.EventHandler(this.comboBox_TextChanged);
+			this.edgeb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+			this.edgeb.Resize += new System.EventHandler(this.comboBox_Resize);
 			// 
 			// cUTEDGESBindingSource1
 			// 
@@ -370,24 +370,24 @@ namespace RedBrick2 {
 			this.label5.Text = "Edge Right (W)";
 			this.label5.Click += new System.EventHandler(this.label5_Click);
 			// 
-			// comboBox4
+			// edgel
 			// 
-			this.comboBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-			this.comboBox4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-			this.comboBox4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-			this.comboBox4.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cutlistPartsBindingSource, "EDGEID_WL", true));
-			this.comboBox4.DataSource = this.cUTEDGESBindingSource2;
-			this.comboBox4.DisplayMember = "DESCR";
-			this.comboBox4.FormattingEnabled = true;
-			this.comboBox4.Location = new System.Drawing.Point(3, 136);
-			this.comboBox4.Name = "comboBox4";
-			this.comboBox4.Size = new System.Drawing.Size(183, 21);
-			this.comboBox4.TabIndex = 4;
-			this.comboBox4.ValueMember = "EDGEID";
-			this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
-			this.comboBox4.TextChanged += new System.EventHandler(this.comboBox_TextChanged);
-			this.comboBox4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
-			this.comboBox4.Resize += new System.EventHandler(this.comboBox_Resize);
+			this.edgel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.edgel.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.edgel.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.edgel.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cutlistPartsBindingSource, "EDGEID_WL", true));
+			this.edgel.DataSource = this.cUTEDGESBindingSource2;
+			this.edgel.DisplayMember = "DESCR";
+			this.edgel.FormattingEnabled = true;
+			this.edgel.Location = new System.Drawing.Point(3, 136);
+			this.edgel.Name = "edgel";
+			this.edgel.Size = new System.Drawing.Size(183, 21);
+			this.edgel.TabIndex = 4;
+			this.edgel.ValueMember = "EDGEID";
+			this.edgel.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
+			this.edgel.TextChanged += new System.EventHandler(this.comboBox_TextChanged);
+			this.edgel.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+			this.edgel.Resize += new System.EventHandler(this.comboBox_Resize);
 			// 
 			// cUTEDGESBindingSource2
 			// 
@@ -399,24 +399,24 @@ namespace RedBrick2 {
 			this.eNGINEERINGDataSetBindingSource.DataSource = this.eNGINEERINGDataSet;
 			this.eNGINEERINGDataSetBindingSource.Position = 0;
 			// 
-			// comboBox5
+			// edger
 			// 
-			this.comboBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-			this.comboBox5.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-			this.comboBox5.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-			this.comboBox5.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cutlistPartsBindingSource, "EDGEID_WR", true));
-			this.comboBox5.DataSource = this.cUTEDGESBindingSource3;
-			this.comboBox5.DisplayMember = "DESCR";
-			this.comboBox5.FormattingEnabled = true;
-			this.comboBox5.Location = new System.Drawing.Point(3, 176);
-			this.comboBox5.Name = "comboBox5";
-			this.comboBox5.Size = new System.Drawing.Size(183, 21);
-			this.comboBox5.TabIndex = 5;
-			this.comboBox5.ValueMember = "EDGEID";
-			this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
-			this.comboBox5.TextChanged += new System.EventHandler(this.comboBox_TextChanged);
-			this.comboBox5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
-			this.comboBox5.Resize += new System.EventHandler(this.comboBox_Resize);
+			this.edger.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.edger.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.edger.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.edger.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cutlistPartsBindingSource, "EDGEID_WR", true));
+			this.edger.DataSource = this.cUTEDGESBindingSource3;
+			this.edger.DisplayMember = "DESCR";
+			this.edger.FormattingEnabled = true;
+			this.edger.Location = new System.Drawing.Point(3, 176);
+			this.edger.Name = "edger";
+			this.edger.Size = new System.Drawing.Size(183, 21);
+			this.edger.TabIndex = 5;
+			this.edger.ValueMember = "EDGEID";
+			this.edger.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
+			this.edger.TextChanged += new System.EventHandler(this.comboBox_TextChanged);
+			this.edger.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+			this.edger.Resize += new System.EventHandler(this.comboBox_Resize);
 			// 
 			// cUTEDGESBindingSource3
 			// 
@@ -504,25 +504,25 @@ namespace RedBrick2 {
 			this.label11.Text = "Cutlist";
 			this.label11.Click += new System.EventHandler(this.label11_Click);
 			// 
-			// comboBox6
+			// cutlistctl
 			// 
-			this.comboBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.cutlistctl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.comboBox6.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-			this.comboBox6.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-			this.comboBox6.DataSource = this.cutlistPartsBindingSource;
-			this.comboBox6.DisplayMember = "CutlistDisplayName";
-			this.comboBox6.FormattingEnabled = true;
-			this.comboBox6.Location = new System.Drawing.Point(3, 216);
-			this.comboBox6.Name = "comboBox6";
-			this.comboBox6.Size = new System.Drawing.Size(183, 21);
-			this.comboBox6.TabIndex = 6;
-			this.comboBox6.ValueMember = "CLID";
-			this.comboBox6.SelectedIndexChanged += new System.EventHandler(this.comboBox6_SelectedIndexChanged);
-			this.comboBox6.TextChanged += new System.EventHandler(this.comboBox_TextChanged);
-			this.comboBox6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
-			this.comboBox6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox6_MouseClick);
-			this.comboBox6.Resize += new System.EventHandler(this.comboBox_Resize);
+			this.cutlistctl.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.cutlistctl.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.cutlistctl.DataSource = this.cutlistPartsBindingSource;
+			this.cutlistctl.DisplayMember = "CutlistDisplayName";
+			this.cutlistctl.FormattingEnabled = true;
+			this.cutlistctl.Location = new System.Drawing.Point(3, 216);
+			this.cutlistctl.Name = "cutlistctl";
+			this.cutlistctl.Size = new System.Drawing.Size(183, 21);
+			this.cutlistctl.TabIndex = 6;
+			this.cutlistctl.ValueMember = "CLID";
+			this.cutlistctl.SelectedIndexChanged += new System.EventHandler(this.comboBox6_SelectedIndexChanged);
+			this.cutlistctl.TextChanged += new System.EventHandler(this.comboBox_TextChanged);
+			this.cutlistctl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+			this.cutlistctl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox6_MouseClick);
+			this.cutlistctl.Resize += new System.EventHandler(this.comboBox_Resize);
 			// 
 			// label30
 			// 
@@ -533,15 +533,15 @@ namespace RedBrick2 {
 			this.label30.TabIndex = 7;
 			this.label30.Text = "Part QTY";
 			// 
-			// numericUpDown1
+			// partq
 			// 
-			this.numericUpDown1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.partq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.numericUpDown1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.cutlistPartsBindingSource, "QTY", true));
-			this.numericUpDown1.Location = new System.Drawing.Point(192, 216);
-			this.numericUpDown1.Name = "numericUpDown1";
-			this.numericUpDown1.Size = new System.Drawing.Size(75, 22);
-			this.numericUpDown1.TabIndex = 8;
+			this.partq.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.cutlistPartsBindingSource, "QTY", true));
+			this.partq.Location = new System.Drawing.Point(192, 216);
+			this.partq.Name = "partq";
+			this.partq.Size = new System.Drawing.Size(75, 22);
+			this.partq.TabIndex = 8;
 			// 
 			// groupBox2
 			// 
@@ -565,13 +565,13 @@ namespace RedBrick2 {
 			this.tableLayoutPanel3.Controls.Add(this.label14, 0, 4);
 			this.tableLayoutPanel3.Controls.Add(this.label15, 0, 6);
 			this.tableLayoutPanel3.Controls.Add(this.label16, 0, 8);
-			this.tableLayoutPanel3.Controls.Add(this.textBox1, 0, 1);
-			this.tableLayoutPanel3.Controls.Add(this.textBox2, 0, 3);
+			this.tableLayoutPanel3.Controls.Add(this.descriptiontb, 0, 1);
+			this.tableLayoutPanel3.Controls.Add(this.lengthtb, 0, 3);
 			this.tableLayoutPanel3.Controls.Add(this.label17, 0, 10);
-			this.tableLayoutPanel3.Controls.Add(this.textBox6, 0, 11);
-			this.tableLayoutPanel3.Controls.Add(this.textBox3, 0, 5);
-			this.tableLayoutPanel3.Controls.Add(this.textBox4, 0, 7);
-			this.tableLayoutPanel3.Controls.Add(this.textBox5, 0, 9);
+			this.tableLayoutPanel3.Controls.Add(this.commenttb, 0, 11);
+			this.tableLayoutPanel3.Controls.Add(this.widthtb, 0, 5);
+			this.tableLayoutPanel3.Controls.Add(this.thicknesstb, 0, 7);
+			this.tableLayoutPanel3.Controls.Add(this.wallthicknesstb, 0, 9);
 			this.tableLayoutPanel3.Controls.Add(this.label21, 1, 9);
 			this.tableLayoutPanel3.Controls.Add(this.label20, 1, 7);
 			this.tableLayoutPanel3.Controls.Add(this.label19, 1, 5);
@@ -641,34 +641,34 @@ namespace RedBrick2 {
 			this.label16.TabIndex = 0;
 			this.label16.Text = "Wall Thickness";
 			// 
-			// textBox1
+			// descriptiontb
 			// 
-			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.descriptiontb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tableLayoutPanel3.SetColumnSpan(this.textBox1, 2);
-			this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "DESCR", true));
-			this.textBox1.Location = new System.Drawing.Point(3, 16);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(264, 22);
-			this.textBox1.TabIndex = 7;
-			this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+			this.tableLayoutPanel3.SetColumnSpan(this.descriptiontb, 2);
+			this.descriptiontb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "DESCR", true));
+			this.descriptiontb.Location = new System.Drawing.Point(3, 16);
+			this.descriptiontb.Name = "descriptiontb";
+			this.descriptiontb.Size = new System.Drawing.Size(264, 22);
+			this.descriptiontb.TabIndex = 7;
+			this.descriptiontb.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
 			// 
 			// cUTPARTSBindingSource
 			// 
 			this.cUTPARTSBindingSource.DataMember = "CUT_PARTS";
 			this.cUTPARTSBindingSource.DataSource = this.eNGINEERINGDataSet;
 			// 
-			// textBox2
+			// lengthtb
 			// 
-			this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.lengthtb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox2.Location = new System.Drawing.Point(3, 57);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(183, 22);
-			this.textBox2.TabIndex = 8;
-			this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-			this.textBox2.Enter += new System.EventHandler(this.textBox_Enter);
-			this.textBox2.Leave += new System.EventHandler(this.textBox_Leave);
+			this.lengthtb.Location = new System.Drawing.Point(3, 57);
+			this.lengthtb.Name = "lengthtb";
+			this.lengthtb.Size = new System.Drawing.Size(183, 22);
+			this.lengthtb.TabIndex = 8;
+			this.lengthtb.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+			this.lengthtb.Enter += new System.EventHandler(this.textBox_Enter);
+			this.lengthtb.Leave += new System.EventHandler(this.textBox_Leave);
 			// 
 			// label17
 			// 
@@ -679,54 +679,54 @@ namespace RedBrick2 {
 			this.label17.TabIndex = 0;
 			this.label17.Text = "Comment";
 			// 
-			// textBox6
+			// commenttb
 			// 
-			this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.commenttb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tableLayoutPanel3.SetColumnSpan(this.textBox6, 2);
-			this.textBox6.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "COMMENT", true));
-			this.textBox6.Location = new System.Drawing.Point(3, 221);
-			this.textBox6.Multiline = true;
-			this.textBox6.Name = "textBox6";
-			this.textBox6.Size = new System.Drawing.Size(264, 42);
-			this.textBox6.TabIndex = 11;
+			this.tableLayoutPanel3.SetColumnSpan(this.commenttb, 2);
+			this.commenttb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "COMMENT", true));
+			this.commenttb.Location = new System.Drawing.Point(3, 221);
+			this.commenttb.Multiline = true;
+			this.commenttb.Name = "commenttb";
+			this.commenttb.Size = new System.Drawing.Size(264, 42);
+			this.commenttb.TabIndex = 11;
 			// 
-			// textBox3
+			// widthtb
 			// 
-			this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.widthtb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox3.Location = new System.Drawing.Point(3, 98);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(183, 22);
-			this.textBox3.TabIndex = 9;
-			this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-			this.textBox3.Enter += new System.EventHandler(this.textBox_Enter);
-			this.textBox3.Leave += new System.EventHandler(this.textBox_Leave);
+			this.widthtb.Location = new System.Drawing.Point(3, 98);
+			this.widthtb.Name = "widthtb";
+			this.widthtb.Size = new System.Drawing.Size(183, 22);
+			this.widthtb.TabIndex = 9;
+			this.widthtb.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+			this.widthtb.Enter += new System.EventHandler(this.textBox_Enter);
+			this.widthtb.Leave += new System.EventHandler(this.textBox_Leave);
 			// 
-			// textBox4
+			// thicknesstb
 			// 
-			this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.thicknesstb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox4.Location = new System.Drawing.Point(3, 139);
-			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(183, 22);
-			this.textBox4.TabIndex = 10;
-			this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
-			this.textBox4.Enter += new System.EventHandler(this.textBox_Enter);
-			this.textBox4.Leave += new System.EventHandler(this.textBox_Leave);
+			this.thicknesstb.Location = new System.Drawing.Point(3, 139);
+			this.thicknesstb.Name = "thicknesstb";
+			this.thicknesstb.Size = new System.Drawing.Size(183, 22);
+			this.thicknesstb.TabIndex = 10;
+			this.thicknesstb.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+			this.thicknesstb.Enter += new System.EventHandler(this.textBox_Enter);
+			this.thicknesstb.Leave += new System.EventHandler(this.textBox_Leave);
 			// 
-			// textBox5
+			// wallthicknesstb
 			// 
-			this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.wallthicknesstb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox5.Location = new System.Drawing.Point(3, 180);
-			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(183, 22);
-			this.textBox5.TabIndex = 10;
-			this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
-			this.textBox5.Enter += new System.EventHandler(this.textBox_Enter);
-			this.textBox5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ov_textBox_KeyDown);
-			this.textBox5.Leave += new System.EventHandler(this.textBox_Leave);
+			this.wallthicknesstb.Location = new System.Drawing.Point(3, 180);
+			this.wallthicknesstb.Name = "wallthicknesstb";
+			this.wallthicknesstb.Size = new System.Drawing.Size(183, 22);
+			this.wallthicknesstb.TabIndex = 10;
+			this.wallthicknesstb.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
+			this.wallthicknesstb.Enter += new System.EventHandler(this.textBox_Enter);
+			this.wallthicknesstb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ov_textBox_KeyDown);
+			this.wallthicknesstb.Leave += new System.EventHandler(this.textBox_Leave);
 			// 
 			// label21
 			// 
@@ -788,22 +788,22 @@ namespace RedBrick2 {
 			this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.10228F));
 			this.tableLayoutPanel4.Controls.Add(this.label31, 0, 5);
 			this.tableLayoutPanel4.Controls.Add(this.label22, 0, 0);
-			this.tableLayoutPanel4.Controls.Add(this.textBox7, 0, 1);
+			this.tableLayoutPanel4.Controls.Add(this.cnc1tb, 0, 1);
 			this.tableLayoutPanel4.Controls.Add(this.label25, 0, 2);
-			this.tableLayoutPanel4.Controls.Add(this.textBox9, 0, 3);
+			this.tableLayoutPanel4.Controls.Add(this.overLtb, 0, 3);
 			this.tableLayoutPanel4.Controls.Add(this.label28, 0, 4);
-			this.tableLayoutPanel4.Controls.Add(this.textBox12, 0, 5);
-			this.tableLayoutPanel4.Controls.Add(this.textBox10, 2, 3);
+			this.tableLayoutPanel4.Controls.Add(this.blnkszLtb, 0, 5);
+			this.tableLayoutPanel4.Controls.Add(this.overWtb, 2, 3);
 			this.tableLayoutPanel4.Controls.Add(this.label26, 2, 2);
-			this.tableLayoutPanel4.Controls.Add(this.textBox8, 2, 1);
+			this.tableLayoutPanel4.Controls.Add(this.cnc2tb, 2, 1);
 			this.tableLayoutPanel4.Controls.Add(this.label23, 2, 0);
 			this.tableLayoutPanel4.Controls.Add(this.label24, 4, 0);
-			this.tableLayoutPanel4.Controls.Add(this.checkBox1, 4, 1);
+			this.tableLayoutPanel4.Controls.Add(this.updateCNCcb, 4, 1);
 			this.tableLayoutPanel4.Controls.Add(this.label27, 4, 2);
-			this.tableLayoutPanel4.Controls.Add(this.textBox11, 4, 3);
-			this.tableLayoutPanel4.Controls.Add(this.button1, 4, 5);
+			this.tableLayoutPanel4.Controls.Add(this.ppbtb, 4, 3);
+			this.tableLayoutPanel4.Controls.Add(this.prioritybtn, 4, 5);
 			this.tableLayoutPanel4.Controls.Add(this.label29, 3, 5);
-			this.tableLayoutPanel4.Controls.Add(this.textBox13, 2, 5);
+			this.tableLayoutPanel4.Controls.Add(this.blnkszWtb, 2, 5);
 			this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 16);
 			this.tableLayoutPanel4.Name = "tableLayoutPanel4";
 			this.tableLayoutPanel4.RowCount = 6;
@@ -840,17 +840,17 @@ namespace RedBrick2 {
 			this.label22.TabIndex = 0;
 			this.label22.Text = "CNC1";
 			// 
-			// textBox7
+			// cnc1tb
 			// 
-			this.textBox7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.cnc1tb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tableLayoutPanel4.SetColumnSpan(this.textBox7, 2);
-			this.textBox7.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "CNC1", true));
-			this.textBox7.Location = new System.Drawing.Point(3, 16);
-			this.textBox7.Name = "textBox7";
-			this.textBox7.Size = new System.Drawing.Size(86, 22);
-			this.textBox7.TabIndex = 12;
-			this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
+			this.tableLayoutPanel4.SetColumnSpan(this.cnc1tb, 2);
+			this.cnc1tb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "CNC1", true));
+			this.cnc1tb.Location = new System.Drawing.Point(3, 16);
+			this.cnc1tb.Name = "cnc1tb";
+			this.cnc1tb.Size = new System.Drawing.Size(86, 22);
+			this.cnc1tb.TabIndex = 12;
+			this.cnc1tb.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
 			// 
 			// label25
 			// 
@@ -864,19 +864,19 @@ namespace RedBrick2 {
 			this.label25.TabIndex = 0;
 			this.label25.Text = "OverL";
 			// 
-			// textBox9
+			// overLtb
 			// 
-			this.textBox9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.overLtb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tableLayoutPanel4.SetColumnSpan(this.textBox9, 2);
-			this.textBox9.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "OVER_L", true));
-			this.textBox9.Location = new System.Drawing.Point(3, 57);
-			this.textBox9.Name = "textBox9";
-			this.textBox9.Size = new System.Drawing.Size(86, 22);
-			this.textBox9.TabIndex = 15;
-			this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
-			this.textBox9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ov_textBox_KeyDown);
-			this.textBox9.Leave += new System.EventHandler(this.dimension_textBox_Leave);
+			this.tableLayoutPanel4.SetColumnSpan(this.overLtb, 2);
+			this.overLtb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "OVER_L", true));
+			this.overLtb.Location = new System.Drawing.Point(3, 57);
+			this.overLtb.Name = "overLtb";
+			this.overLtb.Size = new System.Drawing.Size(86, 22);
+			this.overLtb.TabIndex = 15;
+			this.overLtb.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
+			this.overLtb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ov_textBox_KeyDown);
+			this.overLtb.Leave += new System.EventHandler(this.dimension_textBox_Leave);
 			// 
 			// label28
 			// 
@@ -889,33 +889,33 @@ namespace RedBrick2 {
 			this.label28.TabIndex = 0;
 			this.label28.Text = "Blank Size";
 			// 
-			// textBox12
+			// blnkszLtb
 			// 
-			this.textBox12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.blnkszLtb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox12.BackColor = System.Drawing.SystemColors.Menu;
-			this.textBox12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.textBox12.Location = new System.Drawing.Point(3, 98);
-			this.textBox12.Name = "textBox12";
-			this.textBox12.Size = new System.Drawing.Size(67, 22);
-			this.textBox12.TabIndex = 18;
-			this.textBox12.TextChanged += new System.EventHandler(this.textBox12_TextChanged);
-			this.textBox12.KeyDown += new System.Windows.Forms.KeyEventHandler(this.bl_textBox_KeyDown);
-			this.textBox12.Leave += new System.EventHandler(this.dimension_textBox_Leave);
+			this.blnkszLtb.BackColor = System.Drawing.SystemColors.Menu;
+			this.blnkszLtb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.blnkszLtb.Location = new System.Drawing.Point(3, 98);
+			this.blnkszLtb.Name = "blnkszLtb";
+			this.blnkszLtb.Size = new System.Drawing.Size(67, 22);
+			this.blnkszLtb.TabIndex = 18;
+			this.blnkszLtb.TextChanged += new System.EventHandler(this.textBox12_TextChanged);
+			this.blnkszLtb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.bl_textBox_KeyDown);
+			this.blnkszLtb.Leave += new System.EventHandler(this.dimension_textBox_Leave);
 			// 
-			// textBox10
+			// overWtb
 			// 
-			this.textBox10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.overWtb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tableLayoutPanel4.SetColumnSpan(this.textBox10, 2);
-			this.textBox10.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "OVER_W", true));
-			this.textBox10.Location = new System.Drawing.Point(95, 57);
-			this.textBox10.Name = "textBox10";
-			this.textBox10.Size = new System.Drawing.Size(92, 22);
-			this.textBox10.TabIndex = 16;
-			this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
-			this.textBox10.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ov_textBox_KeyDown);
-			this.textBox10.Leave += new System.EventHandler(this.dimension_textBox_Leave);
+			this.tableLayoutPanel4.SetColumnSpan(this.overWtb, 2);
+			this.overWtb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "OVER_W", true));
+			this.overWtb.Location = new System.Drawing.Point(95, 57);
+			this.overWtb.Name = "overWtb";
+			this.overWtb.Size = new System.Drawing.Size(92, 22);
+			this.overWtb.TabIndex = 16;
+			this.overWtb.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
+			this.overWtb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ov_textBox_KeyDown);
+			this.overWtb.Leave += new System.EventHandler(this.dimension_textBox_Leave);
 			// 
 			// label26
 			// 
@@ -929,17 +929,17 @@ namespace RedBrick2 {
 			this.label26.TabIndex = 0;
 			this.label26.Text = "OverW";
 			// 
-			// textBox8
+			// cnc2tb
 			// 
-			this.textBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.cnc2tb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tableLayoutPanel4.SetColumnSpan(this.textBox8, 2);
-			this.textBox8.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "CNC2", true));
-			this.textBox8.Location = new System.Drawing.Point(95, 16);
-			this.textBox8.Name = "textBox8";
-			this.textBox8.Size = new System.Drawing.Size(92, 22);
-			this.textBox8.TabIndex = 13;
-			this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
+			this.tableLayoutPanel4.SetColumnSpan(this.cnc2tb, 2);
+			this.cnc2tb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "CNC2", true));
+			this.cnc2tb.Location = new System.Drawing.Point(95, 16);
+			this.cnc2tb.Name = "cnc2tb";
+			this.cnc2tb.Size = new System.Drawing.Size(92, 22);
+			this.cnc2tb.TabIndex = 13;
+			this.cnc2tb.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
 			// 
 			// label23
 			// 
@@ -962,15 +962,15 @@ namespace RedBrick2 {
 			this.label24.TabIndex = 0;
 			this.label24.Text = "Update CNC";
 			// 
-			// checkBox1
+			// updateCNCcb
 			// 
-			this.checkBox1.AutoSize = true;
-			this.checkBox1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.cUTPARTSBindingSource, "UPDATE_CNC", true));
-			this.checkBox1.Location = new System.Drawing.Point(193, 16);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(15, 14);
-			this.checkBox1.TabIndex = 14;
-			this.checkBox1.UseVisualStyleBackColor = true;
+			this.updateCNCcb.AutoSize = true;
+			this.updateCNCcb.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.cUTPARTSBindingSource, "UPDATE_CNC", true));
+			this.updateCNCcb.Location = new System.Drawing.Point(193, 16);
+			this.updateCNCcb.Name = "updateCNCcb";
+			this.updateCNCcb.Size = new System.Drawing.Size(15, 14);
+			this.updateCNCcb.TabIndex = 14;
+			this.updateCNCcb.UseVisualStyleBackColor = true;
 			// 
 			// label27
 			// 
@@ -981,28 +981,28 @@ namespace RedBrick2 {
 			this.label27.TabIndex = 0;
 			this.label27.Text = "Parts/Blank";
 			// 
-			// textBox11
+			// ppbtb
 			// 
-			this.textBox11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.ppbtb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox11.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "BLANKQTY", true));
-			this.textBox11.Location = new System.Drawing.Point(193, 57);
-			this.textBox11.Name = "textBox11";
-			this.textBox11.Size = new System.Drawing.Size(74, 22);
-			this.textBox11.TabIndex = 17;
-			this.textBox11.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
+			this.ppbtb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "BLANKQTY", true));
+			this.ppbtb.Location = new System.Drawing.Point(193, 57);
+			this.ppbtb.Name = "ppbtb";
+			this.ppbtb.Size = new System.Drawing.Size(74, 22);
+			this.ppbtb.TabIndex = 17;
+			this.ppbtb.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
 			// 
-			// button1
+			// prioritybtn
 			// 
-			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.prioritybtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.button1.Location = new System.Drawing.Point(193, 98);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(74, 23);
-			this.button1.TabIndex = 20;
-			this.button1.Text = "Priority";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
+			this.prioritybtn.Location = new System.Drawing.Point(193, 98);
+			this.prioritybtn.Name = "prioritybtn";
+			this.prioritybtn.Size = new System.Drawing.Size(74, 23);
+			this.prioritybtn.TabIndex = 20;
+			this.prioritybtn.Text = "Priority";
+			this.prioritybtn.UseVisualStyleBackColor = true;
+			this.prioritybtn.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// label29
 			// 
@@ -1017,19 +1017,19 @@ namespace RedBrick2 {
 			this.label29.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			this.label29.Visible = false;
 			// 
-			// textBox13
+			// blnkszWtb
 			// 
-			this.textBox13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.blnkszWtb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox13.BackColor = System.Drawing.SystemColors.Menu;
-			this.textBox13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.textBox13.Location = new System.Drawing.Point(95, 98);
-			this.textBox13.Name = "textBox13";
-			this.textBox13.Size = new System.Drawing.Size(73, 22);
-			this.textBox13.TabIndex = 19;
-			this.textBox13.TextChanged += new System.EventHandler(this.textBox13_TextChanged);
-			this.textBox13.KeyDown += new System.Windows.Forms.KeyEventHandler(this.bl_textBox_KeyDown);
-			this.textBox13.Leave += new System.EventHandler(this.dimension_textBox_Leave);
+			this.blnkszWtb.BackColor = System.Drawing.SystemColors.Menu;
+			this.blnkszWtb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.blnkszWtb.Location = new System.Drawing.Point(95, 98);
+			this.blnkszWtb.Name = "blnkszWtb";
+			this.blnkszWtb.Size = new System.Drawing.Size(73, 22);
+			this.blnkszWtb.TabIndex = 19;
+			this.blnkszWtb.TextChanged += new System.EventHandler(this.textBox13_TextChanged);
+			this.blnkszWtb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.bl_textBox_KeyDown);
+			this.blnkszWtb.Leave += new System.EventHandler(this.dimension_textBox_Leave);
 			// 
 			// groupBox4
 			// 
@@ -1408,7 +1408,7 @@ namespace RedBrick2 {
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(320, 1095);
+			this.tabPage2.Size = new System.Drawing.Size(285, 1095);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "tabPage2";
 			this.tabPage2.UseVisualStyleBackColor = true;
@@ -1446,7 +1446,7 @@ namespace RedBrick2 {
 			((System.ComponentModel.ISupportInitialize)(this.cUTEDGESBindingSource2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSetBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTEDGESBindingSource3)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.partq)).EndInit();
 			this.groupBox2.ResumeLayout(false);
 			this.tableLayoutPanel3.ResumeLayout(false);
 			this.tableLayoutPanel3.PerformLayout();
@@ -1478,22 +1478,22 @@ namespace RedBrick2 {
     private System.Windows.Forms.GroupBox groupBox1;
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
     private System.Windows.Forms.Label label1;
-    private System.Windows.Forms.ComboBox comboBox1;
+    private System.Windows.Forms.ComboBox cutlistMat;
     private System.Windows.Forms.Label label2;
-    private System.Windows.Forms.ComboBox comboBox2;
+    private System.Windows.Forms.ComboBox edgef;
     private System.Windows.Forms.Label label3;
-    private System.Windows.Forms.ComboBox comboBox3;
+    private System.Windows.Forms.ComboBox edgeb;
     private System.Windows.Forms.Label label4;
     private System.Windows.Forms.Label label5;
-    private System.Windows.Forms.ComboBox comboBox4;
-    private System.Windows.Forms.ComboBox comboBox5;
+    private System.Windows.Forms.ComboBox edgel;
+    private System.Windows.Forms.ComboBox edger;
     private System.Windows.Forms.Label label6;
     private System.Windows.Forms.Label label7;
     private System.Windows.Forms.Label label8;
     private System.Windows.Forms.Label label9;
     private System.Windows.Forms.Label label10;
     private System.Windows.Forms.Label label11;
-    private System.Windows.Forms.ComboBox comboBox6;
+    private System.Windows.Forms.ComboBox cutlistctl;
     private System.Windows.Forms.GroupBox groupBox2;
     private System.Windows.Forms.BindingSource cUTMATERIALSBindingSource;
     private ENGINEERINGDataSet eNGINEERINGDataSet;
@@ -1518,13 +1518,13 @@ namespace RedBrick2 {
     private System.Windows.Forms.Label label14;
     private System.Windows.Forms.Label label15;
     private System.Windows.Forms.Label label16;
-    private System.Windows.Forms.TextBox textBox1;
-    private System.Windows.Forms.TextBox textBox2;
+    private System.Windows.Forms.TextBox descriptiontb;
+    private System.Windows.Forms.TextBox lengthtb;
     private System.Windows.Forms.Label label17;
-    private System.Windows.Forms.TextBox textBox6;
-    private System.Windows.Forms.TextBox textBox3;
-    private System.Windows.Forms.TextBox textBox4;
-    private System.Windows.Forms.TextBox textBox5;
+    private System.Windows.Forms.TextBox commenttb;
+    private System.Windows.Forms.TextBox widthtb;
+    private System.Windows.Forms.TextBox thicknesstb;
+    private System.Windows.Forms.TextBox wallthicknesstb;
     private System.Windows.Forms.Label label21;
     private System.Windows.Forms.Label label20;
     private System.Windows.Forms.Label label19;
@@ -1534,24 +1534,24 @@ namespace RedBrick2 {
     private System.Windows.Forms.GroupBox groupBox3;
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
     private System.Windows.Forms.Label label22;
-    private System.Windows.Forms.TextBox textBox7;
+    private System.Windows.Forms.TextBox cnc1tb;
     private System.Windows.Forms.Label label25;
-    private System.Windows.Forms.TextBox textBox9;
+    private System.Windows.Forms.TextBox overLtb;
     private System.Windows.Forms.Label label28;
-    private System.Windows.Forms.TextBox textBox12;
-    private System.Windows.Forms.Button button1;
-    private System.Windows.Forms.TextBox textBox13;
-    private System.Windows.Forms.TextBox textBox11;
-    private System.Windows.Forms.TextBox textBox10;
+    private System.Windows.Forms.TextBox blnkszLtb;
+    private System.Windows.Forms.Button prioritybtn;
+    private System.Windows.Forms.TextBox blnkszWtb;
+    private System.Windows.Forms.TextBox ppbtb;
+    private System.Windows.Forms.TextBox overWtb;
     private System.Windows.Forms.Label label27;
     private System.Windows.Forms.Label label26;
-    private System.Windows.Forms.CheckBox checkBox1;
+    private System.Windows.Forms.CheckBox updateCNCcb;
     private System.Windows.Forms.Label label24;
-    private System.Windows.Forms.TextBox textBox8;
+    private System.Windows.Forms.TextBox cnc2tb;
     private System.Windows.Forms.Label label23;
     private System.Windows.Forms.Label label29;
     private System.Windows.Forms.Label label30;
-    private System.Windows.Forms.NumericUpDown numericUpDown1;
+    private System.Windows.Forms.NumericUpDown partq;
     private System.Windows.Forms.GroupBox groupBox4;
     private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     private System.Windows.Forms.Label label31;

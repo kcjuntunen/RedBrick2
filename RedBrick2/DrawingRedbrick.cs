@@ -27,17 +27,17 @@ namespace RedBrick2 {
 
 		public void ToggleFlameWar(bool on) {
 			if (on) {
-				textBox14.CharacterCasing = CharacterCasing.Upper;
-				textBox15.CharacterCasing = CharacterCasing.Upper;
-				textBox16.CharacterCasing = CharacterCasing.Upper;
-				textBox17.CharacterCasing = CharacterCasing.Upper;
-				textBox18.CharacterCasing = CharacterCasing.Upper;
+				fin1_tb.CharacterCasing = CharacterCasing.Upper;
+				fin2_tb.CharacterCasing = CharacterCasing.Upper;
+				fin3_tb.CharacterCasing = CharacterCasing.Upper;
+				fin4_tb.CharacterCasing = CharacterCasing.Upper;
+				fin5_tb.CharacterCasing = CharacterCasing.Upper;
 			} else {
-				textBox14.CharacterCasing = CharacterCasing.Normal;
-				textBox15.CharacterCasing = CharacterCasing.Normal;
-				textBox16.CharacterCasing = CharacterCasing.Normal;
-				textBox17.CharacterCasing = CharacterCasing.Normal;
-				textBox18.CharacterCasing = CharacterCasing.Normal;
+				fin1_tb.CharacterCasing = CharacterCasing.Normal;
+				fin2_tb.CharacterCasing = CharacterCasing.Normal;
+				fin3_tb.CharacterCasing = CharacterCasing.Normal;
+				fin4_tb.CharacterCasing = CharacterCasing.Normal;
+				fin5_tb.CharacterCasing = CharacterCasing.Normal;
 			}
 		}
 
@@ -85,13 +85,13 @@ namespace RedBrick2 {
 		private void FigureOutCustomer() {
 			SwProperty _p = new CustomerProperty(@"CUSTOMER", true, SwApp, ActiveDoc);
 			PropertySet.Add(_p.Get());
-			comboBox12.SelectedValue = (int)_p.Data;
-			if (comboBox12.SelectedItem != null) {
-				if ((ProjectCustomer != 0) && ((int)comboBox12.SelectedValue != ProjectCustomer)) {
+			cust_cbx.SelectedValue = (int)_p.Data;
+			if (cust_cbx.SelectedItem != null) {
+				if ((ProjectCustomer != 0) && ((int)cust_cbx.SelectedValue != ProjectCustomer)) {
 					ToggleCustomerWarn(true);
 				}
 			} else {
-				comboBox12.Text = _p.Value;
+				cust_cbx.Text = _p.Value;
 				ToggleCustomerWarn(true);
 			}
 		}
@@ -100,13 +100,13 @@ namespace RedBrick2 {
 			SwProperty _p = new AuthorProperty(@"DrawnBy", true, SwApp, ActiveDoc);
 			PropertySet.Add(_p.Get());
 			if (_p.Value != string.Empty) {
-				comboBox13.SelectedValue = (int)_p.Data;
+				auth_cpx.SelectedValue = (int)_p.Data;
 			} else {
 				ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu =
 					new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
 				int? uid = gu.GetUID(System.Environment.UserName);
 				if (uid > 0) {
-					comboBox13.SelectedValue = uid;
+					auth_cpx.SelectedValue = uid;
 				}
 			}
 		}
@@ -114,13 +114,13 @@ namespace RedBrick2 {
 		private void FigureOutRev() {
 			ENGINEERINGDataSetTableAdapters.RevListTableAdapter rl =
 				new ENGINEERINGDataSetTableAdapters.RevListTableAdapter();
-			comboBox14.DisplayMember = @"REV";
-			comboBox14.ValueMember = @"REV";
-			comboBox14.DataSource = rl.GetData();
+			rev_cbx.DisplayMember = @"REV";
+			rev_cbx.ValueMember = @"REV";
+			rev_cbx.DataSource = rl.GetData();
 			SwProperty _p = new StringProperty(@"REVISION LEVEL", true, SwApp, ActiveDoc, string.Empty);
 			PropertySet.Add(_p.Get());
 			RevFromDrw = _p.Value;
-			comboBox14.Text = RevFromDrw;
+			rev_cbx.Text = RevFromDrw;
 			if (RevFromFile != null && RevFromDrw != RevFromFile) {
 				ToggleRevWarn(true);
 			}
@@ -133,8 +133,8 @@ namespace RedBrick2 {
 		}
 
 		private void FigureOutMatFinish() {
-			ComboBox[] _cboxes = new ComboBox[] { comboBox7, comboBox8, comboBox9, comboBox10, comboBox11 };
-			TextBox[] _tboxes = new TextBox[] { textBox14, textBox15, textBox16, textBox17, textBox18 };
+			ComboBox[] _cboxes = new ComboBox[] { mat1_cbx, mat2_cbx, mat3_cbx, mat4_cbx, mat5_cbx };
+			TextBox[] _tboxes = new TextBox[] { fin1_tb, fin2_tb, fin3_tb, fin4_tb, fin5_tb };
 
 			for (int i = 0; i < 5; i++) {
 				string _mat = string.Format(@"M{0}", i + 1);
@@ -154,20 +154,20 @@ namespace RedBrick2 {
 			ENGINEERINGDataSet.CUT_CUTLISTSDataTable dt =
 				cc.GetDataByName(partLookup, RevFromDrw.ToString());
 			if (dt.Rows.Count > 0) {
-				comboBox15.SelectedValue = dt[0].STATEID;
+				status_cbx.SelectedValue = dt[0].STATEID;
 			} else {
-				comboBox15.SelectedValue = -1;
+				status_cbx.SelectedValue = -1;
 			}
 		}
 
 		public void Commit() {
-			PropertySet[@"CUSTOMER"].Data = comboBox12.SelectedValue;
-			PropertySet[@"REVISION LEVEL"].Data = comboBox14.Text;
-			PropertySet[@"DrawnBy"].Data = comboBox13.SelectedValue;
+			PropertySet[@"CUSTOMER"].Data = cust_cbx.SelectedValue;
+			PropertySet[@"REVISION LEVEL"].Data = rev_cbx.Text;
+			PropertySet[@"DrawnBy"].Data = auth_cpx.SelectedValue;
 			PropertySet[@"DATE"].Data = dateTimePicker1.Value;
 
-			ComboBox[] _cboxes = new ComboBox[] { comboBox7, comboBox8, comboBox9, comboBox10, comboBox11 };
-			TextBox[] _tboxes = new TextBox[] { textBox14, textBox15, textBox16, textBox17, textBox18 };
+			ComboBox[] _cboxes = new ComboBox[] { mat1_cbx, mat2_cbx, mat3_cbx, mat4_cbx, mat5_cbx };
+			TextBox[] _tboxes = new TextBox[] { fin1_tb, fin2_tb, fin3_tb, fin4_tb, fin5_tb };
 
 			for (int i = 0; i < 5; i++) {
 				string _mat = string.Format(@"M{0}", i + 1);
@@ -277,22 +277,22 @@ namespace RedBrick2 {
 
 		private void ToggleRevWarn(bool on) {
 			if (on) {
-				Redbrick.Warn(comboBox14);
-				rev_tooltip.SetToolTip(comboBox14, Properties.Resources.RevisionNotMatching);
+				Redbrick.Warn(rev_cbx);
+				rev_tooltip.SetToolTip(rev_cbx, Properties.Resources.RevisionNotMatching);
 				rev_tooltip.SetToolTip(label44, Properties.Resources.RevisionNotMatching);
 			} else {
-				Redbrick.Unwarn(comboBox14 as ComboBox);
+				Redbrick.Unwarn(rev_cbx as ComboBox);
 				rev_tooltip.RemoveAll();
 			}
 		}
 
 		private void ToggleCustomerWarn(bool on) {
 			if (on) {
-				Redbrick.Warn(comboBox12);
-				cust_tooltip.SetToolTip(comboBox12, Properties.Resources.CustomerNotMatching);
+				Redbrick.Warn(cust_cbx);
+				cust_tooltip.SetToolTip(cust_cbx, Properties.Resources.CustomerNotMatching);
 				cust_tooltip.SetToolTip(label41, Properties.Resources.CustomerNotMatching);
 			} else {
-				Redbrick.Unwarn(comboBox12);
+				Redbrick.Unwarn(cust_cbx);
 				cust_tooltip.RemoveAll();
 			}
 		}
@@ -407,20 +407,20 @@ namespace RedBrick2 {
 
 		private void textBox_KeyUp(object sender, KeyEventArgs e) {
 			if (e.KeyCode == Keys.Enter && e.Shift) {
-				TextBox[] tbs = { textBox18, textBox17, textBox16, textBox15, textBox14 };
+				TextBox[] tbs = { fin5_tb, fin4_tb, fin3_tb, fin2_tb, fin1_tb };
 				enterJump((sender as TextBox), tbs);
 			} else if (e.KeyCode == Keys.Enter) {
-				TextBox[] tbs = { textBox14, textBox15, textBox16, textBox17, textBox18 };
+				TextBox[] tbs = { fin1_tb, fin2_tb, fin3_tb, fin4_tb, fin5_tb };
 				enterJump((sender as TextBox), tbs);
 			}
 		}
 
 		private void comboBox_KeyUp(object sender, KeyEventArgs e) {
 			if (e.KeyCode == Keys.Enter && e.Shift) {
-				ComboBox[] cbs = { comboBox11, comboBox10, comboBox9, comboBox8, comboBox7 };
+				ComboBox[] cbs = { mat5_cbx, mat4_cbx, mat3_cbx, mat2_cbx, mat1_cbx };
 				enterJump((sender as ComboBox), cbs);
 			} else if (e.KeyCode == Keys.Enter) {
-				ComboBox[] cbs = { comboBox7, comboBox8, comboBox9, comboBox10, comboBox11 };
+				ComboBox[] cbs = { mat1_cbx, mat2_cbx, mat3_cbx, mat4_cbx, mat5_cbx };
 				enterJump((sender as ComboBox), cbs);
 			}
 		}

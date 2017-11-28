@@ -71,15 +71,15 @@ namespace RedBrick2 {
 			label9.MouseDown += clip_click;
 			label10.MouseDown += clip_click;
 
-			textBox9.TextChanged += textBox9_TextChanged;
-			textBox10.TextChanged += textBox10_TextChanged;
+			overLtb.TextChanged += textBox9_TextChanged;
+			overWtb.TextChanged += textBox10_TextChanged;
 		}
 
 		public void TogglePriorityButton() {
-			bool no_cnc1 = (textBox7.Text == @"NA") || (textBox7.Text == string.Empty);
-			bool no_cnc2 = (textBox8.Text == @"NA") || (textBox8.Text == string.Empty);
+			bool no_cnc1 = (cnc1tb.Text == @"NA") || (cnc1tb.Text == string.Empty);
+			bool no_cnc2 = (cnc2tb.Text == @"NA") || (cnc2tb.Text == string.Empty);
 			bool enabled = !(no_cnc1 && no_cnc2);
-			button1.Enabled = enabled;
+			prioritybtn.Enabled = enabled;
 		}
 
 		public void ToggleFlameWar(bool on) {
@@ -87,15 +87,15 @@ namespace RedBrick2 {
 				drawingRedbrick.ToggleFlameWar(on);
 			}
 			if (on) {
-				textBox1.CharacterCasing = CharacterCasing.Upper;
-				textBox6.CharacterCasing = CharacterCasing.Upper;
-				textBox7.CharacterCasing = CharacterCasing.Upper;
-				textBox8.CharacterCasing = CharacterCasing.Upper;
+				descriptiontb.CharacterCasing = CharacterCasing.Upper;
+				commenttb.CharacterCasing = CharacterCasing.Upper;
+				cnc1tb.CharacterCasing = CharacterCasing.Upper;
+				cnc2tb.CharacterCasing = CharacterCasing.Upper;
 			} else {
-				textBox1.CharacterCasing = CharacterCasing.Normal;
-				textBox6.CharacterCasing = CharacterCasing.Normal;
-				textBox7.CharacterCasing = CharacterCasing.Normal;
-				textBox8.CharacterCasing = CharacterCasing.Normal;
+				descriptiontb.CharacterCasing = CharacterCasing.Normal;
+				commenttb.CharacterCasing = CharacterCasing.Normal;
+				cnc1tb.CharacterCasing = CharacterCasing.Normal;
+				cnc2tb.CharacterCasing = CharacterCasing.Normal;
 			}
 		}
 
@@ -113,24 +113,24 @@ namespace RedBrick2 {
 			if (initialated) {
 				try {
 					Single _edge_thickness = 0.0F;
-					if (comboBox4.SelectedItem != null) {
-						_edge_thickness += (Single)(comboBox4.SelectedItem as DataRowView)[@"THICKNESS"];
+					if (edgel.SelectedItem != null) {
+						_edge_thickness += (Single)(edgel.SelectedItem as DataRowView)[@"THICKNESS"];
 					}
 
-					if (comboBox5.SelectedItem != null) {
-						_edge_thickness += (Single)(comboBox5.SelectedItem as DataRowView)[@"THICKNESS"];
+					if (edger.SelectedItem != null) {
+						_edge_thickness += (Single)(edger.SelectedItem as DataRowView)[@"THICKNESS"];
 					}
 
 					//double _val = ((double.Parse(label18.Text) +
 					//  double.Parse((sender as TextBox).Text))) - _edge_thickness;
 
 					if (ov_userediting) {
-						calculate_blanksize_from_oversize(float.Parse((sender as TextBox).Text), textBox12, length, _edge_thickness);
+						calculate_blanksize_from_oversize(float.Parse((sender as TextBox).Text), blnkszLtb, length, _edge_thickness);
 						//textBox12.Text = enforce_number_format(_val);
 						ov_userediting = false;
 					}
 				} catch (Exception) {
-					textBox12.Text = @"#VALUE!";
+					blnkszLtb.Text = @"#VALUE!";
 				}
 			}
 		}
@@ -139,22 +139,22 @@ namespace RedBrick2 {
 			if (initialated) {
 				try {
 					Single _edge_thickness = 0.0F;
-					if (comboBox2.SelectedItem != null) {
-						_edge_thickness += (Single)(comboBox2.SelectedItem as DataRowView)[@"THICKNESS"];
+					if (edgef.SelectedItem != null) {
+						_edge_thickness += (Single)(edgef.SelectedItem as DataRowView)[@"THICKNESS"];
 					}
 
-					if (comboBox3.SelectedItem != null) {
-						_edge_thickness += (Single)(comboBox3.SelectedItem as DataRowView)[@"THICKNESS"];
+					if (edgeb.SelectedItem != null) {
+						_edge_thickness += (Single)(edgeb.SelectedItem as DataRowView)[@"THICKNESS"];
 					}
 					//double _val = ((double.Parse(label19.Text) +
 					//   double.Parse((sender as TextBox).Text))) - _edge_thickness;
 					if (ov_userediting) {
-						calculate_blanksize_from_oversize(float.Parse((sender as TextBox).Text), textBox13, width, _edge_thickness);
+						calculate_blanksize_from_oversize(float.Parse((sender as TextBox).Text), blnkszWtb, width, _edge_thickness);
 						//textBox13.Text = enforce_number_format(_val);
 						ov_userediting = false;
 					}
 				} catch (Exception) {
-					textBox13.Text = @"#VALUE!";
+					blnkszWtb.Text = @"#VALUE!";
 				}
 			}
 		}
@@ -172,10 +172,10 @@ namespace RedBrick2 {
 			GetCutlistData();
 			flowLayoutPanel1.Controls.Clear();
 			if (ActiveDoc != null) {
-				textBox2.Text = PropertySet[@"LENGTH"].Value.Replace("\"", string.Empty);
-				textBox3.Text = PropertySet[@"WIDTH"].Value.Replace("\"", string.Empty);
-				textBox4.Text = PropertySet[@"THICKNESS"].Value.Replace("\"", string.Empty);
-				textBox5.Text = PropertySet[@"WALL THICKNESS"].Value.Replace("\"", string.Empty);
+				lengthtb.Text = PropertySet[@"LENGTH"].Value.Replace("\"", string.Empty);
+				widthtb.Text = PropertySet[@"WIDTH"].Value.Replace("\"", string.Empty);
+				thicknesstb.Text = PropertySet[@"THICKNESS"].Value.Replace("\"", string.Empty);
+				wallthicknesstb.Text = PropertySet[@"WALL THICKNESS"].Value.Replace("\"", string.Empty);
 
 				GetRouting();
 
@@ -199,12 +199,12 @@ namespace RedBrick2 {
 
 				flowLayoutPanel1.VerticalScroll.Value = scrollOffset.Y;
 				float _val = 0.0F;
-				if (float.TryParse(textBox9.Text, out _val)) {
-					calculate_blanksize_from_oversize(_val, textBox12, length, get_edge_thickness_total(comboBox4, comboBox5));
+				if (float.TryParse(overLtb.Text, out _val)) {
+					calculate_blanksize_from_oversize(_val, blnkszLtb, length, get_edge_thickness_total(edgel, edger));
 				}
 
-				if (float.TryParse(textBox10.Text, out _val)) {
-					calculate_blanksize_from_oversize(_val, textBox13, width, get_edge_thickness_total(comboBox2, comboBox3));
+				if (float.TryParse(overWtb.Text, out _val)) {
+					calculate_blanksize_from_oversize(_val, blnkszWtb, width, get_edge_thickness_total(edgef, edgeb));
 				}
 
 				groupBox1.Text = string.Format(@"{0} - {1}",
@@ -237,44 +237,44 @@ namespace RedBrick2 {
 		}
 
 		private void SelectLastCutlist() {
-			if (ComboBoxContainsValue(Properties.Settings.Default.LastCutlist, comboBox6)) {
-				comboBox6.SelectedValue = Properties.Settings.Default.LastCutlist;
+			if (ComboBoxContainsValue(Properties.Settings.Default.LastCutlist, cutlistctl)) {
+				cutlistctl.SelectedValue = Properties.Settings.Default.LastCutlist;
 				ToggleCutlistWarn(false);
 			} else {
-				comboBox6.SelectedValue = -1;
+				cutlistctl.SelectedValue = -1;
 				ToggleCutlistWarn(true);
 			}
 		}
 
 		private void ToggleDescrWarn(bool on) {
 			if (on) {
-				Redbrick.Warn(textBox1);
-				descr_tooltup.SetToolTip(textBox1, Properties.Resources.NoDescriptionWarning);
+				Redbrick.Warn(descriptiontb);
+				descr_tooltup.SetToolTip(descriptiontb, Properties.Resources.NoDescriptionWarning);
 				descr_tooltup.SetToolTip(label12, Properties.Resources.NoDescriptionWarning);
 			} else {
-				Redbrick.Unwarn(textBox1);
+				Redbrick.Unwarn(descriptiontb);
 				descr_tooltup.RemoveAll();
 			}
 		}
 
 		private void ToggleCutlistWarn(bool on) {
 			if (on) {
-				Redbrick.Warn(comboBox6);
-				cutlist_tooltip.SetToolTip(comboBox6, Properties.Resources.CutlistNotSelectedWarning);
+				Redbrick.Warn(cutlistctl);
+				cutlist_tooltip.SetToolTip(cutlistctl, Properties.Resources.CutlistNotSelectedWarning);
 				cutlist_tooltip.SetToolTip(label11, Properties.Resources.CutlistNotSelectedWarning);
 			} else {
-				Redbrick.Unwarn(comboBox6);
+				Redbrick.Unwarn(cutlistctl);
 				cutlist_tooltip.RemoveAll();
 			}
 		}
 
 		private void TogglePPBWarn(bool on) {
 			if (on) {
-				Redbrick.Warn(textBox11);
-				ppb_tooltip.SetToolTip(textBox11, Properties.Resources.NotNaturalNumberWarning);
+				Redbrick.Warn(ppbtb);
+				ppb_tooltip.SetToolTip(ppbtb, Properties.Resources.NotNaturalNumberWarning);
 				ppb_tooltip.SetToolTip(label27, Properties.Resources.NotNaturalNumberWarning);
 			} else {
-				Redbrick.Unwarn(textBox11);
+				Redbrick.Unwarn(ppbtb);
 				ppb_tooltip.RemoveAll();
 			}
 		}
@@ -344,41 +344,41 @@ namespace RedBrick2 {
 			if (mr < 1) {
 				mr = md.GetMaterialIDByDescr(StrTryProp("CUTLIST MATERIAL"));
 			}
-			comboBox1.SelectedValue = mr;
+			cutlistMat.SelectedValue = mr;
 			ENGINEERINGDataSet.CUT_EDGESDataTable ed =
 				new ENGINEERINGDataSet.CUT_EDGESDataTable();
 			int er = IntTryProp("EFID");
 			if (er < 1) {
 				er = ed.GetEdgeIDByDescr(StrTryProp("EDGE FRONT (L)"));
 			}
-			comboBox2.SelectedValue = er;
+			edgef.SelectedValue = er;
 			er = IntTryProp("EBID");
 			if (er < 1) {
 				er = ed.GetEdgeIDByDescr(StrTryProp("EDGE BACK (L)"));
 			}
-			comboBox3.SelectedValue = er;
+			edgeb.SelectedValue = er;
 			er = IntTryProp("ERID");
 			if (er < 1) {
 				er = ed.GetEdgeIDByDescr(StrTryProp("EDGE RIGHT (W)"));
 			}
-			comboBox5.SelectedValue = er;
+			edger.SelectedValue = er;
 
 			er = IntTryProp("ELID");
 			if (er < 1) {
 				er = ed.GetEdgeIDByDescr(StrTryProp("EDGE LEFT (W)"));
 			}
-			comboBox4.SelectedValue = er;
+			edgel.SelectedValue = er;
 
-			textBox1.Text = StrTryProp("Description");
-			textBox6.Text = StrTryProp("COMMENT");
-			textBox7.Text = StrTryProp("CNC1");
-			textBox8.Text = StrTryProp("CNC2");
+			descriptiontb.Text = StrTryProp("Description");
+			commenttb.Text = StrTryProp("COMMENT");
+			cnc1tb.Text = StrTryProp("CNC1");
+			cnc2tb.Text = StrTryProp("CNC2");
 			ov_userediting = true;
-			textBox9.Text = enforce_number_format(StrTryProp("OVERL"));
+			overLtb.Text = enforce_number_format(StrTryProp("OVERL"));
 			ov_userediting = true;
-			textBox10.Text = enforce_number_format(StrTryProp("OVERW"));
-			textBox11.Text = StrTryProp("BLANK QTY");
-			checkBox1.Checked = BoolTryProp("UPDATE CNC");
+			overWtb.Text = enforce_number_format(StrTryProp("OVERW"));
+			ppbtb.Text = StrTryProp("BLANK QTY");
+			updateCNCcb.Checked = BoolTryProp("UPDATE CNC");
 			length = DimTryProp(@"LENGTH");
 			width = DimTryProp(@"WIDTH");
 			thickness = DimTryProp(@"THICKNESS");
@@ -634,34 +634,34 @@ namespace RedBrick2 {
 
 		public void Commit() {
 			if (tabControl1.SelectedTab == tabPage1) {
-				PropertySet[@"Description"].Data = textBox1.Text;
+				PropertySet[@"Description"].Data = descriptiontb.Text;
 
 				// Dimensions get special treatment since the mgr stores weird strings, and DB stores doubles.
-				PropertySet[@"LENGTH"].Set(label18.Text, EnQuote(textBox2.Text));
-				PropertySet[@"WIDTH"].Set(label19.Text, EnQuote(textBox3.Text));
-				PropertySet[@"THICKNESS"].Set(label20.Text, EnQuote(textBox4.Text));
-				PropertySet[@"WALL THICKNESS"].Set(label21.Text, EnQuote(textBox5.Text));
+				PropertySet[@"LENGTH"].Set(label18.Text, EnQuote(lengthtb.Text));
+				PropertySet[@"WIDTH"].Set(label19.Text, EnQuote(widthtb.Text));
+				PropertySet[@"THICKNESS"].Set(label20.Text, EnQuote(thicknesstb.Text));
+				PropertySet[@"WALL THICKNESS"].Set(label21.Text, EnQuote(wallthicknesstb.Text));
 
-				PropertySet[@"COMMENT"].Data = textBox6.Text;
+				PropertySet[@"COMMENT"].Data = commenttb.Text;
 
-				PropertySet[@"CNC1"].Data = textBox7.Text;
-				PropertySet[@"CNC2"].Data = textBox8.Text;
-				PropertySet[@"OVERL"].Data = textBox9.Text;
-				PropertySet[@"OVERW"].Data = textBox10.Text;
-				PropertySet[@"BLANK QTY"].Data = textBox11.Text;
-				PropertySet[@"UPDATE CNC"].Data = checkBox1.Checked;
+				PropertySet[@"CNC1"].Data = cnc1tb.Text;
+				PropertySet[@"CNC2"].Data = cnc2tb.Text;
+				PropertySet[@"OVERL"].Data = overLtb.Text;
+				PropertySet[@"OVERW"].Data = overWtb.Text;
+				PropertySet[@"BLANK QTY"].Data = ppbtb.Text;
+				PropertySet[@"UPDATE CNC"].Data = updateCNCcb.Checked;
 
-				PropertySet[@"CUTLIST MATERIAL"].Data = comboBox1.SelectedValue;
-				PropertySet[@"EDGE FRONT (L)"].Data = comboBox2.SelectedValue;
-				PropertySet[@"EDGE BACK (L)"].Data = comboBox3.SelectedValue;
-				PropertySet[@"EDGE LEFT (W)"].Data = comboBox4.SelectedValue;
-				PropertySet[@"EDGE RIGHT (W)"].Data = comboBox5.SelectedValue;
+				PropertySet[@"CUTLIST MATERIAL"].Data = cutlistMat.SelectedValue;
+				PropertySet[@"EDGE FRONT (L)"].Data = edgef.SelectedValue;
+				PropertySet[@"EDGE BACK (L)"].Data = edgeb.SelectedValue;
+				PropertySet[@"EDGE LEFT (W)"].Data = edgel.SelectedValue;
+				PropertySet[@"EDGE RIGHT (W)"].Data = edger.SelectedValue;
 
-				PropertySet[@"MATID"].Data = (comboBox1.SelectedItem as DataRowView)[@"MATID"];
-				PropertySet[@"EFID"].Data = (comboBox2.SelectedItem as DataRowView)[@"EDGEID"];
-				PropertySet[@"EBID"].Data = (comboBox3.SelectedItem as DataRowView)[@"EDGEID"];
-				PropertySet[@"ELID"].Data = (comboBox4.SelectedItem as DataRowView)[@"EDGEID"];
-				PropertySet[@"ERID"].Data = (comboBox5.SelectedItem as DataRowView)[@"EDGEID"];
+				PropertySet[@"MATID"].Data = (cutlistMat.SelectedItem as DataRowView)[@"MATID"];
+				PropertySet[@"EFID"].Data = (edgef.SelectedItem as DataRowView)[@"EDGEID"];
+				PropertySet[@"EBID"].Data = (edgeb.SelectedItem as DataRowView)[@"EDGEID"];
+				PropertySet[@"ELID"].Data = (edgel.SelectedItem as DataRowView)[@"EDGEID"];
+				PropertySet[@"ERID"].Data = (edger.SelectedItem as DataRowView)[@"EDGEID"];
 
 				for (int i = 0; i < cbxes.Length; i++) {
 					ComboBox cbx = cbxes[i];
@@ -962,31 +962,31 @@ namespace RedBrick2 {
 		}
 
 		private void label1_Click(object sender, EventArgs e) {
-			Redbrick.Clip(comboBox1.Text);
+			Redbrick.Clip(cutlistMat.Text);
 		}
 
 		private void label2_Click(object sender, EventArgs e) {
-			Redbrick.Clip(comboBox2.Text);
+			Redbrick.Clip(edgef.Text);
 		}
 
 		private void label3_Click(object sender, EventArgs e) {
-			Redbrick.Clip(comboBox3.Text);
+			Redbrick.Clip(edgeb.Text);
 		}
 
 		private void label4_Click(object sender, EventArgs e) {
-			Redbrick.Clip(comboBox4.Text);
+			Redbrick.Clip(edgel.Text);
 		}
 
 		private void label5_Click(object sender, EventArgs e) {
-			Redbrick.Clip(comboBox5.Text);
+			Redbrick.Clip(edger.Text);
 		}
 
 		private void label11_Click(object sender, EventArgs e) {
-			Redbrick.Clip(comboBox6.Text);
+			Redbrick.Clip(cutlistctl.Text);
 		}
 
 		private void label12_Click(object sender, EventArgs e) {
-			Redbrick.Clip(textBox1.Text);
+			Redbrick.Clip(descriptiontb.Text);
 		}
 
 		private void button1_Click(object sender, EventArgs e) {
@@ -1017,15 +1017,15 @@ namespace RedBrick2 {
 			if (bl_userediting && Single.TryParse(_me.Text, out _test) && Single.TryParse(label18.Text, out _length)) {
 				Single _edge_thickness = 0.0F;
 
-				if (comboBox4.SelectedItem != null) {
-					_edge_thickness += (Single)(comboBox4.SelectedItem as DataRowView)[@"THICKNESS"];
+				if (edgel.SelectedItem != null) {
+					_edge_thickness += (Single)(edgel.SelectedItem as DataRowView)[@"THICKNESS"];
 				}
 
-				if (comboBox5.SelectedItem != null) {
-					_edge_thickness += (Single)(comboBox5.SelectedItem as DataRowView)[@"THICKNESS"];
+				if (edger.SelectedItem != null) {
+					_edge_thickness += (Single)(edger.SelectedItem as DataRowView)[@"THICKNESS"];
 				}
 				bl_userediting = false;
-				calculate_oversize_from_blanksize(_test, textBox9, length, _edge_thickness);
+				calculate_oversize_from_blanksize(_test, overLtb, length, _edge_thickness);
 			}
 		}
 
@@ -1036,15 +1036,15 @@ namespace RedBrick2 {
 			if (bl_userediting && Single.TryParse(_me.Text, out _test) && Single.TryParse(label19.Text, out _width)) {
 				Single _edge_thickness = 0.0F;
 
-				if (comboBox2.SelectedItem != null) {
-					_edge_thickness += (Single)(comboBox2.SelectedItem as DataRowView)[@"THICKNESS"];
+				if (edgef.SelectedItem != null) {
+					_edge_thickness += (Single)(edgef.SelectedItem as DataRowView)[@"THICKNESS"];
 				}
 
-				if (comboBox3.SelectedItem != null) {
-					_edge_thickness += (Single)(comboBox3.SelectedItem as DataRowView)[@"THICKNESS"];
+				if (edgeb.SelectedItem != null) {
+					_edge_thickness += (Single)(edgeb.SelectedItem as DataRowView)[@"THICKNESS"];
 				}
 				bl_userediting = false;
-				calculate_oversize_from_blanksize(_test, textBox10, width, _edge_thickness);
+				calculate_oversize_from_blanksize(_test, overWtb, width, _edge_thickness);
 			}
 		}
 
