@@ -49,6 +49,7 @@ namespace RedBrick2 {
 		private bool ov_userediting = false;
 		private bool bl_userediting = false;
 		private bool cl_userediting = false;
+		private bool data_from_db = false;
 		private ComboBox[] cbxes;
 		private ToolTip groupbox_tooltip = new ToolTip();
 		private ToolTip cutlist_tooltip = new ToolTip();
@@ -296,7 +297,7 @@ namespace RedBrick2 {
 					return _out;
 				}
 			}
-			return Properties.Settings.Default.DefaultMaterial;
+			return 0;
 		}
 
 		private string StrTryProp(string propname) {
@@ -324,6 +325,7 @@ namespace RedBrick2 {
 		}
 
 		private void ToggleNotInDBWarn(bool isIn) {
+			data_from_db = isIn;
 			if (isIn) {
 				groupBox1.ForeColor = Properties.Settings.Default.NormalForeground;
 				groupbox_tooltip.SetToolTip(groupBox1, Properties.Resources.InfoFromDB);
@@ -338,13 +340,46 @@ namespace RedBrick2 {
 
 		private void GetDataFromPart() {
 			ToggleNotInDBWarn(false);
-			ENGINEERINGDataSet.CUT_MATERIALSDataTable md =
-				new ENGINEERINGDataSet.CUT_MATERIALSDataTable();
+			GetDepartmentFromPart();
+			GetMaterialFromPart();
+			GetEdgesFromPart();
+
+			descriptiontb.Text = StrTryProp("Description");
+			commenttb.Text = StrTryProp("COMMENT");
+			cnc1tb.Text = StrTryProp("CNC1");
+			cnc2tb.Text = StrTryProp("CNC2");
+			ov_userediting = true;
+			overLtb.Text = enforce_number_format(StrTryProp("OVERL"));
+			ov_userediting = true;
+			overWtb.Text = enforce_number_format(StrTryProp("OVERW"));
+			ppbtb.Text = StrTryProp("BLANK QTY");
+			updateCNCcb.Checked = BoolTryProp("UPDATE CNC");
+			length = DimTryProp(@"LENGTH");
+			width = DimTryProp(@"WIDTH");
+			thickness = DimTryProp(@"THICKNESS");
+		}
+
+		private void GetDepartmentFromPart() {
+			int type = IntTryProp(@"DEPTID");
+			if (type < 1) {
+				ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter pta =
+					new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
+				type = (int)pta.GetIDByDescr(StrTryProp(@"DEPARTMENT"));
+			}
+			type_cbx.SelectedValue = type;
+		}
+
+		private void GetMaterialFromPart() {
 			int mr = (int)IntTryProp("MATID");
 			if (mr < 1) {
+				ENGINEERINGDataSet.CUT_MATERIALSDataTable md =
+					new ENGINEERINGDataSet.CUT_MATERIALSDataTable();
 				mr = md.GetMaterialIDByDescr(StrTryProp("CUTLIST MATERIAL"));
 			}
 			cutlistMat.SelectedValue = mr;
+		}
+
+		private void GetEdgesFromPart() {
 			ENGINEERINGDataSet.CUT_EDGESDataTable ed =
 				new ENGINEERINGDataSet.CUT_EDGESDataTable();
 			int er = IntTryProp("EFID");
@@ -368,25 +403,22 @@ namespace RedBrick2 {
 				er = ed.GetEdgeIDByDescr(StrTryProp("EDGE LEFT (W)"));
 			}
 			edgel.SelectedValue = er;
-
-			descriptiontb.Text = StrTryProp("Description");
-			commenttb.Text = StrTryProp("COMMENT");
-			cnc1tb.Text = StrTryProp("CNC1");
-			cnc2tb.Text = StrTryProp("CNC2");
-			ov_userediting = true;
-			overLtb.Text = enforce_number_format(StrTryProp("OVERL"));
-			ov_userediting = true;
-			overWtb.Text = enforce_number_format(StrTryProp("OVERW"));
-			ppbtb.Text = StrTryProp("BLANK QTY");
-			updateCNCcb.Checked = BoolTryProp("UPDATE CNC");
-			length = DimTryProp(@"LENGTH");
-			width = DimTryProp(@"WIDTH");
-			thickness = DimTryProp(@"THICKNESS");
 		}
 
 		private void GetRouting() {
+			if (data_from_db) {
+				GetRoutingFromDB();
+			} else {
+				GetRoutingFromPart();
+			}
+		}
+
+		private void GetRoutingFromDB() {
+			double setupTime = 0.0f;
+			double runTime = 0.0f;
+			double setup = setupTime / Properties.Settings.Default.SPQ;
 			if (eNGINEERINGDataSet.CutlistParts.Rows.Count > 0) {
-				ENGINEERINGDataSet.CutlistPartsRow r = 
+				ENGINEERINGDataSet.CutlistPartsRow r =
 					(ENGINEERINGDataSet.CutlistPartsRow)eNGINEERINGDataSet.CutlistParts.Rows[0];
 				type_cbx.SelectedValue = r.TYPE;
 				FilterOps(string.Format(@"TYPEID = {0}", r.TYPE));
@@ -394,13 +426,11 @@ namespace RedBrick2 {
 			ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpota =
 				new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
 			cpota.FillBy(eNGINEERINGDataSet.CutPartOps, partLookup);
-			double setupTime = 0.0f;
-			double runTime = 0.0f;
 
 			for (int i = 0; i < cbxes.Length; i++) {
 				ComboBox current = cbxes[i];
 				if (i < eNGINEERINGDataSet.CutPartOps.Rows.Count) {
-					ENGINEERINGDataSet.CutPartOpsRow r = 
+					ENGINEERINGDataSet.CutPartOpsRow r =
 						(eNGINEERINGDataSet.CutPartOps.Rows[i] as ENGINEERINGDataSet.CutPartOpsRow);
 					setupTime += r.POPSETUP;
 					runTime += r.POPRUN;
@@ -409,7 +439,34 @@ namespace RedBrick2 {
 					current.SelectedValue = -1;
 				}
 			}
+
+			groupBox4.Text = string.Format("Routing (Setup: {0:0} min/Run: {1:0} min)",
+				setup * 60,
+				runTime * 60);
+		}
+
+		private void GetRoutingFromPart() {
+			ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter co =
+				new ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter();
+			ENGINEERINGDataSet.CUT_OPSDataTable codt =
+				new ENGINEERINGDataSet.CUT_OPSDataTable();
+
+			int type = (int)type_cbx.SelectedValue;
+			int er = 0;
+			double setupTime = 0.0f;
+			double runTime = 0.0f;
 			double setup = setupTime / Properties.Settings.Default.SPQ;
+
+			for (int i = 0; i < cbxes.Length; i++) {
+				er = IntTryProp(string.Format("OP{0}ID", i + 1));
+				if (er < 1) {
+					codt = co.GetDataByOpName(StrTryProp(string.Format(@"OP{0}", i + 1)), type);
+					if (codt.Count > 0) {
+						er = (codt.Rows[0] as ENGINEERINGDataSet.CUT_OPSRow).OPID;
+					}
+				}
+				cbxes[i].SelectedValue = er;
+			}
 
 			groupBox4.Text = string.Format("Routing (Setup: {0:0} min/Run: {1:0} min)",
 				setup * 60,
