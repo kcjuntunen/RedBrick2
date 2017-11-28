@@ -17,9 +17,13 @@ namespace RedBrick2 {
 				if (value is string) {
 					ENGINEERINGDataSetTableAdapters.CUT_EDGES_XREFTableAdapter cex =
 						new ENGINEERINGDataSetTableAdapters.CUT_EDGES_XREFTableAdapter();
-					try {
-						_data = (int)cex.GetEdgeID(value.ToString());
-					} catch (Exception) {
+					if (value != string.Empty) {
+						try {
+							_data = (int)cex.GetEdgeID(value.ToString());
+						} catch (Exception) {
+							_data = 0;
+						}
+					} else {
 						_data = 0;
 					}
 				} else {
