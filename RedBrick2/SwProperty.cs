@@ -140,7 +140,7 @@ namespace RedBrick2 {
 					Value,
 					(int)swCustomPropertyAddOption_e.swCustomPropertyDeleteAndAdd);
 			} else {
-				WriteResult = swCustomInfoAddResult_e.swCustomInfoAddResult_GenericFail;
+				DeleteResult = (swCustomInfoDeleteResult_e)PropertyManager.Delete(Name);
 			}
 		}
 
