@@ -4,7 +4,7 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
-	public class OpProperty : StringProperty {
+	public class OpProperty : IntProperty {
 		ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter cota =
 			new ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter();
 
@@ -12,8 +12,13 @@ namespace RedBrick2 {
 		//	new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter();
 
 		public OpProperty(string name, bool global, SldWorks sw, ModelDoc2 md, string fieldName)
-			: base(name, global, sw, md, fieldName) {
+			: base(name, global, sw, md, @"CUT_PART_OPS", fieldName) {
 			SWType = swCustomInfoType_e.swCustomInfoText;
+		}
+
+		public override void Set(object data_, string value_) {
+			Value = value_;
+			Data = (int)data_;
 		}
 
 		public override SwProperty Get() {

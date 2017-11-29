@@ -4,9 +4,15 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
-	public class EdgeProperty : StringProperty {
+	public class EdgeProperty : IntProperty {
 		public EdgeProperty(string name, bool global, SldWorks sw, ModelDoc2 md, string fieldName)
-			: base(name, global, sw, md, fieldName) {
+			: base(name, global, sw, md, @"CUT_CUTLIST_PARTS", fieldName) {
+				SWType = swCustomInfoType_e.swCustomInfoText;
+		}
+
+		public override void Set(object data_, string value_) {
+			Value = value_;
+			Data = (int)data_;
 		}
 
 		protected int _data = 0;
