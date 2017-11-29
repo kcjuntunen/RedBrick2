@@ -14,6 +14,11 @@ namespace RedBrick2 {
 				DoNotWrite = true;
 		}
 
+		public override void Set(object data_, string value_) {
+			Value = value_;
+			Data = (int)data_;
+		}
+
 		public override void Write() {
 			base.Write();
 		}
