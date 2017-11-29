@@ -50,24 +50,6 @@ namespace RedBrick2 {
 			set { _type = value; }
 		}
 
-		public override void Write() {
-			int intVal = 0;
-			if (int.TryParse(Value, out intVal)) {
-				string op = (string)cota.GetOpNameByID(intVal);
-				WriteResult =
-					(swCustomInfoAddResult_e)PropertyManager.Add3(Name,
-					(int)SWType,
-					op,
-					(int)swCustomPropertyAddOption_e.swCustomPropertyDeleteAndAdd);
-			} else {
-				WriteResult =
-					(swCustomInfoAddResult_e)PropertyManager.Add3(Name,
-					(int)SWType,
-					Value,
-					(int)swCustomPropertyAddOption_e.swCustomPropertyDeleteAndAdd);
-			}
-		}
-
 		public string FriendlyValue { get; set; }
 
 		protected int _data = 0;
@@ -75,23 +57,13 @@ namespace RedBrick2 {
 		public override object Data {
 			get { return _data; }
 			set {
-				if (value is string) {
-					try {
-						ENGINEERINGDataSet.CUT_PARTSDataTable cpdt =
-							new ENGINEERINGDataSet.CUT_PARTSDataTable();
-						cpdt = cpta.GetDataByPartID(PartID);
-						OpType = (int)cpdt.Rows[0][@"TYPE"];
-					} catch (Exception) {
-
-					}
-					_data = (int)cota.GetOpIDByName(value.ToString(), OpType);
+				int res_ = 0;
+				if (int.TryParse(value.ToString(), out res_)) {
+					_data = res_;
+					Value = cota.GetOpNameByID(_data).ToString();
 				} else {
-					try {
-						_data = int.Parse(value.ToString());
-						Value = cota.GetOpNameByID(_data).ToString();
-					} catch (Exception) {
-
-					}
+					_data = (int)cota.GetOpIDByName(value.ToString(), OpType);
+					Value = cota.GetOpNameByID(_data).ToString();
 				}
 			}
 		}
