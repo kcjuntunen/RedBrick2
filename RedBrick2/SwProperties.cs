@@ -400,7 +400,7 @@ namespace RedBrick2 {
 						result += string.Format(@"{0}={1}",
 							HttpUtility.UrlEncode(item.Key), 
 							HttpUtility.UrlEncode(item.Value.Data.ToString()));
-						if (count++ <= GlobalCount) {
+						if (count++ < GlobalCount - 1) {
 							result += @"&";
 						}
 					}
@@ -422,7 +422,7 @@ namespace RedBrick2 {
 						result += string.Format(@"{0}={1}",
 							HttpUtility.UrlEncode(item.Key), 
 							HttpUtility.UrlEncode(item.Value.Data.ToString()));
-						if (count++ <= NonGlobalCount) {
+						if (count++ < NonGlobalCount - 1) {
 							result += @"&";
 						}
 					}
