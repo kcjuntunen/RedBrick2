@@ -95,7 +95,8 @@ namespace RedBrick2 {
 		/// <param name="md">A <see cref="SolidWorks.Interop.sldworks.ModelDoc2"/>.</param>
 		public void GetProperties(ModelDoc2 md) {
 			ActiveDoc = md;
-			DepartmentProperty department = new DepartmentProperty(@"DEPARTMENT", true, SwApp, md, @"TYPE");
+			DeptId deptid = new DeptId(@"DEPTID", true, SwApp, md, @"TYPE");
+			StringProperty department = new StringProperty(@"DEPARTMENT", true, SwApp, md, @"DEPTID");
 			IntProperty blankQty = new IntProperty(@"BLANK QTY", true, SwApp, md, @"CUT_PARTS", @"BLANKQTY");
 
 			StringProperty material = new StringProperty(@"MATERIAL", true, SwApp, md, string.Empty);
@@ -141,7 +142,7 @@ namespace RedBrick2 {
 			EdgeId elid = new EdgeId(@"ELID", false, SwApp, md, @"EDGEID_WL");
 
 			foreach (SwProperty item in new SwProperty[] {
-        department, blankQty,
+        deptid, department, blankQty,
         material, weight, volume, description, comment, cnc1, cnc2,
         includeInCutlist, updateCNC,
         length, width, thickness, wallThickness, overL, overW,
