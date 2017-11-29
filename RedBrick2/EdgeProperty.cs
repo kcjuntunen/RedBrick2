@@ -18,6 +18,7 @@ namespace RedBrick2 {
 					ENGINEERINGDataSetTableAdapters.CUT_EDGES_XREFTableAdapter cex =
 						new ENGINEERINGDataSetTableAdapters.CUT_EDGES_XREFTableAdapter();
 					if (value != string.Empty) {
+						Value = value.ToString();
 						try {
 							_data = (int)cex.GetEdgeID(value.ToString());
 						} catch (Exception) {

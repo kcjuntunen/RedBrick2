@@ -51,11 +51,12 @@ namespace RedBrick2 {
 					new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter();
 				try {
 					int res;
-					if (!int.TryParse(value.ToString(), out res)) {
-						res = 0;
+					if (int.TryParse(value.ToString(), out res)) {
+						_data = res;
+						Value = cmta.GetDataByMatID(res)[0].DESCR;
+					} else {
+						Value = value.ToString();
 					}
-					_data = res;
-					Value = cmta.GetDataByMatID(res)[0].DESCR;
 				} catch (Exception) {
 					_data = Properties.Settings.Default.DefaultMaterial;
 				}
