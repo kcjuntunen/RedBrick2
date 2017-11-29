@@ -364,7 +364,10 @@ namespace RedBrick2 {
 			if (type < 1) {
 				ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter pta =
 					new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
-				type = (int)pta.GetIDByDescr(StrTryProp(@"DEPARTMENT"));
+				string dept = StrTryProp(@"DEPARTMENT");
+				if (dept != string.Empty) {
+					type = (int)pta.GetIDByDescr(StrTryProp(@"DEPARTMENT"));
+				}
 			}
 			type_cbx.SelectedValue = type;
 		}
@@ -787,15 +790,14 @@ namespace RedBrick2 {
 			for (int i = 0; i < cbxes.Length; i++) {
 				ComboBox cbx = cbxes[i];
 				string op = string.Format(@"OP{0}", i + 1);
-				if (cbx.SelectedItem != null) {
-					DataRowView drv = (cbx.SelectedItem as DataRowView);
-					PropertySet[op].Set((int)cbx.SelectedValue, drv[@"OPNAME"].ToString());
-				}
-
 				string opid = string.Format(@"OP{0}ID", i + 1);
 				if (cbx.SelectedItem != null) {
 					DataRowView drv = (cbx.SelectedItem as DataRowView);
+					PropertySet[op].Set((int)cbx.SelectedValue, drv[@"OPNAME"].ToString());
 					PropertySet[opid].Set((int)cbx.SelectedValue, cbx.SelectedItem.ToString());
+				} else {
+					PropertySet[op].Set(0, string.Empty);
+					PropertySet[opid].Set(0, @"0");
 				}
 			}
 		}
@@ -981,9 +983,7 @@ namespace RedBrick2 {
 		}
 
 		private void comboBox_TextChanged(object sender, EventArgs e) {
-			if ((sender as ComboBox).Text == string.Empty) {
-				(sender as ComboBox).SelectedIndex = -1;
-			}
+
 		}
 
 		private string GetDim(string prp) {
