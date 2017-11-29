@@ -16,7 +16,7 @@ namespace RedBrick2 {
 
 		public override void Set(object data_, string value_) {
 			Value = value_;
-			Data = (int)data_;
+			_data = (int)data_;
 		}
 
 		public override void Write() {

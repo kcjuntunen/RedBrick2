@@ -12,6 +12,11 @@ namespace RedBrick2 {
 				DoNotWrite = true;
 		}
 
+		public override void Set(object data_, string value_) {
+			Value = value_;
+			_data = (int)data_;
+		}
+
 		public override SwProperty Get() {
 			InnerGet();
 			ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cpt =
