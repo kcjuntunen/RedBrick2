@@ -682,6 +682,9 @@ namespace RedBrick2 {
 			DumpActiveDoc();
 			_activeDoc = null;
 			ReQuery(md);
+			cutlistctl.SelectedIndex = -1;
+			Properties.Settings.Default.LastCutlist = -1;
+			ToggleCutlistWarn(true);
 			return 0;
 		}
 
@@ -878,6 +881,7 @@ namespace RedBrick2 {
 							SetupDrawing();
 							break;
 						case swDocumentTypes_e.swDocPART:                         //Window looking at part.
+							Component = null;
 							(tabPage1 as Control).Enabled = true;
 							if (odType != swDocumentTypes_e.swDocDRAWING) {
 								(tabPage2 as Control).Enabled = false;
