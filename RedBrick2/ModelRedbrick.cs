@@ -692,67 +692,91 @@ namespace RedBrick2 {
 			return string.Format("\"{0}\"", stuff.Replace("\"", string.Empty));
 		}
 
+		private void UpdateGeneralProperties() {
+			PropertySet[@"DEPARTMENT"].Data = (type_cbx.SelectedItem as DataRowView)[@"TYPEDESC"];
+			PropertySet[@"Description"].Data = descriptiontb.Text;
+
+			// Dimensions get special treatment since the mgr stores weird strings, and DB stores doubles.
+			PropertySet[@"LENGTH"].Set(label18.Text, EnQuote(lengthtb.Text));
+			PropertySet[@"WIDTH"].Set(label19.Text, EnQuote(widthtb.Text));
+			PropertySet[@"THICKNESS"].Set(label20.Text, EnQuote(thicknesstb.Text));
+			PropertySet[@"WALL THICKNESS"].Set(label21.Text, EnQuote(wallthicknesstb.Text));
+
+			PropertySet[@"COMMENT"].Data = commenttb.Text;
+		}
+
+		private void UpdateMachineProperties() {
+			PropertySet[@"CNC1"].Data = cnc1tb.Text;
+			PropertySet[@"CNC2"].Data = cnc2tb.Text;
+			PropertySet[@"OVERL"].Data = overLtb.Text;
+			PropertySet[@"OVERW"].Data = overWtb.Text;
+			PropertySet[@"BLANK QTY"].Data = ppbtb.Text;
+			PropertySet[@"UPDATE CNC"].Data = updateCNCcb.Checked;
+		}
+
+		private void UpdateCutlistProperties() {
+			PropertySet[@"CUTLIST MATERIAL"].Data = cutlistMat.SelectedValue;
+			PropertySet[@"MATID"].Data = (cutlistMat.SelectedItem as DataRowView)[@"MATID"];
+
+			if (edgef.SelectedItem != null) {
+				PropertySet[@"EDGE FRONT (L)"].Data = edgef.SelectedValue;
+				PropertySet[@"EFID"].Data = (edgef.SelectedItem as DataRowView)[@"EDGEID"];
+			}
+
+			if (edgeb.SelectedItem != null) {
+				PropertySet[@"EDGE BACK (L)"].Data = edgeb.SelectedValue;
+				PropertySet[@"EBID"].Data = (edgeb.SelectedItem as DataRowView)[@"EDGEID"];
+			}
+
+			if (edgel.SelectedItem != null) {
+				PropertySet[@"EDGE LEFT (W)"].Data = edgel.SelectedValue;
+				PropertySet[@"ELID"].Data = (edgel.SelectedItem as DataRowView)[@"EDGEID"];
+			}
+
+			if (edger.SelectedItem != null) {
+				PropertySet[@"EDGE RIGHT (W)"].Data = edger.SelectedValue;
+				PropertySet[@"ERID"].Data = (edger.SelectedItem as DataRowView)[@"EDGEID"];
+			}
+		}
+
+		private void UpdateRoutingProperties() {
+			for (int i = 0; i < cbxes.Length; i++) {
+				ComboBox cbx = cbxes[i];
+				string op = string.Format(@"OP{0}", i + 1);
+				if (cbx.SelectedItem != null) {
+					if (!PropertySet.Contains(op)) {
+						PropertySet.Add(new OpProperty(op, false, SwApp, ActiveDoc, op));
+					}
+					DataRowView drv = (cbx.SelectedItem as DataRowView);
+					PropertySet[op].Value = drv[@"OPNAME"].ToString();
+				} else {
+					if (PropertySet.Contains(op)) {
+						PropertySet[op].Delete();
+					}
+				}
+
+
+				string opid = string.Format(@"OP{0}ID", i + 1);
+				if (cbx.SelectedItem != null) {
+					if (!PropertySet.Contains(opid)) {
+						PropertySet.Add(new OpId(opid, false, SwApp, ActiveDoc, op));
+					}
+					DataRowView drv = (cbx.SelectedItem as DataRowView);
+					PropertySet[opid].Value = drv[@"OPID"].ToString();
+				} else {
+					if (PropertySet.Contains(opid)) {
+						PropertySet[opid].Delete();
+					}
+				}
+			}
+		}
+
 		public void Commit() {
 			if (tabControl1.SelectedTab == tabPage1) {
-				PropertySet[@"Description"].Data = descriptiontb.Text;
-
-				// Dimensions get special treatment since the mgr stores weird strings, and DB stores doubles.
-				PropertySet[@"LENGTH"].Set(label18.Text, EnQuote(lengthtb.Text));
-				PropertySet[@"WIDTH"].Set(label19.Text, EnQuote(widthtb.Text));
-				PropertySet[@"THICKNESS"].Set(label20.Text, EnQuote(thicknesstb.Text));
-				PropertySet[@"WALL THICKNESS"].Set(label21.Text, EnQuote(wallthicknesstb.Text));
-
-				PropertySet[@"COMMENT"].Data = commenttb.Text;
-
-				PropertySet[@"CNC1"].Data = cnc1tb.Text;
-				PropertySet[@"CNC2"].Data = cnc2tb.Text;
-				PropertySet[@"OVERL"].Data = overLtb.Text;
-				PropertySet[@"OVERW"].Data = overWtb.Text;
-				PropertySet[@"BLANK QTY"].Data = ppbtb.Text;
-				PropertySet[@"UPDATE CNC"].Data = updateCNCcb.Checked;
-
-				PropertySet[@"CUTLIST MATERIAL"].Data = cutlistMat.SelectedValue;
-				PropertySet[@"EDGE FRONT (L)"].Data = edgef.SelectedValue;
-				PropertySet[@"EDGE BACK (L)"].Data = edgeb.SelectedValue;
-				PropertySet[@"EDGE LEFT (W)"].Data = edgel.SelectedValue;
-				PropertySet[@"EDGE RIGHT (W)"].Data = edger.SelectedValue;
-
-				PropertySet[@"MATID"].Data = (cutlistMat.SelectedItem as DataRowView)[@"MATID"];
-				PropertySet[@"EFID"].Data = (edgef.SelectedItem as DataRowView)[@"EDGEID"];
-				PropertySet[@"EBID"].Data = (edgeb.SelectedItem as DataRowView)[@"EDGEID"];
-				PropertySet[@"ELID"].Data = (edgel.SelectedItem as DataRowView)[@"EDGEID"];
-				PropertySet[@"ERID"].Data = (edger.SelectedItem as DataRowView)[@"EDGEID"];
-
-				for (int i = 0; i < cbxes.Length; i++) {
-					ComboBox cbx = cbxes[i];
-					string op = string.Format(@"OP{0}", i + 1);
-					if (cbx.SelectedItem != null) {
-						if (!PropertySet.Contains(op)) {
-							PropertySet.Add(new OpProperty(op, false, SwApp, ActiveDoc, op));
-						}
-						DataRowView drv = (cbx.SelectedItem as DataRowView);
-						PropertySet[op].Value = drv[@"OPNAME"].ToString();
-					} else {
-						if (PropertySet.Contains(op)) {
-							PropertySet[op].Delete();
-						}
-					}
-
-
-					string opid = string.Format(@"OP{0}ID", i + 1);
-					if (cbx.SelectedItem != null) {
-						if (!PropertySet.Contains(opid)) {
-							PropertySet.Add(new OpId(opid, false, SwApp, ActiveDoc, op));
-						}
-						DataRowView drv = (cbx.SelectedItem as DataRowView);
-						PropertySet[opid].Value = drv[@"OPID"].ToString();
-					} else {
-						if (PropertySet.Contains(opid)) {
-							PropertySet[opid].Delete();
-						}
-					}
-
-				}
+				UpdateGeneralProperties();
+				UpdateMachineProperties();
+				UpdateCutlistProperties();
+				UpdateRoutingProperties();
 
 				PropertySet.Write();
 			} else if (tabControl1.SelectedTab == tabPage2) {
