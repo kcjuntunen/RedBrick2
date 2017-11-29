@@ -123,7 +123,7 @@
     </Compile>
     <Compile Include="CustomerProperty.cs" />
     <Compile Include="DateProperty.cs" />
-    <Compile Include="DepartmentProperty.cs" />
+    <Compile Include="DeptId.cs" />
     <Compile Include="DrawingRedbrick.cs">
       <SubType>UserControl</SubType>
     </Compile>
