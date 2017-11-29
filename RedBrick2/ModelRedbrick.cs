@@ -693,7 +693,8 @@ namespace RedBrick2 {
 		}
 
 		private void UpdateGeneralProperties() {
-			PropertySet[@"DEPARTMENT"].Data = (type_cbx.SelectedItem as DataRowView)[@"TYPEDESC"];
+			DataRowView _drv = type_cbx.SelectedItem as DataRowView;
+			PropertySet[@"DEPARTMENT"].Set(type_cbx.SelectedValue, _drv[@"TYPEDESC"].ToString());
 			PropertySet[@"Description"].Data = descriptiontb.Text;
 
 			// Dimensions get special treatment since the mgr stores weird strings, and DB stores doubles.
@@ -715,27 +716,34 @@ namespace RedBrick2 {
 		}
 
 		private void UpdateCutlistProperties() {
-			PropertySet[@"CUTLIST MATERIAL"].Data = cutlistMat.SelectedValue;
-			PropertySet[@"MATID"].Data = (cutlistMat.SelectedItem as DataRowView)[@"MATID"];
+			if (cutlistMat.SelectedItem != null) {
+				DataRowView _drv = cutlistMat.SelectedItem as DataRowView;
+				PropertySet[@"CUTLIST MATERIAL"].Set((int)cutlistMat.SelectedValue, _drv[@"DESCR"].ToString());
+				PropertySet[@"MATID"].Set((int)cutlistMat.SelectedValue, cutlistMat.SelectedValue.ToString());
+			}
 
 			if (edgef.SelectedItem != null) {
-				PropertySet[@"EDGE FRONT (L)"].Data = edgef.SelectedValue;
-				PropertySet[@"EFID"].Data = (edgef.SelectedItem as DataRowView)[@"EDGEID"];
+				DataRowView _drv = edgef.SelectedItem as DataRowView;
+				PropertySet[@"EDGE FRONT (L)"].Set((int)edgef.SelectedValue, _drv[@"DESCR"].ToString());
+				PropertySet[@"EFID"].Set((int)edgef.SelectedValue, edgef.SelectedValue.ToString());
 			}
 
 			if (edgeb.SelectedItem != null) {
-				PropertySet[@"EDGE BACK (L)"].Data = edgeb.SelectedValue;
-				PropertySet[@"EBID"].Data = (edgeb.SelectedItem as DataRowView)[@"EDGEID"];
+				DataRowView _drv = edgeb.SelectedItem as DataRowView;
+				PropertySet[@"EDGE BACK (L)"].Set((int)edgeb.SelectedValue, _drv[@"DESCR"].ToString());
+				PropertySet[@"EBID"].Set((int)edgeb.SelectedValue, edgeb.SelectedValue.ToString());
 			}
 
 			if (edgel.SelectedItem != null) {
-				PropertySet[@"EDGE LEFT (W)"].Data = edgel.SelectedValue;
-				PropertySet[@"ELID"].Data = (edgel.SelectedItem as DataRowView)[@"EDGEID"];
+				DataRowView _drv = edgel.SelectedItem as DataRowView;
+				PropertySet[@"EDGE LEFT (W)"].Set((int)edgel.SelectedValue, _drv[@"DESCR"].ToString());
+				PropertySet[@"ELID"].Set((int)edgel.SelectedValue, edgel.SelectedValue.ToString());
 			}
 
 			if (edger.SelectedItem != null) {
-				PropertySet[@"EDGE RIGHT (W)"].Data = edger.SelectedValue;
-				PropertySet[@"ERID"].Data = (edger.SelectedItem as DataRowView)[@"EDGEID"];
+				DataRowView _drv = edger.SelectedItem as DataRowView;
+				PropertySet[@"EDGE RIGHT (W)"].Set((int)edger.SelectedValue, _drv[@"DESCR"].ToString());
+				PropertySet[@"ERID"].Set((int)edger.SelectedValue, edger.SelectedValue.ToString());
 			}
 		}
 
@@ -745,13 +753,13 @@ namespace RedBrick2 {
 				string op = string.Format(@"OP{0}", i + 1);
 				if (cbx.SelectedItem != null) {
 					DataRowView drv = (cbx.SelectedItem as DataRowView);
-					PropertySet[op].Data = drv[@"OPID"];
+					PropertySet[op].Set((int)cbx.SelectedValue, drv[@"OPNAME"].ToString());
 				}
 
 				string opid = string.Format(@"OP{0}ID", i + 1);
 				if (cbx.SelectedItem != null) {
 					DataRowView drv = (cbx.SelectedItem as DataRowView);
-					PropertySet[opid].Data = drv[@"OPID"];
+					PropertySet[opid].Set((int)cbx.SelectedValue, cbx.SelectedItem.ToString());
 				}
 			}
 		}
