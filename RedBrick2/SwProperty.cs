@@ -53,7 +53,7 @@ namespace RedBrick2 {
 
 		private void SetDefaults() {
 			ToDB = TableName != string.Empty && FieldName != string.Empty;
-			Old = false;
+			DoNotWrite = false;
 		}
 
 		private void GetFileInfo() {
@@ -133,11 +133,15 @@ namespace RedBrick2 {
 		/// Write the property data to SolidWorks.
 		/// </summary>
 		public virtual void Write() {
-			WriteResult =
-				(swCustomInfoAddResult_e)PropertyManager.Add3(Name,
-				(int)SWType,
-				Value,
-				(int)swCustomPropertyAddOption_e.swCustomPropertyDeleteAndAdd);
+			if (!DoNotWrite) {
+				WriteResult =
+					(swCustomInfoAddResult_e)PropertyManager.Add3(Name,
+					(int)SWType,
+					Value,
+					(int)swCustomPropertyAddOption_e.swCustomPropertyDeleteAndAdd);
+			} else {
+				WriteResult = swCustomInfoAddResult_e.swCustomInfoAddResult_GenericFail;
+			}
 		}
 
 		public virtual void Delete() {
@@ -146,7 +150,7 @@ namespace RedBrick2 {
 
 		public bool ToDB { get; set; }
 
-		public bool Old { get; set; }
+		public bool DoNotWrite { get; set; }
 
 		public FileInfo PartFileInfo { get; set; }
 
