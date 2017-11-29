@@ -744,29 +744,14 @@ namespace RedBrick2 {
 				ComboBox cbx = cbxes[i];
 				string op = string.Format(@"OP{0}", i + 1);
 				if (cbx.SelectedItem != null) {
-					if (!PropertySet.Contains(op)) {
-						PropertySet.Add(new OpProperty(op, false, SwApp, ActiveDoc, op));
-					}
 					DataRowView drv = (cbx.SelectedItem as DataRowView);
 					PropertySet[op].Value = drv[@"OPNAME"].ToString();
-				} else {
-					if (PropertySet.Contains(op)) {
-						PropertySet[op].Delete();
-					}
 				}
-
 
 				string opid = string.Format(@"OP{0}ID", i + 1);
 				if (cbx.SelectedItem != null) {
-					if (!PropertySet.Contains(opid)) {
-						PropertySet.Add(new OpId(opid, false, SwApp, ActiveDoc, op));
-					}
 					DataRowView drv = (cbx.SelectedItem as DataRowView);
 					PropertySet[opid].Value = drv[@"OPID"].ToString();
-				} else {
-					if (PropertySet.Contains(opid)) {
-						PropertySet[opid].Delete();
-					}
 				}
 			}
 		}
