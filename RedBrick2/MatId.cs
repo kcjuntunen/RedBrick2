@@ -11,7 +11,7 @@ namespace RedBrick2 {
 
 		public MatId(string name, bool global, SldWorks sw, ModelDoc2 md, string fieldName)
 			: base(name, global, sw, md, @"", fieldName) {
-
+				DoNotWrite = true;
 		}
 
 		public override void Write() {

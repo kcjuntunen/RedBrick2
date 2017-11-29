@@ -14,7 +14,7 @@ namespace RedBrick2 {
 
 		public OpId(string name, bool global, SldWorks sw, ModelDoc2 md, string fieldName)
 			: base(name, global, sw, md, @"CUT_PART_OPS", fieldName) {
-
+				DoNotWrite = true;
 		}
 
 		public override SwProperty Get() {
