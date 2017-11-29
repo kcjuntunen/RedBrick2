@@ -416,7 +416,6 @@ namespace RedBrick2 {
 		private void GetRoutingFromDB() {
 			double setupTime = 0.0f;
 			double runTime = 0.0f;
-			double setup = setupTime / Properties.Settings.Default.SPQ;
 			if (eNGINEERINGDataSet.CutlistParts.Rows.Count > 0) {
 				ENGINEERINGDataSet.CutlistPartsRow r =
 					(ENGINEERINGDataSet.CutlistPartsRow)eNGINEERINGDataSet.CutlistParts.Rows[0];
@@ -440,6 +439,43 @@ namespace RedBrick2 {
 				}
 			}
 
+			double setup = setupTime / Properties.Settings.Default.SPQ;
+			groupBox4.Text = string.Format("Routing (Setup: {0:0} min/Run: {1:0} min)",
+				setup * 60,
+				runTime * 60);
+		}
+
+		private void GetEstimationFromDB() {
+			double setupTime = 0.0f;
+			double runTime = 0.0f;
+			for (int i = 0; i < cbxes.Length; i++) {
+				ComboBox current = cbxes[i];
+				DataRowView r = current.SelectedItem as DataRowView;
+				if (r != null) {
+					setupTime += (double)r[@"POPSETUP"];
+					runTime += (double)r[@"POPRUN"];
+				}
+			}
+
+			double setup = setupTime / Properties.Settings.Default.SPQ;
+			groupBox4.Text = string.Format("Routing (Setup: {0:0} min/Run: {1:0} min)",
+				setup * 60,
+				runTime * 60);
+		}
+
+		private void GetEstimationFromPart() {
+			double setupTime = 0.0f;
+			double runTime = 0.0f;
+			for (int i = 0; i < cbxes.Length; i++) {
+				ComboBox current = cbxes[i];
+				DataRowView r = current.SelectedItem as DataRowView;
+				if (r != null) {
+					setupTime += (double)r[@"OPSETUP"];
+					runTime += (double)r[@"OPRUN"];
+				}
+			}
+
+			double setup = setupTime / Properties.Settings.Default.SPQ;
 			groupBox4.Text = string.Format("Routing (Setup: {0:0} min/Run: {1:0} min)",
 				setup * 60,
 				runTime * 60);
@@ -453,24 +489,24 @@ namespace RedBrick2 {
 
 			int type = (int)type_cbx.SelectedValue;
 			int er = 0;
-			double setupTime = 0.0f;
-			double runTime = 0.0f;
-			double setup = setupTime / Properties.Settings.Default.SPQ;
 
 			for (int i = 0; i < cbxes.Length; i++) {
 				er = IntTryProp(string.Format("OP{0}ID", i + 1));
 				if (er < 1) {
 					codt = co.GetDataByOpName(StrTryProp(string.Format(@"OP{0}", i + 1)), type);
 					if (codt.Count > 0) {
-						er = (codt.Rows[0] as ENGINEERINGDataSet.CUT_OPSRow).OPID;
+						ENGINEERINGDataSet.CUT_OPSRow r = (codt.Rows[0] as ENGINEERINGDataSet.CUT_OPSRow);
+						er = r.OPID;
 					}
 				}
-				cbxes[i].SelectedValue = er;
-			}
 
-			groupBox4.Text = string.Format("Routing (Setup: {0:0} min/Run: {1:0} min)",
-				setup * 60,
-				runTime * 60);
+				if (er < 1) {
+					er = -1;
+				}
+
+				cbxes[i].SelectedValue = er;
+				GetEstimationFromPart();
+			}
 		}
 
 		private void FilterOps(string filter) {
@@ -772,6 +808,11 @@ namespace RedBrick2 {
 				UpdateRoutingProperties();
 
 				PropertySet.Write();
+				if (data_from_db) {
+					GetEstimationFromDB();
+				} else {
+					GetEstimationFromPart();
+				}
 			} else if (tabControl1.SelectedTab == tabPage2) {
 				drawingRedbrick.Commit();
 			}
