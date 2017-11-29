@@ -96,7 +96,7 @@ namespace RedBrick2 {
 		public void GetProperties(ModelDoc2 md) {
 			ActiveDoc = md;
 			DeptId deptid = new DeptId(@"DEPTID", true, SwApp, md, @"TYPE");
-			StringProperty department = new StringProperty(@"DEPARTMENT", true, SwApp, md, @"DEPTID");
+			DepartmentProperty department = new DepartmentProperty(@"DEPARTMENT", true, SwApp, md, @"DEPTID");
 			IntProperty blankQty = new IntProperty(@"BLANK QTY", true, SwApp, md, @"CUT_PARTS", @"BLANKQTY");
 
 			StringProperty material = new StringProperty(@"MATERIAL", true, SwApp, md, string.Empty);

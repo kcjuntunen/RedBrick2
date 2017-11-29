@@ -745,13 +745,13 @@ namespace RedBrick2 {
 				string op = string.Format(@"OP{0}", i + 1);
 				if (cbx.SelectedItem != null) {
 					DataRowView drv = (cbx.SelectedItem as DataRowView);
-					PropertySet[op].Value = drv[@"OPNAME"].ToString();
+					PropertySet[op].Data = drv[@"OPID"];
 				}
 
 				string opid = string.Format(@"OP{0}ID", i + 1);
 				if (cbx.SelectedItem != null) {
 					DataRowView drv = (cbx.SelectedItem as DataRowView);
-					PropertySet[opid].Value = drv[@"OPID"].ToString();
+					PropertySet[opid].Data = drv[@"OPID"];
 				}
 			}
 		}
