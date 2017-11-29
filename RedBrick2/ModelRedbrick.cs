@@ -514,7 +514,7 @@ namespace RedBrick2 {
 
 		private void FilterOps(string filter) {
 			if (filter == string.Empty) {
-				filter = 1;
+				filter = "1";
 			}
 			friendlyCutOpsBindingSource.Filter = filter;
 			friendlyCutOpsBindingSource1.Filter = filter;
