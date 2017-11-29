@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 
+using System.Web;
+
 using SolidWorks.Interop.sldworks;
 
 namespace RedBrick2 {
@@ -184,12 +186,14 @@ namespace RedBrick2 {
 		public void Add(SwProperty property) {
 			try {
 				_innerDict.Add(property.Name, property);
-				if (property.Global) {
-					globalCount++;
-				} else {
-					nonGlobalCount++;
+				if (!property.DoNotWrite) {
+					if (property.Global) {
+						globalCount++;
+					} else {
+						nonGlobalCount++;
+					}
+					totalCount++;
 				}
-				totalCount++;
 			} catch (Exception e) {
 				AddException = e;
 			}
@@ -392,13 +396,16 @@ namespace RedBrick2 {
 				string result = string.Empty;
 				int count = 0;
 				foreach (KeyValuePair<string, SwProperty> item in _innerDict) {
-					if (item.Value.Global) {
-						result += string.Format(@"{0}={1}", item.Key, item.Value.Data.ToString());
-						if (count++ < GlobalCount) {
+					if (!item.Value.DoNotWrite && item.Value.Global) {
+						result += string.Format(@"{0}={1}",
+							HttpUtility.UrlEncode(item.Key), 
+							HttpUtility.UrlEncode(item.Value.Data.ToString()));
+						if (count++ <= GlobalCount) {
 							result += @"&";
 						}
 					}
 				}
+
 				return result;
 			}
 		}
@@ -411,9 +418,11 @@ namespace RedBrick2 {
 				string result = string.Empty;
 				int count = 0;
 				foreach (KeyValuePair<string, SwProperty> item in _innerDict) {
-					if (!item.Value.Global) {
-						result += string.Format(@"{0}={1}", item.Key, item.Value.Data.ToString());
-						if (count++ < NonGlobalCount) {
+					if (!item.Value.DoNotWrite && !item.Value.Global) {
+						result += string.Format(@"{0}={1}",
+							HttpUtility.UrlEncode(item.Key), 
+							HttpUtility.UrlEncode(item.Value.Data.ToString()));
+						if (count++ <= NonGlobalCount) {
 							result += @"&";
 						}
 					}
