@@ -1213,6 +1213,7 @@ namespace RedBrick2 {
 
 		private void comboBox6_MouseClick(object sender, MouseEventArgs e) {
 			cl_userediting = true;
+			FocusHere(sender, e);
 		}
 
 		private void textBox7_TextChanged(object sender, EventArgs e) {
@@ -1290,6 +1291,31 @@ namespace RedBrick2 {
 				TogglePPBWarn(true);
 			} else {
 				TogglePPBWarn(false);
+			}
+		}
+
+		private void comboBox_validating(object sender, CancelEventArgs e) {
+			ComboBox cbx = sender as ComboBox;
+			if (cbx.Text != string.Empty) {
+				cbx.SelectedIndex = cbx.FindStringExact(cbx.Text);
+			} else {
+				cbx.SelectedIndex = -1;
+			}
+		}
+
+		private void FocusHere(object sender, MouseEventArgs e) {
+			if (sender is ComboBox) {
+				if ((sender as ComboBox).DroppedDown) {
+					//
+				} else {
+					(sender as ComboBox).Focus();
+				}
+			} else if (sender is TextBox) {
+				(sender as TextBox).Focus();
+			} else if (sender is NumericUpDown) {
+				(sender as NumericUpDown).Focus();
+			} else if (sender is CheckBox) {
+				(sender as CheckBox).Focus();
 			}
 		}
 	}

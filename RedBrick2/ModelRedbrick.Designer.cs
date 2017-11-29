@@ -265,6 +265,7 @@ namespace RedBrick2 {
 			this.cutlistMat.ValueMember = "MATID";
 			this.cutlistMat.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
 			this.cutlistMat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+			this.cutlistMat.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.cutlistMat.Resize += new System.EventHandler(this.comboBox_Resize);
 			// 
 			// cutlistPartsBindingSource
@@ -307,8 +308,8 @@ namespace RedBrick2 {
 			this.edgef.TabIndex = 2;
 			this.edgef.ValueMember = "EDGEID";
 			this.edgef.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
-			this.edgef.TextChanged += new System.EventHandler(this.comboBox_TextChanged);
 			this.edgef.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+			this.edgef.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.edgef.Resize += new System.EventHandler(this.comboBox_Resize);
 			// 
 			// cUTEDGESBindingSource
@@ -341,8 +342,8 @@ namespace RedBrick2 {
 			this.edgeb.TabIndex = 3;
 			this.edgeb.ValueMember = "EDGEID";
 			this.edgeb.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
-			this.edgeb.TextChanged += new System.EventHandler(this.comboBox_TextChanged);
 			this.edgeb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+			this.edgeb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.edgeb.Resize += new System.EventHandler(this.comboBox_Resize);
 			// 
 			// cUTEDGESBindingSource1
@@ -385,8 +386,8 @@ namespace RedBrick2 {
 			this.edgel.TabIndex = 4;
 			this.edgel.ValueMember = "EDGEID";
 			this.edgel.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
-			this.edgel.TextChanged += new System.EventHandler(this.comboBox_TextChanged);
 			this.edgel.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+			this.edgel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.edgel.Resize += new System.EventHandler(this.comboBox_Resize);
 			// 
 			// cUTEDGESBindingSource2
@@ -414,8 +415,8 @@ namespace RedBrick2 {
 			this.edger.TabIndex = 5;
 			this.edger.ValueMember = "EDGEID";
 			this.edger.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
-			this.edger.TextChanged += new System.EventHandler(this.comboBox_TextChanged);
 			this.edger.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+			this.edger.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.edger.Resize += new System.EventHandler(this.comboBox_Resize);
 			// 
 			// cUTEDGESBindingSource3
@@ -522,6 +523,7 @@ namespace RedBrick2 {
 			this.partq.Name = "partq";
 			this.partq.Size = new System.Drawing.Size(75, 22);
 			this.partq.TabIndex = 8;
+			this.partq.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			// 
 			// cutlistctl
 			// 
@@ -538,7 +540,6 @@ namespace RedBrick2 {
 			this.cutlistctl.TabIndex = 6;
 			this.cutlistctl.ValueMember = "CLID";
 			this.cutlistctl.SelectedIndexChanged += new System.EventHandler(this.comboBox6_SelectedIndexChanged);
-			this.cutlistctl.TextChanged += new System.EventHandler(this.comboBox_TextChanged);
 			this.cutlistctl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.cutlistctl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox6_MouseClick);
 			this.cutlistctl.Resize += new System.EventHandler(this.comboBox_Resize);
@@ -651,6 +652,7 @@ namespace RedBrick2 {
 			this.descriptiontb.Name = "descriptiontb";
 			this.descriptiontb.Size = new System.Drawing.Size(264, 22);
 			this.descriptiontb.TabIndex = 7;
+			this.descriptiontb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.descriptiontb.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
 			// 
 			// cUTPARTSBindingSource
@@ -666,6 +668,7 @@ namespace RedBrick2 {
 			this.lengthtb.Name = "lengthtb";
 			this.lengthtb.Size = new System.Drawing.Size(183, 22);
 			this.lengthtb.TabIndex = 8;
+			this.lengthtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.lengthtb.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
 			this.lengthtb.Enter += new System.EventHandler(this.textBox_Enter);
 			this.lengthtb.Leave += new System.EventHandler(this.textBox_Leave);
@@ -690,6 +693,7 @@ namespace RedBrick2 {
 			this.commenttb.Name = "commenttb";
 			this.commenttb.Size = new System.Drawing.Size(264, 42);
 			this.commenttb.TabIndex = 11;
+			this.commenttb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			// 
 			// widthtb
 			// 
@@ -699,6 +703,7 @@ namespace RedBrick2 {
 			this.widthtb.Name = "widthtb";
 			this.widthtb.Size = new System.Drawing.Size(183, 22);
 			this.widthtb.TabIndex = 9;
+			this.widthtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.widthtb.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
 			this.widthtb.Enter += new System.EventHandler(this.textBox_Enter);
 			this.widthtb.Leave += new System.EventHandler(this.textBox_Leave);
@@ -711,6 +716,7 @@ namespace RedBrick2 {
 			this.thicknesstb.Name = "thicknesstb";
 			this.thicknesstb.Size = new System.Drawing.Size(183, 22);
 			this.thicknesstb.TabIndex = 10;
+			this.thicknesstb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.thicknesstb.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
 			this.thicknesstb.Enter += new System.EventHandler(this.textBox_Enter);
 			this.thicknesstb.Leave += new System.EventHandler(this.textBox_Leave);
@@ -723,6 +729,7 @@ namespace RedBrick2 {
 			this.wallthicknesstb.Name = "wallthicknesstb";
 			this.wallthicknesstb.Size = new System.Drawing.Size(183, 22);
 			this.wallthicknesstb.TabIndex = 10;
+			this.wallthicknesstb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.wallthicknesstb.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
 			this.wallthicknesstb.Enter += new System.EventHandler(this.textBox_Enter);
 			this.wallthicknesstb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ov_textBox_KeyDown);
@@ -850,6 +857,7 @@ namespace RedBrick2 {
 			this.cnc1tb.Name = "cnc1tb";
 			this.cnc1tb.Size = new System.Drawing.Size(86, 22);
 			this.cnc1tb.TabIndex = 12;
+			this.cnc1tb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.cnc1tb.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
 			// 
 			// label25
@@ -874,6 +882,7 @@ namespace RedBrick2 {
 			this.overLtb.Name = "overLtb";
 			this.overLtb.Size = new System.Drawing.Size(86, 22);
 			this.overLtb.TabIndex = 15;
+			this.overLtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.overLtb.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
 			this.overLtb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ov_textBox_KeyDown);
 			this.overLtb.Leave += new System.EventHandler(this.dimension_textBox_Leave);
@@ -899,6 +908,7 @@ namespace RedBrick2 {
 			this.blnkszLtb.Name = "blnkszLtb";
 			this.blnkszLtb.Size = new System.Drawing.Size(67, 22);
 			this.blnkszLtb.TabIndex = 18;
+			this.blnkszLtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.blnkszLtb.TextChanged += new System.EventHandler(this.textBox12_TextChanged);
 			this.blnkszLtb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.bl_textBox_KeyDown);
 			this.blnkszLtb.Leave += new System.EventHandler(this.dimension_textBox_Leave);
@@ -913,6 +923,7 @@ namespace RedBrick2 {
 			this.overWtb.Name = "overWtb";
 			this.overWtb.Size = new System.Drawing.Size(92, 22);
 			this.overWtb.TabIndex = 16;
+			this.overWtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.overWtb.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
 			this.overWtb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ov_textBox_KeyDown);
 			this.overWtb.Leave += new System.EventHandler(this.dimension_textBox_Leave);
@@ -939,6 +950,7 @@ namespace RedBrick2 {
 			this.cnc2tb.Name = "cnc2tb";
 			this.cnc2tb.Size = new System.Drawing.Size(92, 22);
 			this.cnc2tb.TabIndex = 13;
+			this.cnc2tb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.cnc2tb.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
 			// 
 			// label23
@@ -971,6 +983,7 @@ namespace RedBrick2 {
 			this.updateCNCcb.Size = new System.Drawing.Size(15, 14);
 			this.updateCNCcb.TabIndex = 14;
 			this.updateCNCcb.UseVisualStyleBackColor = true;
+			this.updateCNCcb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			// 
 			// label27
 			// 
@@ -990,6 +1003,7 @@ namespace RedBrick2 {
 			this.ppbtb.Name = "ppbtb";
 			this.ppbtb.Size = new System.Drawing.Size(74, 22);
 			this.ppbtb.TabIndex = 17;
+			this.ppbtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.ppbtb.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
 			// 
 			// prioritybtn
@@ -1027,6 +1041,7 @@ namespace RedBrick2 {
 			this.blnkszWtb.Name = "blnkszWtb";
 			this.blnkszWtb.Size = new System.Drawing.Size(73, 22);
 			this.blnkszWtb.TabIndex = 19;
+			this.blnkszWtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.blnkszWtb.TextChanged += new System.EventHandler(this.textBox13_TextChanged);
 			this.blnkszWtb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.bl_textBox_KeyDown);
 			this.blnkszWtb.Leave += new System.EventHandler(this.dimension_textBox_Leave);
@@ -1137,6 +1152,9 @@ namespace RedBrick2 {
 			this.op5_cbx.Size = new System.Drawing.Size(184, 21);
 			this.op5_cbx.TabIndex = 26;
 			this.op5_cbx.ValueMember = "OPID";
+			this.op5_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+			this.op5_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
+			this.op5_cbx.Validating += new System.ComponentModel.CancelEventHandler(this.comboBox_validating);
 			// 
 			// friendlyCutOpsBindingSource4
 			// 
@@ -1217,6 +1235,9 @@ namespace RedBrick2 {
 			this.op4_cbx.Size = new System.Drawing.Size(184, 21);
 			this.op4_cbx.TabIndex = 25;
 			this.op4_cbx.ValueMember = "OPID";
+			this.op4_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+			this.op4_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
+			this.op4_cbx.Validating += new System.ComponentModel.CancelEventHandler(this.comboBox_validating);
 			// 
 			// friendlyCutOpsBindingSource3
 			// 
@@ -1237,6 +1258,9 @@ namespace RedBrick2 {
 			this.op3_cbx.Size = new System.Drawing.Size(184, 21);
 			this.op3_cbx.TabIndex = 24;
 			this.op3_cbx.ValueMember = "OPID";
+			this.op3_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+			this.op3_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
+			this.op3_cbx.Validating += new System.ComponentModel.CancelEventHandler(this.comboBox_validating);
 			// 
 			// friendlyCutOpsBindingSource2
 			// 
@@ -1257,6 +1281,9 @@ namespace RedBrick2 {
 			this.op2_cbx.Size = new System.Drawing.Size(184, 21);
 			this.op2_cbx.TabIndex = 23;
 			this.op2_cbx.ValueMember = "OPID";
+			this.op2_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+			this.op2_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
+			this.op2_cbx.Validating += new System.ComponentModel.CancelEventHandler(this.comboBox_validating);
 			// 
 			// friendlyCutOpsBindingSource1
 			// 
@@ -1277,6 +1304,9 @@ namespace RedBrick2 {
 			this.op1_cbx.Size = new System.Drawing.Size(184, 21);
 			this.op1_cbx.TabIndex = 22;
 			this.op1_cbx.ValueMember = "OPID";
+			this.op1_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+			this.op1_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
+			this.op1_cbx.Validating += new System.ComponentModel.CancelEventHandler(this.comboBox_validating);
 			// 
 			// friendlyCutOpsBindingSource
 			// 
@@ -1297,6 +1327,7 @@ namespace RedBrick2 {
 			this.type_cbx.TabIndex = 21;
 			this.type_cbx.ValueMember = "TYPEID";
 			this.type_cbx.SelectedIndexChanged += new System.EventHandler(this.comboBox12_SelectedIndexChanged);
+			this.type_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			// 
 			// cUTPARTTYPESBindingSource
 			// 
