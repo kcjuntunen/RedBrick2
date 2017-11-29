@@ -51,9 +51,9 @@ namespace RedBrick2 {
 			this.label9 = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
 			this.label11 = new System.Windows.Forms.Label();
-			this.cutlistctl = new System.Windows.Forms.ComboBox();
 			this.label30 = new System.Windows.Forms.Label();
 			this.partq = new System.Windows.Forms.NumericUpDown();
+			this.cutlistctl = new System.Windows.Forms.ComboBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.label12 = new System.Windows.Forms.Label();
@@ -504,6 +504,25 @@ namespace RedBrick2 {
 			this.label11.Text = "Cutlist";
 			this.label11.Click += new System.EventHandler(this.label11_Click);
 			// 
+			// label30
+			// 
+			this.label30.AutoSize = true;
+			this.label30.Location = new System.Drawing.Point(192, 200);
+			this.label30.Name = "label30";
+			this.label30.Size = new System.Drawing.Size(49, 13);
+			this.label30.TabIndex = 7;
+			this.label30.Text = "Part QTY";
+			// 
+			// partq
+			// 
+			this.partq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.partq.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.cutlistPartsBindingSource, "QTY", true));
+			this.partq.Location = new System.Drawing.Point(192, 216);
+			this.partq.Name = "partq";
+			this.partq.Size = new System.Drawing.Size(75, 22);
+			this.partq.TabIndex = 8;
+			// 
 			// cutlistctl
 			// 
 			this.cutlistctl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -523,25 +542,6 @@ namespace RedBrick2 {
 			this.cutlistctl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.cutlistctl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox6_MouseClick);
 			this.cutlistctl.Resize += new System.EventHandler(this.comboBox_Resize);
-			// 
-			// label30
-			// 
-			this.label30.AutoSize = true;
-			this.label30.Location = new System.Drawing.Point(192, 200);
-			this.label30.Name = "label30";
-			this.label30.Size = new System.Drawing.Size(49, 13);
-			this.label30.TabIndex = 7;
-			this.label30.Text = "Part QTY";
-			// 
-			// partq
-			// 
-			this.partq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.partq.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.cutlistPartsBindingSource, "QTY", true));
-			this.partq.Location = new System.Drawing.Point(192, 216);
-			this.partq.Name = "partq";
-			this.partq.Size = new System.Drawing.Size(75, 22);
-			this.partq.TabIndex = 8;
 			// 
 			// groupBox2
 			// 
@@ -1151,7 +1151,7 @@ namespace RedBrick2 {
 			this.label36.Location = new System.Drawing.Point(3, 143);
 			this.label36.Name = "label36";
 			this.label36.Size = new System.Drawing.Size(31, 29);
-			this.label36.TabIndex = 4;
+			this.label36.TabIndex = 0;
 			this.label36.Text = "OP 5";
 			this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
@@ -1163,7 +1163,7 @@ namespace RedBrick2 {
 			this.label35.Location = new System.Drawing.Point(3, 114);
 			this.label35.Name = "label35";
 			this.label35.Size = new System.Drawing.Size(31, 29);
-			this.label35.TabIndex = 3;
+			this.label35.TabIndex = 0;
 			this.label35.Text = "OP 4";
 			this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
@@ -1175,7 +1175,7 @@ namespace RedBrick2 {
 			this.label34.Location = new System.Drawing.Point(3, 85);
 			this.label34.Name = "label34";
 			this.label34.Size = new System.Drawing.Size(31, 29);
-			this.label34.TabIndex = 2;
+			this.label34.TabIndex = 0;
 			this.label34.Text = "OP 3";
 			this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
@@ -1187,7 +1187,7 @@ namespace RedBrick2 {
 			this.label33.Location = new System.Drawing.Point(3, 56);
 			this.label33.Name = "label33";
 			this.label33.Size = new System.Drawing.Size(31, 29);
-			this.label33.TabIndex = 1;
+			this.label33.TabIndex = 0;
 			this.label33.Text = "OP 2";
 			this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
