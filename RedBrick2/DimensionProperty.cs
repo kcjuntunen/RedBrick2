@@ -35,7 +35,13 @@ namespace RedBrick2 {
 		// TODO: This needs to take a SW type dimension string, and try to parse it.
 		public override object Data {
 			get {
-				return _data == null ? double.Parse(ResolvedValue) : _data;
+				if (_data == null || _data < .001) {
+					double test_ = 0.0F;
+					if (double.TryParse(ResolvedValue, out test_)) {
+						_data = test_;
+					}
+				}
+				return _data;
 			}
 			set {
 				_data = double.Parse(value.ToString());

@@ -60,7 +60,16 @@ namespace RedBrick2 {
 		protected int _data = 0;
 
 		public override object Data {
-			get { return _data; }
+			get {
+				if (_data == 0) {
+					ENGINEERINGDataSet.CUT_OPSDataTable codt = cota.GetDataByOpName(Value, _type);
+					if (codt.Rows.Count > 0) {
+						_data = (int)(codt.Rows[0] as ENGINEERINGDataSet.CUT_OPSRow)[@"OPID"];
+					}
+				}
+				return _data;
+			}
+
 			set {
 				int res_ = 0;
 				if (int.TryParse(value.ToString(), out res_)) {

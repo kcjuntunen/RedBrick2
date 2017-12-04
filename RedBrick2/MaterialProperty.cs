@@ -36,11 +36,7 @@ namespace RedBrick2 {
 					_data = intval;
 				}
 			} else {
-				ENGINEERINGDataSet.CUT_MATERIALSDataTable cmdt = cmta.GetDataByDescr(Value);
-				FriendlyValue = Value;
-				if (cmdt.Rows.Count > 0) {
-					_data = (int)cmdt.Rows[0][@"MATID"];
-				}
+
 			}
 			return this;
 		}
@@ -50,7 +46,16 @@ namespace RedBrick2 {
 		protected int _data = 0;
 
 		public override object Data {
-			get { return _data; }
+			get {
+				if (_data == 0) {
+					ENGINEERINGDataSet.CUT_MATERIALSDataTable cmdt = cmta.GetDataByDescr(Value);
+					FriendlyValue = Value;
+					if (cmdt.Rows.Count > 0) {
+						_data = (int)cmdt.Rows[0][@"MATID"];
+					}
+				}
+				return _data;
+			}
 			set {
 				ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cmta =
 					new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter();

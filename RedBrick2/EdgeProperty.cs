@@ -18,7 +18,17 @@ namespace RedBrick2 {
 		protected int _data = 0;
 
 		public override object Data {
-			get { return _data; }
+			get {
+				if (_data == 0) {
+					ENGINEERINGDataSetTableAdapters.CUT_EDGES_XREFTableAdapter ce =
+						new ENGINEERINGDataSetTableAdapters.CUT_EDGES_XREFTableAdapter();
+					int? mid = ce.GetEdgeID(Value);
+					if (mid != null) {
+						_data = (int)mid;
+					}
+				}
+				return _data;
+			}
 			set {
 				if (value is string) {
 					ENGINEERINGDataSetTableAdapters.CUT_EDGES_XREFTableAdapter cex =
