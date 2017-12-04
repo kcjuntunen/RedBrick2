@@ -215,6 +215,8 @@ namespace RedBrick2 {
 			pb.Start(0, 1, @"Enumerating parts...");
 			string name = Path.GetFileNameWithoutExtension(m.GetPathName());
 			SwProperties s = new SwProperties(_swApp);
+			Configuration _c = m.GetActiveConfiguration();
+			s.Configuration = _c.Name;
 			s.GetProperties(m);
 			comboBox2.Text = partLookup;
 			comboBox4.Text = partLookup;
