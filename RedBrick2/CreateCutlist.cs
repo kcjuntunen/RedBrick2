@@ -427,9 +427,7 @@ namespace RedBrick2 {
 				new System.Text.RegularExpressions.Regex(Redbrick.BOMFilter[0]);
 			foreach (KeyValuePair<string, int> item in pl) {
 				SwProperties val = sp[item.Key];
-				int qty = (int)val[@"BLANK QTY"].Data;
 				string name = item.Key;
-				val[@"BLANK QTY"].Data = qty;
 				DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
 				row.Cells[0].Value = name;
 				row.Cells[1].Value = val[@"Description"].Value;
