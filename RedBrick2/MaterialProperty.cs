@@ -33,14 +33,14 @@ namespace RedBrick2 {
 				ENGINEERINGDataSet.CUT_MATERIALSDataTable cmdt = cmta.GetDataByMatID(intval);
 				if (cmdt.Rows.Count > 0) {
 					FriendlyValue = cmdt.Rows[0][@"DESCR"].ToString(); ;
-					Data = intval;
+					_data = intval;
 				}
 			} else {
-				//ENGINEERINGDataSet.CUT_MATERIALSDataTable cmdt = cmta.GetDataByDescr(Value);
+				ENGINEERINGDataSet.CUT_MATERIALSDataTable cmdt = cmta.GetDataByDescr(Value);
 				FriendlyValue = Value;
-				//if (cmdt.Rows.Count > 0) {
-				//	Value = cmdt.Rows[0][@"MATID"].ToString();
-				//}
+				if (cmdt.Rows.Count > 0) {
+					_data = (int)cmdt.Rows[0][@"MATID"];
+				}
 			}
 			return this;
 		}
