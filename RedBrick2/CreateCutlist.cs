@@ -52,7 +52,10 @@ namespace RedBrick2 {
 			swConfMgr = (ConfigurationManager)m.ConfigurationManager;
 			swConf = (Configuration)swConfMgr.ActiveConfiguration;
 			if (_swApp.ActiveDoc is DrawingDoc) {
-				SolidWorks.Interop.sldworks.View _v = Redbrick.GetFirstView(_swApp);
+				SolidWorks.Interop.sldworks.View _v = GetSelectedView(m);
+				if (_v == null) {
+					_v = Redbrick.GetFirstView(_swApp);
+				}
 				m = _v.ReferencedDocument;
 				_config = m.GetConfigurationByName(_v.ReferencedConfiguration);
 				swConf = _config;
@@ -83,6 +86,17 @@ namespace RedBrick2 {
 			FillTable(_dict, _partlist);
 			toolStripStatusLabel2.Text = string.Format("Included Parts: {0}", count_includes());
 			toolStripStatusLabel1.Text = string.Format("Total Unique Parts: {0}", dataGridView1.Rows.Count - 1);
+		}
+
+		private SolidWorks.Interop.sldworks.View GetSelectedView(ModelDoc2 m) {
+			SelectionMgr sm_ = m.SelectionManager;
+			if (sm_ != null) {
+				object v_ = sm_.GetSelectedObject6(1, -1);
+				if (v_ is SolidWorks.Interop.sldworks.View) {
+					return v_ as SolidWorks.Interop.sldworks.View;
+				}
+			}
+			return null;
 		}
 
 		private void ToggleRevWarn(bool on) {
