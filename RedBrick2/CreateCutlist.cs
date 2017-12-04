@@ -432,8 +432,8 @@ namespace RedBrick2 {
 				DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
 				row.Cells[0].Value = name;
 				row.Cells[1].Value = val[@"Description"].Value;
-				if ((int)val[@"MATID"].Data > 0 && (int)val[@"MATID"].Data <= (int)cmt.MaterialCount()) {
-					row.Cells[2].Value = val[@"MATID"].Data;
+				if ((int)val[@"CUTLIST MATERIAL"].Data > 0 && (int)val[@"CUTLIST MATERIAL"].Data <= (int)cmt.MaterialCount()) {
+					row.Cells[2].Value = val[@"CUTLIST MATERIAL"].Data;
 				}
 				row.Cells[3].Value = item.Value;
 				if ((int)val[@"DEPARTMENT"].Data > 0 && (int)val[@"DEPARTMENT"].Data <= (int)cpt.TypeCount()) {
