@@ -254,8 +254,9 @@ namespace RedBrick2 {
 				ModelDoc2 md = (swChildComp.GetModelDoc2() as ModelDoc2);
 				if (md != null && md.GetType() == (int)swDocumentTypes_e.swDocPART) {
 					SwProperties s = new SwProperties(_swApp, md);
-					Configuration _c = md.GetActiveConfiguration();
-					s.Configuration = _c.Name;
+					s.Configuration = _config.Name;
+					Configuration c_ = md.GetActiveConfiguration();
+					s.Configuration = c_.Name;
 					s.GetProperties(md);
 					if (!_dict.ContainsKey(name)) {
 						_dict.Add(name, 1);
@@ -388,11 +389,11 @@ namespace RedBrick2 {
 			mat.SortMode = DataGridViewColumnSortMode.Programmatic;
 			mat.FlatStyle = FlatStyle.Popup;
 
-			DataGridViewColumn blank_qty = new DataGridViewColumn();
-			blank_qty.Name = @"Blank Qty";
-			blank_qty.CellTemplate = new DataGridViewTextBoxCell();
-			blank_qty.ValueType = typeof(int);
-			blank_qty.SortMode = DataGridViewColumnSortMode.Programmatic;
+			DataGridViewColumn part_qty = new DataGridViewColumn();
+			part_qty.Name = @"Part Qty";
+			part_qty.CellTemplate = new DataGridViewTextBoxCell();
+			part_qty.ValueType = typeof(int);
+			part_qty.SortMode = DataGridViewColumnSortMode.Programmatic;
 
 			DataGridViewComboBoxColumn col = new DataGridViewComboBoxColumn();
 			col.Name = @"Department";
@@ -412,7 +413,7 @@ namespace RedBrick2 {
 			inc.HeaderText = @"Include";
 			inc.SortMode = DataGridViewColumnSortMode.Programmatic;
 
-			foreach (var item in new object[] { part_number, descr, mat, blank_qty, col, inc }) {
+			foreach (var item in new object[] { part_number, descr, mat, part_qty, col, inc }) {
 				dataGridView1.Columns.Add((DataGridViewColumn)item);
 			}
 		}
