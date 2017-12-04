@@ -13,6 +13,14 @@ using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
 	public partial class CreateCutlist : Form {
+		ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cpt =
+			new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
+		ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cmt =
+			new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter();
+		ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter fco =
+			new ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter();
+		ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter ce =
+			new ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter();
 
 		private SortedDictionary<string, int> _dict = new SortedDictionary<string, int>();
 		private SortedDictionary<string, SwProperties> _partlist = new SortedDictionary<string, SwProperties>();
@@ -29,7 +37,10 @@ namespace RedBrick2 {
 		private bool user_changed_item = false;
 		private int included_parts = 0;
 		private Configuration _config = null;
-		private bool[] sort_directions = { false, false, false, false, false, false };
+		private bool[] sort_directions = { false, false, false, false, false, false,
+																			 false, false, false, false, false, false,
+																			 false, false, false, false, false, false,
+																			 false, false, false, false, false, false };
 		private ToolTip rev_tooltip = new ToolTip();
 		private ToolTip descr_tooltip = new ToolTip();
 		private ToolTip cust_tooltip = new ToolTip();
@@ -40,6 +51,7 @@ namespace RedBrick2 {
 		public CreateCutlist(SldWorks s) {
 			_swApp = s;
 			InitializeComponent();
+			dataGridView1.DataError += dataGridView1_DataError;
 			ConfigurationManager swConfMgr;
 			Configuration swConf;
 			Component2 swRootComp;
@@ -86,6 +98,11 @@ namespace RedBrick2 {
 			FillTable(_dict, _partlist);
 			toolStripStatusLabel2.Text = string.Format("Included Parts: {0}", count_includes());
 			toolStripStatusLabel1.Text = string.Format("Total Unique Parts: {0}", dataGridView1.Rows.Count - 1);
+		}
+
+		void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e) {
+			e.ThrowException = false;
+			System.Diagnostics.Debug.Print(e.Exception.Message);
 		}
 
 		private SolidWorks.Interop.sldworks.View GetSelectedView(ModelDoc2 m) {
@@ -378,11 +395,6 @@ namespace RedBrick2 {
 		}
 
 		private void AddColumns() {
-			ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cm =
-				new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter();
-			ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cpt =
-				new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
-
 			DataGridViewColumn part_number = new DataGridViewColumn();
 			part_number.Name = @"Part Number";
 			part_number.CellTemplate = new DataGridViewTextBoxCell();
@@ -395,11 +407,11 @@ namespace RedBrick2 {
 			descr.ValueType = typeof(string);
 			descr.SortMode = DataGridViewColumnSortMode.Programmatic;
 
-			//DataGridViewColumn mat = new DataGridViewColumn();
-			//mat.Name = @"Material";
-			//mat.CellTemplate = new DataGridViewTextBoxCell();
-			//mat.ValueType = typeof(string);
-			//mat.SortMode = DataGridViewColumnSortMode.Programmatic;
+			DataGridViewColumn part_qty = new DataGridViewColumn();
+			part_qty.Name = @"Part Qty";
+			part_qty.CellTemplate = new DataGridViewTextBoxCell();
+			part_qty.ValueType = typeof(int);
+			part_qty.SortMode = DataGridViewColumnSortMode.Programmatic;
 
 			DataGridViewComboBoxColumn mat = new DataGridViewComboBoxColumn();
 			mat.Name = @"Material";
@@ -409,27 +421,182 @@ namespace RedBrick2 {
 			mat.DisplayMember = @"DESCR";
 			mat.ValueMember = @"MATID";
 			mat.AutoComplete = true;
-			mat.DataSource = cm.GetData();
+			mat.DataSource = cmt.GetData();
 			mat.SortMode = DataGridViewColumnSortMode.Programmatic;
 			mat.FlatStyle = FlatStyle.Popup;
 
-			DataGridViewColumn part_qty = new DataGridViewColumn();
-			part_qty.Name = @"Part Qty";
-			part_qty.CellTemplate = new DataGridViewTextBoxCell();
-			part_qty.ValueType = typeof(int);
-			part_qty.SortMode = DataGridViewColumnSortMode.Programmatic;
+			DataGridViewColumn length = new DataGridViewColumn();
+			length.Name = @"L";
+			length.CellTemplate = new DataGridViewTextBoxCell();
+			length.ValueType = typeof(double);
+			length.SortMode = DataGridViewColumnSortMode.Programmatic;
 
-			DataGridViewComboBoxColumn col = new DataGridViewComboBoxColumn();
-			col.Name = @"Department";
-			col.CellTemplate = new DataGridViewComboBoxCell();
-			col.HeaderText = @"Department";
-			col.DropDownWidth = 150;
-			col.DisplayMember = @"TYPEDESC";
-			col.ValueMember = @"TYPEID";
-			col.AutoComplete = true;
-			col.DataSource = cpt.GetData();
-			col.SortMode = DataGridViewColumnSortMode.Programmatic;
-			col.FlatStyle = FlatStyle.Popup;
+			DataGridViewColumn width = new DataGridViewColumn();
+			width.Name = @"W";
+			width.CellTemplate = new DataGridViewTextBoxCell();
+			width.ValueType = typeof(double);
+			width.SortMode = DataGridViewColumnSortMode.Programmatic;
+
+			DataGridViewColumn thickness = new DataGridViewColumn();
+			thickness.Name = @"T";
+			thickness.CellTemplate = new DataGridViewTextBoxCell();
+			thickness.ValueType = typeof(double);
+			thickness.SortMode = DataGridViewColumnSortMode.Programmatic;
+
+			DataGridViewColumn blnk_qty = new DataGridViewColumn();
+			blnk_qty.Name = @"Blank Qty";
+			blnk_qty.CellTemplate = new DataGridViewTextBoxCell();
+			blnk_qty.ValueType = typeof(int);
+			blnk_qty.SortMode = DataGridViewColumnSortMode.Programmatic;
+
+			DataGridViewColumn overl = new DataGridViewColumn();
+			overl.Name = @"Over L";
+			overl.CellTemplate = new DataGridViewTextBoxCell();
+			overl.ValueType = typeof(int);
+			overl.SortMode = DataGridViewColumnSortMode.Programmatic;
+
+			DataGridViewColumn overw = new DataGridViewColumn();
+			overw.Name = @"Over W";
+			overw.CellTemplate = new DataGridViewTextBoxCell();
+			overw.ValueType = typeof(int);
+			overw.SortMode = DataGridViewColumnSortMode.Programmatic;
+
+			DataGridViewColumn cnc1 = new DataGridViewColumn();
+			cnc1.Name = @"CNC 1";
+			cnc1.CellTemplate = new DataGridViewTextBoxCell();
+			cnc1.ValueType = typeof(int);
+			cnc1.SortMode = DataGridViewColumnSortMode.Programmatic;
+
+			DataGridViewColumn cnc2 = new DataGridViewColumn();
+			cnc2.Name = @"CNC 2";
+			cnc2.CellTemplate = new DataGridViewTextBoxCell();
+			cnc2.ValueType = typeof(int);
+			cnc2.SortMode = DataGridViewColumnSortMode.Programmatic;
+
+			DataGridViewComboBoxColumn op1 = new DataGridViewComboBoxColumn();
+			op1.Name = @"Op 1";
+			op1.CellTemplate = new DataGridViewComboBoxCell();
+			op1.HeaderText = @"Op 1";
+			op1.DropDownWidth = 200;
+			op1.DisplayMember = @"OPNAME";
+			op1.ValueMember = @"OPID";
+			op1.AutoComplete = true;
+			op1.DataSource = fco.GetData();
+			op1.ValueType = typeof(int);
+			op1.SortMode = DataGridViewColumnSortMode.Programmatic;
+			op1.FlatStyle = FlatStyle.Popup;
+
+			DataGridViewComboBoxColumn op2 = new DataGridViewComboBoxColumn();
+			op2.Name = @"Op 2";
+			op2.CellTemplate = new DataGridViewComboBoxCell();
+			op2.HeaderText = @"Op 2";
+			op2.DropDownWidth = 200;
+			op2.DisplayMember = @"OPNAME";
+			op2.ValueMember = @"OPID";
+			op2.AutoComplete = true;
+			op2.DataSource = fco.GetData();
+			op2.ValueType = typeof(int);
+			op2.SortMode = DataGridViewColumnSortMode.Programmatic;
+			op2.FlatStyle = FlatStyle.Popup;
+
+			DataGridViewComboBoxColumn op3 = new DataGridViewComboBoxColumn();
+			op3.Name = @"Op 3";
+			op3.CellTemplate = new DataGridViewComboBoxCell();
+			op3.HeaderText = @"Op 3";
+			op3.DropDownWidth = 200;
+			op3.DisplayMember = @"OPNAME";
+			op3.ValueMember = @"OPID";
+			op3.AutoComplete = true;
+			op3.DataSource = fco.GetData();
+			op3.ValueType = typeof(int);
+			op3.SortMode = DataGridViewColumnSortMode.Programmatic;
+			op3.FlatStyle = FlatStyle.Popup;
+
+			DataGridViewComboBoxColumn op4 = new DataGridViewComboBoxColumn();
+			op4.Name = @"Op 4";
+			op4.CellTemplate = new DataGridViewComboBoxCell();
+			op4.HeaderText = @"Op 4";
+			op4.DropDownWidth = 200;
+			op4.DisplayMember = @"OPNAME";
+			op4.ValueMember = @"OPID";
+			op4.AutoComplete = true;
+			op4.DataSource = fco.GetData();
+			op4.ValueType = typeof(int);
+			op4.SortMode = DataGridViewColumnSortMode.Programmatic;
+			op4.FlatStyle = FlatStyle.Popup;
+
+			DataGridViewComboBoxColumn op5 = new DataGridViewComboBoxColumn();
+			op5.Name = @"Op 5";
+			op5.CellTemplate = new DataGridViewComboBoxCell();
+			op5.HeaderText = @"Op 5";
+			op5.DropDownWidth = 200;
+			op5.DisplayMember = @"OPNAME";
+			op5.ValueMember = @"OPID";
+			op5.AutoComplete = true;
+			op5.DataSource = fco.GetData();
+			op5.ValueType = typeof(int);
+			op5.SortMode = DataGridViewColumnSortMode.Programmatic;
+			op5.FlatStyle = FlatStyle.Popup;
+
+			DataGridViewComboBoxColumn dpt_col = new DataGridViewComboBoxColumn();
+			dpt_col.Name = @"Department";
+			dpt_col.CellTemplate = new DataGridViewComboBoxCell();
+			dpt_col.HeaderText = @"Department";
+			dpt_col.DropDownWidth = 150;
+			dpt_col.DisplayMember = @"TYPEDESC";
+			dpt_col.ValueMember = @"TYPEID";
+			dpt_col.AutoComplete = true;
+			dpt_col.DataSource = cpt.GetData();
+			dpt_col.SortMode = DataGridViewColumnSortMode.Programmatic;
+			dpt_col.FlatStyle = FlatStyle.Popup;
+
+			DataGridViewComboBoxColumn ef = new DataGridViewComboBoxColumn();
+			ef.Name = @"ef";
+			ef.CellTemplate = new DataGridViewComboBoxCell();
+			ef.HeaderText = @"Edge Front (L)";
+			ef.DropDownWidth = 250;
+			ef.DisplayMember = @"DESCR";
+			ef.ValueMember = @"EDGEID";
+			ef.AutoComplete = true;
+			ef.DataSource = ce.GetData();
+			ef.SortMode = DataGridViewColumnSortMode.Programmatic;
+			ef.FlatStyle = FlatStyle.Popup;
+
+			DataGridViewComboBoxColumn eb = new DataGridViewComboBoxColumn();
+			eb.Name = @"eb";
+			eb.CellTemplate = new DataGridViewComboBoxCell();
+			eb.HeaderText = @"Edge Back (L)";
+			eb.DropDownWidth = 250;
+			eb.DisplayMember = @"DESCR";
+			eb.ValueMember = @"EDGEID";
+			eb.AutoComplete = true;
+			eb.DataSource = ce.GetData();
+			eb.SortMode = DataGridViewColumnSortMode.Programmatic;
+			eb.FlatStyle = FlatStyle.Popup;
+
+			DataGridViewComboBoxColumn el = new DataGridViewComboBoxColumn();
+			el.Name = @"el";
+			el.CellTemplate = new DataGridViewComboBoxCell();
+			el.HeaderText = @"Edge Left (W)";
+			el.DropDownWidth = 250;
+			el.DisplayMember = @"DESCR";
+			el.ValueMember = @"EDGEID";
+			el.AutoComplete = true;
+			el.DataSource = ce.GetData();
+			el.SortMode = DataGridViewColumnSortMode.Programmatic;
+			el.FlatStyle = FlatStyle.Popup;
+
+			DataGridViewComboBoxColumn er = new DataGridViewComboBoxColumn();
+			er.Name = @"er";
+			er.CellTemplate = new DataGridViewComboBoxCell();
+			er.HeaderText = @"Edge Right (W)";
+			er.DropDownWidth = 250;
+			er.DisplayMember = @"DESCR";
+			er.ValueMember = @"EDGEID";
+			er.AutoComplete = true;
+			er.DataSource = ce.GetData();
+			er.SortMode = DataGridViewColumnSortMode.Programmatic;
+			er.FlatStyle = FlatStyle.Popup;
 
 			DataGridViewCheckBoxColumn inc = new DataGridViewCheckBoxColumn();
 			inc.Name = @"Include";
@@ -437,33 +604,89 @@ namespace RedBrick2 {
 			inc.HeaderText = @"Include";
 			inc.SortMode = DataGridViewColumnSortMode.Programmatic;
 
-			foreach (var item in new object[] { part_number, descr, mat, part_qty, col, inc }) {
+			foreach (var item in new object[] { part_number, descr, part_qty, mat, 
+				length, width, thickness, blnk_qty, overl, overw, cnc1, cnc2,
+				op1, op2, op3, op4, op5,
+				ef, eb, el, er,
+				dpt_col, inc }) {
 				dataGridView1.Columns.Add((DataGridViewColumn)item);
 			}
 		}
 
 		private void FillTable(SortedDictionary<string, int> pl, SortedDictionary<string, SwProperties> sp) {
-			ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cpt =
-				new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
-			ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cmt =
-				new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter();
 			System.Text.RegularExpressions.Regex r =
 				new System.Text.RegularExpressions.Regex(Redbrick.BOMFilter[0]);
 			foreach (KeyValuePair<string, int> item in pl) {
 				SwProperties val = sp[item.Key];
 				string name = item.Key;
-				DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
-				row.Cells[0].Value = name;
-				row.Cells[1].Value = val[@"Description"].Value;
-				if ((int)val[@"CUTLIST MATERIAL"].Data > 0 && (int)val[@"CUTLIST MATERIAL"].Data <= (int)cmt.MaterialCount()) {
-					row.Cells[2].Value = val[@"CUTLIST MATERIAL"].Data;
-				}
-				row.Cells[3].Value = item.Value;
+				int idx = dataGridView1.Rows.Add();
+				DataGridViewRow row = dataGridView1.Rows[idx];
+
 				if ((int)val[@"DEPARTMENT"].Data > 0 && (int)val[@"DEPARTMENT"].Data <= (int)cpt.TypeCount()) {
-					row.Cells[4].Value = val[@"DEPARTMENT"].Data;
+					int v_ = (int)val[@"DEPARTMENT"].Data;
+					row.Cells[@"Department"].Value = v_;
+					(val[@"OP1"] as OpProperty).OpType = v_;
+					(val[@"OP2"] as OpProperty).OpType = v_;
+					(val[@"OP3"] as OpProperty).OpType = v_;
+					(val[@"OP4"] as OpProperty).OpType = v_;
+					(val[@"OP5"] as OpProperty).OpType = v_;
 				}
-				row.Cells[5].Value = r.IsMatch(name);
-				dataGridView1.Rows.Add(row);
+
+				row.Cells[@"Part Number"].Value = name;
+
+				row.Cells[@"Description"].Value = val[@"Description"].Value;
+
+				if ((int)val[@"CUTLIST MATERIAL"].Data > 0 && (int)val[@"CUTLIST MATERIAL"].Data <= (int)cmt.MaterialCount()) {
+					row.Cells[@"Material"].Value = val[@"CUTLIST MATERIAL"].Data;
+				}
+
+				row.Cells[@"L"].Value = Redbrick.enforce_number_format((double)val[@"LENGTH"].Data);
+				row.Cells[@"W"].Value = Redbrick.enforce_number_format((double)val[@"WIDTH"].Data);
+				row.Cells[@"T"].Value = Redbrick.enforce_number_format((double)val[@"THICKNESS"].Data);
+				row.Cells[@"Blank Qty"].Value = (int)val[@"BLANK QTY"].Data;
+
+				row.Cells[@"Over L"].Value = Redbrick.enforce_number_format((double)val[@"OVERL"].Data);
+				row.Cells[@"Over W"].Value = Redbrick.enforce_number_format((double)val[@"OVERW"].Data);
+
+				row.Cells[@"CNC 1"].Value = val[@"CNC1"].Data;
+				row.Cells[@"CNC 2"].Value = val[@"CNC2"].Data;
+
+				if ((int)val[@"OP1"].Data > 0) {
+					row.Cells[@"Op 1"].Value = val[@"OP1"].Data;
+				}
+				if ((int)val[@"OP2"].Data > 0) {
+					row.Cells[@"Op 2"].Value = val[@"OP2"].Data;
+				}
+				if ((int)val[@"OP3"].Data > 0) {
+					row.Cells[@"Op 3"].Value = val[@"OP3"].Data;
+				}
+				if ((int)val[@"OP4"].Data > 0) {
+					row.Cells[@"Op 4"].Value = val[@"OP4"].Data;
+				}
+				if ((int)val[@"OP5"].Data > 0) {
+					row.Cells[@"Op 5"].Value = val[@"OP5"].Data;
+				}
+
+
+				if ((int)val[@"EDGE FRONT (L)"].Data > 0) {
+					row.Cells[@"ef"].Value = val[@"EDGE FRONT (L)"].Data;
+				}
+
+				if ((int)val[@"EDGE BACK (L)"].Data > 0) {
+					row.Cells[@"eb"].Value = val[@"EDGE BACK (L)"].Data;
+				}
+
+				if ((int)val[@"EDGE LEFT (W)"].Data > 0) {
+					row.Cells[@"el"].Value = val[@"EDGE LEFT (W)"].Data;
+				}
+
+				if ((int)val[@"EDGE RIGHT (W)"].Data > 0) {
+					row.Cells[@"er"].Value = val[@"EDGE RIGHT (W)"].Data;
+				}
+
+				row.Cells[@"Part Qty"].Value = item.Value;
+
+				row.Cells[@"Include"].Value = r.IsMatch(name);
 			}
 		}
 
