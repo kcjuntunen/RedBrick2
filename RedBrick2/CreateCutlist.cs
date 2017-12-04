@@ -28,6 +28,7 @@ namespace RedBrick2 {
 		private bool rev_in_filename = false;
 		private bool user_changed_item = false;
 		private int included_parts = 0;
+		private Configuration _config = null;
 		private bool[] sort_directions = { false, false, false, false, false, false };
 		private ToolTip rev_tooltip = new ToolTip();
 		private ToolTip descr_tooltip = new ToolTip();
@@ -47,12 +48,18 @@ namespace RedBrick2 {
 			topName = Path.GetFileNameWithoutExtension(m.GetPathName());
 			rev_in_filename = topName.Contains(@"REV");
 
+			_config = m.GetActiveConfiguration();
+			swConfMgr = (ConfigurationManager)m.ConfigurationManager;
+			swConf = (Configuration)swConfMgr.ActiveConfiguration;
 			if (_swApp.ActiveDoc is DrawingDoc) {
 				SolidWorks.Interop.sldworks.View _v = Redbrick.GetFirstView(_swApp);
 				m = _v.ReferencedDocument;
+				_config = m.GetConfigurationByName(_v.ReferencedConfiguration);
+				swConf = _config;
 			}
-			swConfMgr = (ConfigurationManager)m.ConfigurationManager;
-			swConf = (Configuration)swConfMgr.ActiveConfiguration;
+
+			Text = string.Format(@"{0} - {1}", topName, _config.Name);
+
 			swRootComp = (Component2)swConf.GetRootComponent();
 
 			PartFileInfo = new FileInfo(m.GetPathName());
@@ -215,8 +222,9 @@ namespace RedBrick2 {
 			pb.Start(0, 1, @"Enumerating parts...");
 			string name = Path.GetFileNameWithoutExtension(m.GetPathName());
 			SwProperties s = new SwProperties(_swApp);
-			Configuration _c = m.GetActiveConfiguration();
-			s.Configuration = _c.Name;
+			s.Configuration = _config.Name;
+			Configuration c_ = m.GetActiveConfiguration();
+			s.Configuration = c_.Name;
 			s.GetProperties(m);
 			comboBox2.Text = partLookup;
 			comboBox4.Text = partLookup;
@@ -233,6 +241,8 @@ namespace RedBrick2 {
 			Component2 swChildComp;
 			string sPadStr = " ";
 			long i = 0;
+			ModelDoc2 m = swComp.GetModelDoc2();
+			//Text = string.Format(@"{0} - {1}", topName, m.GetActiveConfiguration().Name);
 
 			for (i = 0; i <= nLevel - 1; i++) {
 				sPadStr = sPadStr + " ";
