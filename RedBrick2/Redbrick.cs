@@ -448,6 +448,26 @@ namespace RedBrick2 {
 			}
 		}
 
+		static public string enforce_number_format(string input) {
+			double _val = 0.0F;
+			if (double.TryParse(input, out _val)) {
+				return string.Format(Properties.Settings.Default.NumberFormat, _val);
+			}
+			return @"#VALUE!";
+		}
+
+		static public string enforce_number_format(double input) {
+			return string.Format(Properties.Settings.Default.NumberFormat, input);
+		}
+
+		static public string enforce_number_format(Single input) {
+			return string.Format(Properties.Settings.Default.NumberFormat, input);
+		}
+
+		static public string enforce_number_format(decimal input) {
+			return string.Format(Properties.Settings.Default.NumberFormat, input);
+		}
+
 		/// <summary>
 		/// The Archiver needs a bunch of settings. It's done in an old, stupid way. Maybe I'll change it someday.
 		/// </summary>

@@ -185,16 +185,16 @@ namespace RedBrick2 {
 					width = (Single)Row[@"FIN_W"];
 					thickness = (Single)Row[@"THICKNESS"];
 
-					label18.Text = enforce_number_format(length);
-					label19.Text = enforce_number_format(width);
-					label20.Text = enforce_number_format(thickness);
+					label18.Text = Redbrick.enforce_number_format(length);
+					label19.Text = Redbrick.enforce_number_format(width);
+					label20.Text = Redbrick.enforce_number_format(thickness);
 				} else {
-					label18.Text = enforce_number_format(PropertySet[@"LENGTH"].ResolvedValue);
-					label19.Text = enforce_number_format(PropertySet[@"WIDTH"].ResolvedValue);
-					label20.Text = enforce_number_format(PropertySet[@"THICKNESS"].ResolvedValue);
+					label18.Text = Redbrick.enforce_number_format(PropertySet[@"LENGTH"].ResolvedValue);
+					label19.Text = Redbrick.enforce_number_format(PropertySet[@"WIDTH"].ResolvedValue);
+					label20.Text = Redbrick.enforce_number_format(PropertySet[@"THICKNESS"].ResolvedValue);
 				}
 
-				label21.Text = enforce_number_format(PropertySet[@"WALL THICKNESS"].ResolvedValue);
+				label21.Text = Redbrick.enforce_number_format(PropertySet[@"WALL THICKNESS"].ResolvedValue);
 
 				//textBox_TextChanged(PropertySet[@"WALL THICKNESS"].Value, label21);
 
@@ -349,9 +349,9 @@ namespace RedBrick2 {
 			cnc1tb.Text = StrTryProp("CNC1");
 			cnc2tb.Text = StrTryProp("CNC2");
 			ov_userediting = true;
-			overLtb.Text = enforce_number_format(StrTryProp("OVERL"));
+			overLtb.Text = Redbrick.enforce_number_format(StrTryProp("OVERL"));
 			ov_userediting = true;
-			overWtb.Text = enforce_number_format(StrTryProp("OVERW"));
+			overWtb.Text = Redbrick.enforce_number_format(StrTryProp("OVERW"));
 			ppbtb.Text = StrTryProp("BLANK QTY");
 			updateCNCcb.Checked = BoolTryProp("UPDATE CNC");
 			length = DimTryProp(@"LENGTH");
@@ -1020,7 +1020,7 @@ namespace RedBrick2 {
 					Trim('"');
 				double _val;
 				if (double.TryParse(GetDim(dimension), out _val)) {
-					l.Text = enforce_number_format(_val);
+					l.Text = Redbrick.enforce_number_format(_val);
 				} else {
 					l.Text = @"#VALUE!";
 				}
@@ -1186,8 +1186,8 @@ namespace RedBrick2 {
 
 		private void dimension_textBox_Leave(object sender, EventArgs e) {
 			TextBox _me = (sender as TextBox);
-			string _text = enforce_number_format(_me.Text);
-			_me.Text = enforce_number_format(_text);
+			string _text = Redbrick.enforce_number_format(_me.Text);
+			_me.Text = Redbrick.enforce_number_format(_text);
 		}
 
 		static private Single get_edge_thickness_total(ComboBox c1, ComboBox c2) {
@@ -1204,32 +1204,12 @@ namespace RedBrick2 {
 
 		static private void calculate_blanksize_from_oversize(Single ov_box_val, TextBox bl_box, Single length, Single total_edging) {
 			Decimal _val = Math.Round(Convert.ToDecimal((length + ov_box_val) - total_edging), 3);
-			bl_box.Text = enforce_number_format(_val);
+			bl_box.Text = Redbrick.enforce_number_format(_val);
 		}
 
 		static private void calculate_oversize_from_blanksize(Single bl_box_val, TextBox ov_box, Single length, Single total_edging) {
 			Decimal _val = Math.Round(Convert.ToDecimal((bl_box_val - length) + total_edging), 3);
-			ov_box.Text = enforce_number_format(_val);
-		}
-
-		static private string enforce_number_format(string input) {
-			double _val = 0.0F;
-			if (double.TryParse(input, out _val)) {
-				return string.Format(Properties.Settings.Default.NumberFormat, _val);
-			}
-			return @"#VALUE!";
-		}
-
-		static private string enforce_number_format(double input) {
-			return string.Format(Properties.Settings.Default.NumberFormat, input);
-		}
-
-		static private string enforce_number_format(Single input) {
-			return string.Format(Properties.Settings.Default.NumberFormat, input);
-		}
-
-		static private string enforce_number_format(decimal input) {
-			return string.Format(Properties.Settings.Default.NumberFormat, input);
+			ov_box.Text = Redbrick.enforce_number_format(_val);
 		}
 
 		private void comboBox_Resize(object sender, EventArgs e) {
