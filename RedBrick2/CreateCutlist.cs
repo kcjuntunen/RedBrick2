@@ -304,7 +304,7 @@ namespace RedBrick2 {
 						_partlist.Add(name, s);
 					} else {
 						_dict[name] = _dict[name] + 1;
-						_partlist[name][@"BLANK QTY"].Data = _dict[name];
+						//_partlist[name][@"BLANK QTY"].Data = _dict[name];
 					}
 					if (nLevel == 1) {
 						pb.UpdateProgress(++pos);
