@@ -797,5 +797,33 @@ namespace RedBrick2 {
 			Properties.Settings.Default.CreateCutlistSize = Size;
 			Properties.Settings.Default.Save();
 		}
+
+		private void select_btn_Click(object sender, EventArgs e) {
+			foreach (DataGridViewRow item in dataGridView1.Rows) {
+				DataGridViewComboBoxCell dept = item.Cells[@"Department"] as DataGridViewComboBoxCell;
+				if (dept.Value != null) {
+					if ((int)dept.Value == (int)type_cbx.SelectedValue) {
+						DataGridViewCheckBoxCell inc = item.Cells[@"Include"] as DataGridViewCheckBoxCell;
+						inc.Value = true;
+					}
+				}
+			}
+		}
+
+		private void unselect_btn_Click(object sender, EventArgs e) {
+			foreach (DataGridViewRow item in dataGridView1.Rows) {
+				DataGridViewComboBoxCell dept = item.Cells[@"Department"] as DataGridViewComboBoxCell;
+				if (dept.Value != null) {
+					if ((int)dept.Value == (int)type_cbx.SelectedValue) {
+						DataGridViewCheckBoxCell inc = item.Cells[@"Include"] as DataGridViewCheckBoxCell;
+						inc.Value = false;
+					}
+				}
+			}
+		}
+
+		private void comboBox_KeyDown(object sender, KeyEventArgs e) {
+			(sender as ComboBox).DroppedDown = false;
+		}
 	}
 }
