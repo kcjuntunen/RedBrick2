@@ -412,6 +412,7 @@ namespace RedBrick2 {
 			part_qty.Name = @"Part Qty";
 			part_qty.CellTemplate = new DataGridViewTextBoxCell();
 			part_qty.ValueType = typeof(int);
+			part_qty.Width = 50;
 			part_qty.SortMode = DataGridViewColumnSortMode.Programmatic;
 
 			DataGridViewComboBoxColumn mat = new DataGridViewComboBoxColumn();
@@ -448,30 +449,33 @@ namespace RedBrick2 {
 			blnk_qty.Name = @"Blank Qty";
 			blnk_qty.CellTemplate = new DataGridViewTextBoxCell();
 			blnk_qty.ValueType = typeof(int);
+			blnk_qty.Width = 50;
 			blnk_qty.SortMode = DataGridViewColumnSortMode.Programmatic;
 
 			DataGridViewColumn overl = new DataGridViewColumn();
 			overl.Name = @"Over L";
 			overl.CellTemplate = new DataGridViewTextBoxCell();
-			overl.ValueType = typeof(int);
+			overl.ValueType = typeof(double);
+			overl.Width = 50;
 			overl.SortMode = DataGridViewColumnSortMode.Programmatic;
 
 			DataGridViewColumn overw = new DataGridViewColumn();
 			overw.Name = @"Over W";
 			overw.CellTemplate = new DataGridViewTextBoxCell();
-			overw.ValueType = typeof(int);
+			overw.ValueType = typeof(double);
+			overw.Width = 50;
 			overw.SortMode = DataGridViewColumnSortMode.Programmatic;
 
 			DataGridViewColumn cnc1 = new DataGridViewColumn();
 			cnc1.Name = @"CNC 1";
 			cnc1.CellTemplate = new DataGridViewTextBoxCell();
-			cnc1.ValueType = typeof(int);
+			cnc1.ValueType = typeof(string);
 			cnc1.SortMode = DataGridViewColumnSortMode.Programmatic;
 
 			DataGridViewColumn cnc2 = new DataGridViewColumn();
 			cnc2.Name = @"CNC 2";
 			cnc2.CellTemplate = new DataGridViewTextBoxCell();
-			cnc2.ValueType = typeof(int);
+			cnc2.ValueType = typeof(string);
 			cnc2.SortMode = DataGridViewColumnSortMode.Programmatic;
 
 			DataGridViewComboBoxColumn op1 = new DataGridViewComboBoxColumn();
@@ -698,9 +702,12 @@ namespace RedBrick2 {
 			DataGridView gv = sender as DataGridView;
 			if (e.ScrollOrientation == ScrollOrientation.VerticalScroll) {
 				gv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+				List<string> ignore_ = new List<string>(new string[] { @"Part Qty", @"Blank Qty", @"Over L", @"Over W" });
 				foreach (DataGridViewColumn column in gv.Columns) {
-					if (column.GetPreferredWidth(DataGridViewAutoSizeColumnMode.DisplayedCells, true) > column.Width) {
-						column.Width = column.GetPreferredWidth(DataGridViewAutoSizeColumnMode.DisplayedCells, true);
+					if (!ignore_.Contains(column.Name)) {
+						if (column.GetPreferredWidth(DataGridViewAutoSizeColumnMode.DisplayedCells, true) > column.Width) {
+							column.Width = column.GetPreferredWidth(DataGridViewAutoSizeColumnMode.DisplayedCells, true);
+						}
 					}
 				}
 			}
