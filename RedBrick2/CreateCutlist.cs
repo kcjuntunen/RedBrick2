@@ -846,7 +846,7 @@ namespace RedBrick2 {
 					if (cell_.Value != null) {
 					selectedPart = cell_.Value.ToString();
 					MenuItem [] items = {
-																new MenuItem(string.Format(@"Open Model ({0})...", selectedPart)),
+																new MenuItem(string.Format(@"Open Model ({0})...", selectedPart), OnClickOpenModel),
 																new MenuItem(@"-"),
 																new MenuItem(@"Open Drawing...", OnClickOpenDrawing),
 																new MenuItem(@"Open PDF...", OnClickOpenPDF),
@@ -854,6 +854,7 @@ namespace RedBrick2 {
 																new MenuItem(@"-"),
 																new MenuItem(@"Machine Priority...", OnClickMachinePriority) };
 					items[2].Enabled = DrawingExists(selectedPart);
+					items[4].Enabled = false;
 					m.MenuItems.AddRange(items);
 					}
 				}
@@ -898,6 +899,29 @@ namespace RedBrick2 {
 		private void OnClickMachinePriority(object sender, EventArgs e) {
 			Machine_Priority_Control.MachinePriority mp = new Machine_Priority_Control.MachinePriority(selectedPart);
 			mp.Show(this);
+		}
+
+		private void OnClickOpenModel(object sender, EventArgs e) {
+			try {
+				int err = 0;
+				DirectoryInfo di = new DirectoryInfo(GetPath());
+				FileInfo fi = find_doc(selectedPart);
+				string t = fi.FullName.ToUpper();
+				if (File.Exists(t)) {
+					_swApp.ActivateDoc3(t, true,
+						(int)swRebuildOnActivation_e.swDontRebuildActiveDoc, ref err);
+					Close();
+				} else {
+					MessageBox.Show(this, string.Format(@"Couldn't find '{0}'", t),
+						@"Not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			} catch (NullReferenceException nex) {
+				MessageBox.Show(this, string.Format("You must select a row with something in it.\n{0}", nex.Message),
+					@"Not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			} catch (Exception ex) {
+				MessageBox.Show(this, ex.Message,
+					@"Not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 
 		private void OnClickOpenDrawing(object sender, EventArgs e) {
