@@ -118,38 +118,40 @@ namespace RedBrick2 {
 
 		private void ToggleRevWarn(bool on) {
 			if (on) {
-				Redbrick.Warn(comboBox3);
-				rev_tooltip.SetToolTip(comboBox3, Properties.Resources.RevisionNotMatching);
+				Redbrick.Warn(rev_cbx);
+				rev_tooltip.SetToolTip(rev_cbx, Properties.Resources.RevisionNotMatching);
 				rev_tooltip.SetToolTip(label6, Properties.Resources.RevisionNotMatching);
 			} else {
-				Redbrick.Unwarn(comboBox3 as ComboBox);
+				Redbrick.Unwarn(rev_cbx as ComboBox);
 				rev_tooltip.RemoveAll();
 			}
 		}
 
 		private void ToggleCustomerWarn(bool on) {
 			if (on) {
-				Redbrick.Warn(comboBox1);
-				cust_tooltip.SetToolTip(comboBox1, Properties.Resources.CustomerNotMatching);
+				Redbrick.Warn(cust_cbx);
+				cust_tooltip.SetToolTip(cust_cbx, Properties.Resources.CustomerNotMatching);
 				cust_tooltip.SetToolTip(label1, Properties.Resources.CustomerNotMatching);
 			} else {
-				Redbrick.Unwarn(comboBox1);
+				Redbrick.Unwarn(cust_cbx);
 				cust_tooltip.RemoveAll();
 			}
 		}
 
 		private void ToggleDescrWarn(bool on) {
 			if (on) {
-				Redbrick.Warn(comboBox5);
-				descr_tooltip.SetToolTip(comboBox5, Properties.Resources.NoDescriptionWarning);
+				Redbrick.Warn(descr_cbx);
+				descr_tooltip.SetToolTip(descr_cbx, Properties.Resources.NoDescriptionWarning);
 				descr_tooltip.SetToolTip(label3, Properties.Resources.NoDescriptionWarning);
 			} else {
-				Redbrick.Unwarn(comboBox5);
+				Redbrick.Unwarn(descr_cbx);
 				descr_tooltip.RemoveAll();
 			}
 		}
 
 		private void CreateCutlist_Load(object sender, EventArgs e) {
+			// TODO: This line of code loads data into the 'eNGINEERINGDataSet.CUT_PART_TYPES' table. You can move, or remove it, as needed.
+			this.cUT_PART_TYPESTableAdapter.Fill(this.eNGINEERINGDataSet.CUT_PART_TYPES);
 			Location = Properties.Settings.Default.CreateCutlistLocation;
 			Size = Properties.Settings.Default.CreateCutlistSize;
 			// TODO: This line of code loads data into the 'eNGINEERINGDataSet.CUT_CUTLISTS' table. You can move, or remove it, as needed.
@@ -163,11 +165,11 @@ namespace RedBrick2 {
 
 			ENGINEERINGDataSet.SCH_PROJECTSRow spr = (new ENGINEERINGDataSet.SCH_PROJECTSDataTable()).GetCorrectCustomer(partLookup);
 			if (spr != null) {
-				comboBox1.SelectedValue = spr.CUSTID;
+				cust_cbx.SelectedValue = spr.CUSTID;
 			} else {
 				CustomerProperty _cp = new CustomerProperty(@"CUSTOMER", true, _swApp, _swApp.ActiveDoc);
 				_cp.Get();
-				comboBox1.SelectedIndex = comboBox1.FindString(_cp.Value.Split('-')[0].Trim());
+				cust_cbx.SelectedIndex = cust_cbx.FindString(_cp.Value.Split('-')[0].Trim());
 			}
 			dateTimePicker1.Value = DateTime.Now;
 			settle_rev(topName);
@@ -185,15 +187,15 @@ namespace RedBrick2 {
 
 			stpr.Get();
 
-			comboBox5.Text = stpr.Value;
-			if (comboBox5.Text == string.Empty) {
+			descr_cbx.Text = stpr.Value;
+			if (descr_cbx.Text == string.Empty) {
 				ToggleDescrWarn(true);
 			}
-			comboBox2.Text = topName;
+			itm_cbx.Text = topName;
 			if (rev_in_filename) {
-				comboBox4.Text = string.Format(@"{0} REV {1}", topName, rev);
+				ref_cbx.Text = string.Format(@"{0} REV {1}", topName, rev);
 			} else {
-				comboBox4.Text = topName;
+				ref_cbx.Text = topName;
 			}
 
 		}
@@ -211,7 +213,7 @@ namespace RedBrick2 {
 			rev = _revFromProperties;
 
 			if (_revFromFile != string.Empty && _revFromFile != _revFromProperties) {
-				Redbrick.Unwarn(comboBox3);
+				Redbrick.Unwarn(rev_cbx);
 				rev_tooltip.RemoveAll();
 			}
 
@@ -219,11 +221,11 @@ namespace RedBrick2 {
 		}
 
 		private void set_rev(string r) {
-			int idx = comboBox3.FindString(r);
+			int idx = rev_cbx.FindString(r);
 			if (idx > -1) {
-				comboBox3.SelectedIndex = idx;
+				rev_cbx.SelectedIndex = idx;
 			} else {
-				comboBox3.Text = r;
+				rev_cbx.Text = r;
 			}
 		}
 
@@ -257,9 +259,9 @@ namespace RedBrick2 {
 			Configuration c_ = m.GetActiveConfiguration();
 			s.Configuration = c_.Name;
 			s.GetProperties(m);
-			comboBox2.Text = partLookup;
-			comboBox4.Text = partLookup;
-			comboBox5.Text = s[@"Description"].Value;
+			itm_cbx.Text = partLookup;
+			ref_cbx.Text = partLookup;
+			descr_cbx.Text = s[@"Description"].Value;
 			_dict.Add(name, 1);
 			_partlist.Add(name, s);
 			pb.UpdateTitle(m.GetTitle());
@@ -713,7 +715,7 @@ namespace RedBrick2 {
 				ComboBox c = sender as ComboBox;
 				DataRowView dr = c.SelectedItem as DataRowView;
 				set_rev(dr[@"REV"].ToString());
-				comboBox1.SelectedValue = (int)dr[@"CUSTID"];
+				cust_cbx.SelectedValue = (int)dr[@"CUSTID"];
 				dateTimePicker1.Value = DateTime.Parse(dr[@"CDATE"].ToString());
 				user_changed_item = false;
 			}
@@ -751,7 +753,7 @@ namespace RedBrick2 {
 				}
 				rev = _cb.Text;
 				if (rev_in_filename) {
-					comboBox4.Text = string.Format(@"{0} REV {1}", topName, rev);
+					ref_cbx.Text = string.Format(@"{0} REV {1}", topName, rev);
 				}
 				rev_changed_by_user = false;
 			}
