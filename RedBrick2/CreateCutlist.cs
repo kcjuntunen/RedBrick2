@@ -810,7 +810,11 @@ namespace RedBrick2 {
 				if (dept.Value != null) {
 					if ((int)dept.Value == (int)type_cbx.SelectedValue) {
 						DataGridViewCheckBoxCell inc = item.Cells[@"Include"] as DataGridViewCheckBoxCell;
-						inc.Value = true;
+						System.Text.RegularExpressions.Regex r =
+							new System.Text.RegularExpressions.Regex(Redbrick.BOMFilter[0]);
+						if (r.IsMatch(selectedPart)) {
+							inc.Value = true;
+						}
 					}
 				}
 			}
