@@ -29,13 +29,13 @@ namespace RedBrick2 {
 		private FileInfo PartFileInfo;
 		private string topName = string.Empty;
 		private string partLookup = string.Empty;
+		private string selectedPart = string.Empty;
 		private string _revFromFile = string.Empty;
 		private string _revFromProperties = string.Empty;
 		private string rev = @"100";
 		private bool rev_changed_by_user = false;
 		private bool rev_in_filename = false;
 		private bool user_changed_item = false;
-		private int included_parts = 0;
 		private Configuration _config = null;
 		private bool[] sort_directions = { false, false, false, false, false, false,
 																			 false, false, false, false, false, false,
@@ -45,8 +45,7 @@ namespace RedBrick2 {
 		private ToolTip descr_tooltip = new ToolTip();
 		private ToolTip cust_tooltip = new ToolTip();
 
-		int total_parts = 0;
-		UserProgressBar pb;
+		private UserProgressBar pb;
 
 		public CreateCutlist(SldWorks s) {
 			_swApp = s;
