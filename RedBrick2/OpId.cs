@@ -24,28 +24,6 @@ namespace RedBrick2 {
 
 		public override SwProperty Get() {
 			InnerGet();
-			int intval = 0;
-			int tp = 0;
-			ENGINEERINGDataSet.CUT_PARTSDataTable cpdt = new ENGINEERINGDataSet.CUT_PARTSDataTable();
-			cpdt = cpta.GetDataByPartID(PartID);
-
-			if (cpdt.Rows.Count > 0) {
-				tp = (int)cpdt.Rows[0][@"TYPE"];
-			}
-			
-			if (int.TryParse(Value, out intval)) {
-					ENGINEERINGDataSet.CUT_OPSDataTable codt = cota.GetDataByOpID(intval, tp);
-					if (codt.Rows.Count > 0) {
-						FriendlyValue = codt.Rows[0][@"OPNAME"].ToString();
-						Data = intval;
-					}
-			} else {
-				ENGINEERINGDataSet.CUT_OPSDataTable codt = cota.GetDataByOpName(Value, tp);
-				FriendlyValue = Value;
-				if (codt.Rows.Count > 0) {
-					Value = codt.Rows[0][@"OPID"].ToString();
-				}
-			}
 			return this;
 		}
 
@@ -79,7 +57,21 @@ namespace RedBrick2 {
 		protected int _data = 0;
 
 		public override object Data {
-			get { return _data; }
+			get {
+				if (_data == 0) {
+					ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter fcota =
+						new ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter();
+					int opid_ = 0;
+					if (int.TryParse(Value, out opid_)) {
+						string name_ = (string)fcota.GetOpNameByOldID(opid_);
+						int? testvl_ = fcota.GetID(_type, name_);
+						if (testvl_ != null) {
+							_data = (int)testvl_;
+						}
+					}
+				}
+				return _data;
+			}
 			set {
 				if (value is string) {
 					try {

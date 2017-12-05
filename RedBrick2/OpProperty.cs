@@ -62,9 +62,11 @@ namespace RedBrick2 {
 		public override object Data {
 			get {
 				if (_data == 0) {
-					ENGINEERINGDataSet.CUT_OPSDataTable codt = cota.GetDataByOpName(Value, _type);
-					if (codt.Rows.Count > 0) {
-						_data = (int)(codt.Rows[0] as ENGINEERINGDataSet.CUT_OPSRow)[@"OPID"];
+					ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter fcota =
+						new ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter();
+					int? val_ = fcota.GetID(_type, Value);
+					if (val_ != null) {
+						_data = (int)val_;
 					}
 				}
 				return _data;
