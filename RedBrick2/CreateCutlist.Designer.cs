@@ -151,6 +151,8 @@ namespace RedBrick2 {
 			// 
 			this.cust_cbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.cust_cbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.cust_cbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.cust_cbx.DataSource = this.gENCUSTOMERSBindingSource;
 			this.cust_cbx.DisplayMember = "CUSTOMER";
 			this.cust_cbx.FormattingEnabled = true;
@@ -159,6 +161,7 @@ namespace RedBrick2 {
 			this.cust_cbx.Size = new System.Drawing.Size(201, 21);
 			this.cust_cbx.TabIndex = 4;
 			this.cust_cbx.ValueMember = "CUSTID";
+			this.cust_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.cust_cbx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
 			this.cust_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox1_MouseClick);
 			// 
@@ -176,6 +179,8 @@ namespace RedBrick2 {
 			// 
 			this.itm_cbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.itm_cbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.itm_cbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.itm_cbx.DataSource = this.cUTCUTLISTSBindingSource;
 			this.itm_cbx.DisplayMember = "PARTNUM";
 			this.itm_cbx.FormattingEnabled = true;
@@ -209,6 +214,8 @@ namespace RedBrick2 {
 			// 
 			this.rev_cbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.rev_cbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.rev_cbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.rev_cbx.DataSource = this.revListBindingSource;
 			this.rev_cbx.DisplayMember = "REV";
 			this.rev_cbx.FormattingEnabled = true;
@@ -218,6 +225,7 @@ namespace RedBrick2 {
 			this.rev_cbx.TabIndex = 6;
 			this.rev_cbx.ValueMember = "REV";
 			this.rev_cbx.SelectedValueChanged += new System.EventHandler(this.comboBox3_SelectedValueChanged);
+			this.rev_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.rev_cbx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
 			this.rev_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox3_MouseClick);
 			// 
@@ -261,6 +269,8 @@ namespace RedBrick2 {
 			// 
 			this.ref_cbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.ref_cbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.ref_cbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.ref_cbx.DataSource = this.cUTCUTLISTSBindingSource;
 			this.ref_cbx.DisplayMember = "DRAWING";
 			this.ref_cbx.FormattingEnabled = true;
@@ -269,12 +279,15 @@ namespace RedBrick2 {
 			this.ref_cbx.Size = new System.Drawing.Size(212, 21);
 			this.ref_cbx.TabIndex = 10;
 			this.ref_cbx.ValueMember = "CLID";
+			this.ref_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.ref_cbx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
 			// 
 			// descr_cbx
 			// 
 			this.descr_cbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.descr_cbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.descr_cbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.descr_cbx.DataSource = this.cUTCUTLISTSBindingSource;
 			this.descr_cbx.DisplayMember = "DESCR";
 			this.descr_cbx.FormattingEnabled = true;
@@ -284,6 +297,7 @@ namespace RedBrick2 {
 			this.descr_cbx.TabIndex = 11;
 			this.descr_cbx.ValueMember = "CLID";
 			this.descr_cbx.TextChanged += new System.EventHandler(this.comboBox5_TextChanged);
+			this.descr_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.descr_cbx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
 			// 
 			// label6
@@ -354,6 +368,8 @@ namespace RedBrick2 {
 			// 
 			// type_cbx
 			// 
+			this.type_cbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.type_cbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.type_cbx.DataSource = this.cUTPARTTYPESBindingSource;
 			this.type_cbx.DisplayMember = "TYPEDESC";
 			this.type_cbx.FormattingEnabled = true;
@@ -362,6 +378,7 @@ namespace RedBrick2 {
 			this.type_cbx.Size = new System.Drawing.Size(189, 21);
 			this.type_cbx.TabIndex = 14;
 			this.type_cbx.ValueMember = "TYPEID";
+			this.type_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			// 
 			// panel1
 			// 
@@ -404,6 +421,7 @@ namespace RedBrick2 {
 			this.select_btn.TabIndex = 15;
 			this.select_btn.Text = "Select";
 			this.select_btn.UseVisualStyleBackColor = true;
+			this.select_btn.Click += new System.EventHandler(this.select_btn_Click);
 			// 
 			// unselect_btn
 			// 
@@ -413,6 +431,7 @@ namespace RedBrick2 {
 			this.unselect_btn.TabIndex = 16;
 			this.unselect_btn.Text = "Unselect";
 			this.unselect_btn.UseVisualStyleBackColor = true;
+			this.unselect_btn.Click += new System.EventHandler(this.unselect_btn_Click);
 			// 
 			// cUTPARTTYPESBindingSource
 			// 

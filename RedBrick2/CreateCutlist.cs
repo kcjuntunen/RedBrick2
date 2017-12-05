@@ -729,6 +729,7 @@ namespace RedBrick2 {
 		}
 
 		private void comboBox2_KeyDown(object sender, KeyEventArgs e) {
+			comboBox_KeyDown(sender, e);
 			user_changed_item = true;
 			Redbrick.Unwarn((Control)sender);
 		}
