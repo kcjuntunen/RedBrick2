@@ -485,21 +485,18 @@ namespace RedBrick2 {
 		}
 
 		private void GetRoutingFromPart() {
-			ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter co =
-				new ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter();
-			ENGINEERINGDataSet.CUT_OPSDataTable codt =
-				new ENGINEERINGDataSet.CUT_OPSDataTable();
-
 			int type = (int)type_cbx.SelectedValue;
 			int er = 0;
 
 			for (int i = 0; i < cbxes.Length; i++) {
-				er = IntTryProp(string.Format("OP{0}ID", i + 1));
+				string opid_name = string.Format("OP{0}ID", i + 1);
+				string op_name = string.Format("OP{0}", i + 1);
+				if (PropertySet.ContainsKey(opid_name)) {
+					er = (int)PropertySet[opid_name].Data;
+				}
 				if (er < 1) {
-					codt = co.GetDataByOpName(StrTryProp(string.Format(@"OP{0}", i + 1)), type);
-					if (codt.Count > 0) {
-						ENGINEERINGDataSet.CUT_OPSRow r = (codt.Rows[0] as ENGINEERINGDataSet.CUT_OPSRow);
-						er = r.OPID;
+					if (PropertySet.ContainsKey(op_name)) {
+						er = (int)PropertySet[op_name].Data;
 					}
 				}
 
