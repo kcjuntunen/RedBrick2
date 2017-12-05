@@ -606,11 +606,11 @@ namespace RedBrick2 {
 			inc.HeaderText = @"Include";
 			inc.SortMode = DataGridViewColumnSortMode.Programmatic;
 
-			foreach (var item in new object[] { part_number, descr, part_qty, mat, 
+			foreach (var item in new object[] { inc, part_number, descr, part_qty, mat, 
 				length, width, thickness, blnk_qty, overl, overw, cnc1, cnc2,
 				op1, op2, op3, op4, op5,
 				ef, eb, el, er,
-				dpt_col, inc }) {
+				dpt_col }) {
 				dataGridView1.Columns.Add((DataGridViewColumn)item);
 			}
 		}
@@ -668,7 +668,6 @@ namespace RedBrick2 {
 				if ((int)val[@"OP5"].Data > 0) {
 					row.Cells[@"Op 5"].Value = val[@"OP5"].Data;
 				}
-
 
 				if ((int)val[@"EDGE FRONT (L)"].Data > 0) {
 					row.Cells[@"ef"].Value = val[@"EDGE FRONT (L)"].Data;
