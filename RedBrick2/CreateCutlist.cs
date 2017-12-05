@@ -824,5 +824,98 @@ namespace RedBrick2 {
 		private void comboBox_KeyDown(object sender, KeyEventArgs e) {
 			(sender as ComboBox).DroppedDown = false;
 		}
+
+		private void dataGridView1_MouseClick(object sender, MouseEventArgs e) {
+			DataGridView grid_ = (sender as DataGridView);
+			if (e.Button == MouseButtons.Right && _swApp != null) {
+				ContextMenu m = new ContextMenu();
+				int current_row = grid_.HitTest(e.X, e.Y).RowIndex;
+				if (current_row >= 0) {
+					DataGridViewCell cell_ = (grid_[@"Part Number", current_row] as DataGridViewCell);
+					if (cell_.Value != null) {
+					selectedPart = cell_.Value.ToString();
+					MenuItem [] items = {
+																new MenuItem(string.Format(@"Open Model ({0})...", selectedPart)),
+																new MenuItem(@"-"),
+																new MenuItem(@"Open Drawing...", OnClickOpenDrawing),
+																new MenuItem(@"Open PDF...", OnClickOpenPDF),
+																new MenuItem(@"Create Drawing..."),
+																new MenuItem(@"-"),
+																new MenuItem(@"Machine Priority...", OnClickMachinePriority) };
+					items[2].Enabled = DrawingExists(selectedPart);
+					m.MenuItems.AddRange(items);
+					}
+				}
+				m.Show(grid_, new Point(e.X, e.Y));
+			}
+		}
+
+		private FileInfo find_doc(string doc) {
+			foreach (KeyValuePair<string, SwProperties> item in _partlist) {
+				string fn = item.Value[@"DEPARTMENT"].PartFileInfo.Name;
+				if (fn.Trim().ToUpper().Contains(doc.Trim().ToUpper())) {
+					return item.Value[@"DEPARTMENT"].PartFileInfo;
+				}
+			}
+			return null;
+		}
+
+		private string GetPath() {
+			return System.IO.Path.GetDirectoryName(
+				(_swApp.ActiveDoc as ModelDoc2).GetPathName());
+		}
+
+		private bool DrawingExists(string part) {
+			FileInfo fi = find_doc(part);
+			string ext = fi.Extension;
+			FileInfo dwgfi = new FileInfo(fi.FullName.Replace(ext, @".SLDDRW"));
+			return dwgfi.Exists;
+		}
+
+		private void OnClickOpenPDF(object sender, EventArgs e) {
+			ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter gdta =
+				new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter();
+			ENGINEERINGDataSet.GEN_DRAWINGSDataTable dt = gdta.GetDataByFName(selectedPart);
+			string fullPath = string.Empty;
+			if (dt.Rows.Count > 0) {
+				ENGINEERINGDataSet.GEN_DRAWINGSRow r_ = (dt.Rows[0] as ENGINEERINGDataSet.GEN_DRAWINGSRow);
+				fullPath = string.Format(@"{0}{1}", r_.FPath, r_.FName);
+				System.Diagnostics.Process.Start(fullPath);
+			}
+		}
+
+		private void OnClickMachinePriority(object sender, EventArgs e) {
+			Machine_Priority_Control.MachinePriority mp = new Machine_Priority_Control.MachinePriority(selectedPart);
+			mp.Show(this);
+		}
+
+		private void OnClickOpenDrawing(object sender, EventArgs e) {
+			try {
+				int err = 0;
+				DirectoryInfo di = new DirectoryInfo(GetPath());
+				FileInfo fi = find_doc(selectedPart);
+				string t = fi.FullName.ToUpper();
+				string ext = Path.GetExtension(t).ToUpper();
+				string fullpath = t.Replace(ext, @".SLDDRW");
+				if (File.Exists(fullpath)) {
+					_swApp.OpenDocSilent(fullpath,
+						(int)swDocumentTypes_e.swDocDRAWING,
+						(int)swOpenDocOptions_e.swOpenDocOptions_Silent);
+					_swApp.ActivateDoc3(fullpath, true,
+						(int)swRebuildOnActivation_e.swDontRebuildActiveDoc, ref err);
+					Close();
+				} else {
+					MessageBox.Show(this, string.Format(@"Couldn't find '{0}'", fullpath),
+						@"Not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			} catch (NullReferenceException nex) {
+				MessageBox.Show(this, string.Format("You must select a row with something in it.\n{0}", nex.Message),
+					@"Not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			} catch (Exception ex) {
+				MessageBox.Show(this, ex.Message,
+					@"Not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
 	}
 }
