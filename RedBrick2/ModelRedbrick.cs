@@ -661,27 +661,24 @@ namespace RedBrick2 {
 			}
 			swSelComp = swSelMgr.GetSelectedObjectsComponent4(1, -1);
 			if (swSelComp == null) {
-				try {
-					swSelComp = swSelMgr.GetSelectedObject6(1, -1);
+				object selection_ = swSelMgr.GetSelectedObject6(1, -1);
+				if (selection_ is Component2) {
+					swSelComp = (Component2)selection_;
 					this.Enabled = true;
-				} catch (InvalidCastException i) {
-					// not a modeldoc
-					Frame f = SwApp.Frame();
-					f.SetStatusBarText(i.Message);
 				}
 			}
 			if (swSelComp != null) {
 				Component = swSelComp;
-				try {
+				//try {
 					configurationManager = (swSelComp.GetModelDoc2() as ModelDoc2).ConfigurationManager;
 					configuration = swSelComp.ReferencedConfiguration;
 					this.Enabled = true;
 					ReQuery(swSelComp.GetModelDoc2());
-				} catch (NullReferenceException e) {
-					Frame f = SwApp.Frame();
-					f.SetStatusBarText(e.Message);
-					this.Enabled = false;
-				}
+				//} catch (NullReferenceException e) {
+				//	Frame f = SwApp.Frame();
+				//	f.SetStatusBarText(e.Message);
+				//	this.Enabled = false;
+				//}
 			} else {
 				// Nothing's selected?
 				// Just look at the root item then.
