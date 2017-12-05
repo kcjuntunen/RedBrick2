@@ -609,11 +609,11 @@ namespace RedBrick2 {
 			inc.HeaderText = @"Include";
 			inc.SortMode = DataGridViewColumnSortMode.Programmatic;
 
-			foreach (var item in new object[] { inc, part_number, descr, part_qty, mat, 
+			foreach (var item in new object[] { inc, dpt_col,
+			  part_number, descr, part_qty, mat,
 				length, width, thickness, blnk_qty, overl, overw, cnc1, cnc2,
 				op1, op2, op3, op4, op5,
-				ef, eb, el, er,
-				dpt_col }) {
+				ef, eb, el, er}) {
 				dataGridView1.Columns.Add((DataGridViewColumn)item);
 			}
 		}
