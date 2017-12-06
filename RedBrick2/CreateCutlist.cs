@@ -819,15 +819,17 @@ namespace RedBrick2 {
 		}
 
 		private void select_btn_Click(object sender, EventArgs e) {
+			System.Text.RegularExpressions.Regex r =
+				new System.Text.RegularExpressions.Regex(Redbrick.BOMFilter[0]);
 			foreach (DataGridViewRow item in dataGridView1.Rows) {
-				DataGridViewComboBoxCell dept = item.Cells[@"Department"] as DataGridViewComboBoxCell;
-				if (dept.Value != null) {
-					if ((int)dept.Value == (int)type_cbx.SelectedValue) {
-						DataGridViewCheckBoxCell inc = item.Cells[@"Include"] as DataGridViewCheckBoxCell;
-						System.Text.RegularExpressions.Regex r =
-							new System.Text.RegularExpressions.Regex(Redbrick.BOMFilter[0]);
-						if (r.IsMatch(selectedPart)) {
+				string part_ = (string)item.Cells[@"Part Number"].Value;
+				if (part_ != null && r.IsMatch(part_)) {
+					DataGridViewComboBoxCell dept = item.Cells[@"Department"] as DataGridViewComboBoxCell;
+					if (dept.Value != null) {
+						if ((int)dept.Value == (int)type_cbx.SelectedValue) {
+							DataGridViewCheckBoxCell inc = item.Cells[@"Include"] as DataGridViewCheckBoxCell;
 							inc.Value = true;
+							toolStripStatusLabel2.Text = string.Format("Included Parts: {0}", count_includes(1));
 						}
 					}
 				}
@@ -841,6 +843,7 @@ namespace RedBrick2 {
 					if ((int)dept.Value == (int)type_cbx.SelectedValue) {
 						DataGridViewCheckBoxCell inc = item.Cells[@"Include"] as DataGridViewCheckBoxCell;
 						inc.Value = false;
+						toolStripStatusLabel2.Text = string.Format("Included Parts: {0}", count_includes(-1));
 					}
 				}
 			}
