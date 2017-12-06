@@ -49,6 +49,7 @@ namespace RedBrick2 {
 				}
 			}
 			treeView1.Nodes.Clear();
+			// TODO: fix this for new drawings.
 			PartFileInfo = new FileInfo(ActiveDoc.GetPathName());
 			string[] fi = Path.GetFileNameWithoutExtension(PartFileInfo.Name).Split(' ');
 			partLookup = fi[0];
@@ -67,20 +68,6 @@ namespace RedBrick2 {
 			//ProjectCustomer = GetCorrectCustomer();
 			groupBox5.Text = projectDescr != string.Empty ? string.Format(@"{0} - {1}", partLookup, projectDescr) : partLookup;
 		}
-
-		//private int GetCorrectCustomer() {
-		//  string pattern = @"([A-Z]{3,4})(\d{4})";
-		//  System.Text.RegularExpressions.Regex r = new System.Text.RegularExpressions.Regex(pattern);
-		//  System.Text.RegularExpressions.Match matches = System.Text.RegularExpressions.Regex.Match(partLookup, pattern);
-		//  if (r.IsMatch(partLookup)) {
-		//    ENGINEERINGDataSetTableAdapters.SCH_PROJECTSTableAdapter spta =
-		//      new ENGINEERINGDataSetTableAdapters.SCH_PROJECTSTableAdapter();
-		//    ENGINEERINGDataSet.SCH_PROJECTSRow row = spta.GetDataByProject(matches.Groups[1].ToString())[0];
-		//    projectDescr = row.DESCRIPTION;
-		//    return row.CUSTID;
-		//  }
-		//  return 0;
-		//}
 
 		private void FigureOutCustomer() {
 			SwProperty _p = new CustomerProperty(@"CUSTOMER", true, SwApp, ActiveDoc);
