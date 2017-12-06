@@ -217,8 +217,8 @@ namespace RedBrick2 {
 			rev = _revFromProperties;
 
 			if (_revFromFile != string.Empty && _revFromFile != _revFromProperties) {
-				Redbrick.UnErr(rev_cbx);
-				rev_tooltip.RemoveAll();
+				Redbrick.Err(rev_cbx);
+				rev_tooltip.SetToolTip(rev_cbx, Properties.Resources.RevisionNotMatching);
 			}
 
 			set_rev(rev);
