@@ -243,16 +243,16 @@ namespace RedBrick2 {
 		private void SelectLastCutlist() {
 			if (ComboBoxContainsValue(Properties.Settings.Default.LastCutlist, cutlistctl)) {
 				cutlistctl.SelectedValue = Properties.Settings.Default.LastCutlist;
-				ToggleCutlistWarn(false);
+				ToggleCutlistErr(false);
 			} else {
 				cutlistctl.SelectedValue = -1;
-				ToggleCutlistWarn(true);
+				ToggleCutlistErr(true);
 			}
 		}
 
 		public void ToggleTypeWarn(bool on) {
 			if (on) {
-				Redbrick.Warn(type_cbx);
+				Redbrick.Err(type_cbx);
 				type_tooltip.SetToolTip(type_cbx, Properties.Resources.NoTypeWarning);
 				type_tooltip.SetToolTip(groupBox4, Properties.Resources.NoTypeWarning);
 				type_tooltip.SetToolTip(op1_cbx, Properties.Resources.NoTypeWarning);
@@ -266,7 +266,7 @@ namespace RedBrick2 {
 				type_tooltip.SetToolTip(label35, Properties.Resources.NoTypeWarning);
 				type_tooltip.SetToolTip(label36, Properties.Resources.NoTypeWarning);
 			} else {
-				Redbrick.Unwarn(type_cbx);
+				Redbrick.UnErr(type_cbx);
 				type_tooltip.RemoveAll();
 			}
 		}
@@ -277,29 +277,29 @@ namespace RedBrick2 {
 				descr_tooltup.SetToolTip(descriptiontb, Properties.Resources.NoDescriptionWarning);
 				descr_tooltup.SetToolTip(label12, Properties.Resources.NoDescriptionWarning);
 			} else {
-				Redbrick.Unwarn(descriptiontb);
+				Redbrick.UnErr(descriptiontb);
 				descr_tooltup.RemoveAll();
 			}
 		}
 
-		private void ToggleCutlistWarn(bool on) {
+		private void ToggleCutlistErr(bool on) {
 			if (on) {
-				Redbrick.Warn(cutlistctl);
+				Redbrick.Err(cutlistctl);
 				cutlist_tooltip.SetToolTip(cutlistctl, Properties.Resources.CutlistNotSelectedWarning);
 				cutlist_tooltip.SetToolTip(label11, Properties.Resources.CutlistNotSelectedWarning);
 			} else {
-				Redbrick.Unwarn(cutlistctl);
+				Redbrick.UnErr(cutlistctl);
 				cutlist_tooltip.RemoveAll();
 			}
 		}
 
-		private void TogglePPBWarn(bool on) {
+		private void TogglePPBErr(bool on) {
 			if (on) {
-				Redbrick.Warn(ppbtb);
+				Redbrick.Err(ppbtb);
 				ppb_tooltip.SetToolTip(ppbtb, Properties.Resources.NotNaturalNumberWarning);
 				ppb_tooltip.SetToolTip(label27, Properties.Resources.NotNaturalNumberWarning);
 			} else {
-				Redbrick.Unwarn(ppbtb);
+				Redbrick.UnErr(ppbtb);
 				ppb_tooltip.RemoveAll();
 			}
 		}
@@ -747,7 +747,7 @@ namespace RedBrick2 {
 			ReQuery(md);
 			cutlistctl.SelectedIndex = -1;
 			Properties.Settings.Default.LastCutlist = -1;
-			ToggleCutlistWarn(true);
+			ToggleCutlistErr(true);
 			return 0;
 		}
 
@@ -1249,7 +1249,7 @@ namespace RedBrick2 {
 
 		private void comboBox6_SelectedIndexChanged(object sender, EventArgs e) {
 			if (cl_userediting) {
-				ToggleCutlistWarn(false);
+				ToggleCutlistErr(false);
 				Properties.Settings.Default.LastCutlist = (int)(sender as ComboBox).SelectedValue;
 				Properties.Settings.Default.Save();
 				cl_userediting = false;
@@ -1352,9 +1352,9 @@ namespace RedBrick2 {
 
 		private void textBox11_TextChanged(object sender, EventArgs e) {
 			if ((sender as TextBox).Text == string.Empty || (sender as TextBox).Text == @" ") {
-				TogglePPBWarn(true);
+				TogglePPBErr(true);
 			} else {
-				TogglePPBWarn(false);
+				TogglePPBErr(false);
 			}
 		}
 

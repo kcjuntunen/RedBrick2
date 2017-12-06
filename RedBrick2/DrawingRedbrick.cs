@@ -264,22 +264,22 @@ namespace RedBrick2 {
 
 		private void ToggleRevWarn(bool on) {
 			if (on) {
-				Redbrick.Warn(rev_cbx);
+				Redbrick.Err(rev_cbx);
 				rev_tooltip.SetToolTip(rev_cbx, Properties.Resources.RevisionNotMatching);
 				rev_tooltip.SetToolTip(label44, Properties.Resources.RevisionNotMatching);
 			} else {
-				Redbrick.Unwarn(rev_cbx as ComboBox);
+				Redbrick.UnErr(rev_cbx as ComboBox);
 				rev_tooltip.RemoveAll();
 			}
 		}
 
 		private void ToggleCustomerWarn(bool on) {
 			if (on) {
-				Redbrick.Warn(cust_cbx);
+				Redbrick.Err(cust_cbx);
 				cust_tooltip.SetToolTip(cust_cbx, Properties.Resources.CustomerNotMatching);
 				cust_tooltip.SetToolTip(label41, Properties.Resources.CustomerNotMatching);
 			} else {
-				Redbrick.Unwarn(cust_cbx);
+				Redbrick.UnErr(cust_cbx);
 				cust_tooltip.RemoveAll();
 			}
 		}

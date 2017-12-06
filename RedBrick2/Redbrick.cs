@@ -574,14 +574,24 @@ namespace RedBrick2 {
 			return @"#VALUE!";
 		}
 
-		public static void Warn(System.Windows.Forms.Control c) {
+		public static void Err(System.Windows.Forms.Control c) {
 			c.ForeColor = Properties.Settings.Default.WarnForeground;
 			c.BackColor = Properties.Settings.Default.WarnBackground;
 		}
 
-		public static void Unwarn(System.Windows.Forms.Control c) {
+		public static void UnErr(System.Windows.Forms.Control c) {
 			c.ForeColor = Properties.Settings.Default.NormalForeground;
 			c.BackColor = Properties.Settings.Default.NormalBackground;
+		}
+
+		public static void Warn(System.Windows.Forms.Control c) {
+			c.BackColor = Properties.Settings.Default.WarnForeground;
+		}
+
+		public static void SwapTextBoxContents(System.Windows.Forms.ComboBox _left, System.Windows.Forms.ComboBox _right) {
+			string temp_ = _left.Text;
+			_left.Text = _right.Text;
+			_right.Text = temp_;
 		}
 
 		static public System.Windows.Forms.ImageList TreeViewIcons { get; set; }

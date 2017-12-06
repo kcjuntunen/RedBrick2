@@ -122,33 +122,33 @@ namespace RedBrick2 {
 
 		private void ToggleRevWarn(bool on) {
 			if (on) {
-				Redbrick.Warn(rev_cbx);
+				Redbrick.Err(rev_cbx);
 				rev_tooltip.SetToolTip(rev_cbx, Properties.Resources.RevisionNotMatching);
 				rev_tooltip.SetToolTip(label6, Properties.Resources.RevisionNotMatching);
 			} else {
-				Redbrick.Unwarn(rev_cbx as ComboBox);
+				Redbrick.UnErr(rev_cbx as ComboBox);
 				rev_tooltip.RemoveAll();
 			}
 		}
 
 		private void ToggleCustomerWarn(bool on) {
 			if (on) {
-				Redbrick.Warn(cust_cbx);
+				Redbrick.Err(cust_cbx);
 				cust_tooltip.SetToolTip(cust_cbx, Properties.Resources.CustomerNotMatching);
 				cust_tooltip.SetToolTip(label1, Properties.Resources.CustomerNotMatching);
 			} else {
-				Redbrick.Unwarn(cust_cbx);
+				Redbrick.UnErr(cust_cbx);
 				cust_tooltip.RemoveAll();
 			}
 		}
 
 		private void ToggleDescrWarn(bool on) {
 			if (on) {
-				Redbrick.Warn(descr_cbx);
+				Redbrick.Err(descr_cbx);
 				descr_tooltip.SetToolTip(descr_cbx, Properties.Resources.NoDescriptionWarning);
 				descr_tooltip.SetToolTip(label3, Properties.Resources.NoDescriptionWarning);
 			} else {
-				Redbrick.Unwarn(descr_cbx);
+				Redbrick.UnErr(descr_cbx);
 				descr_tooltip.RemoveAll();
 			}
 		}
@@ -217,7 +217,7 @@ namespace RedBrick2 {
 			rev = _revFromProperties;
 
 			if (_revFromFile != string.Empty && _revFromFile != _revFromProperties) {
-				Redbrick.Unwarn(rev_cbx);
+				Redbrick.UnErr(rev_cbx);
 				rev_tooltip.RemoveAll();
 			}
 
@@ -764,14 +764,14 @@ namespace RedBrick2 {
 		private void comboBox1_MouseClick(object sender, MouseEventArgs e) {
 			user_changed_item = true;
 			if (sender is Control) {
-				Redbrick.Unwarn((Control)sender);
+				Redbrick.UnErr((Control)sender);
 			}
 		}
 
 		private void comboBox2_KeyDown(object sender, KeyEventArgs e) {
 			comboBox_KeyDown(sender, e);
 			user_changed_item = true;
-			Redbrick.Unwarn((Control)sender);
+			Redbrick.UnErr((Control)sender);
 		}
 
 		private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e) {
@@ -816,7 +816,7 @@ namespace RedBrick2 {
 			if (rev_changed_by_user) {
 				ComboBox _cb = sender as ComboBox;
 				if (_revFromFile == string.Empty || _cb.Text == _revFromFile) {
-					Redbrick.Unwarn(_cb);
+					Redbrick.UnErr(_cb);
 					rev_tooltip.RemoveAll();
 				}
 				rev = _cb.Text;
