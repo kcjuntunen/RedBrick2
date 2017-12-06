@@ -507,7 +507,10 @@ namespace RedBrick2 {
 		}
 
 		private void GetRoutingFromPart() {
-			int type = (int)type_cbx.SelectedValue;
+			int type = 1;
+			if (type_cbx.SelectedItem != null) {
+				type = (int)type_cbx.SelectedValue;
+			}
 			int er = 0;
 
 			for (int i = 0; i < cbxes.Length; i++) {
@@ -535,7 +538,7 @@ namespace RedBrick2 {
 
 		private void FilterOps(string filter) {
 			if (filter == string.Empty) {
-				filter = "1";
+				filter = "TYPEID = 1";
 			}
 			friendlyCutOpsBindingSource.Filter = filter;
 			friendlyCutOpsBindingSource1.Filter = filter;
@@ -1275,7 +1278,15 @@ namespace RedBrick2 {
 		}
 
 		private void comboBox12_SelectedIndexChanged(object sender, EventArgs e) {
-			FilterOps(string.Format(@"TYPEID = {0}", (sender as ComboBox).SelectedValue));
+			ComboBox c_ = sender as ComboBox;
+			if (c_.SelectedItem != null) {
+				ToggleTypeWarn(false);
+				FilterOps(string.Format(@"TYPEID = {0}", (sender as ComboBox).SelectedValue));
+			} else {
+				ToggleTypeWarn(true);
+				FilterOps(@"TYPEID = 1");
+			}
+
 			for (int i = 0; i < cbxes.Length; i++) {
 				cbxes[i].SelectedValue = -1;
 			}
