@@ -39,6 +39,7 @@ namespace RedBrick2 {
 		private bool rev_in_filename = false;
 		private bool user_changed_item = false;
 		private Configuration _config = null;
+		private int opCount = 5;
 		private bool[] sort_directions = { false, false, false, false, false, false,
 																			 false, false, false, false, false, false,
 																			 false, false, false, false, false, false,
@@ -624,11 +625,31 @@ namespace RedBrick2 {
 
 		private void SetType(int _type, SwProperties _props, DataGridViewRow _row) {
 			_row.Cells[@"Department"].Value = _type;
-			(_props[@"OP1"] as OpProperty).OpType = _type;
-			(_props[@"OP2"] as OpProperty).OpType = _type;
-			(_props[@"OP3"] as OpProperty).OpType = _type;
-			(_props[@"OP4"] as OpProperty).OpType = _type;
-			(_props[@"OP5"] as OpProperty).OpType = _type;
+			for (int i = 1; i < opCount + 1; i++) {
+				string op_ = string.Format(@"OP{0}", i);
+				string opid_ = string.Format(@"OP{0}ID", i);
+				(_props[op_] as OpProperty).OpType = _type;
+				(_props[opid_] as OpId).OpType = _type;
+			}
+		}
+
+		private void ToggleCellWarn(DataGridViewCell _cell, bool on) {
+			if (on) {
+				_cell.Style.BackColor = Properties.Settings.Default.WarnForeground;
+			} else {
+				_cell.Style.BackColor = Properties.Settings.Default.NormalBackground;
+				_cell.Style.ForeColor = Properties.Settings.Default.NormalForeground;
+			}
+		}
+
+		private void ToggleCellErr(DataGridViewCell _cell, bool on) {
+			if (on) {
+				_cell.Style.BackColor = Properties.Settings.Default.WarnBackground;
+				_cell.Style.ForeColor = Properties.Settings.Default.WarnForeground;
+			} else {
+				_cell.Style.BackColor = Properties.Settings.Default.NormalBackground;
+				_cell.Style.ForeColor = Properties.Settings.Default.NormalForeground;
+			}
 		}
 
 		private void FillTable(SortedDictionary<string, int> pl, SortedDictionary<string, SwProperties> sp) {
@@ -667,7 +688,7 @@ namespace RedBrick2 {
 				row.Cells[@"CNC 1"].Value = val[@"CNC1"].Data;
 				row.Cells[@"CNC 2"].Value = val[@"CNC2"].Data;
 
-				for (int i = 1; i < 6; i++) {
+				for (int i = 1; i < opCount + 1; i++) {
 					string col_ = string.Format(@"Op {0}", i);
 					string op_ = string.Format(@"OP{0}", i);
 					string opid_ = string.Format(@"OP{0}ID", i);
