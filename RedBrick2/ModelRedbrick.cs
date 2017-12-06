@@ -1252,20 +1252,46 @@ namespace RedBrick2 {
 		}
 
 		private void comboBox6_SelectedIndexChanged(object sender, EventArgs e) {
+			DataRowView ctlist_row = cutlistctl.Items[cutlistctl.SelectedIndex] as DataRowView;
+			System.Diagnostics.Debug.WriteLine(@"================");
+			for (int i = 0; i < cutlistctl.Items.Count; i++) {
+				System.Diagnostics.Debug.WriteLine(string.Format(@"{0,10}|{1,10}|{2,10}|{3,20}|{4,10}|{5,10}",
+					(cutlistctl.Items[i] as DataRowView)[0],
+					(cutlistctl.Items[i] as DataRowView)[1],
+					(cutlistctl.Items[i] as DataRowView)[2],
+					(cutlistctl.Items[i] as DataRowView)[3],
+					(cutlistctl.Items[i] as DataRowView)[@"MATID"],
+					(cutlistctl.Items[i] as DataRowView)[@"EDGEID_LF"]
+					));
+			}
+			Frame f = SwApp.Frame();
+			string s = string.Format(@"{0}|{1}|{2}|{3}|{4}|{5}", ctlist_row[0],
+				ctlist_row[1],
+				ctlist_row[2],
+				ctlist_row[3],
+				ctlist_row[@"MATID"],
+				ctlist_row[@"EDGEID_LF"]);
+
+			f.SetStatusBarText(s);
+			cutlistctl.SelectedItem = cutlistctl.FindStringExact(cutlistctl.Text);
 			if (cl_userediting) {
 				ToggleCutlistErr(false);
 				Properties.Settings.Default.LastCutlist = (int)(sender as ComboBox).SelectedValue;
 				Properties.Settings.Default.Save();
 				cl_userediting = false;
 			}
-			DataRowView ctlist_row = (cutlistctl.SelectedItem as DataRowView);
 			if (ctlist_row != null) {
-				cutlistMat.SelectedValue = (int)ctlist_row[@"MATID"];
-				edgef.SelectedValue = (int)ctlist_row[@"EDGEID_LF"];
-				edgeb.SelectedValue = (int)ctlist_row[@"EDGEID_LB"];
-				edger.SelectedValue = (int)ctlist_row[@"EDGEID_WR"];
-				edgel.SelectedValue = (int)ctlist_row[@"EDGEID_WL"];
+				Set_Specific(ctlist_row);
 			}
+		}
+
+		private void Set_Specific(DataRowView _row) {
+			cutlistMat.SelectedValue = Convert.ToInt32(_row[@"MATID"]);
+			edgef.SelectedValue = Convert.ToInt32(_row[@"EDGEID_LF"]);
+			edgeb.SelectedValue = Convert.ToInt32(_row[@"EDGEID_LB"]);
+			edger.SelectedValue = Convert.ToInt32(_row[@"EDGEID_WR"]);
+			edgel.SelectedValue = Convert.ToInt32(_row[@"EDGEID_WL"]);
+			partq.Value = Convert.ToInt32(_row[@"QTY"]);
 		}
 
 		private void comboBox6_MouseClick(object sender, MouseEventArgs e) {
@@ -1405,6 +1431,10 @@ namespace RedBrick2 {
 			Redbrick.Warn(edgel);
 			Redbrick.Warn(edger);
 			ov_userediting = false;
+		}
+
+		private void cutlistctl_KeyPress(object sender, KeyPressEventArgs e) {
+			cl_userediting = true;
 		}
 	}
 }
