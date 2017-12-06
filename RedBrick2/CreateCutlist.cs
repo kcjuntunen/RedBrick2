@@ -30,6 +30,7 @@ namespace RedBrick2 {
 		private string topName = string.Empty;
 		private string partLookup = string.Empty;
 		private string selectedPart = string.Empty;
+		private FileInfo foundPDF;
 		private string _revFromFile = string.Empty;
 		private string _revFromProperties = string.Empty;
 		private string rev = @"100";
@@ -844,18 +845,20 @@ namespace RedBrick2 {
 				if (current_row >= 0) {
 					DataGridViewCell cell_ = (grid_[@"Part Number", current_row] as DataGridViewCell);
 					if (cell_.Value != null) {
-					selectedPart = cell_.Value.ToString();
-					MenuItem [] items = {
-																new MenuItem(string.Format(@"Open Model ({0})...", selectedPart), OnClickOpenModel),
-																new MenuItem(@"-"),
-																new MenuItem(@"Open Drawing...", OnClickOpenDrawing),
-																new MenuItem(@"Open PDF...", OnClickOpenPDF),
-																new MenuItem(@"Create Drawing..."),
-																new MenuItem(@"-"),
-																new MenuItem(@"Machine Priority...", OnClickMachinePriority) };
-					items[2].Enabled = DrawingExists(selectedPart);
-					items[4].Enabled = false;
-					m.MenuItems.AddRange(items);
+						selectedPart = cell_.Value.ToString();
+						foundPDF = find_pdf(selectedPart);
+						MenuItem [] items = {
+																	new MenuItem(string.Format(@"Open Model ({0})...", selectedPart), OnClickOpenModel),
+																	new MenuItem(@"-"),
+																	new MenuItem(@"Open Drawing...", OnClickOpenDrawing),
+																	new MenuItem(@"Open PDF...", OnClickOpenPDF),
+																	new MenuItem(@"Create Drawing..."),
+																	new MenuItem(@"-"),
+																	new MenuItem(@"Machine Priority...", OnClickMachinePriority) };
+						items[2].Enabled = DrawingExists(selectedPart);
+						items[3].Enabled = foundPDF != null ? foundPDF.Exists : false;
+						items[4].Enabled = false;
+						m.MenuItems.AddRange(items);
 					}
 				}
 				m.Show(grid_, new Point(e.X, e.Y));
@@ -884,16 +887,28 @@ namespace RedBrick2 {
 			return dwgfi.Exists;
 		}
 
-		private void OnClickOpenPDF(object sender, EventArgs e) {
+		private FileInfo find_pdf(string doc) {
+			string searchterm_ = string.Format(@"{0}.PDF", doc);
 			ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter gdta =
 				new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter();
-			ENGINEERINGDataSet.GEN_DRAWINGSDataTable dt = gdta.GetDataByFName(selectedPart);
-			string fullPath = string.Empty;
+			ENGINEERINGDataSet.GEN_DRAWINGSDataTable dt = gdta.GetDataByFName(searchterm_);
 			if (dt.Rows.Count > 0) {
-				ENGINEERINGDataSet.GEN_DRAWINGSRow r_ = (dt.Rows[0] as ENGINEERINGDataSet.GEN_DRAWINGSRow);
-				fullPath = string.Format(@"{0}{1}", r_.FPath, r_.FName);
-				System.Diagnostics.Process.Start(fullPath);
+				ENGINEERINGDataSet.GEN_DRAWINGSRow r = (dt.Rows[0] as ENGINEERINGDataSet.GEN_DRAWINGSRow);
+				return new FileInfo(string.Format(@"{0}{1}", r.FPath, r.FName));
+			} else {
+				ENGINEERINGDataSetTableAdapters.GEN_DRAWINGS_MTLTableAdapter gdmta =
+					new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGS_MTLTableAdapter();
+				ENGINEERINGDataSet.GEN_DRAWINGS_MTLDataTable mdt = gdmta.GetDataByFName(searchterm_);
+				if (mdt.Rows.Count > 0) {
+					ENGINEERINGDataSet.GEN_DRAWINGS_MTLRow mr = (mdt.Rows[0] as ENGINEERINGDataSet.GEN_DRAWINGS_MTLRow);
+					return new FileInfo(string.Format(@"{0}{1}", mr.FPath, mr.FName));
+				}
 			}
+			return null;
+		}
+
+		private void OnClickOpenPDF(object sender, EventArgs e) {
+			System.Diagnostics.Process.Start(foundPDF.FullName);
 		}
 
 		private void OnClickMachinePriority(object sender, EventArgs e) {
