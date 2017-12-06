@@ -166,4 +166,7 @@
   <data name="RevisionNotMatching" xml:space="preserve">
     <value>Make sure the revision matches the revision indicated in the filename.</value>
   </data>
+  <data name="NoTypeWarning" xml:space="preserve">
+    <value>Type couldn't be figured out from property data.</value>
+  </data>
 </root>

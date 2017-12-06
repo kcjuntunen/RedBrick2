@@ -143,6 +143,15 @@ namespace RedBrick2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type couldn&apos;t be figured out from property data..
+        /// </summary>
+        internal static string NoTypeWarning {
+            get {
+                return ResourceManager.GetString("NoTypeWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap redlego {

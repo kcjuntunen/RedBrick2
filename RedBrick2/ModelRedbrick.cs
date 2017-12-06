@@ -56,6 +56,7 @@ namespace RedBrick2 {
 		private ToolTip descr_tooltup = new ToolTip();
 		private ToolTip ppb_tooltip = new ToolTip();
 		private ToolTip over_tooltip = new ToolTip();
+		private ToolTip type_tooltip = new ToolTip();
 
 		public ModelRedbrick(SldWorks sw, ModelDoc2 md) {
 			SwApp = sw;
@@ -246,6 +247,27 @@ namespace RedBrick2 {
 			} else {
 				cutlistctl.SelectedValue = -1;
 				ToggleCutlistWarn(true);
+			}
+		}
+
+		public void ToggleTypeWarn(bool on) {
+			if (on) {
+				Redbrick.Warn(type_cbx);
+				type_tooltip.SetToolTip(type_cbx, Properties.Resources.NoTypeWarning);
+				type_tooltip.SetToolTip(groupBox4, Properties.Resources.NoTypeWarning);
+				type_tooltip.SetToolTip(op1_cbx, Properties.Resources.NoTypeWarning);
+				type_tooltip.SetToolTip(op2_cbx, Properties.Resources.NoTypeWarning);
+				type_tooltip.SetToolTip(op3_cbx, Properties.Resources.NoTypeWarning);
+				type_tooltip.SetToolTip(op4_cbx, Properties.Resources.NoTypeWarning);
+				type_tooltip.SetToolTip(op5_cbx, Properties.Resources.NoTypeWarning);
+				type_tooltip.SetToolTip(label32, Properties.Resources.NoTypeWarning);
+				type_tooltip.SetToolTip(label33, Properties.Resources.NoTypeWarning);
+				type_tooltip.SetToolTip(label34, Properties.Resources.NoTypeWarning);
+				type_tooltip.SetToolTip(label35, Properties.Resources.NoTypeWarning);
+				type_tooltip.SetToolTip(label36, Properties.Resources.NoTypeWarning);
+			} else {
+				Redbrick.Unwarn(type_cbx);
+				type_tooltip.RemoveAll();
 			}
 		}
 
