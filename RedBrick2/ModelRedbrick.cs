@@ -492,10 +492,12 @@ namespace RedBrick2 {
 				string opid_name = string.Format("OP{0}ID", i + 1);
 				string op_name = string.Format("OP{0}", i + 1);
 				if (PropertySet.ContainsKey(opid_name)) {
+					(PropertySet[opid_name] as OpId).OpType = type;
 					er = (int)PropertySet[opid_name].Data;
 				}
 				if (er < 1) {
 					if (PropertySet.ContainsKey(op_name)) {
+						(PropertySet[op_name] as OpProperty).OpType = type;
 						er = (int)PropertySet[op_name].Data;
 					}
 				}
