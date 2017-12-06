@@ -657,20 +657,15 @@ namespace RedBrick2 {
 				row.Cells[@"CNC 1"].Value = val[@"CNC1"].Data;
 				row.Cells[@"CNC 2"].Value = val[@"CNC2"].Data;
 
-				if ((int)val[@"OP1"].Data > 0) {
-					row.Cells[@"Op 1"].Value = val[@"OP1"].Data;
-				}
-				if ((int)val[@"OP2"].Data > 0) {
-					row.Cells[@"Op 2"].Value = val[@"OP2"].Data;
-				}
-				if ((int)val[@"OP3"].Data > 0) {
-					row.Cells[@"Op 3"].Value = val[@"OP3"].Data;
-				}
-				if ((int)val[@"OP4"].Data > 0) {
-					row.Cells[@"Op 4"].Value = val[@"OP4"].Data;
-				}
-				if ((int)val[@"OP5"].Data > 0) {
-					row.Cells[@"Op 5"].Value = val[@"OP5"].Data;
+				for (int i = 1; i < 6; i++) {
+					string col_ = string.Format(@"Op {0}", i);
+					string op_ = string.Format(@"OP{0}", i);
+					string opid_ = string.Format(@"OP{0}ID", i);
+					if ((int)val[op_].Data > 0) {
+						row.Cells[col_].Value = val[op_].Data;
+					} else if ((int)val[opid_].Data > 0) {
+						row.Cells[col_].Value = val[opid_].Data;
+					}
 				}
 
 				if ((int)val[@"EDGE FRONT (L)"].Data > 0) {
