@@ -53,9 +53,11 @@ namespace RedBrick2 {
 			PartFileInfo = new FileInfo(ActiveDoc.GetPathName());
 			string[] fi = Path.GetFileNameWithoutExtension(PartFileInfo.Name).Split(' ');
 			partLookup = fi[0];
-			string[] revcheck = Path.GetFileNameWithoutExtension(PartFileInfo.Name).
-				Split(new string[] { @"REV", @" " }, StringSplitOptions.RemoveEmptyEntries);
-			RevFromFile = revcheck.Length > 1 ? revcheck[1] : null;
+			if (PartFileInfo.Name.ToUpper().Contains(@"REV")) {
+				string[] revcheck = Path.GetFileNameWithoutExtension(PartFileInfo.Name).
+					Split(new string[] { @"REV" }, StringSplitOptions.RemoveEmptyEntries);
+				RevFromFile = revcheck.Length > 1 ? revcheck[revcheck.Length - 1] : null;
+			}
 			ENGINEERINGDataSet.SCH_PROJECTSRow r =
 				(new ENGINEERINGDataSet.SCH_PROJECTSDataTable()).GetCorrectCustomer(partLookup);
 			if (r != null) {
