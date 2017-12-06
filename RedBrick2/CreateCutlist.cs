@@ -863,8 +863,7 @@ namespace RedBrick2 {
 					if (cell_.Value != null) {
 						selectedPart = cell_.Value.ToString();
 						foundPDF = find_pdf(selectedPart);
-						MenuItem [] items = {
-																	new MenuItem(string.Format(@"Open Model ({0})...", selectedPart), OnClickOpenModel),
+						MenuItem [] items = { new MenuItem(string.Format(@"Open Model ({0})...", selectedPart), OnClickOpenModel),
 																	new MenuItem(@"-"),
 																	new MenuItem(@"Open Drawing...", OnClickOpenDrawing),
 																	new MenuItem(@"Open PDF...", OnClickOpenPDF),
