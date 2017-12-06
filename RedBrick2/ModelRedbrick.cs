@@ -134,6 +134,7 @@ namespace RedBrick2 {
 					blnkszLtb.Text = @"#VALUE!";
 				}
 			}
+			overLtb.Text = Redbrick.enforce_number_format(overLtb.Text);
 		}
 
 		void textBox10_TextChanged(object sender, EventArgs e) {
@@ -158,6 +159,7 @@ namespace RedBrick2 {
 					blnkszWtb.Text = @"#VALUE!";
 				}
 			}
+			overWtb.Text = Redbrick.enforce_number_format(overWtb.Text);
 		}
 
 		public void DumpActiveDoc() {
