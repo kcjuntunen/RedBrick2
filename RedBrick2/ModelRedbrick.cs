@@ -1229,6 +1229,14 @@ namespace RedBrick2 {
 				Properties.Settings.Default.Save();
 				cl_userediting = false;
 			}
+			DataRowView ctlist_row = (cutlistctl.SelectedItem as DataRowView);
+			if (ctlist_row != null) {
+				cutlistMat.SelectedValue = (int)ctlist_row[@"MATID"];
+				edgef.SelectedValue = (int)ctlist_row[@"EDGEID_LF"];
+				edgeb.SelectedValue = (int)ctlist_row[@"EDGEID_LB"];
+				edger.SelectedValue = (int)ctlist_row[@"EDGEID_WR"];
+				edgel.SelectedValue = (int)ctlist_row[@"EDGEID_WL"];
+			}
 		}
 
 		private void comboBox6_MouseClick(object sender, MouseEventArgs e) {
