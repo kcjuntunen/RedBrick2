@@ -785,6 +785,8 @@ namespace RedBrick2 {
 				DataGridViewCell descr_cell_ = grid_.Rows[e.RowIndex].Cells[@"Description"];
 				if (dpt_cell_.Value != null) {
 					ToggleCellWarn(dpt_cell_, false);
+				} else {
+					ToggleCellWarn(dpt_cell_, true);
 				}
 
 				if (ppb_cell_.Value != null && (int)ppb_cell_.Value > 0) {
