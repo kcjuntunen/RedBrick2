@@ -619,6 +619,15 @@ namespace RedBrick2 {
 			}
 		}
 
+		private void SetType(int _type, SwProperties _props, DataGridViewRow _row) {
+			_row.Cells[@"Department"].Value = _type;
+			(_props[@"OP1"] as OpProperty).OpType = _type;
+			(_props[@"OP2"] as OpProperty).OpType = _type;
+			(_props[@"OP3"] as OpProperty).OpType = _type;
+			(_props[@"OP4"] as OpProperty).OpType = _type;
+			(_props[@"OP5"] as OpProperty).OpType = _type;
+		}
+
 		private void FillTable(SortedDictionary<string, int> pl, SortedDictionary<string, SwProperties> sp) {
 			System.Text.RegularExpressions.Regex r =
 				new System.Text.RegularExpressions.Regex(Redbrick.BOMFilter[0]);
@@ -629,21 +638,19 @@ namespace RedBrick2 {
 				DataGridViewRow row = dataGridView1.Rows[idx];
 
 				if ((int)val[@"DEPARTMENT"].Data > 0 && (int)val[@"DEPARTMENT"].Data <= (int)cpt.TypeCount()) {
-					int v_ = (int)val[@"DEPARTMENT"].Data;
-					row.Cells[@"Department"].Value = v_;
-					(val[@"OP1"] as OpProperty).OpType = v_;
-					(val[@"OP2"] as OpProperty).OpType = v_;
-					(val[@"OP3"] as OpProperty).OpType = v_;
-					(val[@"OP4"] as OpProperty).OpType = v_;
-					(val[@"OP5"] as OpProperty).OpType = v_;
+					SetType((int)val[@"DEPARTMENT"].Data, val, row);
+				} else if ((int)val[@"DEPTID"].Data > 0) {
+					SetType((int)val[@"DEPTID"].Data, val, row);
 				}
 
 				row.Cells[@"Part Number"].Value = name;
 
 				row.Cells[@"Description"].Value = val[@"Description"].Value;
 
-				if ((int)val[@"CUTLIST MATERIAL"].Data > 0 && (int)val[@"CUTLIST MATERIAL"].Data <= (int)cmt.MaterialCount()) {
+				if ((int)val[@"CUTLIST MATERIAL"].Data > 0) {
 					row.Cells[@"Material"].Value = val[@"CUTLIST MATERIAL"].Data;
+				} else if ((int)val[@"MATID"].Data > 0) {
+					row.Cells[@"Material"].Value = val[@"MATID"].Data;
 				}
 
 				row.Cells[@"L"].Value = Redbrick.enforce_number_format((double)val[@"LENGTH"].Data);
@@ -670,18 +677,26 @@ namespace RedBrick2 {
 
 				if ((int)val[@"EDGE FRONT (L)"].Data > 0) {
 					row.Cells[@"ef"].Value = val[@"EDGE FRONT (L)"].Data;
+				} else if ((int)val[@"EFID"].Data > 0) {
+					row.Cells[@"ef"].Value = val[@"EFID"].Data;
 				}
 
 				if ((int)val[@"EDGE BACK (L)"].Data > 0) {
 					row.Cells[@"eb"].Value = val[@"EDGE BACK (L)"].Data;
+				} else if ((int)val[@"EBID"].Data > 0) {
+					row.Cells[@"eb"].Value = val[@"EBID"].Data;
 				}
 
 				if ((int)val[@"EDGE LEFT (W)"].Data > 0) {
 					row.Cells[@"el"].Value = val[@"EDGE LEFT (W)"].Data;
+				} else if ((int)val[@"ELID"].Data > 0) {
+					row.Cells[@"el"].Value = val[@"ELID"].Data;
 				}
 
 				if ((int)val[@"EDGE RIGHT (W)"].Data > 0) {
 					row.Cells[@"er"].Value = val[@"EDGE RIGHT (W)"].Data;
+				} else if ((int)val[@"ERID"].Data > 0) {
+					row.Cells[@"er"].Value = val[@"ERID"].Data;
 				}
 
 				row.Cells[@"Part Qty"].Value = item.Value;
