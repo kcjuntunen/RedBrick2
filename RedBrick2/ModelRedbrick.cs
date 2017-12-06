@@ -419,11 +419,9 @@ namespace RedBrick2 {
 		private void GetRoutingFromDB() {
 			double setupTime = 0.0f;
 			double runTime = 0.0f;
-			if (eNGINEERINGDataSet.CutlistParts.Rows.Count > 0) {
-				ENGINEERINGDataSet.CutlistPartsRow r =
-					(ENGINEERINGDataSet.CutlistPartsRow)eNGINEERINGDataSet.CutlistParts.Rows[0];
-				type_cbx.SelectedValue = r.TYPE;
-				FilterOps(string.Format(@"TYPEID = {0}", r.TYPE));
+			if (Row != null) {
+				type_cbx.SelectedValue = Row.TYPE;
+				FilterOps(string.Format(@"TYPEID = {0}", Row.TYPE));
 			}
 			ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpota =
 				new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
