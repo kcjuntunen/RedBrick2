@@ -61,6 +61,7 @@ namespace RedBrick2 {
 		public ModelRedbrick(SldWorks sw, ModelDoc2 md) {
 			SwApp = sw;
 			InitializeComponent();
+			cbxes = new ComboBox[] { op1_cbx, op2_cbx, op3_cbx, op4_cbx, op5_cbx };
 			ToggleFlameWar(Properties.Settings.Default.FlameWar);
 
 			ActiveDoc = md;
@@ -998,7 +999,6 @@ namespace RedBrick2 {
 
 			//GetCutlistData();
 			//SelectTab();
-			cbxes = new ComboBox[] { op1_cbx, op2_cbx, op3_cbx, op4_cbx, op5_cbx };
 			initialated = true;
 		}
 
