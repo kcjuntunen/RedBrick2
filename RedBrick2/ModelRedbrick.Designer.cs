@@ -73,6 +73,8 @@
 			this.label20 = new System.Windows.Forms.Label();
 			this.label19 = new System.Windows.Forms.Label();
 			this.label18 = new System.Windows.Forms.Label();
+			this.swapLnW = new System.Windows.Forms.Button();
+			this.swapWnT = new System.Windows.Forms.Button();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
 			this.label31 = new System.Windows.Forms.Label();
@@ -132,8 +134,6 @@
 			this.cUT_PARTSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
 			this.friendlyCutOpsTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
-			this.swapLnW = new System.Windows.Forms.Button();
-			this.swapWnT = new System.Windows.Forms.Button();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
@@ -543,6 +543,7 @@
 			this.cutlistctl.ValueMember = "CLID";
 			this.cutlistctl.SelectedIndexChanged += new System.EventHandler(this.comboBox6_SelectedIndexChanged);
 			this.cutlistctl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+			this.cutlistctl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cutlistctl_KeyPress);
 			this.cutlistctl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox6_MouseClick);
 			this.cutlistctl.Resize += new System.EventHandler(this.comboBox_Resize);
 			// 
@@ -774,6 +775,28 @@
 			this.label18.Name = "label18";
 			this.label18.Size = new System.Drawing.Size(0, 17);
 			this.label18.TabIndex = 12;
+			// 
+			// swapLnW
+			// 
+			this.swapLnW.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.swapLnW.Location = new System.Drawing.Point(192, 85);
+			this.swapLnW.Name = "swapLnW";
+			this.swapLnW.Size = new System.Drawing.Size(75, 10);
+			this.swapLnW.TabIndex = 16;
+			this.swapLnW.Text = "↔";
+			this.swapLnW.UseVisualStyleBackColor = true;
+			this.swapLnW.Click += new System.EventHandler(this.swapLnW_Click);
+			// 
+			// swapWnT
+			// 
+			this.swapWnT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.swapWnT.Location = new System.Drawing.Point(192, 129);
+			this.swapWnT.Name = "swapWnT";
+			this.swapWnT.Size = new System.Drawing.Size(75, 10);
+			this.swapWnT.TabIndex = 17;
+			this.swapWnT.Text = "↔";
+			this.swapWnT.UseVisualStyleBackColor = true;
+			this.swapWnT.Click += new System.EventHandler(this.swapWnT_Click);
 			// 
 			// groupBox3
 			// 
@@ -1459,28 +1482,6 @@
 			// cUT_PART_TYPESTableAdapter
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
-			// 
-			// swapLnW
-			// 
-			this.swapLnW.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.swapLnW.Location = new System.Drawing.Point(192, 85);
-			this.swapLnW.Name = "swapLnW";
-			this.swapLnW.Size = new System.Drawing.Size(75, 10);
-			this.swapLnW.TabIndex = 16;
-			this.swapLnW.Text = "↔";
-			this.swapLnW.UseVisualStyleBackColor = true;
-			this.swapLnW.Click += new System.EventHandler(this.swapLnW_Click);
-			// 
-			// swapWnT
-			// 
-			this.swapWnT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.swapWnT.Location = new System.Drawing.Point(192, 129);
-			this.swapWnT.Name = "swapWnT";
-			this.swapWnT.Size = new System.Drawing.Size(75, 10);
-			this.swapWnT.TabIndex = 17;
-			this.swapWnT.Text = "↔";
-			this.swapWnT.UseVisualStyleBackColor = true;
-			this.swapWnT.Click += new System.EventHandler(this.swapWnT_Click);
 			// 
 			// ModelRedbrick
 			// 
