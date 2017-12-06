@@ -775,6 +775,33 @@ namespace RedBrick2 {
 		}
 
 		private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e) {
+			DataGridView grid_ = sender as DataGridView;
+			DataGridViewCell part_cell_ = grid_.Rows[e.RowIndex].Cells[@"Part Number"];
+			System.Text.RegularExpressions.Regex r =
+				new System.Text.RegularExpressions.Regex(Redbrick.BOMFilter[0]);
+			if (part_cell_.Value != null && r.IsMatch(part_cell_.Value.ToString())) {
+				DataGridViewCell dpt_cell_ = grid_.Rows[e.RowIndex].Cells[@"Department"];
+				DataGridViewCell ppb_cell_ = grid_.Rows[e.RowIndex].Cells[@"Blank Qty"];
+				DataGridViewCell descr_cell_ = grid_.Rows[e.RowIndex].Cells[@"Description"];
+				if (dpt_cell_.Value != null) {
+					ToggleCellWarn(dpt_cell_, false);
+				}
+
+				if (ppb_cell_.Value != null && (int)ppb_cell_.Value > 0) {
+					ToggleCellErr(ppb_cell_, false);
+				} else if (ppb_cell_.Value == null || (int)ppb_cell_.Value < 1) {
+					ToggleCellErr(ppb_cell_, true);
+				}
+
+				if (descr_cell_.Value != null &&
+					descr_cell_.Value.ToString() != string.Empty) {
+					ToggleCellWarn(descr_cell_, false);
+				} else if (descr_cell_.Value == null ||
+					(descr_cell_.Value.ToString() == string.Empty ||
+					descr_cell_.Value.ToString().Contains("$"))) {
+					ToggleCellWarn(descr_cell_, true);
+				}
+			}
 		}
 
 		private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) {
