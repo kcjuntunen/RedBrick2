@@ -43,6 +43,12 @@ namespace RedBrick2 {
 			this.descr_cbx = new System.Windows.Forms.ComboBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.cancel_btn = new System.Windows.Forms.Button();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+			this.type_cbx = new System.Windows.Forms.ComboBox();
+			this.cUTPARTTYPESBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.select_btn = new System.Windows.Forms.Button();
+			this.unselect_btn = new System.Windows.Forms.Button();
 			this.gEN_CUSTOMERSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.GEN_CUSTOMERSTableAdapter();
 			this.revListTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.RevListTableAdapter();
 			this.cUT_CUTLISTSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
@@ -51,12 +57,6 @@ namespace RedBrick2 {
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-			this.type_cbx = new System.Windows.Forms.ComboBox();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-			this.select_btn = new System.Windows.Forms.Button();
-			this.unselect_btn = new System.Windows.Forms.Button();
-			this.cUTPARTTYPESBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.tableLayoutPanel1.SuspendLayout();
@@ -64,11 +64,11 @@ namespace RedBrick2 {
 			((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSet)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTCUTLISTSBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.revListBindingSource)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.cutlistPartsBindingSource)).BeginInit();
-			this.statusStrip1.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.cUTPARTTYPESBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.cutlistPartsBindingSource)).BeginInit();
+			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// dataGridView1
@@ -323,6 +323,78 @@ namespace RedBrick2 {
 			this.cancel_btn.UseVisualStyleBackColor = true;
 			this.cancel_btn.Click += new System.EventHandler(this.button1_Click);
 			// 
+			// panel1
+			// 
+			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.tableLayoutPanel1.SetColumnSpan(this.panel1, 5);
+			this.panel1.Controls.Add(this.tableLayoutPanel2);
+			this.panel1.Location = new System.Drawing.Point(3, 93);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(736, 34);
+			this.panel1.TabIndex = 15;
+			// 
+			// tableLayoutPanel2
+			// 
+			this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.tableLayoutPanel2.ColumnCount = 4;
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+			this.tableLayoutPanel2.Controls.Add(this.type_cbx, 1, 0);
+			this.tableLayoutPanel2.Controls.Add(this.select_btn, 2, 0);
+			this.tableLayoutPanel2.Controls.Add(this.unselect_btn, 3, 0);
+			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+			this.tableLayoutPanel2.RowCount = 1;
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(728, 26);
+			this.tableLayoutPanel2.TabIndex = 0;
+			// 
+			// type_cbx
+			// 
+			this.type_cbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.type_cbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.type_cbx.DataSource = this.cUTPARTTYPESBindingSource;
+			this.type_cbx.DisplayMember = "TYPEDESC";
+			this.type_cbx.FormattingEnabled = true;
+			this.type_cbx.Location = new System.Drawing.Point(374, 3);
+			this.type_cbx.Name = "type_cbx";
+			this.type_cbx.Size = new System.Drawing.Size(189, 21);
+			this.type_cbx.TabIndex = 14;
+			this.type_cbx.ValueMember = "TYPEID";
+			this.type_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+			// 
+			// cUTPARTTYPESBindingSource
+			// 
+			this.cUTPARTTYPESBindingSource.DataMember = "CUT_PART_TYPES";
+			this.cUTPARTTYPESBindingSource.DataSource = this.eNGINEERINGDataSet;
+			// 
+			// select_btn
+			// 
+			this.select_btn.Location = new System.Drawing.Point(569, 3);
+			this.select_btn.Name = "select_btn";
+			this.select_btn.Size = new System.Drawing.Size(75, 20);
+			this.select_btn.TabIndex = 15;
+			this.select_btn.Text = "Select";
+			this.select_btn.UseVisualStyleBackColor = true;
+			this.select_btn.Click += new System.EventHandler(this.select_btn_Click);
+			// 
+			// unselect_btn
+			// 
+			this.unselect_btn.Location = new System.Drawing.Point(650, 3);
+			this.unselect_btn.Name = "unselect_btn";
+			this.unselect_btn.Size = new System.Drawing.Size(75, 20);
+			this.unselect_btn.TabIndex = 16;
+			this.unselect_btn.Text = "Unselect";
+			this.unselect_btn.UseVisualStyleBackColor = true;
+			this.unselect_btn.Click += new System.EventHandler(this.unselect_btn_Click);
+			// 
 			// gEN_CUSTOMERSTableAdapter
 			// 
 			this.gEN_CUSTOMERSTableAdapter.ClearBeforeFill = true;
@@ -367,78 +439,6 @@ namespace RedBrick2 {
 			this.toolStripStatusLabel2.Size = new System.Drawing.Size(117, 17);
 			this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
 			// 
-			// type_cbx
-			// 
-			this.type_cbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-			this.type_cbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-			this.type_cbx.DataSource = this.cUTPARTTYPESBindingSource;
-			this.type_cbx.DisplayMember = "TYPEDESC";
-			this.type_cbx.FormattingEnabled = true;
-			this.type_cbx.Location = new System.Drawing.Point(374, 3);
-			this.type_cbx.Name = "type_cbx";
-			this.type_cbx.Size = new System.Drawing.Size(189, 21);
-			this.type_cbx.TabIndex = 14;
-			this.type_cbx.ValueMember = "TYPEID";
-			this.type_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
-			// 
-			// panel1
-			// 
-			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.tableLayoutPanel1.SetColumnSpan(this.panel1, 5);
-			this.panel1.Controls.Add(this.tableLayoutPanel2);
-			this.panel1.Location = new System.Drawing.Point(3, 93);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(736, 34);
-			this.panel1.TabIndex = 15;
-			// 
-			// tableLayoutPanel2
-			// 
-			this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.tableLayoutPanel2.ColumnCount = 4;
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-			this.tableLayoutPanel2.Controls.Add(this.type_cbx, 1, 0);
-			this.tableLayoutPanel2.Controls.Add(this.select_btn, 2, 0);
-			this.tableLayoutPanel2.Controls.Add(this.unselect_btn, 3, 0);
-			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-			this.tableLayoutPanel2.RowCount = 1;
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(728, 26);
-			this.tableLayoutPanel2.TabIndex = 0;
-			// 
-			// select_btn
-			// 
-			this.select_btn.Location = new System.Drawing.Point(569, 3);
-			this.select_btn.Name = "select_btn";
-			this.select_btn.Size = new System.Drawing.Size(75, 20);
-			this.select_btn.TabIndex = 15;
-			this.select_btn.Text = "Select";
-			this.select_btn.UseVisualStyleBackColor = true;
-			this.select_btn.Click += new System.EventHandler(this.select_btn_Click);
-			// 
-			// unselect_btn
-			// 
-			this.unselect_btn.Location = new System.Drawing.Point(650, 3);
-			this.unselect_btn.Name = "unselect_btn";
-			this.unselect_btn.Size = new System.Drawing.Size(75, 20);
-			this.unselect_btn.TabIndex = 16;
-			this.unselect_btn.Text = "Unselect";
-			this.unselect_btn.UseVisualStyleBackColor = true;
-			this.unselect_btn.Click += new System.EventHandler(this.unselect_btn_Click);
-			// 
-			// cUTPARTTYPESBindingSource
-			// 
-			this.cUTPARTTYPESBindingSource.DataMember = "CUT_PART_TYPES";
-			this.cUTPARTTYPESBindingSource.DataSource = this.eNGINEERINGDataSet;
-			// 
 			// cUT_PART_TYPESTableAdapter
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
@@ -467,12 +467,12 @@ namespace RedBrick2 {
 			((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSet)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTCUTLISTSBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.revListBindingSource)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.cutlistPartsBindingSource)).EndInit();
-			this.statusStrip1.ResumeLayout(false);
-			this.statusStrip1.PerformLayout();
 			this.panel1.ResumeLayout(false);
 			this.tableLayoutPanel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.cUTPARTTYPESBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.cutlistPartsBindingSource)).EndInit();
+			this.statusStrip1.ResumeLayout(false);
+			this.statusStrip1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
