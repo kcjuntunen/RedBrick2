@@ -30,6 +30,7 @@ namespace RedBrick2 {
 		private string topName = string.Empty;
 		private string partLookup = string.Empty;
 		private string selectedPart = string.Empty;
+		private string sourceComp = string.Empty;
 		private FileInfo foundPDF;
 		private string _revFromFile = string.Empty;
 		private string _revFromProperties = string.Empty;
@@ -69,11 +70,13 @@ namespace RedBrick2 {
 					_v = Redbrick.GetFirstView(_swApp);
 				}
 				m = _v.ReferencedDocument;
+				sourceComp = _v.Name;
 				_config = m.GetConfigurationByName(_v.ReferencedConfiguration);
 				swConf = _config;
+				Text = string.Format(@"{0} - {1} (from {2})", topName, _config.Name, sourceComp);
+			} else {
+				Text = string.Format(@"{0} - {1}", topName, _config.Name);
 			}
-
-			Text = string.Format(@"{0} - {1}", topName, _config.Name);
 
 			swRootComp = (Component2)swConf.GetRootComponent();
 
