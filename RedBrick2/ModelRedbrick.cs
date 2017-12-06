@@ -1244,6 +1244,9 @@ namespace RedBrick2 {
 
 		private void comboBox12_SelectedIndexChanged(object sender, EventArgs e) {
 			FilterOps(string.Format(@"TYPEID = {0}", (sender as ComboBox).SelectedValue));
+			for (int i = 0; i < cbxes.Length; i++) {
+				cbxes[i].SelectedValue = -1;
+			}
 		}
 
 		private void button3_Click(object sender, EventArgs e) {
