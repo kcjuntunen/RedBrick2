@@ -588,7 +588,7 @@ namespace RedBrick2 {
 			c.BackColor = Properties.Settings.Default.WarnForeground;
 		}
 
-		public static void SwapTextBoxContents(System.Windows.Forms.ComboBox _left, System.Windows.Forms.ComboBox _right) {
+		public static void SwapTextBoxContents(System.Windows.Forms.TextBox _left, System.Windows.Forms.TextBox _right) {
 			string temp_ = _left.Text;
 			_left.Text = _right.Text;
 			_right.Text = temp_;

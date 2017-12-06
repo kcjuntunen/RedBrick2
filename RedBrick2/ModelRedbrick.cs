@@ -1073,6 +1073,7 @@ namespace RedBrick2 {
 		}
 
 		private void comboBox2_SelectedIndexChanged(object sender, EventArgs e) {
+			Redbrick.UnErr(sender as Control);
 			if ((sender as ComboBox).SelectedIndex == -1) {
 				label7.Visible = false;
 			} else {
@@ -1081,6 +1082,7 @@ namespace RedBrick2 {
 		}
 
 		private void comboBox3_SelectedIndexChanged(object sender, EventArgs e) {
+			Redbrick.UnErr(sender as Control);
 			if ((sender as ComboBox).SelectedIndex == -1) {
 				label8.Visible = false;
 			} else {
@@ -1089,6 +1091,7 @@ namespace RedBrick2 {
 		}
 
 		private void comboBox4_SelectedIndexChanged(object sender, EventArgs e) {
+			Redbrick.UnErr(sender as Control);
 			if ((sender as ComboBox).SelectedIndex == -1) {
 				label9.Visible = false;
 			} else {
@@ -1097,6 +1100,7 @@ namespace RedBrick2 {
 		}
 
 		private void comboBox5_SelectedIndexChanged(object sender, EventArgs e) {
+			Redbrick.UnErr(sender as Control);
 			if ((sender as ComboBox).SelectedIndex == -1) {
 				label10.Visible = false;
 			} else {
@@ -1381,6 +1385,26 @@ namespace RedBrick2 {
 			} else if (sender is CheckBox) {
 				(sender as CheckBox).Focus();
 			}
+		}
+
+		private void swapLnW_Click(object sender, EventArgs e) {
+			ov_userediting = true;
+			Redbrick.SwapTextBoxContents(lengthtb, widthtb);
+			Redbrick.Warn(edgef);
+			Redbrick.Warn(edgeb);
+			Redbrick.Warn(edgel);
+			Redbrick.Warn(edger);
+			ov_userediting = false;
+		}
+
+		private void swapWnT_Click(object sender, EventArgs e) {
+			ov_userediting = true;
+			Redbrick.SwapTextBoxContents(widthtb, thicknesstb);
+			Redbrick.Warn(edgef);
+			Redbrick.Warn(edgeb);
+			Redbrick.Warn(edgel);
+			Redbrick.Warn(edger);
+			ov_userediting = false;
 		}
 	}
 }
