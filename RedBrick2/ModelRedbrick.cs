@@ -336,6 +336,20 @@ namespace RedBrick2 {
 			}
 		}
 
+		private void ToggleEdgeWarn(bool on) {
+			if (on) {
+				Redbrick.Warn(edgef);
+				Redbrick.Warn(edgeb);
+				Redbrick.Warn(edgel);
+				Redbrick.Warn(edger);
+			} else {
+				Redbrick.UnErr(edgef);
+				Redbrick.UnErr(edgeb);
+				Redbrick.UnErr(edgel);
+				Redbrick.UnErr(edger);
+			}
+		}
+
 		/// <summary>
 		/// Search a combobox for a value.
 		/// </summary>
@@ -964,6 +978,7 @@ namespace RedBrick2 {
 				//allowPaint = false;
 				if (value != null && value != ActiveDoc) {
 					Show();
+					ToggleEdgeWarn(false);
 					lastModelDoc = _activeDoc;
 					_activeDoc = value;
 
@@ -1468,20 +1483,14 @@ namespace RedBrick2 {
 		private void swapLnW_Click(object sender, EventArgs e) {
 			ov_userediting = true;
 			Redbrick.SwapTextBoxContents(lengthtb, widthtb);
-			Redbrick.Warn(edgef);
-			Redbrick.Warn(edgeb);
-			Redbrick.Warn(edgel);
-			Redbrick.Warn(edger);
+			ToggleEdgeWarn(true);
 			ov_userediting = false;
 		}
 
 		private void swapWnT_Click(object sender, EventArgs e) {
 			ov_userediting = true;
 			Redbrick.SwapTextBoxContents(widthtb, thicknesstb);
-			Redbrick.Warn(edgef);
-			Redbrick.Warn(edgeb);
-			Redbrick.Warn(edgel);
-			Redbrick.Warn(edger);
+			ToggleEdgeWarn(true);
 			ov_userediting = false;
 		}
 
