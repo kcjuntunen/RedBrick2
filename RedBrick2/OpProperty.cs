@@ -83,7 +83,7 @@ namespace RedBrick2 {
 		/// <summary>
 		/// Internal value of Data.
 		/// </summary>
-		protected int _data = 0;
+		protected new int _data = 0;
 
 		/// <summary>
 		/// An value appropriately formatted for the db.

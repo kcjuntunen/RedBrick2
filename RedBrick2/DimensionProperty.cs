@@ -55,7 +55,7 @@ namespace RedBrick2 {
 		/// <summary>
 		/// The internal value for  "Data".
 		/// </summary>
-		protected double _data = 0.0F;
+		protected new double _data = 0.0F;
 		// TODO: This needs to take a SW type dimension string, and try to parse it.
 		/// <summary>
 		/// Data formatted for entry into db.

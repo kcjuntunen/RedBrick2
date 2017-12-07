@@ -51,7 +51,7 @@ namespace RedBrick2 {
 		/// <summary>
 		/// Internal value for "Data".
 		/// </summary>
-		protected bool _data = false;
+		protected new bool _data = false;
 
 		/// <summary>
 		/// Data formatted for db entry.

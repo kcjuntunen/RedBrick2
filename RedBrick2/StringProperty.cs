@@ -34,7 +34,7 @@ namespace RedBrick2 {
 		/// <summary>
 		/// Internal value for "Data".
 		/// </summary>
-		protected string _data;
+		protected new string _data;
 
 		/// <summary>
 		/// Data formatted for entry into the db.

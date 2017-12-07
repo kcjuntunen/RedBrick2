@@ -39,7 +39,7 @@ namespace RedBrick2 {
 		/// <summary>
 		/// Internal value for "Data".
 		/// </summary>
-		protected DateTime _data = DateTime.Now;
+		protected new DateTime _data = DateTime.Now;
 
 		/// <summary>
 		/// Data formatted for entry into the db.

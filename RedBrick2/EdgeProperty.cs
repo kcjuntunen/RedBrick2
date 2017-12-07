@@ -34,7 +34,7 @@ namespace RedBrick2 {
 		/// <summary>
 		/// Internal value for "Data".
 		/// </summary>
-		protected int _data = 0;
+		protected new int _data = 0;
 
 		/// <summary>
 		/// Data formatted for entry into the db.
@@ -55,7 +55,7 @@ namespace RedBrick2 {
 				if (value is string) {
 					ENGINEERINGDataSetTableAdapters.CUT_EDGES_XREFTableAdapter cex =
 						new ENGINEERINGDataSetTableAdapters.CUT_EDGES_XREFTableAdapter();
-					if (value != string.Empty) {
+					if ((string)value != string.Empty) {
 						Value = value.ToString();
 						try {
 							_data = (int)cex.GetEdgeID(value.ToString());

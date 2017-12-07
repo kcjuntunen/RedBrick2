@@ -52,7 +52,7 @@ namespace RedBrick2 {
 
 		public string FriendlyValue { get; set; }
 
-		protected int _data = 0;
+		protected new int _data = 0;
 
 		public override object Data {
 			get { return _data; }

@@ -39,14 +39,18 @@ namespace RedBrick2 {
 		/// <summary>
 		/// Internal value for "Data".
 		/// </summary>
-		protected double _data = 0.0F;
+		protected new double _data = 0.0F;
 
 		/// <summary>
 		/// Data formatted for entry into the db.
 		/// </summary>
 		public override object Data {
 			get {
-				return _data == null ? double.Parse(ResolvedValue) : _data;
+				double test_ = 0.0F;
+				if (double.TryParse(ResolvedValue, out test_)) {
+					_data = test_;
+				}
+				return _data;
 			}
 			set {
 				_data = double.Parse(value.ToString());

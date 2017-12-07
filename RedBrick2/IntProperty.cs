@@ -41,14 +41,18 @@ namespace RedBrick2 {
 		/// <summary>
 		/// Internal value for "Data".
 		/// </summary>
-		protected int _data = 0;
+		protected new int _data = 0;
 
 		/// <summary>
 		/// Data formatted for entry into the db.
 		/// </summary>
 		public override object Data {
 			get {
-				return _data == null ? int.Parse(Value) : _data;
+				int test_ = -1;
+				if (int.TryParse(Value, out test_)) {
+					_data = test_;
+				}
+				return _data;
 			}
 			set {
 				try {

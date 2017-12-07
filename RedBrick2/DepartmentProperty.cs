@@ -40,7 +40,7 @@ namespace RedBrick2 {
 			return this;
 		}
 
-		protected int _data = 0;
+		protected new int _data = 0;
 
 		public override object Data {
 			get { return _data; }
