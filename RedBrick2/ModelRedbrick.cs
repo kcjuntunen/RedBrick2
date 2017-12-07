@@ -1252,46 +1252,38 @@ namespace RedBrick2 {
 		}
 
 		private void comboBox6_SelectedIndexChanged(object sender, EventArgs e) {
-			DataRowView ctlist_row = cutlistctl.Items[cutlistctl.SelectedIndex] as DataRowView;
-			System.Diagnostics.Debug.WriteLine(@"================");
-			for (int i = 0; i < cutlistctl.Items.Count; i++) {
-				System.Diagnostics.Debug.WriteLine(string.Format(@"{0,10}|{1,10}|{2,10}|{3,20}|{4,10}|{5,10}",
-					(cutlistctl.Items[i] as DataRowView)[0],
-					(cutlistctl.Items[i] as DataRowView)[1],
-					(cutlistctl.Items[i] as DataRowView)[2],
-					(cutlistctl.Items[i] as DataRowView)[3],
-					(cutlistctl.Items[i] as DataRowView)[@"MATID"],
-					(cutlistctl.Items[i] as DataRowView)[@"EDGEID_LF"]
-					));
+			// It may seem ridiculous to query for data that's supposed to be in a DataRowView 
+			// of (sender as ComboBox).SelectedItem. Well, it turns out that the values shift around
+			// unpredicably--at least where the column count is high. I haven't seen values shift in
+			// the first few columns.
+			if (cutlistctl.SelectedIndex > -1) {
+				DataRowView ctlist_row = cutlistctl.SelectedItem as DataRowView;
+				ENGINEERINGDataSetTableAdapters.CutlistPartsTableAdapter ccp =
+					new ENGINEERINGDataSetTableAdapters.CutlistPartsTableAdapter();
+				ENGINEERINGDataSet.CutlistPartsDataTable ccpdt =
+					ccp.GetDataByPartAndCutlistID(Convert.ToInt32(ctlist_row[@"PARTID"]),
+					Convert.ToInt32(ctlist_row[@"MATID"]));
+				if (ccpdt.Rows.Count > 0) {
+					ENGINEERINGDataSet.CutlistPartsRow r_ = (ccpdt.Rows[0] as ENGINEERINGDataSet.CutlistPartsRow);
+					Set_Specific(r_);
+				}
 			}
-			Frame f = SwApp.Frame();
-			string s = string.Format(@"{0}|{1}|{2}|{3}|{4}|{5}", ctlist_row[0],
-				ctlist_row[1],
-				ctlist_row[2],
-				ctlist_row[3],
-				ctlist_row[@"MATID"],
-				ctlist_row[@"EDGEID_LF"]);
 
-			f.SetStatusBarText(s);
-			cutlistctl.SelectedItem = cutlistctl.FindStringExact(cutlistctl.Text);
 			if (cl_userediting) {
 				ToggleCutlistErr(false);
 				Properties.Settings.Default.LastCutlist = (int)(sender as ComboBox).SelectedValue;
 				Properties.Settings.Default.Save();
 				cl_userediting = false;
 			}
-			if (ctlist_row != null) {
-				Set_Specific(ctlist_row);
-			}
 		}
 
-		private void Set_Specific(DataRowView _row) {
-			cutlistMat.SelectedValue = Convert.ToInt32(_row[@"MATID"]);
-			edgef.SelectedValue = Convert.ToInt32(_row[@"EDGEID_LF"]);
-			edgeb.SelectedValue = Convert.ToInt32(_row[@"EDGEID_LB"]);
-			edger.SelectedValue = Convert.ToInt32(_row[@"EDGEID_WR"]);
-			edgel.SelectedValue = Convert.ToInt32(_row[@"EDGEID_WL"]);
-			partq.Value = Convert.ToInt32(_row[@"QTY"]);
+		private void Set_Specific(ENGINEERINGDataSet.CutlistPartsRow _row) {
+			cutlistMat.SelectedValue = _row.MATID;
+			edgef.SelectedValue = _row.EDGEID_LF;
+			edgeb.SelectedValue = _row.EDGEID_LB;
+			edger.SelectedValue = _row.EDGEID_WR;
+			edgel.SelectedValue = _row.EDGEID_WL;
+			partq.Value = Convert.ToInt32(_row.QTY);
 		}
 
 		private void comboBox6_MouseClick(object sender, MouseEventArgs e) {
