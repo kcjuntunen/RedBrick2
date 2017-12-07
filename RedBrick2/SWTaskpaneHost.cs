@@ -14,18 +14,34 @@ using SolidWorks.Interop.swpublished;
 using System.Runtime.InteropServices;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// The fundamental UserControl in the SWTaskpane.
+	/// </summary>
 	[ComVisible(true)]
 	[ProgId(SWTASKPANE_PROGID)]
 	public partial class SWTaskpaneHost : UserControl {
+		/// <summary>
+		/// Program ID.
+		/// </summary>
 		public const string SWTASKPANE_PROGID = "Redbrick2.SWTaskpane";
+
+		/// <summary>
+		/// Mmmm.... coookies.... Do I even use this?
+		/// </summary>
 		public int cookie;
 		private ModelRedbrick mrb;
 		private bool initialated = false;
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
 		public SWTaskpaneHost() {
 			InitializeComponent();
 		}
 
+		/// <summary>
+		/// Spin up the whole works.
+		/// </summary>
 		public void Start() {
 			if (SwApp == null) {
 				SwApp = RequestSW();
@@ -42,6 +58,10 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// Uglify text in certain TextBoxes.
+		/// </summary>
+		/// <param name="on">Bool.</param>
 		public void ToggleFlameWar(bool on) {
 			if (mrb != null) {
 				mrb.ToggleFlameWar(on);
@@ -127,6 +147,10 @@ namespace RedBrick2 {
 			mrb.ReQuery(SwApp.ActiveDoc);
 		}
 
+		/// <summary>
+		/// Get SwApp.
+		/// </summary>
+		/// <returns>OnRequestSW()</returns>
 		protected SldWorks RequestSW() {
 			if (OnRequestSW == null)
 				throw new Exception("No SW!");
@@ -134,39 +158,71 @@ namespace RedBrick2 {
 			return OnRequestSW();
 		}
 
+		/// <summary>
+		/// Function type to return a SldWorks object.
+		/// </summary>
 		public Func<SldWorks> OnRequestSW;
 
-
+		/// <summary>
+		/// A selection manager.
+		/// </summary>
 		protected SelectionMgr _swSelMgr;
 
+		/// <summary>
+		/// A selection manager.
+		/// </summary>
 		public SelectionMgr swSelMgr {
 			get { return _swSelMgr; }
 			set { _swSelMgr = value; }
 		}
 
+		/// <summary>
+		/// Internal value for a property set for this object.
+		/// </summary>
 		protected SwProperties _propertySet;
 
+		/// <summary>
+		/// A property set for this object.
+		/// </summary>
 		public SwProperties PropertySet {
 			get { return _propertySet; }
 			set { _propertySet = value; }
 		}
 
+		/// <summary>
+		/// Internal value for an history of ModelDoc2s.
+		/// </summary>
 		protected List<ModelDoc2> _modelDocs;
 
+		/// <summary>
+		/// An history of ModelDoc2s.
+		/// </summary>
 		public List<ModelDoc2> ModelDocs {
 			get { return _modelDocs; }
 			set { _modelDocs = value; }
 		}
 
+		/// <summary>
+		/// Internal value for a current ModelDoc2.
+		/// </summary>
 		protected ModelDoc2 _activeDoc;
 
+		/// <summary>
+		/// A current ModelDoc2.
+		/// </summary>
 		public ModelDoc2 ActiveDoc {
 			get { return _activeDoc; }
 			set { _activeDoc = value; }
 		}
 
+		/// <summary>
+		/// Internal value for the connnected application.
+		/// </summary>
 		protected SldWorks _swApp;
 
+		/// <summary>
+		/// The connnected application.
+		/// </summary>
 		public SldWorks SwApp {
 			get { return _swApp; }
 			set { _swApp = value; }

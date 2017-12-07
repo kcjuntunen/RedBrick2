@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// A window for editing routing data.
+	/// </summary>
 	public partial class EditOp : Form {
 		private ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpota =
 			new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
@@ -22,6 +25,10 @@ namespace RedBrick2 {
 		private bool NewOp = false;
 		private bool user_edit = false;
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="props">The property set from a given part.</param>
 		public EditOp(SwProperties props) {
 			InitializeComponent();
 			PropertySet = props;
@@ -47,6 +54,10 @@ namespace RedBrick2 {
 			currentRow.TYPEID = (int)PropertySet[@"DEPARTMENT"].Data;
 		}
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="row">A row of routing data.</param>
 		public EditOp(ENGINEERINGDataSet.CutPartOpsRow row) {
 			InitializeComponent();
 			currentRow = row;

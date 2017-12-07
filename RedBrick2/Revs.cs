@@ -6,10 +6,20 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// A set of revision property sets.
+	/// </summary>
 	public class Revs : IList<Rev> {
+		/// <summary>
+		/// The connected application.
+		/// </summary>
 		public SldWorks SwApp;
 		private List<Rev> innerList = new List<Rev>();
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="sw">The connected application.</param>
 		public Revs(SldWorks sw) {
 			SwApp = sw;
 			Init();
@@ -46,6 +56,14 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// Generate a set of revision properties. Figure out the correct index.
+		/// </summary>
+		/// <param name="ev">An ECR Number.</param>
+		/// <param name="dev">A description string.</param>
+		/// <param name="aut">An int of author ID.</param>
+		/// <param name="dt">A DateTime value.</param>
+		/// <returns></returns>
 		public int NewRev(string ev, string dev, int aut, DateTime dt) {
 			ModelDoc2 md = (ModelDoc2)SwApp.ActiveDoc;
 			int idx = Count;
@@ -54,62 +72,120 @@ namespace RedBrick2 {
 			return idx - 1;
 		}
 
+		/// <summary>
+		/// Write all sets of revs to the part.
+		/// </summary>
 		public void Write() {
 			foreach (Rev rev in innerList) {
 				rev.Write();
 			}
 		}
 
+		/// <summary>
+		/// Add a rev set item.
+		/// </summary>
+		/// <param name="item"></param>
 		public void Add(Rev item) {
 			innerList.Add(item);
 		}
 
+		/// <summary>
+		/// Dump all rev sets.
+		/// </summary>
 		public void Clear() {
 			innerList.Clear();
 		}
 
+		/// <summary>
+		/// Indicate whether a rev set is in our list.
+		/// </summary>
+		/// <param name="item">A Rev item.</param>
+		/// <returns>True or false.</returns>
 		public bool Contains(Rev item) {
 			return innerList.Contains(item);
 		}
 
+		/// <summary>
+		/// Make a copy of the set of rev sets into "array", starting with "arrayIndex".
+		/// </summary>
+		/// <param name="array">Array to copy to.</param>
+		/// <param name="arrayIndex">Start here.</param>
 		public void CopyTo(Rev[] array, int arrayIndex) {
 			innerList.CopyTo(array, arrayIndex);
 		}
 
+		/// <summary>
+		/// Number of sets in the list.
+		/// </summary>
 		public int Count {
 			get { return innerList.Count; }
 		}
 
+		/// <summary>
+		/// Always returns false. It's never read only.
+		/// </summary>
 		public bool IsReadOnly {
 			get { return false; }
 		}
 
+		/// <summary>
+		/// Remove a rev set from the list.
+		/// </summary>
+		/// <param name="item">A rev set.</param>
+		/// <returns></returns>
 		public bool Remove(Rev item) {
 			item.Delete();
 			return innerList.Remove(item);
 		}
 
+		/// <summary>
+		/// Return a generic IEnumerator should you need one.
+		/// </summary>
+		/// <returns>A generic IEnumerator.</returns>
 		public IEnumerator<Rev> GetEnumerator() {
 			return (new List<Rev>(this).GetEnumerator());
 		}
 
+		/// <summary>
+		/// Get an Enumerator.
+		/// </summary>
+		/// <returns>IEnumerator</returns>
 		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
 			return innerList.GetEnumerator();
 		}
 
+		/// <summary>
+		/// Get the index of an item.
+		/// </summary>
+		/// <param name="item">A Rev item.</param>
+		/// <returns>An int.</returns>
 		public int IndexOf(Rev item) {
 			return innerList.IndexOf(item);
 		}
 
+		/// <summary>
+		/// Insert a Rev item at "index".
+		/// </summary>
+		/// <param name="index">An int where to insert.</param>
+		/// <param name="item">The Rev item to insert.</param>
 		public void Insert(int index, Rev item) {
 			innerList.Insert(index, item);
 		}
 
+		/// <summary>
+		/// Remove a Rev at "index".
+		/// </summary>
+		/// <param name="index">An int where to remove.</param>
 		public void RemoveAt(int index) {
 			innerList[index].Delete();
 			innerList.RemoveAt(index);
 		}
 
+		/// <summary>
+		/// Indexing is supported.
+		/// </summary>
+		/// <param name="index">An int index of the desired Rev.</param>
+		/// <returns>A Rev item.</returns>
 		public Rev this[int index] {
 			get {
 				return innerList[index];

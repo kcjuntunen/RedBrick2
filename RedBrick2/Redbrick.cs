@@ -10,8 +10,13 @@ using SolidWorks.Interop.swconst;
 using SolidWorks.Interop.swpublished;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// The root of all redbrick stuff.
+	/// </summary>
 	public class Redbrick : ISwAddin {
-
+		/// <summary>
+		/// The connected application.
+		/// </summary>
 		public SldWorks swApp;
 		private int cookie;
 		private TaskpaneView taskpaneView;
@@ -20,11 +25,23 @@ namespace RedBrick2 {
 		private Version currentVersion;
 		private bool askedToUpdate = false;
 		private string UpdateMessage = string.Empty;
+		/// <summary>
+		/// Translation table of ugly field names to pretty ones.
+		/// </summary>
 		static public Dictionary<string, string> translation = new Dictionary<string, string>();
+		/// <summary>
+		/// A table of different actions to take given different field names.
+		/// </summary>
 		static public Dictionary<string, Format> action = new Dictionary<string, Format>();
 		static private bool translationSetup = false;
 
 		//private int count = 0;
+		/// <summary>
+		/// Hook up to Solidworks.
+		/// </summary>
+		/// <param name="ThisSW">The connected application.</param>
+		/// <param name="Cookie">Yum.</param>
+		/// <returns></returns>
 		public bool ConnectToSW(object ThisSW, int Cookie) {
 			swApp = (SldWorks)ThisSW;
 			cookie = Cookie;
@@ -78,6 +95,10 @@ namespace RedBrick2 {
 			return res;
 		}
 
+		/// <summary>
+		/// Cleanly disconnect everything on shutdown.
+		/// </summary>
+		/// <returns></returns>
 		public bool DisconnectFromSW() {
 			CheckUpdate();
 			this.UITearDown();
@@ -202,24 +223,43 @@ namespace RedBrick2 {
 		/// Possible functions for the odometer.
 		/// </summary>
 		public enum Functions {
+			/// <summary>Write data to db & SolidWorks.</summary>
 			GreenCheck,         //0
+			/// <summary>Archive PDFs to their appropriate places.</summary>
 			ArchivePDF,         //1
+			/// <summary>Complicated routine to insert ECR data.</summary>
 			InsertECR,          //2
+			/// <summary>The Examine BOM button.</summary>
 			ExamineBOM,         //3
+			/// <summary>The material list button.</summary>
 			MaterialList,       //4
+			/// <summary>Update of a single cutlist part.</summary>
 			UpdateCutlistPart,  //5
+			/// <summary>Update a whole cutlist.</summary>
 			UpdateCutlist,      //6
+			/// <summary>The fancy, recursive drawing collector.</summary>
 			DrawingCollector,   //7
+			/// <summary>The Weeke program exporter.</summary>
 			ExportPrograms,     //8
+			/// <summary>Converts tooling from one machine to another.</summary>
 			ConvertPrograms,    //9
+			/// <summary>Machine Priority dialog executed from SolidWorks.</summary>
 			MachinePrioritySW,  //10
+			/// <summary>Machine Priority dialog executed from AutoCAD.</summary>
 			MachinePriorityACAD //11
 		}
 
+		/// <summary>
+		/// Formats for handling different types on a TreeView.
+		/// </summary>
 		public enum Format {
+			/// <summary>An author.</summary>
 			NAME,
+			/// <summary>An ordinary string.</summary>
 			STRING,
+			/// <summary>A date.</summary>
 			DATE,
+			/// <summary>An item to ignore.</summary>
 			SKIP
 		}
 
@@ -381,6 +421,11 @@ namespace RedBrick2 {
 			p.Start();
 		}
 
+		/// <summary>
+		/// Correct names that have been annoyingly formatted to all caps.
+		/// </summary>
+		/// <param name="allCapsInput">An irritating string.</param>
+		/// <returns>A more pleasantly formatted string.</returns>
 		static public string TitleCase(string allCapsInput) {
 			var t = new System.Globalization.CultureInfo("en-US", false).TextInfo;
 			return t.ToTitleCase(allCapsInput.ToLower());
@@ -448,6 +493,11 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// Accept string of a number, try to parse and conform to style.
+		/// </summary>
+		/// <param name="input">A string of a number.</param>
+		/// <returns>An appropriately styled number.</returns>
 		static public string enforce_number_format(string input) {
 			double _val = 0.0F;
 			if (double.TryParse(input, out _val)) {
@@ -456,14 +506,29 @@ namespace RedBrick2 {
 			return @"#VALUE!";
 		}
 
+		/// <summary>
+		/// Accept double of a number, try to parse and conform to style.
+		/// </summary>
+		/// <param name="input">A double of a number.</param>
+		/// <returns>An appropriately styled number.</returns>
 		static public string enforce_number_format(double input) {
 			return string.Format(Properties.Settings.Default.NumberFormat, input);
 		}
 
+		/// <summary>
+		/// Accept Single of a number, try to parse and conform to style.
+		/// </summary>
+		/// <param name="input">A Single of a number.</param>
+		/// <returns>An appropriately styled number.</returns>
 		static public string enforce_number_format(Single input) {
 			return string.Format(Properties.Settings.Default.NumberFormat, input);
 		}
 
+		/// <summary>
+		/// Accept decimal of a number, try to parse and conform to style.
+		/// </summary>
+		/// <param name="input">A decimal of a number.</param>
+		/// <returns>An appropriately styled number.</returns>
 		static public string enforce_number_format(decimal input) {
 			return string.Format(Properties.Settings.Default.NumberFormat, input);
 		}
@@ -554,6 +619,12 @@ namespace RedBrick2 {
 			return v;
 		}
 
+		/// <summary>
+		/// Attempt to resolve SolidWorks' strange dimension varables.
+		/// </summary>
+		/// <param name="md">The ModelDoc2 of the variable string in question.</param>
+		/// <param name="prp">The variable string.</param>
+		/// <returns>A string of a number hopefully. '#VALUE!' like Excel if we can't figure it out.</returns>
 		public static string GetDim(ModelDoc2 md, string prp) {
 			Dimension d = md.Parameter(prp);
 			if (d != null) {
@@ -563,6 +634,12 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// Attempt to evaluate an EquationMgr type of equation.
+		/// </summary>
+		/// <param name="md">The ModelDoc2 of the variable string in question.</param>
+		/// <param name="equation">The equation string.</param>
+		/// <returns>A string of a number hopefully. '#VALUE!' like Excel if we can't figure it out.</returns>
 		public static string DimensionByEquation(ModelDoc2 md, string equation) {
 			string res = string.Empty;
 			EquationMgr eqm = md.GetEquationMgr();
@@ -574,28 +651,51 @@ namespace RedBrick2 {
 			return @"#VALUE!";
 		}
 
+		/// <summary>
+		/// Apply error colors to a Control.
+		/// </summary>
+		/// <param name="c">A control.</param>
 		public static void Err(System.Windows.Forms.Control c) {
 			c.ForeColor = Properties.Settings.Default.WarnForeground;
 			c.BackColor = Properties.Settings.Default.WarnBackground;
 		}
 
+		/// <summary>
+		/// Return a control to normal colors.
+		/// </summary>
+		/// <param name="c">A control.</param>
 		public static void UnErr(System.Windows.Forms.Control c) {
 			c.ForeColor = Properties.Settings.Default.NormalForeground;
 			c.BackColor = Properties.Settings.Default.NormalBackground;
 		}
 
+		/// <summary>
+		/// Apply warning colors to a Control.
+		/// </summary>
+		/// <param name="c">A control.</param>
 		public static void Warn(System.Windows.Forms.Control c) {
 			c.BackColor = Properties.Settings.Default.WarnForeground;
 		}
 
+		/// <summary>
+		/// Swap the text of two TextBoxes.
+		/// </summary>
+		/// <param name="_left">TextBox A</param>
+		/// <param name="_right">TextBox B</param>
 		public static void SwapTextBoxContents(System.Windows.Forms.TextBox _left, System.Windows.Forms.TextBox _right) {
 			string temp_ = _left.Text;
 			_left.Text = _right.Text;
 			_right.Text = temp_;
 		}
 
+		/// <summary>
+		/// A central place for TreeViewIcons.
+		/// </summary>
 		static public System.Windows.Forms.ImageList TreeViewIcons { get; set; }
 
+		/// <summary>
+		/// The last legacy ECR is stored here so it doesn't have to be queried a lot.
+		/// </summary>
 		static public int LastLegacyECR { get; set; }
 
 		/// <summary>

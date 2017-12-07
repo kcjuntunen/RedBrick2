@@ -18,6 +18,9 @@ namespace RedBrick2 {
 		private int globalCount = 0;
 		private int totalCount = 0;
 		private int nonGlobalCount = 0;
+		/// <summary>
+		/// The relevant configuration, should this property not be global.
+		/// </summary>
 		public string Configuration = string.Empty;
 
 		/// <summary>
@@ -28,6 +31,11 @@ namespace RedBrick2 {
 			SwApp = sw;
 		}
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="sw">A running <see cref="SolidWorks.Interop.sldworks.SldWorks"/> object.</param>
+		/// <param name="md">The relevant <see cref="SolidWorks.Interop.sldworks.ModelDoc2"/> object.</param>
 		public SwProperties(SldWorks sw, ModelDoc2 md)
 			: this(sw) {
 			ActiveDoc = md;
@@ -210,6 +218,11 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// Check if a key is in the set of properties.
+		/// </summary>
+		/// <param name="pair">The Key, Value pair you're looking for.</param>
+		/// <returns>a <see cref="System.Boolean"/>, of course.</returns>
 		public bool Contains(KeyValuePair<string, SwProperty> pair) {
 			return _innerDict.ContainsKey(pair.Key);
 		}
@@ -237,6 +250,11 @@ namespace RedBrick2 {
 			get { return _innerDict.Count; }
 		}
 
+		/// <summary>
+		/// Remove an item based on a pair.
+		/// </summary>
+		/// <param name="pair">The pair we want to pitch.</param>
+		/// <returns>True or false.</returns>
 		public bool Remove(KeyValuePair<string, SwProperty> pair) {
 			return _innerDict.Remove(pair.Key);
 		}
@@ -328,6 +346,9 @@ namespace RedBrick2 {
 			return _innerDict.GetEnumerator();
 		}
 
+		/// <summary>
+		/// Never!
+		/// </summary>
 		public bool IsReadOnly {
 			get { return false; }
 			set { ; }
@@ -436,6 +457,9 @@ namespace RedBrick2 {
 		/// </summary>
 		public int CutlistID { get; set; }
 
+		/// <summary>
+		/// Quantity of this part in an assembly.
+		/// </summary>
 		public int CutlistQty {
 			get {
 				int res = 0;
@@ -468,7 +492,9 @@ namespace RedBrick2 {
 		/// </summary>
 		public Exception AddException { get; private set; }
 
-
+		/// <summary>
+		/// The current ModelDoc2.
+		/// </summary>
 		public ModelDoc2 ActiveDoc { get; private set; }
 
 		/// <summary>

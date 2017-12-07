@@ -12,6 +12,9 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// This is the form for collecting and inserting all property data into the cutlist.
+	/// </summary>
 	public partial class CreateCutlist : Form {
 		ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cpt =
 			new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
@@ -50,6 +53,10 @@ namespace RedBrick2 {
 
 		private UserProgressBar pb;
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="s">The connected application.</param>
 		public CreateCutlist(SldWorks s) {
 			_swApp = s;
 			InitializeComponent();

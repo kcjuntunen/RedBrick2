@@ -4,23 +4,40 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// A routing property. "Value" should be a routing name, and "Data" should be an OPID.
+	/// </summary>
 	public class OpProperty : IntProperty {
 		ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter cota =
 			new ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter();
 
-		//ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter cpota =
-		//	new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter();
-
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="name">A property name.</param>
+		/// <param name="global">Whether it's global.</param>
+		/// <param name="sw">The connected application.</param>
+		/// <param name="md">A ModelDoc2.</param>
+		/// <param name="fieldName">The field of CUT_PART_OPS.</param>
 		public OpProperty(string name, bool global, SldWorks sw, ModelDoc2 md, string fieldName)
 			: base(name, global, sw, md, @"CUT_PART_OPS", fieldName) {
 			SWType = swCustomInfoType_e.swCustomInfoText;
 		}
 
+		/// <summary>
+		/// Directly set Data and Value. This is useful if IDs are already known.
+		/// </summary>
+		/// <param name="data_">A POPOP value.</param>
+		/// <param name="value_">An OPNAME to be written to the part property.</param>
 		public override void Set(object data_, string value_) {
 			Value = value_;
 			_data = (int)data_;
 		}
 
+		/// <summary>
+		/// Get data and populate db vars.
+		/// </summary>
+		/// <returns>This.</returns>
 		public override SwProperty Get() {
 			InnerGet();
 			int intval = 0;
@@ -50,15 +67,27 @@ namespace RedBrick2 {
 
 		private int _type = 1;
 
+		/// <summary>
+		/// The part type is necessary to find the right rows in CUT_PART_OPS.
+		/// </summary>
 		public int OpType {
 			get { return _type; }
 			set { _type = value; }
 		}
 
+		/// <summary>
+		/// The op name.
+		/// </summary>
 		public string FriendlyValue { get; set; }
 
+		/// <summary>
+		/// Internal value of Data.
+		/// </summary>
 		protected int _data = 0;
 
+		/// <summary>
+		/// An value appropriately formatted for the db.
+		/// </summary>
 		public override object Data {
 			get {
 				if (_data == 0) {

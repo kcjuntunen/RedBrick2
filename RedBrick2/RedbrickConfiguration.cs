@@ -8,6 +8,9 @@ using System.IO;
 using System.Windows.Forms;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// Configuration window for optional stuff.
+	/// </summary>
 	public partial class RedbrickConfiguration : Form {
 		//private CutlistData cd = new CutlistData();
 		private bool initialated = false;
@@ -15,6 +18,9 @@ namespace RedBrick2 {
 		private DateTime odometerStart;
 		private double workDays;
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
 		public RedbrickConfiguration() {
 			InitializeComponent();
 			Version cv = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;

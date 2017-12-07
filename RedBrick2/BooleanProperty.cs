@@ -4,6 +4,9 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// A property where "Data" returns a bool, and Value is figured out for Solidworks.
+	/// </summary>
 	public class BooleanProperty : SwProperty {
 		/// <summary>
 		/// Constructor for a new <see cref="RedBrick2.BooleanProperty"/>.
@@ -45,8 +48,14 @@ namespace RedBrick2 {
 			return this;
 		}
 
+		/// <summary>
+		/// Internal value for "Data".
+		/// </summary>
 		protected bool _data = false;
 
+		/// <summary>
+		/// Data formatted for db entry.
+		/// </summary>
 		public override object Data {
 			get { return _data; }
 			set {

@@ -12,6 +12,9 @@ using SolidWorks.Interop.swconst;
 using SolidWorks.Interop.swcommands;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// A form for editing LVL data.
+	/// </summary>
 	public partial class EditRev : Form {
 		private int index = 0;
 		private bool NewRev = false;
@@ -21,6 +24,11 @@ namespace RedBrick2 {
 		private ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter guta =
 			new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="idx">Index of the Rev to be edited.</param>
+		/// <param name="revSet">The set of sets of rev properties we're operating on.</param>
 		public EditRev(int idx, Revs revSet) {
 			InitializeComponent();
 			index = idx;
@@ -31,6 +39,10 @@ namespace RedBrick2 {
 			ToggleFlameWar(Properties.Settings.Default.FlameWar);
 		}
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="revSet">Set of sets of LVL properties.</param>
 		public EditRev(Revs revSet) {
 			InitializeComponent();
 			RevSet = revSet;
@@ -40,6 +52,10 @@ namespace RedBrick2 {
 			ToggleFlameWar(Properties.Settings.Default.FlameWar);
 		}
 
+		/// <summary>
+		/// Make text ugly in certain fields.
+		/// </summary>
+		/// <param name="on">A bool.</param>
 		public void ToggleFlameWar(bool on) {
 			if (on) {
 				textBox1.CharacterCasing = CharacterCasing.Upper;
@@ -50,15 +66,29 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// A handler for an event when a routing is added.
+		/// </summary>
 		public event EventHandler Added;
+		/// <summary>
+		/// A handler for an event when a routing is added.
+		/// </summary>
 		public event EventHandler AddedLvl;
 
+		/// <summary>
+		/// Fire events.
+		/// </summary>
+		/// <param name="e">EventArgs.</param>
 		protected virtual void OnAdded(EventArgs e) {
 			if (Added != null) {
 				Added(this, e);
 			}
 		}
 
+		/// <summary>
+		/// Fire events.
+		/// </summary>
+		/// <param name="e">EventArgs.</param>
 		protected virtual void OnAddedLvl(EventArgs e) {
 			if (AddedLvl != null) {
 				AddedLvl(this, e);
@@ -116,7 +146,7 @@ namespace RedBrick2 {
 					new ENGINEERINGDataSet.GEN_DRAWINGSDataTable();
 				ENGINEERINGDataSetTableAdapters.ECR_ITEMSTableAdapter eit =
 					new ENGINEERINGDataSetTableAdapters.ECR_ITEMSTableAdapter();
-				int parttype = idt.GetPartType(ThisRev.PartNumber, level.Value);
+				int parttype = idt.GetECRItemType(ThisRev.PartNumber, level.Value);
 				eit.InsertECRItem(en, ThisRev.PartNumber, level.Value, parttype);
 				int ecr_item_id = (int)eit.GetECRItem(en, ThisRev.PartNumber, level.Value);
 				string pdf_lookup = Path.GetFileNameWithoutExtension(ThisRev.ReferencedFile.Name);

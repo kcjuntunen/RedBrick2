@@ -7,6 +7,9 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// A set of properties that makes up a revision LVL.
+	/// </summary>
 	public class Rev {
 		private SldWorks SwApp;
 		private ModelDoc2 ActiveDoc;
@@ -21,6 +24,14 @@ namespace RedBrick2 {
 		private ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter leol =
 			new ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter();
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="lvl">Index.</param>
+		/// <param name="ecrno">ECR value.</param>
+		/// <param name="descr">A description.</param>
+		/// <param name="sw">The connected application.</param>
+		/// <param name="md">The relevant ModelDoc2.</param>
 		public Rev(int lvl, string ecrno, string descr, SldWorks sw, ModelDoc2 md) {
 			SwApp = sw;
 			ActiveDoc = md;
@@ -42,6 +53,16 @@ namespace RedBrick2 {
 			GetECOData();
 		}
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="lvl">Index of LVL.</param>
+		/// <param name="ecrno">ECR value.</param>
+		/// <param name="descr">A description.</param>
+		/// <param name="aut">Author ID.</param>
+		/// <param name="dt">A DateTime.</param>
+		/// <param name="sw">The connected application.</param>
+		/// <param name="md">The relevant ModelDoc2.</param>
 		public Rev(int lvl, string ecrno, string descr, int aut, DateTime dt, SldWorks sw, ModelDoc2 md) {
 			SwApp = sw;
 			ActiveDoc = md;
@@ -66,6 +87,14 @@ namespace RedBrick2 {
 			GetECOData();
 		}
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="lvl">String Property of LVL.</param>
+		/// <param name="ecr">StringProperty of ECR value.</param>
+		/// <param name="descr">StringProperty of a description.</param>
+		/// <param name="aut">AuthorProperty.</param>
+		/// <param name="dt">DateProperty.</param>
 		public Rev(StringProperty lvl, StringProperty ecr, StringProperty descr, AuthorProperty aut, DateProperty dt) {
 			level = lvl;
 			eco = ecr;
@@ -117,6 +146,9 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// Write the LVL to SolidWorks.
+		/// </summary>
 		public void Write() {
 			level.Write();
 			eco.Write();
@@ -125,6 +157,9 @@ namespace RedBrick2 {
 			date.Write();
 		}
 
+		/// <summary>
+		/// Delete this LVL from SolidWorks.
+		/// </summary>
 		public void Delete() {
 			level.Delete();
 			eco.Delete();
@@ -133,15 +168,25 @@ namespace RedBrick2 {
 			date.Delete();
 		}
 
+		/// <summary>
+		/// Set Author ID.
+		/// </summary>
+		/// <param name="id"></param>
 		public void SetAuthor(int id) {
 			author.Data = id;
 		}
 
+		/// <summary>
+		/// The LVL.
+		/// </summary>
 		public string Level {
 			get { return level.Data.ToString(); }
 			private set { level.Data = value; }
 		}
 
+		/// <summary>
+		/// An ECR value.
+		/// </summary>
 		public string ECO {
 			get { return eco.Data.ToString(); }
 			set {
@@ -150,31 +195,49 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// A description of a LVL.
+		/// </summary>
 		public string Description {
 			get { return description.Data.ToString(); }
 			set { description.Data = value; }
 		}
 
+		/// <summary>
+		/// The full name of an author.
+		/// </summary>
 		public string AuthorFullName {
 			get { return author.FullName; }
 			private set { AuthorFullName = value; }
 		}
 
+		/// <summary>
+		/// The initials of an author.
+		/// </summary>
 		public string Author {
 			get { return author.Initials; }
 			private set { author.Data = value; }
 		}
 
+		/// <summary>
+		/// The Date of the LVL.
+		/// </summary>
 		public DateTime Date {
 			get { return (DateTime)date.Data; }
 			set { date.Data = value; }
 		}
 
+		/// <summary>
+		/// The drawing file we're looking at.
+		/// </summary>
 		public System.IO.FileInfo ReferencedFile {
 			get { return new System.IO.FileInfo((SwApp.ActiveDoc as ModelDoc2).GetPathName()); }
 			private set { ReferencedFile = value; }
 		}
 
+		/// <summary>
+		/// The part number we're looking at.
+		/// </summary>
 		public string PartNumber {
 			get {
 				return System.IO.Path.GetFileNameWithoutExtension(ReferencedFile.FullName).Split(' ')[0];
@@ -182,6 +245,9 @@ namespace RedBrick2 {
 			private set { PartNumber = value; }
 		}
 
+		/// <summary>
+		/// A representative node for inserting into a TreeView.
+		/// </summary>
 		public TreeNode Node {
 			get {
 				ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter leol =

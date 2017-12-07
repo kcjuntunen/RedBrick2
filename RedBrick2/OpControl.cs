@@ -9,6 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// A form to be loaded into a FlowControl.
+	/// TODO: Remove? This isn't used because generating controls on the fly per part
+	/// is too slow.
+	/// </summary>
 	public partial class OpControl : UserControl {
 		private int partopid = -1;
 		private int index = -1;
@@ -28,6 +33,11 @@ namespace RedBrick2 {
 
 		private ENGINEERINGDataSet.CutPartOpsRow currentrow;
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="row">The relevnat row.</param>
+		/// <param name="opSet">The related set of ops.</param>
 		public OpControl(ENGINEERINGDataSet.CutPartOpsRow row, OpSet opSet) {
 			InitializeComponent();
 			currentrow = row;
@@ -40,6 +50,9 @@ namespace RedBrick2 {
 			Anchor = AnchorStyles.Left | AnchorStyles.Right;
 		}
 
+		/// <summary>
+		/// Read the row's current state and write to SW.
+		/// </summary>
 		public void Write() {
 			MyOpSet.Order = index;
 			MyOpSet.Op = currentrow.POPOP;
@@ -48,6 +61,9 @@ namespace RedBrick2 {
 			MyOpSet.Write();
 		}
 
+		/// <summary>
+		/// Op ID.
+		/// </summary>
 		public int POPOP {
 			get {
 				return currentrow.POPOP;
@@ -55,6 +71,9 @@ namespace RedBrick2 {
 			private set { ;}
 		}
 
+		/// <summary>
+		/// Setup time.
+		/// </summary>
 		public double POPSETUP {
 			get {
 				return currentrow.POPSETUP;
@@ -62,6 +81,9 @@ namespace RedBrick2 {
 			private set { ;}
 		}
 
+		/// <summary>
+		/// Run time.
+		/// </summary>
 		public double POPRUN {
 			get {
 				return currentrow.POPRUN;
@@ -136,11 +158,17 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// The row relevant to this OpControl.
+		/// </summary>
 		public ENGINEERINGDataSet.CutPartOpsRow MyRow {
 			get { return currentrow; }
 			private set { currentrow = value; }
 		}
 
+		/// <summary>
+		/// Set of ops relevant to this OpControl.
+		/// </summary>
 		public OpSet MyOpSet { get; set; }
 
 		private void label5_Click(object sender, EventArgs e) {

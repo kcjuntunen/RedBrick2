@@ -11,6 +11,9 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// The heart to the Redbrick. Everything starts here.
+	/// </summary>
 	public partial class ModelRedbrick : UserControl {
 		private SwProperties PropertySet;
 		private ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cpta =
@@ -58,6 +61,11 @@ namespace RedBrick2 {
 		private ToolTip over_tooltip = new ToolTip();
 		private ToolTip type_tooltip = new ToolTip();
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="sw">The connected application.</param>
+		/// <param name="md">An initial ModelDoc2.</param>
 		public ModelRedbrick(SldWorks sw, ModelDoc2 md) {
 			SwApp = sw;
 			InitializeComponent();
@@ -78,6 +86,9 @@ namespace RedBrick2 {
 			overWtb.TextChanged += textBox10_TextChanged;
 		}
 
+		/// <summary>
+		/// Decide whether to turn the "Machine Priority" button off or on.
+		/// </summary>
 		public void TogglePriorityButton() {
 			bool no_cnc1 = (cnc1tb.Text == @"NA") || (cnc1tb.Text == string.Empty);
 			bool no_cnc2 = (cnc2tb.Text == @"NA") || (cnc2tb.Text == string.Empty);
@@ -85,6 +96,10 @@ namespace RedBrick2 {
 			prioritybtn.Enabled = enabled;
 		}
 
+		/// <summary>
+		/// Make text gross and unpleasant.
+		/// </summary>
+		/// <param name="on">True or false.</param>
 		public void ToggleFlameWar(bool on) {
 			if (drawingRedbrick != null) {
 				drawingRedbrick.ToggleFlameWar(on);
@@ -102,6 +117,11 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// Trying to pause drawing reduce flickering. Doing so causes the Redbrick
+		/// to hang though. So "allowPaint" is always true.
+		/// </summary>
+		/// <param name="m">A Message value.</param>
 		protected override void WndProc(ref Message m) {
 			if ((m.Msg != WM_PAINT || (allowPaint && m.Msg == WM_PAINT))) {
 				base.WndProc(ref m);
@@ -164,11 +184,18 @@ namespace RedBrick2 {
 			overWtb.Text = Redbrick.enforce_number_format(overWtb.Text);
 		}
 
+		/// <summary>
+		/// Dispose of whatever we have.
+		/// </summary>
 		public void DumpActiveDoc() {
 			lastModelDoc = null;
 			_activeDoc = null;
 		}
 
+		/// <summary>
+		/// Query over again.
+		/// </summary>
+		/// <param name="md">ModelDoc2 to query.</param>
 		public void ReQuery(ModelDoc2 md) {
 			ActiveDoc = md;
 		}
@@ -251,6 +278,10 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// Toggle a warning if we can't work out the department.
+		/// </summary>
+		/// <param name="on">Warning on or off boolean.</param>
 		public void ToggleTypeWarn(bool on) {
 			if (on) {
 				Redbrick.Err(type_cbx);
@@ -305,6 +336,12 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// Search a combobox for a value.
+		/// </summary>
+		/// <param name="value">The int we're looking for.</param>
+		/// <param name="comboBox">The ComboBox we want to ransack.</param>
+		/// <returns></returns>
 		public static bool ComboBoxContainsValue(int value, ComboBox comboBox) {
 			foreach (var item in comboBox.Items) {
 				DataRowView drv = (item as DataRowView);
@@ -827,6 +864,9 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// Populate and write properties. Create proper rows to be Updated into the db.
+		/// </summary>
 		public void Commit() {
 			if (tabControl1.SelectedTab == tabPage1) {
 				UpdateGeneralProperties();
@@ -886,12 +926,26 @@ namespace RedBrick2 {
 			ReQuery();
 		}
 
+		/// <summary>
+		/// The PartID from CUT_PARTS.
+		/// </summary>
 		public int PartID { get; set; }
+
+		/// <summary>
+		/// Hash of the path of the part in question.
+		/// </summary>
 		public int Hash { get; set; }
+
+		/// <summary>
+		/// A useful FileInfo object of the part in question.
+		/// </summary>
 		public FileInfo PartFileInfo { get; set; }
 
 		private Component2 _component;
 
+		/// <summary>
+		/// Component2 in question, if any.
+		/// </summary>
 		public Component2 Component {
 			get { return _component; }
 			set {
@@ -901,6 +955,9 @@ namespace RedBrick2 {
 
 		private ModelDoc2 _activeDoc;
 
+		/// <summary>
+		/// ModelDoc2 in question. Lots of stuff can go wrong here.
+		/// </summary>
 		public ModelDoc2 ActiveDoc {
 			get { return _activeDoc; }
 			set {
@@ -989,6 +1046,9 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// The SolidWorks application we're connected to.
+		/// </summary>
 		public SldWorks SwApp { get; set; }
 
 		private void ModelRedbrick_Load(object sender, EventArgs e) {

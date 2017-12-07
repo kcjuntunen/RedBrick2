@@ -7,6 +7,9 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// A general, fundamental SolidWorks property handler.
+	/// </summary>
 	public class SwProperty {
 		private string v;
 		private string resolvedV;
@@ -38,6 +41,13 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// Constructor for a new <see cref="RedBrick2.SwProperty"/>.
+		/// </summary>
+		/// <param name="name">The name of the property. This will be the name used in the property summary page.</param>
+		/// <param name="global">A general property, or configuration specific property.</param>
+		/// <param name="sw">A running <see cref="SolidWorks.Interop.sldworks.SldWorks"/> object.</param>
+		/// <param name="comp">The <see cref="SolidWorks.Interop.sldworks.Component2"/> to which this property belongs.</param>
 		public SwProperty(string name, bool global, SldWorks sw, Component2 comp) {
 			Name = name;
 			SWType = swCustomInfoType_e.swCustomInfoUnknown;
@@ -92,7 +102,10 @@ namespace RedBrick2 {
 				}
 			}
 		}
-
+		
+		/// <summary>
+		/// Do the actual reading from SolidWorks.
+		/// </summary>
 		protected void InnerGet() {
 			if (PropertyManager == null) {
 				GetPropertyManager();
@@ -144,55 +157,119 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// Delete item from SW properties.
+		/// </summary>
 		public virtual void Delete() {
 			DeleteResult = (swCustomInfoDeleteResult_e)PropertyManager.Delete2(Name);
 		}
 
+		/// <summary>
+		/// Is this OK to write to db?
+		/// </summary>
 		public bool ToDB { get; set; }
 
+		/// <summary>
+		/// Write to SW if false, or delete from SW if true.
+		/// </summary>
 		public bool DoNotWrite { get; set; }
 
+		/// <summary>
+		/// Everything we know about the file.
+		/// </summary>
 		public FileInfo PartFileInfo { get; set; }
 
+		/// <summary>
+		/// CRC32
+		/// </summary>
 		public int Hash { get; set; }
 
+		/// <summary>
+		/// ID from CUT_PARTS
+		/// </summary>
 		public int PartID { get; set; }
 
+		/// <summary>
+		/// Resolved when read from SW?
+		/// </summary>
 		public bool WasResolved { get; set; }
 
+		/// <summary>
+		/// Result from deleting, if any.
+		/// </summary>
 		public swCustomInfoDeleteResult_e DeleteResult { get; set; }
 
+		/// <summary>
+		/// Result from writing, if any.
+		/// </summary>
 		public swCustomInfoAddResult_e WriteResult { get; set; }
 
+		/// <summary>
+		/// Result from getting, if any.
+		/// </summary>
 		public swCustomInfoGetResult_e GetResult { get; set; }
 
+		/// <summary>
+		/// Property name.
+		/// </summary>
 		public string Name { get; set; }
 
+		/// <summary>
+		/// Property value. This is what gets read from, or written to SW.
+		/// </summary>
 		public string Value {
 			get { return v; }
 			set { v = value; }
 		}
 
+		/// <summary>
+		/// The property value, resolved by SW. SW propertese is translated to
+		/// reality here.
+		/// </summary>
 		public string ResolvedValue {
 			get { return resolvedV; }
 			set { resolvedV = value; }
 		}
 
+		/// <summary>
+		/// Whether this property is written to a specific configuration,
+		/// or "".
+		/// </summary>
 		public bool Global { get; set; }
 
+		/// <summary>
+		/// The SolidWorks data type.
+		/// </summary>
 		public swCustomInfoType_e SWType { get; set; }
 
+		/// <summary>
+		/// The name of the table relevant to this property.
+		/// </summary>
 		public string TableName { get; protected set; }
 
+		/// <summary>
+		/// The name of the column relevant to this property.
+		/// </summary>
 		public string FieldName { get; protected set; }
 
+		/// <summary>
+		/// Internal value for "Data".
+		/// </summary>
 		protected object _data = "Data goes here.";
+
+		/// <summary>
+		/// Data formatted for entry into the db.
+		/// </summary>
 		public virtual object Data {
 			get { return _data; }
 			set { _data = value; }
 		}
 
 		private string _configuration = string.Empty;
+
+		/// <summary>
+		/// The configuration name that non-global parts are written to, or read from.
+		/// </summary>
 		public string Configuration {
 			get {
 				return _configuration;
@@ -203,19 +280,32 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// The Configuration that non-global parts are written to, or read from.
+		/// </summary>
 		public Configuration Config { get; set; }
 
+		/// <summary>
+		/// The property manager we should use to write data to a ModelDoc2.
+		/// </summary>
 		public CustomPropertyManager PropertyManager { get; set; }
 
-		public ModelDoc2 _activeDoc;
-
+		private ModelDoc2 _activeDoc;
+		/// <summary>
+		/// The current ModelDoc2 in question.
+		/// </summary>
 		public ModelDoc2 ActiveDoc {
 			get { return _activeDoc; }
 			protected set { _activeDoc = value; }
 		}
 
+		/// <summary>
+		/// Internal value for the connected application.
+		/// </summary>
 		protected SldWorks _swApp;
-
+		/// <summary>
+		/// The connected application.
+		/// </summary>
 		public SldWorks SwApp {
 			get { return _swApp; }
 			protected set { _swApp = value; }

@@ -11,6 +11,9 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// A form for manipulating data on a SolidWorks Drawing.
+	/// </summary>
 	public partial class DrawingRedbrick : UserControl {
 		private string partLookup;
 		private string projectDescr;
@@ -18,6 +21,11 @@ namespace RedBrick2 {
 		private ToolTip cust_tooltip = new ToolTip();
 		private ToolTip rev_tooltip = new ToolTip();
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="md">A ModelDoc2.</param>
+		/// <param name="sw">The connected application.</param>
 		public DrawingRedbrick(ModelDoc2 md, SldWorks sw) {
 			ActiveDoc = md;
 			SwApp = sw;
@@ -25,6 +33,11 @@ namespace RedBrick2 {
 			ToggleFlameWar(Properties.Settings.Default.FlameWar);
 		}
 
+		/// <summary>
+		/// Conditionally constrain character casing.
+		/// </summary>
+		/// <param name="on">"True" forces hideous text in certain TextBoxes. "False" allows the full
+		/// complement of characters.</param>
 		public void ToggleFlameWar(bool on) {
 			if (on) {
 				fin1_tb.CharacterCasing = CharacterCasing.Upper;
@@ -149,6 +162,9 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// Write data to properties.
+		/// </summary>
 		public void Commit() {
 			PropertySet[@"CUSTOMER"].Data = cust_cbx.SelectedValue;
 			PropertySet[@"REVISION LEVEL"].Data = rev_cbx.Text;
@@ -177,12 +193,18 @@ namespace RedBrick2 {
 			ReLoad();
 		}
 
+		/// <summary>
+		/// Reload data.
+		/// </summary>
+		/// <param name="md">ModelDoc2 from which to reload data.</param>
 		public void ReLoad(ModelDoc2 md) {
-
 			ActiveDoc = md;
 			ReLoad();
 		}
 
+		/// <summary>
+		/// Reload everything with current ModelDoc2.
+		/// </summary>
 		public void ReLoad() {
 			InitData();
 
@@ -223,12 +245,40 @@ namespace RedBrick2 {
 			get { return revSet; }
 			set { revSet = value; }
 		}
+
+		/// <summary>
+		/// The property set we've gotten from the ActiveDoc.
+		/// </summary>
 		public SwProperties PropertySet { get; set; }
+
+		/// <summary>
+		/// The customer ID for this project.
+		/// </summary>
 		public int ProjectCustomer { get; set; }
+
+		/// <summary>
+		/// The rev we've collected from the file, if any.
+		/// </summary>
 		public string RevFromFile { get; set; }
+
+		/// <summary>
+		/// The rev we've collected from the drawing, if any.
+		/// </summary>
 		public string RevFromDrw { get; set; }
+
+		/// <summary>
+		/// A FileInfo object of this drawing's file.
+		/// </summary>
 		public FileInfo PartFileInfo { get; set; }
+
+		/// <summary>
+		/// The current ModelDoc2.
+		/// </summary>
 		public ModelDoc2 ActiveDoc { get; set; }
+
+		/// <summary>
+		/// The connected application.
+		/// </summary>
 		public SldWorks SwApp { get; set; }
 
 		private void comboBox_KeyDown(object sender, KeyEventArgs e) {
