@@ -3,6 +3,9 @@
 // You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
 // Originally published at http://damieng.com/blog/2006/08/08/calculating_crc32_in_c_and_net
 
+// Pragma added by K. C. Juntuntnen to suppress XML comment warnings in VS.
+#pragma warning disable 1591
+
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
