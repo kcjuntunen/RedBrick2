@@ -390,7 +390,7 @@ namespace RedBrick2 {
 		/// <param name="sender">Who triggered this event?</param>
 		/// <param name="e">Any data come with it?</param>
 		private void checkBox2_CheckedChanged(object sender, EventArgs e) {
-			///Properties.Settings.Default.CHIHideLWH = checkBox2.Checked;
+			//Properties.Settings.Default.CHIHideLWH = checkBox2.Checked;
 		}
 
 		/// <summary>
