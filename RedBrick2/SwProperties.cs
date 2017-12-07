@@ -172,7 +172,7 @@ namespace RedBrick2 {
 		/// Add a new property to a set of properties.
 		/// </summary>
 		/// <remarks>This is here to fully implement IDictionary.</remarks>
-		/// <param name="property">A KeyValuePair.</param>
+		/// <param name="pair">A KeyValuePair.</param>
 		public void Add(KeyValuePair<string, SwProperty> pair) {
 			Add(pair.Value);
 		}
@@ -181,8 +181,8 @@ namespace RedBrick2 {
 		/// Add a new property to a set of properties.
 		/// </summary>
 		/// <remarks>This is here to fully implement IDictionary.</remarks>
-		/// <param name="property">Name of property.</param>
-		/// <param name="property">An SwProperty.</param>
+		/// <param name="name">Name of property.</param>
+		/// <param name="value">An SwProperty.</param>
 		public void Add(string name, SwProperty value) {
 			Add(new KeyValuePair<string, SwProperty>(name, value));
 		}
@@ -190,7 +190,7 @@ namespace RedBrick2 {
 		/// <summary>
 		/// Add a new property to a set of properties.
 		/// </summary>
-		/// <param name="property">The <see cref="Redbrick2.SwProperty"/> to be added.</param>
+		/// <param name="property">The SwProperty to be added.</param>
 		public void Add(SwProperty property) {
 			try {
 				_innerDict.Add(property.Name, property);
@@ -210,8 +210,7 @@ namespace RedBrick2 {
 		/// <summary>
 		/// Add a list of properties to a set of properties.
 		/// </summary>
-		/// <param name="prps">A <see cref="System.Collections.Generic.List"/> of
-		/// properties to be added.</param>
+		/// <param name="prps">A List of properties to be added.</param>
 		public void AddPropertyRange(List<SwProperty> prps) {
 			foreach (SwProperty item in prps) {
 				Add(item);
@@ -272,7 +271,7 @@ namespace RedBrick2 {
 		/// <summary>
 		/// Remove an item.
 		/// </summary>
-		/// <param name="item">The name of the property you're looking to remove.</param>
+		/// <param name="name">The name of the property you're looking to remove.</param>
 		/// <returns>sucess or failure.</returns>
 		public bool Remove(string name) {
 			return _innerDict.Remove(name);
