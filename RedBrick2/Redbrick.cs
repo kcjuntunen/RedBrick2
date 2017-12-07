@@ -223,7 +223,7 @@ namespace RedBrick2 {
 		/// Possible functions for the odometer.
 		/// </summary>
 		public enum Functions {
-			/// <summary>Write data to db & SolidWorks.</summary>
+			/// <summary>Write data to db and SolidWorks.</summary>
 			GreenCheck,         //0
 			/// <summary>Archive PDFs to their appropriate places.</summary>
 			ArchivePDF,         //1
