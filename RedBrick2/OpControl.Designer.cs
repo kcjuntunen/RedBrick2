@@ -319,7 +319,7 @@
     private System.Windows.Forms.BindingSource cUTPARTTYPESBindingSource;
     private ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cUT_PART_TYPESTableAdapter;
     private System.Windows.Forms.Label label5;
-    public System.Windows.Forms.Button button1;
+    private System.Windows.Forms.Button button1;
     private System.Windows.Forms.Button button2;
     private System.Windows.Forms.Button button3;
   }

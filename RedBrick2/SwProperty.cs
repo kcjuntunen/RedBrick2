@@ -16,9 +16,8 @@ namespace RedBrick2 {
 		private bool wasResolved;
 		private CustomPropertyManager globlProperty;
 		private CustomPropertyManager localProperty;
-		private Configuration config;
 
-		protected ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cpta =
+		internal ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cpta =
 			new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
 
 		/// <summary>
