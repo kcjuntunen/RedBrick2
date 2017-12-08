@@ -948,6 +948,7 @@ namespace RedBrick2 {
 						r_.POPOP = Convert.ToInt32(cbx.SelectedValue);
 						r_.POPSETUP = Convert.ToDouble(drv[@"OPSETUP"]);
 						r_.POPRUN = Convert.ToDouble(drv[@"OPRUN"]);
+						eNGINEERINGDataSet.CUT_PART_OPS.AddCUT_PART_OPSRow(r_);
 					}
 				} else {
 					PropertySet[op].Set(0, string.Empty);
