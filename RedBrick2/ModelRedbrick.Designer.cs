@@ -1270,6 +1270,7 @@
 			this.op4_cbx.Size = new System.Drawing.Size(184, 21);
 			this.op4_cbx.TabIndex = 25;
 			this.op4_cbx.ValueMember = "OPID";
+			this.op4_cbx.SelectedIndexChanged += new System.EventHandler(this.op_cbx_SelectedIndexChanged);
 			this.op4_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.op4_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.op4_cbx.Validating += new System.ComponentModel.CancelEventHandler(this.comboBox_validating);
@@ -1293,6 +1294,7 @@
 			this.op3_cbx.Size = new System.Drawing.Size(184, 21);
 			this.op3_cbx.TabIndex = 24;
 			this.op3_cbx.ValueMember = "OPID";
+			this.op3_cbx.SelectedIndexChanged += new System.EventHandler(this.op_cbx_SelectedIndexChanged);
 			this.op3_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.op3_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.op3_cbx.Validating += new System.ComponentModel.CancelEventHandler(this.comboBox_validating);
@@ -1316,6 +1318,7 @@
 			this.op2_cbx.Size = new System.Drawing.Size(184, 21);
 			this.op2_cbx.TabIndex = 23;
 			this.op2_cbx.ValueMember = "OPID";
+			this.op2_cbx.SelectedIndexChanged += new System.EventHandler(this.op_cbx_SelectedIndexChanged);
 			this.op2_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.op2_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.op2_cbx.Validating += new System.ComponentModel.CancelEventHandler(this.comboBox_validating);

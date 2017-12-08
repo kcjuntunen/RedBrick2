@@ -58,6 +58,7 @@ namespace RedBrick2 {
 		private bool ov_userediting = false;
 		private bool bl_userediting = false;
 		private bool cl_userediting = false;
+		private bool op_userediting = false;
 		private bool data_from_db = false;
 		private ComboBox[] cbxes;
 		private ToolTip groupbox_tooltip = new ToolTip();
@@ -142,6 +143,7 @@ namespace RedBrick2 {
 
 		void overL_TextChanged(object sender, EventArgs e) {
 			if (initialated) {
+				bool check_ = false;
 				if (ov_userediting) {
 					Single _edge_thickness = 0.0F;
 					if (edgel.SelectedItem != null) {
@@ -154,8 +156,15 @@ namespace RedBrick2 {
 					float test_ = 0.0F;
 					if (float.TryParse((sender as TextBox).Text, out test_)) {
 						calculate_blanksize_from_oversize(test_, blnkszLtb, length, _edge_thickness);
+						if (test_ > 0) {
+							check_ = true;
+						}
 					}
 					ov_userediting = false;
+				}
+				if (check_) {
+					// TODO: do this on validated.
+					CheckOversize();
 				}
 			}
 			//overLtb.Text = Redbrick.enforce_number_format(overLtb.Text);
@@ -163,6 +172,7 @@ namespace RedBrick2 {
 
 		void overW_TextChanged(object sender, EventArgs e) {
 			if (initialated) {
+				bool check_ = false;
 				if (ov_userediting) {
 					Single _edge_thickness = 0.0F;
 					if (edgef.SelectedItem != null) {
@@ -175,8 +185,15 @@ namespace RedBrick2 {
 					float test_ = 0.0F;
 					if (float.TryParse((sender as TextBox).Text, out test_)) {
 						calculate_blanksize_from_oversize(test_, blnkszWtb, width, _edge_thickness);
+						if (test_ > 0) {
+							check_ = true;
+						}
 					}
 					ov_userediting = false;
+				}
+				if (check_) {
+					// TODO: do this on validated.
+					CheckOversize();
 				}
 			}
 			//overWtb.Text = Redbrick.enforce_number_format(overWtb.Text);
@@ -1040,6 +1057,8 @@ namespace RedBrick2 {
 			int not_cnc_op_ = 0;
 			double oversize_ = 0.0F;
 			int bq_ = Convert.ToInt32(ppb_nud.Value);
+			List<string> ops_ = new List<string> { };
+			List<bool> cnc_ops_ = new List<bool> { };
 			double test_ = 0.0F;
 			if (double.TryParse(overLtb.Text, out test_)) {
 				oversize_ += test_;
@@ -1048,22 +1067,28 @@ namespace RedBrick2 {
 				oversize_ += test_;
 			}
 			for (int i = 0; i < cbxes.Length; i++) {
-				if (i < cbxes.Length - 1) {
-					ComboBox cb_ = cbxes[i];
-					ComboBox cb_next_ = cbxes[i + 1];
+				if (cbxes[i].SelectedItem != null) {
+					DataRowView drv_ = cbxes[i].SelectedItem as DataRowView;
+					ops_.Add(drv_[@"OPNAME"].ToString());
+					cnc_ops_.Add(Convert.ToBoolean(drv_[@"OPPROG"]));
+				} else {
+					ops_.Add(string.Empty);
+					cnc_ops_.Add(false);
+				}
+			}
 
-					if (cb_.SelectedItem != null && cb_next_.SelectedItem != null) {
-						DataRowView drv_ = cb_.SelectedItem as DataRowView;
-						DataRowView drv_next_ = cb_next_.SelectedItem as DataRowView;
-						bool cnc_op = Convert.ToBoolean(drv_next_[@"OPPROG"]);
-						if ((i < 4) && (cbxes[i].Text.StartsWith(@"PS ") && !cnc_op)) {
-							not_cnc_op_ = i + 1;
-							if (bq_ == 1 && oversize_ > 0) {
-								System.Diagnostics.Debug.WriteLine(@"AAAAAAAA!");
-							}
-						}
+			for (int i = 0; i < cbxes.Length; i++) {
+				if (ops_[i] == @"PS")
+					ps_op_ = i;
+
+				if ((i < cbxes.Length - 1) &&
+					(ops_[i] == @"PS" && (!cnc_ops_[i + 1]) || (ops_[i + 1] == string.Empty))) {
+					not_cnc_op_ = i + 1;
+					if (bq_ == 1 && oversize_ > 0) {
+						System.Diagnostics.Debug.WriteLine(string.Format(@"No CNC op between {0} and {1}; check oversize values.",
+							ops_[ps_op_], ops_[not_cnc_op_]));
+						break;
 					}
-
 				}
 			}
 		}
@@ -1645,7 +1670,10 @@ namespace RedBrick2 {
 		}
 
 		private void op_cbx_SelectedIndexChanged(object sender, EventArgs e) {
-			CheckOversize();
+			if (op_userediting) {
+				CheckOversize();
+			}
+			op_userediting = false;
 		}
 
 		private void dimension_textBox_Validated(object sender, EventArgs e) {
@@ -1660,6 +1688,9 @@ namespace RedBrick2 {
 				TogglePPBErr(true);
 			} else {
 				TogglePPBErr(false);
+				if (nud_.Value == 1) {
+					CheckOversize();
+				}
 			}
 		}
 	}
