@@ -89,6 +89,15 @@ namespace RedBrick2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You should always confirm your edging after swapping dimensions..
+        /// </summary>
+        internal static string DimensionSwapWarning {
+            get {
+                return ResourceManager.GetString("DimensionSwapWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The information in the Property Editor is in the database..
         /// </summary>
         internal static string InfoFromDB {

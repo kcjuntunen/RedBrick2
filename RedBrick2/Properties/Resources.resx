@@ -169,4 +169,7 @@
   <data name="NoTypeWarning" xml:space="preserve">
     <value>Type couldn't be figured out from property data.</value>
   </data>
+  <data name="DimensionSwapWarning" xml:space="preserve">
+    <value>You should always confirm your edging after swapping dimensions.</value>
+  </data>
 </root>

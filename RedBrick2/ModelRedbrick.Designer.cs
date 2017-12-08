@@ -1065,6 +1065,7 @@
 			this.ppb_nud.Name = "ppb_nud";
 			this.ppb_nud.Size = new System.Drawing.Size(82, 22);
 			this.ppb_nud.TabIndex = 21;
+			this.ppb_nud.ValueChanged += new System.EventHandler(this.ppb_nud_ValueChanged);
 			// 
 			// label29
 			// 

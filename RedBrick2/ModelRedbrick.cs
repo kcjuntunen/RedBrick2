@@ -62,7 +62,9 @@ namespace RedBrick2 {
 		private ComboBox[] cbxes;
 		private ToolTip groupbox_tooltip = new ToolTip();
 		private ToolTip cutlist_tooltip = new ToolTip();
+		private ToolTip edging_tooltip = new ToolTip();
 		private ToolTip descr_tooltup = new ToolTip();
+		private ToolTip swap_tooltup = new ToolTip();
 		private ToolTip ppb_tooltip = new ToolTip();
 		private ToolTip over_tooltip = new ToolTip();
 		private ToolTip type_tooltip = new ToolTip();
@@ -346,16 +348,17 @@ namespace RedBrick2 {
 		}
 
 		private void ToggleEdgeWarn(bool on) {
-			if (on) {
-				Redbrick.Warn(edgef);
-				Redbrick.Warn(edgeb);
-				Redbrick.Warn(edgel);
-				Redbrick.Warn(edger);
-			} else {
-				Redbrick.UnErr(edgef);
-				Redbrick.UnErr(edgeb);
-				Redbrick.UnErr(edgel);
-				Redbrick.UnErr(edger);
+			ComboBox[] edgs = { edgef, edgeb, edgel, edger};
+			for (int i = 0; i < edgs.Length; i++) {
+				if (on) {
+					Redbrick.Warn(edgs[i]);
+					edging_tooltip.SetToolTip(edgs[i], Properties.Resources.DimensionSwapWarning);
+				} else {
+					Redbrick.UnErr(edgs[i]);
+				}
+			}
+			if (!on) {
+				edging_tooltip.RemoveAll();
 			}
 		}
 
@@ -1196,7 +1199,8 @@ namespace RedBrick2 {
 			cUT_EDGESTableAdapter.Fill(eNGINEERINGDataSet.CUT_EDGES);
 			cUT_PART_TYPESTableAdapter.Fill(eNGINEERINGDataSet.CUT_PART_TYPES);
 			friendlyCutOpsTableAdapter.Fill(eNGINEERINGDataSet.FriendlyCutOps);
-
+			swap_tooltup.SetToolTip(swapLnW, Properties.Resources.DimensionSwapWarning);
+			swap_tooltup.SetToolTip(swapWnT, Properties.Resources.DimensionSwapWarning);
 			//GetCutlistData();
 			//SelectTab();
 			initialated = true;
@@ -1648,6 +1652,15 @@ namespace RedBrick2 {
 			TextBox _me = (sender as TextBox);
 			string _text = Redbrick.enforce_number_format(_me.Text);
 			_me.Text = _text;
+		}
+
+		private void ppb_nud_ValueChanged(object sender, EventArgs e) {
+			NumericUpDown nud_ = sender as NumericUpDown;
+			if (nud_.Value < 1) {
+				TogglePPBErr(true);
+			} else {
+				TogglePPBErr(false);
+			}
 		}
 	}
 }
