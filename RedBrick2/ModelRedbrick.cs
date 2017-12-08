@@ -820,6 +820,27 @@ namespace RedBrick2 {
 			PropertySet[@"WALL THICKNESS"].Set(label21.Text, EnQuote(wallthicknesstb.Text));
 
 			PropertySet[@"COMMENT"].Data = commenttb.Text;
+
+			Row.DESCR = descriptiontb.Text;
+			float test_ = 0.0F;
+			if (float.TryParse(label18.Text, out test_)) {
+				Row.FIN_L = test_;
+				test_ = 0.0F;
+			}
+
+			if (float.TryParse(label19.Text, out test_)) {
+				Row.FIN_W = test_;
+				test_ = 0.0F;
+			}
+
+			if (float.TryParse(label20.Text, out test_)) {
+				Row.THICKNESS = test_;
+				test_ = 0.0F;
+			}
+
+			Row.COMMENT = commenttb.Text;
+			Row.TYPE = Convert.ToInt32(type_cbx.SelectedValue);
+			Row.HASH = Hash;
 		}
 
 		private void UpdateMachineProperties() {
@@ -827,8 +848,25 @@ namespace RedBrick2 {
 			PropertySet[@"CNC2"].Data = cnc2tb.Text;
 			PropertySet[@"OVERL"].Data = overLtb.Text;
 			PropertySet[@"OVERW"].Data = overWtb.Text;
-			PropertySet[@"BLANK QTY"].Data = ppbtb.Text;
+			PropertySet[@"BLANK QTY"].Data = ppb_nud.Value;
 			PropertySet[@"UPDATE CNC"].Data = updateCNCcb.Checked;
+
+			Row.CNC1 = cnc1tb.Text;
+			Row.CNC2 = cnc2tb.Text;
+
+			float test_float_ = 0.0F;
+			if (float.TryParse(overLtb.Text, out test_float_)) {
+				Row.OVER_L = test_float_;
+				test_float_ = 0.0F;
+			}
+
+			if (float.TryParse(overWtb.Text, out test_float_)) {
+				Row.OVER_W = test_float_;
+				test_float_ = 0.0F;
+			}
+
+			Row.BLANKQTY = Convert.ToInt32(ppb_nud.Value);
+			Row.UPDATE_CNC = updateCNCcb.Checked;
 		}
 
 		private void UpdateCutlistProperties() {
@@ -877,12 +915,23 @@ namespace RedBrick2 {
 					PropertySet[opid].Set(0, @"0");
 				}
 			}
+			Row.OP1ID = Convert.ToInt32(op1_cbx.SelectedValue);
+			Row.OP2ID = Convert.ToInt32(op2_cbx.SelectedValue);
+			Row.OP3ID = Convert.ToInt32(op3_cbx.SelectedValue);
+			Row.OP4ID = Convert.ToInt32(op4_cbx.SelectedValue);
+			Row.OP5ID = Convert.ToInt32(op5_cbx.SelectedValue);
 		}
 
 		/// <summary>
 		/// Populate and write properties. Create proper rows to be Updated into the db.
 		/// </summary>
 		public void Commit() {
+			if (Row == null) {
+				ENGINEERINGDataSet.CUT_PARTSDataTable dt =
+					new ENGINEERINGDataSet.CUT_PARTSDataTable();
+				Row = dt.NewRow() as ENGINEERINGDataSet.CUT_PARTSRow;
+				Row.PARTNUM = partLookup;
+			}
 			if (tabControl1.SelectedTab == tabPage1) {
 				UpdateGeneralProperties();
 				UpdateMachineProperties();
