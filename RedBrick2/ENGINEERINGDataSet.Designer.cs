@@ -25501,11 +25501,24 @@ SELECT POPID, POPPART, POPORDER, POPOP, POPSETUP, POPRUN FROM CUT_PART_OPS WHERE
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT POPID, POPPART, POPORDER, POPOP, POPSETUP, POPRUN FROM dbo.CUT_PART_OPS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT      POPID, POPPART, POPORDER, POPOP, POPSETUP, POPRUN\r\nFROM          CUT_" +
+                "PART_OPS\r\nWHERE      (POPPART = @poppart)\r\nORDER BY POPORDER";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@poppart", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "POPPART", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT      POPID, POPPART, POPORDER, POPOP, POPSETUP, POPRUN\r\nFROM          CUT_" +
+                "PART_OPS\r\nWHERE      (POPORDER = @poporder) AND (POPPART = @partid)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@poporder", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "POPORDER", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "POPPART", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -25527,6 +25540,90 @@ SELECT POPID, POPPART, POPORDER, POPOP, POPSETUP, POPRUN FROM CUT_PART_OPS WHERE
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual ENGINEERINGDataSet.CUT_PART_OPSDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            ENGINEERINGDataSet.CUT_PART_OPSDataTable dataTable = new ENGINEERINGDataSet.CUT_PART_OPSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByPartID(ENGINEERINGDataSet.CUT_PART_OPSDataTable dataTable, global::System.Nullable<int> poppart) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((poppart.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(poppart.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ENGINEERINGDataSet.CUT_PART_OPSDataTable GetDataByPartID(global::System.Nullable<int> poppart) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((poppart.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(poppart.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            ENGINEERINGDataSet.CUT_PART_OPSDataTable dataTable = new ENGINEERINGDataSet.CUT_PART_OPSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByPartIDAndOrder(ENGINEERINGDataSet.CUT_PART_OPSDataTable dataTable, global::System.Nullable<int> poporder, global::System.Nullable<int> partid) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((poporder.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(poporder.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((partid.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(partid.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ENGINEERINGDataSet.CUT_PART_OPSDataTable GetDataByPartIDAndOrder(global::System.Nullable<int> poporder, global::System.Nullable<int> partid) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((poporder.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(poporder.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((partid.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(partid.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
             ENGINEERINGDataSet.CUT_PART_OPSDataTable dataTable = new ENGINEERINGDataSet.CUT_PART_OPSDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -27060,12 +27157,20 @@ SELECT CLPARTID, CLID, PARTID, MATID, EDGEID_LF, EDGEID_LB, EDGEID_WR, EDGEID_WL
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT CLPARTID, CLID, PARTID, MATID, EDGEID_LF, EDGEID_LB, EDGEID_WR, EDGEID_WL," +
                 " QTY FROM dbo.CUT_CUTLIST_PARTS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT      CLPARTID, CLID, PARTID, MATID, EDGEID_LF, EDGEID_LB, EDGEID_WR, EDGEI" +
+                "D_WL, QTY\r\nFROM          CUT_CUTLIST_PARTS\r\nWHERE      (PARTID = @PartID) AND (C" +
+                "LID = @CutlistID)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PartID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "PARTID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CutlistID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "CLID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -27087,6 +27192,54 @@ SELECT CLPARTID, CLID, PARTID, MATID, EDGEID_LF, EDGEID_LB, EDGEID_WR, EDGEID_WL
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable dataTable = new ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByCutlistIDAndPartID(ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable dataTable, global::System.Nullable<int> PartID, global::System.Nullable<int> CutlistID) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((PartID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(PartID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((CutlistID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(CutlistID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable GetDataByCutlistIDAndPartID(global::System.Nullable<int> PartID, global::System.Nullable<int> CutlistID) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((PartID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(PartID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((CutlistID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(CutlistID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
             ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable dataTable = new ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
