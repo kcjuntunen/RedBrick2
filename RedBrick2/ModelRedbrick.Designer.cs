@@ -69,10 +69,10 @@
 			this.widthtb = new System.Windows.Forms.TextBox();
 			this.thicknesstb = new System.Windows.Forms.TextBox();
 			this.wallthicknesstb = new System.Windows.Forms.TextBox();
-			this.label21 = new System.Windows.Forms.Label();
-			this.label20 = new System.Windows.Forms.Label();
-			this.label19 = new System.Windows.Forms.Label();
-			this.label18 = new System.Windows.Forms.Label();
+			this.wall_thickness_label = new System.Windows.Forms.Label();
+			this.thickness_label = new System.Windows.Forms.Label();
+			this.width_label = new System.Windows.Forms.Label();
+			this.length_label = new System.Windows.Forms.Label();
 			this.swapLnW = new System.Windows.Forms.Button();
 			this.swapWnT = new System.Windows.Forms.Button();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -578,10 +578,10 @@
 			this.tableLayoutPanel3.Controls.Add(this.widthtb, 0, 5);
 			this.tableLayoutPanel3.Controls.Add(this.thicknesstb, 0, 7);
 			this.tableLayoutPanel3.Controls.Add(this.wallthicknesstb, 0, 9);
-			this.tableLayoutPanel3.Controls.Add(this.label21, 1, 9);
-			this.tableLayoutPanel3.Controls.Add(this.label20, 1, 7);
-			this.tableLayoutPanel3.Controls.Add(this.label19, 1, 5);
-			this.tableLayoutPanel3.Controls.Add(this.label18, 1, 3);
+			this.tableLayoutPanel3.Controls.Add(this.wall_thickness_label, 1, 9);
+			this.tableLayoutPanel3.Controls.Add(this.thickness_label, 1, 7);
+			this.tableLayoutPanel3.Controls.Add(this.width_label, 1, 5);
+			this.tableLayoutPanel3.Controls.Add(this.length_label, 1, 3);
 			this.tableLayoutPanel3.Controls.Add(this.swapLnW, 1, 4);
 			this.tableLayoutPanel3.Controls.Add(this.swapWnT, 1, 6);
 			this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -742,41 +742,41 @@
 			this.wallthicknesstb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ov_textBox_KeyDown);
 			this.wallthicknesstb.Leave += new System.EventHandler(this.textBox_Leave);
 			// 
-			// label21
+			// wall_thickness_label
 			// 
-			this.label21.AutoSize = true;
-			this.label21.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label21.Location = new System.Drawing.Point(192, 183);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(0, 17);
-			this.label21.TabIndex = 15;
+			this.wall_thickness_label.AutoSize = true;
+			this.wall_thickness_label.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.wall_thickness_label.Location = new System.Drawing.Point(192, 183);
+			this.wall_thickness_label.Name = "wall_thickness_label";
+			this.wall_thickness_label.Size = new System.Drawing.Size(0, 17);
+			this.wall_thickness_label.TabIndex = 15;
 			// 
-			// label20
+			// thickness_label
 			// 
-			this.label20.AutoSize = true;
-			this.label20.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label20.Location = new System.Drawing.Point(192, 142);
-			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(0, 17);
-			this.label20.TabIndex = 14;
+			this.thickness_label.AutoSize = true;
+			this.thickness_label.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.thickness_label.Location = new System.Drawing.Point(192, 142);
+			this.thickness_label.Name = "thickness_label";
+			this.thickness_label.Size = new System.Drawing.Size(0, 17);
+			this.thickness_label.TabIndex = 14;
 			// 
-			// label19
+			// width_label
 			// 
-			this.label19.AutoSize = true;
-			this.label19.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label19.Location = new System.Drawing.Point(192, 98);
-			this.label19.Name = "label19";
-			this.label19.Size = new System.Drawing.Size(0, 17);
-			this.label19.TabIndex = 13;
+			this.width_label.AutoSize = true;
+			this.width_label.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.width_label.Location = new System.Drawing.Point(192, 98);
+			this.width_label.Name = "width_label";
+			this.width_label.Size = new System.Drawing.Size(0, 17);
+			this.width_label.TabIndex = 13;
 			// 
-			// label18
+			// length_label
 			// 
-			this.label18.AutoSize = true;
-			this.label18.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label18.Location = new System.Drawing.Point(192, 54);
-			this.label18.Name = "label18";
-			this.label18.Size = new System.Drawing.Size(0, 17);
-			this.label18.TabIndex = 12;
+			this.length_label.AutoSize = true;
+			this.length_label.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.length_label.Location = new System.Drawing.Point(192, 54);
+			this.length_label.Name = "length_label";
+			this.length_label.Size = new System.Drawing.Size(0, 17);
+			this.length_label.TabIndex = 12;
 			// 
 			// swapLnW
 			// 
@@ -875,6 +875,7 @@
 			this.label22.Size = new System.Drawing.Size(85, 13);
 			this.label22.TabIndex = 0;
 			this.label22.Text = "CNC1";
+			this.label22.Click += new System.EventHandler(this.label22_Click);
 			// 
 			// cnc1tb
 			// 
@@ -912,9 +913,9 @@
 			this.overLtb.Size = new System.Drawing.Size(85, 22);
 			this.overLtb.TabIndex = 15;
 			this.overLtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
-			this.overLtb.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
+			this.overLtb.TextChanged += new System.EventHandler(this.overL_TextChanged);
 			this.overLtb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ov_textBox_KeyDown);
-			this.overLtb.Leave += new System.EventHandler(this.dimension_textBox_Leave);
+			this.overLtb.Validated += new System.EventHandler(this.dimension_textBox_Validated);
 			// 
 			// label28
 			// 
@@ -927,6 +928,7 @@
 			this.label28.Size = new System.Drawing.Size(85, 13);
 			this.label28.TabIndex = 0;
 			this.label28.Text = "Blank Size";
+			this.label28.Click += new System.EventHandler(this.label28_Click);
 			// 
 			// blnkszLtb
 			// 
@@ -939,9 +941,9 @@
 			this.blnkszLtb.Size = new System.Drawing.Size(66, 22);
 			this.blnkszLtb.TabIndex = 18;
 			this.blnkszLtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
-			this.blnkszLtb.TextChanged += new System.EventHandler(this.textBox12_TextChanged);
+			this.blnkszLtb.TextChanged += new System.EventHandler(this.blankL_TextChanged);
 			this.blnkszLtb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.bl_textBox_KeyDown);
-			this.blnkszLtb.Leave += new System.EventHandler(this.dimension_textBox_Leave);
+			this.blnkszLtb.Validated += new System.EventHandler(this.dimension_textBox_Validated);
 			// 
 			// overWtb
 			// 
@@ -954,9 +956,9 @@
 			this.overWtb.Size = new System.Drawing.Size(85, 22);
 			this.overWtb.TabIndex = 16;
 			this.overWtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
-			this.overWtb.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
+			this.overWtb.TextChanged += new System.EventHandler(this.overW_TextChanged);
 			this.overWtb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ov_textBox_KeyDown);
-			this.overWtb.Leave += new System.EventHandler(this.dimension_textBox_Leave);
+			this.overWtb.Validated += new System.EventHandler(this.dimension_textBox_Validated);
 			// 
 			// label26
 			// 
@@ -994,6 +996,7 @@
 			this.label23.Size = new System.Drawing.Size(85, 13);
 			this.label23.TabIndex = 0;
 			this.label23.Text = "CNC2";
+			this.label23.Click += new System.EventHandler(this.label23_Click);
 			// 
 			// label24
 			// 
@@ -1049,9 +1052,9 @@
 			this.blnkszWtb.Size = new System.Drawing.Size(66, 22);
 			this.blnkszWtb.TabIndex = 19;
 			this.blnkszWtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
-			this.blnkszWtb.TextChanged += new System.EventHandler(this.textBox13_TextChanged);
+			this.blnkszWtb.TextChanged += new System.EventHandler(this.blankW_TextChanged);
 			this.blnkszWtb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.bl_textBox_KeyDown);
-			this.blnkszWtb.Leave += new System.EventHandler(this.dimension_textBox_Leave);
+			this.blnkszWtb.Validated += new System.EventHandler(this.dimension_textBox_Validated);
 			// 
 			// ppb_nud
 			// 
@@ -1335,6 +1338,7 @@
 			this.op1_cbx.Size = new System.Drawing.Size(184, 21);
 			this.op1_cbx.TabIndex = 22;
 			this.op1_cbx.ValueMember = "OPID";
+			this.op1_cbx.SelectedIndexChanged += new System.EventHandler(this.op_cbx_SelectedIndexChanged);
 			this.op1_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.op1_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.op1_cbx.Validating += new System.ComponentModel.CancelEventHandler(this.comboBox_validating);
@@ -1602,10 +1606,10 @@
     private System.Windows.Forms.TextBox widthtb;
     private System.Windows.Forms.TextBox thicknesstb;
     private System.Windows.Forms.TextBox wallthicknesstb;
-    private System.Windows.Forms.Label label21;
-    private System.Windows.Forms.Label label20;
-    private System.Windows.Forms.Label label19;
-    private System.Windows.Forms.Label label18;
+    private System.Windows.Forms.Label wall_thickness_label;
+    private System.Windows.Forms.Label thickness_label;
+    private System.Windows.Forms.Label width_label;
+    private System.Windows.Forms.Label length_label;
     private System.Windows.Forms.BindingSource cUTPARTSBindingSource;
     private ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cUT_PARTSTableAdapter;
     private System.Windows.Forms.GroupBox groupBox3;

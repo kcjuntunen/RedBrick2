@@ -88,8 +88,8 @@ namespace RedBrick2 {
 			label9.MouseDown += clip_click;
 			label10.MouseDown += clip_click;
 
-			overLtb.TextChanged += textBox9_TextChanged;
-			overWtb.TextChanged += textBox10_TextChanged;
+			overLtb.TextChanged += overL_TextChanged;
+			overWtb.TextChanged += overW_TextChanged;
 		}
 
 		/// <summary>
@@ -138,56 +138,46 @@ namespace RedBrick2 {
 			Redbrick.Clip(partLookup);
 		}
 
-		void textBox9_TextChanged(object sender, EventArgs e) {
+		void overL_TextChanged(object sender, EventArgs e) {
 			if (initialated) {
-				try {
+				if (ov_userediting) {
 					Single _edge_thickness = 0.0F;
 					if (edgel.SelectedItem != null) {
-						_edge_thickness += (Single)(edgel.SelectedItem as DataRowView)[@"THICKNESS"];
+						_edge_thickness += Convert.ToSingle((edgel.SelectedItem as DataRowView)[@"THICKNESS"]);
 					}
 
 					if (edger.SelectedItem != null) {
-						_edge_thickness += (Single)(edger.SelectedItem as DataRowView)[@"THICKNESS"];
+						_edge_thickness += Convert.ToSingle((edger.SelectedItem as DataRowView)[@"THICKNESS"]);
 					}
-
-					//double _val = ((double.Parse(label18.Text) +
-					//  double.Parse((sender as TextBox).Text))) - _edge_thickness;
-
-					if (ov_userediting) {
-						calculate_blanksize_from_oversize(float.Parse((sender as TextBox).Text), blnkszLtb, length, _edge_thickness);
-						//textBox12.Text = enforce_number_format(_val);
-						ov_userediting = false;
+					float test_ = 0.0F;
+					if (float.TryParse((sender as TextBox).Text, out test_)) {
+						calculate_blanksize_from_oversize(test_, blnkszLtb, length, _edge_thickness);
 					}
-				} catch (Exception) {
-					blnkszLtb.Text = @"#VALUE!";
+					ov_userediting = false;
 				}
 			}
-			overLtb.Text = Redbrick.enforce_number_format(overLtb.Text);
+			//overLtb.Text = Redbrick.enforce_number_format(overLtb.Text);
 		}
 
-		void textBox10_TextChanged(object sender, EventArgs e) {
+		void overW_TextChanged(object sender, EventArgs e) {
 			if (initialated) {
-				try {
+				if (ov_userediting) {
 					Single _edge_thickness = 0.0F;
 					if (edgef.SelectedItem != null) {
-						_edge_thickness += (Single)(edgef.SelectedItem as DataRowView)[@"THICKNESS"];
+						_edge_thickness += Convert.ToSingle((edgef.SelectedItem as DataRowView)[@"THICKNESS"]);
 					}
 
 					if (edgeb.SelectedItem != null) {
-						_edge_thickness += (Single)(edgeb.SelectedItem as DataRowView)[@"THICKNESS"];
+						_edge_thickness += Convert.ToSingle((edgeb.SelectedItem as DataRowView)[@"THICKNESS"]);
 					}
-					//double _val = ((double.Parse(label19.Text) +
-					//   double.Parse((sender as TextBox).Text))) - _edge_thickness;
-					if (ov_userediting) {
-						calculate_blanksize_from_oversize(float.Parse((sender as TextBox).Text), blnkszWtb, width, _edge_thickness);
-						//textBox13.Text = enforce_number_format(_val);
-						ov_userediting = false;
+					float test_ = 0.0F;
+					if (float.TryParse((sender as TextBox).Text, out test_)) {
+						calculate_blanksize_from_oversize(test_, blnkszWtb, width, _edge_thickness);
 					}
-				} catch (Exception) {
-					blnkszWtb.Text = @"#VALUE!";
+					ov_userediting = false;
 				}
 			}
-			overWtb.Text = Redbrick.enforce_number_format(overWtb.Text);
+			//overWtb.Text = Redbrick.enforce_number_format(overWtb.Text);
 		}
 
 		/// <summary>
@@ -222,16 +212,16 @@ namespace RedBrick2 {
 					width = (Single)Row[@"FIN_W"];
 					thickness = (Single)Row[@"THICKNESS"];
 
-					label18.Text = Redbrick.enforce_number_format(length);
-					label19.Text = Redbrick.enforce_number_format(width);
-					label20.Text = Redbrick.enforce_number_format(thickness);
+					length_label.Text = Redbrick.enforce_number_format(length);
+					width_label.Text = Redbrick.enforce_number_format(width);
+					thickness_label.Text = Redbrick.enforce_number_format(thickness);
 				} else {
-					label18.Text = Redbrick.enforce_number_format(PropertySet[@"LENGTH"].ResolvedValue);
-					label19.Text = Redbrick.enforce_number_format(PropertySet[@"WIDTH"].ResolvedValue);
-					label20.Text = Redbrick.enforce_number_format(PropertySet[@"THICKNESS"].ResolvedValue);
+					length_label.Text = Redbrick.enforce_number_format(PropertySet[@"LENGTH"].ResolvedValue);
+					width_label.Text = Redbrick.enforce_number_format(PropertySet[@"WIDTH"].ResolvedValue);
+					thickness_label.Text = Redbrick.enforce_number_format(PropertySet[@"THICKNESS"].ResolvedValue);
 				}
 
-				label21.Text = Redbrick.enforce_number_format(PropertySet[@"WALL THICKNESS"].ResolvedValue);
+				wall_thickness_label.Text = Redbrick.enforce_number_format(PropertySet[@"WALL THICKNESS"].ResolvedValue);
 
 				//textBox_TextChanged(PropertySet[@"WALL THICKNESS"].Value, label21);
 
@@ -268,7 +258,10 @@ namespace RedBrick2 {
 				cutlistPartsTableAdapter.FillByPartNum(eNGINEERINGDataSet.CutlistParts, partLookup);
 				cutlistPartsBindingSource.DataSource = cutlistPartsTableAdapter.GetDataByPartNum(partLookup);
 				cUTPARTSBindingSource.DataSource = cUT_PARTSTableAdapter.GetDataByPartnum(partLookup);
-
+				overLtb.Text = Redbrick.enforce_number_format(overLtb.Text);
+				overWtb.Text = Redbrick.enforce_number_format(overWtb.Text);
+				blnkszLtb.Text = Redbrick.enforce_number_format(blnkszLtb.Text);
+				blnkszWtb.Text = Redbrick.enforce_number_format(blnkszWtb.Text);
 				SelectLastCutlist();
 			}
 			if (Row != null) {
@@ -829,26 +822,26 @@ namespace RedBrick2 {
 			PropertySet[@"Description"].Data = descriptiontb.Text;
 
 			// Dimensions get special treatment since the mgr stores weird strings, and DB stores doubles.
-			PropertySet[@"LENGTH"].Set(label18.Text, EnQuote(lengthtb.Text));
-			PropertySet[@"WIDTH"].Set(label19.Text, EnQuote(widthtb.Text));
-			PropertySet[@"THICKNESS"].Set(label20.Text, EnQuote(thicknesstb.Text));
-			PropertySet[@"WALL THICKNESS"].Set(label21.Text, EnQuote(wallthicknesstb.Text));
+			PropertySet[@"LENGTH"].Set(length_label.Text, EnQuote(lengthtb.Text));
+			PropertySet[@"WIDTH"].Set(width_label.Text, EnQuote(widthtb.Text));
+			PropertySet[@"THICKNESS"].Set(thickness_label.Text, EnQuote(thicknesstb.Text));
+			PropertySet[@"WALL THICKNESS"].Set(wall_thickness_label.Text, EnQuote(wallthicknesstb.Text));
 
 			PropertySet[@"COMMENT"].Data = commenttb.Text;
 
 			Row.DESCR = descriptiontb.Text;
 			float test_ = 0.0F;
-			if (float.TryParse(label18.Text, out test_)) {
+			if (float.TryParse(length_label.Text, out test_)) {
 				Row.FIN_L = test_;
 				test_ = 0.0F;
 			}
 
-			if (float.TryParse(label19.Text, out test_)) {
+			if (float.TryParse(width_label.Text, out test_)) {
 				Row.FIN_W = test_;
 				test_ = 0.0F;
 			}
 
-			if (float.TryParse(label20.Text, out test_)) {
+			if (float.TryParse(thickness_label.Text, out test_)) {
 				Row.THICKNESS = test_;
 				test_ = 0.0F;
 			}
@@ -1036,6 +1029,40 @@ namespace RedBrick2 {
 			DisconnectPartEvents();
 			ConnectPartEvents();
 			ReQuery();
+		}
+
+		private void CheckOversize() {
+			string message_ = string.Empty;
+			int ps_op_ = 0;
+			int not_cnc_op_ = 0;
+			double oversize_ = 0.0F;
+			int bq_ = Convert.ToInt32(ppb_nud.Value);
+			double test_ = 0.0F;
+			if (double.TryParse(overLtb.Text, out test_)) {
+				oversize_ += test_;
+			}
+			if (double.TryParse(overWtb.Text, out test_)) {
+				oversize_ += test_;
+			}
+			for (int i = 0; i < cbxes.Length; i++) {
+				if (i < cbxes.Length - 1) {
+					ComboBox cb_ = cbxes[i];
+					ComboBox cb_next_ = cbxes[i + 1];
+
+					if (cb_.SelectedItem != null && cb_next_.SelectedItem != null) {
+						DataRowView drv_ = cb_.SelectedItem as DataRowView;
+						DataRowView drv_next_ = cb_next_.SelectedItem as DataRowView;
+						bool cnc_op = Convert.ToBoolean(drv_next_[@"OPPROG"]);
+						if ((i < 4) && (cbxes[i].Text.StartsWith(@"PS ") && !cnc_op)) {
+							not_cnc_op_ = i + 1;
+							if (bq_ == 1 && oversize_ > 0) {
+								System.Diagnostics.Debug.WriteLine(@"AAAAAAAA!");
+							}
+						}
+					}
+
+				}
+			}
 		}
 
 		/// <summary>
@@ -1227,22 +1254,22 @@ namespace RedBrick2 {
 
 		private void textBox2_TextChanged(object sender, EventArgs e) {
 			TextBox _tb = (sender as TextBox);
-			textBox_TextChanged(_tb.Text, label18);
+			textBox_TextChanged(_tb.Text, length_label);
 		}
 
 		private void textBox3_TextChanged(object sender, EventArgs e) {
 			TextBox _tb = (sender as TextBox);
-			textBox_TextChanged(_tb.Text, label19);
+			textBox_TextChanged(_tb.Text, width_label);
 		}
 
 		private void textBox4_TextChanged(object sender, EventArgs e) {
 			TextBox _tb = (sender as TextBox);
-			textBox_TextChanged(_tb.Text, label20);
+			textBox_TextChanged(_tb.Text, thickness_label);
 		}
 
 		private void textBox5_TextChanged(object sender, EventArgs e) {
 			TextBox _tb = (sender as TextBox);
-			textBox_TextChanged(_tb.Text, label21);
+			textBox_TextChanged(_tb.Text, wall_thickness_label);
 		}
 
 		private void comboBox2_SelectedIndexChanged(object sender, EventArgs e) {
@@ -1309,6 +1336,18 @@ namespace RedBrick2 {
 			Redbrick.Clip(descriptiontb.Text);
 		}
 
+		private void label22_Click(object sender, EventArgs e) {
+			Redbrick.Clip(cnc1tb.Text);
+		}
+
+		private void label23_Click(object sender, EventArgs e) {
+			Redbrick.Clip(cnc2tb.Text);
+		}
+
+		private void label28_Click(object sender, EventArgs e) {
+			Redbrick.Clip(string.Format(@"{0} X {1} X {2}", blnkszLtb.Text, blnkszWtb.Text, thickness_label.Text));
+		}
+
 		private void button1_Click(object sender, EventArgs e) {
 			string _filename = Path.GetFileNameWithoutExtension(PartFileInfo.Name);
 			string _lookup = _filename.Split(' ')[0];
@@ -1329,39 +1368,39 @@ namespace RedBrick2 {
 			
 		}
 
-		private void textBox12_TextChanged(object sender, EventArgs e) {
+		private void blankL_TextChanged(object sender, EventArgs e) {
 			TextBox _me = (sender as TextBox);
 			Single _test = 0.0F;
 			Single _length = 0.0F;
 
-			if (bl_userediting && Single.TryParse(_me.Text, out _test) && Single.TryParse(label18.Text, out _length)) {
+			if (bl_userediting && Single.TryParse(_me.Text, out _test) && Single.TryParse(length_label.Text, out _length)) {
 				Single _edge_thickness = 0.0F;
 
 				if (edgel.SelectedItem != null) {
-					_edge_thickness += (Single)(edgel.SelectedItem as DataRowView)[@"THICKNESS"];
+					_edge_thickness += Convert.ToSingle((edgel.SelectedItem as DataRowView)[@"THICKNESS"]);
 				}
 
 				if (edger.SelectedItem != null) {
-					_edge_thickness += (Single)(edger.SelectedItem as DataRowView)[@"THICKNESS"];
+					_edge_thickness += Convert.ToSingle((edger.SelectedItem as DataRowView)[@"THICKNESS"]);
 				}
 				bl_userediting = false;
 				calculate_oversize_from_blanksize(_test, overLtb, length, _edge_thickness);
 			}
 		}
 
-		private void textBox13_TextChanged(object sender, EventArgs e) {
+		private void blankW_TextChanged(object sender, EventArgs e) {
 			TextBox _me = (sender as TextBox);
 			Single _test = 0.0F;
 			Single _width = 0.0F;
-			if (bl_userediting && Single.TryParse(_me.Text, out _test) && Single.TryParse(label19.Text, out _width)) {
+			if (bl_userediting && Single.TryParse(_me.Text, out _test) && Single.TryParse(width_label.Text, out _width)) {
 				Single _edge_thickness = 0.0F;
 
 				if (edgef.SelectedItem != null) {
-					_edge_thickness += (Single)(edgef.SelectedItem as DataRowView)[@"THICKNESS"];
+					_edge_thickness += Convert.ToSingle((edgef.SelectedItem as DataRowView)[@"THICKNESS"]);
 				}
 
 				if (edgeb.SelectedItem != null) {
-					_edge_thickness += (Single)(edgeb.SelectedItem as DataRowView)[@"THICKNESS"];
+					_edge_thickness += Convert.ToSingle((edgeb.SelectedItem as DataRowView)[@"THICKNESS"]);
 				}
 				bl_userediting = false;
 				calculate_oversize_from_blanksize(_test, overWtb, width, _edge_thickness);
@@ -1382,20 +1421,14 @@ namespace RedBrick2 {
 			ov_userediting = true;
 		}
 
-		private void dimension_textBox_Leave(object sender, EventArgs e) {
-			TextBox _me = (sender as TextBox);
-			string _text = Redbrick.enforce_number_format(_me.Text);
-			_me.Text = Redbrick.enforce_number_format(_text);
-		}
-
 		static private Single get_edge_thickness_total(ComboBox c1, ComboBox c2) {
 			Single _edge_thickness = 0.0F;
 			if (c1.SelectedItem != null) {
-				_edge_thickness += (Single)(c1.SelectedItem as DataRowView)[@"THICKNESS"];
+				_edge_thickness += Convert.ToSingle((c1.SelectedItem as DataRowView)[@"THICKNESS"]);
 			}
 
 			if (c2.SelectedItem != null) {
-				_edge_thickness += (Single)(c2.SelectedItem as DataRowView)[@"THICKNESS"];
+				_edge_thickness += Convert.ToSingle((c2.SelectedItem as DataRowView)[@"THICKNESS"]);
 			}
 			return _edge_thickness;
 		}
@@ -1605,6 +1638,16 @@ namespace RedBrick2 {
 
 		private void cutlistctl_KeyPress(object sender, KeyPressEventArgs e) {
 			cl_userediting = true;
+		}
+
+		private void op_cbx_SelectedIndexChanged(object sender, EventArgs e) {
+			CheckOversize();
+		}
+
+		private void dimension_textBox_Validated(object sender, EventArgs e) {
+			TextBox _me = (sender as TextBox);
+			string _text = Redbrick.enforce_number_format(_me.Text);
+			_me.Text = _text;
 		}
 	}
 }
