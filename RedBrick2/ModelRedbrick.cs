@@ -327,11 +327,11 @@ namespace RedBrick2 {
 
 		private void TogglePPBErr(bool on) {
 			if (on) {
-				Redbrick.Err(ppbtb);
-				ppb_tooltip.SetToolTip(ppbtb, Properties.Resources.NotNaturalNumberWarning);
+				Redbrick.Err(ppb_nud);
+				ppb_tooltip.SetToolTip(ppb_nud, Properties.Resources.NotNaturalNumberWarning);
 				ppb_tooltip.SetToolTip(label27, Properties.Resources.NotNaturalNumberWarning);
 			} else {
-				Redbrick.UnErr(ppbtb);
+				Redbrick.UnErr(ppb_nud);
 				ppb_tooltip.RemoveAll();
 			}
 		}
@@ -428,6 +428,7 @@ namespace RedBrick2 {
 			overLtb.Text = Redbrick.enforce_number_format(StrTryProp("OVERL"));
 			ov_userediting = true;
 			overWtb.Text = Redbrick.enforce_number_format(StrTryProp("OVERW"));
+			ppb_nud.Value = Convert.ToDecimal(IntTryProp("BLANK QTY"));
 			ppbtb.Text = StrTryProp("BLANK QTY");
 			updateCNCcb.Checked = BoolTryProp("UPDATE CNC");
 			length = DimTryProp(@"LENGTH");

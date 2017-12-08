@@ -55,19 +55,20 @@ namespace RedBrick2 {
 				return _data;
 			}
 			set {
-				try {
-					if (value is string) {
-						_data = int.Parse(value.ToString());
-						Value = value.ToString();
+				Value = value.ToString();
+				if (value is string) {
+					int test_ = 0;
+					if (int.TryParse(value as string, out test_)) {
+						_data = test_;
 					}
+				}
 
-					if (value is int) {
-						_data = (int)value;
-						Value = value.ToString();
-					}
-				} catch (Exception) {
-					_data = 0;
-					Value = @"0";
+				if (value is int) {
+					_data = (int)value;
+				}
+
+				if (value is decimal) {
+					_data = Convert.ToInt32(value);
 				}
 			}
 		}
