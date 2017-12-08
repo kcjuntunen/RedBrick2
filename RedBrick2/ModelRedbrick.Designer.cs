@@ -91,10 +91,10 @@
 			this.label24 = new System.Windows.Forms.Label();
 			this.updateCNCcb = new System.Windows.Forms.CheckBox();
 			this.label27 = new System.Windows.Forms.Label();
-			this.ppbtb = new System.Windows.Forms.TextBox();
 			this.prioritybtn = new System.Windows.Forms.Button();
-			this.label29 = new System.Windows.Forms.Label();
 			this.blnkszWtb = new System.Windows.Forms.TextBox();
+			this.ppb_nud = new System.Windows.Forms.NumericUpDown();
+			this.label29 = new System.Windows.Forms.Label();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
 			this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
 			this.button2 = new System.Windows.Forms.Button();
@@ -122,6 +122,7 @@
 			this.button5 = new System.Windows.Forms.Button();
 			this.button6 = new System.Windows.Forms.Button();
 			this.button7 = new System.Windows.Forms.Button();
+			this.ppbtb = new System.Windows.Forms.TextBox();
 			this.cUTMATERIALSBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.cUT_MATERIALSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter();
 			this.cUT_EDGESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter();
@@ -134,7 +135,6 @@
 			this.cUT_PARTSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
 			this.friendlyCutOpsTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
-			this.ppb_nud = new System.Windows.Forms.NumericUpDown();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
@@ -152,6 +152,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.cUTPARTSBindingSource)).BeginInit();
 			this.groupBox3.SuspendLayout();
 			this.tableLayoutPanel4.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.ppb_nud)).BeginInit();
 			this.groupBox4.SuspendLayout();
 			this.tableLayoutPanel5.SuspendLayout();
 			this.tableLayoutPanel6.SuspendLayout();
@@ -165,7 +166,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.gENUSERSBindingSource)).BeginInit();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.ppb_nud)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tableLayoutPanel1
@@ -817,12 +817,12 @@
 			this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tableLayoutPanel4.ColumnCount = 5;
-			this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+			this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.15265F));
 			this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-			this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+			this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.15265F));
 			this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-			this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-			this.tableLayoutPanel4.Controls.Add(this.label31, 0, 5);
+			this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.69471F));
+			this.tableLayoutPanel4.Controls.Add(this.label31, 1, 5);
 			this.tableLayoutPanel4.Controls.Add(this.label22, 0, 0);
 			this.tableLayoutPanel4.Controls.Add(this.cnc1tb, 0, 1);
 			this.tableLayoutPanel4.Controls.Add(this.label25, 0, 2);
@@ -857,7 +857,7 @@
 			this.label31.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.label31.AutoSize = true;
-			this.label31.Location = new System.Drawing.Point(80, 95);
+			this.label31.Location = new System.Drawing.Point(75, 95);
 			this.label31.Name = "label31";
 			this.label31.Size = new System.Drawing.Size(13, 13);
 			this.label31.TabIndex = 19;
@@ -872,7 +872,7 @@
 			this.tableLayoutPanel4.SetColumnSpan(this.label22, 2);
 			this.label22.Location = new System.Drawing.Point(3, 0);
 			this.label22.Name = "label22";
-			this.label22.Size = new System.Drawing.Size(90, 13);
+			this.label22.Size = new System.Drawing.Size(85, 13);
 			this.label22.TabIndex = 0;
 			this.label22.Text = "CNC1";
 			// 
@@ -884,7 +884,7 @@
 			this.cnc1tb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "CNC1", true));
 			this.cnc1tb.Location = new System.Drawing.Point(3, 16);
 			this.cnc1tb.Name = "cnc1tb";
-			this.cnc1tb.Size = new System.Drawing.Size(90, 22);
+			this.cnc1tb.Size = new System.Drawing.Size(85, 22);
 			this.cnc1tb.TabIndex = 12;
 			this.cnc1tb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.cnc1tb.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
@@ -897,7 +897,7 @@
 			this.tableLayoutPanel4.SetColumnSpan(this.label25, 2);
 			this.label25.Location = new System.Drawing.Point(3, 41);
 			this.label25.Name = "label25";
-			this.label25.Size = new System.Drawing.Size(90, 13);
+			this.label25.Size = new System.Drawing.Size(85, 13);
 			this.label25.TabIndex = 0;
 			this.label25.Text = "OverL";
 			// 
@@ -909,7 +909,7 @@
 			this.overLtb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "OVER_L", true));
 			this.overLtb.Location = new System.Drawing.Point(3, 57);
 			this.overLtb.Name = "overLtb";
-			this.overLtb.Size = new System.Drawing.Size(90, 22);
+			this.overLtb.Size = new System.Drawing.Size(85, 22);
 			this.overLtb.TabIndex = 15;
 			this.overLtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.overLtb.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
@@ -921,9 +921,10 @@
 			this.label28.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.label28.AutoSize = true;
+			this.tableLayoutPanel4.SetColumnSpan(this.label28, 2);
 			this.label28.Location = new System.Drawing.Point(3, 82);
 			this.label28.Name = "label28";
-			this.label28.Size = new System.Drawing.Size(71, 13);
+			this.label28.Size = new System.Drawing.Size(85, 13);
 			this.label28.TabIndex = 0;
 			this.label28.Text = "Blank Size";
 			// 
@@ -935,7 +936,7 @@
 			this.blnkszLtb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.blnkszLtb.Location = new System.Drawing.Point(3, 98);
 			this.blnkszLtb.Name = "blnkszLtb";
-			this.blnkszLtb.Size = new System.Drawing.Size(71, 22);
+			this.blnkszLtb.Size = new System.Drawing.Size(66, 22);
 			this.blnkszLtb.TabIndex = 18;
 			this.blnkszLtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.blnkszLtb.TextChanged += new System.EventHandler(this.textBox12_TextChanged);
@@ -948,9 +949,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tableLayoutPanel4.SetColumnSpan(this.overWtb, 2);
 			this.overWtb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "OVER_W", true));
-			this.overWtb.Location = new System.Drawing.Point(99, 57);
+			this.overWtb.Location = new System.Drawing.Point(94, 57);
 			this.overWtb.Name = "overWtb";
-			this.overWtb.Size = new System.Drawing.Size(90, 22);
+			this.overWtb.Size = new System.Drawing.Size(85, 22);
 			this.overWtb.TabIndex = 16;
 			this.overWtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.overWtb.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
@@ -963,9 +964,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.label26.AutoSize = true;
 			this.tableLayoutPanel4.SetColumnSpan(this.label26, 2);
-			this.label26.Location = new System.Drawing.Point(99, 41);
+			this.label26.Location = new System.Drawing.Point(94, 41);
 			this.label26.Name = "label26";
-			this.label26.Size = new System.Drawing.Size(90, 13);
+			this.label26.Size = new System.Drawing.Size(85, 13);
 			this.label26.TabIndex = 0;
 			this.label26.Text = "OverW";
 			// 
@@ -975,9 +976,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tableLayoutPanel4.SetColumnSpan(this.cnc2tb, 2);
 			this.cnc2tb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "CNC2", true));
-			this.cnc2tb.Location = new System.Drawing.Point(99, 16);
+			this.cnc2tb.Location = new System.Drawing.Point(94, 16);
 			this.cnc2tb.Name = "cnc2tb";
-			this.cnc2tb.Size = new System.Drawing.Size(90, 22);
+			this.cnc2tb.Size = new System.Drawing.Size(85, 22);
 			this.cnc2tb.TabIndex = 13;
 			this.cnc2tb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.cnc2tb.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
@@ -988,16 +989,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.label23.AutoSize = true;
 			this.tableLayoutPanel4.SetColumnSpan(this.label23, 2);
-			this.label23.Location = new System.Drawing.Point(99, 0);
+			this.label23.Location = new System.Drawing.Point(94, 0);
 			this.label23.Name = "label23";
-			this.label23.Size = new System.Drawing.Size(90, 13);
+			this.label23.Size = new System.Drawing.Size(85, 13);
 			this.label23.TabIndex = 0;
 			this.label23.Text = "CNC2";
 			// 
 			// label24
 			// 
 			this.label24.AutoSize = true;
-			this.label24.Location = new System.Drawing.Point(195, 0);
+			this.label24.Location = new System.Drawing.Point(185, 0);
 			this.label24.Name = "label24";
 			this.label24.Size = new System.Drawing.Size(70, 13);
 			this.label24.TabIndex = 0;
@@ -1005,11 +1006,13 @@
 			// 
 			// updateCNCcb
 			// 
+			this.updateCNCcb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.updateCNCcb.AutoSize = true;
 			this.updateCNCcb.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.cUTPARTSBindingSource, "UPDATE_CNC", true));
-			this.updateCNCcb.Location = new System.Drawing.Point(195, 16);
+			this.updateCNCcb.Location = new System.Drawing.Point(185, 16);
 			this.updateCNCcb.Name = "updateCNCcb";
-			this.updateCNCcb.Size = new System.Drawing.Size(15, 14);
+			this.updateCNCcb.Size = new System.Drawing.Size(82, 14);
 			this.updateCNCcb.TabIndex = 14;
 			this.updateCNCcb.UseVisualStyleBackColor = true;
 			this.updateCNCcb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
@@ -1017,49 +1020,23 @@
 			// label27
 			// 
 			this.label27.AutoSize = true;
-			this.label27.Location = new System.Drawing.Point(195, 41);
+			this.label27.Location = new System.Drawing.Point(185, 41);
 			this.label27.Name = "label27";
 			this.label27.Size = new System.Drawing.Size(65, 13);
 			this.label27.TabIndex = 0;
 			this.label27.Text = "Parts/Blank";
 			// 
-			// ppbtb
-			// 
-			this.ppbtb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.ppbtb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "BLANKQTY", true));
-			this.ppbtb.Location = new System.Drawing.Point(181, 183);
-			this.ppbtb.Name = "ppbtb";
-			this.ppbtb.Size = new System.Drawing.Size(83, 22);
-			this.ppbtb.TabIndex = 17;
-			this.ppbtb.Visible = false;
-			this.ppbtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
-			this.ppbtb.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
-			// 
 			// prioritybtn
 			// 
 			this.prioritybtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.prioritybtn.Location = new System.Drawing.Point(195, 98);
+			this.prioritybtn.Location = new System.Drawing.Point(185, 98);
 			this.prioritybtn.Name = "prioritybtn";
-			this.prioritybtn.Size = new System.Drawing.Size(72, 23);
+			this.prioritybtn.Size = new System.Drawing.Size(82, 23);
 			this.prioritybtn.TabIndex = 20;
 			this.prioritybtn.Text = "Priority";
 			this.prioritybtn.UseVisualStyleBackColor = true;
 			this.prioritybtn.Click += new System.EventHandler(this.button1_Click);
-			// 
-			// label29
-			// 
-			this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.label29.AutoSize = true;
-			this.label29.Location = new System.Drawing.Point(176, 82);
-			this.label29.Name = "label29";
-			this.label29.Size = new System.Drawing.Size(13, 13);
-			this.label29.TabIndex = 0;
-			this.label29.Text = "X";
-			this.label29.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.label29.Visible = false;
 			// 
 			// blnkszWtb
 			// 
@@ -1067,14 +1044,37 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.blnkszWtb.BackColor = System.Drawing.SystemColors.Menu;
 			this.blnkszWtb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.blnkszWtb.Location = new System.Drawing.Point(99, 98);
+			this.blnkszWtb.Location = new System.Drawing.Point(94, 98);
 			this.blnkszWtb.Name = "blnkszWtb";
-			this.blnkszWtb.Size = new System.Drawing.Size(71, 22);
+			this.blnkszWtb.Size = new System.Drawing.Size(66, 22);
 			this.blnkszWtb.TabIndex = 19;
 			this.blnkszWtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.blnkszWtb.TextChanged += new System.EventHandler(this.textBox13_TextChanged);
 			this.blnkszWtb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.bl_textBox_KeyDown);
 			this.blnkszWtb.Leave += new System.EventHandler(this.dimension_textBox_Leave);
+			// 
+			// ppb_nud
+			// 
+			this.ppb_nud.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.ppb_nud.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.cUTPARTSBindingSource, "BLANKQTY", true));
+			this.ppb_nud.Location = new System.Drawing.Point(185, 57);
+			this.ppb_nud.Name = "ppb_nud";
+			this.ppb_nud.Size = new System.Drawing.Size(82, 22);
+			this.ppb_nud.TabIndex = 21;
+			// 
+			// label29
+			// 
+			this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.label29.AutoSize = true;
+			this.label29.Location = new System.Drawing.Point(166, 82);
+			this.label29.Name = "label29";
+			this.label29.Size = new System.Drawing.Size(13, 13);
+			this.label29.TabIndex = 0;
+			this.label29.Text = "X";
+			this.label29.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+			this.label29.Visible = false;
 			// 
 			// groupBox4
 			// 
@@ -1415,6 +1415,19 @@
 			this.button7.UseVisualStyleBackColor = true;
 			this.button7.Click += new System.EventHandler(this.button7_Click);
 			// 
+			// ppbtb
+			// 
+			this.ppbtb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.ppbtb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "BLANKQTY", true));
+			this.ppbtb.Location = new System.Drawing.Point(181, 183);
+			this.ppbtb.Name = "ppbtb";
+			this.ppbtb.Size = new System.Drawing.Size(83, 22);
+			this.ppbtb.TabIndex = 17;
+			this.ppbtb.Visible = false;
+			this.ppbtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
+			this.ppbtb.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
+			// 
 			// cUTMATERIALSBindingSource
 			// 
 			this.cUTMATERIALSBindingSource.DataMember = "CUT_MATERIALS";
@@ -1487,15 +1500,6 @@
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
 			// 
-			// ppb_nud
-			// 
-			this.ppb_nud.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.ppb_nud.Location = new System.Drawing.Point(195, 57);
-			this.ppb_nud.Name = "ppb_nud";
-			this.ppb_nud.Size = new System.Drawing.Size(72, 22);
-			this.ppb_nud.TabIndex = 21;
-			// 
 			// ModelRedbrick
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -1525,6 +1529,7 @@
 			this.groupBox3.ResumeLayout(false);
 			this.tableLayoutPanel4.ResumeLayout(false);
 			this.tableLayoutPanel4.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.ppb_nud)).EndInit();
 			this.groupBox4.ResumeLayout(false);
 			this.tableLayoutPanel5.ResumeLayout(false);
 			this.tableLayoutPanel5.PerformLayout();
@@ -1540,7 +1545,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.gENUSERSBindingSource)).EndInit();
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.ppb_nud)).EndInit();
 			this.ResumeLayout(false);
 
     }
