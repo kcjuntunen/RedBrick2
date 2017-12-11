@@ -314,18 +314,12 @@ namespace RedBrick2 {
 		public void ToggleTypeWarn(bool on) {
 			if (on) {
 				Redbrick.Err(type_cbx);
-				type_tooltip.SetToolTip(type_cbx, Properties.Resources.NoTypeWarning);
-				type_tooltip.SetToolTip(groupBox4, Properties.Resources.NoTypeWarning);
-				type_tooltip.SetToolTip(op1_cbx, Properties.Resources.NoTypeWarning);
-				type_tooltip.SetToolTip(op2_cbx, Properties.Resources.NoTypeWarning);
-				type_tooltip.SetToolTip(op3_cbx, Properties.Resources.NoTypeWarning);
-				type_tooltip.SetToolTip(op4_cbx, Properties.Resources.NoTypeWarning);
-				type_tooltip.SetToolTip(op5_cbx, Properties.Resources.NoTypeWarning);
-				type_tooltip.SetToolTip(label32, Properties.Resources.NoTypeWarning);
-				type_tooltip.SetToolTip(label33, Properties.Resources.NoTypeWarning);
-				type_tooltip.SetToolTip(label34, Properties.Resources.NoTypeWarning);
-				type_tooltip.SetToolTip(label35, Properties.Resources.NoTypeWarning);
-				type_tooltip.SetToolTip(label36, Properties.Resources.NoTypeWarning);
+				Control [] ttrg_ = { type_cbx, groupBox4,
+														 op1_cbx, op2_cbx, op3_cbx, op4_cbx, op5_cbx,
+														 label32, label33, label34, label35, label36 };
+				foreach (Control item in ttrg_) {
+					type_tooltip.SetToolTip(item, Properties.Resources.NoTypeWarning);
+				}
 			} else {
 				Redbrick.UnErr(type_cbx);
 				type_tooltip.RemoveAll();
@@ -633,11 +627,12 @@ namespace RedBrick2 {
 			if (filter == string.Empty) {
 				filter = "TYPEID = 1";
 			}
-			friendlyCutOpsBindingSource.Filter = filter;
-			friendlyCutOpsBindingSource1.Filter = filter;
-			friendlyCutOpsBindingSource2.Filter = filter;
-			friendlyCutOpsBindingSource3.Filter = filter;
-			friendlyCutOpsBindingSource4.Filter = filter;
+			BindingSource[] bs_ = { friendlyCutOpsBindingSource, friendlyCutOpsBindingSource1,
+															friendlyCutOpsBindingSource2, friendlyCutOpsBindingSource3,
+															friendlyCutOpsBindingSource4 };
+			foreach (BindingSource b_ in bs_) {
+				b_.Filter = filter;
+			}
 		}
 
 		private void GetOps() {
