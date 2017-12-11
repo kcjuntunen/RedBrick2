@@ -14,6 +14,7 @@ namespace RedBrick2 {
 	public class SwProperties : IDictionary<string, SwProperty> {
 		private ENGINEERINGDataSet.CUT_PARTSDataTable cpdt = new ENGINEERINGDataSet.CUT_PARTSDataTable();
 		private ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable ccpdt = new ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable();
+		private ENGINEERINGDataSet.CUT_PART_OPSDataTable cpodt = new ENGINEERINGDataSet.CUT_PART_OPSDataTable();
 		private Dictionary<string, SwProperty> _innerDict = new Dictionary<string, SwProperty>();
 		private int globalCount = 0;
 		private int totalCount = 0;
@@ -106,38 +107,58 @@ namespace RedBrick2 {
 		public void GetProperties(ModelDoc2 md) {
 			ActiveDoc = md;
 			DeptId deptid = new DeptId(@"DEPTID", true, SwApp, md, @"TYPE");
+			deptid.ToDB = false;
+
 			DepartmentProperty department = new DepartmentProperty(@"DEPARTMENT", true, SwApp, md, @"DEPTID");
 			IntProperty blankQty = new IntProperty(@"BLANK QTY", true, SwApp, md, @"CUT_PARTS", @"BLANKQTY");
 
 			StringProperty material = new StringProperty(@"MATERIAL", true, SwApp, md, string.Empty);
+			material.ToDB = false;
 			StringProperty weight = new StringProperty(@"WEIGHT", true, SwApp, md, string.Empty);
+			weight.ToDB = false;
+
 			StringProperty volume = new StringProperty(@"VOLUME", true, SwApp, md, string.Empty);
+			volume.ToDB = false;
+
 			StringProperty description = new StringProperty(@"Description", true, SwApp, md, @"DESCR");
 			StringProperty comment = new StringProperty(@"COMMENT", true, SwApp, md, @"COMMENT");
 			StringProperty cnc1 = new StringProperty(@"CNC1", true, SwApp, md, @"CNC1");
 			StringProperty cnc2 = new StringProperty(@"CNC2", true, SwApp, md, @"CNC2");
 
 			BooleanProperty includeInCutlist = new BooleanProperty(@"INCLUDE IN CUTLIST", false, SwApp, md, string.Empty);
+			includeInCutlist.ToDB = false;
+
 			BooleanProperty updateCNC = new BooleanProperty(@"UPDATE CNC", true, SwApp, md, "UPDATE_CNC");
 
 			DimensionProperty length = new DimensionProperty(@"LENGTH", true, SwApp, md, @"FIN_L");
 			DimensionProperty width = new DimensionProperty(@"WIDTH", true, SwApp, md, @"FIN_W");
 			DimensionProperty thickness = new DimensionProperty(@"THICKNESS", true, SwApp, md, @"THICKNESS");
 			DimensionProperty wallThickness = new DimensionProperty(@"WALL THICKNESS", true, SwApp, md, string.Empty);
+			wallThickness.ToDB = false;
+
 			DimensionProperty overL = new DimensionProperty(@"OVERL", true, SwApp, md, @"OVER_L");
 			DimensionProperty overW = new DimensionProperty(@"OVERW", true, SwApp, md, @"OVER_W");
 
-      OpProperty op1 = new OpProperty(@"OP1", true, SwApp, md, @"OP1");
-      OpProperty op2 = new OpProperty(@"OP2", true, SwApp, md, @"OP2");
-      OpProperty op3 = new OpProperty(@"OP3", true, SwApp, md, @"OP3");
-      OpProperty op4 = new OpProperty(@"OP4", true, SwApp, md, @"OP4");
-			OpProperty op5 = new OpProperty(@"OP5", true, SwApp, md, @"OP5");
+      OpProperty op1 = new OpProperty(@"OP1", true, SwApp, md, @"OP1ID");
+      OpProperty op2 = new OpProperty(@"OP2", true, SwApp, md, @"OP2ID");
+      OpProperty op3 = new OpProperty(@"OP3", true, SwApp, md, @"OP3ID");
+      OpProperty op4 = new OpProperty(@"OP4", true, SwApp, md, @"OP4ID");
+			OpProperty op5 = new OpProperty(@"OP5", true, SwApp, md, @"OP5ID");
 
-			OpId op1id = new OpId(@"OP1ID", true, SwApp, md, @"OP1");
-			OpId op2id = new OpId(@"OP2ID", true, SwApp, md, @"OP2");
-			OpId op3id = new OpId(@"OP3ID", true, SwApp, md, @"OP3");
-			OpId op4id = new OpId(@"OP4ID", true, SwApp, md, @"OP4");
-			OpId op5id = new OpId(@"OP5ID", true, SwApp, md, @"OP5");
+			OpId op1id = new OpId(@"OP1ID", true, SwApp, md, @"POPOP");
+			//op1id.ToDB = false;
+
+			OpId op2id = new OpId(@"OP2ID", true, SwApp, md, @"POPOP");
+			//op2id.ToDB = false;
+
+			OpId op3id = new OpId(@"OP3ID", true, SwApp, md, @"POPOP");
+			//op3id.ToDB = false;
+
+			OpId op4id = new OpId(@"OP4ID", true, SwApp, md, @"POPOP");
+			//op4id.ToDB = false;
+
+			OpId op5id = new OpId(@"OP5ID", true, SwApp, md, @"POPOP");
+			//op5id.ToDB = false;
 
 			MaterialProperty cutlistMaterial = new MaterialProperty(@"CUTLIST MATERIAL", false, SwApp, md, @"MATID");
 			EdgeProperty edgelf = new EdgeProperty(@"EDGE FRONT (L)", false, SwApp, md, @"EDGEID_LF");
@@ -146,10 +167,20 @@ namespace RedBrick2 {
 			EdgeProperty edgewl = new EdgeProperty(@"EDGE LEFT (W)", false, SwApp, md, @"EDGEID_WL");
 
 			MatId matid = new MatId("MATID", false, SwApp, md, @"MATID");
+			matid.ToDB = false;
+
 			EdgeId efid = new EdgeId(@"EFID", false, SwApp, md, @"EDGEID_LF");
+			efid.ToDB = false;
+
 			EdgeId ebid = new EdgeId(@"EBID", false, SwApp, md, @"EDGEID_LB");
+			ebid.ToDB = false;
+
 			EdgeId erid = new EdgeId(@"ERID", false, SwApp, md, @"EDGEID_WR");
+			erid.ToDB = false;
+
 			EdgeId elid = new EdgeId(@"ELID", false, SwApp, md, @"EDGEID_WL");
+			elid.ToDB = false;
+
 
 			foreach (SwProperty item in new SwProperty[] {
         deptid, department, blankQty,
@@ -360,9 +391,16 @@ namespace RedBrick2 {
 		/// </summary>
 		public ENGINEERINGDataSet.CUT_PARTSRow PartsData {
 			get {
+				System.IO.FileInfo fi_ = _innerDict[@"DEPARTMENT"].PartFileInfo;
 				ENGINEERINGDataSet.CUT_PARTSRow cpr = cpdt.NewCUT_PARTSRow();
+				cpr.PARTID = (int)_innerDict[@"DEPARTMENT"].PartID;
+				cpr.PARTNUM = System.IO.Path.GetFileNameWithoutExtension(
+					fi_.FullName).Split(' ')[0];
+				cpr.HASH = Redbrick.GetHash(System.IO.Path.GetFullPath(fi_.FullName));
 				foreach (var item in _innerDict) {
-					if (item.Value.TableName == @"CUT_PARTS" && item.Value.FieldName != string.Empty) {
+					if (item.Value.TableName == @"CUT_PARTS" &&
+						item.Value.FieldName != string.Empty &&
+						item.Value.ToDB) {
 						cpr[item.Value.FieldName] = item.Value.Data;
 					}
 				}
@@ -376,14 +414,14 @@ namespace RedBrick2 {
 		public ENGINEERINGDataSet.CUT_CUTLIST_PARTSRow CutlistPartsData {
 			get {
 				ENGINEERINGDataSet.CUT_CUTLIST_PARTSRow cpr = ccpdt.NewCUT_CUTLIST_PARTSRow();
-				cpr[@"CLID"] = CutlistID;
-				cpr[@"PARTID"] = (int)_innerDict[@"CRC32"].PartID;
+				cpr.CLID = CutlistID;
+				cpr.PARTID = PartID;
 				foreach (var item in _innerDict) {
-					if (item.Value.TableName == @"CUT_CUTLIST_PARTS") {
+					if (item.Value.TableName == @"CUT_CUTLIST_PARTS" && item.Value.ToDB) {
 						cpr[item.Value.FieldName] = item.Value.Data;
 					}
 				}
-				cpr[@"QTY"] = CutlistQty;
+				cpr.QTY = CutlistQty;
 				return cpr;
 			}
 		}
@@ -391,20 +429,20 @@ namespace RedBrick2 {
 		/// <summary>
 		/// Returns an array of DataRows of part-ops data from a property set.
 		/// </summary>
-		public ENGINEERINGDataSet.CUT_PART_OPSRow[] PartOpsRows {
+		public ENGINEERINGDataSet.CUT_PART_OPSDataTable PartOpsRows {
 			get {
-				ENGINEERINGDataSet.CUT_PART_OPSDataTable cpodt =
-					new ENGINEERINGDataSet.CUT_PART_OPSDataTable();
-				List<ENGINEERINGDataSet.CUT_PART_OPSRow> rows =
-					new List<ENGINEERINGDataSet.CUT_PART_OPSRow>();
-				foreach (OpSet opset in opSets) {
-					ENGINEERINGDataSet.CUT_PART_OPSRow row = cpodt.NewCUT_PART_OPSRow();
-					foreach (OpProperty op in opset) {
-						row[op.FieldName] = op.Data;
+				if (cpodt.Rows.Count < 1) {
+					foreach (var item in _innerDict) {
+						if (item.Value is OpProperty &&
+							item.Value.ToDB) {
+							OpProperty op_ = item.Value as OpProperty;
+							ENGINEERINGDataSet.CUT_PART_OPSRow r_ = cpodt.NewRow() as ENGINEERINGDataSet.CUT_PART_OPSRow;
+							r_.POPOP = (int)op_.Data;
+							cpodt.AddCUT_PART_OPSRow(r_);
+						}
 					}
-					rows.Add(row);
 				}
-				return rows.ToArray();
+				return cpodt;
 			}
 		}
 
@@ -459,13 +497,12 @@ namespace RedBrick2 {
 		/// <summary>
 		/// Quantity of this part in an assembly.
 		/// </summary>
-		public int CutlistQty {
-			get {
-				int res = 0;
+		public float CutlistQty { get; set; }
 
-				return res;
-			}
-		}
+		/// <summary>
+		/// PartID from CUT_PARTS
+		/// </summary>
+		public int PartID { get; set; }
 
 		/// <summary>
 		/// Return a list of ops with their data.

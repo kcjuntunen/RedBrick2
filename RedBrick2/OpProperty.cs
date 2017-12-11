@@ -20,7 +20,7 @@ namespace RedBrick2 {
 		/// <param name="md">A ModelDoc2.</param>
 		/// <param name="fieldName">The field of CUT_PART_OPS.</param>
 		public OpProperty(string name, bool global, SldWorks sw, ModelDoc2 md, string fieldName)
-			: base(name, global, sw, md, @"CUT_PART_OPS", fieldName) {
+			: base(name, global, sw, md, @"CUT_PARTS", fieldName) {
 			SWType = swCustomInfoType_e.swCustomInfoText;
 		}
 
