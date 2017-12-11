@@ -1007,9 +1007,11 @@ namespace RedBrick2 {
 				UpdateRoutingProperties();
 
 				PropertySet.Write();
-				if (Row != null) {
+				if (Row != null && Row.PARTID > 0) {
 					//cpta.Update(Row);
-					//ccpta.Update(CutlistPartsRow);
+					if (CutlistPartsRow != null && CutlistPartsRow.CLPARTID > 0) {
+						//ccpta.Update(CutlistPartsRow);
+					}
 					cpota.Update(eNGINEERINGDataSet.CUT_PART_OPS);
 				}
 				if (data_from_db) {
