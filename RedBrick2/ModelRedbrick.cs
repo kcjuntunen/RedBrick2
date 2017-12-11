@@ -269,6 +269,7 @@ namespace RedBrick2 {
 				cpta.FillByPartnum(eNGINEERINGDataSet.CUT_PARTS, partLookup);
 				if (eNGINEERINGDataSet.CUT_PARTS.Count > 0) {
 					Row = cpta.GetDataByPartnum(partLookup)[0];
+					PropertySet.PartID = Row.PARTID;
 				} else {
 					Row = null;
 					CutlistPartsRow = null;
@@ -534,12 +535,23 @@ namespace RedBrick2 {
 
 			for (int i = 0; i < cbxes.Length; i++) {
 				ComboBox current = cbxes[i];
+				string op_ = string.Format(@"OP{0}", i + 1);
+				string opid_ = string.Format(@"OP{0}ID", i + 1);
 				if (i < eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count) {
 					ENGINEERINGDataSet.CUT_PART_OPSRow r =
 						(eNGINEERINGDataSet.CUT_PART_OPS.Rows[i] as ENGINEERINGDataSet.CUT_PART_OPSRow);
 					setupTime += r.POPSETUP;
 					runTime += r.POPRUN;
 					current.SelectedValue = r.POPOP;
+					if (PropertySet.ContainsKey(op_)) {
+						OpProperty prop_ = PropertySet[op_] as OpProperty;
+						string opname_ = (current.SelectedValue as DataRowView)[@"OPNAME"].ToString();
+						prop_.Set(r.POPOP, opname_);
+					}
+					if (PropertySet.ContainsKey(opid_)) {
+						OpId propid_ = PropertySet[opid_] as OpId;
+						propid_.Set(r.POPOP, r.POPOP.ToString());
+					}
 				} else {
 					current.SelectedValue = -1;
 				}
@@ -1520,6 +1532,8 @@ namespace RedBrick2 {
 			edger.SelectedValue = _row.EDGEID_WR;
 			edgel.SelectedValue = _row.EDGEID_WL;
 			partq.Value = Convert.ToInt32(_row.QTY);
+			PropertySet.CutlistID = _row.CLID;
+			PropertySet.CutlistQty = _row.QTY;
 		}
 
 		private void comboBox6_MouseClick(object sender, MouseEventArgs e) {
