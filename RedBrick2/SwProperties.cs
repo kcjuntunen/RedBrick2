@@ -391,10 +391,22 @@ namespace RedBrick2 {
 		/// </summary>
 		public ENGINEERINGDataSet.CUT_PARTSRow PartsData {
 			get {
+				if (cpdt.Rows.Count > 0) {
+					return cpdt.Rows[0] as ENGINEERINGDataSet.CUT_PARTSRow;
+				}
+
 				System.IO.FileInfo fi_ = _innerDict[@"DEPARTMENT"].PartFileInfo;
+				string lookup_ = Redbrick.FileInfoToLookup(fi_);
+				ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cpta =
+					new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
+				cpdt = cpta.GetDataByPartnum(lookup_);
+				if (cpdt.Rows.Count > 0) {
+					return cpdt.Rows[0] as ENGINEERINGDataSet.CUT_PARTSRow;
+				}
+
 				ENGINEERINGDataSet.CUT_PARTSRow cpr = cpdt.NewCUT_PARTSRow();
 				cpr.PARTID = (int)_innerDict[@"DEPARTMENT"].PartID;
-				cpr.PARTNUM = Redbrick.FileInfoToLookup(fi_);
+				cpr.PARTNUM = lookup_;
 				cpr.HASH = Redbrick.GetHash(System.IO.Path.GetFullPath(fi_.FullName));
 				foreach (var item in _innerDict) {
 					if (item.Value.TableName == @"CUT_PARTS" &&
@@ -412,6 +424,20 @@ namespace RedBrick2 {
 		/// </summary>
 		public ENGINEERINGDataSet.CUT_CUTLIST_PARTSRow CutlistPartsData {
 			get {
+				if (ccpdt.Rows.Count > 0) {
+					return ccpdt.Rows[0] as ENGINEERINGDataSet.CUT_CUTLIST_PARTSRow;
+				}
+				System.IO.FileInfo fi_ = _innerDict[@"DEPARTMENT"].PartFileInfo;
+				string lookup_ = Redbrick.FileInfoToLookup(fi_);
+				if (CutlistID > 0 && PartID > 0) {
+					ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter ccpta =
+						new ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter();
+					ccpdt = ccpta.GetDataByCutlistIDAndPartID(PartID, CutlistID);
+					if (ccpdt.Rows.Count > 0) {
+						return ccpdt.Rows[0] as ENGINEERINGDataSet.CUT_CUTLIST_PARTSRow;
+					}
+				}
+
 				ENGINEERINGDataSet.CUT_CUTLIST_PARTSRow cpr = ccpdt.NewCUT_CUTLIST_PARTSRow();
 				cpr.CLID = CutlistID;
 				cpr.PARTID = PartID;
@@ -430,6 +456,14 @@ namespace RedBrick2 {
 		/// </summary>
 		public ENGINEERINGDataSet.CUT_PART_OPSDataTable PartOpsRows {
 			get {
+				if (PartID > 0) {
+					ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter cpota =
+						new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter();
+					cpodt = cpota.GetDataByPartID(PartID);
+					if (cpodt.Rows.Count > 0) {
+						return cpodt;
+					}
+				}
 				if (cpodt.Rows.Count < 1) {
 					foreach (var item in _innerDict) {
 						if (item.Value is OpProperty &&
