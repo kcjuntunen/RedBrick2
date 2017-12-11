@@ -689,6 +689,15 @@ namespace RedBrick2 {
 		}
 
 		/// <summary>
+		/// Get a lookup value for searching DB.
+		/// </summary>
+		/// <param name="_fi">A <see cref="System.IO.FileInfo"/> object.</param>
+		/// <returns>A string for DB searches.</returns>
+		static public string FileInfoToLookup(System.IO.FileInfo _fi) {
+			return System.IO.Path.GetFileNameWithoutExtension(_fi.FullName).Split(' ')[0];
+		}
+
+		/// <summary>
 		/// A central place for TreeViewIcons.
 		/// </summary>
 		static public System.Windows.Forms.ImageList TreeViewIcons { get; set; }

@@ -68,7 +68,7 @@ namespace RedBrick2 {
 		private void GetFileInfo() {
 			try {
 				PartFileInfo = new FileInfo(ActiveDoc.GetPathName());
-				object _prtID = cpta.GetPartIDByPartnum(Path.GetFileNameWithoutExtension(PartFileInfo.Name));
+				object _prtID = cpta.GetPartIDByPartnum(Redbrick.FileInfoToLookup(PartFileInfo));
 				if (_prtID != null) {
 					PartID = (int)_prtID;
 				} else {

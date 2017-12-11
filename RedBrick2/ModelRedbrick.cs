@@ -1147,7 +1147,7 @@ namespace RedBrick2 {
 					string _fn = _activeDoc.GetPathName();
 					if (_fn != string.Empty) {
 						PartFileInfo = new FileInfo(_fn);
-						partLookup = Path.GetFileNameWithoutExtension(PartFileInfo.Name).Split(' ')[0];
+						partLookup = Redbrick.FileInfoToLookup(PartFileInfo);
 					} else {
 						partLookup = null;
 						PartFileInfo = new FileInfo(Path.GetTempFileName());

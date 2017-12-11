@@ -394,8 +394,7 @@ namespace RedBrick2 {
 				System.IO.FileInfo fi_ = _innerDict[@"DEPARTMENT"].PartFileInfo;
 				ENGINEERINGDataSet.CUT_PARTSRow cpr = cpdt.NewCUT_PARTSRow();
 				cpr.PARTID = (int)_innerDict[@"DEPARTMENT"].PartID;
-				cpr.PARTNUM = System.IO.Path.GetFileNameWithoutExtension(
-					fi_.FullName).Split(' ')[0];
+				cpr.PARTNUM = Redbrick.FileInfoToLookup(fi_);
 				cpr.HASH = Redbrick.GetHash(System.IO.Path.GetFullPath(fi_.FullName));
 				foreach (var item in _innerDict) {
 					if (item.Value.TableName == @"CUT_PARTS" &&
