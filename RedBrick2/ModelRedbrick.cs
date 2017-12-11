@@ -539,11 +539,12 @@ namespace RedBrick2 {
 					current.SelectedValue = r.POPOP;
 					if (PropertySet.ContainsKey(op_)) {
 						OpProperty prop_ = PropertySet[op_] as OpProperty;
-						string opname_ = (current.SelectedValue as DataRowView)[@"OPNAME"].ToString();
-						prop_.Set(r.POPOP, opname_);
+						prop_.OpType = Convert.ToInt32(type_cbx.SelectedValue);
+						prop_.Data = r.POPOP;
 					}
 					if (PropertySet.ContainsKey(opid_)) {
 						OpId propid_ = PropertySet[opid_] as OpId;
+						propid_.OpType = Convert.ToInt32(type_cbx.SelectedValue);
 						propid_.Set(r.POPOP, r.POPOP.ToString());
 					}
 				} else {
