@@ -1615,7 +1615,7 @@ namespace RedBrick2 {
 				ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpoa_ =
 					new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
 				ENGINEERINGDataSet.CutPartOpsRow r =
-					(cpoa_.GetDataByIDnOrder(Row.PARTID, 5)[4] as ENGINEERINGDataSet.CutPartOpsRow);
+					(cpoa_.GetDataByIDnOrder(Row.PARTID, 5)[0] as ENGINEERINGDataSet.CutPartOpsRow);
 				EditOp eo = new EditOp(r);
 				eo.ShowDialog(this);
 			}
