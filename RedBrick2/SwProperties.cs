@@ -522,6 +522,22 @@ namespace RedBrick2 {
 			}
 		}
 
+		public int Hash { get; set; }
+
+		public System.IO.FileInfo PartFileInfo {
+			get {
+				return PartFileInfo;
+			}
+			set {
+				PartFileInfo = value;
+				Hash = Redbrick.GetHash(PartFileInfo.FullName);
+				foreach (SwProperty item in _innerDict.Values) {
+					item.PartFileInfo = value;
+					item.Hash = Hash;
+				}
+			}
+		}
+
 		/// <summary>
 		/// The ID of the cutlist in question.
 		/// </summary>
@@ -532,10 +548,21 @@ namespace RedBrick2 {
 		/// </summary>
 		public float CutlistQty { get; set; }
 
+		private int _partID = 0;
 		/// <summary>
 		/// PartID from CUT_PARTS
 		/// </summary>
-		public int PartID { get; set; }
+		public int PartID {
+			get {
+				return _partID;
+			}
+			set {
+				_partID = value;
+				foreach (SwProperty item in _innerDict.Values) {
+					item.PartID = _partID;
+				}
+			}
+		}
 
 		/// <summary>
 		/// Return a list of ops with their data.
