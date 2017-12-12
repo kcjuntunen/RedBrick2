@@ -712,5 +712,14 @@ namespace RedBrick2.Properties {
                 this["CreateCutlistSize"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int DefaultState {
+            get {
+                return ((int)(this["DefaultState"]));
+            }
+        }
     }
 }
