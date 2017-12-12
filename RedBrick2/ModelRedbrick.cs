@@ -268,7 +268,7 @@ namespace RedBrick2 {
 					new ENGINEERINGDataSet.CUT_PARTSDataTable();
 				cpta.FillByPartnum(eNGINEERINGDataSet.CUT_PARTS, partLookup);
 				if (eNGINEERINGDataSet.CUT_PARTS.Count > 0) {
-					Row = cpta.GetDataByPartnum(partLookup)[0];
+					Row = eNGINEERINGDataSet.CUT_PARTS.Rows[0] as ENGINEERINGDataSet.CUT_PARTSRow;
 					PropertySet.PartID = Row.PARTID;
 				} else {
 					Row = null;
@@ -288,6 +288,7 @@ namespace RedBrick2 {
 				cpota.FillByPartID(eNGINEERINGDataSet.CUT_PART_OPS, Row.PARTID);
 				if (cutlistctl.SelectedItem != null) {
 					ccpta.FillByCutlistIDAndPartID(eNGINEERINGDataSet.CUT_CUTLIST_PARTS, Row.PARTID, Convert.ToInt32(cutlistctl.SelectedValue));
+					PropertySet.CutlistID = Convert.ToInt32(cutlistctl.SelectedValue);
 					if (eNGINEERINGDataSet.CUT_CUTLIST_PARTS.Count > 0) {
 						CutlistPartsRow = eNGINEERINGDataSet.CUT_CUTLIST_PARTS[0];
 					}
@@ -518,8 +519,8 @@ namespace RedBrick2 {
 		}
 
 		private void GetRoutingFromDB() {
-			double setupTime = 0.0f;
-			double runTime = 0.0f;
+			//double setupTime = 0.0f;
+			//double runTime = 0.0f;
 			if (Row != null) {
 				type_cbx.SelectedValue = Row.TYPE;
 				FilterOps(string.Format(@"TYPEID = {0}", Row.TYPE));
@@ -534,8 +535,8 @@ namespace RedBrick2 {
 				if (i < eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count) {
 					ENGINEERINGDataSet.CUT_PART_OPSRow r =
 						(eNGINEERINGDataSet.CUT_PART_OPS.Rows[i] as ENGINEERINGDataSet.CUT_PART_OPSRow);
-					setupTime += r.POPSETUP;
-					runTime += r.POPRUN;
+					//setupTime += r.POPSETUP;
+					//runTime += r.POPRUN;
 					current.SelectedValue = r.POPOP;
 					if (PropertySet.ContainsKey(op_)) {
 						OpProperty prop_ = PropertySet[op_] as OpProperty;
@@ -551,23 +552,27 @@ namespace RedBrick2 {
 					current.SelectedValue = -1;
 				}
 			}
-
-			double setup = setupTime / Properties.Settings.Default.SPQ;
-			groupBox4.Text = string.Format("Routing (Setup: {0:0} min/Run: {1:0} min)",
-				setup * 60,
-				runTime * 60);
+			GetEstimationFromDB();
+			//double setup = setupTime / Properties.Settings.Default.SPQ;
+			//groupBox4.Text = string.Format("Routing (Setup: {0:0} min/Run: {1:0} min)",
+			//	setup * 60,
+			//	runTime * 60);
 		}
 
 		private void GetEstimationFromDB() {
 			double setupTime = 0.0f;
 			double runTime = 0.0f;
-			ENGINEERINGDataSet.CUT_PART_OPSDataTable dt_ = cpota.GetDataByPartID(Row.PARTID);
-			for (int i = 0; i < cbxes.Length; i++) {
-				ComboBox current = cbxes[i];
-				if (eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count > i) {
-					setupTime += Convert.ToDouble(eNGINEERINGDataSet.CUT_PART_OPS.Rows[i][@"POPSETUP"]);
-					runTime += Convert.ToDouble(eNGINEERINGDataSet.CUT_PART_OPS.Rows[i][@"POPRUN"]);
-				}
+			//ENGINEERINGDataSet.CUT_PART_OPSDataTable dt_ = cpota.GetDataByPartID(Row.PARTID);
+			//for (int i = 0; i < cbxes.Length; i++) {
+			//	ComboBox current = cbxes[i];
+			//	if (eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count > i) {
+			//		setupTime += Convert.ToDouble(eNGINEERINGDataSet.CUT_PART_OPS.Rows[i][@"POPSETUP"]);
+			//		runTime += Convert.ToDouble(eNGINEERINGDataSet.CUT_PART_OPS.Rows[i][@"POPRUN"]);
+			//	}
+			//}
+			if (PropertySet.CutlistID != 0) {
+				setupTime = Convert.ToDouble(cpota.GetCutlistSetupTime(PropertySet.CutlistID));
+				runTime = Convert.ToDouble(cpota.GetCutlistRunTime(PropertySet.CutlistID));
 			}
 
 			double setup = setupTime / Properties.Settings.Default.SPQ;
@@ -795,12 +800,16 @@ namespace RedBrick2 {
 			} else {
 				// Nothing's selected?
 				// Just look at the root item then.
-				configurationManager = SwApp.ActiveDoc.ConfigurationManager;
-				configuration = configurationManager.ActiveConfiguration.Name;
-				this.Enabled = true;
-				groupBox1.Text = string.Format(@"{0} - {1}",
-					partLookup, PropertySet.Configuration);
-				ReQuery(SwApp.ActiveDoc);
+				try {
+					configurationManager = SwApp.ActiveDoc.ConfigurationManager;
+					configuration = configurationManager.ActiveConfiguration.Name;
+					this.Enabled = true;
+					groupBox1.Text = string.Format(@"{0} - {1}",
+						partLookup, PropertySet.Configuration);
+					ReQuery(SwApp.ActiveDoc);
+				} catch (Exception ex) {
+					System.Diagnostics.Debug.WriteLine(ex.Message);
+				}
 			}
 			return 0;
 		}
