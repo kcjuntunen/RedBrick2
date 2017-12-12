@@ -49,6 +49,7 @@ namespace RedBrick2 {
 			this.cUTPARTTYPESBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.select_btn = new System.Windows.Forms.Button();
 			this.unselect_btn = new System.Windows.Forms.Button();
+			this.upload_btn = new System.Windows.Forms.Button();
 			this.gEN_CUSTOMERSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.GEN_CUSTOMERSTableAdapter();
 			this.revListTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.RevListTableAdapter();
 			this.cUT_CUTLISTSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
@@ -114,6 +115,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel1.Controls.Add(this.cancel_btn, 4, 5);
 			this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 4);
 			this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 3);
+			this.tableLayoutPanel1.Controls.Add(this.upload_btn, 0, 5);
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(13, 13);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			this.tableLayoutPanel1.RowCount = 6;
@@ -395,6 +397,16 @@ namespace RedBrick2 {
 			this.unselect_btn.UseVisualStyleBackColor = true;
 			this.unselect_btn.Click += new System.EventHandler(this.unselect_btn_Click);
 			// 
+			// upload_btn
+			// 
+			this.upload_btn.Location = new System.Drawing.Point(3, 318);
+			this.upload_btn.Name = "upload_btn";
+			this.upload_btn.Size = new System.Drawing.Size(75, 23);
+			this.upload_btn.TabIndex = 16;
+			this.upload_btn.Text = "Upload";
+			this.upload_btn.UseVisualStyleBackColor = true;
+			this.upload_btn.Click += new System.EventHandler(this.upload_btn_Click);
+			// 
 			// gEN_CUSTOMERSTableAdapter
 			// 
 			this.gEN_CUSTOMERSTableAdapter.ClearBeforeFill = true;
@@ -514,5 +526,6 @@ namespace RedBrick2 {
 		private System.Windows.Forms.Button unselect_btn;
 		private System.Windows.Forms.BindingSource cUTPARTTYPESBindingSource;
 		private ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cUT_PART_TYPESTableAdapter;
+		private System.Windows.Forms.Button upload_btn;
   }
 }

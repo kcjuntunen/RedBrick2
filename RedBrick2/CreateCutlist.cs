@@ -16,14 +16,34 @@ namespace RedBrick2 {
 	/// This is the form for collecting and inserting all property data into the cutlist.
 	/// </summary>
 	public partial class CreateCutlist : Form {
-		ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cpt =
+		private ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cpt =
 			new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
-		ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cmt =
+		private ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cmt =
 			new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter();
-		ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter fco =
+		private ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter fco =
 			new ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter();
-		ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter ce =
+		private ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter ce =
 			new ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter();
+		private ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter guta =
+			new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
+
+		private ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter ta_ccp =
+			new ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter();
+		private ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter ta_cp =
+			new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
+		private ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter ta_cpo =
+			new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter();
+		private ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter ta_cc =
+		new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
+
+		private ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable dt_ccp =
+			new ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable();
+		private ENGINEERINGDataSet.CUT_PARTSDataTable dt_cp =
+			new ENGINEERINGDataSet.CUT_PARTSDataTable();
+		private ENGINEERINGDataSet.CUT_PART_OPSDataTable dt_cpo =
+			new ENGINEERINGDataSet.CUT_PART_OPSDataTable();
+		private ENGINEERINGDataSet.CUT_CUTLISTSDataTable dt_cc =
+			new ENGINEERINGDataSet.CUT_CUTLISTSDataTable();
 
 		private SortedDictionary<string, int> _dict = new SortedDictionary<string, int>();
 		private SortedDictionary<string, SwProperties> _partlist = new SortedDictionary<string, SwProperties>();
@@ -42,11 +62,13 @@ namespace RedBrick2 {
 		private bool rev_in_filename = false;
 		private bool user_changed_item = false;
 		private Configuration _config = null;
+		private int? uid = null;
 		private int opCount = 5;
 		private bool[] sort_directions = { false, false, false, false, false, false,
 																			 false, false, false, false, false, false,
 																			 false, false, false, false, false, false,
 																			 false, false, false, false, false, false };
+		private bool ok = false;
 		private ToolTip rev_tooltip = new ToolTip();
 		private ToolTip descr_tooltip = new ToolTip();
 		private ToolTip cust_tooltip = new ToolTip();
@@ -169,6 +191,8 @@ namespace RedBrick2 {
 			//this.cUT_CUTLISTSTableAdapter.Fill(this.eNGINEERINGDataSet.CUT_CUTLISTS);
 			// TODO: This line of code loads data into the 'eNGINEERINGDataSet.GEN_CUSTOMERS' table. You can move, or remove it, as needed.
 			this.gEN_CUSTOMERSTableAdapter.Fill(this.eNGINEERINGDataSet.GEN_CUSTOMERS);
+			uid = guta.GetUID(System.Environment.UserName);
+
 			if (Properties.Settings.Default.OnlyCurrentCustomers) {
 				gENCUSTOMERSBindingSource.Filter = @"CUSTACTIVE = True";
 			}
@@ -185,6 +209,15 @@ namespace RedBrick2 {
 			dateTimePicker1.Value = DateTime.Now;
 			settle_rev(topName);
 			get_names();
+		}
+
+		private void check_ok() {
+			ok = (itm_cbx.Text != string.Empty &&
+						descr_cbx.Text != string.Empty &&
+						ref_cbx.Text != string.Empty &&
+						cust_cbx.SelectedItem != null &&
+						uid != null);
+			upload_btn.Enabled = ok;
 		}
 
 		private void get_names() {
@@ -1037,6 +1070,23 @@ namespace RedBrick2 {
 				MessageBox.Show(this, ex.Message,
 					@"Not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
+		}
+
+		private void upload_btn_Click(object sender, EventArgs e) {
+			ENGINEERINGDataSet.CUT_CUTLISTSRow cc_r_ = dt_cc.NewRow() as ENGINEERINGDataSet.CUT_CUTLISTSRow;
+			cc_r_.CDATE = dateTimePicker1.Value;
+			cc_r_.CUSTID = Convert.ToInt32(cust_cbx.SelectedValue);
+			cc_r_.DESCR = descr_cbx.Text;
+			cc_r_.DRAWING = ref_cbx.Text;
+			cc_r_.LENGTH = 0;
+			cc_r_.WIDTH = 0;
+			cc_r_.HEIGHT = 0;
+			cc_r_.REV = rev_cbx.Text;
+			cc_r_.PARTNUM = itm_cbx.Text;
+			cc_r_.STATE_BY = (int)uid;
+			cc_r_.SETUP_BY = (int)uid;
+			cc_r_.STATEID = Properties.Settings.Default.DefaultState;
+			dt_cc.AddCUT_CUTLISTSRow(cc_r_);
 		}
 
 	}
