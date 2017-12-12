@@ -63,25 +63,37 @@ namespace RedBrick2 {
 			}
 			treeView1.Nodes.Clear();
 			// TODO: fix this for new drawings.
-			PartFileInfo = new FileInfo(ActiveDoc.GetPathName());
-			string[] fi = Path.GetFileNameWithoutExtension(PartFileInfo.Name).Split(' ');
-			partLookup = fi[0];
-			if (PartFileInfo.Name.ToUpper().Contains(@"REV")) {
-				string[] revcheck = Path.GetFileNameWithoutExtension(PartFileInfo.Name).
-					Split(new string[] { @"REV" }, StringSplitOptions.RemoveEmptyEntries);
-				RevFromFile = revcheck.Length > 1 ? revcheck[revcheck.Length - 1] : null;
-			}
-			ENGINEERINGDataSet.SCH_PROJECTSRow r =
-				(new ENGINEERINGDataSet.SCH_PROJECTSDataTable()).GetCorrectCustomer(partLookup);
-			if (r != null) {
-				ProjectCustomer = r.CUSTID;
-				projectDescr = r.DESCRIPTION;
+			string path_ = ActiveDoc.GetPathName();
+			if (path_ != string.Empty) {
+				PartFileInfo = new FileInfo(path_);
+				partLookup = Redbrick.FileInfoToLookup(PartFileInfo);
+				if (PartFileInfo.Name.ToUpper().Contains(@"REV")) {
+					string[] revcheck = Path.GetFileNameWithoutExtension(PartFileInfo.Name).
+						Split(new string[] { @"REV" }, StringSplitOptions.RemoveEmptyEntries);
+					RevFromFile = revcheck.Length > 1 ? revcheck[revcheck.Length - 1] : null;
+				}
+				ENGINEERINGDataSet.SCH_PROJECTSRow r =
+					(new ENGINEERINGDataSet.SCH_PROJECTSDataTable()).GetCorrectCustomer(partLookup);
+				if (r != null) {
+					ProjectCustomer = r.CUSTID;
+					projectDescr = r.DESCRIPTION;
+				} else {
+					ProjectCustomer = 0;
+					projectDescr = string.Empty;
+				}
+				//ProjectCustomer = GetCorrectCustomer();
+				groupBox5.Text = projectDescr != string.Empty ? string.Format(@"{0} - {1}", partLookup, projectDescr) : partLookup;
 			} else {
-				ProjectCustomer = 0;
-				projectDescr = string.Empty;
+				groupBox5.Text = @"New Drawing";
+				DrawingDoc dd_ = ActiveDoc as DrawingDoc;
+				dd_.SaveToStorageNotify += dd__SaveToStorageNotify;
 			}
-			//ProjectCustomer = GetCorrectCustomer();
-			groupBox5.Text = projectDescr != string.Empty ? string.Format(@"{0} - {1}", partLookup, projectDescr) : partLookup;
+		}
+
+		int dd__SaveToStorageNotify() {
+			ActiveDoc = SwApp.ActiveDoc;
+			InitData();
+			return 0;
 		}
 
 		private void FigureOutCustomer() {
