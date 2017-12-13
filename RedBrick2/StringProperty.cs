@@ -42,8 +42,21 @@ namespace RedBrick2 {
 		public override object Data {
 			get { return _data; }
 			set {
-				_data = value.ToString();
 				Value = value.ToString();
+				string filtered = string.Empty;
+				char[,] chars = new char[,] {
+					{'\u0027', '\u2032'}, 
+					{'\u0022', '\u2033'}, 
+					{';', '\u037E'}, 
+					{'%', '\u066A'}, 
+					{'*', '\u2217'}
+				};
+
+				for (int j = 0; j < chars.GetLength(0); j++) {
+					filtered = filtered.Replace(chars[j, 0], chars[j, 1]);
+				}
+
+				_data = filtered.Trim();
 			}
 		}
 	}
