@@ -20,6 +20,8 @@ namespace RedBrick2 {
 		private Revs revSet;
 		private ToolTip cust_tooltip = new ToolTip();
 		private ToolTip rev_tooltip = new ToolTip();
+		private int clid = 0;
+		private bool user_editing = false;
 
 		/// <summary>
 		/// Constructor.
@@ -169,6 +171,7 @@ namespace RedBrick2 {
 				cc.GetDataByName(partLookup, RevFromDrw.ToString());
 			if (dt.Rows.Count > 0) {
 				status_cbx.SelectedValue = dt[0].STATEID;
+				clid = dt[0].CLID;
 			} else {
 				status_cbx.SelectedValue = -1;
 			}
@@ -474,6 +477,26 @@ namespace RedBrick2 {
 				ComboBox[] cbs = { mat1_cbx, mat2_cbx, mat3_cbx, mat4_cbx, mat5_cbx };
 				enterJump((sender as ComboBox), cbs);
 			}
+		}
+
+		private void status_cbx_SelectedIndexChanged(object sender, EventArgs e) {
+			ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu_ =
+				new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
+			ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter cc_ =
+				new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
+			ComboBox cbx_ = sender as ComboBox;
+			int uid = Convert.ToInt32(gu_.GetUID(System.Environment.UserName));
+			if (clid != 0 && cbx_.SelectedItem != null) {
+				cc_.UpdateState(uid, Convert.ToInt32(cbx_.SelectedValue), clid);
+			}
+		}
+
+		private void status_cbx_Enter(object sender, EventArgs e) {
+			user_editing = true;
+		}
+
+		private void status_cbx_Leave(object sender, EventArgs e) {
+			user_editing = false;
 		}
 	}
 }

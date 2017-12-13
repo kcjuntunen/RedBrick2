@@ -38,16 +38,11 @@ namespace RedBrick2 {
 			this.label39 = new System.Windows.Forms.Label();
 			this.label40 = new System.Windows.Forms.Label();
 			this.mat1_cbx = new System.Windows.Forms.ComboBox();
-			this.cUTDRAWINGMATERIALSBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.eNGINEERINGDataSet = new RedBrick2.ENGINEERINGDataSet();
 			this.mat2_cbx = new System.Windows.Forms.ComboBox();
-			this.cUTDRAWINGMATERIALSBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.mat3_cbx = new System.Windows.Forms.ComboBox();
-			this.cUTDRAWINGMATERIALSBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
 			this.mat4_cbx = new System.Windows.Forms.ComboBox();
-			this.cUTDRAWINGMATERIALSBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
 			this.mat5_cbx = new System.Windows.Forms.ComboBox();
-			this.cUTDRAWINGMATERIALSBindingSource4 = new System.Windows.Forms.BindingSource(this.components);
 			this.fin1_tb = new System.Windows.Forms.TextBox();
 			this.fin2_tb = new System.Windows.Forms.TextBox();
 			this.fin3_tb = new System.Windows.Forms.TextBox();
@@ -66,33 +61,38 @@ namespace RedBrick2 {
 			this.label44 = new System.Windows.Forms.Label();
 			this.label43 = new System.Windows.Forms.Label();
 			this.cust_cbx = new System.Windows.Forms.ComboBox();
-			this.gENCUSTOMERSBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.auth_cpx = new System.Windows.Forms.ComboBox();
-			this.gENUSERSBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
 			this.rev_cbx = new System.Windows.Forms.ComboBox();
 			this.status_cbx = new System.Windows.Forms.ComboBox();
-			this.cUTSTATESBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.button2 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
 			this.button4 = new System.Windows.Forms.Button();
 			this.button5 = new System.Windows.Forms.Button();
-			this.gEN_USERSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
 			this.gEN_CUSTOMERSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.GEN_CUSTOMERSTableAdapter();
+			this.cUTDRAWINGMATERIALSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.cUTDRAWINGMATERIALSBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+			this.cUTDRAWINGMATERIALSBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+			this.cUTDRAWINGMATERIALSBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
+			this.cUTDRAWINGMATERIALSBindingSource4 = new System.Windows.Forms.BindingSource(this.components);
+			this.gENCUSTOMERSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.gENUSERSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.cUTSTATESBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.gEN_USERSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
 			this.cUT_STATESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_STATESTableAdapter();
 			this.cUT_DRAWING_MATERIALSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_DRAWING_MATERIALSTableAdapter();
 			this.tableLayoutPanel5.SuspendLayout();
 			this.groupBox6.SuspendLayout();
 			this.tableLayoutPanel6.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.cUTDRAWINGMATERIALSBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSet)).BeginInit();
+			this.tableLayoutPanel1.SuspendLayout();
+			this.groupBox5.SuspendLayout();
+			this.tableLayoutPanel7.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cUTDRAWINGMATERIALSBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTDRAWINGMATERIALSBindingSource1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTDRAWINGMATERIALSBindingSource2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTDRAWINGMATERIALSBindingSource3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTDRAWINGMATERIALSBindingSource4)).BeginInit();
-			this.tableLayoutPanel1.SuspendLayout();
-			this.groupBox5.SuspendLayout();
-			this.tableLayoutPanel7.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gENCUSTOMERSBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gENUSERSBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTSTATESBindingSource)).BeginInit();
@@ -281,11 +281,6 @@ namespace RedBrick2 {
 			this.mat1_cbx.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyUp);
 			this.mat1_cbx.Resize += new System.EventHandler(this.comboBox_Resize);
 			// 
-			// cUTDRAWINGMATERIALSBindingSource
-			// 
-			this.cUTDRAWINGMATERIALSBindingSource.DataMember = "CUT_DRAWING_MATERIALS";
-			this.cUTDRAWINGMATERIALSBindingSource.DataSource = this.eNGINEERINGDataSet;
-			// 
 			// eNGINEERINGDataSet
 			// 
 			this.eNGINEERINGDataSet.DataSetName = "ENGINEERINGDataSet";
@@ -309,11 +304,6 @@ namespace RedBrick2 {
 			this.mat2_cbx.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyUp);
 			this.mat2_cbx.Resize += new System.EventHandler(this.comboBox_Resize);
 			// 
-			// cUTDRAWINGMATERIALSBindingSource1
-			// 
-			this.cUTDRAWINGMATERIALSBindingSource1.DataMember = "CUT_DRAWING_MATERIALS";
-			this.cUTDRAWINGMATERIALSBindingSource1.DataSource = this.eNGINEERINGDataSet;
-			// 
 			// mat3_cbx
 			// 
 			this.mat3_cbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -331,11 +321,6 @@ namespace RedBrick2 {
 			this.mat3_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.mat3_cbx.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyUp);
 			this.mat3_cbx.Resize += new System.EventHandler(this.comboBox_Resize);
-			// 
-			// cUTDRAWINGMATERIALSBindingSource2
-			// 
-			this.cUTDRAWINGMATERIALSBindingSource2.DataMember = "CUT_DRAWING_MATERIALS";
-			this.cUTDRAWINGMATERIALSBindingSource2.DataSource = this.eNGINEERINGDataSet;
 			// 
 			// mat4_cbx
 			// 
@@ -355,11 +340,6 @@ namespace RedBrick2 {
 			this.mat4_cbx.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyUp);
 			this.mat4_cbx.Resize += new System.EventHandler(this.comboBox_Resize);
 			// 
-			// cUTDRAWINGMATERIALSBindingSource3
-			// 
-			this.cUTDRAWINGMATERIALSBindingSource3.DataMember = "CUT_DRAWING_MATERIALS";
-			this.cUTDRAWINGMATERIALSBindingSource3.DataSource = this.eNGINEERINGDataSet;
-			// 
 			// mat5_cbx
 			// 
 			this.mat5_cbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -377,11 +357,6 @@ namespace RedBrick2 {
 			this.mat5_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.mat5_cbx.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyUp);
 			this.mat5_cbx.Resize += new System.EventHandler(this.comboBox_Resize);
-			// 
-			// cUTDRAWINGMATERIALSBindingSource4
-			// 
-			this.cUTDRAWINGMATERIALSBindingSource4.DataMember = "CUT_DRAWING_MATERIALS";
-			this.cUTDRAWINGMATERIALSBindingSource4.DataSource = this.eNGINEERINGDataSet;
 			// 
 			// fin1_tb
 			// 
@@ -636,11 +611,6 @@ namespace RedBrick2 {
 			this.cust_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.cust_cbx.Resize += new System.EventHandler(this.comboBox_Resize);
 			// 
-			// gENCUSTOMERSBindingSource
-			// 
-			this.gENCUSTOMERSBindingSource.DataMember = "GEN_CUSTOMERS";
-			this.gENCUSTOMERSBindingSource.DataSource = this.eNGINEERINGDataSet;
-			// 
 			// auth_cpx
 			// 
 			this.auth_cpx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -657,11 +627,6 @@ namespace RedBrick2 {
 			this.auth_cpx.ValueMember = "UID";
 			this.auth_cpx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.auth_cpx.Resize += new System.EventHandler(this.comboBox_Resize);
-			// 
-			// gENUSERSBindingSource
-			// 
-			this.gENUSERSBindingSource.DataMember = "GEN_USERS";
-			this.gENUSERSBindingSource.DataSource = this.eNGINEERINGDataSet;
 			// 
 			// dateTimePicker1
 			// 
@@ -702,13 +667,11 @@ namespace RedBrick2 {
 			this.status_cbx.Size = new System.Drawing.Size(130, 21);
 			this.status_cbx.TabIndex = 9;
 			this.status_cbx.ValueMember = "ID";
+			this.status_cbx.SelectedIndexChanged += new System.EventHandler(this.status_cbx_SelectedIndexChanged);
+			this.status_cbx.Enter += new System.EventHandler(this.status_cbx_Enter);
 			this.status_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+			this.status_cbx.Leave += new System.EventHandler(this.status_cbx_Leave);
 			this.status_cbx.Resize += new System.EventHandler(this.comboBox_Resize);
-			// 
-			// cUTSTATESBindingSource
-			// 
-			this.cUTSTATESBindingSource.DataMember = "CUT_STATES";
-			this.cUTSTATESBindingSource.DataSource = this.eNGINEERINGDataSet;
 			// 
 			// button2
 			// 
@@ -757,13 +720,53 @@ namespace RedBrick2 {
 			this.button5.UseVisualStyleBackColor = true;
 			this.button5.Visible = false;
 			// 
-			// gEN_USERSTableAdapter
-			// 
-			this.gEN_USERSTableAdapter.ClearBeforeFill = true;
-			// 
 			// gEN_CUSTOMERSTableAdapter
 			// 
 			this.gEN_CUSTOMERSTableAdapter.ClearBeforeFill = true;
+			// 
+			// cUTDRAWINGMATERIALSBindingSource
+			// 
+			this.cUTDRAWINGMATERIALSBindingSource.DataMember = "CUT_DRAWING_MATERIALS";
+			this.cUTDRAWINGMATERIALSBindingSource.DataSource = this.eNGINEERINGDataSet;
+			// 
+			// cUTDRAWINGMATERIALSBindingSource1
+			// 
+			this.cUTDRAWINGMATERIALSBindingSource1.DataMember = "CUT_DRAWING_MATERIALS";
+			this.cUTDRAWINGMATERIALSBindingSource1.DataSource = this.eNGINEERINGDataSet;
+			// 
+			// cUTDRAWINGMATERIALSBindingSource2
+			// 
+			this.cUTDRAWINGMATERIALSBindingSource2.DataMember = "CUT_DRAWING_MATERIALS";
+			this.cUTDRAWINGMATERIALSBindingSource2.DataSource = this.eNGINEERINGDataSet;
+			// 
+			// cUTDRAWINGMATERIALSBindingSource3
+			// 
+			this.cUTDRAWINGMATERIALSBindingSource3.DataMember = "CUT_DRAWING_MATERIALS";
+			this.cUTDRAWINGMATERIALSBindingSource3.DataSource = this.eNGINEERINGDataSet;
+			// 
+			// cUTDRAWINGMATERIALSBindingSource4
+			// 
+			this.cUTDRAWINGMATERIALSBindingSource4.DataMember = "CUT_DRAWING_MATERIALS";
+			this.cUTDRAWINGMATERIALSBindingSource4.DataSource = this.eNGINEERINGDataSet;
+			// 
+			// gENCUSTOMERSBindingSource
+			// 
+			this.gENCUSTOMERSBindingSource.DataMember = "GEN_CUSTOMERS";
+			this.gENCUSTOMERSBindingSource.DataSource = this.eNGINEERINGDataSet;
+			// 
+			// gENUSERSBindingSource
+			// 
+			this.gENUSERSBindingSource.DataMember = "GEN_USERS";
+			this.gENUSERSBindingSource.DataSource = this.eNGINEERINGDataSet;
+			// 
+			// cUTSTATESBindingSource
+			// 
+			this.cUTSTATESBindingSource.DataMember = "CUT_STATES";
+			this.cUTSTATESBindingSource.DataSource = this.eNGINEERINGDataSet;
+			// 
+			// gEN_USERSTableAdapter
+			// 
+			this.gEN_USERSTableAdapter.ClearBeforeFill = true;
 			// 
 			// cUT_STATESTableAdapter
 			// 
@@ -786,16 +789,16 @@ namespace RedBrick2 {
 			this.groupBox6.ResumeLayout(false);
 			this.tableLayoutPanel6.ResumeLayout(false);
 			this.tableLayoutPanel6.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.cUTDRAWINGMATERIALSBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSet)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.cUTDRAWINGMATERIALSBindingSource1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.cUTDRAWINGMATERIALSBindingSource2)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.cUTDRAWINGMATERIALSBindingSource3)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.cUTDRAWINGMATERIALSBindingSource4)).EndInit();
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.groupBox5.ResumeLayout(false);
 			this.tableLayoutPanel7.ResumeLayout(false);
 			this.tableLayoutPanel7.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cUTDRAWINGMATERIALSBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.cUTDRAWINGMATERIALSBindingSource1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.cUTDRAWINGMATERIALSBindingSource2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.cUTDRAWINGMATERIALSBindingSource3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.cUTDRAWINGMATERIALSBindingSource4)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gENCUSTOMERSBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gENUSERSBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTSTATESBindingSource)).EndInit();
