@@ -146,19 +146,10 @@ namespace RedBrick2 {
 			OpProperty op5 = new OpProperty(@"OP5", true, SwApp, md, @"OP5ID");
 
 			OpId op1id = new OpId(@"OP1ID", true, SwApp, md, @"POPOP");
-			//op1id.ToDB = false;
-
 			OpId op2id = new OpId(@"OP2ID", true, SwApp, md, @"POPOP");
-			//op2id.ToDB = false;
-
 			OpId op3id = new OpId(@"OP3ID", true, SwApp, md, @"POPOP");
-			//op3id.ToDB = false;
-
 			OpId op4id = new OpId(@"OP4ID", true, SwApp, md, @"POPOP");
-			//op4id.ToDB = false;
-
 			OpId op5id = new OpId(@"OP5ID", true, SwApp, md, @"POPOP");
-			//op5id.ToDB = false;
 
 			MaterialProperty cutlistMaterial = new MaterialProperty(@"CUTLIST MATERIAL", false, SwApp, md, @"MATID");
 			EdgeProperty edgelf = new EdgeProperty(@"EDGE FRONT (L)", false, SwApp, md, @"EDGEID_LF");
