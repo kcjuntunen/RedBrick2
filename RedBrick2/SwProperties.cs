@@ -139,10 +139,10 @@ namespace RedBrick2 {
 			DimensionProperty overL = new DimensionProperty(@"OVERL", true, SwApp, md, @"OVER_L");
 			DimensionProperty overW = new DimensionProperty(@"OVERW", true, SwApp, md, @"OVER_W");
 
-      OpProperty op1 = new OpProperty(@"OP1", true, SwApp, md, @"OP1ID");
-      OpProperty op2 = new OpProperty(@"OP2", true, SwApp, md, @"OP2ID");
-      OpProperty op3 = new OpProperty(@"OP3", true, SwApp, md, @"OP3ID");
-      OpProperty op4 = new OpProperty(@"OP4", true, SwApp, md, @"OP4ID");
+			OpProperty op1 = new OpProperty(@"OP1", true, SwApp, md, @"OP1ID");
+			OpProperty op2 = new OpProperty(@"OP2", true, SwApp, md, @"OP2ID");
+			OpProperty op3 = new OpProperty(@"OP3", true, SwApp, md, @"OP3ID");
+			OpProperty op4 = new OpProperty(@"OP4", true, SwApp, md, @"OP4ID");
 			OpProperty op5 = new OpProperty(@"OP5", true, SwApp, md, @"OP5ID");
 
 			OpId op1id = new OpId(@"OP1ID", true, SwApp, md, @"POPOP");
