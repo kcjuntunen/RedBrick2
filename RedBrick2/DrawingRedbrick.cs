@@ -498,7 +498,7 @@ namespace RedBrick2 {
 		}
 
 		private void button3_Click(object sender, EventArgs e) {
-			string q_ = string.Format(@"Are you sure you want to delete {0} REV {1}", PropertySet.PartLookup, rev_cbx.Text);
+			string q_ = string.Format(@"Are you sure you want to delete {0} REV {1}", partLookup, rev_cbx.Text);
 			DialogResult dr_ = MessageBox.Show(this, q_, @"RLY?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 			if (dr_ == DialogResult.Yes) {
 				System.Diagnostics.Debug.Print(@"Deleting...");
