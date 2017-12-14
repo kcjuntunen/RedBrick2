@@ -1747,7 +1747,7 @@ namespace RedBrick2 {
 			if (PropertySet != null && sender != null) {
 				NumericUpDown nud_ = sender as NumericUpDown;
 				PropertySet.CutlistQty = (float)Convert.ToDouble(nud_.Value);
-				if (nud_.Value < 1) {
+				if (nud_.Value < 1 && cutlistctl.SelectedItem != null) {
 					ToggleCutlistQtyErr(true);
 				} else {
 					ToggleCutlistQtyErr(false);
