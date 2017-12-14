@@ -187,6 +187,7 @@ namespace RedBrick2 {
 				item.Get();
 				Add(item);
 			}
+			PartFileInfo = _innerDict[@"DEPARTMENT"].PartFileInfo;
 		}
 
 		#region inherited
@@ -549,6 +550,18 @@ namespace RedBrick2 {
 		/// </summary>
 		public int PartID {
 			get {
+				if (_partID == 0) {
+					ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cpta_ =
+						new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
+					object test_obj_ = cpta_.GetPartIDByPartnum(PartLookup);
+					int test_ = 0;
+					if (test_obj_ != null && int.TryParse(test_obj_.ToString(), out test_)) {
+						_partID = test_;
+						foreach (SwProperty item in _innerDict.Values) {
+							item.PartID = test_;
+						}
+					};
+				}
 				return _partID;
 			}
 			set {
