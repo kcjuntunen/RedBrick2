@@ -1128,14 +1128,14 @@ namespace RedBrick2 {
 
 		private void upload_btn_Click(object sender, EventArgs e) {
 			if (cust_cbx.SelectedItem != null && uid != null) {
-				Dictionary<string, SwProperties> parts_ = new Dictionary<string, SwProperties>();
+				List<SwProperties> parts_ = new List<SwProperties>();
 
 				for (int i = 0; i < dataGridView1.Rows.Count; i++) {
 					DataGridViewRow dgvr_ = dataGridView1.Rows[i];
 					bool inc_ = Convert.ToBoolean(dgvr_.Cells[@"Include"].Value);
 					if (inc_) {
 						string partnum_ = Convert.ToString(dgvr_.Cells[@"Part Number"].Value);
-						parts_.Add(partnum_, _partlist[partnum_]);
+						parts_.Add(_partlist[partnum_]);
 					}
 				}
 

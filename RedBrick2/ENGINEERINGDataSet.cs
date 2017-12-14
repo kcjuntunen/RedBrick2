@@ -7,6 +7,11 @@ namespace RedBrick2 {
 
 	public partial class ENGINEERINGDataSet {
 		partial class CUT_PARTSDataTable {
+			/// <summary>
+			/// Update or insert part into db.
+			/// </summary>
+			/// <param name="_pp">An SwProperties object.</param>
+			/// <returns>ID from CUT_PARTS</returns>
 			public int UpdatePart(SwProperties _pp) {
 				int partid_ = update_part_(_pp);
 				return partid_ > 0 ? partid_ : insert_part_(_pp);
@@ -86,8 +91,21 @@ namespace RedBrick2 {
 		}
 	
 		partial class CUT_CUTLISTSDataTable {
+			/// <summary>
+			/// Insert all the data for a complete cutlist.
+			/// </summary>
+			/// <param name="_itemNo">Item name.</param>
+			/// <param name="_drawing">Reference drawing.</param>
+			/// <param name="_rev">Rev number.</param>
+			/// <param name="_descr">Description of the item.</param>
+			/// <param name="_custid">Customer ID from GEN_CUSTOMERS.</param>
+			/// <param name="_date">Create date.</param>
+			/// <param name="_state">State from CUT_STATES to start in.</param>
+			/// <param name="_auth">User ID from GEN_USERS</param>
+			/// <param name="_ppp">A dictionary of properties.</param>
+			/// <returns></returns>
 			public int UpdateCutlist(string _itemNo, string _drawing, string _rev, string _descr,
-				int _custid, DateTime _date, int _state, int _auth, Dictionary<string, SwProperties> _ppp) {
+				int _custid, DateTime _date, int _state, int _auth, List<SwProperties> _ppp) {
 				int affected_ = 0;
 
 				int clid_ = update_cutlist_(_itemNo, _drawing, _rev, _descr, _custid, _date, _state, _auth, _ppp);
@@ -97,7 +115,7 @@ namespace RedBrick2 {
 				if (clid_ > 0) {
 					CUT_PARTSDataTable pdt_ = new CUT_PARTSDataTable();
 					CUT_CUTLIST_PARTSDataTable cpdt_ = new CUT_CUTLIST_PARTSDataTable();
-					foreach (SwProperties pp_ in _ppp.Values) {
+					foreach (SwProperties pp_ in _ppp) {
 						pp_.CutlistID = clid_;
 						int partID_ = pdt_.UpdatePart(pp_);
 						pp_.PartID = partID_;
@@ -108,7 +126,7 @@ namespace RedBrick2 {
 			}
 
 			private int insert_cutlist_(string _itemNo, string _drawing, string _rev, string _descr,
-				int _custid, DateTime _date, int _state, int _auth, Dictionary<string, SwProperties> _ppp) {
+				int _custid, DateTime _date, int _state, int _auth, List<SwProperties> _ppp) {
 				int affected_ = 0;
 				string sql_ = @"INSERT INTO CUT_CUTLISTS (PARTNUM, REV, DRAWING, CUSTID, CDATE, DESCR, " +
 					"SETUP_BY, STATE_BY, STATEID) VALUES (@itemno, @rev, @drawing, @custid, @date, @descr, @setupby, @stateby, @stateid)";
@@ -131,7 +149,7 @@ namespace RedBrick2 {
 			}
 
 			private int update_cutlist_(string _itemNo, string _drawing, string _rev, string _descr,
-				int _custid, DateTime _date, int _state, int _auth, Dictionary<string, SwProperties> _ppp) {
+				int _custid, DateTime _date, int _state, int _auth, List<SwProperties> _ppp) {
 				int affected_ = 0;
 				string sql_ = @"UPDATE CUT_CUTLISTS SET DRAWING = @drawing, CUSTID = @custid, CDATE = @date, DESCR = @descr, " +
 					@"SETUP_BY = @setupby, STATE_BY = @stateby, STATEID = @stateid WHERE PARTNUM=@itemno AND REV=@rev;";
@@ -156,6 +174,11 @@ namespace RedBrick2 {
 		}
 	
 		partial class CUT_CUTLIST_PARTSDataTable {
+			/// <summary>
+			/// Update cutlist specific stuff.
+			/// </summary>
+			/// <param name="_pp">An SwProperties object.</param>
+			/// <returns>Number of rows affected. It should never be more than 1.</returns>
 			public int UpdateCutlistPart(SwProperties _pp) {
 				int affected_ = update_cutlist_part_(_pp);
 				return affected_ > 0 ? affected_ : update_cutlist_part_(_pp);
