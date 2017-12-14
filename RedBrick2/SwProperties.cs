@@ -136,8 +136,8 @@ namespace RedBrick2 {
 			DimensionProperty wallThickness = new DimensionProperty(@"WALL THICKNESS", true, SwApp, md, string.Empty);
 			wallThickness.ToDB = false;
 
-			DimensionProperty overL = new DimensionProperty(@"OVERL", true, SwApp, md, @"OVER_L");
-			DimensionProperty overW = new DimensionProperty(@"OVERW", true, SwApp, md, @"OVER_W");
+			DoubleProperty overL = new DoubleProperty(@"OVERL", true, SwApp, md, @"CUT_PARTS", @"OVER_L");
+			DoubleProperty overW = new DoubleProperty(@"OVERW", true, SwApp, md, @"CUT_PARTS", @"OVER_W");
 
 			OpProperty[] ops_ = new OpProperty[Properties.Settings.Default.OpCount];
 			OpId[] opids_ = new OpId[Properties.Settings.Default.OpCount];
