@@ -279,19 +279,8 @@ namespace RedBrick2 {
 		private int count_includes() {
 			int x = 0;
 			foreach (DataGridViewRow row in dataGridView1.Rows) {
-				object test = (row.Cells[@"Include"] as DataGridViewCheckBoxCell).Value;
-				if (test != null && (bool)test) {
-					x++;
-				}
-			}
-			return x;
-		}
-
-		private int count_includes(int add) {
-			int x = add;
-			foreach (DataGridViewRow row in dataGridView1.Rows) {
-				object test = (row.Cells[@"Include"] as DataGridViewCheckBoxCell).Value;
-				if (test != null && (bool)test) {
+				DataGridViewCheckBoxCell cell_ = row.Cells[@"Include"] as DataGridViewCheckBoxCell;
+				if (Convert.ToBoolean(cell_.EditedFormattedValue)) {
 					x++;
 				}
 			}
@@ -903,8 +892,9 @@ namespace RedBrick2 {
 		private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) {
 			string name = dataGridView1.Columns[e.ColumnIndex].Name;
 			if (name == @"Include" && (e.RowIndex > -1 && e.RowIndex < dataGridView1.Rows.Count)) {
-				int add = (bool)(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewCheckBoxCell).Value ? -1 : 1;
-				toolStripStatusLabel2.Text = string.Format("Included Parts: {0}", count_includes(add));
+				DataGridViewCheckBoxCell cbx_ = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewCheckBoxCell;
+				int add = (bool)cbx_.Value ? -1 : 1;
+				toolStripStatusLabel2.Text = string.Format("Included Parts: {0}", count_includes());
 			}
 		}
 
@@ -973,7 +963,7 @@ namespace RedBrick2 {
 						if ((int)dept.Value == (int)type_cbx.SelectedValue) {
 							DataGridViewCheckBoxCell inc = item.Cells[@"Include"] as DataGridViewCheckBoxCell;
 							inc.Value = true;
-							toolStripStatusLabel2.Text = string.Format("Included Parts: {0}", count_includes(1));
+							toolStripStatusLabel2.Text = string.Format("Included Parts: {0}", count_includes());
 						}
 					}
 				}
@@ -987,7 +977,7 @@ namespace RedBrick2 {
 					if ((int)dept.Value == (int)type_cbx.SelectedValue) {
 						DataGridViewCheckBoxCell inc = item.Cells[@"Include"] as DataGridViewCheckBoxCell;
 						inc.Value = false;
-						toolStripStatusLabel2.Text = string.Format("Included Parts: {0}", count_includes(-1));
+						toolStripStatusLabel2.Text = string.Format("Included Parts: {0}", count_includes());
 					}
 				}
 			}
