@@ -442,7 +442,7 @@ namespace RedBrick2 {
 			byte[] b = new byte[_fileinfo.FullName.Length];
 			string hash = string.Empty;
 
-			for (int i = 0; i < _fileinfo.Length; i++)
+			for (int i = 0; i < _fileinfo.FullName.Length; i++)
 				b[i] = (byte)_fileinfo.FullName[i];
 
 			foreach (byte byt in crc.ComputeHash(b))
