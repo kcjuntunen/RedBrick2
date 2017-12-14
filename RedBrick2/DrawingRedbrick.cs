@@ -480,14 +480,16 @@ namespace RedBrick2 {
 		}
 
 		private void status_cbx_SelectedIndexChanged(object sender, EventArgs e) {
-			ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu_ =
-				new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
-			ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter cc_ =
-				new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
-			ComboBox cbx_ = sender as ComboBox;
-			int uid = Convert.ToInt32(gu_.GetUID(System.Environment.UserName));
-			if (clid != 0 && cbx_.SelectedItem != null) {
-				cc_.UpdateState(uid, Convert.ToInt32(cbx_.SelectedValue), clid);
+			if (user_editing) {
+				ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu_ =
+					new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
+				ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter cc_ =
+					new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
+				ComboBox cbx_ = sender as ComboBox;
+				int uid = Convert.ToInt32(gu_.GetUID(System.Environment.UserName));
+				if (clid != 0 && cbx_.SelectedItem != null) {
+					cc_.UpdateState(uid, Convert.ToInt32(cbx_.SelectedValue), clid);
+				}
 			}
 		}
 
