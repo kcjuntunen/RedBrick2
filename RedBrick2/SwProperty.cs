@@ -81,21 +81,23 @@ namespace RedBrick2 {
 
 		private void GetPropertyManager() {
 			ModelDocExtension ext = null;
-			while (ext == null) {
-				ext = ActiveDoc.Extension;
-			}
-			if (ext != null) {
-				globlProperty = ext.get_CustomPropertyManager(string.Empty);
-				//config = (Configuration)ActiveDoc.GetConfigurationByName(Configuration);
-				if (ActiveDoc is DrawingDoc) {
-					PropertyManager = globlProperty;
-				} else {
-					localProperty = ext.get_CustomPropertyManager(Configuration);
+			if (ActiveDoc != null) {
+				while (ext == null) {
+					ext = ActiveDoc.Extension;
 				}
-				if (Global || (ActiveDoc is DrawingDoc)) {
-					PropertyManager = globlProperty;
-				} else {
-					PropertyManager = localProperty;
+				if (ext != null) {
+					globlProperty = ext.get_CustomPropertyManager(string.Empty);
+					//config = (Configuration)ActiveDoc.GetConfigurationByName(Configuration);
+					if (ActiveDoc is DrawingDoc) {
+						PropertyManager = globlProperty;
+					} else {
+						localProperty = ext.get_CustomPropertyManager(Configuration);
+					}
+					if (Global || (ActiveDoc is DrawingDoc)) {
+						PropertyManager = globlProperty;
+					} else {
+						PropertyManager = localProperty;
+					}
 				}
 			}
 		}
