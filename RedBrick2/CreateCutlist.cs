@@ -711,6 +711,7 @@ namespace RedBrick2 {
 				}
 
 				row.Cells[@"Part Number"].Value = name;
+				row.Cells[@"Part Number"].ReadOnly = true;
 
 				row.Cells[@"Description"].Value = val[@"Description"].Value;
 
@@ -1134,6 +1135,16 @@ namespace RedBrick2 {
 					bool inc_ = Convert.ToBoolean(dgvr_.Cells[@"Include"].Value);
 					if (inc_) {
 						string partnum_ = Convert.ToString(dgvr_.Cells[@"Part Number"].Value);
+						_partlist[partnum_][@"DEPARTMENT"].Data = Convert.ToInt32(dgvr_.Cells[@"Department"].Value);
+						_partlist[partnum_][@"Description"].Data = Convert.ToString(dgvr_.Cells[@"Description"].Value);
+						_partlist[partnum_].CutlistQty = Convert.ToInt32(dgvr_.Cells[@"Part Qty"].Value);
+						_partlist[partnum_][@"BLANK QTY"].Data = Convert.ToInt32(dgvr_.Cells[@"Blank Qty"].Value);
+						_partlist[partnum_][@"CUTLIST MATERIAL"].Data = Convert.ToInt32(dgvr_.Cells[@"Material"].Value);
+						_partlist[partnum_][@"EDGE FRONT (L)"].Data = Convert.ToInt32(dgvr_.Cells[@"ef"].Value);
+						_partlist[partnum_][@"EDGE BACK (L)"].Data = Convert.ToInt32(dgvr_.Cells[@"eb"].Value);
+						_partlist[partnum_][@"EDGE LEFT (W)"].Data = Convert.ToInt32(dgvr_.Cells[@"el"].Value);
+						_partlist[partnum_][@"EDGE RIGHT (W)"].Data = Convert.ToInt32(dgvr_.Cells[@"er"].Value);
+						_partlist[partnum_].Write();
 						parts_.Add(_partlist[partnum_]);
 					}
 				}
@@ -1141,6 +1152,7 @@ namespace RedBrick2 {
 				int custid_ = Convert.ToInt32(cust_cbx.SelectedValue);
 				dt_cc.UpdateCutlist(itm_cbx.Text, ref_cbx.Text, rev_cbx.Text, descr_cbx.Text, custid_,
 					dateTimePicker1.Value, Properties.Settings.Default.DefaultState, Convert.ToInt32(uid), parts_);
+				(sender as Control).Enabled = false;
 			}
 		}
 	}
