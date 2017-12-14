@@ -109,12 +109,14 @@ namespace RedBrick2 {
 			if (PropertyManager == null) {
 				GetPropertyManager();
 			}
-			if (ActiveDoc is DrawingDoc) {
-				GetResult = (swCustomInfoGetResult_e)globlProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
-			} else {
-				GetResult = (swCustomInfoGetResult_e)globlProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
-				if (v == string.Empty) {
-					GetResult = (swCustomInfoGetResult_e)localProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
+			if (PropertyManager != null) {
+				if (ActiveDoc is DrawingDoc) {
+					GetResult = (swCustomInfoGetResult_e)globlProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
+				} else {
+					GetResult = (swCustomInfoGetResult_e)globlProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
+					if (v == string.Empty) {
+						GetResult = (swCustomInfoGetResult_e)localProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
+					}
 				}
 			}
 		}
