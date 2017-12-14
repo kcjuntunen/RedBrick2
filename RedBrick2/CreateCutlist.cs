@@ -57,6 +57,7 @@ namespace RedBrick2 {
 		private FileInfo foundPDF;
 		private string _revFromFile = string.Empty;
 		private string _revFromProperties = string.Empty;
+		private int clid = 0;
 		private string rev = @"100";
 		private bool rev_changed_by_user = false;
 		private bool rev_in_filename = false;
@@ -69,6 +70,9 @@ namespace RedBrick2 {
 																			 false, false, false, false, false, false,
 																			 false, false, false, false, false, false };
 		private bool ok = false;
+		private string itm = string.Empty;
+		private string descr = string.Empty;
+		private string refr = string.Empty;
 		private ToolTip rev_tooltip = new ToolTip();
 		private ToolTip descr_tooltip = new ToolTip();
 		private ToolTip cust_tooltip = new ToolTip();
@@ -764,8 +768,58 @@ namespace RedBrick2 {
 				}
 
 				row.Cells[@"Part Qty"].Value = item.Value;
+				val.CutlistQty = item.Value;
 
 				row.Cells[@"Include"].Value = r.IsMatch(name);
+			}
+		}
+
+		private void FillCutlistTable() {
+			ta_cc.FillByName(eNGINEERINGDataSet.CUT_CUTLISTS, itm, rev_cbx.Text);
+			if (eNGINEERINGDataSet.CUT_CUTLISTS.Rows.Count < 1) {
+				eNGINEERINGDataSet.CUT_CUTLISTS.AddCUT_CUTLISTSRow(
+					itm, rev_cbx.Text, refr, (int)cust_cbx.SelectedValue, dateTimePicker1.Value,
+					descr, 0.0f, 0.0f, 0.0f, (int)uid, (int)uid, Properties.Settings.Default.DefaultState,
+					new byte[8]);
+			} else {
+				clid = (eNGINEERINGDataSet.CUT_CUTLISTS.Rows[0] as ENGINEERINGDataSet.CUT_CUTLISTSRow).CLID;
+			}
+		}
+
+		private void AddPart(SwProperties _pp) {
+			string partnum_ = _pp.PartLookup;
+			ta_cp.FillByPartnum(dt_cp, partnum_);
+			ta_ccp.FillByCutlistIDAndPartID(dt_ccp, _pp.PartID, clid);
+			if (dt_cp.Rows.Count < 1) {
+				eNGINEERINGDataSet.CUT_PARTS.AddCUT_PARTSRow(partnum_, (string)_pp[@"Description"].Data,
+					(float)(double)_pp[@"LENGTH"].Data, (float)(double)_pp[@"WIDTH"].Data,
+					(float)(double)_pp[@"THICKNESS"].Data, (string)_pp[@"CNC1"].Data,
+					(string)_pp[@"CNC2"].Data, (int)_pp[@"BLANK QTY"].Data,
+					(float)(double)_pp[@"OVERL"].Data, (float)(double)_pp[@"OVERW"].Data,
+					(int)_pp[@"OP1"].Data, (int)_pp[@"OP2"].Data, (int)_pp[@"OP3"].Data,
+					(int)_pp[@"OP4"].Data, (int)_pp[@"OP5"].Data, (string)_pp[@"COMMENT"].Data,
+					(bool)_pp[@"UPDATE CNC"].Data, (int)_pp[@"DEPARTMENT"].Data,
+					_pp.Hash);
+			}
+
+			if (dt_ccp.Rows.Count < 1) {
+				eNGINEERINGDataSet.CUT_CUTLIST_PARTS.AddCUT_CUTLIST_PARTSRow(clid, _pp.PartID,
+					(int)_pp[@"CUTLIST MATERIAL"].Data,
+					(int)_pp[@"EDGE FRONT (L)"].Data, (int)_pp[@"EDGE BACK (L)"].Data,
+					(int)_pp[@"EDGE RIGHT (W)"].Data, (int)_pp[@"EDGE LEFT (W)"].Data,
+					_pp.CutlistQty);
+			}
+		}
+
+		private void FillTables() {
+			FillCutlistTable();
+			for (int i = 0; i < dataGridView1.Rows.Count; i++) {
+				DataGridViewRow dgvr_ = dataGridView1.Rows[i];
+				bool inc_ = Convert.ToBoolean(dgvr_.Cells[@"Include"].Value);
+				if (inc_) {
+					string partnum_ = Convert.ToString(dgvr_.Cells[@"Part Number"].Value);
+					AddPart(_partlist[partnum_]);
+				}
 			}
 		}
 
@@ -1073,21 +1127,11 @@ namespace RedBrick2 {
 		}
 
 		private void upload_btn_Click(object sender, EventArgs e) {
-			ENGINEERINGDataSet.CUT_CUTLISTSRow cc_r_ = dt_cc.NewRow() as ENGINEERINGDataSet.CUT_CUTLISTSRow;
-			cc_r_.CDATE = dateTimePicker1.Value;
-			cc_r_.CUSTID = Convert.ToInt32(cust_cbx.SelectedValue);
-			cc_r_.DESCR = descr_cbx.Text;
-			cc_r_.DRAWING = ref_cbx.Text;
-			cc_r_.LENGTH = 0;
-			cc_r_.WIDTH = 0;
-			cc_r_.HEIGHT = 0;
-			cc_r_.REV = rev_cbx.Text;
-			cc_r_.PARTNUM = itm_cbx.Text;
-			cc_r_.STATE_BY = (int)uid;
-			cc_r_.SETUP_BY = (int)uid;
-			cc_r_.STATEID = Properties.Settings.Default.DefaultState;
-			dt_cc.AddCUT_CUTLISTSRow(cc_r_);
-		}
+			itm = itm_cbx.Text;
+			descr = descr_cbx.Text;
+			refr = ref_cbx.Text;
 
+			FillTables();
+		}
 	}
 }

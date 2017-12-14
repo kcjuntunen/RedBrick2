@@ -1,8 +1,209 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+
 namespace RedBrick2 {
 
 
 	public partial class ENGINEERINGDataSet {
+		partial class CUT_PARTSDataTable {
+			public int UpdatePart(SwProperties _pp) {
+				int partid_ = update_part_(_pp);
+				return partid_ > 0 ? partid_ : insert_part_(_pp);
+			}
+
+			private int update_part_(SwProperties _pp) {
+				int affected_ = 0;
+				string sql_ = @"UPDATE CUT_PARTS SET DESCR = @descr, FIN_L = @finl, FIN_W = @finw, THICKNESS = @thk, " +
+					"CNC1 = cnc1, CNC2 = cnc2, BLANKQTY = @blnkqty, " +
+					"OVER_L = @ovrl, OVER_W = @ovrw, OP1ID = @op1, " +
+					"OP2ID = @op2, OP3ID = @op3, OP4ID = @op4, OP5ID = @op5, COMMENT = ?, " +
+					"UPDATE_CNC = ?, TYPE = ? WHERE PARTNUM=? AND (HASH=? OR HASH IS NULL)";
+				ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter ta_ =
+					new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
+				using (SqlCommand comm = new SqlCommand(sql_, ta_.Connection)) {
+					comm.Parameters.AddWithValue("@descr", _pp[@"Description"].Data);
+					comm.Parameters.AddWithValue("@finl", Convert.ToDouble(_pp[@"LENGTH"].Data));
+					comm.Parameters.AddWithValue("@finw", Convert.ToDouble(_pp[@"WIDTH"].Data));
+					comm.Parameters.AddWithValue("@thk", Convert.ToDouble(_pp[@"THICKNESS"].Data));
+					comm.Parameters.AddWithValue("@cnc1", _pp[@"CNC1"].Data);
+					comm.Parameters.AddWithValue("@cnc2", _pp[@"CNC1"].Data);
+					comm.Parameters.AddWithValue("@blnkqty", Convert.ToInt32(_pp[@"BLANK QTY"].Data));
+					comm.Parameters.AddWithValue("@ovrl", Convert.ToDouble(_pp[@"OVERL"].Data));
+					comm.Parameters.AddWithValue("@ovrw", Convert.ToDouble(_pp[@"OVERW"].Data));
+
+					for (ushort i = 0; i < 5; i++) {
+						string lkup_ = string.Format("@op{0}", i + 1);
+						comm.Parameters.AddWithValue(lkup_, Convert.ToInt32(_pp[lkup_].Data));
+					}
+
+					comm.Parameters.AddWithValue("@comment", _pp[@"COMMENT"].Data);
+					comm.Parameters.AddWithValue("@updCnc", ((bool)_pp[@"UPDATE CNC"].Data ? 1 : 0));
+					comm.Parameters.AddWithValue("@type", Convert.ToInt32(_pp[@"DEPARTMENT"].Data));
+					comm.Parameters.AddWithValue("@prtNo", _pp.PartLookup);
+					comm.Parameters.AddWithValue("@hash", Convert.ToInt32(_pp[@"HASH"].Data));
+					affected_ = comm.ExecuteNonQuery();
+				}
+				object id_ = ta_.GetPartIDByPartnum(_pp.PartLookup);
+				return id_ != null ? (int)id_ : 0;
+			}
+
+			private int insert_part_(SwProperties _pp) {
+				int affected_ = 0;
+				ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter ta_ =
+					new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
+				string sql_ = @"INSERT INTO CUT_PARTS (PARTNUM, DESCR, FIN_L, FIN_W, THICKNESS, CNC1, CNC2, BLANKQTY, OVER_L, " +
+					@"OVER_W, OP1ID, OP2ID, OP3ID, OP4ID, OP5ID, COMMENT, UPDATE_CNC, TYPE, HASH) VALUES " +
+					@"(@prtNo, @descr, @finl, @finw, @thk, @cnc1, " +
+					"@cnc2, @blnkqty, @ovrl, @ovrw, @op1, @op2, " +
+					"@op3, @op4, @op5, @comment, @updCnc, @type, @hash)";
+				using (SqlCommand comm = new SqlCommand(sql_, ta_.Connection)) {
+					comm.Parameters.AddWithValue("@descr", _pp[@"Description"].Data);
+					comm.Parameters.AddWithValue("@finl", Convert.ToDouble(_pp[@"LENGTH"].Data));
+					comm.Parameters.AddWithValue("@finw", Convert.ToDouble(_pp[@"WIDTH"].Data));
+					comm.Parameters.AddWithValue("@thk", Convert.ToDouble(_pp[@"THICKNESS"].Data));
+					comm.Parameters.AddWithValue("@cnc1", _pp[@"CNC1"].Data);
+					comm.Parameters.AddWithValue("@cnc2", _pp[@"CNC1"].Data);
+					comm.Parameters.AddWithValue("@blnkqty", Convert.ToInt32(_pp[@"BLANK QTY"].Data));
+					comm.Parameters.AddWithValue("@ovrl", Convert.ToDouble(_pp[@"OVERL"].Data));
+					comm.Parameters.AddWithValue("@ovrw", Convert.ToDouble(_pp[@"OVERW"].Data));
+
+					for (ushort i = 0; i < 5; i++) {
+						string lkup_ = string.Format("@op{0}", i + 1);
+						comm.Parameters.AddWithValue(lkup_, Convert.ToInt32(_pp[lkup_].Data));
+					}
+
+					comm.Parameters.AddWithValue("@comment", _pp[@"COMMENT"].Data);
+					comm.Parameters.AddWithValue("@updCnc", ((bool)_pp[@"UPDATE CNC"].Data ? 1 : 0));
+					comm.Parameters.AddWithValue("@type", Convert.ToInt32(_pp[@"DEPARTMENT"].Data));
+					comm.Parameters.AddWithValue("@prtNo", _pp.PartLookup);
+					comm.Parameters.AddWithValue("@hash", Convert.ToInt32(_pp[@"HASH"].Data));
+					affected_ = comm.ExecuteNonQuery();
+				}
+				object id_ = ta_.GetPartIDByPartnum(_pp.PartLookup);
+				return id_ != null ? (int)id_ : 0;
+			}
+		}
+	
+		partial class CUT_CUTLISTSDataTable {
+			public int UpdateCutlist(string _itemNo, string _drawing, string _rev, string _descr,
+				int _custid, DateTime _date, int _state, int _auth, Dictionary<string, SwProperties> _ppp) {
+				int affected_ = 0;
+
+				int clid_ = update_cutlist_(_itemNo, _drawing, _rev, _descr, _custid, _date, _state, _auth, _ppp);
+				if (clid_ < 1)
+					clid_ = insert_cutlist_(_itemNo, _drawing, _rev, _descr, _custid, _date, _state, _auth, _ppp);
+
+				if (clid_ > 0) {
+					CUT_CUTLIST_PARTSDataTable dt = new CUT_CUTLIST_PARTSDataTable();
+					foreach (SwProperties pp_ in _ppp.Values) {
+						pp_.CutlistID = clid_;
+						dt.UpdateCutlistPart(pp_);
+					}
+				}
+				return affected_;
+			}
+
+			private int insert_cutlist_(string _itemNo, string _drawing, string _rev, string _descr,
+				int _custid, DateTime _date, int _state, int _auth, Dictionary<string, SwProperties> _ppp) {
+				int affected_ = 0;
+				string sql_ = @"INSERT INTO CUT_CUTLISTS (PARTNUM, REV, DRAWING, CUSTID, CDATE, DESCR, " +
+					"SETUP_BY, STATE_BY, STATEID) VALUES (@itemno, @rev, @drawing, @custid, @date, @descr, @setupby, @stateby, @stateid)";
+				ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter ta_ =
+					new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
+				using (SqlCommand comm = new SqlCommand(sql_, ta_.Connection)) {
+					comm.Parameters.AddWithValue(@"@itemno", _itemNo);
+					comm.Parameters.AddWithValue(@"@rev", _rev);
+					comm.Parameters.AddWithValue(@"@drawing", _drawing);
+					comm.Parameters.AddWithValue(@"@custid", _custid);
+					comm.Parameters.AddWithValue(@"@date", _date);
+					comm.Parameters.AddWithValue(@"@descr", _descr);
+					comm.Parameters.AddWithValue(@"@setupby", _auth);
+					comm.Parameters.AddWithValue(@"@stateby", _auth);
+					comm.Parameters.AddWithValue(@"@stateid", _state);
+					affected_ = comm.ExecuteNonQuery();
+				}
+				object id_ = (int)ta_.GetCutlistID(_itemNo, _rev);
+				return id_ != null ? (int)id_ : 0;
+			}
+
+			private int update_cutlist_(string _itemNo, string _drawing, string _rev, string _descr,
+				int _custid, DateTime _date, int _state, int _auth, Dictionary<string, SwProperties> _ppp) {
+				int affected_ = 0;
+				int clid_ = 0;
+				string sql_ = @"UPDATE CUT_CUTLISTS SET DRAWING = @drawing, CUSTID = @custid, CDATE = @date, DESCR = @descr, " +
+					@"SETUP_BY = @setupby, STATE_BY = @stateby, STATEID = @stateid WHERE PARTNUM=@itemno AND REV=@rev;";
+				ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter ta_ =
+					new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
+				using (SqlCommand comm = new SqlCommand(sql_, ta_.Connection)) {
+					comm.Parameters.AddWithValue(@"@drawing", _drawing);
+					comm.Parameters.AddWithValue(@"@custid", _custid);
+					comm.Parameters.AddWithValue(@"@date", _date);
+					comm.Parameters.AddWithValue(@"@descr", _descr);
+					comm.Parameters.AddWithValue(@"@setupby", _auth);
+					comm.Parameters.AddWithValue(@"@stateby", _auth);
+					comm.Parameters.AddWithValue(@"@stateid", _state);
+					comm.Parameters.AddWithValue(@"@itemno", _itemNo);
+					comm.Parameters.AddWithValue(@"@rev", _rev);
+					affected_ = comm.ExecuteNonQuery();
+				}
+				object id_ = (int)ta_.GetCutlistID(_itemNo, _rev);
+				return id_ != null ? (int)id_ : 0;
+			}
+
+		}
+	
+		partial class CUT_CUTLIST_PARTSDataTable {
+			public int UpdateCutlistPart(SwProperties _pp) {
+				int affected_ = update_cutlist_part_(_pp);
+				return affected_ > 0 ? affected_ : update_cutlist_part_(_pp);
+			}
+
+			private int update_cutlist_part_(SwProperties _pp) {
+				int affected = 0;
+				Properties.Settings.Default.LastCutlist = _pp.CutlistID;
+				string sql_ = @"UPDATE CUT_CUTLIST_PARTS " +
+					@"SET MATID = @matid, EDGEID_LF = @efid, EDGEID_LB = @ebid, EDGEID_WR = @erid, EDGEID_WL = @elid, " +
+					@"QTY = @qty WHERE CLID = @clid AND PARTID = @partid";
+				ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter cpta_ =
+					new ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter();
+				using (SqlCommand comm = new SqlCommand(sql_, cpta_.Connection)) {
+					comm.Parameters.AddWithValue(@"@matid", Convert.ToInt32(_pp[@"CUTLIST MATERIAL"].Data));
+					comm.Parameters.AddWithValue(@"@efid", Convert.ToInt32(_pp[@"EDGE FRONT (L)"].Data));
+					comm.Parameters.AddWithValue(@"@ebid", Convert.ToInt32(_pp[@"EDGE BACK (L)"].Data));
+					comm.Parameters.AddWithValue(@"@elid", Convert.ToInt32(_pp[@"EDGE LEFT (W)"].Data));
+					comm.Parameters.AddWithValue(@"@erid", Convert.ToInt32(_pp[@"EDGE RIGHT (W)"].Data));
+					comm.Parameters.AddWithValue(@"@qty", _pp.CutlistQty);
+					comm.Parameters.AddWithValue(@"@clid", _pp.CutlistID);
+					comm.Parameters.AddWithValue(@"@partid", Convert.ToInt32(_pp.PartID));
+					affected = comm.ExecuteNonQuery();
+				}
+				return affected;
+			}
+
+			private int insert_cutlist_part_(SwProperties _pp) {
+				int affected = 0;
+				Properties.Settings.Default.LastCutlist = _pp.CutlistID;
+				string sql_ = @"INSERT INTO CUT_CUTLIST_PARTS (CLID, PARTID, MATID, EDGEID_LF, EDGEID_LB, EDGEID_WR, EDGEID_WL, QTY) " +
+					@"VALUES (@clid, @partid, @matid, @efid, @ebid, @erid, @elid, @qty)";
+				ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter cpta_ =
+					new ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter();
+				using (SqlCommand comm = new SqlCommand(sql_, cpta_.Connection)) {
+					comm.Parameters.AddWithValue(@"@clid", _pp.CutlistID);
+					comm.Parameters.AddWithValue(@"@partid", _pp.PartID);
+					comm.Parameters.AddWithValue(@"@matid", Convert.ToInt32(_pp[@"CUTLIST MATERIAL"].Data));
+					comm.Parameters.AddWithValue(@"@efid", Convert.ToInt32(_pp[@"EDGE FRONT (L)"].Data));
+					comm.Parameters.AddWithValue(@"@ebid", Convert.ToInt32(_pp[@"EDGE BACK (L)"].Data));
+					comm.Parameters.AddWithValue(@"@elid", Convert.ToInt32(_pp[@"EDGE LEFT (W)"].Data));
+					comm.Parameters.AddWithValue(@"@erid", Convert.ToInt32(_pp[@"EDGE RIGHT (W)"].Data));
+					comm.Parameters.AddWithValue(@"@qty", _pp.CutlistQty);
+					affected = comm.ExecuteNonQuery();
+				}
+				return affected;
+			}
+
+		}
+	
 		partial class GEN_DRAWINGSDataTable {
 			/// <summary>
 			/// Return a location or null from GEN_DRAWINGS.
