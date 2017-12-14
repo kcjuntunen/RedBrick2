@@ -312,6 +312,7 @@
 			this.edgef.TabIndex = 2;
 			this.edgef.ValueMember = "EDGEID";
 			this.edgef.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+			this.edgef.TextChanged += new System.EventHandler(this.edgef_TextChanged);
 			this.edgef.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.edgef.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.edgef.Resize += new System.EventHandler(this.comboBox_Resize);
@@ -346,6 +347,7 @@
 			this.edgeb.TabIndex = 3;
 			this.edgeb.ValueMember = "EDGEID";
 			this.edgeb.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
+			this.edgeb.TextChanged += new System.EventHandler(this.edgeb_TextChanged);
 			this.edgeb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.edgeb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.edgeb.Resize += new System.EventHandler(this.comboBox_Resize);
@@ -390,6 +392,7 @@
 			this.edgel.TabIndex = 4;
 			this.edgel.ValueMember = "EDGEID";
 			this.edgel.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
+			this.edgel.TextChanged += new System.EventHandler(this.edgel_TextChanged);
 			this.edgel.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.edgel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.edgel.Resize += new System.EventHandler(this.comboBox_Resize);
@@ -419,6 +422,7 @@
 			this.edger.TabIndex = 5;
 			this.edger.ValueMember = "EDGEID";
 			this.edger.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
+			this.edger.TextChanged += new System.EventHandler(this.edger_TextChanged);
 			this.edger.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.edger.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.edger.Resize += new System.EventHandler(this.comboBox_Resize);
@@ -527,6 +531,7 @@
 			this.partq.Name = "partq";
 			this.partq.Size = new System.Drawing.Size(75, 22);
 			this.partq.TabIndex = 8;
+			this.partq.ValueChanged += new System.EventHandler(this.partq_ValueChanged);
 			this.partq.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			// 
 			// cutlistctl

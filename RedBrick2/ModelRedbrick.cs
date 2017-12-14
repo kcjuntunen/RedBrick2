@@ -67,6 +67,7 @@ namespace RedBrick2 {
 		private ToolTip descr_tooltup = new ToolTip();
 		private ToolTip swap_tooltup = new ToolTip();
 		private ToolTip ppb_tooltip = new ToolTip();
+		private ToolTip partq_tooltip = new ToolTip();
 		private ToolTip over_tooltip = new ToolTip();
 		private ToolTip type_tooltip = new ToolTip();
 
@@ -346,6 +347,17 @@ namespace RedBrick2 {
 			} else {
 				Redbrick.UnErr(cutlistctl);
 				cutlist_tooltip.RemoveAll();
+			}
+		}
+
+		private void ToggleCutlistQtyErr(bool on) {
+			if (on) {
+				Redbrick.Err(partq);
+				partq_tooltip.SetToolTip(partq, Properties.Resources.NotNaturalNumberWarning);
+				partq_tooltip.SetToolTip(label30, Properties.Resources.NotNaturalNumberWarning);
+			} else {
+				Redbrick.UnErr(partq);
+				partq_tooltip.RemoveAll();
 			}
 		}
 
@@ -1715,6 +1727,58 @@ namespace RedBrick2 {
 				if (nud_.Value == 1) {
 					CheckOversize();
 				}
+			}
+		}
+
+		private void partq_ValueChanged(object sender, EventArgs e) {
+			if (PropertySet != null && sender != null) {
+				NumericUpDown nud_ = sender as NumericUpDown;
+				PropertySet.CutlistQty = (float)Convert.ToDouble(nud_.Value);
+				if (nud_.Value < 1) {
+					ToggleCutlistQtyErr(true);
+				} else {
+					ToggleCutlistQtyErr(false);
+				}
+			}
+		}
+
+		private void edgef_TextChanged(object sender, EventArgs e) {
+			ComboBox cbx_ = sender as ComboBox;
+			if (cbx_.Text == string.Empty) {
+				cbx_.SelectedIndex = -1;
+				label7.Visible = false;
+				PropertySet[@"EDGE FRONT (L)"].Data = 0;
+				PropertySet[@"EFID"].Data = 0;
+			}
+		}
+
+		private void edgeb_TextChanged(object sender, EventArgs e) {
+			ComboBox cbx_ = sender as ComboBox;
+			if (cbx_.Text == string.Empty) {
+				cbx_.SelectedIndex = -1;
+				label8.Visible = false;
+				PropertySet[@"EDGE BACK (L)"].Data = 0;
+				PropertySet[@"EBID"].Data = 0;
+			}
+		}
+
+		private void edgel_TextChanged(object sender, EventArgs e) {
+			ComboBox cbx_ = sender as ComboBox;
+			if (cbx_.Text == string.Empty) {
+				cbx_.SelectedIndex = -1;
+				label7.Visible = false;
+				PropertySet[@"EDGE LEFT (W)"].Data = 0;
+				PropertySet[@"ELID"].Data = 0;
+			}
+		}
+
+		private void edger_TextChanged(object sender, EventArgs e) {
+			ComboBox cbx_ = sender as ComboBox;
+			if (cbx_.Text == string.Empty) {
+				cbx_.SelectedIndex = -1;
+				label10.Visible = false;
+				PropertySet[@"EDGE RIGHT (W)"].Data = 0;
+				PropertySet[@"ERID"].Data = 0;
 			}
 		}
 	}
