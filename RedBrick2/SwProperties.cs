@@ -514,11 +514,20 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// A formatted string that should always work with db searches.
+		/// </summary>
 		public string PartLookup { get; set; }
 
+		/// <summary>
+		/// The hash of this part.
+		/// </summary>
 		public int Hash { get; set; }
 
 		private System.IO.FileInfo _partFileInfo;
+		/// <summary>
+		/// A PartFileInfo object.
+		/// </summary>
 		public System.IO.FileInfo PartFileInfo {
 			get {
 				return _partFileInfo;
