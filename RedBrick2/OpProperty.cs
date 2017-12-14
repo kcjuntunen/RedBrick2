@@ -102,10 +102,10 @@ namespace RedBrick2 {
 				int res_ = 0;
 				if (int.TryParse(value.ToString(), out res_)) {
 					_data = res_;
-					Value = cota.GetOpNameByID(_data).ToString();
+					Value = Convert.ToString(cota.GetOpNameByID(_data));
 				} else {
-					_data = (int)cota.GetOpIDByName(value.ToString(), OpType);
-					Value = cota.GetOpNameByID(_data).ToString();
+					_data = Convert.ToInt32(cota.GetOpIDByName(value.ToString(), OpType));
+					Value = value.ToString();
 				}
 			}
 		}
