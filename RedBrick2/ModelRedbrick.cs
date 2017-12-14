@@ -1013,11 +1013,14 @@ namespace RedBrick2 {
 
 				PropertySet.Write();
 				if (Row != null && Row.PARTID > 0) {
+					eNGINEERINGDataSet.CUT_PARTS.UpdatePart(PropertySet);
 					//cpta.Update(Row);
 					if (CutlistPartsRow != null && CutlistPartsRow.CLPARTID > 0) {
+						eNGINEERINGDataSet.CUT_CUTLIST_PARTS.UpdateCutlistPart(PropertySet);
 						//ccpta.Update(CutlistPartsRow);
 					}
-					cpota.Update(eNGINEERINGDataSet.CUT_PART_OPS);
+					eNGINEERINGDataSet.CUT_PART_OPS.UpdateOps(PropertySet);
+					//cpota.Update(eNGINEERINGDataSet.CUT_PART_OPS);
 				}
 				if (data_from_db) {
 					GetEstimationFromDB();
