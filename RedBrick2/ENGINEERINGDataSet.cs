@@ -3,9 +3,86 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace RedBrick2 {
-
-
 	public partial class ENGINEERINGDataSet {
+		partial class CUT_PART_OPSDataTable {
+			/// <summary>
+			/// Update new OP tables.
+			/// </summary>
+			/// <param name="_pp">An SwProperties object.</param>
+			/// <returns>Number of affected rows.</returns>
+			public int UpdateOps(SwProperties _pp) {
+				int total_affected_ = 0;
+				ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter ta_ =
+					new ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter();
+				CUT_OPSDataTable dt_ = new CUT_OPSDataTable();
+				ta_.Fill(dt_);
+				for (int i = 0; i < Properties.Settings.Default.OpCount; i++) {
+					int affected_ = 0;
+					int seq_ = i + 1;
+					string op_ = string.Format(@"OP{0}", seq_);
+					OpProperty p_ = _pp[op_] as OpProperty;
+					string filter_ = string.Format(@"OPID = {0}", p_.Data);
+					CUT_OPSRow[] rr_ = dt_.Select(filter_) as CUT_OPSRow[];
+					double setup_ = rr_.Length > 0 ? Convert.ToDouble(rr_[0].OPSETUP) : 0;
+					double run_ = rr_.Length > 0 ? Convert.ToDouble(rr_[0].OPRUN) : 0;
+					affected_ = update_op_(p_.PartID, seq_, Convert.ToInt32(p_.Data), setup_, run_);
+					if (affected_ < 1) {
+						affected_ = insert_op_(p_.PartID, seq_, Convert.ToInt32(p_.Data), setup_, run_);
+					}
+					total_affected_ += affected_;
+				}
+				return total_affected_;
+			}
+
+			private int update_op_(int _partid, int _seq, int _popop, double _popsetup, double _poprun) {
+				int affected_ = 0;
+				string sql_ = @"UPDATE CUT_PART_OPS SET POPOP = @popop, POPSETUP = @popsetup, POPRUN = @poprun " +
+					"WHERE POPPART = @partid AND POPORDER = @seq";
+				ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter ta_ =
+					new ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter();
+				using (SqlCommand comm = new SqlCommand(sql_, ta_.Connection)) {
+					comm.Parameters.AddWithValue(@"@popop", _popop);
+					comm.Parameters.AddWithValue(@"@popsetup", _popsetup);
+					comm.Parameters.AddWithValue(@"@poprun", _poprun);
+					comm.Parameters.AddWithValue(@"@partid", _partid);
+					comm.Parameters.AddWithValue(@"@seq", _seq);
+					if (ta_.Connection.State == System.Data.ConnectionState.Closed) {
+						ta_.Connection.Open();
+					}
+					try {
+						affected_ = comm.ExecuteNonQuery();
+					} finally {
+						ta_.Connection.Close();
+					}
+				}
+				return affected_;
+			}
+
+			private int insert_op_(int _partid, int _seq, int _popop, double _popsetup, double _poprun) {
+				int affected_ = 0;
+				string sql_ = @"INSERT INTO CUT_PART_OPS (POPPART, POPORDER, POPOP, POPSETUP , POPRUN) " +
+					"VALUES (@partid, @seq, @popop, @popsetup, @poprun)";
+				ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter ta_ =
+					new ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter();
+				using (SqlCommand comm = new SqlCommand(sql_, ta_.Connection)) {
+					comm.Parameters.AddWithValue(@"@popop", _popop);
+					comm.Parameters.AddWithValue(@"@popsetup", _popsetup);
+					comm.Parameters.AddWithValue(@"@poprun", _poprun);
+					comm.Parameters.AddWithValue(@"@partid", _partid);
+					comm.Parameters.AddWithValue(@"@seq", _seq);
+					if (ta_.Connection.State == System.Data.ConnectionState.Closed) {
+						ta_.Connection.Open();
+					}
+					try {
+						affected_ += comm.ExecuteNonQuery();
+					} finally {
+						ta_.Connection.Close();
+					}
+				}
+				return affected_;
+			}
+		}
+
 		partial class CUT_PARTSDataTable {
 			/// <summary>
 			/// Update or insert part into db.
@@ -22,8 +99,8 @@ namespace RedBrick2 {
 				string sql_ = @"UPDATE CUT_PARTS SET DESCR = @descr, FIN_L = @finl, FIN_W = @finw, THICKNESS = @thk, " +
 					"CNC1 = cnc1, CNC2 = cnc2, BLANKQTY = @blnkqty, " +
 					"OVER_L = @ovrl, OVER_W = @ovrw, OP1ID = @op1, " +
-					"OP2ID = @op2, OP3ID = @op3, OP4ID = @op4, OP5ID = @op5, COMMENT = ?, " +
-					"UPDATE_CNC = ?, TYPE = ? WHERE PARTNUM=? AND (HASH=? OR HASH IS NULL)";
+					"OP2ID = @op2, OP3ID = @op3, OP4ID = @op4, OP5ID = @op5, COMMENT = @comment, " +
+					"UPDATE_CNC = @updCnc, TYPE = @type WHERE PARTNUM=@prtNo AND (HASH=@hash OR HASH IS NULL)";
 				ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter ta_ =
 					new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
 				using (SqlCommand comm = new SqlCommand(sql_, ta_.Connection)) {
@@ -37,17 +114,26 @@ namespace RedBrick2 {
 					comm.Parameters.AddWithValue("@ovrl", Convert.ToDouble(_pp[@"OVERL"].Data));
 					comm.Parameters.AddWithValue("@ovrw", Convert.ToDouble(_pp[@"OVERW"].Data));
 
-					for (ushort i = 0; i < 5; i++) {
-						string lkup_ = string.Format("@op{0}", i + 1);
-						comm.Parameters.AddWithValue(lkup_, Convert.ToInt32(_pp[lkup_].Data));
+					for (ushort i = 0; i < Properties.Settings.Default.OpCount; i++) {
+						int seq_ = i + 1;
+						string key_ = string.Format(@"@op{0}", seq_);
+						string lkup_ = string.Format(@"OP{0}", seq_);
+						comm.Parameters.AddWithValue(key_, Convert.ToInt32(_pp[lkup_].Data));
 					}
 
 					comm.Parameters.AddWithValue("@comment", _pp[@"COMMENT"].Data);
 					comm.Parameters.AddWithValue("@updCnc", ((bool)_pp[@"UPDATE CNC"].Data ? 1 : 0));
 					comm.Parameters.AddWithValue("@type", Convert.ToInt32(_pp[@"DEPARTMENT"].Data));
 					comm.Parameters.AddWithValue("@prtNo", _pp.PartLookup);
-					comm.Parameters.AddWithValue("@hash", Convert.ToInt32(_pp[@"HASH"].Data));
-					affected_ = comm.ExecuteNonQuery();
+					comm.Parameters.AddWithValue("@hash", Convert.ToInt32(_pp.Hash));
+					if (ta_.Connection.State == System.Data.ConnectionState.Closed) {
+						ta_.Connection.Open();
+					}
+					try {
+						affected_ = comm.ExecuteNonQuery();
+					} finally {
+						ta_.Connection.Close();
+					}
 				}
 				object id_ = ta_.GetPartIDByPartnum(_pp.PartLookup);
 				return id_ != null ? (int)id_ : 0;
@@ -124,11 +210,13 @@ namespace RedBrick2 {
 				if (clid_ > 0) {
 					CUT_PARTSDataTable pdt_ = new CUT_PARTSDataTable();
 					CUT_CUTLIST_PARTSDataTable cpdt_ = new CUT_CUTLIST_PARTSDataTable();
+					CUT_PART_OPSDataTable cpot_ = new CUT_PART_OPSDataTable();
 					foreach (SwProperties pp_ in _ppp) {
 						pp_.CutlistID = clid_;
 						int partID_ = pdt_.UpdatePart(pp_);
 						pp_.PartID = partID_;
 						cpdt_.UpdateCutlistPart(pp_);
+						cpot_.UpdateOps(pp_);
 					}
 				}
 				return affected_;
@@ -151,9 +239,16 @@ namespace RedBrick2 {
 					comm.Parameters.AddWithValue(@"@setupby", _auth);
 					comm.Parameters.AddWithValue(@"@stateby", _auth);
 					comm.Parameters.AddWithValue(@"@stateid", _state);
-					affected_ = comm.ExecuteNonQuery();
+					if (ta_.Connection.State == System.Data.ConnectionState.Closed) {
+						ta_.Connection.Open();
+					}
+					try {
+						affected_ = comm.ExecuteNonQuery();
+					} finally {
+						ta_.Connection.Close();
+					}
 				}
-				object id_ = (int)ta_.GetCutlistID(_itemNo, _rev);
+				object id_ = ta_.GetCutlistID(_itemNo, _rev);
 				return id_ != null ? (int)id_ : 0;
 			}
 
@@ -174,9 +269,16 @@ namespace RedBrick2 {
 					comm.Parameters.AddWithValue(@"@stateid", _state);
 					comm.Parameters.AddWithValue(@"@itemno", _itemNo);
 					comm.Parameters.AddWithValue(@"@rev", _rev);
-					affected_ = comm.ExecuteNonQuery();
+					if (ta_.Connection.State == System.Data.ConnectionState.Closed) {
+						ta_.Connection.Open();
+					}
+					try {
+						affected_ = comm.ExecuteNonQuery();
+					} finally {
+						ta_.Connection.Close();
+					}
 				}
-				object id_ = (int)ta_.GetCutlistID(_itemNo, _rev);
+				object id_ = ta_.GetCutlistID(_itemNo, _rev);
 				return id_ != null ? (int)id_ : 0;
 			}
 
@@ -190,18 +292,18 @@ namespace RedBrick2 {
 			/// <returns>Number of rows affected. It should never be more than 1.</returns>
 			public int UpdateCutlistPart(SwProperties _pp) {
 				int affected_ = update_cutlist_part_(_pp);
-				return affected_ > 0 ? affected_ : update_cutlist_part_(_pp);
+				return affected_ > 0 ? affected_ : insert_cutlist_part_(_pp);
 			}
 
 			private int update_cutlist_part_(SwProperties _pp) {
-				int affected = 0;
+				int affected_ = 0;
 				Properties.Settings.Default.LastCutlist = _pp.CutlistID;
 				string sql_ = @"UPDATE CUT_CUTLIST_PARTS " +
 					@"SET MATID = @matid, EDGEID_LF = @efid, EDGEID_LB = @ebid, EDGEID_WR = @erid, EDGEID_WL = @elid, " +
 					@"QTY = @qty WHERE CLID = @clid AND PARTID = @partid";
-				ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter cpta_ =
+				ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter ta_ =
 					new ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter();
-				using (SqlCommand comm = new SqlCommand(sql_, cpta_.Connection)) {
+				using (SqlCommand comm = new SqlCommand(sql_, ta_.Connection)) {
 					comm.Parameters.AddWithValue(@"@matid", Convert.ToInt32(_pp[@"CUTLIST MATERIAL"].Data));
 					comm.Parameters.AddWithValue(@"@efid", Convert.ToInt32(_pp[@"EDGE FRONT (L)"].Data));
 					comm.Parameters.AddWithValue(@"@ebid", Convert.ToInt32(_pp[@"EDGE BACK (L)"].Data));
@@ -210,19 +312,26 @@ namespace RedBrick2 {
 					comm.Parameters.AddWithValue(@"@qty", _pp.CutlistQty);
 					comm.Parameters.AddWithValue(@"@clid", _pp.CutlistID);
 					comm.Parameters.AddWithValue(@"@partid", Convert.ToInt32(_pp.PartID));
-					affected = comm.ExecuteNonQuery();
+					if (ta_.Connection.State == System.Data.ConnectionState.Closed) {
+						ta_.Connection.Open();
+					}
+					try {
+						affected_ = comm.ExecuteNonQuery();
+					} finally {
+						ta_.Connection.Close();
+					}
 				}
-				return affected;
+				return affected_;
 			}
 
 			private int insert_cutlist_part_(SwProperties _pp) {
-				int affected = 0;
+				int affected_ = 0;
 				Properties.Settings.Default.LastCutlist = _pp.CutlistID;
 				string sql_ = @"INSERT INTO CUT_CUTLIST_PARTS (CLID, PARTID, MATID, EDGEID_LF, EDGEID_LB, EDGEID_WR, EDGEID_WL, QTY) " +
 					@"VALUES (@clid, @partid, @matid, @efid, @ebid, @erid, @elid, @qty)";
-				ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter cpta_ =
+				ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter ta_ =
 					new ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter();
-				using (SqlCommand comm = new SqlCommand(sql_, cpta_.Connection)) {
+				using (SqlCommand comm = new SqlCommand(sql_, ta_.Connection)) {
 					comm.Parameters.AddWithValue(@"@clid", _pp.CutlistID);
 					comm.Parameters.AddWithValue(@"@partid", _pp.PartID);
 					comm.Parameters.AddWithValue(@"@matid", Convert.ToInt32(_pp[@"CUTLIST MATERIAL"].Data));
@@ -231,9 +340,16 @@ namespace RedBrick2 {
 					comm.Parameters.AddWithValue(@"@elid", Convert.ToInt32(_pp[@"EDGE LEFT (W)"].Data));
 					comm.Parameters.AddWithValue(@"@erid", Convert.ToInt32(_pp[@"EDGE RIGHT (W)"].Data));
 					comm.Parameters.AddWithValue(@"@qty", _pp.CutlistQty);
-					affected = comm.ExecuteNonQuery();
+					if (ta_.Connection.State == System.Data.ConnectionState.Closed) {
+						ta_.Connection.Open();
+					}
+					try {
+						affected_ = comm.ExecuteNonQuery();
+					} finally {
+						ta_.Connection.Close();
+					}
 				}
-				return affected;
+				return affected_;
 			}
 
 		}
