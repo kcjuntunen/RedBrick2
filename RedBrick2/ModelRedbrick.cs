@@ -1034,10 +1034,10 @@ namespace RedBrick2 {
 						//ccpta.Update(CutlistPartsRow);
 					}
 					eNGINEERINGDataSet.CUT_PART_OPS.UpdateOps(PropertySet);
-					//cpota.Update(eNGINEERINGDataSet.CUT_PART_OPS
+					//cpota.Update(eNGINEERINGDataSet.CUT_PART_OPS);
 				}
 				if (data_from_db) {
-					GetEstimationFromDB(););
+					GetEstimationFromDB();
 					if (Properties.Settings.Default.AutoOpenPriority && checked_at_start && !updateCNCcb.Checked) {
 						popup_priority_(PropertySet.PartLookup);
 					}
