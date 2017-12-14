@@ -19,10 +19,22 @@ namespace RedBrick2 {
 		private int globalCount = 0;
 		private int totalCount = 0;
 		private int nonGlobalCount = 0;
+
+		private string _configuration = string.Empty;
 		/// <summary>
 		/// The relevant configuration, should this property not be global.
 		/// </summary>
-		public string Configuration = string.Empty;
+		public string Configuration {
+			set {
+				_configuration = value;
+				foreach (SwProperty p_ in _innerDict.Values) {
+					p_.Configuration = _configuration;
+				}
+			}
+			get {
+				return _configuration;
+			}
+		}
 
 		/// <summary>
 		/// Constructor for a new <see cref="RedBrick2.SwProperties"/> object.
