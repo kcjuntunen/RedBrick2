@@ -718,7 +718,7 @@ namespace RedBrick2 {
 		/// <param name="_fi">A <see cref="System.IO.FileInfo"/> object.</param>
 		/// <returns>A string for DB searches.</returns>
 		static public string FileInfoToLookup(System.IO.FileInfo _fi) {
-			return System.IO.Path.GetFileNameWithoutExtension(_fi.FullName).Split(' ')[0];
+			return System.IO.Path.GetFileNameWithoutExtension(_fi.FullName).Split(' ')[0].Trim();
 		}
 
 		/// <summary>
