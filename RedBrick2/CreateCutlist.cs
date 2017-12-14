@@ -1127,11 +1127,22 @@ namespace RedBrick2 {
 		}
 
 		private void upload_btn_Click(object sender, EventArgs e) {
-			itm = itm_cbx.Text;
-			descr = descr_cbx.Text;
-			refr = ref_cbx.Text;
+			if (cust_cbx.SelectedItem != null && uid != null) {
+				Dictionary<string, SwProperties> parts_ = new Dictionary<string, SwProperties>();
 
-			FillTables();
+				for (int i = 0; i < dataGridView1.Rows.Count; i++) {
+					DataGridViewRow dgvr_ = dataGridView1.Rows[i];
+					bool inc_ = Convert.ToBoolean(dgvr_.Cells[@"Include"].Value);
+					if (inc_) {
+						string partnum_ = Convert.ToString(dgvr_.Cells[@"Part Number"].Value);
+						parts_.Add(partnum_, _partlist[partnum_]);
+					}
+				}
+
+				int custid_ = Convert.ToInt32(cust_cbx.SelectedValue);
+				dt_cc.UpdateCutlist(itm_cbx.Text, ref_cbx.Text, rev_cbx.Text, descr_cbx.Text, custid_,
+					dateTimePicker1.Value, Properties.Settings.Default.DefaultState, Convert.ToInt32(uid), parts_);
+			}
 		}
 	}
 }
