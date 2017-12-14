@@ -95,10 +95,13 @@ namespace RedBrick2 {
 					clid_ = insert_cutlist_(_itemNo, _drawing, _rev, _descr, _custid, _date, _state, _auth, _ppp);
 
 				if (clid_ > 0) {
-					CUT_CUTLIST_PARTSDataTable dt = new CUT_CUTLIST_PARTSDataTable();
+					CUT_PARTSDataTable pdt_ = new CUT_PARTSDataTable();
+					CUT_CUTLIST_PARTSDataTable cpdt_ = new CUT_CUTLIST_PARTSDataTable();
 					foreach (SwProperties pp_ in _ppp.Values) {
 						pp_.CutlistID = clid_;
-						dt.UpdateCutlistPart(pp_);
+						int partID_ = pdt_.UpdatePart(pp_);
+						pp_.PartID = partID_;
+						cpdt_.UpdateCutlistPart(pp_);
 					}
 				}
 				return affected_;
@@ -130,7 +133,6 @@ namespace RedBrick2 {
 			private int update_cutlist_(string _itemNo, string _drawing, string _rev, string _descr,
 				int _custid, DateTime _date, int _state, int _auth, Dictionary<string, SwProperties> _ppp) {
 				int affected_ = 0;
-				int clid_ = 0;
 				string sql_ = @"UPDATE CUT_CUTLISTS SET DRAWING = @drawing, CUSTID = @custid, CDATE = @date, DESCR = @descr, " +
 					@"SETUP_BY = @setupby, STATE_BY = @stateby, STATEID = @stateid WHERE PARTNUM=@itemno AND REV=@rev;";
 				ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter ta_ =
