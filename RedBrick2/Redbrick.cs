@@ -430,6 +430,30 @@ namespace RedBrick2 {
 			var t = new System.Globalization.CultureInfo("en-US", false).TextInfo;
 			return t.ToTitleCase(allCapsInput.ToLower());
 		}
+		/// <summary>
+		/// Hash a string.
+		/// </summary>
+		/// <param name="_fileinfo">FileInfo of a part.</param>
+		/// <returns>A 32-bit int.</returns>
+		static public int GetHash(System.IO.FileInfo _fileinfo) {
+
+			DamienG.Security.Cryptography.Crc32 crc = new DamienG.Security.Cryptography.Crc32();
+
+			byte[] b = new byte[_fileinfo.FullName.Length];
+			string hash = string.Empty;
+
+			for (int i = 0; i < _fileinfo.Length; i++)
+				b[i] = (byte)_fileinfo.FullName[i];
+
+			foreach (byte byt in crc.ComputeHash(b))
+				hash += byt.ToString("x2").ToLower();
+
+			try {
+				return int.Parse(hash, System.Globalization.NumberStyles.HexNumber);
+			} catch (Exception) {
+				return 0;
+			}
+		}
 
 		/// <summary>
 		/// Hash a string.

@@ -1161,7 +1161,7 @@ namespace RedBrick2 {
 					} else {
 						partLookup = null;
 						PartFileInfo = new FileInfo(Path.GetTempFileName());
-						Hash = Redbrick.GetHash(PartFileInfo.FullName);
+						Hash = Redbrick.GetHash(PartFileInfo);
 					}
 
 					swDocumentTypes_e dType = (swDocumentTypes_e)_activeDoc.GetType();

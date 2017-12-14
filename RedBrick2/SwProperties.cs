@@ -398,7 +398,7 @@ namespace RedBrick2 {
 				ENGINEERINGDataSet.CUT_PARTSRow cpr = cpdt.NewCUT_PARTSRow();
 				cpr.PARTID = (int)_innerDict[@"DEPARTMENT"].PartID;
 				cpr.PARTNUM = lookup_;
-				cpr.HASH = Redbrick.GetHash(System.IO.Path.GetFullPath(fi_.FullName));
+				cpr.HASH = Redbrick.GetHash(fi_);
 				foreach (var item in _innerDict) {
 					if (item.Value.TableName == @"CUT_PARTS" &&
 						item.Value.FieldName != string.Empty &&
@@ -513,15 +513,19 @@ namespace RedBrick2 {
 			}
 		}
 
+		public string PartLookup { get; set; }
+
 		public int Hash { get; set; }
 
+		private System.IO.FileInfo _partFileInfo;
 		public System.IO.FileInfo PartFileInfo {
 			get {
-				return PartFileInfo;
+				return _partFileInfo;
 			}
 			set {
-				PartFileInfo = value;
-				Hash = Redbrick.GetHash(PartFileInfo.FullName);
+				_partFileInfo = value;
+				PartLookup = Redbrick.FileInfoToLookup(value);
+				Hash = Redbrick.GetHash(PartFileInfo);
 				foreach (SwProperty item in _innerDict.Values) {
 					item.PartFileInfo = value;
 					item.Hash = Hash;
