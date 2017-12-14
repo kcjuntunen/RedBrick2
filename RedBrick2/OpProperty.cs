@@ -93,10 +93,7 @@ namespace RedBrick2 {
 				if (_data == 0) {
 					ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter fcota =
 						new ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter();
-					int? val_ = fcota.GetID(_type, Value);
-					if (val_ != null) {
-						_data = (int)val_;
-					}
+					_data = Convert.ToInt32(fcota.GetID(_type, Value));
 				}
 				return _data;
 			}
