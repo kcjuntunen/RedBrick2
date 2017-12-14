@@ -522,7 +522,7 @@ namespace RedBrick2 {
 						new ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter();
 					ENGINEERINGDataSetTableAdapters.CUT_EDGES_XREFTableAdapter cexta =
 						new ENGINEERINGDataSetTableAdapters.CUT_EDGES_XREFTableAdapter();
-					int id = (int)cexta.GetEdgeID(descr);
+					int id = Convert.ToInt32(cexta.GetEdgeID(Convert.ToString(descr)));
 					ENGINEERINGDataSet.CUT_EDGESDataTable dt = ceta.GetDataByEdgeID(id);
 					if (dt.Rows.Count > 0) {
 						return dt[0].EDGEID;
