@@ -428,10 +428,6 @@ namespace RedBrick2 {
 		}
 
 		private void button2_Click(object sender, EventArgs e) {
-
-		}
-
-		private void button4_Click(object sender, EventArgs e) {
 			SolidWorks.Interop.sldworks.View _v = Redbrick.GetFirstView(SwApp);
 			CreateCutlist c = new CreateCutlist(SwApp);
 			c.ShowDialog(this);
@@ -499,6 +495,14 @@ namespace RedBrick2 {
 
 		private void status_cbx_Leave(object sender, EventArgs e) {
 			user_editing = false;
+		}
+
+		private void button3_Click(object sender, EventArgs e) {
+			string q_ = string.Format(@"Are you sure you want to delete {0} REV {1}", PropertySet.PartLookup, rev_cbx.Text);
+			DialogResult dr_ = MessageBox.Show(this, q_, @"RLY?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+			if (dr_ == DialogResult.Yes) {
+				System.Diagnostics.Debug.Print(@"Deleting...");
+			}
 		}
 	}
 }
