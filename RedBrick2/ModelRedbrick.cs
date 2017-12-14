@@ -678,7 +678,7 @@ namespace RedBrick2 {
 			if (!DrawingEventsAssigned) {
 				dd = (DrawingDoc)ActiveDoc;
 				swSelMgr = ActiveDoc.SelectionManager;
-				dd.UserSelectionPostNotify += dd_UserSelectionPostNotify;
+				//dd.UserSelectionPostNotify += dd_UserSelectionPostNotify;
 				dd.DestroyNotify2 += dd_DestroyNotify2;
 				DrawingEventsAssigned = true;
 			}
@@ -1216,24 +1216,26 @@ namespace RedBrick2 {
 							break;
 						case swDocumentTypes_e.swDocDRAWING:                      //Window looking at drawing.
 							(tabPage2 as Control).Enabled = true;
-							switch (dType) {
-								case swDocumentTypes_e.swDocASSEMBLY:                     //Selected assembly in drawing.
-									(tabPage1 as Control).Enabled = true;
-									SetupPart();
-									tabControl1.SelectedTab = tabPage1;
-									break;
-								case swDocumentTypes_e.swDocDRAWING:
-									tabControl1.SelectedTab = tabPage2;
-									break;
-								case swDocumentTypes_e.swDocPART:                         //Selected part in drawing.
-									(tabPage1 as Control).Enabled = true;
-									SetupPart();
-									tabControl1.SelectedTab = tabPage1;
-									break;
-								default:
-									break;
-							}
+							(tabPage1 as Control).Enabled = false;
+							//switch (dType) {
+							//	case swDocumentTypes_e.swDocASSEMBLY:                     //Selected assembly in drawing.
+							//		(tabPage1 as Control).Enabled = true;
+							//		SetupPart();
+							//		tabControl1.SelectedTab = tabPage1;
+							//		break;
+							//	case swDocumentTypes_e.swDocDRAWING:
+							//		tabControl1.SelectedTab = tabPage2;
+							//		break;
+							//	case swDocumentTypes_e.swDocPART:                         //Selected part in drawing.
+							//		(tabPage1 as Control).Enabled = true;
+							//		SetupPart();
+							//		tabControl1.SelectedTab = tabPage1;
+							//		break;
+							//	default:
+							//		break;
+							//}
 							SetupDrawing();
+							tabControl1.SelectedTab = tabPage2;
 							break;
 						case swDocumentTypes_e.swDocPART:                         //Window looking at part.
 							Component = null;
