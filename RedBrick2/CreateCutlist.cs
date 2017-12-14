@@ -64,7 +64,6 @@ namespace RedBrick2 {
 		private bool user_changed_item = false;
 		private Configuration _config = null;
 		private int? uid = null;
-		private int opCount = 5;
 		private bool[] sort_directions = { false, false, false, false, false, false,
 																			 false, false, false, false, false, false,
 																			 false, false, false, false, false, false,
@@ -669,7 +668,7 @@ namespace RedBrick2 {
 
 		private void SetType(int _type, SwProperties _props, DataGridViewRow _row) {
 			_row.Cells[@"Department"].Value = _type;
-			for (int i = 1; i < opCount + 1; i++) {
+			for (int i = 1; i < Properties.Settings.Default.OpCount + 1; i++) {
 				string op_ = string.Format(@"OP{0}", i);
 				string opid_ = string.Format(@"OP{0}ID", i);
 				(_props[op_] as OpProperty).OpType = _type;
@@ -732,7 +731,7 @@ namespace RedBrick2 {
 				row.Cells[@"CNC 1"].Value = val[@"CNC1"].Data;
 				row.Cells[@"CNC 2"].Value = val[@"CNC2"].Data;
 
-				for (int i = 1; i < opCount + 1; i++) {
+				for (int i = 1; i < Properties.Settings.Default.OpCount + 1; i++) {
 					string col_ = string.Format(@"Op {0}", i);
 					string op_ = string.Format(@"OP{0}", i);
 					string opid_ = string.Format(@"OP{0}ID", i);

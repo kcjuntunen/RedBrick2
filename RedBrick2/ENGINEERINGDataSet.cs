@@ -73,17 +73,26 @@ namespace RedBrick2 {
 					comm.Parameters.AddWithValue("@ovrl", Convert.ToDouble(_pp[@"OVERL"].Data));
 					comm.Parameters.AddWithValue("@ovrw", Convert.ToDouble(_pp[@"OVERW"].Data));
 
-					for (ushort i = 0; i < 5; i++) {
-						string lkup_ = string.Format("@op{0}", i + 1);
-						comm.Parameters.AddWithValue(lkup_, Convert.ToInt32(_pp[lkup_].Data));
+					for (ushort i = 0; i < Properties.Settings.Default.OpCount; i++) {
+						int seq_ = i + 1;
+						string key_ = string.Format(@"@op{0}", seq_);
+						string lkup_ = string.Format(@"OP{0}", seq_);
+						comm.Parameters.AddWithValue(key_, Convert.ToInt32(_pp[lkup_].Data));
 					}
 
 					comm.Parameters.AddWithValue("@comment", _pp[@"COMMENT"].Data);
 					comm.Parameters.AddWithValue("@updCnc", ((bool)_pp[@"UPDATE CNC"].Data ? 1 : 0));
 					comm.Parameters.AddWithValue("@type", Convert.ToInt32(_pp[@"DEPARTMENT"].Data));
 					comm.Parameters.AddWithValue("@prtNo", _pp.PartLookup);
-					comm.Parameters.AddWithValue("@hash", Convert.ToInt32(_pp[@"HASH"].Data));
-					affected_ = comm.ExecuteNonQuery();
+					comm.Parameters.AddWithValue("@hash", Convert.ToInt32(_pp.Hash));
+					if (ta_.Connection.State == System.Data.ConnectionState.Closed) {
+						ta_.Connection.Open();
+					}
+					try {
+						affected_ = comm.ExecuteNonQuery();
+					} finally {
+						ta_.Connection.Close();
+					}
 				}
 				object id_ = ta_.GetPartIDByPartnum(_pp.PartLookup);
 				return id_ != null ? (int)id_ : 0;

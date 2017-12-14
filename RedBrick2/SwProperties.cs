@@ -139,17 +139,26 @@ namespace RedBrick2 {
 			DimensionProperty overL = new DimensionProperty(@"OVERL", true, SwApp, md, @"OVER_L");
 			DimensionProperty overW = new DimensionProperty(@"OVERW", true, SwApp, md, @"OVER_W");
 
-			OpProperty op1 = new OpProperty(@"OP1", true, SwApp, md, @"OP1ID");
-			OpProperty op2 = new OpProperty(@"OP2", true, SwApp, md, @"OP2ID");
-			OpProperty op3 = new OpProperty(@"OP3", true, SwApp, md, @"OP3ID");
-			OpProperty op4 = new OpProperty(@"OP4", true, SwApp, md, @"OP4ID");
-			OpProperty op5 = new OpProperty(@"OP5", true, SwApp, md, @"OP5ID");
+			OpProperty[] ops_ = new OpProperty[Properties.Settings.Default.OpCount];
+			OpId[] opids_ = new OpId[Properties.Settings.Default.OpCount];
+			for (int i = 0; i < Properties.Settings.Default.OpCount; i++) {
+				string op_ = string.Format(@"OP{0}", i + 1);
+				string opid_ = string.Format(@"OP{0}ID", i + 1);
+				ops_[i] = new OpProperty(op_, true, SwApp, md, opid_);
+				opids_[i] = new OpId(opid_, true, SwApp, md, @"POPOP");
+			}
 
-			OpId op1id = new OpId(@"OP1ID", true, SwApp, md, @"POPOP");
-			OpId op2id = new OpId(@"OP2ID", true, SwApp, md, @"POPOP");
-			OpId op3id = new OpId(@"OP3ID", true, SwApp, md, @"POPOP");
-			OpId op4id = new OpId(@"OP4ID", true, SwApp, md, @"POPOP");
-			OpId op5id = new OpId(@"OP5ID", true, SwApp, md, @"POPOP");
+			//OpProperty op1 = new OpProperty(@"OP1", true, SwApp, md, @"OP1ID");
+			//OpProperty op2 = new OpProperty(@"OP2", true, SwApp, md, @"OP2ID");
+			//OpProperty op3 = new OpProperty(@"OP3", true, SwApp, md, @"OP3ID");
+			//OpProperty op4 = new OpProperty(@"OP4", true, SwApp, md, @"OP4ID");
+			//OpProperty op5 = new OpProperty(@"OP5", true, SwApp, md, @"OP5ID");
+
+			//OpId op1id = new OpId(@"OP1ID", true, SwApp, md, @"POPOP");
+			//OpId op2id = new OpId(@"OP2ID", true, SwApp, md, @"POPOP");
+			//OpId op3id = new OpId(@"OP3ID", true, SwApp, md, @"POPOP");
+			//OpId op4id = new OpId(@"OP4ID", true, SwApp, md, @"POPOP");
+			//OpId op5id = new OpId(@"OP5ID", true, SwApp, md, @"POPOP");
 
 			MaterialProperty cutlistMaterial = new MaterialProperty(@"CUTLIST MATERIAL", false, SwApp, md, @"MATID");
 			EdgeProperty edgelf = new EdgeProperty(@"EDGE FRONT (L)", false, SwApp, md, @"EDGEID_LF");
@@ -178,14 +187,24 @@ namespace RedBrick2 {
         material, weight, volume, description, comment, cnc1, cnc2,
         includeInCutlist, updateCNC,
         length, width, thickness, wallThickness, overL, overW,
-        op1, op2, op3, op4, op5,
-				op1id, op2id, op3id, op4id, op5id,
+				//op1, op2, op3, op4, op5,
+				//op1id, op2id, op3id, op4id, op5id,
         cutlistMaterial, edgelf, edgelb, edgewr, edgewl,
         matid, efid, ebid, erid, elid
       }) {
 				item.Configuration = Configuration;
 				item.Get();
 				Add(item);
+			}
+			foreach (SwProperty p_ in ops_) {
+				p_.Configuration = Configuration;
+				p_.Get();
+				Add(p_);
+			}
+			foreach (SwProperty p_ in opids_) {
+				p_.Configuration = Configuration;
+				p_.Get();
+				Add(p_);
 			}
 			PartFileInfo = _innerDict[@"DEPARTMENT"].PartFileInfo;
 		}

@@ -721,5 +721,14 @@ namespace RedBrick2.Properties {
                 return ((int)(this["DefaultState"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public uint OpCount {
+            get {
+                return ((uint)(this["OpCount"]));
+            }
+        }
     }
 }
