@@ -55,6 +55,7 @@ namespace RedBrick2 {
 		private bool DrawingEventsAssigned = false;
 		private bool ModelSetup = false;
 		private bool DrawingSetup = false;
+		private bool checked_at_start = false;
 		private bool ov_userediting = false;
 		private bool bl_userediting = false;
 		private bool cl_userediting = false;
@@ -283,6 +284,7 @@ namespace RedBrick2 {
 				overWtb.Text = Redbrick.enforce_number_format(overWtb.Text);
 				blnkszLtb.Text = Redbrick.enforce_number_format(blnkszLtb.Text);
 				blnkszWtb.Text = Redbrick.enforce_number_format(blnkszWtb.Text);
+				checked_at_start = updateCNCcb.Checked;
 				SelectLastCutlist();
 			}
 			if (Row != null) {
@@ -1033,6 +1035,9 @@ namespace RedBrick2 {
 					}
 					eNGINEERINGDataSet.CUT_PART_OPS.UpdateOps(PropertySet);
 					//cpota.Update(eNGINEERINGDataSet.CUT_PART_OPS);
+					if (Properties.Settings.Default.AutoOpenPriority && checked_at_start && !updateCNCcb.Checked) {
+						popup_priority_(PropertySet.PartLookup);
+					}
 				}
 				if (data_from_db) {
 					GetEstimationFromDB();
@@ -1042,6 +1047,12 @@ namespace RedBrick2 {
 			} else if (tabControl1.SelectedTab == tabPage2) {
 				drawingRedbrick.Commit();
 			}
+		}
+
+		private void popup_priority_(string _lookup) {
+			Machine_Priority_Control.MachinePriority m_ =
+				new Machine_Priority_Control.MachinePriority(_lookup);
+			m_.ShowDialog(this);
 		}
 
 		private void SetupDrawing() {
