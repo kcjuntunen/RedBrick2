@@ -43,7 +43,7 @@ namespace RedBrick2 {
 			get { return _data; }
 			set {
 				Value = value.ToString();
-				string filtered = string.Empty;
+				string filtered = value.ToString();
 				char[,] chars = new char[,] {
 					{'\u0027', '\u2032'}, 
 					{'\u0022', '\u2033'}, 
