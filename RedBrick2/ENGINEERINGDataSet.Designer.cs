@@ -27901,7 +27901,7 @@ SELECT CLPARTID, CLID, PARTID, MATID, EDGEID_LF, EDGEID_LB, EDGEID_WR, EDGEID_WL
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[CUT_MATERIALS] WHERE (([MATID] = @Original_MATID) AND ([DESCR] = @Original_DESCR) AND ((@IsNull_COLOR = 1 AND [COLOR] IS NULL) OR ([COLOR] = @Original_COLOR)) AND ([THICKNESS] = @Original_THICKNESS) AND ([GRAIN] = @Original_GRAIN) AND ([TYPE] = @Original_TYPE) AND ((@IsNull_OLD_DESCR = 1 AND [OLD_DESCR] IS NULL) OR ([OLD_DESCR] = @Original_OLD_DESCR)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [CUT_MATERIALS] WHERE (([MATID] = @Original_MATID) AND ([DESCR] = @Original_DESCR) AND ((@IsNull_COLOR = 1 AND [COLOR] IS NULL) OR ([COLOR] = @Original_COLOR)) AND ([THICKNESS] = @Original_THICKNESS) AND ([GRAIN] = @Original_GRAIN) AND ([TYPE] = @Original_TYPE) AND ((@IsNull_OLD_DESCR = 1 AND [OLD_DESCR] IS NULL) OR ([OLD_DESCR] = @Original_OLD_DESCR)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MATID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MATID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DESCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DESCR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -27914,8 +27914,8 @@ SELECT CLPARTID, CLID, PARTID, MATID, EDGEID_LF, EDGEID_LB, EDGEID_WR, EDGEID_WL
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OLD_DESCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OLD_DESCR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[CUT_MATERIALS] ([DESCR], [COLOR], [THICKNESS], [GRAIN], [TYPE], [OLD_DESCR]) VALUES (@DESCR, @COLOR, @THICKNESS, @GRAIN, @TYPE, @OLD_DESCR);
-SELECT MATID, DESCR, COLOR, THICKNESS, GRAIN, TYPE, OLD_DESCR FROM CUT_MATERIALS WHERE (MATID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [CUT_MATERIALS] ([DESCR], [COLOR], [THICKNESS], [GRAIN], [TYPE], [OLD_DESCR]) VALUES (@DESCR, @COLOR, @THICKNESS, @GRAIN, @TYPE, @OLD_DESCR);
+SELECT MATID, DESCR, COLOR, THICKNESS, GRAIN, TYPE, OLD_DESCR FROM CUT_MATERIALS WHERE (MATID = SCOPE_IDENTITY()) ORDER BY DESCR";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DESCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DESCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@COLOR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "COLOR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -27925,8 +27925,8 @@ SELECT MATID, DESCR, COLOR, THICKNESS, GRAIN, TYPE, OLD_DESCR FROM CUT_MATERIALS
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OLD_DESCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OLD_DESCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[CUT_MATERIALS] SET [DESCR] = @DESCR, [COLOR] = @COLOR, [THICKNESS] = @THICKNESS, [GRAIN] = @GRAIN, [TYPE] = @TYPE, [OLD_DESCR] = @OLD_DESCR WHERE (([MATID] = @Original_MATID) AND ([DESCR] = @Original_DESCR) AND ((@IsNull_COLOR = 1 AND [COLOR] IS NULL) OR ([COLOR] = @Original_COLOR)) AND ([THICKNESS] = @Original_THICKNESS) AND ([GRAIN] = @Original_GRAIN) AND ([TYPE] = @Original_TYPE) AND ((@IsNull_OLD_DESCR = 1 AND [OLD_DESCR] IS NULL) OR ([OLD_DESCR] = @Original_OLD_DESCR)));
-SELECT MATID, DESCR, COLOR, THICKNESS, GRAIN, TYPE, OLD_DESCR FROM CUT_MATERIALS WHERE (MATID = @MATID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [CUT_MATERIALS] SET [DESCR] = @DESCR, [COLOR] = @COLOR, [THICKNESS] = @THICKNESS, [GRAIN] = @GRAIN, [TYPE] = @TYPE, [OLD_DESCR] = @OLD_DESCR WHERE (([MATID] = @Original_MATID) AND ([DESCR] = @Original_DESCR) AND ((@IsNull_COLOR = 1 AND [COLOR] IS NULL) OR ([COLOR] = @Original_COLOR)) AND ([THICKNESS] = @Original_THICKNESS) AND ([GRAIN] = @Original_GRAIN) AND ([TYPE] = @Original_TYPE) AND ((@IsNull_OLD_DESCR = 1 AND [OLD_DESCR] IS NULL) OR ([OLD_DESCR] = @Original_OLD_DESCR)));
+SELECT MATID, DESCR, COLOR, THICKNESS, GRAIN, TYPE, OLD_DESCR FROM CUT_MATERIALS WHERE (MATID = @MATID) ORDER BY DESCR";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DESCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DESCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@COLOR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "COLOR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -27959,19 +27959,19 @@ SELECT MATID, DESCR, COLOR, THICKNESS, GRAIN, TYPE, OLD_DESCR FROM CUT_MATERIALS
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[5];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT MATID, DESCR, COLOR, THICKNESS, GRAIN, TYPE, OLD_DESCR FROM dbo.CUT_MATERI" +
-                "ALS";
+            this._commandCollection[0].CommandText = "SELECT      MATID, DESCR, COLOR, THICKNESS, GRAIN, TYPE, OLD_DESCR\r\nFROM         " +
+                " CUT_MATERIALS\r\nORDER BY DESCR";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT      MATID, DESCR, COLOR, THICKNESS, GRAIN, TYPE, OLD_DESCR\nFROM          " +
-                "CUT_MATERIALS\nWHERE      (DESCR = @descr)";
+            this._commandCollection[1].CommandText = "SELECT COLOR, DESCR, GRAIN, MATID, OLD_DESCR, THICKNESS, TYPE FROM CUT_MATERIALS " +
+                "WHERE (DESCR = @descr)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@descr", global::System.Data.SqlDbType.NVarChar, 45, global::System.Data.ParameterDirection.Input, 0, 0, "DESCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT        MATID, DESCR, COLOR, THICKNESS, GRAIN, TYPE, OLD_DESCR\nFROM        " +
-                "    CUT_MATERIALS\nWHERE        (MATID = @matID)";
+            this._commandCollection[2].CommandText = "SELECT COLOR, DESCR, GRAIN, MATID, OLD_DESCR, THICKNESS, TYPE FROM CUT_MATERIALS " +
+                "WHERE (MATID = @matID)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@matID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "MATID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
@@ -28481,7 +28481,7 @@ SELECT MATID, DESCR, COLOR, THICKNESS, GRAIN, TYPE, OLD_DESCR FROM CUT_MATERIALS
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[CUT_EDGES] WHERE (([EDGEID] = @Original_EDGEID) AND ((@IsNull_PARTNUM = 1 AND [PARTNUM] IS NULL) OR ([PARTNUM] = @Original_PARTNUM)) AND ((@IsNull_DESCR = 1 AND [DESCR] IS NULL) OR ([DESCR] = @Original_DESCR)) AND ((@IsNull_COLOR = 1 AND [COLOR] IS NULL) OR ([COLOR] = @Original_COLOR)) AND ((@IsNull_THICKNESS = 1 AND [THICKNESS] IS NULL) OR ([THICKNESS] = @Original_THICKNESS)) AND ([DERIVED] = @Original_DERIVED) AND ((@IsNull_MATID = 1 AND [MATID] IS NULL) OR ([MATID] = @Original_MATID)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [CUT_EDGES] WHERE (([EDGEID] = @Original_EDGEID) AND ((@IsNull_PARTNUM = 1 AND [PARTNUM] IS NULL) OR ([PARTNUM] = @Original_PARTNUM)) AND ((@IsNull_DESCR = 1 AND [DESCR] IS NULL) OR ([DESCR] = @Original_DESCR)) AND ((@IsNull_COLOR = 1 AND [COLOR] IS NULL) OR ([COLOR] = @Original_COLOR)) AND ((@IsNull_THICKNESS = 1 AND [THICKNESS] IS NULL) OR ([THICKNESS] = @Original_THICKNESS)) AND ([DERIVED] = @Original_DERIVED) AND ((@IsNull_MATID = 1 AND [MATID] IS NULL) OR ([MATID] = @Original_MATID)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EDGEID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EDGEID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_PARTNUM", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PARTNUM", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -28497,8 +28497,8 @@ SELECT MATID, DESCR, COLOR, THICKNESS, GRAIN, TYPE, OLD_DESCR FROM CUT_MATERIALS
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MATID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MATID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[CUT_EDGES] ([PARTNUM], [DESCR], [COLOR], [THICKNESS], [DERIVED], [MATID]) VALUES (@PARTNUM, @DESCR, @COLOR, @THICKNESS, @DERIVED, @MATID);
-SELECT EDGEID, PARTNUM, DESCR, COLOR, THICKNESS, DERIVED, MATID FROM CUT_EDGES WHERE (EDGEID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [CUT_EDGES] ([PARTNUM], [DESCR], [COLOR], [THICKNESS], [DERIVED], [MATID]) VALUES (@PARTNUM, @DESCR, @COLOR, @THICKNESS, @DERIVED, @MATID);
+SELECT EDGEID, PARTNUM, DESCR, COLOR, THICKNESS, DERIVED, MATID FROM CUT_EDGES WHERE (EDGEID = SCOPE_IDENTITY()) ORDER BY DESCR";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PARTNUM", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PARTNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DESCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DESCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -28508,8 +28508,8 @@ SELECT EDGEID, PARTNUM, DESCR, COLOR, THICKNESS, DERIVED, MATID FROM CUT_EDGES W
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MATID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MATID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[CUT_EDGES] SET [PARTNUM] = @PARTNUM, [DESCR] = @DESCR, [COLOR] = @COLOR, [THICKNESS] = @THICKNESS, [DERIVED] = @DERIVED, [MATID] = @MATID WHERE (([EDGEID] = @Original_EDGEID) AND ((@IsNull_PARTNUM = 1 AND [PARTNUM] IS NULL) OR ([PARTNUM] = @Original_PARTNUM)) AND ((@IsNull_DESCR = 1 AND [DESCR] IS NULL) OR ([DESCR] = @Original_DESCR)) AND ((@IsNull_COLOR = 1 AND [COLOR] IS NULL) OR ([COLOR] = @Original_COLOR)) AND ((@IsNull_THICKNESS = 1 AND [THICKNESS] IS NULL) OR ([THICKNESS] = @Original_THICKNESS)) AND ([DERIVED] = @Original_DERIVED) AND ((@IsNull_MATID = 1 AND [MATID] IS NULL) OR ([MATID] = @Original_MATID)));
-SELECT EDGEID, PARTNUM, DESCR, COLOR, THICKNESS, DERIVED, MATID FROM CUT_EDGES WHERE (EDGEID = @EDGEID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [CUT_EDGES] SET [PARTNUM] = @PARTNUM, [DESCR] = @DESCR, [COLOR] = @COLOR, [THICKNESS] = @THICKNESS, [DERIVED] = @DERIVED, [MATID] = @MATID WHERE (([EDGEID] = @Original_EDGEID) AND ((@IsNull_PARTNUM = 1 AND [PARTNUM] IS NULL) OR ([PARTNUM] = @Original_PARTNUM)) AND ((@IsNull_DESCR = 1 AND [DESCR] IS NULL) OR ([DESCR] = @Original_DESCR)) AND ((@IsNull_COLOR = 1 AND [COLOR] IS NULL) OR ([COLOR] = @Original_COLOR)) AND ((@IsNull_THICKNESS = 1 AND [THICKNESS] IS NULL) OR ([THICKNESS] = @Original_THICKNESS)) AND ([DERIVED] = @Original_DERIVED) AND ((@IsNull_MATID = 1 AND [MATID] IS NULL) OR ([MATID] = @Original_MATID)));
+SELECT EDGEID, PARTNUM, DESCR, COLOR, THICKNESS, DERIVED, MATID FROM CUT_EDGES WHERE (EDGEID = @EDGEID) ORDER BY DESCR";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PARTNUM", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PARTNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DESCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DESCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -28545,13 +28545,13 @@ SELECT EDGEID, PARTNUM, DESCR, COLOR, THICKNESS, DERIVED, MATID FROM CUT_EDGES W
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT EDGEID, PARTNUM, DESCR, COLOR, THICKNESS, DERIVED, MATID FROM dbo.CUT_EDGE" +
-                "S";
+            this._commandCollection[0].CommandText = "SELECT      EDGEID, PARTNUM, DESCR, COLOR, THICKNESS, DERIVED, MATID\r\nFROM       " +
+                "   CUT_EDGES\r\nORDER BY DESCR";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        EDGEID, PARTNUM, DESCR, COLOR, THICKNESS, DERIVED, MATID\nFROM      " +
-                "      CUT_EDGES\nWHERE        (EDGEID = @edgeID)";
+            this._commandCollection[1].CommandText = "SELECT COLOR, DERIVED, DESCR, EDGEID, MATID, PARTNUM, THICKNESS FROM CUT_EDGES WH" +
+                "ERE (EDGEID = @edgeID)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@edgeID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "EDGEID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
@@ -31925,7 +31925,8 @@ SELECT TYPEID, TYPEDESC, TYPEINC, TYPEREP FROM CUT_PART_TYPES WHERE (TYPEID = @T
 FROM          CUT_CUTLIST_PARTS INNER JOIN
                         CUT_CUTLISTS ON CUT_CUTLIST_PARTS.CLID = CUT_CUTLISTS.CLID INNER JOIN
                         CUT_PARTS ON CUT_CUTLIST_PARTS.PARTID = CUT_PARTS.PARTID
-WHERE      (CUT_PARTS.PARTID = @partID)";
+WHERE      (CUT_PARTS.PARTID = @partID)
+ORDER BY CUTLIST, CUT_CUTLISTS.REV";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "PARTID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
