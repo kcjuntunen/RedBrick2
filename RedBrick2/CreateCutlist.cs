@@ -114,8 +114,7 @@ namespace RedBrick2 {
 			swRootComp = (Component2)swConf.GetRootComponent();
 
 			PartFileInfo = new FileInfo(m.GetPathName());
-			string _pnwe = Path.GetFileNameWithoutExtension(PartFileInfo.Name);
-			partLookup = _pnwe.Split(new string[] { @" " }, StringSplitOptions.RemoveEmptyEntries)[0];
+			partLookup = Redbrick.FileInfoToLookup(PartFileInfo);
 
 			//TraverseModelFeatures(m, 1);
 			_swApp.GetUserProgressBar(out pb);
@@ -295,6 +294,7 @@ namespace RedBrick2 {
 			Configuration c_ = m.GetActiveConfiguration();
 			s.Configuration = c_.Name;
 			s.GetProperties(m);
+			s.PartFileInfo = new FileInfo(m.GetPathName());
 			itm_cbx.Text = partLookup;
 			ref_cbx.Text = partLookup;
 			descr_cbx.Text = s[@"Description"].Value;
@@ -324,14 +324,17 @@ namespace RedBrick2 {
 			for (i = 0; i < vChildComp.Length; i++) {
 				swChildComp = (Component2)vChildComp[i];
 				//Debug.Print("comp" + sPadStr + "+" + swChildComp.Name2 + " <" + swChildComp.ReferencedConfiguration + ">");
+				FileInfo fi_;
 				string name = swChildComp.Name2.Substring(0, swChildComp.Name2.LastIndexOf('-'));
 				if (name.Contains("/")) {
 					name = name.Substring(name.LastIndexOf('/') + 1);
 				}
-				pb.UpdateTitle(name);
 
 				ModelDoc2 md = (swChildComp.GetModelDoc2() as ModelDoc2);
 				if (md != null && md.GetType() == (int)swDocumentTypes_e.swDocPART) {
+					fi_ = new FileInfo(md.GetPathName());
+					name = Redbrick.FileInfoToLookup(fi_);
+					pb.UpdateTitle(name);
 					SwProperties s = new SwProperties(_swApp, md);
 					s.Configuration = _config.Name;
 					Configuration c_ = md.GetActiveConfiguration();
@@ -339,6 +342,7 @@ namespace RedBrick2 {
 					s.GetProperties(md);
 					if (!_dict.ContainsKey(name)) {
 						_dict.Add(name, 1);
+						s.PartFileInfo = new FileInfo(md.GetPathName());
 						_partlist.Add(name, s);
 					} else {
 						_dict[name] = _dict[name] + 1;
