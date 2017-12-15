@@ -47,15 +47,27 @@ namespace RedBrick2 {
 		/// </summary>
 		public override object Data {
 			get {
-				double test_ = 0.0F;
-				if (double.TryParse(ResolvedValue, out test_)) {
-					_data = test_;
+				if (_data == 0) {
+					double test_ = 0.0F;
+					if (double.TryParse(ResolvedValue, out test_)) {
+						_data = test_;
+					}
 				}
 				return _data;
 			}
 			set {
-				_data = double.Parse(value.ToString());
-				Value = value.ToString();
+				if (value is double) {
+					_data = Convert.ToDouble(value);
+				}
+
+				double test_ = 0.0F;
+				if (double.TryParse(value.ToString(), out test_)) {
+					_data = test_;
+					Value = value.ToString();
+				} else {
+					_data = 0.0F;
+					Value = "0";
+				}
 			}
 		}
 	}
