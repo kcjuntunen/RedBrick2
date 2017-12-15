@@ -165,15 +165,17 @@ namespace RedBrick2 {
 		}
 
 		private void FigureOutStatus() {
-			ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter cc =
-				new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
-			ENGINEERINGDataSet.CUT_CUTLISTSDataTable dt =
-				cc.GetDataByName(partLookup, RevFromDrw.ToString());
-			if (dt.Rows.Count > 0) {
-				status_cbx.SelectedValue = dt[0].STATEID;
-				clid = dt[0].CLID;
-			} else {
-				status_cbx.SelectedValue = -1;
+			if (partLookup != null && partLookup.Length > 0) {
+				ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter cc =
+					new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
+				ENGINEERINGDataSet.CUT_CUTLISTSDataTable dt =
+					cc.GetDataByName(partLookup, RevFromDrw.ToString());
+				if (dt.Rows.Count > 0) {
+					status_cbx.SelectedValue = dt[0].STATEID;
+					clid = dt[0].CLID;
+				} else {
+					status_cbx.SelectedValue = -1;
+				}
 			}
 		}
 

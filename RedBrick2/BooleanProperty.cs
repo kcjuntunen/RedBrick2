@@ -43,8 +43,10 @@ namespace RedBrick2 {
 		/// <returns>Returns a <see cref="RedBrick2.SwProperty"/> object.</returns>
 		public override SwProperty Get() {
 			InnerGet();
-			bool res = Value.ToUpper().Contains(@"Y");
-			Data = res;
+			if (Value != null && Value.Length > 0) {
+				bool res = Value.ToUpper().Contains(@"Y");
+				_data = res;
+			}
 			return this;
 		}
 

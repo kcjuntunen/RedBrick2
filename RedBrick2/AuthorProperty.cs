@@ -33,22 +33,20 @@ namespace RedBrick2 {
 		/// <returns>This.</returns>
 		public override SwProperty Get() {
 			InnerGet();
-
-			ENGINEERINGDataSet.GEN_USERSDataTable dt = null;
-			ENGINEERINGDataSet.GEN_USERSRow row = null;
-			dt = gu.GetDataByInitial(Value);
-
-			if (dt.Rows.Count > 0) {
-				row = gu.GetDataByInitial(Value)[0];
+			if (Value.Length > 0) {
+				ENGINEERINGDataSet.GEN_USERSDataTable dt =
+					new ENGINEERINGDataSet.GEN_USERSDataTable();
+				ENGINEERINGDataSet.GEN_USERSRow row = null;
+				string initial_lookup_ = string.Format(@"{0}%", Value.Substring(0, 2));
+				gu.FillByInitialAndDepartment(dt, initial_lookup_, Properties.Settings.Default.UserDept);
+				if (dt.Rows.Count > 0) {
+					row = dt[0];
+					_data = row.UID;
+					FullName = row.Fullname;
+				} else {
+					FullName = Value;
+				}
 			}
-
-			if (row != null) {
-				_data = row.UID;
-				FullName = row.Fullname;
-			} else {
-				FullName = Value;
-			}
-
 			return this;
 		}
 

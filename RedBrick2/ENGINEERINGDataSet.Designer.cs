@@ -24071,29 +24071,29 @@ SELECT OPID, OPNAME, OPDESCR, OPTYPE, OPMETHOD, OPSETUP, OPRUN, OPPROG FROM CUT_
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        OPID, OPNAME, OPDESCR, OPTYPE, OPMETHOD, OPSETUP, OPRUN, OPPROG\nFRO" +
-                "M            CUT_OPS\nWHERE       (OPID = @opID) AND (OPTYPE = @opType)";
+            this._commandCollection[1].CommandText = "SELECT        OPID, OPNAME, OPDESCR, OPTYPE, OPMETHOD, OPSETUP, OPRUN, OPPROG\r\nFR" +
+                "OM            CUT_OPS\r\nWHERE       (OPID = @opID) AND (OPTYPE = @opType)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@opID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "OPID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@opType", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "OPTYPE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT        OPID, OPNAME, OPDESCR, OPTYPE, OPMETHOD, OPSETUP, OPRUN, OPPROG\nFRO" +
-                "M            CUT_OPS\nWHERE        (OPNAME = @opName) AND (OPTYPE = @opType)";
+            this._commandCollection[2].CommandText = "SELECT        OPID, OPNAME, OPDESCR, OPTYPE, OPMETHOD, OPSETUP, OPRUN, OPPROG\r\nFR" +
+                "OM            CUT_OPS\r\nWHERE        (OPNAME = @opName) AND (OPTYPE = @opType)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@opName", global::System.Data.SqlDbType.NVarChar, 3, global::System.Data.ParameterDirection.Input, 0, 0, "OPNAME", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@opType", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "OPTYPE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT        CUT_OPS.OPID\nFROM            CUT_OPS INNER JOIN\n                   " +
-                "      CUT_OPS_TYPES ON CUT_OPS.OPID = CUT_OPS_TYPES.OTOP\nWHERE        (CUT_OPS.O" +
-                "PNAME = @opname) AND (CUT_OPS_TYPES.OTTYPE = @ottype)";
+            this._commandCollection[3].CommandText = "SELECT        CUT_OPS.OPID\r\nFROM            CUT_OPS INNER JOIN\r\n                 " +
+                "        CUT_OPS_TYPES ON CUT_OPS.OPID = CUT_OPS_TYPES.OTOP\r\nWHERE        (CUT_OP" +
+                "S.OPNAME = @opname) AND (CUT_OPS_TYPES.OTTYPE = @ottype)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@opname", global::System.Data.SqlDbType.NVarChar, 3, global::System.Data.ParameterDirection.Input, 0, 0, "OPNAME", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ottype", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "OTTYPE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT        OPNAME\nFROM            CUT_OPS\nWHERE        (OPID = @opid)";
+            this._commandCollection[4].CommandText = "SELECT        OPNAME\r\nFROM            CUT_OPS\r\nWHERE        (OPID = @opid)";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@opid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "OPID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -24729,7 +24729,7 @@ SELECT OPID, OPNAME, OPDESCR, OPTYPE, OPMETHOD, OPSETUP, OPRUN, OPPROG FROM CUT_
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[CUT_OPS_METHODS] ([METHID], [METHNAME]) VALUES (@METHID, @METH" +
-                "NAME);\nSELECT METHID, METHNAME FROM CUT_OPS_METHODS WHERE (METHID = @METHID)";
+                "NAME);\r\nSELECT METHID, METHNAME FROM CUT_OPS_METHODS WHERE (METHID = @METHID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@METHID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "METHID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@METHNAME", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "METHNAME", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -25059,8 +25059,8 @@ SELECT METHID, METHNAME FROM CUT_OPS_METHODS WHERE (METHID = @METHID)";
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[CUT_OPS_TYPES] ([OTOP], [OTTYPE], [OTXREF]) VALUES (@OTOP, @OT" +
-                "TYPE, @OTXREF);\nSELECT OTID, OTOP, OTTYPE, OTXREF FROM CUT_OPS_TYPES WHERE (OTID" +
-                " = SCOPE_IDENTITY())";
+                "TYPE, @OTXREF);\r\nSELECT OTID, OTOP, OTTYPE, OTXREF FROM CUT_OPS_TYPES WHERE (OTI" +
+                "D = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OTOP", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OTOP", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OTTYPE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OTTYPE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -25458,9 +25458,9 @@ SELECT OTID, OTOP, OTTYPE, OTXREF FROM CUT_OPS_TYPES WHERE (OTID = @OTID)";
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[CUT_PART_OPS] ([POPPART], [POPORDER], [POPOP], [POPSETUP], [PO" +
-                "PRUN]) VALUES (@POPPART, @POPORDER, @POPOP, @POPSETUP, @POPRUN);\nSELECT POPID, P" +
-                "OPPART, POPORDER, POPOP, POPSETUP, POPRUN FROM CUT_PART_OPS WHERE (POPID = SCOPE" +
-                "_IDENTITY())";
+                "PRUN]) VALUES (@POPPART, @POPORDER, @POPOP, @POPSETUP, @POPRUN);\r\nSELECT POPID, " +
+                "POPPART, POPORDER, POPOP, POPSETUP, POPRUN FROM CUT_PART_OPS WHERE (POPID = SCOP" +
+                "E_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@POPPART", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "POPPART", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@POPORDER", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "POPORDER", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -26260,10 +26260,10 @@ SELECT PARTID, PARTNUM, DESCR, FIN_L, FIN_W, THICKNESS, CNC1, CNC2, BLANKQTY, OV
                 "] = @Original_OP5ID)) AND ((@IsNull_COMMENT = 1 AND [COMMENT] IS NULL) OR ([COMM" +
                 "ENT] = @Original_COMMENT)) AND ([UPDATE_CNC] = @Original_UPDATE_CNC) AND ((@IsNu" +
                 "ll_TYPE = 1 AND [TYPE] IS NULL) OR ([TYPE] = @Original_TYPE)) AND ((@IsNull_HASH" +
-                " = 1 AND [HASH] IS NULL) OR ([HASH] = @Original_HASH)));\nSELECT PARTID, PARTNUM," +
-                " DESCR, FIN_L, FIN_W, THICKNESS, CNC1, CNC2, BLANKQTY, OVER_L, OVER_W, OP1ID, OP" +
-                "2ID, OP3ID, OP4ID, OP5ID, COMMENT, UPDATE_CNC, TYPE, HASH FROM CUT_PARTS WHERE (" +
-                "PARTID = @PARTID)";
+                " = 1 AND [HASH] IS NULL) OR ([HASH] = @Original_HASH)));\r\nSELECT PARTID, PARTNUM" +
+                ", DESCR, FIN_L, FIN_W, THICKNESS, CNC1, CNC2, BLANKQTY, OVER_L, OVER_W, OP1ID, O" +
+                "P2ID, OP3ID, OP4ID, OP5ID, COMMENT, UPDATE_CNC, TYPE, HASH FROM CUT_PARTS WHERE " +
+                "(PARTID = @PARTID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PARTNUM", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PARTNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DESCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DESCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -26340,23 +26340,23 @@ SELECT PARTID, PARTNUM, DESCR, FIN_L, FIN_W, THICKNESS, CNC1, CNC2, BLANKQTY, OV
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
             this._commandCollection[1].CommandText = "SELECT        PARTID, PARTNUM, DESCR, FIN_L, FIN_W, THICKNESS, CNC1, CNC2, BLANKQ" +
-                "TY, OVER_L, OVER_W, OP1ID, OP2ID, OP3ID, OP4ID, OP5ID, COMMENT, \n               " +
-                "          UPDATE_CNC, TYPE, HASH\nFROM            CUT_PARTS\nWHERE        (PARTID " +
-                "= @partid)";
+                "TY, OVER_L, OVER_W, OP1ID, OP2ID, OP3ID, OP4ID, OP5ID, COMMENT, \r\n              " +
+                "           UPDATE_CNC, TYPE, HASH\r\nFROM            CUT_PARTS\r\nWHERE        (PART" +
+                "ID = @partid)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "PARTID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT        PARTID, PARTNUM, DESCR, FIN_L, FIN_W, THICKNESS, CNC1, CNC2, BLANKQ" +
-                "TY, OVER_L, OVER_W, OP1ID, OP2ID, OP3ID, OP4ID, OP5ID, COMMENT, \n               " +
-                "          UPDATE_CNC, TYPE, HASH\nFROM            CUT_PARTS\nWHERE        (PARTNUM" +
-                " = @partnum)";
+            this._commandCollection[2].CommandText = @"SELECT        PARTID, PARTNUM, DESCR, FIN_L, FIN_W, THICKNESS, CNC1, CNC2, BLANKQTY, OVER_L, OVER_W, OP1ID, OP2ID, OP3ID, OP4ID, OP5ID, COMMENT, 
+                         UPDATE_CNC, TYPE, HASH
+FROM            CUT_PARTS
+WHERE        (PARTNUM = @partnum)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partnum", global::System.Data.SqlDbType.NVarChar, 25, global::System.Data.ParameterDirection.Input, 0, 0, "PARTNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT        PARTID\nFROM            CUT_PARTS\nGROUP BY PARTID, PARTNUM\nHAVING   " +
-                "     (PARTNUM = @partnum)";
+            this._commandCollection[3].CommandText = "SELECT        PARTID\r\nFROM            CUT_PARTS\r\nGROUP BY PARTID, PARTNUM\r\nHAVING" +
+                "        (PARTNUM = @partnum)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partnum", global::System.Data.SqlDbType.NVarChar, 25, global::System.Data.ParameterDirection.Input, 0, 0, "PARTNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -27976,8 +27976,8 @@ SELECT MATID, DESCR, COLOR, THICKNESS, GRAIN, TYPE, OLD_DESCR FROM CUT_MATERIALS
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@matID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "MATID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT        MATID\nFROM            CUT_MATERIALS\nWHERE        (OLD_DESCR = @desc" +
-                "r)";
+            this._commandCollection[3].CommandText = "SELECT        MATID\r\nFROM            CUT_MATERIALS\r\nWHERE        (OLD_DESCR = @de" +
+                "scr)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@descr", global::System.Data.SqlDbType.NVarChar, 45, global::System.Data.ParameterDirection.Input, 0, 0, "OLD_DESCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
@@ -28556,14 +28556,14 @@ SELECT EDGEID, PARTNUM, DESCR, COLOR, THICKNESS, DERIVED, MATID FROM CUT_EDGES W
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@edgeID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "EDGEID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT        DESCR\nFROM            CUT_EDGES\nWHERE        (EDGEID = @edgeid)";
+            this._commandCollection[2].CommandText = "SELECT        DESCR\r\nFROM            CUT_EDGES\r\nWHERE        (EDGEID = @edgeid)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@edgeid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "EDGEID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT        CUT_EDGES.DESCR\nFROM            CUT_EDGES INNER JOIN\n              " +
-                "           CUT_EDGES_XREF ON CUT_EDGES.EDGEID = CUT_EDGES_XREF.EDGEID\nWHERE     " +
-                "   (CUT_EDGES_XREF.DESCR = @oldDescr)";
+            this._commandCollection[3].CommandText = "SELECT        CUT_EDGES.DESCR\r\nFROM            CUT_EDGES INNER JOIN\r\n            " +
+                "             CUT_EDGES_XREF ON CUT_EDGES.EDGEID = CUT_EDGES_XREF.EDGEID\r\nWHERE  " +
+                "      (CUT_EDGES_XREF.DESCR = @oldDescr)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@oldDescr", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "DESCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -29069,8 +29069,8 @@ SELECT EDGEID, PARTNUM, DESCR, COLOR, THICKNESS, DERIVED, MATID FROM CUT_EDGES W
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[GEN_ODOMETER] ([USERID], [FUNCID], [ODO]) VALUES (@USERID, @FU" +
-                "NCID, @ODO);\nSELECT ID, USERID, FUNCID, ODO FROM GEN_ODOMETER WHERE (ID = SCOPE_" +
-                "IDENTITY())";
+                "NCID, @ODO);\r\nSELECT ID, USERID, FUNCID, ODO FROM GEN_ODOMETER WHERE (ID = SCOPE" +
+                "_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@USERID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "USERID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FUNCID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FUNCID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -29110,20 +29110,20 @@ SELECT ID, USERID, FUNCID, ODO FROM GEN_ODOMETER WHERE (ID = @ID)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        STDEV(ODO) AS Expr1\nFROM            GEN_ODOMETER\nWHERE        (FUNC" +
-                "ID = @funcid)";
+            this._commandCollection[1].CommandText = "SELECT        STDEV(ODO) AS Expr1\r\nFROM            GEN_ODOMETER\r\nWHERE        (FU" +
+                "NCID = @funcid)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@funcid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "FUNCID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT        SUM(ODO) AS SumOfODO\nFROM            GEN_ODOMETER\nGROUP BY FUNCID\nH" +
-                "AVING        (FUNCID = @funcid)";
+            this._commandCollection[2].CommandText = "SELECT        SUM(ODO) AS SumOfODO\r\nFROM            GEN_ODOMETER\r\nGROUP BY FUNCID" +
+                "\r\nHAVING        (FUNCID = @funcid)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@funcid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "FUNCID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT        ODO\nFROM            GEN_ODOMETER\nWHERE        (FUNCID = @funcid) AN" +
-                "D (USERID = @userid)";
+            this._commandCollection[3].CommandText = "SELECT        ODO\r\nFROM            GEN_ODOMETER\r\nWHERE        (FUNCID = @funcid) " +
+                "AND (USERID = @userid)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@funcid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "FUNCID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@userid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "USERID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -29764,13 +29764,13 @@ SELECT UID, USERNAME, ACTIVE, FIRST + ' ' + LAST + ' ' + ISNULL(SUFFIX, '') AS F
                 "ER] IS NULL) OR ([ECR_FWD_USER] = @Original_ECR_FWD_USER)) AND ((@IsNull_OPT_FOL" +
                 "DER = 1 AND [OPT_FOLDER] IS NULL) OR ([OPT_FOLDER] = @Original_OPT_FOLDER)) AND " +
                 "((@IsNull_REQFILT = 1 AND [REQFILT] IS NULL) OR ([REQFILT] = @Original_REQFILT))" +
-                " AND ((@IsNull_GMR = 1 AND [GMR] IS NULL) OR ([GMR] = @Original_GMR)));\nSELECT U" +
-                "ID, USERNAME, ACTIVE, FIRST + \' \' + LAST + \' \' + ISNULL(SUFFIX, \'\') AS Fullname," +
-                " FIRST, LAST, SUFFIX, INITIAL, DEPT, CUST1, CUST2, CUST3, PROCESS, PROJECT, ACCE" +
-                "SS, LASTWC, EMAIL1, EMAIL2, MOBILE, PROVIDER, NOTF_OWN_M, NOTF_OWN_E, NOTF_SIGN_" +
-                "M, NOTF_SIGN_E, NOTF_CHAT_M, NOTF_CHAT_E, NOTF_FAV_M, NOTF_FAV_E, ECR_FWD, ECR_F" +
-                "WD_USER, OPT_FOLDER, REQFILT, GMR FROM GEN_USERS WHERE (UID = @UID) ORDER BY Ful" +
-                "lname";
+                " AND ((@IsNull_GMR = 1 AND [GMR] IS NULL) OR ([GMR] = @Original_GMR)));\r\nSELECT " +
+                "UID, USERNAME, ACTIVE, FIRST + \' \' + LAST + \' \' + ISNULL(SUFFIX, \'\') AS Fullname" +
+                ", FIRST, LAST, SUFFIX, INITIAL, DEPT, CUST1, CUST2, CUST3, PROCESS, PROJECT, ACC" +
+                "ESS, LASTWC, EMAIL1, EMAIL2, MOBILE, PROVIDER, NOTF_OWN_M, NOTF_OWN_E, NOTF_SIGN" +
+                "_M, NOTF_SIGN_E, NOTF_CHAT_M, NOTF_CHAT_E, NOTF_FAV_M, NOTF_FAV_E, ECR_FWD, ECR_" +
+                "FWD_USER, OPT_FOLDER, REQFILT, GMR FROM GEN_USERS WHERE (UID = @UID) ORDER BY Fu" +
+                "llname";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@USERNAME", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "USERNAME", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ACTIVE", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ACTIVE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -29870,7 +29870,7 @@ SELECT UID, USERNAME, ACTIVE, FIRST + ' ' + LAST + ' ' + ISNULL(SUFFIX, '') AS F
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[5];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[6];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT        UID, USERNAME, ACTIVE, FIRST + ' ' + LAST + ' ' + ISNULL(SUFFIX, '') AS Fullname, FIRST, LAST, SUFFIX, INITIAL, DEPT, CUST1, CUST2, CUST3, PROCESS, 
@@ -29891,25 +29891,37 @@ ORDER BY Fullname";
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@initial", global::System.Data.SqlDbType.NVarChar, 3, global::System.Data.ParameterDirection.Input, 0, 0, "INITIAL", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @"SELECT        UID, USERNAME, ACTIVE, FIRST + ' ' + LAST + ' ' + ISNULL(SUFFIX, '') AS Fullname, FIRST, LAST, SUFFIX, INITIAL, DEPT, CUST1, CUST2, CUST3, PROCESS, 
+            this._commandCollection[2].CommandText = @"SELECT      UID, USERNAME, ACTIVE, FIRST + ' ' + LAST + ' ' + ISNULL(SUFFIX, '') AS Fullname, FIRST, LAST, SUFFIX, INITIAL, DEPT, CUST1, CUST2, CUST3, 
+                        PROCESS, PROJECT, ACCESS, LASTWC, EMAIL1, EMAIL2, MOBILE, PROVIDER, NOTF_OWN_M, NOTF_OWN_E, NOTF_SIGN_M, NOTF_SIGN_E, 
+                        NOTF_CHAT_M, NOTF_CHAT_E, NOTF_FAV_M, NOTF_FAV_E, ECR_FWD, ECR_FWD_USER, OPT_FOLDER, REQFILT, GMR
+FROM          GEN_USERS
+WHERE      (INITIAL LIKE @initial) AND (DEPT = @dept)
+ORDER BY Fullname";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@initial", global::System.Data.SqlDbType.NVarChar, 3, global::System.Data.ParameterDirection.Input, 0, 0, "INITIAL", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dept", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "DEPT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = @"SELECT        UID, USERNAME, ACTIVE, FIRST + ' ' + LAST + ' ' + ISNULL(SUFFIX, '') AS Fullname, FIRST, LAST, SUFFIX, INITIAL, DEPT, CUST1, CUST2, CUST3, PROCESS, 
                          PROJECT, ACCESS, LASTWC, EMAIL1, EMAIL2, MOBILE, PROVIDER, NOTF_OWN_M, NOTF_OWN_E, NOTF_SIGN_M, NOTF_SIGN_E, NOTF_CHAT_M, NOTF_CHAT_E, 
                          NOTF_FAV_M, NOTF_FAV_E, ECR_FWD, ECR_FWD_USER, OPT_FOLDER, REQFILT, GMR
 FROM            GEN_USERS
 WHERE        (UID = @uid)
 ORDER BY Fullname";
-            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@uid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "UID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT        FIRST + \' \' + LAST AS FULLNAME\nFROM            GEN_USERS\nWHERE     " +
-                "   (USERNAME = @username)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@username", global::System.Data.SqlDbType.NVarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "USERNAME", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@uid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "UID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT        UID\nFROM            GEN_USERS\nWHERE        (USERNAME = @username)";
+            this._commandCollection[4].CommandText = "SELECT        FIRST + \' \' + LAST AS FULLNAME\r\nFROM            GEN_USERS\r\nWHERE   " +
+                "     (USERNAME = @username)";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@username", global::System.Data.SqlDbType.NVarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "USERNAME", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[5].Connection = this.Connection;
+            this._commandCollection[5].CommandText = "SELECT        UID\r\nFROM            GEN_USERS\r\nWHERE        (USERNAME = @username)" +
+                "";
+            this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@username", global::System.Data.SqlDbType.NVarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "USERNAME", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -29976,8 +29988,56 @@ ORDER BY Fullname";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByUID(ENGINEERINGDataSet.GEN_USERSDataTable dataTable, int uid) {
+        public virtual int FillByInitialAndDepartment(ENGINEERINGDataSet.GEN_USERSDataTable dataTable, string initial, global::System.Nullable<int> dept) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((initial == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(initial));
+            }
+            if ((dept.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(dept.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ENGINEERINGDataSet.GEN_USERSDataTable GetDataByInitialAndDepartment(string initial, global::System.Nullable<int> dept) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((initial == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(initial));
+            }
+            if ((dept.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(dept.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            ENGINEERINGDataSet.GEN_USERSDataTable dataTable = new ENGINEERINGDataSet.GEN_USERSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByUID(ENGINEERINGDataSet.GEN_USERSDataTable dataTable, int uid) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(uid));
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -29991,7 +30051,7 @@ ORDER BY Fullname";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual ENGINEERINGDataSet.GEN_USERSDataTable GetDataByUID(int uid) {
-            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand = this.CommandCollection[3];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(uid));
             ENGINEERINGDataSet.GEN_USERSDataTable dataTable = new ENGINEERINGDataSet.GEN_USERSDataTable();
             this.Adapter.Fill(dataTable);
@@ -30947,7 +31007,7 @@ ORDER BY Fullname";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual string GetCurrentUserFullname(string username) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
             if ((username == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -30981,7 +31041,7 @@ ORDER BY Fullname";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual global::System.Nullable<int> GetUID(string username) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[5];
             if ((username == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -31157,12 +31217,12 @@ ORDER BY Fullname";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        CUT_EDGES_XREF.*\nFROM            CUT_EDGES_XREF";
+            this._commandCollection[0].CommandText = "SELECT        CUT_EDGES_XREF.*\r\nFROM            CUT_EDGES_XREF";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        EDGEID\nFROM            CUT_EDGES_XREF\nWHERE        (DESCR = @descr)" +
-                "";
+            this._commandCollection[1].CommandText = "SELECT        EDGEID\r\nFROM            CUT_EDGES_XREF\r\nWHERE        (DESCR = @desc" +
+                "r)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@descr", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "DESCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -31422,8 +31482,8 @@ ORDER BY Fullname";
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [CUT_PART_TYPES] ([TYPEDESC], [TYPEINC], [TYPEREP]) VALUES (@TYPEDESC" +
-                ", @TYPEINC, @TYPEREP);\nSELECT TYPEID, TYPEDESC, TYPEINC, TYPEREP FROM CUT_PART_T" +
-                "YPES WHERE (TYPEID = SCOPE_IDENTITY())";
+                ", @TYPEINC, @TYPEREP);\r\nSELECT TYPEID, TYPEDESC, TYPEINC, TYPEREP FROM CUT_PART_" +
+                "TYPES WHERE (TYPEID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TYPEDESC", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TYPEDESC", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TYPEINC", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TYPEINC", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -31458,18 +31518,18 @@ SELECT TYPEID, TYPEDESC, TYPEINC, TYPEREP FROM CUT_PART_TYPES WHERE (TYPEID = @T
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        CUT_PART_TYPES.*\nFROM            CUT_PART_TYPES";
+            this._commandCollection[0].CommandText = "SELECT        CUT_PART_TYPES.*\r\nFROM            CUT_PART_TYPES";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        TYPEDESC\nFROM            CUT_PART_TYPES\nWHERE        (TYPEID = @typ" +
-                "eID)";
+            this._commandCollection[1].CommandText = "SELECT        TYPEDESC\r\nFROM            CUT_PART_TYPES\r\nWHERE        (TYPEID = @t" +
+                "ypeID)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@typeID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "TYPEID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT        TYPEID\nFROM            CUT_PART_TYPES\nWHERE        (TYPEDESC = @des" +
-                "cr)";
+            this._commandCollection[2].CommandText = "SELECT        TYPEID\r\nFROM            CUT_PART_TYPES\r\nWHERE        (TYPEDESC = @d" +
+                "escr)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@descr", global::System.Data.SqlDbType.NVarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "TYPEDESC", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
@@ -32526,8 +32586,8 @@ WHERE      (CUT_OPS.OPID = @opid) AND (CUT_PART_TYPES.TYPEID = @typeid);
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO CUT_PART_OPS\n                        (POPPART, POPORDER, POPOP, POPSE" +
-                "TUP, POPRUN)\nVALUES      (@poppart,@poporder,@popop,@popsetup,@poprun)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO CUT_PART_OPS\r\n                        (POPPART, POPORDER, POPOP, POPS" +
+                "ETUP, POPRUN)\r\nVALUES      (@poppart,@poporder,@popop,@popsetup,@poprun)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@poppart", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "POPPART", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@poporder", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "POPORDER", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -32536,9 +32596,9 @@ WHERE      (CUT_OPS.OPID = @opid) AND (CUT_PART_TYPES.TYPEID = @typeid);
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@poprun", global::System.Data.SqlDbType.Float, 8, global::System.Data.ParameterDirection.Input, 0, 0, "POPRUN", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE      CUT_PART_OPS\nSET               POPPART = @poppart, POPORDER = @popord" +
-                "er, POPOP = @popop, POPSETUP = @popsetup, POPRUN = @poprun\nWHERE      (POPID = @" +
-                "popid)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE      CUT_PART_OPS\r\nSET               POPPART = @poppart, POPORDER = @popor" +
+                "der, POPOP = @popop, POPSETUP = @popsetup, POPRUN = @poprun\r\nWHERE      (POPID =" +
+                " @popid)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@poppart", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "POPPART", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@poporder", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "POPORDER", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -32572,7 +32632,7 @@ FROM          CUT_OPS INNER JOIN
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "DELETE FROM CUT_PART_OPS\nWHERE      (POPID = @popid)";
+            this._commandCollection[1].CommandText = "DELETE FROM CUT_PART_OPS\r\nWHERE      (POPID = @popid)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@popid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "POPID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
@@ -32618,8 +32678,8 @@ ORDER BY CUT_PART_OPS.POPORDER";
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "POPPART", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = "SELECT      MAX(POPORDER) + 1 AS NEXT_IN_ORDER\nFROM          CUT_PART_OPS\nWHERE  " +
-                "    (POPPART = @partID)";
+            this._commandCollection[5].CommandText = "SELECT      MAX(POPORDER) + 1 AS NEXT_IN_ORDER\r\nFROM          CUT_PART_OPS\r\nWHERE" +
+                "      (POPPART = @partID)";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "POPPART", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -33648,8 +33708,8 @@ ORDER BY CUSTOMER";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_STATENUMBER", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "STATENUMBER", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [CUT_STATES] ([STATE], [STATENUMBER]) VALUES (@STATE, @STATENUMBER);\n" +
-                "SELECT ID, STATE, STATENUMBER FROM CUT_STATES WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [CUT_STATES] ([STATE], [STATENUMBER]) VALUES (@STATE, @STATENUMBER);\r" +
+                "\nSELECT ID, STATE, STATENUMBER FROM CUT_STATES WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@STATE", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "STATE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@STATENUMBER", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "STATENUMBER", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -33681,7 +33741,7 @@ SELECT ID, STATE, STATENUMBER FROM CUT_STATES WHERE (ID = @ID)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        CUT_STATES.*\nFROM            CUT_STATES";
+            this._commandCollection[0].CommandText = "SELECT        CUT_STATES.*\r\nFROM            CUT_STATES";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -34066,7 +34126,7 @@ SELECT CLID, PARTNUM, REV, DRAWING, CUSTID, CDATE, DESCR, LENGTH, WIDTH, HEIGHT,
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[5];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        CUT_CUTLISTS.*\nFROM            CUT_CUTLISTS ORDER BY PARTNUM";
+            this._commandCollection[0].CommandText = "SELECT        CUT_CUTLISTS.*\r\nFROM            CUT_CUTLISTS ORDER BY PARTNUM";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -34671,9 +34731,9 @@ SELECT CLID, PARTNUM, REV, DRAWING, CUSTID, CDATE, DESCR, LENGTH, WIDTH, HEIGHT,
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DMATDESCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DMATDESCR", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [CUT_DRAWING_MATERIALS] ([DMATDESCR]) VALUES (@DMATDESCR);\nSELECT DMA" +
-                "TID, DMATDESCR FROM CUT_DRAWING_MATERIALS WHERE (DMATID = SCOPE_IDENTITY()) ORDE" +
-                "R BY DMATDESCR";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [CUT_DRAWING_MATERIALS] ([DMATDESCR]) VALUES (@DMATDESCR);\r\nSELECT DM" +
+                "ATID, DMATDESCR FROM CUT_DRAWING_MATERIALS WHERE (DMATID = SCOPE_IDENTITY()) ORD" +
+                "ER BY DMATDESCR";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DMATDESCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DMATDESCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
@@ -34701,8 +34761,8 @@ SELECT DMATID, DMATDESCR FROM CUT_DRAWING_MATERIALS WHERE (DMATID = @DMATID) ORD
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        DMATID, DMATDESCR\nFROM            CUT_DRAWING_MATERIALS\nORDER BY DM" +
-                "ATDESCR";
+            this._commandCollection[0].CommandText = "SELECT        DMATID, DMATDESCR\r\nFROM            CUT_DRAWING_MATERIALS\r\nORDER BY " +
+                "DMATDESCR";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -35073,18 +35133,18 @@ SELECT LGCYID, ECRNum, DateRequested, DateStarted, DateCompleted, AffectedParts,
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT      ECR_LEGACY.*\nFROM          ECR_LEGACY";
+            this._commandCollection[0].CommandText = "SELECT      ECR_LEGACY.*\r\nFROM          ECR_LEGACY";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
             this._commandCollection[1].CommandText = "SELECT      LGCYID, ECRNum, DateRequested, DateStarted, DateCompleted, AffectedPa" +
-                "rts, Change, Engineer, Holder\nFROM          ECR_LEGACY\nWHERE      (LGCYID = @eco" +
-                ")";
+                "rts, Change, Engineer, Holder\r\nFROM          ECR_LEGACY\r\nWHERE      (LGCYID = @e" +
+                "co)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@eco", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "LGCYID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT      MAX(ECRNum) AS LastNum\nFROM          ECR_LEGACY";
+            this._commandCollection[2].CommandText = "SELECT      MAX(ECRNum) AS LastNum\r\nFROM          ECR_LEGACY";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -35957,7 +36017,7 @@ SELECT DateRequested, DateStarted, DateCompleted, AffectedParts, Change, Enginee
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@eco", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "ECRNum", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT      MAX(ECRNum) AS LastNum\nFROM          ECR_LEGACY";
+            this._commandCollection[2].CommandText = "SELECT      MAX(ECRNum) AS LastNum\r\nFROM          ECR_LEGACY";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -36720,12 +36780,12 @@ SELECT PID, PROJECT, CUSTID, DESCRIPTION, [DATE ADD], [HAS FIXTURES] FROM SCH_PR
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT      SCH_PROJECTS.*\nFROM          SCH_PROJECTS";
+            this._commandCollection[0].CommandText = "SELECT      SCH_PROJECTS.*\r\nFROM          SCH_PROJECTS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT      PID, PROJECT, CUSTID, DESCRIPTION, [DATE ADD], [HAS FIXTURES]\nFROM   " +
-                "       SCH_PROJECTS\nWHERE      (PROJECT = @project)";
+            this._commandCollection[1].CommandText = "SELECT      PID, PROJECT, CUSTID, DESCRIPTION, [DATE ADD], [HAS FIXTURES]\r\nFROM  " +
+                "        SCH_PROJECTS\r\nWHERE      (PROJECT = @project)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@project", global::System.Data.SqlDbType.NVarChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, "PROJECT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -37215,7 +37275,7 @@ SELECT DEPT_ID, DEPT_NAME, DEPT_PRIOR, DEPT_LEAD, DEPT_HOURS, DEPT_STAFF, DEPT_A
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT      DEPT_ID, DEPT_NAME, DEPT_PRIOR, DEPT_LEAD, DEPT_HOURS, DEPT_STAFF, DE" +
-                "PT_ATTR, DEPT_ECR\nFROM          GEN_DEPTS";
+                "PT_ATTR, DEPT_ECR\r\nFROM          GEN_DEPTS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -37773,26 +37833,27 @@ SELECT ITEM_ID, ECR_NUM, ITEMNUMBER, ITEMREV, TYPE, ITEM_NOTE, IM_CHK, IM_CHANGE
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[5];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT      ECR_ITEMS.*\nFROM          ECR_ITEMS";
+            this._commandCollection[0].CommandText = "SELECT      ECR_ITEMS.*\r\nFROM          ECR_ITEMS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
             this._commandCollection[1].CommandText = "SELECT      ITEM_ID, ECR_NUM, ITEMNUMBER, ITEMREV, TYPE, ITEM_NOTE, IM_CHK, IM_CH" +
-                "ANGE, RTG_CHK, RTG_CHANGE\nFROM          ECR_ITEMS\nWHERE      (ECR_NUM = @ecrno) " +
-                "AND (ITEMNUMBER = @partnum) AND (ITEMREV = @rev)";
+                "ANGE, RTG_CHK, RTG_CHANGE\r\nFROM          ECR_ITEMS\r\nWHERE      (ECR_NUM = @ecrno" +
+                ") AND (ITEMNUMBER = @partnum) AND (ITEMREV = @rev)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ecrno", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ECR_NUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partnum", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "ITEMNUMBER", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rev", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "ITEMREV", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT      STATUS\nFROM          ECR_MAIN\nWHERE      (ECR_NUM = @ecr_num)";
+            this._commandCollection[2].CommandText = "SELECT      STATUS\r\nFROM          ECR_MAIN\r\nWHERE      (ECR_NUM = @ecr_num)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ecr_num", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ECR_NUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "INSERT INTO ECR_ITEMS\n                        (ECR_NUM, ITEMNUMBER, ITEMREV, TYPE" +
-                ")\nOUTPUT     INSERTED.ITEM_ID\nVALUES      (@ecr_num,@itemnumber,@itemrev,@type)";
+            this._commandCollection[3].CommandText = "INSERT INTO ECR_ITEMS\r\n                        (ECR_NUM, ITEMNUMBER, ITEMREV, TYP" +
+                "E)\r\nOUTPUT     INSERTED.ITEM_ID\r\nVALUES      (@ecr_num,@itemnumber,@itemrev,@typ" +
+                "e)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ecr_num", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ECR_NUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itemnumber", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "ITEMNUMBER", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -37800,8 +37861,8 @@ SELECT ITEM_ID, ECR_NUM, ITEMNUMBER, ITEMREV, TYPE, ITEM_NOTE, IM_CHK, IM_CHANGE
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@type", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "TYPE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "UPDATE      ECR_MAIN\nSET               STATUS = 2\nWHERE      (ECR_NUM = @ecr_num)" +
-                " AND (STATUS = 1); ";
+            this._commandCollection[4].CommandText = "UPDATE      ECR_MAIN\r\nSET               STATUS = 2\r\nWHERE      (ECR_NUM = @ecr_nu" +
+                "m) AND (STATUS = 1); ";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ecr_num", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ECR_NUM", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
@@ -38609,19 +38670,19 @@ SELECT ITEM_ID, ECR_NUM, ITEMNUMBER, ITEMREV, TYPE, ITEM_NOTE, IM_CHK, IM_CHANGE
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT      *\nFROM          inmast";
+            this._commandCollection[0].CommandText = "SELECT      *\r\nFROM          inmast";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT      fprodcl\nFROM          inmast\nWHERE      (fpartno = @prtno) AND (frev " +
-                "= @prtrv)";
+            this._commandCollection[1].CommandText = "SELECT      fprodcl\r\nFROM          inmast\r\nWHERE      (fpartno = @prtno) AND (fre" +
+                "v = @prtrv)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@prtno", global::System.Data.SqlDbType.Char, 25, global::System.Data.ParameterDirection.Input, 0, 0, "fpartno", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@prtrv", global::System.Data.SqlDbType.Char, 3, global::System.Data.ParameterDirection.Input, 0, 0, "frev", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT      fcpurchase\nFROM          inmast\nWHERE      (fpartno = @prtno) AND (fr" +
-                "ev = @prtrv)";
+            this._commandCollection[2].CommandText = "SELECT      fcpurchase\r\nFROM          inmast\r\nWHERE      (fpartno = @prtno) AND (" +
+                "frev = @prtrv)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@prtno", global::System.Data.SqlDbType.Char, 25, global::System.Data.ParameterDirection.Input, 0, 0, "fpartno", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@prtrv", global::System.Data.SqlDbType.Char, 3, global::System.Data.ParameterDirection.Input, 0, 0, "frev", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -38922,14 +38983,14 @@ SELECT DRAW_ID, ITEM_ID, FILE_ID, DRWREV, ORIG_PATH, DRW_FILE FROM ECR_DRAWINGS 
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT      DRAW_ID, ITEM_ID, FILE_ID, DRWREV, ORIG_PATH, DRW_FILE\nFROM          " +
-                "ECR_DRAWINGS";
+            this._commandCollection[0].CommandText = "SELECT      DRAW_ID, ITEM_ID, FILE_ID, DRWREV, ORIG_PATH, DRW_FILE\r\nFROM         " +
+                " ECR_DRAWINGS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "INSERT INTO ECR_DRAWINGS\n                        (ITEM_ID, FILE_ID, DRWREV, DRW_F" +
-                "ILE, ORIG_PATH)\nVALUES      (@item_id,@file_id,@drwrev,@drw_file,@orig_path); SE" +
-                "LECT SCOPE_IDENTITY();\n";
+            this._commandCollection[1].CommandText = "INSERT INTO ECR_DRAWINGS\r\n                        (ITEM_ID, FILE_ID, DRWREV, DRW_" +
+                "FILE, ORIG_PATH)\r\nVALUES      (@item_id,@file_id,@drwrev,@drw_file,@orig_path); " +
+                "SELECT SCOPE_IDENTITY();\r\n";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@item_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ITEM_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@file_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "FILE_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -39185,8 +39246,8 @@ SELECT DRAW_ID, ITEM_ID, FILE_ID, DRWREV, ORIG_PATH, DRW_FILE FROM ECR_DRAWINGS 
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [GEN_DRAWINGS] ([FName], [FPath], [DateCreated]) VALUES (@FName, @FPa" +
-                "th, @DateCreated);\nSELECT FileID, FName, FPath, DateCreated FROM GEN_DRAWINGS WH" +
-                "ERE (FileID = SCOPE_IDENTITY())";
+                "th, @DateCreated);\r\nSELECT FileID, FName, FPath, DateCreated FROM GEN_DRAWINGS W" +
+                "HERE (FileID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FPath", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FPath", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -39222,12 +39283,12 @@ SELECT FileID, FName, FPath, DateCreated FROM GEN_DRAWINGS WHERE (FileID = @File
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT      GEN_DRAWINGS.*\nFROM          GEN_DRAWINGS";
+            this._commandCollection[0].CommandText = "SELECT      GEN_DRAWINGS.*\r\nFROM          GEN_DRAWINGS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT      FileID, FName, FPath, DateCreated\nFROM          GEN_DRAWINGS\nWHERE   " +
-                "   (FName LIKE @fname)";
+            this._commandCollection[1].CommandText = "SELECT      FileID, FName, FPath, DateCreated\r\nFROM          GEN_DRAWINGS\r\nWHERE " +
+                "     (FName LIKE @fname)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fname", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "FName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
@@ -39683,8 +39744,8 @@ ORDER BY LEN(FName);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [GEN_DRAWINGS_MTL] ([FName], [FPath], [DateCreated]) VALUES (@FName, " +
-                "@FPath, @DateCreated);\nSELECT FileID, FName, FPath, DateCreated FROM GEN_DRAWING" +
-                "S_MTL WHERE (FileID = SCOPE_IDENTITY())";
+                "@FPath, @DateCreated);\r\nSELECT FileID, FName, FPath, DateCreated FROM GEN_DRAWIN" +
+                "GS_MTL WHERE (FileID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FPath", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FPath", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -39720,12 +39781,12 @@ SELECT FileID, FName, FPath, DateCreated FROM GEN_DRAWINGS_MTL WHERE (FileID = @
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT      GEN_DRAWINGS_MTL.*\nFROM          GEN_DRAWINGS_MTL";
+            this._commandCollection[0].CommandText = "SELECT      GEN_DRAWINGS_MTL.*\r\nFROM          GEN_DRAWINGS_MTL";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT      FileID, FName, FPath, DateCreated\nFROM          GEN_DRAWINGS_MTL\nWHER" +
-                "E      (FName = @fname)";
+            this._commandCollection[1].CommandText = "SELECT      FileID, FName, FPath, DateCreated\r\nFROM          GEN_DRAWINGS_MTL\r\nWH" +
+                "ERE      (FName = @fname)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fname", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "FName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
