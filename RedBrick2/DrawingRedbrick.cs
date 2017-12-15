@@ -88,13 +88,14 @@ namespace RedBrick2 {
 			} else {
 				groupBox5.Text = @"New Drawing";
 				DrawingDoc dd_ = ActiveDoc as DrawingDoc;
-				dd_.SaveToStorageNotify += dd__SaveToStorageNotify;
+				dd_.FileSavePostNotify += dd__FileSavePostNotify;
 			}
 		}
 
-		int dd__SaveToStorageNotify() {
-			ActiveDoc = SwApp.ActiveDoc;
-			InitData();
+		int dd__FileSavePostNotify(int saveType, string FileName) {
+			if (FileName.ToUpper().EndsWith(@"SLDDRW")) {
+				ReLoad(SwApp.ActiveDoc);
+			}
 			return 0;
 		}
 
