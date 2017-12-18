@@ -527,7 +527,7 @@ namespace RedBrick2 {
 			if (double.TryParse(input, out _val)) {
 				return string.Format(Properties.Settings.Default.NumberFormat, _val);
 			}
-			return @"#VALUE!";
+			return Properties.Settings.Default.ValErr;
 		}
 
 		/// <summary>
@@ -648,7 +648,7 @@ namespace RedBrick2 {
 		/// </summary>
 		/// <param name="md">The ModelDoc2 of the variable string in question.</param>
 		/// <param name="prp">The variable string.</param>
-		/// <returns>A string of a number hopefully. '#VALUE!' like Excel if we can't figure it out.</returns>
+		/// <returns>A string of a number hopefully. Properties.Settings.Default.ValErr if we can't figure it out.</returns>
 		public static string GetDim(ModelDoc2 md, string prp) {
 			Dimension d = md.Parameter(prp);
 			if (d != null) {
@@ -663,7 +663,7 @@ namespace RedBrick2 {
 		/// </summary>
 		/// <param name="md">The ModelDoc2 of the variable string in question.</param>
 		/// <param name="equation">The equation string.</param>
-		/// <returns>A string of a number hopefully. '#VALUE!' like Excel if we can't figure it out.</returns>
+		/// <returns>A string of a number hopefully. Properties.Settings.Default.ValErr if we can't figure it out.</returns>
 		public static string DimensionByEquation(ModelDoc2 md, string equation) {
 			string res = string.Empty;
 			EquationMgr eqm = md.GetEquationMgr();
@@ -672,7 +672,7 @@ namespace RedBrick2 {
 					return eqm.get_Value(i).ToString();
 				}
 			}
-			return @"#VALUE!";
+			return Properties.Settings.Default.ValErr;
 		}
 
 		/// <summary>

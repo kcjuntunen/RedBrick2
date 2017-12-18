@@ -730,5 +730,17 @@ namespace RedBrick2.Properties {
                 return ((uint)(this["OpCount"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#VALUE!")]
+        public string ValErr {
+            get {
+                return ((string)(this["ValErr"]));
+            }
+            set {
+                this["ValErr"] = value;
+            }
+        }
     }
 }

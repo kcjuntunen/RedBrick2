@@ -1308,7 +1308,7 @@ namespace RedBrick2 {
 		private string DimensionByEquation(string equation) {
 			string res = string.Empty;
 			if (ActiveDoc == null) {
-				return @"#VALUE!";
+				return Properties.Settings.Default.ValErr;
 			}
 			EquationMgr eqm = ActiveDoc.GetEquationMgr();
 			for (int i = 0; i < eqm.GetCount(); i++) {
@@ -1316,7 +1316,7 @@ namespace RedBrick2 {
 					return eqm.get_Value(i).ToString();
 				}
 			}
-			return @"#VALUE!";
+			return Properties.Settings.Default.ValErr;
 		}
 
 		private void textBox_TextChanged(string dim, Label l) {
@@ -1329,7 +1329,7 @@ namespace RedBrick2 {
 				if (double.TryParse(GetDim(dimension), out _val)) {
 					l.Text = Redbrick.enforce_number_format(_val);
 				} else {
-					l.Text = @"#VALUE!";
+					l.Text = Properties.Settings.Default.ValErr;
 				}
 			}
 		}
