@@ -40,7 +40,7 @@ namespace RedBrick2 {
 					FriendlyValue = cmdt.Rows[0][@"DESCR"].ToString(); ;
 					Data = intval;
 				}
-			} else {
+			} else if (Value != null) {
 				ENGINEERINGDataSet.CUT_MATERIALSDataTable cmdt = cmta.GetDataByDescr(Value);
 				FriendlyValue = Value;
 				if (cmdt.Rows.Count > 0) {

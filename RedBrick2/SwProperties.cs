@@ -108,8 +108,11 @@ namespace RedBrick2 {
 		/// <param name="comp">A <see cref="SolidWorks.Interop.sldworks.Component2"/> from which we'll
 		/// get a <see cref="SolidWorks.Interop.sldworks.ModelDoc2"/>.</param>
 		public void GetProperties(Component2 comp) {
-			Configuration = comp.ReferencedConfiguration;
-			GetProperties((ModelDoc2)comp.GetModelDoc2());
+			ModelDoc2 md_ = comp.GetModelDoc2() as ModelDoc2;
+			if (md_ != null) {
+				Configuration = comp.ReferencedConfiguration;
+				GetProperties(md_);
+			}
 		}
 
 		/// <summary>

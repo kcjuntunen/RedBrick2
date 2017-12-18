@@ -58,17 +58,17 @@ namespace RedBrick2 {
 		public override object Data {
 			get { return _data; }
 			set {
-				_data = (int)value;
-				ENGINEERINGDataSet.GEN_CUSTOMERSRow row = null;
-				try {
-					row = gc.GetDataByCustID(_data)[0];
-				} catch (Exception) {
-					//
-				}
-				if (row != null) {
-					string firstWord = row.CUSTOMER.Split(' ')[0];
-					string shortCustName = string.Format(@"{0} - {1}", firstWord, row.CUSTNUM);
-					Value = shortCustName;
+				if (value != null) {
+					_data = (int)value;
+					ENGINEERINGDataSet.GEN_CUSTOMERSDataTable dt_ = gc.GetDataByCustID(_data);
+					if (dt_.Count > 0) {
+						ENGINEERINGDataSet.GEN_CUSTOMERSRow row = dt_[0] as ENGINEERINGDataSet.GEN_CUSTOMERSRow;
+						if (row != null) {
+							string firstWord = row.CUSTOMER.Split(' ')[0];
+							string shortCustName = string.Format(@"{0} - {1}", firstWord, row.CUSTNUM);
+							Value = shortCustName;
+						}
+					}
 				}
 			}
 		}
