@@ -172,4 +172,7 @@
   <data name="DimensionSwapWarning" xml:space="preserve">
     <value>You should always confirm your edging after swapping dimensions.</value>
   </data>
+  <data name="ThicknessWarning" xml:space="preserve">
+    <value>Material thickness doesn't match thickness dimension.</value>
+  </data>
 </root>

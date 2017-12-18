@@ -202,8 +202,11 @@
     <Setting Name="OpCount" Type="System.UInt32" Scope="Application">
       <Value Profile="(Default)">5</Value>
     </Setting>
-    <Setting Name="ValErr" Type="System.String" Scope="User">
+    <Setting Name="ValErr" Type="System.String" Scope="Application">
       <Value Profile="(Default)">#VALUE!</Value>
+    </Setting>
+    <Setting Name="Epsilon" Type="System.Double" Scope="Application">
+      <Value Profile="(Default)">0.001</Value>
     </Setting>
   </Settings>
 </SettingsFile>

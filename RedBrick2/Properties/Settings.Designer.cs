@@ -731,15 +731,21 @@ namespace RedBrick2.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("#VALUE!")]
         public string ValErr {
             get {
                 return ((string)(this["ValErr"]));
             }
-            set {
-                this["ValErr"] = value;
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.001")]
+        public double Epsilon {
+            get {
+                return ((double)(this["Epsilon"]));
             }
         }
     }

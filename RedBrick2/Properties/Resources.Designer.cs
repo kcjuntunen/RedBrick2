@@ -209,6 +209,15 @@ namespace RedBrick2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Material thickness doesn&apos;t match thickness dimension..
+        /// </summary>
+        internal static string ThicknessWarning {
+            get {
+                return ResourceManager.GetString("ThicknessWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Property Editor {0}.
         /// </summary>
         internal static string Title {
