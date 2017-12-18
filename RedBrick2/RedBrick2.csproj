@@ -114,6 +114,7 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="AuthorUIDProperty.cs" />
     <Compile Include="AuthorProperty.cs" />
     <Compile Include="BooleanProperty.cs" />
     <Compile Include="Crc32.cs" />
