@@ -742,7 +742,7 @@ namespace RedBrick2.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.001")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.003")]
         public double Epsilon {
             get {
                 return ((double)(this["Epsilon"]));

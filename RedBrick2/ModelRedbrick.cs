@@ -228,6 +228,7 @@ namespace RedBrick2 {
 				}
 
 				wall_thickness_label.Text = Redbrick.enforce_number_format(PropertySet[@"WALL THICKNESS"].ResolvedValue);
+				CheckThickness();
 
 				//textBox_TextChanged(PropertySet[@"WALL THICKNESS"].Value, label21);
 
@@ -1173,7 +1174,7 @@ namespace RedBrick2 {
 			double wthk_ = 0.0f;
 			bool thk_parsed_ = double.TryParse(thickness_label.Text, out thk_);
 			bool wthk_parsed_ = double.TryParse(wall_thickness_label.Text, out wthk_);
-			if (matthk_ > 0.005 && (thk_parsed_ || wthk_parsed_)) {
+			if (matthk_ > epsilon_ && (thk_parsed_ || wthk_parsed_)) {
 				string msg_ = string.Format("Material thickness ({0}) doesn't match dimensions.", 
 					Redbrick.enforce_number_format(matthk_));
 				bool equal_ = (Math.Abs(matthk_ - thk_) < epsilon_) || (Math.Abs(matthk_ - wthk_) < epsilon_);
@@ -1627,10 +1628,6 @@ namespace RedBrick2 {
 
 		private void comboBox_SelectedIndexChanged(object sender, EventArgs e) {
 			cutlistMatChanged = true;
-			ComboBox cbx_ = sender as ComboBox;
-			if (cbx_.SelectedItem != null) {
-				CheckThickness();
-			}
 		}
 
 		private void comboBox6_SelectedIndexChanged(object sender, EventArgs e) {

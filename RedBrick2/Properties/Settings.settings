@@ -206,7 +206,7 @@
       <Value Profile="(Default)">#VALUE!</Value>
     </Setting>
     <Setting Name="Epsilon" Type="System.Double" Scope="Application">
-      <Value Profile="(Default)">0.001</Value>
+      <Value Profile="(Default)">0.003</Value>
     </Setting>
   </Settings>
 </SettingsFile>
