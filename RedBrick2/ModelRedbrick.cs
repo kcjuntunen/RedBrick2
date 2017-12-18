@@ -769,11 +769,20 @@ namespace RedBrick2 {
 
 				// switching docs
 				ad.ActiveViewChangeNotify += ad_ActiveViewChangeNotify;
+
+				ad.ActiveConfigChangePostNotify += ad_ActiveConfigChangePostNotify;
 				//DisconnectDrawingEvents();
 				AssemblyEventsAssigned = true;
 			} else {
 				// We're already set up, I guess.
 			}
+		}
+
+		int ad_ActiveConfigChangePostNotify() {
+			configurationManager = _activeDoc.ConfigurationManager;
+			configuration = configurationManager.ActiveConfiguration.Name;
+			ReQuery();
+			return 0;
 		}
 
 		int ad_ActiveViewChangeNotify() {
@@ -787,6 +796,7 @@ namespace RedBrick2 {
 		}
 
 		private int ad_UserSelectionPostNotify() {
+			bool config_ = false;
 			// What do we got?
 			if (swSelMgr == null) {
 				swSelMgr = ActiveDoc.SelectionManager;
@@ -798,14 +808,15 @@ namespace RedBrick2 {
 					swSelComp = (Component2)selection_;
 					this.Enabled = true;
 				}
+				config_ = selection_ is Configuration;
 			}
 			if (swSelComp != null) {
 				Component = swSelComp;
 				//try {
-					configurationManager = (swSelComp.GetModelDoc2() as ModelDoc2).ConfigurationManager;
-					configuration = swSelComp.ReferencedConfiguration;
-					this.Enabled = true;
-					ReQuery(swSelComp.GetModelDoc2());
+				configurationManager = (swSelComp.GetModelDoc2() as ModelDoc2).ConfigurationManager;
+				configuration = swSelComp.ReferencedConfiguration;
+				this.Enabled = true;
+				ReQuery(swSelComp.GetModelDoc2());
 				//} catch (NullReferenceException e) {
 				//	Frame f = SwApp.Frame();
 				//	f.SetStatusBarText(e.Message);
@@ -814,15 +825,13 @@ namespace RedBrick2 {
 			} else {
 				// Nothing's selected?
 				// Just look at the root item then.
-				try {
+				if (!config_) {
 					configurationManager = SwApp.ActiveDoc.ConfigurationManager;
 					configuration = configurationManager.ActiveConfiguration.Name;
 					this.Enabled = true;
 					groupBox1.Text = string.Format(@"{0} - {1}",
 						partLookup, PropertySet.Configuration);
 					ReQuery(SwApp.ActiveDoc);
-				} catch (Exception ex) {
-					System.Diagnostics.Debug.WriteLine(ex.Message);
 				}
 			}
 			return 0;
@@ -836,6 +845,7 @@ namespace RedBrick2 {
 				ad.DestroyNotify2 -= ad_DestroyNotify2;
 				//ad.ActiveDisplayStateChangePostNotify -= ad_ActiveDisplayStateChangePostNotify;
 				ad.ActiveViewChangeNotify -= ad_ActiveViewChangeNotify;
+				ad.ActiveConfigChangePostNotify -= ad_ActiveConfigChangePostNotify;
 				//swSelMgr = null;
 			}
 			AssemblyEventsAssigned = false;
