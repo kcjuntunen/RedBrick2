@@ -939,7 +939,7 @@
 			// 
 			this.blnkszLtb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.blnkszLtb.BackColor = System.Drawing.SystemColors.Menu;
+			this.blnkszLtb.BackColor = System.Drawing.SystemColors.Window;
 			this.blnkszLtb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.blnkszLtb.Location = new System.Drawing.Point(3, 98);
 			this.blnkszLtb.Name = "blnkszLtb";
@@ -1050,7 +1050,7 @@
 			// 
 			this.blnkszWtb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.blnkszWtb.BackColor = System.Drawing.SystemColors.Menu;
+			this.blnkszWtb.BackColor = System.Drawing.SystemColors.Window;
 			this.blnkszWtb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.blnkszWtb.Location = new System.Drawing.Point(94, 98);
 			this.blnkszWtb.Name = "blnkszWtb";

@@ -59,10 +59,10 @@ namespace RedBrick2 {
 		private bool ov_userediting = false;
 		private bool bl_userediting = false;
 		private bool cl_userediting = false;
-		private bool op_userediting = false;
 		private bool data_from_db = false;
 		private ComboBox[] cbxes;
 		private ToolTip groupbox_tooltip = new ToolTip();
+		private ToolTip cutlistMat_tooltip = new ToolTip();
 		private ToolTip cutlist_tooltip = new ToolTip();
 		private ToolTip edging_tooltip = new ToolTip();
 		private ToolTip descr_tooltup = new ToolTip();
@@ -145,7 +145,6 @@ namespace RedBrick2 {
 
 		void overL_TextChanged(object sender, EventArgs e) {
 			if (initialated) {
-				bool check_ = false;
 				if (ov_userediting) {
 					Single _edge_thickness = 0.0F;
 					if (edgel.SelectedItem != null) {
@@ -158,15 +157,8 @@ namespace RedBrick2 {
 					float test_ = 0.0F;
 					if (float.TryParse((sender as TextBox).Text, out test_)) {
 						calculate_blanksize_from_oversize(test_, blnkszLtb, length, _edge_thickness);
-						if (test_ > 0) {
-							check_ = true;
-						}
 					}
 					ov_userediting = false;
-				}
-				if (check_) {
-					// TODO: do this on validated.
-					CheckOversize();
 				}
 			}
 			//overLtb.Text = Redbrick.enforce_number_format(overLtb.Text);
@@ -174,7 +166,6 @@ namespace RedBrick2 {
 
 		void overW_TextChanged(object sender, EventArgs e) {
 			if (initialated) {
-				bool check_ = false;
 				if (ov_userediting) {
 					Single _edge_thickness = 0.0F;
 					if (edgef.SelectedItem != null) {
@@ -187,15 +178,8 @@ namespace RedBrick2 {
 					float test_ = 0.0F;
 					if (float.TryParse((sender as TextBox).Text, out test_)) {
 						calculate_blanksize_from_oversize(test_, blnkszWtb, width, _edge_thickness);
-						if (test_ > 0) {
-							check_ = true;
-						}
 					}
 					ov_userediting = false;
-				}
-				if (check_) {
-					// TODO: do this on validated.
-					CheckOversize();
 				}
 			}
 			//overWtb.Text = Redbrick.enforce_number_format(overWtb.Text);
@@ -220,7 +204,8 @@ namespace RedBrick2 {
 		private void ReQuery() {
 			GetCutlistData();
 			flowLayoutPanel1.Controls.Clear();
-			if (ActiveDoc != null) {
+			if (ActiveDoc != null && PropertySet.Count > 0) {
+				Enabled = true;
 				lengthtb.Text = PropertySet[@"LENGTH"].Value.Replace("\"", string.Empty);
 				widthtb.Text = PropertySet[@"WIDTH"].Value.Replace("\"", string.Empty);
 				thicknesstb.Text = PropertySet[@"THICKNESS"].Value.Replace("\"", string.Empty);
@@ -311,11 +296,7 @@ namespace RedBrick2 {
 			}
 		}
 
-		/// <summary>
-		/// Toggle a warning if we can't work out the department.
-		/// </summary>
-		/// <param name="on">Warning on or off boolean.</param>
-		public void ToggleTypeWarn(bool on) {
+		private void ToggleTypeWarn(bool on) {
 			if (on) {
 				Redbrick.Err(type_cbx);
 				Control [] ttrg_ = { type_cbx, groupBox4,
@@ -338,6 +319,38 @@ namespace RedBrick2 {
 			} else {
 				Redbrick.UnErr(descriptiontb);
 				descr_tooltup.RemoveAll();
+			}
+		}
+
+		private void ToggleThicknessWarn(bool on) {
+			if (on) {
+				Redbrick.Warn(cutlistMat);
+				cutlistMat_tooltip.SetToolTip(cutlistMat, Properties.Resources.ThicknessWarning);
+				cutlistMat_tooltip.SetToolTip(label1, Properties.Resources.ThicknessWarning);
+				cutlistMat_tooltip.SetToolTip(thickness_label, Properties.Resources.ThicknessWarning);
+				cutlistMat_tooltip.SetToolTip(wall_thickness_label, Properties.Resources.ThicknessWarning);
+			} else {
+				Redbrick.UnErr(cutlistMat);
+				Redbrick.UnErr(thickness_label);
+				Redbrick.UnErr(wall_thickness_label);
+				cutlistMat_tooltip.RemoveAll();
+			}
+		}
+
+		private void ToggleThicknessWarn(bool on, string message) {
+			if (on) {
+				Redbrick.Warn(cutlistMat);
+				Redbrick.Warn(thickness_label);
+				Redbrick.Warn(wall_thickness_label);
+				cutlistMat_tooltip.SetToolTip(cutlistMat, message);
+				cutlistMat_tooltip.SetToolTip(label1, message);
+				cutlistMat_tooltip.SetToolTip(thickness_label, message);
+				cutlistMat_tooltip.SetToolTip(wall_thickness_label, message);
+			} else {
+				Redbrick.UnErr(cutlistMat);
+				Redbrick.UnErr(thickness_label);
+				Redbrick.UnErr(wall_thickness_label);
+				cutlistMat_tooltip.RemoveAll();
 			}
 		}
 
@@ -386,6 +399,40 @@ namespace RedBrick2 {
 			}
 			if (!on) {
 				edging_tooltip.RemoveAll();
+			}
+		}
+
+		private void ToggleOversizeWarn(bool on) {
+			if (on) {
+				Redbrick.Warn(overLtb);
+				Redbrick.Warn(overWtb);
+				Redbrick.Warn(blnkszLtb);
+				Redbrick.Warn(blnkszWtb);
+			} else {
+				Redbrick.UnErr(overLtb);
+				Redbrick.UnErr(overWtb);
+				Redbrick.UnErr(blnkszLtb);
+				Redbrick.UnErr(blnkszWtb);
+				over_tooltip.RemoveAll();
+			}
+		}
+
+		private void ToggleOversizeWarn(bool on, string message) {
+			if (on) {
+				Redbrick.Warn(overLtb);
+				Redbrick.Warn(overWtb);
+				Redbrick.Warn(blnkszLtb);
+				Redbrick.Warn(blnkszWtb);
+				over_tooltip.SetToolTip(overLtb, message);
+				over_tooltip.SetToolTip(overWtb, message);
+				over_tooltip.SetToolTip(blnkszLtb, message);
+				over_tooltip.SetToolTip(blnkszWtb, message);
+			} else {
+				Redbrick.UnErr(overLtb);
+				Redbrick.UnErr(overWtb);
+				Redbrick.UnErr(blnkszLtb);
+				Redbrick.UnErr(blnkszWtb);
+				over_tooltip.RemoveAll();
 			}
 		}
 
@@ -486,6 +533,7 @@ namespace RedBrick2 {
 				}
 			}
 			type_cbx.SelectedValue = type;
+			FilterOps(string.Format(@"TYPEID = {0}", type));
 		}
 
 		private void GetMaterialFromPart() {
@@ -748,8 +796,10 @@ namespace RedBrick2 {
 		}
 
 		private void DisconnectDrawingEvents() {
-			dd.UserSelectionPostNotify -= dd_UserSelectionPostNotify;
-			DrawingEventsAssigned = false;
+			if (DrawingEventsAssigned) {
+				dd.UserSelectionPostNotify -= dd_UserSelectionPostNotify;
+				DrawingEventsAssigned = false;
+			}
 		}
 
 		private void ConnectAssemblyEvents(ModelDoc2 md) {
@@ -771,11 +821,17 @@ namespace RedBrick2 {
 				ad.ActiveViewChangeNotify += ad_ActiveViewChangeNotify;
 
 				ad.ActiveConfigChangePostNotify += ad_ActiveConfigChangePostNotify;
+				ad.ViewNewNotify2 += ad_ViewNewNotify2;
 				//DisconnectDrawingEvents();
 				AssemblyEventsAssigned = true;
 			} else {
 				// We're already set up, I guess.
 			}
+		}
+
+		int ad_ViewNewNotify2(object viewBeingAdded) {
+			ReQuery();
+			return 0;
 		}
 
 		int ad_ActiveConfigChangePostNotify() {
@@ -796,7 +852,6 @@ namespace RedBrick2 {
 		}
 
 		private int ad_UserSelectionPostNotify() {
-			bool config_ = false;
 			// What do we got?
 			if (swSelMgr == null) {
 				swSelMgr = ActiveDoc.SelectionManager;
@@ -808,7 +863,6 @@ namespace RedBrick2 {
 					swSelComp = (Component2)selection_;
 					this.Enabled = true;
 				}
-				config_ = selection_ is Configuration;
 			}
 			if (swSelComp != null) {
 				Component = swSelComp;
@@ -825,13 +879,16 @@ namespace RedBrick2 {
 			} else {
 				// Nothing's selected?
 				// Just look at the root item then.
-				if (!config_) {
+				try {
 					configurationManager = SwApp.ActiveDoc.ConfigurationManager;
 					configuration = configurationManager.ActiveConfiguration.Name;
 					this.Enabled = true;
 					groupBox1.Text = string.Format(@"{0} - {1}",
 						partLookup, PropertySet.Configuration);
 					ReQuery(SwApp.ActiveDoc);
+				} catch (Exception ex) {
+					System.Diagnostics.Debug.WriteLine(ex.Message + " from " + ex.Source + "\n" + ex.StackTrace);
+				} finally {
 				}
 			}
 			return 0;
@@ -1094,16 +1151,36 @@ namespace RedBrick2 {
 				configuration = Component.ReferencedConfiguration;
 				PropertySet.Configuration = configuration;
 				PropertySet.GetProperties(Component);
-			} else {
+			} else if (partLookup != null) {
 				configuration = _activeDoc.ConfigurationManager.ActiveConfiguration.Name;
 				PropertySet.Configuration = configuration;
 				PropertySet.GetProperties(_activeDoc);
+			} else {
+				//
 			}
 
 			lastModelDoc = _activeDoc;
-			DisconnectPartEvents();
+			//DisconnectPartEvents();
 			ConnectPartEvents();
 			ReQuery();
+		}
+
+		private void CheckThickness() {
+			DataRowView r_ = cutlistMat.SelectedItem as DataRowView;
+			double matthk_ = Convert.ToDouble(r_[@"THICKNESS"]);
+			double epsilon_ = Properties.Settings.Default.Epsilon;
+			double thk_ = 0.0f;
+			double wthk_ = 0.0f;
+			bool thk_parsed_ = double.TryParse(thickness_label.Text, out thk_);
+			bool wthk_parsed_ = double.TryParse(wall_thickness_label.Text, out wthk_);
+			if (matthk_ > 0.005 && (thk_parsed_ || wthk_parsed_)) {
+				string msg_ = string.Format("Material thickness ({0}) doesn't match dimensions.", 
+					Redbrick.enforce_number_format(matthk_));
+				bool equal_ = (Math.Abs(matthk_ - thk_) < epsilon_) || (Math.Abs(matthk_ - wthk_) < epsilon_);
+				ToggleThicknessWarn(!equal_, msg_);
+			} else {
+				ToggleThicknessWarn(false);
+			}
 		}
 
 		private void CheckOversize() {
@@ -1112,6 +1189,7 @@ namespace RedBrick2 {
 			int not_cnc_op_ = 0;
 			double oversize_ = 0.0F;
 			int bq_ = Convert.ToInt32(ppb_nud.Value);
+			bool warn_ = false;
 			List<string> ops_ = new List<string> { };
 			List<bool> cnc_ops_ = new List<bool> { };
 			double test_ = 0.0F;
@@ -1137,14 +1215,20 @@ namespace RedBrick2 {
 					ps_op_ = i;
 
 				if ((i < cbxes.Length - 1) &&
-					(ops_[i] == @"PS" && (!cnc_ops_[i + 1]) || (ops_[i + 1] == string.Empty))) {
+					(ops_[i] == @"PS" && (!cnc_ops_[i + 1])// || (ops_[i + 1] == string.Empty)
+					)) {
 					not_cnc_op_ = i + 1;
 					if (bq_ == 1 && oversize_ > 0) {
-						System.Diagnostics.Debug.WriteLine(string.Format(@"No CNC op between {0} and {1}; check oversize values.",
-							ops_[ps_op_], ops_[not_cnc_op_]));
+						string msg_ = string.Format(@"No CNC op between {0} and {1}; check oversize values.",
+							ops_[ps_op_], ops_[not_cnc_op_]);
+						warn_ = true;
+						ToggleOversizeWarn(true, msg_);
 						break;
 					}
 				}
+			}
+			if (!warn_) {
+				ToggleOversizeWarn(false);
 			}
 		}
 
@@ -1185,6 +1269,7 @@ namespace RedBrick2 {
 			set {
 				//allowPaint = false;
 				if (value != null && value != ActiveDoc) {
+					DisconnectEvents();
 					Show();
 					ToggleEdgeWarn(false);
 					lastModelDoc = _activeDoc;
@@ -1206,7 +1291,7 @@ namespace RedBrick2 {
 					switch (odType) {
 						case swDocumentTypes_e.swDocASSEMBLY:                     //Window looking at assembly.
 							(tabPage1 as Control).Enabled = true;
-							DisconnectAssemblyEvents();
+							//DisconnectAssemblyEvents();
 							ConnectAssemblyEvents(SwApp.ActiveDoc as ModelDoc2);
 							switch (dType) {
 								case swDocumentTypes_e.swDocASSEMBLY:                     //Selected sub-assembly in window.
@@ -1328,6 +1413,7 @@ namespace RedBrick2 {
 				double _val;
 				if (double.TryParse(GetDim(dimension), out _val)) {
 					l.Text = Redbrick.enforce_number_format(_val);
+					CheckThickness();
 				} else {
 					l.Text = Properties.Settings.Default.ValErr;
 				}
@@ -1541,6 +1627,10 @@ namespace RedBrick2 {
 
 		private void comboBox_SelectedIndexChanged(object sender, EventArgs e) {
 			cutlistMatChanged = true;
+			ComboBox cbx_ = sender as ComboBox;
+			if (cbx_.SelectedItem != null) {
+				CheckThickness();
+			}
 		}
 
 		private void comboBox6_SelectedIndexChanged(object sender, EventArgs e) {
@@ -1729,16 +1819,14 @@ namespace RedBrick2 {
 		}
 
 		private void op_cbx_SelectedIndexChanged(object sender, EventArgs e) {
-			if (op_userediting) {
-				CheckOversize();
-			}
-			op_userediting = false;
+			CheckOversize();
 		}
 
 		private void dimension_textBox_Validated(object sender, EventArgs e) {
 			TextBox _me = (sender as TextBox);
 			string _text = Redbrick.enforce_number_format(_me.Text);
 			_me.Text = _text;
+			CheckOversize();
 		}
 
 		private void ppb_nud_ValueChanged(object sender, EventArgs e) {
@@ -1749,6 +1837,8 @@ namespace RedBrick2 {
 				TogglePPBErr(false);
 				if (nud_.Value == 1) {
 					CheckOversize();
+				} else {
+					ToggleOversizeWarn(false);
 				}
 			}
 		}
