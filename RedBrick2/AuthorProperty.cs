@@ -77,7 +77,7 @@ namespace RedBrick2 {
 				_data = (int)value;
 				ENGINEERINGDataSet.GEN_USERSDataTable dt = gu.GetDataByUID(_data);
 				if (dt.Rows.Count > 0) {
-					Value = dt[0].INITIAL;
+					Value = dt[0].INITIAL.Substring(0, 2);
 					FullName = dt[0].Fullname;
 				} else {
 					FullName = Value;
