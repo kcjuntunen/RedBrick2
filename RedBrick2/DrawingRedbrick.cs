@@ -114,10 +114,14 @@ namespace RedBrick2 {
 		}
 
 		private void FigureOutAuthor() {
-			SwProperty _p = new AuthorProperty(@"DrawnBy", true, SwApp, ActiveDoc);
-			PropertySet.Add(_p.Get());
-			if (_p.Value != string.Empty) {
-				auth_cpx.SelectedValue = (int)_p.Data;
+			SwProperty ap_ = new AuthorProperty(@"DrawnBy", true, SwApp, ActiveDoc);
+			SwProperty afip_ = new AuthorUIDProperty(@"Author", true, SwApp, ActiveDoc);
+			PropertySet.Add(ap_.Get());
+			PropertySet.Add(afip_.Get());
+			if (afip_.Value != string.Empty) {
+				auth_cpx.SelectedValue = (int)afip_.Data;
+			} else if (ap_.Value != string.Empty) {
+				auth_cpx.SelectedValue = (int)ap_.Data;
 			} else {
 				ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu =
 					new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
@@ -187,6 +191,7 @@ namespace RedBrick2 {
 			PropertySet[@"CUSTOMER"].Data = cust_cbx.SelectedValue;
 			PropertySet[@"REVISION LEVEL"].Data = rev_cbx.Text;
 			PropertySet[@"DrawnBy"].Data = auth_cpx.SelectedValue;
+			PropertySet[@"Author"].Data = auth_cpx.SelectedValue;
 			PropertySet[@"DATE"].Data = dateTimePicker1.Value;
 
 			ComboBox[] _cboxes = new ComboBox[] { mat1_cbx, mat2_cbx, mat3_cbx, mat4_cbx, mat5_cbx };

@@ -29870,7 +29870,7 @@ SELECT UID, USERNAME, ACTIVE, FIRST + ' ' + LAST + ' ' + ISNULL(SUFFIX, '') AS F
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[6];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[7];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT        UID, USERNAME, ACTIVE, FIRST + ' ' + LAST + ' ' + ISNULL(SUFFIX, '') AS Fullname, FIRST, LAST, SUFFIX, INITIAL, DEPT, CUST1, CUST2, CUST3, PROCESS, 
@@ -29912,16 +29912,26 @@ ORDER BY Fullname";
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@uid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "UID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT        FIRST + \' \' + LAST AS FULLNAME\r\nFROM            GEN_USERS\r\nWHERE   " +
-                "     (USERNAME = @username)";
+            this._commandCollection[4].CommandText = @"SELECT      UID, USERNAME, ACTIVE, FIRST + ' ' + LAST + ' ' + ISNULL(SUFFIX, '') AS Fullname, FIRST, LAST, SUFFIX, INITIAL, DEPT, CUST1, CUST2, CUST3, 
+                        PROCESS, PROJECT, ACCESS, LASTWC, EMAIL1, EMAIL2, MOBILE, PROVIDER, NOTF_OWN_M, NOTF_OWN_E, NOTF_SIGN_M, NOTF_SIGN_E, 
+                        NOTF_CHAT_M, NOTF_CHAT_E, NOTF_FAV_M, NOTF_FAV_E, ECR_FWD, ECR_FWD_USER, OPT_FOLDER, REQFILT, GMR
+FROM          GEN_USERS
+WHERE      (USERNAME = @username)
+ORDER BY Fullname";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@username", global::System.Data.SqlDbType.NVarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "USERNAME", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = "SELECT        UID\r\nFROM            GEN_USERS\r\nWHERE        (USERNAME = @username)" +
-                "";
+            this._commandCollection[5].CommandText = "SELECT        FIRST + \' \' + LAST AS FULLNAME\r\nFROM            GEN_USERS\r\nWHERE   " +
+                "     (USERNAME = @username)";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@username", global::System.Data.SqlDbType.NVarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "USERNAME", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[6] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[6].Connection = this.Connection;
+            this._commandCollection[6].CommandText = "SELECT        UID\r\nFROM            GEN_USERS\r\nWHERE        (USERNAME = @username)" +
+                "";
+            this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@username", global::System.Data.SqlDbType.NVarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "USERNAME", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -30053,6 +30063,42 @@ ORDER BY Fullname";
         public virtual ENGINEERINGDataSet.GEN_USERSDataTable GetDataByUID(int uid) {
             this.Adapter.SelectCommand = this.CommandCollection[3];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(uid));
+            ENGINEERINGDataSet.GEN_USERSDataTable dataTable = new ENGINEERINGDataSet.GEN_USERSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByUsername(ENGINEERINGDataSet.GEN_USERSDataTable dataTable, string username) {
+            this.Adapter.SelectCommand = this.CommandCollection[4];
+            if ((username == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(username));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ENGINEERINGDataSet.GEN_USERSDataTable GetDataByUsername(string username) {
+            this.Adapter.SelectCommand = this.CommandCollection[4];
+            if ((username == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(username));
+            }
             ENGINEERINGDataSet.GEN_USERSDataTable dataTable = new ENGINEERINGDataSet.GEN_USERSDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -31007,7 +31053,7 @@ ORDER BY Fullname";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual string GetCurrentUserFullname(string username) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[5];
             if ((username == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -31041,7 +31087,7 @@ ORDER BY Fullname";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual global::System.Nullable<int> GetUID(string username) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[5];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[6];
             if ((username == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
