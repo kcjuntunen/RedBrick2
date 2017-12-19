@@ -512,5 +512,10 @@ namespace RedBrick2 {
 				System.Diagnostics.Debug.Print(@"Deleting...");
 			}
 		}
+
+		private void status_cbx_MouseClick(object sender, MouseEventArgs e) {
+			user_editing = true;
+			Redbrick.FocusHere(sender, e);
+		}
 	}
 }

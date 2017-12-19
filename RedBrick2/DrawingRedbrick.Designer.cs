@@ -706,6 +706,7 @@ namespace RedBrick2 {
 			this.status_cbx.Enter += new System.EventHandler(this.status_cbx_Enter);
 			this.status_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.status_cbx.Leave += new System.EventHandler(this.status_cbx_Leave);
+			this.status_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.status_cbx_MouseClick);
 			this.status_cbx.Resize += new System.EventHandler(this.comboBox_Resize);
 			// 
 			// cUTSTATESBindingSource

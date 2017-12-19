@@ -1670,9 +1670,13 @@ namespace RedBrick2 {
 			PropertySet.CutlistQty = _row.QTY;
 		}
 
+		private void FocusHere(object sender, MouseEventArgs e) {
+			Redbrick.FocusHere(sender, e);
+		}
+
 		private void comboBox6_MouseClick(object sender, MouseEventArgs e) {
 			cl_userediting = true;
-			FocusHere(sender, e);
+			Redbrick.FocusHere(sender, e);
 		}
 
 		private void textBox7_TextChanged(object sender, EventArgs e) {
@@ -1780,22 +1784,6 @@ namespace RedBrick2 {
 				cbx.SelectedIndex = cbx.FindStringExact(cbx.Text);
 			} else {
 				cbx.SelectedIndex = -1;
-			}
-		}
-
-		private void FocusHere(object sender, MouseEventArgs e) {
-			if (sender is ComboBox) {
-				if ((sender as ComboBox).DroppedDown) {
-					//
-				} else {
-					(sender as ComboBox).Focus();
-				}
-			} else if (sender is TextBox) {
-				(sender as TextBox).Focus();
-			} else if (sender is NumericUpDown) {
-				(sender as NumericUpDown).Focus();
-			} else if (sender is CheckBox) {
-				(sender as CheckBox).Focus();
 			}
 		}
 

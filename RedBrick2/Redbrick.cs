@@ -427,9 +427,29 @@ namespace RedBrick2 {
 		/// <param name="allCapsInput">An irritating string.</param>
 		/// <returns>A more pleasantly formatted string.</returns>
 		static public string TitleCase(string allCapsInput) {
-			var t = new System.Globalization.CultureInfo("en-US", false).TextInfo;
-			return t.ToTitleCase(allCapsInput.ToLower());
+			if (allCapsInput != null) {
+				var t = new System.Globalization.CultureInfo("en-US", false).TextInfo;
+				return t.ToTitleCase(allCapsInput.ToLower());
+			}
+			return Properties.Settings.Default.ValErr;
 		}
+
+		static public void FocusHere(object sender, System.Windows.Forms.MouseEventArgs e) {
+			if (sender is System.Windows.Forms.ComboBox) {
+				if ((sender as System.Windows.Forms.ComboBox).DroppedDown) {
+					//
+				} else {
+					(sender as System.Windows.Forms.ComboBox).Focus();
+				}
+			} else if (sender is System.Windows.Forms.TextBox) {
+				(sender as System.Windows.Forms.TextBox).Focus();
+			} else if (sender is System.Windows.Forms.NumericUpDown) {
+				(sender as System.Windows.Forms.NumericUpDown).Focus();
+			} else if (sender is System.Windows.Forms.CheckBox) {
+				(sender as System.Windows.Forms.CheckBox).Focus();
+			}
+		}
+
 		/// <summary>
 		/// Hash a string.
 		/// </summary>
