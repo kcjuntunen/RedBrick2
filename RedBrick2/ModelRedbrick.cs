@@ -1167,20 +1167,22 @@ namespace RedBrick2 {
 		}
 
 		private void CheckThickness() {
-			DataRowView r_ = cutlistMat.SelectedItem as DataRowView;
-			double matthk_ = Convert.ToDouble(r_[@"THICKNESS"]);
-			double epsilon_ = Properties.Settings.Default.Epsilon;
-			double thk_ = 0.0f;
-			double wthk_ = 0.0f;
-			bool thk_parsed_ = double.TryParse(thickness_label.Text, out thk_);
-			bool wthk_parsed_ = double.TryParse(wall_thickness_label.Text, out wthk_);
-			if (matthk_ > epsilon_ && (thk_parsed_ || wthk_parsed_)) {
-				string msg_ = string.Format("Material thickness ({0}) doesn't match dimensions.", 
-					Redbrick.enforce_number_format(matthk_));
-				bool equal_ = (Math.Abs(matthk_ - thk_) < epsilon_) || (Math.Abs(matthk_ - wthk_) < epsilon_);
-				ToggleThicknessWarn(!equal_, msg_);
-			} else {
-				ToggleThicknessWarn(false);
+			if (cutlistMat.SelectedItem != null) {
+				DataRowView r_ = cutlistMat.SelectedItem as DataRowView;
+				double matthk_ = Convert.ToDouble(r_[@"THICKNESS"]);
+				double epsilon_ = Properties.Settings.Default.Epsilon;
+				double thk_ = 0.0f;
+				double wthk_ = 0.0f;
+				bool thk_parsed_ = double.TryParse(thickness_label.Text, out thk_);
+				bool wthk_parsed_ = double.TryParse(wall_thickness_label.Text, out wthk_);
+				if (matthk_ > epsilon_ && (thk_parsed_ || wthk_parsed_)) {
+					string msg_ = string.Format("Material thickness ({0}) doesn't match dimensions.",
+						Redbrick.enforce_number_format(matthk_));
+					bool equal_ = (Math.Abs(matthk_ - thk_) < epsilon_) || (Math.Abs(matthk_ - wthk_) < epsilon_);
+					ToggleThicknessWarn(!equal_, msg_);
+				} else {
+					ToggleThicknessWarn(false);
+				}
 			}
 		}
 
