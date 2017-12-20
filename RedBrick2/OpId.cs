@@ -34,24 +34,6 @@ namespace RedBrick2 {
 			set { _type = value; }
 		}
 
-		public override void Write() {
-			int intVal = 0;
-			if (int.TryParse(Value, out intVal)) {
-				string op = (string)cota.GetOpNameByID(intVal);
-				WriteResult =
-					(swCustomInfoAddResult_e)PropertyManager.Add3(Name,
-					(int)SWType,
-					op,
-					(int)swCustomPropertyAddOption_e.swCustomPropertyDeleteAndAdd);
-			} else {
-				WriteResult =
-					(swCustomInfoAddResult_e)PropertyManager.Add3(Name,
-					(int)SWType,
-					Value,
-					(int)swCustomPropertyAddOption_e.swCustomPropertyDeleteAndAdd);
-			}
-		}
-
 		public string FriendlyValue { get; set; }
 
 		protected new int _data = 0;
