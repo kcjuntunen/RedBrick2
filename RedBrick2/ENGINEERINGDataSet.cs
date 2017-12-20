@@ -34,16 +34,36 @@ namespace RedBrick2 {
 				return total_affected_;
 			}
 
+			private int delete_op_(int _partid, int _seq) {
+				int affected_ = 0;
+				string sql_ = @"DELETE FROM CUT_PART_OPS WHERE POPPART = @partid AND POPORDER = @seq";
+				ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter ta_ =
+					new ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter();
+				using (SqlCommand comm = new SqlCommand(sql_, ta_.Connection)) {
+					comm.Parameters.AddWithValue(@"@partid", _partid);
+					comm.Parameters.AddWithValue(@"@seq", _seq);
+					if (ta_.Connection.State == System.Data.ConnectionState.Closed) {
+						ta_.Connection.Open();
+					}
+					try {
+						affected_ = comm.ExecuteNonQuery();
+					} finally {
+						ta_.Connection.Close();
+					}
+				}
+				return affected_;
+			}
+
 			private int update_op_(int _partid, int _seq, int _popop, double _popsetup, double _poprun) {
 				int affected_ = 0;
-				string sql_ = @"UPDATE CUT_PART_OPS SET POPOP = @popop, POPSETUP = @popsetup, POPRUN = @poprun " +
+				string sql_ = @"UPDATE CUT_PART_OPS SET POPOP = @popop " + //, POPSETUP = @popsetup, POPRUN = @poprun " +
 					"WHERE POPPART = @partid AND POPORDER = @seq";
 				ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter ta_ =
 					new ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter();
 				using (SqlCommand comm = new SqlCommand(sql_, ta_.Connection)) {
 					comm.Parameters.AddWithValue(@"@popop", _popop);
-					comm.Parameters.AddWithValue(@"@popsetup", _popsetup);
-					comm.Parameters.AddWithValue(@"@poprun", _poprun);
+					//comm.Parameters.AddWithValue(@"@popsetup", _popsetup);
+					//comm.Parameters.AddWithValue(@"@poprun", _poprun);
 					comm.Parameters.AddWithValue(@"@partid", _partid);
 					comm.Parameters.AddWithValue(@"@seq", _seq);
 					if (ta_.Connection.State == System.Data.ConnectionState.Closed) {
@@ -97,10 +117,10 @@ namespace RedBrick2 {
 			private int update_part_(SwProperties _pp) {
 				int affected_ = 0;
 				string sql_ = @"UPDATE CUT_PARTS SET DESCR = @descr, FIN_L = @finl, FIN_W = @finw, THICKNESS = @thk, " +
-					"CNC1 = cnc1, CNC2 = cnc2, BLANKQTY = @blnkqty, " +
+					"CNC1 = @cnc1, CNC2 = @cnc2, BLANKQTY = @blnkqty, " +
 					"OVER_L = @ovrl, OVER_W = @ovrw, OP1ID = @op1, " +
-					"OP2ID = @op2, OP3ID = @op3, OP4ID = @op4, OP5ID = @op5, COMMENT = @comment, " +
-					"UPDATE_CNC = @updCnc, TYPE = @type WHERE PARTNUM=@prtNo AND (HASH=@hash OR HASH IS NULL)";
+					"OP2ID = @op2, OP3ID = @op3, OP4ID = @op4, OP5ID = @op5, COMMENT = @comment, HASH = @hash, " +
+					"UPDATE_CNC = @updCnc, TYPE = @type WHERE PARTNUM=@prtNo";
 				ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter ta_ =
 					new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
 				using (SqlCommand comm = new SqlCommand(sql_, ta_.Connection)) {
@@ -108,8 +128,8 @@ namespace RedBrick2 {
 					comm.Parameters.AddWithValue("@finl", Convert.ToDouble(_pp[@"LENGTH"].Data));
 					comm.Parameters.AddWithValue("@finw", Convert.ToDouble(_pp[@"WIDTH"].Data));
 					comm.Parameters.AddWithValue("@thk", Convert.ToDouble(_pp[@"THICKNESS"].Data));
-					comm.Parameters.AddWithValue("@cnc1", _pp[@"CNC1"].Data);
-					comm.Parameters.AddWithValue("@cnc2", _pp[@"CNC1"].Data);
+					comm.Parameters.AddWithValue("@cnc1", Convert.ToString(_pp[@"CNC1"].Data));
+					comm.Parameters.AddWithValue("@cnc2", Convert.ToString(_pp[@"CNC2"].Data));
 					comm.Parameters.AddWithValue("@blnkqty", Convert.ToInt32(_pp[@"BLANK QTY"].Data));
 					comm.Parameters.AddWithValue("@ovrl", Convert.ToDouble(_pp[@"OVERL"].Data));
 					comm.Parameters.AddWithValue("@ovrw", Convert.ToDouble(_pp[@"OVERW"].Data));
@@ -153,8 +173,8 @@ namespace RedBrick2 {
 					comm.Parameters.AddWithValue("@finl", Convert.ToDouble(_pp[@"LENGTH"].Data));
 					comm.Parameters.AddWithValue("@finw", Convert.ToDouble(_pp[@"WIDTH"].Data));
 					comm.Parameters.AddWithValue("@thk", Convert.ToDouble(_pp[@"THICKNESS"].Data));
-					comm.Parameters.AddWithValue("@cnc1", _pp[@"CNC1"].Data);
-					comm.Parameters.AddWithValue("@cnc2", _pp[@"CNC1"].Data);
+					comm.Parameters.AddWithValue("@cnc1", Convert.ToString(_pp[@"CNC1"].Data));
+					comm.Parameters.AddWithValue("@cnc2", Convert.ToString(_pp[@"CNC2"].Data));
 					comm.Parameters.AddWithValue("@blnkqty", Convert.ToInt32(_pp[@"BLANK QTY"].Data));
 					comm.Parameters.AddWithValue("@ovrl", Convert.ToDouble(_pp[@"OVERL"].Data));
 					comm.Parameters.AddWithValue("@ovrw", Convert.ToDouble(_pp[@"OVERW"].Data));
