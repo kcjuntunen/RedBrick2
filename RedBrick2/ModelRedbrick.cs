@@ -291,6 +291,9 @@ namespace RedBrick2 {
 			if (ComboBoxContainsValue(Properties.Settings.Default.LastCutlist, cutlistctl)) {
 				cutlistctl.SelectedValue = Properties.Settings.Default.LastCutlist;
 				ToggleCutlistErr(false);
+			} else if (cutlistctl.Items.Count < 1) {
+				cutlistctl.SelectedValue = -1;
+				ToggleCutlistErr(false);
 			} else {
 				cutlistctl.SelectedValue = -1;
 				ToggleCutlistErr(true);
