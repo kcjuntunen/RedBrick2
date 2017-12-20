@@ -531,6 +531,11 @@
 			this.partq.Name = "partq";
 			this.partq.Size = new System.Drawing.Size(75, 22);
 			this.partq.TabIndex = 8;
+			this.partq.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			this.partq.ValueChanged += new System.EventHandler(this.partq_ValueChanged);
 			this.partq.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			// 
@@ -1070,6 +1075,11 @@
 			this.ppb_nud.Name = "ppb_nud";
 			this.ppb_nud.Size = new System.Drawing.Size(82, 22);
 			this.ppb_nud.TabIndex = 21;
+			this.ppb_nud.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			this.ppb_nud.ValueChanged += new System.EventHandler(this.ppb_nud_ValueChanged);
 			// 
 			// label29
