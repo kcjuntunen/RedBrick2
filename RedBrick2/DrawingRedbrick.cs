@@ -436,7 +436,6 @@ namespace RedBrick2 {
 		}
 
 		private void button2_Click(object sender, EventArgs e) {
-			SolidWorks.Interop.sldworks.View _v = Redbrick.GetFirstView(SwApp);
 			CreateCutlist c = new CreateCutlist(SwApp);
 			c.ShowDialog(this);
 		}
