@@ -1097,17 +1097,17 @@ namespace RedBrick2 {
 				UpdateRoutingProperties();
 
 				PropertySet.Write();
-				if (Row != null && Row.PARTID > 0) {
-					eNGINEERINGDataSet.CUT_PARTS.UpdatePart(PropertySet);
-					//cpta.Update(Row);
-					if (CutlistPartsRow != null && CutlistPartsRow.CLPARTID > 0) {
-						eNGINEERINGDataSet.CUT_CUTLIST_PARTS.UpdateCutlistPart(PropertySet);
-						//ccpta.Update(CutlistPartsRow);
-					}
-					eNGINEERINGDataSet.CUT_PART_OPS.UpdateOps(PropertySet);
-					//cpota.Update(eNGINEERINGDataSet.CUT_PART_OPS);
-				}
 				if (data_from_db) {
+					if (Row != null && Row.PARTID > 0) {
+						eNGINEERINGDataSet.CUT_PARTS.UpdatePart(PropertySet);
+						//cpta.Update(Row);
+						if (CutlistPartsRow != null && CutlistPartsRow.CLPARTID > 0) {
+							eNGINEERINGDataSet.CUT_CUTLIST_PARTS.UpdateCutlistPart(PropertySet);
+							//ccpta.Update(CutlistPartsRow);
+						}
+						eNGINEERINGDataSet.CUT_PART_OPS.UpdateOps(PropertySet);
+						//cpota.Update(eNGINEERINGDataSet.CUT_PART_OPS);
+					}
 					GetEstimationFromDB();
 					if (Properties.Settings.Default.AutoOpenPriority && checked_at_start && !updateCNCcb.Checked) {
 						popup_priority_(PropertySet.PartLookup);
