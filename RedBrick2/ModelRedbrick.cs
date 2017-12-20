@@ -1047,7 +1047,7 @@ namespace RedBrick2 {
 				if (cbx.SelectedItem != null) {
 					DataRowView drv = (cbx.SelectedItem as DataRowView);
 					PropertySet[op].Set((int)cbx.SelectedValue, drv[@"OPNAME"].ToString());
-					PropertySet[opid].Set((int)cbx.SelectedValue, cbx.SelectedItem.ToString());
+					PropertySet[opid].Set((int)cbx.SelectedValue, cbx.SelectedValue.ToString());
 					if (eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count > i) {
 						ENGINEERINGDataSet.CUT_PART_OPSRow r_ =
 							eNGINEERINGDataSet.CUT_PART_OPS.Rows[i] as ENGINEERINGDataSet.CUT_PART_OPSRow;
