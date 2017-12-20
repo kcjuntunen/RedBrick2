@@ -1115,6 +1115,7 @@ namespace RedBrick2 {
 				} else {
 					GetEstimationFromPart();
 				}
+				_activeDoc.Rebuild((int)swRebuildOptions_e.swRebuildAll);
 			} else if (tabControl1.SelectedTab == tabPage2) {
 				drawingRedbrick.Commit();
 			}
