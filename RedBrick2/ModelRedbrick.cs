@@ -59,6 +59,7 @@ namespace RedBrick2 {
 		private bool ov_userediting = false;
 		private bool bl_userediting = false;
 		private bool cl_userediting = false;
+		private bool cl_stat_userediting = false;
 		private bool data_from_db = false;
 		private ComboBox[] cbxes;
 		private ToolTip groupbox_tooltip = new ToolTip();
@@ -1644,11 +1645,6 @@ namespace RedBrick2 {
 			_me.SelectionLength = 0;
 		}
 
-		private void label6_Click(object sender, EventArgs e) {
-			CreateCutlist c = new CreateCutlist(SwApp);
-			c.ShowDialog(this);
-		}
-
 		private void comboBox_SelectedIndexChanged(object sender, EventArgs e) {
 			cutlistMatChanged = true;
 		}
@@ -1901,6 +1897,40 @@ namespace RedBrick2 {
 				PropertySet[@"EDGE RIGHT (W)"].Data = 0;
 				PropertySet[@"ERID"].Data = 0;
 			}
+		}
+
+		private void stat_cbx_SelectedIndexChanged(object sender, EventArgs e) {
+			if (cl_stat_userediting && cutlistctl.SelectedItem != null) {
+				DataRowView rv_ = cutlistctl.SelectedItem as DataRowView;
+				int clid_ = Convert.ToInt32(rv_[@"CLID"]);
+				ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu_ =
+					new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
+				ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter cc_ =
+					new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
+				ComboBox cbx_ = sender as ComboBox;
+				int uid = Convert.ToInt32(gu_.GetUID(System.Environment.UserName));
+				if (clid_ != 0 && cbx_.SelectedItem != null) {
+					cc_.UpdateState(uid, Convert.ToInt32(cbx_.SelectedValue), clid_);
+				}
+				cl_stat_userediting = false;
+			}
+		}
+
+		private void stat_cbx_Enter(object sender, EventArgs e) {
+			cl_stat_userediting = true;
+		}
+
+		private void stat_cbx_Leave(object sender, EventArgs e) {
+			cl_stat_userediting = false;
+		}
+
+		private void stat_cbx_MouseClick(object sender, MouseEventArgs e) {
+			cl_stat_userediting = true;
+		}
+
+		private void update_btn_MouseClick(object sender, MouseEventArgs e) {
+			CreateCutlist cc_ = new CreateCutlist(SwApp);
+			cc_.ShowDialog(this);
 		}
 	}
 }
