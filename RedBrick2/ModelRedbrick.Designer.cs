@@ -54,6 +54,11 @@
 			this.label30 = new System.Windows.Forms.Label();
 			this.partq = new System.Windows.Forms.NumericUpDown();
 			this.cutlistctl = new System.Windows.Forms.ComboBox();
+			this.stat_cbx = new System.Windows.Forms.ComboBox();
+			this.cUTSTATESBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.label18 = new System.Windows.Forms.Label();
+			this.update_btn = new System.Windows.Forms.Button();
+			this.remove_btn = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.label12 = new System.Windows.Forms.Label();
@@ -135,6 +140,7 @@
 			this.cUT_PARTSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
 			this.friendlyCutOpsTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
+			this.cUT_STATESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_STATESTableAdapter();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
@@ -147,6 +153,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSetBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTEDGESBindingSource3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.partq)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.cUTSTATESBindingSource)).BeginInit();
 			this.groupBox2.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.cUTPARTSBindingSource)).BeginInit();
@@ -195,7 +202,7 @@
 			this.groupBox1.Controls.Add(this.tableLayoutPanel2);
 			this.groupBox1.Location = new System.Drawing.Point(3, 3);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(276, 309);
+			this.groupBox1.Size = new System.Drawing.Size(276, 385);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Cutlist Properties";
@@ -224,10 +231,14 @@
 			this.tableLayoutPanel2.Controls.Add(this.label30, 1, 10);
 			this.tableLayoutPanel2.Controls.Add(this.partq, 1, 11);
 			this.tableLayoutPanel2.Controls.Add(this.cutlistctl, 0, 11);
+			this.tableLayoutPanel2.Controls.Add(this.stat_cbx, 0, 13);
+			this.tableLayoutPanel2.Controls.Add(this.label18, 0, 12);
+			this.tableLayoutPanel2.Controls.Add(this.update_btn, 1, 13);
+			this.tableLayoutPanel2.Controls.Add(this.remove_btn, 1, 14);
 			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 18);
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-			this.tableLayoutPanel2.RowCount = 12;
+			this.tableLayoutPanel2.RowCount = 15;
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -240,7 +251,10 @@
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(270, 288);
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(270, 364);
 			this.tableLayoutPanel2.TabIndex = 0;
 			// 
 			// label1
@@ -559,12 +573,58 @@
 			this.cutlistctl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox6_MouseClick);
 			this.cutlistctl.Resize += new System.EventHandler(this.comboBox_Resize);
 			// 
+			// stat_cbx
+			// 
+			this.stat_cbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.stat_cbx.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cutlistPartsBindingSource, "STATEID", true));
+			this.stat_cbx.DataSource = this.cUTSTATESBindingSource;
+			this.stat_cbx.DisplayMember = "STATE";
+			this.stat_cbx.FormattingEnabled = true;
+			this.stat_cbx.Location = new System.Drawing.Point(3, 257);
+			this.stat_cbx.Name = "stat_cbx";
+			this.stat_cbx.Size = new System.Drawing.Size(183, 21);
+			this.stat_cbx.TabIndex = 9;
+			this.stat_cbx.ValueMember = "ID";
+			// 
+			// cUTSTATESBindingSource
+			// 
+			this.cUTSTATESBindingSource.DataMember = "CUT_STATES";
+			this.cUTSTATESBindingSource.DataSource = this.eNGINEERINGDataSet;
+			// 
+			// label18
+			// 
+			this.label18.AutoSize = true;
+			this.label18.Location = new System.Drawing.Point(3, 241);
+			this.label18.Name = "label18";
+			this.label18.Size = new System.Drawing.Size(39, 13);
+			this.label18.TabIndex = 10;
+			this.label18.Text = "Status";
+			// 
+			// update_btn
+			// 
+			this.update_btn.Location = new System.Drawing.Point(192, 257);
+			this.update_btn.Name = "update_btn";
+			this.update_btn.Size = new System.Drawing.Size(75, 23);
+			this.update_btn.TabIndex = 11;
+			this.update_btn.Text = "Update...";
+			this.update_btn.UseVisualStyleBackColor = true;
+			// 
+			// remove_btn
+			// 
+			this.remove_btn.Location = new System.Drawing.Point(192, 286);
+			this.remove_btn.Name = "remove_btn";
+			this.remove_btn.Size = new System.Drawing.Size(75, 23);
+			this.remove_btn.TabIndex = 12;
+			this.remove_btn.Text = "Remove...";
+			this.remove_btn.UseVisualStyleBackColor = true;
+			// 
 			// groupBox2
 			// 
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.tableLayoutPanel3);
-			this.groupBox2.Location = new System.Drawing.Point(3, 318);
+			this.groupBox2.Location = new System.Drawing.Point(3, 394);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(276, 329);
 			this.groupBox2.TabIndex = 0;
@@ -815,7 +875,7 @@
 			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox3.Controls.Add(this.tableLayoutPanel4);
-			this.groupBox3.Location = new System.Drawing.Point(3, 653);
+			this.groupBox3.Location = new System.Drawing.Point(3, 729);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Size = new System.Drawing.Size(276, 174);
 			this.groupBox3.TabIndex = 0;
@@ -1100,7 +1160,7 @@
 			this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox4.Controls.Add(this.tableLayoutPanel5);
-			this.groupBox4.Location = new System.Drawing.Point(3, 833);
+			this.groupBox4.Location = new System.Drawing.Point(3, 909);
 			this.groupBox4.Name = "groupBox4";
 			this.groupBox4.Size = new System.Drawing.Size(276, 240);
 			this.groupBox4.TabIndex = 1;
@@ -1523,6 +1583,10 @@
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
 			// 
+			// cUT_STATESTableAdapter
+			// 
+			this.cUT_STATESTableAdapter.ClearBeforeFill = true;
+			// 
 			// ModelRedbrick
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -1545,6 +1609,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSetBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTEDGESBindingSource3)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.partq)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.cUTSTATESBindingSource)).EndInit();
 			this.groupBox2.ResumeLayout(false);
 			this.tableLayoutPanel3.ResumeLayout(false);
 			this.tableLayoutPanel3.PerformLayout();
@@ -1685,5 +1750,11 @@
 		private System.Windows.Forms.Button swapLnW;
 		private System.Windows.Forms.Button swapWnT;
 		private System.Windows.Forms.NumericUpDown ppb_nud;
+		private System.Windows.Forms.ComboBox stat_cbx;
+		private System.Windows.Forms.Label label18;
+		private System.Windows.Forms.BindingSource cUTSTATESBindingSource;
+		private ENGINEERINGDataSetTableAdapters.CUT_STATESTableAdapter cUT_STATESTableAdapter;
+		private System.Windows.Forms.Button update_btn;
+		private System.Windows.Forms.Button remove_btn;
   }
 }

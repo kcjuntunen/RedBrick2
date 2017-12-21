@@ -1389,6 +1389,7 @@ namespace RedBrick2 {
 			cUT_EDGESTableAdapter.Fill(eNGINEERINGDataSet.CUT_EDGES);
 			cUT_PART_TYPESTableAdapter.Fill(eNGINEERINGDataSet.CUT_PART_TYPES);
 			friendlyCutOpsTableAdapter.Fill(eNGINEERINGDataSet.FriendlyCutOps);
+			cUT_STATESTableAdapter.Fill(eNGINEERINGDataSet.CUT_STATES);
 			swap_tooltup.SetToolTip(swapLnW, Properties.Resources.DimensionSwapWarning);
 			swap_tooltup.SetToolTip(swapWnT, Properties.Resources.DimensionSwapWarning);
 			//GetCutlistData();
