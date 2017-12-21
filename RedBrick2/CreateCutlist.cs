@@ -1147,6 +1147,7 @@ namespace RedBrick2 {
 				dt_cc.UpdateCutlist(itm_cbx.Text, ref_cbx.Text, rev_cbx.Text, descr_cbx.Text, custid_,
 					dateTimePicker1.Value, Properties.Settings.Default.DefaultState, Convert.ToInt32(uid), parts_);
 				(sender as Control).Enabled = false;
+				cancel_btn.Text = @"Close";
 			}
 		}
 	}
