@@ -21,13 +21,17 @@ namespace RedBrick2 {
 					int seq_ = i + 1;
 					string op_ = string.Format(@"OP{0}", seq_);
 					OpProperty p_ = _pp[op_] as OpProperty;
-					string filter_ = string.Format(@"OPID = {0}", p_.Data);
-					CUT_OPSRow[] rr_ = dt_.Select(filter_) as CUT_OPSRow[];
-					double setup_ = rr_.Length > 0 ? Convert.ToDouble(rr_[0].OPSETUP) : 0;
-					double run_ = rr_.Length > 0 ? Convert.ToDouble(rr_[0].OPRUN) : 0;
-					affected_ = update_op_(p_.PartID, seq_, Convert.ToInt32(p_.Data), setup_, run_);
-					if (affected_ < 1) {
-						affected_ = insert_op_(p_.PartID, seq_, Convert.ToInt32(p_.Data), setup_, run_);
+					if (Convert.ToInt32(p_.Data) < 1) {
+						affected_ = delete_op_(p_.PartID, seq_);
+					} else {
+						string filter_ = string.Format(@"OPID = {0}", p_.Data);
+						CUT_OPSRow[] rr_ = dt_.Select(filter_) as CUT_OPSRow[];
+						double setup_ = rr_.Length > 0 ? Convert.ToDouble(rr_[0].OPSETUP) : 0;
+						double run_ = rr_.Length > 0 ? Convert.ToDouble(rr_[0].OPRUN) : 0;
+						affected_ = update_op_(p_.PartID, seq_, Convert.ToInt32(p_.Data), setup_, run_);
+						if (affected_ < 1) {
+							affected_ = insert_op_(p_.PartID, seq_, Convert.ToInt32(p_.Data), setup_, run_);
+						}
 					}
 					total_affected_ += affected_;
 				}
