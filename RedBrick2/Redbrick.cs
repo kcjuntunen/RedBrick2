@@ -506,7 +506,7 @@ namespace RedBrick2 {
 		/// <param name="to_clip">A string.</param>
 		static public void Clip(string to_clip) {
 			if ((to_clip != null && to_clip != string.Empty) && to_clip != System.Windows.Forms.Clipboard.GetText()) {
-				System.Windows.Forms.Clipboard.SetText(to_clip.Replace(Properties.Settings.Default.NotSavedMark, string.Empty));
+				System.Windows.Forms.Clipboard.SetText(to_clip.Trim());
 				if (Properties.Settings.Default.MakeSounds) {
 					try {
 						System.Media.SoundPlayer sp = new System.Media.SoundPlayer(Properties.Settings.Default.ClipboardSound);
