@@ -748,5 +748,17 @@ namespace RedBrick2.Properties {
                 return ((double)(this["Epsilon"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool EstimateSource {
+            get {
+                return ((bool)(this["EstimateSource"]));
+            }
+            set {
+                this["EstimateSource"] = value;
+            }
+        }
     }
 }

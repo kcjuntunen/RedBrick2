@@ -87,6 +87,7 @@ namespace RedBrick2 {
 			tabPage1.Text = @"Model Properties";
 			tabPage2.Text = @"DrawingProperties";
 			groupBox1.MouseClick += groupBox1_MouseClick;
+			groupBox4.MouseClick += groupBox4_MouseClick;
 			label6.MouseDown += clip_click;
 			label7.MouseDown += clip_click;
 			label8.MouseDown += clip_click;
@@ -141,6 +142,16 @@ namespace RedBrick2 {
 
 		void groupBox1_MouseClick(object sender, MouseEventArgs e) {
 			Redbrick.Clip(partLookup);
+		}
+
+		void groupBox4_MouseClick(object sender, MouseEventArgs e) {
+			if (data_from_db) {
+				Properties.Settings.Default.EstimateSource = !Properties.Settings.Default.EstimateSource;
+				Properties.Settings.Default.Save();
+				GetEstimationFromDB();
+			} else {
+				GetEstimationFromPart();
+			}
 		}
 
 		void overL_TextChanged(object sender, EventArgs e) {
@@ -628,23 +639,27 @@ namespace RedBrick2 {
 		private void GetEstimationFromDB() {
 			double setupTime = 0.0f;
 			double runTime = 0.0f;
-			//ENGINEERINGDataSet.CUT_PART_OPSDataTable dt_ = cpota.GetDataByPartID(Row.PARTID);
-			//for (int i = 0; i < cbxes.Length; i++) {
-			//	ComboBox current = cbxes[i];
-			//	if (eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count > i) {
-			//		setupTime += Convert.ToDouble(eNGINEERINGDataSet.CUT_PART_OPS.Rows[i][@"POPSETUP"]);
-			//		runTime += Convert.ToDouble(eNGINEERINGDataSet.CUT_PART_OPS.Rows[i][@"POPRUN"]);
-			//	}
-			//}
-			if (PropertySet.CutlistID != 0) {
-				setupTime = Convert.ToDouble(cpota.GetCutlistSetupTime(PropertySet.CutlistID));
-				runTime = Convert.ToDouble(cpota.GetCutlistRunTime(PropertySet.CutlistID));
+			if (Properties.Settings.Default.EstimateSource) {
+				ENGINEERINGDataSet.CUT_PART_OPSDataTable dt_ = cpota.GetDataByPartID(Row.PARTID);
+				for (int i = 0; i < cbxes.Length; i++) {
+					ComboBox current = cbxes[i];
+					if (eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count > i) {
+						setupTime += Convert.ToDouble(eNGINEERINGDataSet.CUT_PART_OPS.Rows[i][@"POPSETUP"]);
+						runTime += Convert.ToDouble(eNGINEERINGDataSet.CUT_PART_OPS.Rows[i][@"POPRUN"]);
+					}
+				}
+			} else {
+				if (PropertySet.CutlistID != 0) {
+					setupTime = Convert.ToDouble(cpota.GetCutlistSetupTime(PropertySet.CutlistID));
+					runTime = Convert.ToDouble(cpota.GetCutlistRunTime(PropertySet.CutlistID));
+				}
 			}
 
 			double setup = setupTime / Properties.Settings.Default.SPQ;
-			groupBox4.Text = string.Format("Routing (Setup: {0:0} min/Run: {1:0} min)",
+			groupBox4.Text = string.Format("Routing (Setup: {0:0} min/Run: {1:0} min/SPQ: {2})",
 				setup * 60,
-				runTime * 60);
+				runTime * 60,
+				Properties.Settings.Default.SPQ);
 		}
 
 		private void GetEstimationFromPart() {
