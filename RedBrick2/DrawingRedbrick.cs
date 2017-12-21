@@ -20,8 +20,11 @@ namespace RedBrick2 {
 		private Revs revSet;
 		private ToolTip cust_tooltip = new ToolTip();
 		private ToolTip rev_tooltip = new ToolTip();
+		private ToolTip status_tooltip = new ToolTip();
 		private int clid = 0;
 		private bool user_editing = false;
+		private bool jobs = false;
+		private string jobs_msg = string.Empty;
 
 		/// <summary>
 		/// Constructor.
@@ -32,7 +35,96 @@ namespace RedBrick2 {
 			ActiveDoc = md;
 			SwApp = sw;
 			InitializeComponent();
+			groupBox5.MouseClick += groupBox5_MouseClick;
+			label32.MouseDown += label32_MouseDown;
+			label34.MouseDown += label34_MouseDown;
+			label36.MouseDown += label36_MouseDown;
+			label38.MouseDown += label38_MouseDown;
+			label40.MouseDown += label40_MouseDown;
+			label41.MouseDown += label41_MouseDown;
+			label42.MouseDown += label42_MouseDown;
 			ToggleFlameWar(Properties.Settings.Default.FlameWar);
+		}
+
+		void label42_MouseDown(object sender, MouseEventArgs e) {
+			Redbrick.Clip(Redbrick.TitleCase(Convert.ToString(auth_cpx.Text)));
+		}
+
+		void label40_MouseDown(object sender, MouseEventArgs e) {
+			Redbrick.Clip(fin5_tb.Text);
+		}
+
+		void label38_MouseDown(object sender, MouseEventArgs e) {
+			Redbrick.Clip(fin4_tb.Text);
+		}
+
+		void label36_MouseDown(object sender, MouseEventArgs e) {
+			Redbrick.Clip(fin3_tb.Text);
+		}
+
+		void label34_MouseDown(object sender, MouseEventArgs e) {
+			Redbrick.Clip(fin2_tb.Text);
+		}
+
+		void label32_MouseDown(object sender, MouseEventArgs e) {
+			Redbrick.Clip(fin1_tb.Text);
+		}
+
+		private void label41_MouseDown(object sender, MouseEventArgs e) {
+			if (cust_cbx.SelectedItem != null) {
+				DataRowView rv_ = cust_cbx.SelectedItem as DataRowView;
+				Redbrick.Clip(Convert.ToString(rv_[@"CUSTOMER"]));
+			}
+		}
+
+		void groupBox5_MouseClick(object sender, MouseEventArgs e) {
+			Redbrick.Clip(partLookup);
+		}
+
+		private string GetJobsDue() {
+			if (partLookup != null && partLookup != string.Empty &&
+				RevFromDrw != null && RevFromDrw != string.Empty) {
+				ENGINEERINGDataSetTableAdapters.jomastTableAdapter jo_ =
+					new ENGINEERINGDataSetTableAdapters.jomastTableAdapter();
+				jo_.FillByItemAndRev(eNGINEERINGDataSet.jomast, partLookup, RevFromDrw);
+				int lim_ = eNGINEERINGDataSet.jomast.Count > 3 ? 3 : eNGINEERINGDataSet.jomast.Count;
+				if (lim_ > 0) {
+					string msg_ = string.Format("Open/Released jobs for {0} REV {1}\n", partLookup, RevFromDrw);
+					int len_ = msg_.Length;
+					for (int i = 0; i < len_; i++) {
+						msg_ += "-";
+					}
+					msg_ += "\n";
+					for (int i = 0; i < lim_; i++) {
+						ENGINEERINGDataSet.jomastRow r_ = eNGINEERINGDataSet.jomast[i];
+						msg_ += string.Format("Job #: {0}; Due: {1:M/d/yyyy}; Qty: {2:0}; Status: {3}\n",
+							r_.fjobno, r_.fddue_date, r_.fquantity, r_.fstatus);
+					}
+					//foreach (ENGINEERINGDataSet.jomastRow r_ in eNGINEERINGDataSet.jomast) {
+					//	msg_ += string.Format("Job #: {0}; Due: {1:M/d/yyyy}; Qty: {2:0}; Status: {3}\n",
+					//		r_.fjobno, r_.fddue_date, r_.fquantity, r_.fstatus);
+					//}
+					ENGINEERINGDataSetTableAdapters.jomastTotalsTableAdapter jot_ =
+						new ENGINEERINGDataSetTableAdapters.jomastTotalsTableAdapter();
+					jot_.FillCountByItemAndRev(eNGINEERINGDataSet.jomastTotals, partLookup, RevFromDrw);
+					if (eNGINEERINGDataSet.jomastTotals.Count > 0) {
+						ENGINEERINGDataSet.jomastTotalsRow r_ = eNGINEERINGDataSet.jomastTotals[0] as ENGINEERINGDataSet.jomastTotalsRow;
+						if (r_.jobqty > lim_) {
+							msg_ += "...\n";
+						}
+						if (r_.jobqty > 1) {
+							msg_ += string.Format("There are {0} jobs, requiring a total quantity of {1:0} parts,\n"
+								+ "with an average of {2:0.0} parts per job.",
+								r_.jobqty, r_.partqty, r_.partavgqty);
+						} else if (r_.jobqty == 1) {
+							msg_ += string.Format(@"There's {0} job, requiring a total quantity of {1:0} parts.",
+								Convert.ToInt32(r_.jobqty), Convert.ToDouble(r_.partqty));
+						}
+					}
+					return msg_;
+				}
+			}
+			return @"No jobs.";
 		}
 
 		/// <summary>
@@ -57,6 +149,7 @@ namespace RedBrick2 {
 		}
 
 		private void InitData() {
+			jobs = false;
 			treeView1.ImageList = Redbrick.TreeViewIcons;
 			foreach (TreeNode tn in treeView1.Nodes) {
 				if (tn != null) {
@@ -517,6 +610,13 @@ namespace RedBrick2 {
 		private void status_cbx_MouseClick(object sender, MouseEventArgs e) {
 			user_editing = true;
 			Redbrick.FocusHere(sender, e);
+		}
+
+		private void label45_MouseHover(object sender, EventArgs e) {
+			if (!jobs) {
+				jobs_msg = GetJobsDue();
+			}
+			status_tooltip.Show(jobs_msg, sender as Label, 30000);
 		}
 	}
 }
