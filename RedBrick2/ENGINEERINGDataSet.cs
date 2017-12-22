@@ -376,6 +376,12 @@ namespace RedBrick2 {
 				return affected_;
 			}
 
+			/// <summary>
+			/// Delete part from a selected cutlist. If the part is used nowhere else,
+			/// then delete it, and its child rows.
+			/// </summary>
+			/// <param name="_pp">An SwProperties object with valid CutlistID & PartID.</param>
+			/// <returns>Number of rows affected.</returns>
 			public int RemovePartFromCutlist(SwProperties _pp) {
 				int affected_ = 0;
 				if (_pp.CutlistAndPartIDsOK) {
