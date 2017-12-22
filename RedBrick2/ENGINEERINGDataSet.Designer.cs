@@ -2657,16 +2657,6 @@ namespace RedBrick2 {
             
             private global::System.Data.DataColumn columnOVER_W;
             
-            private global::System.Data.DataColumn columnOP1ID;
-            
-            private global::System.Data.DataColumn columnOP2ID;
-            
-            private global::System.Data.DataColumn columnOP3ID;
-            
-            private global::System.Data.DataColumn columnOP4ID;
-            
-            private global::System.Data.DataColumn columnOP5ID;
-            
             private global::System.Data.DataColumn columnCOMMENT;
             
             private global::System.Data.DataColumn columnUPDATE_CNC;
@@ -2798,46 +2788,6 @@ namespace RedBrick2 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn OP1IDColumn {
-                get {
-                    return this.columnOP1ID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn OP2IDColumn {
-                get {
-                    return this.columnOP2ID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn OP3IDColumn {
-                get {
-                    return this.columnOP3ID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn OP4IDColumn {
-                get {
-                    return this.columnOP4ID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn OP5IDColumn {
-                get {
-                    return this.columnOP5ID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn COMMENTColumn {
                 get {
                     return this.columnCOMMENT;
@@ -2905,26 +2855,7 @@ namespace RedBrick2 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CUT_PARTSRow AddCUT_PARTSRow(
-                        string PARTNUM, 
-                        string DESCR, 
-                        float FIN_L, 
-                        float FIN_W, 
-                        float THICKNESS, 
-                        string CNC1, 
-                        string CNC2, 
-                        int BLANKQTY, 
-                        float OVER_L, 
-                        float OVER_W, 
-                        int OP1ID, 
-                        int OP2ID, 
-                        int OP3ID, 
-                        int OP4ID, 
-                        int OP5ID, 
-                        string COMMENT, 
-                        bool UPDATE_CNC, 
-                        int TYPE, 
-                        int HASH) {
+            public CUT_PARTSRow AddCUT_PARTSRow(string PARTNUM, string DESCR, float FIN_L, float FIN_W, float THICKNESS, string CNC1, string CNC2, int BLANKQTY, float OVER_L, float OVER_W, string COMMENT, bool UPDATE_CNC, int TYPE, int HASH) {
                 CUT_PARTSRow rowCUT_PARTSRow = ((CUT_PARTSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2938,11 +2869,6 @@ namespace RedBrick2 {
                         BLANKQTY,
                         OVER_L,
                         OVER_W,
-                        OP1ID,
-                        OP2ID,
-                        OP3ID,
-                        OP4ID,
-                        OP5ID,
                         COMMENT,
                         UPDATE_CNC,
                         TYPE,
@@ -2987,11 +2913,6 @@ namespace RedBrick2 {
                 this.columnBLANKQTY = base.Columns["BLANKQTY"];
                 this.columnOVER_L = base.Columns["OVER_L"];
                 this.columnOVER_W = base.Columns["OVER_W"];
-                this.columnOP1ID = base.Columns["OP1ID"];
-                this.columnOP2ID = base.Columns["OP2ID"];
-                this.columnOP3ID = base.Columns["OP3ID"];
-                this.columnOP4ID = base.Columns["OP4ID"];
-                this.columnOP5ID = base.Columns["OP5ID"];
                 this.columnCOMMENT = base.Columns["COMMENT"];
                 this.columnUPDATE_CNC = base.Columns["UPDATE_CNC"];
                 this.columnTYPE = base.Columns["TYPE"];
@@ -3023,16 +2944,6 @@ namespace RedBrick2 {
                 base.Columns.Add(this.columnOVER_L);
                 this.columnOVER_W = new global::System.Data.DataColumn("OVER_W", typeof(float), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOVER_W);
-                this.columnOP1ID = new global::System.Data.DataColumn("OP1ID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOP1ID);
-                this.columnOP2ID = new global::System.Data.DataColumn("OP2ID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOP2ID);
-                this.columnOP3ID = new global::System.Data.DataColumn("OP3ID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOP3ID);
-                this.columnOP4ID = new global::System.Data.DataColumn("OP4ID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOP4ID);
-                this.columnOP5ID = new global::System.Data.DataColumn("OP5ID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOP5ID);
                 this.columnCOMMENT = new global::System.Data.DataColumn("COMMENT", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCOMMENT);
                 this.columnUPDATE_CNC = new global::System.Data.DataColumn("UPDATE_CNC", typeof(bool), null, global::System.Data.MappingType.Element);
@@ -16074,86 +15985,6 @@ namespace RedBrick2 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int OP1ID {
-                get {
-                    try {
-                        return ((int)(this[this.tableCUT_PARTS.OP1IDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'OP1ID\' in table \'CUT_PARTS\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCUT_PARTS.OP1IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int OP2ID {
-                get {
-                    try {
-                        return ((int)(this[this.tableCUT_PARTS.OP2IDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'OP2ID\' in table \'CUT_PARTS\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCUT_PARTS.OP2IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int OP3ID {
-                get {
-                    try {
-                        return ((int)(this[this.tableCUT_PARTS.OP3IDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'OP3ID\' in table \'CUT_PARTS\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCUT_PARTS.OP3IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int OP4ID {
-                get {
-                    try {
-                        return ((int)(this[this.tableCUT_PARTS.OP4IDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'OP4ID\' in table \'CUT_PARTS\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCUT_PARTS.OP4IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int OP5ID {
-                get {
-                    try {
-                        return ((int)(this[this.tableCUT_PARTS.OP5IDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'OP5ID\' in table \'CUT_PARTS\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCUT_PARTS.OP5IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string COMMENT {
                 get {
                     try {
@@ -16269,66 +16100,6 @@ namespace RedBrick2 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetOVER_WNull() {
                 this[this.tableCUT_PARTS.OVER_WColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsOP1IDNull() {
-                return this.IsNull(this.tableCUT_PARTS.OP1IDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetOP1IDNull() {
-                this[this.tableCUT_PARTS.OP1IDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsOP2IDNull() {
-                return this.IsNull(this.tableCUT_PARTS.OP2IDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetOP2IDNull() {
-                this[this.tableCUT_PARTS.OP2IDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsOP3IDNull() {
-                return this.IsNull(this.tableCUT_PARTS.OP3IDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetOP3IDNull() {
-                this[this.tableCUT_PARTS.OP3IDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsOP4IDNull() {
-                return this.IsNull(this.tableCUT_PARTS.OP4IDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetOP4IDNull() {
-                this[this.tableCUT_PARTS.OP4IDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsOP5IDNull() {
-                return this.IsNull(this.tableCUT_PARTS.OP5IDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetOP5IDNull() {
-                this[this.tableCUT_PARTS.OP5IDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -27071,11 +26842,6 @@ SELECT POPID, POPPART, POPORDER, POPOP, POPSETUP, POPRUN FROM CUT_PART_OPS WHERE
             tableMapping.ColumnMappings.Add("BLANKQTY", "BLANKQTY");
             tableMapping.ColumnMappings.Add("OVER_L", "OVER_L");
             tableMapping.ColumnMappings.Add("OVER_W", "OVER_W");
-            tableMapping.ColumnMappings.Add("OP1ID", "OP1ID");
-            tableMapping.ColumnMappings.Add("OP2ID", "OP2ID");
-            tableMapping.ColumnMappings.Add("OP3ID", "OP3ID");
-            tableMapping.ColumnMappings.Add("OP4ID", "OP4ID");
-            tableMapping.ColumnMappings.Add("OP5ID", "OP5ID");
             tableMapping.ColumnMappings.Add("COMMENT", "COMMENT");
             tableMapping.ColumnMappings.Add("UPDATE_CNC", "UPDATE_CNC");
             tableMapping.ColumnMappings.Add("TYPE", "TYPE");
@@ -27083,7 +26849,7 @@ SELECT POPID, POPPART, POPORDER, POPOP, POPSETUP, POPRUN FROM CUT_PART_OPS WHERE
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[CUT_PARTS] WHERE (([PARTID] = @Original_PARTID) AND ([PARTNUM] = @Original_PARTNUM) AND ((@IsNull_DESCR = 1 AND [DESCR] IS NULL) OR ([DESCR] = @Original_DESCR)) AND ([FIN_L] = @Original_FIN_L) AND ([FIN_W] = @Original_FIN_W) AND ([THICKNESS] = @Original_THICKNESS) AND ((@IsNull_CNC1 = 1 AND [CNC1] IS NULL) OR ([CNC1] = @Original_CNC1)) AND ((@IsNull_CNC2 = 1 AND [CNC2] IS NULL) OR ([CNC2] = @Original_CNC2)) AND ([BLANKQTY] = @Original_BLANKQTY) AND ((@IsNull_OVER_L = 1 AND [OVER_L] IS NULL) OR ([OVER_L] = @Original_OVER_L)) AND ((@IsNull_OVER_W = 1 AND [OVER_W] IS NULL) OR ([OVER_W] = @Original_OVER_W)) AND ((@IsNull_OP1ID = 1 AND [OP1ID] IS NULL) OR ([OP1ID] = @Original_OP1ID)) AND ((@IsNull_OP2ID = 1 AND [OP2ID] IS NULL) OR ([OP2ID] = @Original_OP2ID)) AND ((@IsNull_OP3ID = 1 AND [OP3ID] IS NULL) OR ([OP3ID] = @Original_OP3ID)) AND ((@IsNull_OP4ID = 1 AND [OP4ID] IS NULL) OR ([OP4ID] = @Original_OP4ID)) AND ((@IsNull_OP5ID = 1 AND [OP5ID] IS NULL) OR ([OP5ID] = @Original_OP5ID)) AND ((@IsNull_COMMENT = 1 AND [COMMENT] IS NULL) OR ([COMMENT] = @Original_COMMENT)) AND ([UPDATE_CNC] = @Original_UPDATE_CNC) AND ((@IsNull_TYPE = 1 AND [TYPE] IS NULL) OR ([TYPE] = @Original_TYPE)) AND ((@IsNull_HASH = 1 AND [HASH] IS NULL) OR ([HASH] = @Original_HASH)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[CUT_PARTS] WHERE (([PARTID] = @Original_PARTID) AND ([PARTNUM] = @Original_PARTNUM) AND ((@IsNull_DESCR = 1 AND [DESCR] IS NULL) OR ([DESCR] = @Original_DESCR)) AND ([FIN_L] = @Original_FIN_L) AND ([FIN_W] = @Original_FIN_W) AND ([THICKNESS] = @Original_THICKNESS) AND ((@IsNull_CNC1 = 1 AND [CNC1] IS NULL) OR ([CNC1] = @Original_CNC1)) AND ((@IsNull_CNC2 = 1 AND [CNC2] IS NULL) OR ([CNC2] = @Original_CNC2)) AND ([BLANKQTY] = @Original_BLANKQTY) AND ((@IsNull_OVER_L = 1 AND [OVER_L] IS NULL) OR ([OVER_L] = @Original_OVER_L)) AND ((@IsNull_OVER_W = 1 AND [OVER_W] IS NULL) OR ([OVER_W] = @Original_OVER_W)) AND ((@IsNull_COMMENT = 1 AND [COMMENT] IS NULL) OR ([COMMENT] = @Original_COMMENT)) AND ([UPDATE_CNC] = @Original_UPDATE_CNC) AND ((@IsNull_TYPE = 1 AND [TYPE] IS NULL) OR ([TYPE] = @Original_TYPE)) AND ((@IsNull_HASH = 1 AND [HASH] IS NULL) OR ([HASH] = @Original_HASH)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PARTID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PARTID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PARTNUM", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PARTNUM", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -27101,16 +26867,6 @@ SELECT POPID, POPPART, POPORDER, POPOP, POPSETUP, POPRUN FROM CUT_PART_OPS WHERE
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OVER_L", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OVER_L", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OVER_W", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OVER_W", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OVER_W", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OVER_W", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OP1ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP1ID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OP1ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP1ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OP2ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP2ID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OP2ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP2ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OP3ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP3ID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OP3ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP3ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OP4ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP4ID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OP4ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP4ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OP5ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP5ID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OP5ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP5ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_COMMENT", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "COMMENT", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_COMMENT", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "COMMENT", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UPDATE_CNC", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UPDATE_CNC", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -27120,8 +26876,8 @@ SELECT POPID, POPPART, POPORDER, POPOP, POPSETUP, POPRUN FROM CUT_PART_OPS WHERE
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_HASH", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HASH", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[CUT_PARTS] ([PARTNUM], [DESCR], [FIN_L], [FIN_W], [THICKNESS], [CNC1], [CNC2], [BLANKQTY], [OVER_L], [OVER_W], [OP1ID], [OP2ID], [OP3ID], [OP4ID], [OP5ID], [COMMENT], [UPDATE_CNC], [TYPE], [HASH]) VALUES (@PARTNUM, @DESCR, @FIN_L, @FIN_W, @THICKNESS, @CNC1, @CNC2, @BLANKQTY, @OVER_L, @OVER_W, @OP1ID, @OP2ID, @OP3ID, @OP4ID, @OP5ID, @COMMENT, @UPDATE_CNC, @TYPE, @HASH);
-SELECT PARTID, PARTNUM, DESCR, FIN_L, FIN_W, THICKNESS, CNC1, CNC2, BLANKQTY, OVER_L, OVER_W, OP1ID, OP2ID, OP3ID, OP4ID, OP5ID, COMMENT, UPDATE_CNC, TYPE, HASH FROM CUT_PARTS WHERE (PARTID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[CUT_PARTS] ([PARTNUM], [DESCR], [FIN_L], [FIN_W], [THICKNESS], [CNC1], [CNC2], [BLANKQTY], [OVER_L], [OVER_W], [COMMENT], [UPDATE_CNC], [TYPE], [HASH]) VALUES (@PARTNUM, @DESCR, @FIN_L, @FIN_W, @THICKNESS, @CNC1, @CNC2, @BLANKQTY, @OVER_L, @OVER_W, @COMMENT, @UPDATE_CNC, @TYPE, @HASH);
+SELECT PARTID, PARTNUM, DESCR, FIN_L, FIN_W, THICKNESS, CNC1, CNC2, BLANKQTY, OVER_L, OVER_W, COMMENT, UPDATE_CNC, TYPE, HASH FROM CUT_PARTS WHERE (PARTID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PARTNUM", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PARTNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DESCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DESCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -27133,41 +26889,14 @@ SELECT PARTID, PARTNUM, DESCR, FIN_L, FIN_W, THICKNESS, CNC1, CNC2, BLANKQTY, OV
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BLANKQTY", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BLANKQTY", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OVER_L", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OVER_L", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OVER_W", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OVER_W", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OP1ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP1ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OP2ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP2ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OP3ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP3ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OP4ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP4ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OP5ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP5ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@COMMENT", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "COMMENT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UPDATE_CNC", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UPDATE_CNC", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TYPE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TYPE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@HASH", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "HASH", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[CUT_PARTS] SET [PARTNUM] = @PARTNUM, [DESCR] = @DESCR, [FIN_L] = @F" +
-                "IN_L, [FIN_W] = @FIN_W, [THICKNESS] = @THICKNESS, [CNC1] = @CNC1, [CNC2] = @CNC2" +
-                ", [BLANKQTY] = @BLANKQTY, [OVER_L] = @OVER_L, [OVER_W] = @OVER_W, [OP1ID] = @OP1" +
-                "ID, [OP2ID] = @OP2ID, [OP3ID] = @OP3ID, [OP4ID] = @OP4ID, [OP5ID] = @OP5ID, [COM" +
-                "MENT] = @COMMENT, [UPDATE_CNC] = @UPDATE_CNC, [TYPE] = @TYPE, [HASH] = @HASH WHE" +
-                "RE (([PARTID] = @Original_PARTID) AND ([PARTNUM] = @Original_PARTNUM) AND ((@IsN" +
-                "ull_DESCR = 1 AND [DESCR] IS NULL) OR ([DESCR] = @Original_DESCR)) AND ([FIN_L] " +
-                "= @Original_FIN_L) AND ([FIN_W] = @Original_FIN_W) AND ([THICKNESS] = @Original_" +
-                "THICKNESS) AND ((@IsNull_CNC1 = 1 AND [CNC1] IS NULL) OR ([CNC1] = @Original_CNC" +
-                "1)) AND ((@IsNull_CNC2 = 1 AND [CNC2] IS NULL) OR ([CNC2] = @Original_CNC2)) AND" +
-                " ([BLANKQTY] = @Original_BLANKQTY) AND ((@IsNull_OVER_L = 1 AND [OVER_L] IS NULL" +
-                ") OR ([OVER_L] = @Original_OVER_L)) AND ((@IsNull_OVER_W = 1 AND [OVER_W] IS NUL" +
-                "L) OR ([OVER_W] = @Original_OVER_W)) AND ((@IsNull_OP1ID = 1 AND [OP1ID] IS NULL" +
-                ") OR ([OP1ID] = @Original_OP1ID)) AND ((@IsNull_OP2ID = 1 AND [OP2ID] IS NULL) O" +
-                "R ([OP2ID] = @Original_OP2ID)) AND ((@IsNull_OP3ID = 1 AND [OP3ID] IS NULL) OR (" +
-                "[OP3ID] = @Original_OP3ID)) AND ((@IsNull_OP4ID = 1 AND [OP4ID] IS NULL) OR ([OP" +
-                "4ID] = @Original_OP4ID)) AND ((@IsNull_OP5ID = 1 AND [OP5ID] IS NULL) OR ([OP5ID" +
-                "] = @Original_OP5ID)) AND ((@IsNull_COMMENT = 1 AND [COMMENT] IS NULL) OR ([COMM" +
-                "ENT] = @Original_COMMENT)) AND ([UPDATE_CNC] = @Original_UPDATE_CNC) AND ((@IsNu" +
-                "ll_TYPE = 1 AND [TYPE] IS NULL) OR ([TYPE] = @Original_TYPE)) AND ((@IsNull_HASH" +
-                " = 1 AND [HASH] IS NULL) OR ([HASH] = @Original_HASH)));\r\nSELECT PARTID, PARTNUM" +
-                ", DESCR, FIN_L, FIN_W, THICKNESS, CNC1, CNC2, BLANKQTY, OVER_L, OVER_W, OP1ID, O" +
-                "P2ID, OP3ID, OP4ID, OP5ID, COMMENT, UPDATE_CNC, TYPE, HASH FROM CUT_PARTS WHERE " +
-                "(PARTID = @PARTID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[CUT_PARTS] SET [PARTNUM] = @PARTNUM, [DESCR] = @DESCR, [FIN_L] = @FIN_L, [FIN_W] = @FIN_W, [THICKNESS] = @THICKNESS, [CNC1] = @CNC1, [CNC2] = @CNC2, [BLANKQTY] = @BLANKQTY, [OVER_L] = @OVER_L, [OVER_W] = @OVER_W, [COMMENT] = @COMMENT, [UPDATE_CNC] = @UPDATE_CNC, [TYPE] = @TYPE, [HASH] = @HASH WHERE (([PARTID] = @Original_PARTID) AND ([PARTNUM] = @Original_PARTNUM) AND ((@IsNull_DESCR = 1 AND [DESCR] IS NULL) OR ([DESCR] = @Original_DESCR)) AND ([FIN_L] = @Original_FIN_L) AND ([FIN_W] = @Original_FIN_W) AND ([THICKNESS] = @Original_THICKNESS) AND ((@IsNull_CNC1 = 1 AND [CNC1] IS NULL) OR ([CNC1] = @Original_CNC1)) AND ((@IsNull_CNC2 = 1 AND [CNC2] IS NULL) OR ([CNC2] = @Original_CNC2)) AND ([BLANKQTY] = @Original_BLANKQTY) AND ((@IsNull_OVER_L = 1 AND [OVER_L] IS NULL) OR ([OVER_L] = @Original_OVER_L)) AND ((@IsNull_OVER_W = 1 AND [OVER_W] IS NULL) OR ([OVER_W] = @Original_OVER_W)) AND ((@IsNull_COMMENT = 1 AND [COMMENT] IS NULL) OR ([COMMENT] = @Original_COMMENT)) AND ([UPDATE_CNC] = @Original_UPDATE_CNC) AND ((@IsNull_TYPE = 1 AND [TYPE] IS NULL) OR ([TYPE] = @Original_TYPE)) AND ((@IsNull_HASH = 1 AND [HASH] IS NULL) OR ([HASH] = @Original_HASH)));
+SELECT PARTID, PARTNUM, DESCR, FIN_L, FIN_W, THICKNESS, CNC1, CNC2, BLANKQTY, OVER_L, OVER_W, COMMENT, UPDATE_CNC, TYPE, HASH FROM CUT_PARTS WHERE (PARTID = @PARTID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PARTNUM", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PARTNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DESCR", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DESCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -27179,11 +26908,6 @@ SELECT PARTID, PARTNUM, DESCR, FIN_L, FIN_W, THICKNESS, CNC1, CNC2, BLANKQTY, OV
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BLANKQTY", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BLANKQTY", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OVER_L", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OVER_L", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OVER_W", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OVER_W", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OP1ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP1ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OP2ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP2ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OP3ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP3ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OP4ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP4ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OP5ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP5ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@COMMENT", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "COMMENT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UPDATE_CNC", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UPDATE_CNC", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TYPE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TYPE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -27204,16 +26928,6 @@ SELECT PARTID, PARTNUM, DESCR, FIN_L, FIN_W, THICKNESS, CNC1, CNC2, BLANKQTY, OV
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OVER_L", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OVER_L", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OVER_W", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OVER_W", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OVER_W", global::System.Data.SqlDbType.Real, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OVER_W", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OP1ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP1ID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OP1ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP1ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OP2ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP2ID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OP2ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP2ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OP3ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP3ID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OP3ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP3ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OP4ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP4ID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OP4ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP4ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_OP5ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP5ID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OP5ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OP5ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_COMMENT", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "COMMENT", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_COMMENT", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "COMMENT", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UPDATE_CNC", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UPDATE_CNC", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -27238,8 +26952,7 @@ SELECT PARTID, PARTNUM, DESCR, FIN_L, FIN_W, THICKNESS, CNC1, CNC2, BLANKQTY, OV
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT PARTID, PARTNUM, DESCR, FIN_L, FIN_W, THICKNESS, CNC1, CNC2, BLANKQTY, OVE" +
-                "R_L, OVER_W, OP1ID, OP2ID, OP3ID, OP4ID, OP5ID, COMMENT, UPDATE_CNC, TYPE, HASH " +
-                "FROM dbo.CUT_PARTS";
+                "R_L, OVER_W, COMMENT, UPDATE_CNC, TYPE, HASH FROM dbo.CUT_PARTS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -27248,18 +26961,16 @@ SELECT PARTID, PARTNUM, DESCR, FIN_L, FIN_W, THICKNESS, CNC1, CNC2, BLANKQTY, OV
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "PARTID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT        PARTID, PARTNUM, DESCR, FIN_L, FIN_W, THICKNESS, CNC1, CNC2, BLANKQ" +
-                "TY, OVER_L, OVER_W, OP1ID, OP2ID, OP3ID, OP4ID, OP5ID, COMMENT, \r\n              " +
-                "           UPDATE_CNC, TYPE, HASH\r\nFROM            CUT_PARTS\r\nWHERE        (PART" +
-                "ID = @partid)";
+            this._commandCollection[2].CommandText = "SELECT BLANKQTY, CNC1, CNC2, COMMENT, DESCR, FIN_L, FIN_W, HASH, OVER_L, OVER_W, " +
+                "PARTID, PARTNUM, THICKNESS, TYPE, UPDATE_CNC FROM CUT_PARTS WHERE (PARTID = @par" +
+                "tid)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "PARTID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = @"SELECT        PARTID, PARTNUM, DESCR, FIN_L, FIN_W, THICKNESS, CNC1, CNC2, BLANKQTY, OVER_L, OVER_W, OP1ID, OP2ID, OP3ID, OP4ID, OP5ID, COMMENT, 
-                         UPDATE_CNC, TYPE, HASH
-FROM            CUT_PARTS
-WHERE        (PARTNUM = @partnum)";
+            this._commandCollection[3].CommandText = "SELECT BLANKQTY, CNC1, CNC2, COMMENT, DESCR, FIN_L, FIN_W, HASH, OVER_L, OVER_W, " +
+                "PARTID, PARTNUM, THICKNESS, TYPE, UPDATE_CNC FROM CUT_PARTS WHERE (PARTNUM = @pa" +
+                "rtnum)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partnum", global::System.Data.SqlDbType.NVarChar, 25, global::System.Data.ParameterDirection.Input, 0, 0, "PARTNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
@@ -27389,27 +27100,7 @@ WHERE        (PARTNUM = @partnum)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(
-                    int Original_PARTID, 
-                    string Original_PARTNUM, 
-                    string Original_DESCR, 
-                    float Original_FIN_L, 
-                    float Original_FIN_W, 
-                    float Original_THICKNESS, 
-                    string Original_CNC1, 
-                    string Original_CNC2, 
-                    int Original_BLANKQTY, 
-                    global::System.Nullable<float> Original_OVER_L, 
-                    global::System.Nullable<float> Original_OVER_W, 
-                    global::System.Nullable<int> Original_OP1ID, 
-                    global::System.Nullable<int> Original_OP2ID, 
-                    global::System.Nullable<int> Original_OP3ID, 
-                    global::System.Nullable<int> Original_OP4ID, 
-                    global::System.Nullable<int> Original_OP5ID, 
-                    string Original_COMMENT, 
-                    bool Original_UPDATE_CNC, 
-                    global::System.Nullable<int> Original_TYPE, 
-                    global::System.Nullable<int> Original_HASH) {
+        public virtual int Delete(int Original_PARTID, string Original_PARTNUM, string Original_DESCR, float Original_FIN_L, float Original_FIN_W, float Original_THICKNESS, string Original_CNC1, string Original_CNC2, int Original_BLANKQTY, global::System.Nullable<float> Original_OVER_L, global::System.Nullable<float> Original_OVER_W, string Original_COMMENT, bool Original_UPDATE_CNC, global::System.Nullable<int> Original_TYPE, global::System.Nullable<int> Original_HASH) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_PARTID));
             if ((Original_PARTNUM == null)) {
                 throw new global::System.ArgumentNullException("Original_PARTNUM");
@@ -27461,70 +27152,30 @@ WHERE        (PARTNUM = @partnum)";
                 this.Adapter.DeleteCommand.Parameters[14].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
-            if ((Original_OP1ID.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[16].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[17].Value = ((int)(Original_OP1ID.Value));
-            }
-            else {
+            if ((Original_COMMENT == null)) {
                 this.Adapter.DeleteCommand.Parameters[16].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
-            if ((Original_OP2ID.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[18].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[19].Value = ((int)(Original_OP2ID.Value));
-            }
             else {
-                this.Adapter.DeleteCommand.Parameters[18].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[19].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((string)(Original_COMMENT));
             }
-            if ((Original_OP3ID.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[20].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[21].Value = ((int)(Original_OP3ID.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[20].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[21].Value = global::System.DBNull.Value;
-            }
-            if ((Original_OP4ID.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[22].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[23].Value = ((int)(Original_OP4ID.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[22].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[23].Value = global::System.DBNull.Value;
-            }
-            if ((Original_OP5ID.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[24].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[25].Value = ((int)(Original_OP5ID.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[24].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[25].Value = global::System.DBNull.Value;
-            }
-            if ((Original_COMMENT == null)) {
-                this.Adapter.DeleteCommand.Parameters[26].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[27].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[26].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[27].Value = ((string)(Original_COMMENT));
-            }
-            this.Adapter.DeleteCommand.Parameters[28].Value = ((bool)(Original_UPDATE_CNC));
+            this.Adapter.DeleteCommand.Parameters[18].Value = ((bool)(Original_UPDATE_CNC));
             if ((Original_TYPE.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[29].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[30].Value = ((int)(Original_TYPE.Value));
+                this.Adapter.DeleteCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[20].Value = ((int)(Original_TYPE.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[29].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[30].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[19].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
             if ((Original_HASH.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[31].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[32].Value = ((int)(Original_HASH.Value));
+                this.Adapter.DeleteCommand.Parameters[21].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[22].Value = ((int)(Original_HASH.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[31].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[32].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[21].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[22].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -27546,26 +27197,7 @@ WHERE        (PARTNUM = @partnum)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(
-                    string PARTNUM, 
-                    string DESCR, 
-                    float FIN_L, 
-                    float FIN_W, 
-                    float THICKNESS, 
-                    string CNC1, 
-                    string CNC2, 
-                    int BLANKQTY, 
-                    global::System.Nullable<float> OVER_L, 
-                    global::System.Nullable<float> OVER_W, 
-                    global::System.Nullable<int> OP1ID, 
-                    global::System.Nullable<int> OP2ID, 
-                    global::System.Nullable<int> OP3ID, 
-                    global::System.Nullable<int> OP4ID, 
-                    global::System.Nullable<int> OP5ID, 
-                    string COMMENT, 
-                    bool UPDATE_CNC, 
-                    global::System.Nullable<int> TYPE, 
-                    global::System.Nullable<int> HASH) {
+        public virtual int Insert(string PARTNUM, string DESCR, float FIN_L, float FIN_W, float THICKNESS, string CNC1, string CNC2, int BLANKQTY, global::System.Nullable<float> OVER_L, global::System.Nullable<float> OVER_W, string COMMENT, bool UPDATE_CNC, global::System.Nullable<int> TYPE, global::System.Nullable<int> HASH) {
             if ((PARTNUM == null)) {
                 throw new global::System.ArgumentNullException("PARTNUM");
             }
@@ -27606,54 +27238,24 @@ WHERE        (PARTNUM = @partnum)";
             else {
                 this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((OP1ID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((int)(OP1ID.Value));
-            }
-            else {
+            if ((COMMENT == null)) {
                 this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            if ((OP2ID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[11].Value = ((int)(OP2ID.Value));
-            }
             else {
-                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(COMMENT));
             }
-            if ((OP3ID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[12].Value = ((int)(OP3ID.Value));
+            this.Adapter.InsertCommand.Parameters[11].Value = ((bool)(UPDATE_CNC));
+            if ((TYPE.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[12].Value = ((int)(TYPE.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
-            if ((OP4ID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[13].Value = ((int)(OP4ID.Value));
+            if ((HASH.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[13].Value = ((int)(HASH.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
-            }
-            if ((OP5ID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[14].Value = ((int)(OP5ID.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[14].Value = global::System.DBNull.Value;
-            }
-            if ((COMMENT == null)) {
-                this.Adapter.InsertCommand.Parameters[15].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[15].Value = ((string)(COMMENT));
-            }
-            this.Adapter.InsertCommand.Parameters[16].Value = ((bool)(UPDATE_CNC));
-            if ((TYPE.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[17].Value = ((int)(TYPE.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[17].Value = global::System.DBNull.Value;
-            }
-            if ((HASH.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[18].Value = ((int)(HASH.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -27686,11 +27288,6 @@ WHERE        (PARTNUM = @partnum)";
                     int BLANKQTY, 
                     global::System.Nullable<float> OVER_L, 
                     global::System.Nullable<float> OVER_W, 
-                    global::System.Nullable<int> OP1ID, 
-                    global::System.Nullable<int> OP2ID, 
-                    global::System.Nullable<int> OP3ID, 
-                    global::System.Nullable<int> OP4ID, 
-                    global::System.Nullable<int> OP5ID, 
                     string COMMENT, 
                     bool UPDATE_CNC, 
                     global::System.Nullable<int> TYPE, 
@@ -27706,11 +27303,6 @@ WHERE        (PARTNUM = @partnum)";
                     int Original_BLANKQTY, 
                     global::System.Nullable<float> Original_OVER_L, 
                     global::System.Nullable<float> Original_OVER_W, 
-                    global::System.Nullable<int> Original_OP1ID, 
-                    global::System.Nullable<int> Original_OP2ID, 
-                    global::System.Nullable<int> Original_OP3ID, 
-                    global::System.Nullable<int> Original_OP4ID, 
-                    global::System.Nullable<int> Original_OP5ID, 
                     string Original_COMMENT, 
                     bool Original_UPDATE_CNC, 
                     global::System.Nullable<int> Original_TYPE, 
@@ -27756,172 +27348,102 @@ WHERE        (PARTNUM = @partnum)";
             else {
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((OP1ID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(OP1ID.Value));
-            }
-            else {
+            if ((COMMENT == null)) {
                 this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            if ((OP2ID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(OP2ID.Value));
-            }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(COMMENT));
             }
-            if ((OP3ID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(OP3ID.Value));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((bool)(UPDATE_CNC));
+            if ((TYPE.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(TYPE.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
-            if ((OP4ID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(OP4ID.Value));
+            if ((HASH.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(HASH.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
-            if ((OP5ID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(OP5ID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
-            }
-            if ((COMMENT == null)) {
-                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(COMMENT));
-            }
-            this.Adapter.UpdateCommand.Parameters[16].Value = ((bool)(UPDATE_CNC));
-            if ((TYPE.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(TYPE.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
-            }
-            if ((HASH.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((int)(HASH.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[19].Value = ((int)(Original_PARTID));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_PARTID));
             if ((Original_PARTNUM == null)) {
                 throw new global::System.ArgumentNullException("Original_PARTNUM");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_PARTNUM));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_PARTNUM));
             }
             if ((Original_DESCR == null)) {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_DESCR));
+            }
+            this.Adapter.UpdateCommand.Parameters[18].Value = ((float)(Original_FIN_L));
+            this.Adapter.UpdateCommand.Parameters[19].Value = ((float)(Original_FIN_W));
+            this.Adapter.UpdateCommand.Parameters[20].Value = ((float)(Original_THICKNESS));
+            if ((Original_CNC1 == null)) {
                 this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_DESCR));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_CNC1));
             }
-            this.Adapter.UpdateCommand.Parameters[23].Value = ((float)(Original_FIN_L));
-            this.Adapter.UpdateCommand.Parameters[24].Value = ((float)(Original_FIN_W));
-            this.Adapter.UpdateCommand.Parameters[25].Value = ((float)(Original_THICKNESS));
-            if ((Original_CNC1 == null)) {
+            if ((Original_CNC2 == null)) {
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((string)(Original_CNC2));
+            }
+            this.Adapter.UpdateCommand.Parameters[25].Value = ((int)(Original_BLANKQTY));
+            if ((Original_OVER_L.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((float)(Original_OVER_L.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[27].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[27].Value = ((string)(Original_CNC1));
+            if ((Original_OVER_W.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((float)(Original_OVER_W.Value));
             }
-            if ((Original_CNC2 == null)) {
+            else {
                 this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[29].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[29].Value = ((string)(Original_CNC2));
-            }
-            this.Adapter.UpdateCommand.Parameters[30].Value = ((int)(Original_BLANKQTY));
-            if ((Original_OVER_L.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[31].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[32].Value = ((float)(Original_OVER_L.Value));
+            if ((Original_COMMENT == null)) {
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[31].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[31].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[32].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((string)(Original_COMMENT));
             }
-            if ((Original_OVER_W.HasValue == true)) {
+            this.Adapter.UpdateCommand.Parameters[32].Value = ((bool)(Original_UPDATE_CNC));
+            if ((Original_TYPE.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[33].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[34].Value = ((float)(Original_OVER_W.Value));
+                this.Adapter.UpdateCommand.Parameters[34].Value = ((int)(Original_TYPE.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[33].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[34].Value = global::System.DBNull.Value;
             }
-            if ((Original_OP1ID.HasValue == true)) {
+            if ((Original_HASH.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[35].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[36].Value = ((int)(Original_OP1ID.Value));
+                this.Adapter.UpdateCommand.Parameters[36].Value = ((int)(Original_HASH.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[35].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[36].Value = global::System.DBNull.Value;
             }
-            if ((Original_OP2ID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[37].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[38].Value = ((int)(Original_OP2ID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[37].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[38].Value = global::System.DBNull.Value;
-            }
-            if ((Original_OP3ID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[39].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[40].Value = ((int)(Original_OP3ID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[39].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[40].Value = global::System.DBNull.Value;
-            }
-            if ((Original_OP4ID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[41].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[42].Value = ((int)(Original_OP4ID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[41].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[42].Value = global::System.DBNull.Value;
-            }
-            if ((Original_OP5ID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[43].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[44].Value = ((int)(Original_OP5ID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[43].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[44].Value = global::System.DBNull.Value;
-            }
-            if ((Original_COMMENT == null)) {
-                this.Adapter.UpdateCommand.Parameters[45].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[46].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[45].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[46].Value = ((string)(Original_COMMENT));
-            }
-            this.Adapter.UpdateCommand.Parameters[47].Value = ((bool)(Original_UPDATE_CNC));
-            if ((Original_TYPE.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[48].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[49].Value = ((int)(Original_TYPE.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[48].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[49].Value = global::System.DBNull.Value;
-            }
-            if ((Original_HASH.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[50].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[51].Value = ((int)(Original_HASH.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[50].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[51].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[52].Value = ((int)(PARTID));
+            this.Adapter.UpdateCommand.Parameters[37].Value = ((int)(PARTID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -27953,11 +27475,6 @@ WHERE        (PARTNUM = @partnum)";
                     int BLANKQTY, 
                     global::System.Nullable<float> OVER_L, 
                     global::System.Nullable<float> OVER_W, 
-                    global::System.Nullable<int> OP1ID, 
-                    global::System.Nullable<int> OP2ID, 
-                    global::System.Nullable<int> OP3ID, 
-                    global::System.Nullable<int> OP4ID, 
-                    global::System.Nullable<int> OP5ID, 
                     string COMMENT, 
                     bool UPDATE_CNC, 
                     global::System.Nullable<int> TYPE, 
@@ -27973,16 +27490,11 @@ WHERE        (PARTNUM = @partnum)";
                     int Original_BLANKQTY, 
                     global::System.Nullable<float> Original_OVER_L, 
                     global::System.Nullable<float> Original_OVER_W, 
-                    global::System.Nullable<int> Original_OP1ID, 
-                    global::System.Nullable<int> Original_OP2ID, 
-                    global::System.Nullable<int> Original_OP3ID, 
-                    global::System.Nullable<int> Original_OP4ID, 
-                    global::System.Nullable<int> Original_OP5ID, 
                     string Original_COMMENT, 
                     bool Original_UPDATE_CNC, 
                     global::System.Nullable<int> Original_TYPE, 
                     global::System.Nullable<int> Original_HASH) {
-            return this.Update(PARTNUM, DESCR, FIN_L, FIN_W, THICKNESS, CNC1, CNC2, BLANKQTY, OVER_L, OVER_W, OP1ID, OP2ID, OP3ID, OP4ID, OP5ID, COMMENT, UPDATE_CNC, TYPE, HASH, Original_PARTID, Original_PARTNUM, Original_DESCR, Original_FIN_L, Original_FIN_W, Original_THICKNESS, Original_CNC1, Original_CNC2, Original_BLANKQTY, Original_OVER_L, Original_OVER_W, Original_OP1ID, Original_OP2ID, Original_OP3ID, Original_OP4ID, Original_OP5ID, Original_COMMENT, Original_UPDATE_CNC, Original_TYPE, Original_HASH, Original_PARTID);
+            return this.Update(PARTNUM, DESCR, FIN_L, FIN_W, THICKNESS, CNC1, CNC2, BLANKQTY, OVER_L, OVER_W, COMMENT, UPDATE_CNC, TYPE, HASH, Original_PARTID, Original_PARTNUM, Original_DESCR, Original_FIN_L, Original_FIN_W, Original_THICKNESS, Original_CNC1, Original_CNC2, Original_BLANKQTY, Original_OVER_L, Original_OVER_W, Original_COMMENT, Original_UPDATE_CNC, Original_TYPE, Original_HASH, Original_PARTID);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -28252,7 +27764,7 @@ SELECT CLPARTID, CLID, PARTID, MATID, EDGEID_LF, EDGEID_LB, EDGEID_WR, EDGEID_WL
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[6];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[7];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT CLPARTID, CLID, PARTID, MATID, EDGEID_LF, EDGEID_LB, EDGEID_WR, EDGEID_WL," +
@@ -28272,28 +27784,33 @@ SELECT CLPARTID, CLID, PARTID, MATID, EDGEID_LF, EDGEID_LB, EDGEID_WR, EDGEID_WL
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "PARTID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT      CLPARTID, CLID, PARTID, MATID, EDGEID_LF, EDGEID_LB, EDGEID_WR, EDGEI" +
-                "D_WL, QTY\r\nFROM          CUT_CUTLIST_PARTS\r\nWHERE      (PARTID = @PartID) AND (C" +
-                "LID = @CutlistID)";
+            this._commandCollection[3].CommandText = "DELETE FROM CUT_CUTLIST_PARTS\r\nWHERE      (CLID = @clid)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PartID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "PARTID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CutlistID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "CLID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@clid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "CLID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
             this._commandCollection[4].CommandText = "SELECT      CLPARTID, CLID, PARTID, MATID, EDGEID_LF, EDGEID_LB, EDGEID_WR, EDGEI" +
-                "D_WL, QTY\r\nFROM          CUT_CUTLIST_PARTS\r\nWHERE      (PARTID = @partid)";
+                "D_WL, QTY\r\nFROM          CUT_CUTLIST_PARTS\r\nWHERE      (PARTID = @PartID) AND (C" +
+                "LID = @CutlistID)";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "PARTID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PartID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "PARTID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CutlistID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "CLID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = @"SELECT      CUT_CUTLIST_PARTS.CLPARTID, CUT_CUTLIST_PARTS.CLID, CUT_CUTLIST_PARTS.PARTID, CUT_CUTLIST_PARTS.MATID, 
+            this._commandCollection[5].CommandText = "SELECT      CLPARTID, CLID, PARTID, MATID, EDGEID_LF, EDGEID_LB, EDGEID_WR, EDGEI" +
+                "D_WL, QTY\r\nFROM          CUT_CUTLIST_PARTS\r\nWHERE      (PARTID = @partid)";
+            this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "PARTID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[6] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[6].Connection = this.Connection;
+            this._commandCollection[6].CommandText = @"SELECT      CUT_CUTLIST_PARTS.CLPARTID, CUT_CUTLIST_PARTS.CLID, CUT_CUTLIST_PARTS.PARTID, CUT_CUTLIST_PARTS.MATID, 
                         CUT_CUTLIST_PARTS.EDGEID_LF, CUT_CUTLIST_PARTS.EDGEID_LB, CUT_CUTLIST_PARTS.EDGEID_WR, CUT_CUTLIST_PARTS.EDGEID_WL, 
                         CUT_CUTLIST_PARTS.QTY
 FROM          CUT_CUTLIST_PARTS INNER JOIN
                         CUT_PARTS ON CUT_CUTLIST_PARTS.PARTID = CUT_PARTS.PARTID
 WHERE      (CUT_PARTS.PARTNUM = @partnum)";
-            this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partnum", global::System.Data.SqlDbType.NVarChar, 25, global::System.Data.ParameterDirection.Input, 0, 0, "PARTNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partnum", global::System.Data.SqlDbType.NVarChar, 25, global::System.Data.ParameterDirection.Input, 0, 0, "PARTNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -28325,7 +27842,7 @@ WHERE      (CUT_PARTS.PARTNUM = @partnum)";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int FillByCutlistIDAndPartID(ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable dataTable, global::System.Nullable<int> PartID, global::System.Nullable<int> CutlistID) {
-            this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand = this.CommandCollection[4];
             if ((PartID.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(PartID.Value));
             }
@@ -28350,7 +27867,7 @@ WHERE      (CUT_PARTS.PARTNUM = @partnum)";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable GetDataByCutlistIDAndPartID(global::System.Nullable<int> PartID, global::System.Nullable<int> CutlistID) {
-            this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand = this.CommandCollection[4];
             if ((PartID.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(PartID.Value));
             }
@@ -28373,7 +27890,7 @@ WHERE      (CUT_PARTS.PARTNUM = @partnum)";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int FillByPartID(ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable dataTable, global::System.Nullable<int> partid) {
-            this.Adapter.SelectCommand = this.CommandCollection[4];
+            this.Adapter.SelectCommand = this.CommandCollection[5];
             if ((partid.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(partid.Value));
             }
@@ -28392,7 +27909,7 @@ WHERE      (CUT_PARTS.PARTNUM = @partnum)";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable GetDataByPartID(global::System.Nullable<int> partid) {
-            this.Adapter.SelectCommand = this.CommandCollection[4];
+            this.Adapter.SelectCommand = this.CommandCollection[5];
             if ((partid.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(partid.Value));
             }
@@ -28409,7 +27926,7 @@ WHERE      (CUT_PARTS.PARTNUM = @partnum)";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int FillByPartNum(ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable dataTable, string partnum) {
-            this.Adapter.SelectCommand = this.CommandCollection[5];
+            this.Adapter.SelectCommand = this.CommandCollection[6];
             if ((partnum == null)) {
                 throw new global::System.ArgumentNullException("partnum");
             }
@@ -28428,7 +27945,7 @@ WHERE      (CUT_PARTS.PARTNUM = @partnum)";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable GetDataByPartNum(string partnum) {
-            this.Adapter.SelectCommand = this.CommandCollection[5];
+            this.Adapter.SelectCommand = this.CommandCollection[6];
             if ((partnum == null)) {
                 throw new global::System.ArgumentNullException("partnum");
             }
@@ -28853,6 +28370,35 @@ WHERE      (CUT_PARTS.PARTNUM = @partnum)";
             }
             else {
                 command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
+        public virtual int DeleteCutlistParts(global::System.Nullable<int> clid) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
+            if ((clid.HasValue == true)) {
+                command.Parameters[0].Value = ((int)(clid.Value));
+            }
+            else {
+                command.Parameters[0].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 

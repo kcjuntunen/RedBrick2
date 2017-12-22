@@ -122,9 +122,9 @@ namespace RedBrick2 {
 				int affected_ = 0;
 				string sql_ = @"UPDATE CUT_PARTS SET DESCR = @descr, FIN_L = @finl, FIN_W = @finw, THICKNESS = @thk, " +
 					"CNC1 = @cnc1, CNC2 = @cnc2, BLANKQTY = @blnkqty, " +
-					"OVER_L = @ovrl, OVER_W = @ovrw, OP1ID = @op1, " +
-					"OP2ID = @op2, OP3ID = @op3, OP4ID = @op4, OP5ID = @op5, COMMENT = @comment, HASH = @hash, " +
-					"UPDATE_CNC = @updCnc, TYPE = @type WHERE PARTNUM=@prtNo";
+					"OVER_L = @ovrl, OVER_W = @ovrw, " +
+					//"OP1ID = @op1, OP2ID = @op2, OP3ID = @op3, OP4ID = @op4, OP5ID = @op5, " +
+					"COMMENT = @comment, HASH = @hash,  UPDATE_CNC = @updCnc, TYPE = @type WHERE PARTNUM=@prtNo";
 				ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter ta_ =
 					new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
 				using (SqlCommand comm = new SqlCommand(sql_, ta_.Connection)) {
@@ -138,12 +138,12 @@ namespace RedBrick2 {
 					comm.Parameters.AddWithValue("@ovrl", Convert.ToDouble(_pp[@"OVERL"].Data));
 					comm.Parameters.AddWithValue("@ovrw", Convert.ToDouble(_pp[@"OVERW"].Data));
 
-					for (ushort i = 0; i < Properties.Settings.Default.OpCount; i++) {
-						int seq_ = i + 1;
-						string key_ = string.Format(@"@op{0}", seq_);
-						string lkup_ = string.Format(@"OP{0}", seq_);
-						comm.Parameters.AddWithValue(key_, Convert.ToInt32(_pp[lkup_].Data));
-					}
+					//for (ushort i = 0; i < Properties.Settings.Default.OpCount; i++) {
+					//	int seq_ = i + 1;
+					//	string key_ = string.Format(@"@op{0}", seq_);
+					//	string lkup_ = string.Format(@"OP{0}", seq_);
+					//	comm.Parameters.AddWithValue(key_, Convert.ToInt32(_pp[lkup_].Data));
+					//}
 
 					comm.Parameters.AddWithValue("@comment", _pp[@"COMMENT"].Data);
 					comm.Parameters.AddWithValue("@updCnc", ((bool)_pp[@"UPDATE CNC"].Data ? 1 : 0));
@@ -167,11 +167,13 @@ namespace RedBrick2 {
 				int affected_ = 0;
 				ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter ta_ =
 					new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
-				string sql_ = @"INSERT INTO CUT_PARTS (PARTNUM, DESCR, FIN_L, FIN_W, THICKNESS, CNC1, CNC2, BLANKQTY, OVER_L, " +
-					@"OVER_W, OP1ID, OP2ID, OP3ID, OP4ID, OP5ID, COMMENT, UPDATE_CNC, TYPE, HASH) VALUES " +
+				string sql_ = @"INSERT INTO CUT_PARTS (PARTNUM, DESCR, FIN_L, FIN_W, THICKNESS, CNC1, CNC2, BLANKQTY, OVER_L,  OVER_W, " +
+					//"OP1ID, OP2ID, OP3ID, OP4ID, OP5ID, " + 
+					"COMMENT, UPDATE_CNC, TYPE, HASH) VALUES " +
 					@"(@prtNo, @descr, @finl, @finw, @thk, @cnc1, " +
-					"@cnc2, @blnkqty, @ovrl, @ovrw, @op1, @op2, " +
-					"@op3, @op4, @op5, @comment, @updCnc, @type, @hash)";
+					"@cnc2, @blnkqty, @ovrl, @ovrw, " +
+					//"@op1, @op2, @op3, @op4, @op5, " +
+					"@comment, @updCnc, @type, @hash)";
 				using (SqlCommand comm = new SqlCommand(sql_, ta_.Connection)) {
 					comm.Parameters.AddWithValue("@descr", _pp[@"Description"].Data);
 					comm.Parameters.AddWithValue("@finl", Convert.ToDouble(_pp[@"LENGTH"].Data));
@@ -183,12 +185,12 @@ namespace RedBrick2 {
 					comm.Parameters.AddWithValue("@ovrl", Convert.ToDouble(_pp[@"OVERL"].Data));
 					comm.Parameters.AddWithValue("@ovrw", Convert.ToDouble(_pp[@"OVERW"].Data));
 
-					for (ushort i = 0; i < Properties.Settings.Default.OpCount; i++) {
-						int seq_ = i + 1;
-						string key_ = string.Format(@"@op{0}", seq_);
-						string lkup_ = string.Format(@"OP{0}", seq_);
-						comm.Parameters.AddWithValue(key_, Convert.ToInt32(_pp[lkup_].Data));
-					}
+					//for (ushort i = 0; i < Properties.Settings.Default.OpCount; i++) {
+					//	int seq_ = i + 1;
+					//	string key_ = string.Format(@"@op{0}", seq_);
+					//	string lkup_ = string.Format(@"OP{0}", seq_);
+					//	comm.Parameters.AddWithValue(key_, Convert.ToInt32(_pp[lkup_].Data));
+					//}
 
 					comm.Parameters.AddWithValue("@comment", _pp[@"COMMENT"].Data);
 					comm.Parameters.AddWithValue("@updCnc", ((bool)_pp[@"UPDATE CNC"].Data ? 1 : 0));
