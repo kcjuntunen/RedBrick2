@@ -308,6 +308,58 @@ namespace RedBrick2 {
 				return id_ != null ? (int)id_ : 0;
 			}
 
+			private int[] get_orphan_parts_() {
+				List<int> parts_ = new List<int>();
+				string sql_ = @"SELECT CUT_PARTS.PARTID FROM CUT_PARTS LEFT JOIN CUT_CUTLIST_PARTS " +
+					"ON CUT_PARTS.PARTID = CUT_CUTLIST_PARTS.PARTID GROUP BY CUT_PARTS.PARTID " +
+					"HAVING (((Count(CUT_CUTLIST_PARTS.CLPARTID))=0));";
+				ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter ta_ =
+					new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
+				using (SqlCommand comm = new SqlCommand(sql_, ta_.Connection)) {
+					if ((ta_.Connection.State & System.Data.ConnectionState.Closed)
+						== System.Data.ConnectionState.Closed) {
+							ta_.Connection.Open();
+					}
+					try {
+						using (SqlDataReader dr_ = comm.ExecuteReader()) {
+							while (dr_.Read()) {
+								parts_.Add(dr_.GetInt32(0));
+							}
+						}
+					} finally {
+						ta_.Connection.Close();
+					}
+				}
+				return parts_.ToArray();
+			}
+
+			public void DeleteCutlist(int _clid) {
+				int affected_ = 0;
+				ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter cp_ =
+					new ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter();
+				affected_ = cp_.DeleteByCLID(_clid);
+				if (affected_ > 0) {
+					ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter c_ =
+						new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
+					affected_ += c_.DeleteByCLID(_clid);
+				}
+
+				int[] orp_ = get_orphan_parts_();
+				string q_ = string.Format(@"{0} orphaned parts were found. They should also be deleted. Continue?", orp_.Length);
+				System.Windows.Forms.DialogResult dr_ = System.Windows.Forms.MessageBox.Show(q_, @"Delete orphaned parts?", 
+					System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Question);
+				if (dr_ == System.Windows.Forms.DialogResult.Yes) {
+					ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter pota_ =
+						new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter();
+					ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter p_ =
+						new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
+					foreach (int part_ in orp_) {
+						pota_.DeletePart(part_);
+						p_.DeletePart(part_);
+					}
+				}
+			}
+
 		}
 	
 		partial class CUT_CUTLIST_PARTSDataTable {

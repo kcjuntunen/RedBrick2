@@ -277,6 +277,7 @@ namespace RedBrick2 {
 					status_cbx.SelectedValue = -1;
 				}
 			}
+			button3.Enabled = clid > 0;
 		}
 
 		/// <summary>
@@ -600,10 +601,10 @@ namespace RedBrick2 {
 		}
 
 		private void button3_Click(object sender, EventArgs e) {
-			string q_ = string.Format(@"Are you sure you want to delete {0} REV {1}", partLookup, rev_cbx.Text);
+			string q_ = string.Format(@"Are you sure you want to delete {0} REV {1}?", partLookup, rev_cbx.Text);
 			DialogResult dr_ = MessageBox.Show(this, q_, @"RLY?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-			if (dr_ == DialogResult.Yes) {
-				System.Diagnostics.Debug.Print(@"Deleting...");
+			if (dr_ == DialogResult.Yes && clid > 0) {
+				eNGINEERINGDataSet.CUT_CUTLISTS.DeleteCutlist(clid);
 			}
 		}
 
