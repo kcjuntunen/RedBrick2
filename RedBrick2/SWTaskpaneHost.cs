@@ -144,6 +144,7 @@ namespace RedBrick2 {
 		internal void ConnectSelection() {
 			System.GC.Collect(2, GCCollectionMode.Forced);
 			BuildStuff();
+			mrb.DumpActiveDoc();
 			mrb.ReQuery(SwApp.ActiveDoc);
 		}
 
