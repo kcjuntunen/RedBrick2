@@ -297,6 +297,7 @@ namespace RedBrick2 {
 			} else {
 				GetDataFromPart();
 			}
+			remove_btn.Enabled = PropertySet.CutlistAndPartIDsOK;
 		}
 
 		private void SelectLastCutlist() {
@@ -1931,6 +1932,23 @@ namespace RedBrick2 {
 		private void update_btn_MouseClick(object sender, MouseEventArgs e) {
 			CreateCutlist cc_ = new CreateCutlist(SwApp);
 			cc_.ShowDialog(this);
+		}
+
+		private void remove_btn_MouseClick(object sender, MouseEventArgs e) {
+			if (cutlistctl.SelectedItem != null) {
+				DataRowView rv_ = cutlistctl.SelectedItem as DataRowView;
+				string cutlist_name_ = string.Format(@"{0} REV {1}",
+					Convert.ToString(rv_[@"PARTNUM"]),
+					Convert.ToString(rv_[@"REV"]));
+				string q_ = string.Format(@"Do you really want to remove {0} from {1}?", PropertySet.PartLookup, cutlist_name_);
+				DialogResult dr_ = MessageBox.Show(this, q_, @"RLY?",
+					MessageBoxButtons.YesNo,
+					MessageBoxIcon.Question,
+					MessageBoxDefaultButton.Button2);
+				if (dr_ == DialogResult.Yes) {
+					eNGINEERINGDataSet.CUT_CUTLIST_PARTS.RemovePartFromCutlist(PropertySet);
+				}
+			}
 		}
 	}
 }

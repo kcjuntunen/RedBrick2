@@ -29,16 +29,22 @@
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.cutlistMat = new System.Windows.Forms.ComboBox();
+			this.cutlistPartsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.eNGINEERINGDataSet = new RedBrick2.ENGINEERINGDataSet();
+			this.cUTMATERIALSBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.label2 = new System.Windows.Forms.Label();
 			this.edgef = new System.Windows.Forms.ComboBox();
+			this.cUTEDGESBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.label3 = new System.Windows.Forms.Label();
 			this.edgeb = new System.Windows.Forms.ComboBox();
+			this.cUTEDGESBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.edgel = new System.Windows.Forms.ComboBox();
 			this.cUTEDGESBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+			this.eNGINEERINGDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.edger = new System.Windows.Forms.ComboBox();
+			this.cUTEDGESBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
 			this.label6 = new System.Windows.Forms.Label();
 			this.label7 = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
@@ -49,6 +55,7 @@
 			this.partq = new System.Windows.Forms.NumericUpDown();
 			this.cutlistctl = new System.Windows.Forms.ComboBox();
 			this.stat_cbx = new System.Windows.Forms.ComboBox();
+			this.cUTSTATESBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.label18 = new System.Windows.Forms.Label();
 			this.update_btn = new System.Windows.Forms.Button();
 			this.remove_btn = new System.Windows.Forms.Button();
@@ -60,6 +67,7 @@
 			this.label15 = new System.Windows.Forms.Label();
 			this.label16 = new System.Windows.Forms.Label();
 			this.descriptiontb = new System.Windows.Forms.TextBox();
+			this.cUTPARTSBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.lengthtb = new System.Windows.Forms.TextBox();
 			this.label17 = new System.Windows.Forms.Label();
 			this.commenttb = new System.Windows.Forms.TextBox();
@@ -98,16 +106,22 @@
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
 			this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
 			this.op5_cbx = new System.Windows.Forms.ComboBox();
+			this.friendlyCutOpsBindingSource4 = new System.Windows.Forms.BindingSource(this.components);
 			this.label36 = new System.Windows.Forms.Label();
 			this.label35 = new System.Windows.Forms.Label();
 			this.label34 = new System.Windows.Forms.Label();
 			this.label33 = new System.Windows.Forms.Label();
 			this.label32 = new System.Windows.Forms.Label();
 			this.op4_cbx = new System.Windows.Forms.ComboBox();
+			this.friendlyCutOpsBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
 			this.op3_cbx = new System.Windows.Forms.ComboBox();
+			this.friendlyCutOpsBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
 			this.op2_cbx = new System.Windows.Forms.ComboBox();
+			this.friendlyCutOpsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
 			this.op1_cbx = new System.Windows.Forms.ComboBox();
+			this.friendlyCutOpsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.type_cbx = new System.Windows.Forms.ComboBox();
+			this.cUTPARTTYPESBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.button3 = new System.Windows.Forms.Button();
 			this.button4 = new System.Windows.Forms.Button();
 			this.button5 = new System.Windows.Forms.Button();
@@ -119,20 +133,6 @@
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.cUT_STATESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_STATESTableAdapter();
-			this.cutlistPartsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.cUTMATERIALSBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-			this.cUTEDGESBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.cUTEDGESBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-			this.eNGINEERINGDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.cUTEDGESBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
-			this.cUTSTATESBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.cUTPARTSBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.friendlyCutOpsBindingSource4 = new System.Windows.Forms.BindingSource(this.components);
-			this.friendlyCutOpsBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
-			this.friendlyCutOpsBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-			this.friendlyCutOpsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-			this.friendlyCutOpsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.cUTPARTTYPESBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.cUTMATERIALSBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.cUT_MATERIALSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter();
 			this.cUT_EDGESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter();
@@ -144,33 +144,33 @@
 			this.tableLayoutPanel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cutlistPartsBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSet)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.cUTMATERIALSBindingSource1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.cUTEDGESBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.cUTEDGESBindingSource1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTEDGESBindingSource2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSetBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.cUTEDGESBindingSource3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.partq)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.cUTSTATESBindingSource)).BeginInit();
 			this.groupBox2.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cUTPARTSBindingSource)).BeginInit();
 			this.groupBox3.SuspendLayout();
 			this.tableLayoutPanel4.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.ppb_nud)).BeginInit();
 			this.groupBox4.SuspendLayout();
 			this.tableLayoutPanel5.SuspendLayout();
 			this.tableLayoutPanel6.SuspendLayout();
-			this.tabControl1.SuspendLayout();
-			this.tabPage1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.cutlistPartsBindingSource)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.cUTMATERIALSBindingSource1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.cUTEDGESBindingSource)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.cUTEDGESBindingSource1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSetBindingSource)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.cUTEDGESBindingSource3)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.cUTSTATESBindingSource)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.cUTPARTSBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.friendlyCutOpsBindingSource4)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.friendlyCutOpsBindingSource3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.friendlyCutOpsBindingSource2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.friendlyCutOpsBindingSource1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.friendlyCutOpsBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTPARTTYPESBindingSource)).BeginInit();
+			this.tabControl1.SuspendLayout();
+			this.tabPage1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.cUTMATERIALSBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gENUSERSBindingSource)).BeginInit();
 			this.SuspendLayout();
@@ -286,10 +286,20 @@
 			this.cutlistMat.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.cutlistMat.Resize += new System.EventHandler(this.comboBox_Resize);
 			// 
+			// cutlistPartsBindingSource
+			// 
+			this.cutlistPartsBindingSource.DataMember = "CutlistParts";
+			this.cutlistPartsBindingSource.DataSource = this.eNGINEERINGDataSet;
+			// 
 			// eNGINEERINGDataSet
 			// 
 			this.eNGINEERINGDataSet.DataSetName = "ENGINEERINGDataSet";
 			this.eNGINEERINGDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+			// 
+			// cUTMATERIALSBindingSource1
+			// 
+			this.cUTMATERIALSBindingSource1.DataMember = "CUT_MATERIALS";
+			this.cUTMATERIALSBindingSource1.DataSource = this.eNGINEERINGDataSet;
 			// 
 			// label2
 			// 
@@ -321,6 +331,11 @@
 			this.edgef.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.edgef.Resize += new System.EventHandler(this.comboBox_Resize);
 			// 
+			// cUTEDGESBindingSource
+			// 
+			this.cUTEDGESBindingSource.DataMember = "CUT_EDGES";
+			this.cUTEDGESBindingSource.DataSource = this.eNGINEERINGDataSet;
+			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
@@ -350,6 +365,11 @@
 			this.edgeb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.edgeb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.edgeb.Resize += new System.EventHandler(this.comboBox_Resize);
+			// 
+			// cUTEDGESBindingSource1
+			// 
+			this.cUTEDGESBindingSource1.DataMember = "CUT_EDGES";
+			this.cUTEDGESBindingSource1.DataSource = this.eNGINEERINGDataSet;
 			// 
 			// label4
 			// 
@@ -396,6 +416,11 @@
 			this.cUTEDGESBindingSource2.DataMember = "CUT_EDGES";
 			this.cUTEDGESBindingSource2.DataSource = this.eNGINEERINGDataSetBindingSource;
 			// 
+			// eNGINEERINGDataSetBindingSource
+			// 
+			this.eNGINEERINGDataSetBindingSource.DataSource = this.eNGINEERINGDataSet;
+			this.eNGINEERINGDataSetBindingSource.Position = 0;
+			// 
 			// edger
 			// 
 			this.edger.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -415,6 +440,11 @@
 			this.edger.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.edger.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.edger.Resize += new System.EventHandler(this.comboBox_Resize);
+			// 
+			// cUTEDGESBindingSource3
+			// 
+			this.cUTEDGESBindingSource3.DataMember = "CUT_EDGES";
+			this.cUTEDGESBindingSource3.DataSource = this.eNGINEERINGDataSet;
 			// 
 			// label6
 			// 
@@ -560,6 +590,11 @@
 			this.stat_cbx.Leave += new System.EventHandler(this.stat_cbx_Leave);
 			this.stat_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.stat_cbx_MouseClick);
 			// 
+			// cUTSTATESBindingSource
+			// 
+			this.cUTSTATESBindingSource.DataMember = "CUT_STATES";
+			this.cUTSTATESBindingSource.DataSource = this.eNGINEERINGDataSet;
+			// 
 			// label18
 			// 
 			this.label18.AutoSize = true;
@@ -581,12 +616,14 @@
 			// 
 			// remove_btn
 			// 
+			this.remove_btn.Enabled = false;
 			this.remove_btn.Location = new System.Drawing.Point(192, 286);
 			this.remove_btn.Name = "remove_btn";
 			this.remove_btn.Size = new System.Drawing.Size(75, 23);
 			this.remove_btn.TabIndex = 12;
 			this.remove_btn.Text = "Remove...";
 			this.remove_btn.UseVisualStyleBackColor = true;
+			this.remove_btn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.remove_btn_MouseClick);
 			// 
 			// groupBox2
 			// 
@@ -700,6 +737,11 @@
 			this.descriptiontb.TabIndex = 7;
 			this.descriptiontb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.descriptiontb.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+			// 
+			// cUTPARTSBindingSource
+			// 
+			this.cUTPARTSBindingSource.DataMember = "CUT_PARTS";
+			this.cUTPARTSBindingSource.DataSource = this.eNGINEERINGDataSet;
 			// 
 			// lengthtb
 			// 
@@ -1230,6 +1272,11 @@
 			this.op5_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.op5_cbx.Validating += new System.ComponentModel.CancelEventHandler(this.comboBox_validating);
 			// 
+			// friendlyCutOpsBindingSource4
+			// 
+			this.friendlyCutOpsBindingSource4.DataMember = "FriendlyCutOps";
+			this.friendlyCutOpsBindingSource4.DataSource = this.eNGINEERINGDataSet;
+			// 
 			// label36
 			// 
 			this.label36.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1309,6 +1356,11 @@
 			this.op4_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.op4_cbx.Validating += new System.ComponentModel.CancelEventHandler(this.comboBox_validating);
 			// 
+			// friendlyCutOpsBindingSource3
+			// 
+			this.friendlyCutOpsBindingSource3.DataMember = "FriendlyCutOps";
+			this.friendlyCutOpsBindingSource3.DataSource = this.eNGINEERINGDataSet;
+			// 
 			// op3_cbx
 			// 
 			this.op3_cbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -1327,6 +1379,11 @@
 			this.op3_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.op3_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.op3_cbx.Validating += new System.ComponentModel.CancelEventHandler(this.comboBox_validating);
+			// 
+			// friendlyCutOpsBindingSource2
+			// 
+			this.friendlyCutOpsBindingSource2.DataMember = "FriendlyCutOps";
+			this.friendlyCutOpsBindingSource2.DataSource = this.eNGINEERINGDataSet;
 			// 
 			// op2_cbx
 			// 
@@ -1347,6 +1404,11 @@
 			this.op2_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.op2_cbx.Validating += new System.ComponentModel.CancelEventHandler(this.comboBox_validating);
 			// 
+			// friendlyCutOpsBindingSource1
+			// 
+			this.friendlyCutOpsBindingSource1.DataMember = "FriendlyCutOps";
+			this.friendlyCutOpsBindingSource1.DataSource = this.eNGINEERINGDataSet;
+			// 
 			// op1_cbx
 			// 
 			this.op1_cbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -1366,6 +1428,11 @@
 			this.op1_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.op1_cbx.Validating += new System.ComponentModel.CancelEventHandler(this.comboBox_validating);
 			// 
+			// friendlyCutOpsBindingSource
+			// 
+			this.friendlyCutOpsBindingSource.DataMember = "FriendlyCutOps";
+			this.friendlyCutOpsBindingSource.DataSource = this.eNGINEERINGDataSet;
+			// 
 			// type_cbx
 			// 
 			this.type_cbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -1381,6 +1448,11 @@
 			this.type_cbx.ValueMember = "TYPEID";
 			this.type_cbx.SelectedIndexChanged += new System.EventHandler(this.comboBox12_SelectedIndexChanged);
 			this.type_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
+			// 
+			// cUTPARTTYPESBindingSource
+			// 
+			this.cUTPARTTYPESBindingSource.DataMember = "CUT_PART_TYPES";
+			this.cUTPARTTYPESBindingSource.DataSource = this.eNGINEERINGDataSet;
 			// 
 			// button3
 			// 
@@ -1487,76 +1559,6 @@
 			// 
 			this.cUT_STATESTableAdapter.ClearBeforeFill = true;
 			// 
-			// cutlistPartsBindingSource
-			// 
-			this.cutlistPartsBindingSource.DataMember = "CutlistParts";
-			this.cutlistPartsBindingSource.DataSource = this.eNGINEERINGDataSet;
-			// 
-			// cUTMATERIALSBindingSource1
-			// 
-			this.cUTMATERIALSBindingSource1.DataMember = "CUT_MATERIALS";
-			this.cUTMATERIALSBindingSource1.DataSource = this.eNGINEERINGDataSet;
-			// 
-			// cUTEDGESBindingSource
-			// 
-			this.cUTEDGESBindingSource.DataMember = "CUT_EDGES";
-			this.cUTEDGESBindingSource.DataSource = this.eNGINEERINGDataSet;
-			// 
-			// cUTEDGESBindingSource1
-			// 
-			this.cUTEDGESBindingSource1.DataMember = "CUT_EDGES";
-			this.cUTEDGESBindingSource1.DataSource = this.eNGINEERINGDataSet;
-			// 
-			// eNGINEERINGDataSetBindingSource
-			// 
-			this.eNGINEERINGDataSetBindingSource.DataSource = this.eNGINEERINGDataSet;
-			this.eNGINEERINGDataSetBindingSource.Position = 0;
-			// 
-			// cUTEDGESBindingSource3
-			// 
-			this.cUTEDGESBindingSource3.DataMember = "CUT_EDGES";
-			this.cUTEDGESBindingSource3.DataSource = this.eNGINEERINGDataSet;
-			// 
-			// cUTSTATESBindingSource
-			// 
-			this.cUTSTATESBindingSource.DataMember = "CUT_STATES";
-			this.cUTSTATESBindingSource.DataSource = this.eNGINEERINGDataSet;
-			// 
-			// cUTPARTSBindingSource
-			// 
-			this.cUTPARTSBindingSource.DataMember = "CUT_PARTS";
-			this.cUTPARTSBindingSource.DataSource = this.eNGINEERINGDataSet;
-			// 
-			// friendlyCutOpsBindingSource4
-			// 
-			this.friendlyCutOpsBindingSource4.DataMember = "FriendlyCutOps";
-			this.friendlyCutOpsBindingSource4.DataSource = this.eNGINEERINGDataSet;
-			// 
-			// friendlyCutOpsBindingSource3
-			// 
-			this.friendlyCutOpsBindingSource3.DataMember = "FriendlyCutOps";
-			this.friendlyCutOpsBindingSource3.DataSource = this.eNGINEERINGDataSet;
-			// 
-			// friendlyCutOpsBindingSource2
-			// 
-			this.friendlyCutOpsBindingSource2.DataMember = "FriendlyCutOps";
-			this.friendlyCutOpsBindingSource2.DataSource = this.eNGINEERINGDataSet;
-			// 
-			// friendlyCutOpsBindingSource1
-			// 
-			this.friendlyCutOpsBindingSource1.DataMember = "FriendlyCutOps";
-			this.friendlyCutOpsBindingSource1.DataSource = this.eNGINEERINGDataSet;
-			// 
-			// friendlyCutOpsBindingSource
-			// 
-			this.friendlyCutOpsBindingSource.DataMember = "FriendlyCutOps";
-			this.friendlyCutOpsBindingSource.DataSource = this.eNGINEERINGDataSet;
-			// 
-			// cUTPARTTYPESBindingSource
-			// 
-			this.cUTPARTTYPESBindingSource.DataMember = "CUT_PART_TYPES";
-			this.cUTPARTTYPESBindingSource.DataSource = this.eNGINEERINGDataSet;
-			// 
 			// cUTMATERIALSBindingSource
 			// 
 			this.cUTMATERIALSBindingSource.DataMember = "CUT_MATERIALS";
@@ -1604,12 +1606,20 @@
 			this.groupBox1.ResumeLayout(false);
 			this.tableLayoutPanel2.ResumeLayout(false);
 			this.tableLayoutPanel2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cutlistPartsBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSet)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.cUTMATERIALSBindingSource1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.cUTEDGESBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.cUTEDGESBindingSource1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTEDGESBindingSource2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSetBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.cUTEDGESBindingSource3)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.partq)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.cUTSTATESBindingSource)).EndInit();
 			this.groupBox2.ResumeLayout(false);
 			this.tableLayoutPanel3.ResumeLayout(false);
 			this.tableLayoutPanel3.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cUTPARTSBindingSource)).EndInit();
 			this.groupBox3.ResumeLayout(false);
 			this.tableLayoutPanel4.ResumeLayout(false);
 			this.tableLayoutPanel4.PerformLayout();
@@ -1619,22 +1629,14 @@
 			this.tableLayoutPanel5.PerformLayout();
 			this.tableLayoutPanel6.ResumeLayout(false);
 			this.tableLayoutPanel6.PerformLayout();
-			this.tabControl1.ResumeLayout(false);
-			this.tabPage1.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.cutlistPartsBindingSource)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.cUTMATERIALSBindingSource1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.cUTEDGESBindingSource)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.cUTEDGESBindingSource1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSetBindingSource)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.cUTEDGESBindingSource3)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.cUTSTATESBindingSource)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.cUTPARTSBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.friendlyCutOpsBindingSource4)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.friendlyCutOpsBindingSource3)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.friendlyCutOpsBindingSource2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.friendlyCutOpsBindingSource1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.friendlyCutOpsBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTPARTTYPESBindingSource)).EndInit();
+			this.tabControl1.ResumeLayout(false);
+			this.tabPage1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.cUTMATERIALSBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gENUSERSBindingSource)).EndInit();
 			this.ResumeLayout(false);

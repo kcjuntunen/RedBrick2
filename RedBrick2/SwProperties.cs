@@ -615,6 +615,15 @@ namespace RedBrick2 {
 			}
 		}
 
+		public bool CutlistAndPartIDsOK {
+			get {
+				return PartID > 0 && CutlistID > 0;
+			}
+			set {
+				//
+			}
+		}
+
 		/// <summary>
 		/// Return a list of ops with their data.
 		/// </summary>

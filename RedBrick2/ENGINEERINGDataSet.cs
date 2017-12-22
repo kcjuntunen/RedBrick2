@@ -376,6 +376,25 @@ namespace RedBrick2 {
 				return affected_;
 			}
 
+			public int RemovePartFromCutlist(SwProperties _pp) {
+				int affected_ = 0;
+				if (_pp.CutlistAndPartIDsOK) {
+					ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter cpta_ =
+						new ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter();
+					affected_ = cpta_.DeleteCutlistPart(_pp.CutlistID, _pp.PartID);
+					bool part_not_used_ = Convert.ToInt32(cpta_.CutlistPartsCount(_pp.PartID)) < 1;
+					if (part_not_used_ && affected_ > 0) {
+						ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter pota_ =
+							new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter();
+						ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter p_ =
+							new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
+						affected_ += pota_.DeletePart(_pp.PartID);
+						affected_ += p_.DeletePart(_pp.PartID);
+					}
+				}
+				return affected_;
+			}
+
 		}
 	
 		partial class GEN_DRAWINGSDataTable {
