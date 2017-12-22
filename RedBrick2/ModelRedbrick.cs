@@ -657,11 +657,21 @@ namespace RedBrick2 {
 				}
 			}
 
-			double setup = setupTime / Properties.Settings.Default.SPQ;
-			groupBox4.Text = string.Format("Routing (Setup: {0:0} min/Run: {1:0} min/SPQ: {2})",
-				setup * 60,
-				runTime * 60,
+			double setup = (setupTime / Properties.Settings.Default.SPQ) * 60;
+			double run = runTime * 60;
+			string setup_fmt_ = @"Setup: {0:0} min";
+			string run_fmt_ = @"Run: {1:0} min";
+			if (setup > 60) {
+				setup = setup / 60;
+				setup_fmt_ = @"Setup: {0:0.0} hr";
+			}
+			if (run > 60) {
+				run = run / 60;
+				run_fmt_ = "Run: {1:0.0} hr";
+			}
+			string fmt_ = string.Format("Routing ({0}/{1}/SPQ: {2})", setup_fmt_, run_fmt_,
 				Properties.Settings.Default.SPQ);
+			groupBox4.Text = string.Format(fmt_, setup, run);
 		}
 
 		private void GetEstimationFromPart() {
