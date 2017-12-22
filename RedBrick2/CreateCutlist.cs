@@ -789,8 +789,9 @@ namespace RedBrick2 {
 					(float)(double)_pp[@"THICKNESS"].Data, (string)_pp[@"CNC1"].Data,
 					(string)_pp[@"CNC2"].Data, (int)_pp[@"BLANK QTY"].Data,
 					(float)(double)_pp[@"OVERL"].Data, (float)(double)_pp[@"OVERW"].Data,
-					(int)_pp[@"OP1"].Data, (int)_pp[@"OP2"].Data, (int)_pp[@"OP3"].Data,
-					(int)_pp[@"OP4"].Data, (int)_pp[@"OP5"].Data, (string)_pp[@"COMMENT"].Data,
+					//(int)_pp[@"OP1"].Data, (int)_pp[@"OP2"].Data, (int)_pp[@"OP3"].Data,
+					//(int)_pp[@"OP4"].Data, (int)_pp[@"OP5"].Data,
+					(string)_pp[@"COMMENT"].Data,
 					(bool)_pp[@"UPDATE CNC"].Data, (int)_pp[@"DEPARTMENT"].Data,
 					_pp.Hash);
 			}

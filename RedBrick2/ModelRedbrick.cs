@@ -1101,11 +1101,11 @@ namespace RedBrick2 {
 					}
 				}
 			}
-			Row.OP1ID = Convert.ToInt32(op1_cbx.SelectedValue);
-			Row.OP2ID = Convert.ToInt32(op2_cbx.SelectedValue);
-			Row.OP3ID = Convert.ToInt32(op3_cbx.SelectedValue);
-			Row.OP4ID = Convert.ToInt32(op4_cbx.SelectedValue);
-			Row.OP5ID = Convert.ToInt32(op5_cbx.SelectedValue);
+			//Row.OP1ID = Convert.ToInt32(op1_cbx.SelectedValue);
+			//Row.OP2ID = Convert.ToInt32(op2_cbx.SelectedValue);
+			//Row.OP3ID = Convert.ToInt32(op3_cbx.SelectedValue);
+			//Row.OP4ID = Convert.ToInt32(op4_cbx.SelectedValue);
+			//Row.OP5ID = Convert.ToInt32(op5_cbx.SelectedValue);
 		}
 
 		/// <summary>
