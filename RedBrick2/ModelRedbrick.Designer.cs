@@ -141,6 +141,7 @@
 			this.cUT_PARTSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
 			this.friendlyCutOpsTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
+			this.add_prt_btn = new System.Windows.Forms.Button();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
@@ -235,6 +236,7 @@
 			this.tableLayoutPanel2.Controls.Add(this.label18, 0, 12);
 			this.tableLayoutPanel2.Controls.Add(this.update_btn, 1, 13);
 			this.tableLayoutPanel2.Controls.Add(this.remove_btn, 1, 14);
+			this.tableLayoutPanel2.Controls.Add(this.add_prt_btn, 0, 14);
 			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 18);
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -1593,6 +1595,16 @@
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
 			// 
+			// add_prt_btn
+			// 
+			this.add_prt_btn.Location = new System.Drawing.Point(3, 286);
+			this.add_prt_btn.Name = "add_prt_btn";
+			this.add_prt_btn.Size = new System.Drawing.Size(75, 23);
+			this.add_prt_btn.TabIndex = 13;
+			this.add_prt_btn.Text = "Add part...";
+			this.add_prt_btn.UseVisualStyleBackColor = true;
+			this.add_prt_btn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.add_prt_btn_MouseClick);
+			// 
 			// ModelRedbrick
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -1762,5 +1774,6 @@
 		private ENGINEERINGDataSetTableAdapters.CUT_STATESTableAdapter cUT_STATESTableAdapter;
 		private System.Windows.Forms.Button update_btn;
 		private System.Windows.Forms.Button remove_btn;
+		private System.Windows.Forms.Button add_prt_btn;
   }
 }

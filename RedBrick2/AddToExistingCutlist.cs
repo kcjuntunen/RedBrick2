@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+
+namespace RedBrick2 {
+	public partial class AddToExistingCutlist : Form {
+		private SwProperties props_;
+
+		public AddToExistingCutlist() {
+			InitializeComponent();
+			Location = Properties.Settings.Default.AddToCutlistLocation;
+			Size = Properties.Settings.Default.AddToCutlistSize;
+		}
+
+
+		public AddToExistingCutlist(SwProperties _pp) : this() {
+			props_ = _pp;
+			Text = _pp.PartLookup;
+		}
+
+		private void cancel_btn_Click(object sender, EventArgs e) {
+			Properties.Settings.Default.AddToCutlistSize = Size;
+			Properties.Settings.Default.AddToCutlistLocation = Location;
+			Properties.Settings.Default.Save();
+			Close();
+		}
+
+		private void AddToExistingCutlist_Load(object sender, EventArgs e) {
+			this.cutlistsTableAdapter.Fill(this.eNGINEERINGDataSet.Cutlists);
+			this.revListTableAdapter.Fill(this.eNGINEERINGDataSet.RevList);
+			cutlist_cbx.SelectedValue = Properties.Settings.Default.LastCutlist;
+		}
+
+		private void add_btn_Click(object sender, EventArgs e) {
+			eNGINEERINGDataSet.CUT_PARTS.UpdatePart(props_);
+			eNGINEERINGDataSet.CUT_CUTLIST_PARTS.UpdateCutlistPart(props_);
+			add_btn.Enabled = false;
+			cancel_btn.Text = @"Close";
+		}
+	}
+}

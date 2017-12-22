@@ -1960,5 +1960,10 @@ namespace RedBrick2 {
 				}
 			}
 		}
+
+		private void add_prt_btn_MouseClick(object sender, MouseEventArgs e) {
+			AddToExistingCutlist atc_ = new AddToExistingCutlist(PropertySet);
+			atc_.ShowDialog(this);
+		}
 	}
 }

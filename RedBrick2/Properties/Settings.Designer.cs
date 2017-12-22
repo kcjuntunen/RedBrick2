@@ -760,5 +760,29 @@ namespace RedBrick2.Properties {
                 this["EstimateSource"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Size AddToCutlistSize {
+            get {
+                return ((global::System.Drawing.Size)(this["AddToCutlistSize"]));
+            }
+            set {
+                this["AddToCutlistSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point AddToCutlistLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["AddToCutlistLocation"]));
+            }
+            set {
+                this["AddToCutlistLocation"] = value;
+            }
+        }
     }
 }
