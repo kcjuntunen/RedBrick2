@@ -47,6 +47,7 @@ namespace RedBrick2 {
 		private bool allowPaint;
 
 		private ModelDoc2 lastModelDoc = null;
+		private DirtTracker dirtTracker;
 
 		private bool initialated = false;
 		private bool cutlistMatChanged = false;
@@ -81,6 +82,7 @@ namespace RedBrick2 {
 		public ModelRedbrick(SldWorks sw, ModelDoc2 md) {
 			SwApp = sw;
 			InitializeComponent();
+			dirtTracker = new DirtTracker(this);
 			cbxes = new ComboBox[] { op1_cbx, op2_cbx, op3_cbx, op4_cbx, op5_cbx };
 			ToggleFlameWar(Properties.Settings.Default.FlameWar);
 
@@ -97,6 +99,13 @@ namespace RedBrick2 {
 
 			overLtb.TextChanged += overL_TextChanged;
 			overWtb.TextChanged += overW_TextChanged;
+			dirtTracker.Besmirched += dirtTracker_Besmirched;
+		}
+
+		void dirtTracker_Besmirched(object sender, EventArgs e) {
+			if (!groupBox1.Text.StartsWith(Properties.Settings.Default.NotSavedMark)) {
+				groupBox1.Text = Properties.Settings.Default.NotSavedMark + groupBox1.Text;
+			}
 		}
 
 		/// <summary>
@@ -214,6 +223,8 @@ namespace RedBrick2 {
 		}
 
 		private void ReQuery() {
+			dirtTracker.IsDirty = false;
+			groupBox1.Text.Replace(Properties.Settings.Default.NotSavedMark, string.Empty);
 			GetCutlistData();
 			flowLayoutPanel1.Controls.Clear();
 			if (ActiveDoc != null && PropertySet.Count > 0) {

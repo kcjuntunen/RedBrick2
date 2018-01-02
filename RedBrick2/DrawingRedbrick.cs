@@ -18,6 +18,7 @@ namespace RedBrick2 {
 		private string partLookup;
 		private string projectDescr;
 		private Revs revSet;
+		private DirtTracker dirtTracker;
 		private ToolTip cust_tooltip = new ToolTip();
 		private ToolTip rev_tooltip = new ToolTip();
 		private ToolTip status_tooltip = new ToolTip();
@@ -35,6 +36,7 @@ namespace RedBrick2 {
 			ActiveDoc = md;
 			SwApp = sw;
 			InitializeComponent();
+			dirtTracker = new DirtTracker(this);
 			groupBox5.MouseClick += groupBox5_MouseClick;
 			label32.MouseDown += label32_MouseDown;
 			label34.MouseDown += label34_MouseDown;
@@ -44,6 +46,12 @@ namespace RedBrick2 {
 			label41.MouseDown += label41_MouseDown;
 			label42.MouseDown += label42_MouseDown;
 			ToggleFlameWar(Properties.Settings.Default.FlameWar);
+		}
+
+		void dirtTracker_Besmirched(object sender, EventArgs e) {
+			if (!groupBox5.Text.StartsWith(Properties.Settings.Default.NotSavedMark)) {
+				groupBox5.Text = Properties.Settings.Default.NotSavedMark + groupBox5.Text;
+			}
 		}
 
 		void label42_MouseDown(object sender, MouseEventArgs e) {
@@ -157,7 +165,6 @@ namespace RedBrick2 {
 				}
 			}
 			treeView1.Nodes.Clear();
-			// TODO: fix this for new drawings.
 			string path_ = ActiveDoc.GetPathName();
 			if (path_ != string.Empty) {
 				PartFileInfo = new FileInfo(path_);
@@ -325,6 +332,7 @@ namespace RedBrick2 {
 		/// Reload everything with current ModelDoc2.
 		/// </summary>
 		public void ReLoad() {
+			dirtTracker.Besmirched -= dirtTracker_Besmirched;
 			InitData();
 
 			if (Properties.Settings.Default.OnlyActiveAuthors) {
@@ -351,6 +359,9 @@ namespace RedBrick2 {
 			FigureOutMatFinish();
 			RevSet = new Revs(SwApp);
 			BuildTree();
+			dirtTracker.Besmirched += dirtTracker_Besmirched;
+			dirtTracker.IsDirty = false;
+			groupBox5.Text.Replace(Properties.Settings.Default.NotSavedMark, string.Empty);
 		}
 
 		private void BuildTree() {

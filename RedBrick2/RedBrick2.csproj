@@ -134,6 +134,7 @@
     <Compile Include="DateProperty.cs" />
     <Compile Include="DepartmentProperty.cs" />
     <Compile Include="DeptId.cs" />
+    <Compile Include="DirtTracker.cs" />
     <Compile Include="DrawingRedbrick.cs">
       <SubType>UserControl</SubType>
     </Compile>
