@@ -105,7 +105,7 @@ namespace RedBrick2 {
 		public void TogglePriorityButton() {
 			bool no_cnc1 = (cnc1tb.Text == @"NA") || (cnc1tb.Text == string.Empty);
 			bool no_cnc2 = (cnc2tb.Text == @"NA") || (cnc2tb.Text == string.Empty);
-			bool enabled = !(no_cnc1 && no_cnc2);
+			bool enabled = data_from_db && !(no_cnc1 && no_cnc2);
 			prioritybtn.Enabled = enabled;
 		}
 
