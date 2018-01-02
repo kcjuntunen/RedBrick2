@@ -59,6 +59,7 @@
 			this.label18 = new System.Windows.Forms.Label();
 			this.update_btn = new System.Windows.Forms.Button();
 			this.remove_btn = new System.Windows.Forms.Button();
+			this.add_prt_btn = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.label12 = new System.Windows.Forms.Label();
@@ -141,7 +142,6 @@
 			this.cUT_PARTSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
 			this.friendlyCutOpsTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
-			this.add_prt_btn = new System.Windows.Forms.Button();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
@@ -193,7 +193,7 @@
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(282, 1089);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(282, 1125);
 			this.tableLayoutPanel1.TabIndex = 0;
 			// 
 			// groupBox1
@@ -626,6 +626,16 @@
 			this.remove_btn.Text = "Remove...";
 			this.remove_btn.UseVisualStyleBackColor = true;
 			this.remove_btn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.remove_btn_MouseClick);
+			// 
+			// add_prt_btn
+			// 
+			this.add_prt_btn.Location = new System.Drawing.Point(3, 286);
+			this.add_prt_btn.Name = "add_prt_btn";
+			this.add_prt_btn.Size = new System.Drawing.Size(75, 23);
+			this.add_prt_btn.TabIndex = 13;
+			this.add_prt_btn.Text = "Add part...";
+			this.add_prt_btn.UseVisualStyleBackColor = true;
+			this.add_prt_btn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.add_prt_btn_MouseClick);
 			// 
 			// groupBox2
 			// 
@@ -1170,7 +1180,7 @@
 			this.groupBox4.Controls.Add(this.tableLayoutPanel5);
 			this.groupBox4.Location = new System.Drawing.Point(3, 909);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(276, 240);
+			this.groupBox4.Size = new System.Drawing.Size(276, 212);
 			this.groupBox4.TabIndex = 1;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Routing";
@@ -1194,12 +1204,12 @@
 			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
 			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel5.Size = new System.Drawing.Size(267, 215);
+			this.tableLayoutPanel5.Size = new System.Drawing.Size(267, 222);
 			this.tableLayoutPanel5.TabIndex = 1;
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(3, 183);
+			this.button2.Location = new System.Drawing.Point(3, 190);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(83, 29);
 			this.button2.TabIndex = 32;
@@ -1211,7 +1221,7 @@
 			// flowLayoutPanel1
 			// 
 			this.flowLayoutPanel1.AutoScroll = true;
-			this.flowLayoutPanel1.Location = new System.Drawing.Point(92, 183);
+			this.flowLayoutPanel1.Location = new System.Drawing.Point(92, 190);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
 			this.flowLayoutPanel1.Size = new System.Drawing.Size(83, 29);
 			this.flowLayoutPanel1.TabIndex = 0;
@@ -1253,7 +1263,7 @@
 			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel6.Size = new System.Drawing.Size(261, 174);
+			this.tableLayoutPanel6.Size = new System.Drawing.Size(261, 181);
 			this.tableLayoutPanel6.TabIndex = 2;
 			// 
 			// op5_cbx
@@ -1511,7 +1521,7 @@
 			this.ppbtb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.ppbtb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "BLANKQTY", true));
-			this.ppbtb.Location = new System.Drawing.Point(181, 183);
+			this.ppbtb.Location = new System.Drawing.Point(181, 190);
 			this.ppbtb.Name = "ppbtb";
 			this.ppbtb.Size = new System.Drawing.Size(83, 22);
 			this.ppbtb.TabIndex = 17;
@@ -1531,7 +1541,7 @@
 			this.tabControl1.Location = new System.Drawing.Point(0, 0);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(293, 1121);
+			this.tabControl1.Size = new System.Drawing.Size(293, 1160);
 			this.tabControl1.TabIndex = 1;
 			// 
 			// tabPage1
@@ -1541,7 +1551,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(285, 1095);
+			this.tabPage1.Size = new System.Drawing.Size(285, 1134);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "tabPage1";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -1595,16 +1605,6 @@
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
 			// 
-			// add_prt_btn
-			// 
-			this.add_prt_btn.Location = new System.Drawing.Point(3, 286);
-			this.add_prt_btn.Name = "add_prt_btn";
-			this.add_prt_btn.Size = new System.Drawing.Size(75, 23);
-			this.add_prt_btn.TabIndex = 13;
-			this.add_prt_btn.Text = "Add part...";
-			this.add_prt_btn.UseVisualStyleBackColor = true;
-			this.add_prt_btn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.add_prt_btn_MouseClick);
-			// 
 			// ModelRedbrick
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -1612,7 +1612,7 @@
 			this.Controls.Add(this.tabControl1);
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Name = "ModelRedbrick";
-			this.Size = new System.Drawing.Size(293, 1121);
+			this.Size = new System.Drawing.Size(293, 1160);
 			this.Load += new System.EventHandler(this.ModelRedbrick_Load);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.groupBox1.ResumeLayout(false);
