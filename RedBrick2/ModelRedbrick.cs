@@ -310,6 +310,8 @@ namespace RedBrick2 {
 			} else {
 				cutlistctl.SelectedValue = -1;
 				ToggleCutlistErr(true);
+				GetMaterialFromPart();
+				GetEdgesFromPart();
 			}
 		}
 
