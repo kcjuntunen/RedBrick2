@@ -759,6 +759,8 @@
 			// 
 			this.lengthtb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.lengthtb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.lengthtb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
 			this.lengthtb.Location = new System.Drawing.Point(3, 57);
 			this.lengthtb.Name = "lengthtb";
 			this.lengthtb.Size = new System.Drawing.Size(183, 22);
@@ -794,6 +796,8 @@
 			// 
 			this.widthtb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.widthtb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.widthtb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
 			this.widthtb.Location = new System.Drawing.Point(3, 101);
 			this.widthtb.Name = "widthtb";
 			this.widthtb.Size = new System.Drawing.Size(183, 22);
@@ -807,6 +811,8 @@
 			// 
 			this.thicknesstb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.thicknesstb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.thicknesstb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
 			this.thicknesstb.Location = new System.Drawing.Point(3, 145);
 			this.thicknesstb.Name = "thicknesstb";
 			this.thicknesstb.Size = new System.Drawing.Size(183, 22);
@@ -820,6 +826,8 @@
 			// 
 			this.wallthicknesstb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.wallthicknesstb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.wallthicknesstb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
 			this.wallthicknesstb.Location = new System.Drawing.Point(3, 186);
 			this.wallthicknesstb.Name = "wallthicknesstb";
 			this.wallthicknesstb.Size = new System.Drawing.Size(183, 22);

@@ -89,6 +89,17 @@ namespace RedBrick2 {
 			ActiveDoc = md;
 			tabPage1.Text = @"Model Properties";
 			tabPage2.Text = @"DrawingProperties";
+
+			AutoCompleteStringCollection skdim_ = new AutoCompleteStringCollection();
+			for (int i = 0; i < Properties.Settings.Default.SketchDimensions.Count; i++) {
+				skdim_.Add(Properties.Settings.Default.SketchDimensions[i]);
+			}
+
+			lengthtb.AutoCompleteCustomSource = skdim_;
+			widthtb.AutoCompleteCustomSource = skdim_;
+			thicknesstb.AutoCompleteCustomSource = skdim_;
+			wallthicknesstb.AutoCompleteCustomSource = skdim_;
+
 			groupBox1.MouseClick += groupBox1_MouseClick;
 			groupBox4.MouseClick += groupBox4_MouseClick;
 			label6.MouseDown += clip_click;
