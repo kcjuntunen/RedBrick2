@@ -61,6 +61,15 @@ namespace RedBrick2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add the selected part to a particular cutlist..
+        /// </summary>
+        internal static string AddPartHint {
+            get {
+                return ResourceManager.GetString("AddPartHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Make sure the customer matches the project code in the filename..
         /// </summary>
         internal static string CustomerNotMatching {
@@ -161,6 +170,15 @@ namespace RedBrick2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adjust machine priority..
+        /// </summary>
+        internal static string PriorityHint {
+            get {
+                return ResourceManager.GetString("PriorityHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap redlego {
@@ -176,6 +194,15 @@ namespace RedBrick2.Properties {
         internal static string RegexHint {
             get {
                 return ResourceManager.GetString("RegexHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove the selected part from selected cutlist..
+        /// </summary>
+        internal static string RemoveHint {
+            get {
+                return ResourceManager.GetString("RemoveHint", resourceCulture);
             }
         }
         
@@ -218,6 +245,15 @@ namespace RedBrick2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adjust run/setup time..
+        /// </summary>
+        internal static string TimeHint {
+            get {
+                return ResourceManager.GetString("TimeHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Property Editor {0}.
         /// </summary>
         internal static string Title {
@@ -232,6 +268,15 @@ namespace RedBrick2.Properties {
         internal static string Update {
             get {
                 return ResourceManager.GetString("Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Part/Assembly to the cutlist database..
+        /// </summary>
+        internal static string UpdateHint {
+            get {
+                return ResourceManager.GetString("UpdateHint", resourceCulture);
             }
         }
     }

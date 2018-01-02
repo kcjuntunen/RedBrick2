@@ -111,6 +111,15 @@ namespace RedBrick2 {
 			overLtb.TextChanged += overL_TextChanged;
 			overWtb.TextChanged += overW_TextChanged;
 			dirtTracker.Besmirched += dirtTracker_Besmirched;
+
+			Control[] btns_ = new Control[] { button3, button4, button5, button6, button7 };
+			foreach (Control item_ in btns_) {
+				new ToolTip().SetToolTip(item_, Properties.Resources.TimeHint);
+			}
+			new ToolTip().SetToolTip(prioritybtn, Properties.Resources.PriorityHint);
+			new ToolTip().SetToolTip(update_btn, Properties.Resources.UpdateHint);
+			new ToolTip().SetToolTip(add_prt_btn, Properties.Resources.AddPartHint);
+			new ToolTip().SetToolTip(remove_btn, Properties.Resources.RemoveHint);
 		}
 
 		void dirtTracker_Besmirched(object sender, EventArgs e) {

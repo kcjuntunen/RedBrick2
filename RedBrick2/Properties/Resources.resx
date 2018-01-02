@@ -175,4 +175,19 @@
   <data name="ThicknessWarning" xml:space="preserve">
     <value>Material thickness doesn't match thickness dimension.</value>
   </data>
+  <data name="AddPartHint" xml:space="preserve">
+    <value>Add the selected part to a particular cutlist.</value>
+  </data>
+  <data name="PriorityHint" xml:space="preserve">
+    <value>Adjust machine priority.</value>
+  </data>
+  <data name="RemoveHint" xml:space="preserve">
+    <value>Remove the selected part from selected cutlist.</value>
+  </data>
+  <data name="TimeHint" xml:space="preserve">
+    <value>Adjust run/setup time.</value>
+  </data>
+  <data name="UpdateHint" xml:space="preserve">
+    <value>Add Part/Assembly to the cutlist database.</value>
+  </data>
 </root>
