@@ -45,6 +45,8 @@ namespace RedBrick2 {
 			tt.ShowAlways = true;
 			tt.SetToolTip(textBox1, Properties.Resources.RegexHint);
 			tt.SetToolTip(textBox8, Properties.Resources.RegexHint);
+			tt.SetToolTip(label4, Properties.Resources.RegexHint);
+			tt.SetToolTip(label13, Properties.Resources.RegexHint);
 			var t = new System.Globalization.CultureInfo("en-US", false).TextInfo;
 			ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter guta =
 				new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
@@ -156,38 +158,62 @@ namespace RedBrick2 {
 			Size = Properties.Settings.Default.RBConfigSize;
 
 			cbDefaultMaterial.SelectedValue = Properties.Settings.Default.DefaultMaterial;
-			new ToolTip().SetToolTip(cbDefaultMaterial, @"");
+			new ToolTip().SetToolTip(cbDefaultMaterial, @"If a part has no defined material, this material will be used.");
 			cbDept.SelectedValue = Properties.Settings.Default.UserDept;
 			chbDBEnabled.Checked = true;
 			chbFlameWar.Checked = Properties.Settings.Default.FlameWar;
+			new ToolTip().SetToolTip(chbFlameWar, @"Toggle all caps in most fields.");
 			chbTestingMode.Checked = true;
 			cbRevLimit.SelectedIndex = Properties.Settings.Default.LvlLimit - 1;
+			new ToolTip().SetToolTip(cbRevLimit, @"The highest possible LVL for drawings.");
 			chbSounds.Checked = Properties.Settings.Default.MakeSounds;
 			FileInfo fi_ = new FileInfo(Properties.Settings.Default.ClipboardSound);
 			chbSounds.Text = string.Format(@"Sounds ( {0} )", fi_.Name);
+			new ToolTip().SetToolTip(chbSounds, string.Format(@"Whether Redbrick makes sounds or not.{0}" + 
+																												"When checkbox goes from unchecked to checked,{0}" +
+																												"a dialog will appear to select a .wav file.",
+																												Environment.NewLine));
 			chbWarnings.Checked = Properties.Settings.Default.Warn;
+			new ToolTip().SetToolTip(chbWarnings, @"Toggle validation warnings.");
 			chbOpWarnings.Checked = Properties.Settings.Default.ProgWarn;
+			new ToolTip().SetToolTip(chbOpWarnings, @"Toggle routing validation warnings.");
 			chbIdiotLight.Checked = Properties.Settings.Default.IdiotLight;
 			chbOnlyActive.Checked = Properties.Settings.Default.OnlyActiveAuthors;
+			new ToolTip().SetToolTip(chbOnlyActive, @"Only show currently active authors.");
 			chbOnlyActiveCustomers.Checked = Properties.Settings.Default.OnlyCurrentCustomers;
+			new ToolTip().SetToolTip(chbOnlyActiveCustomers, @"Only show currently active customers.");
 			chbRememberCustomer.Checked = Properties.Settings.Default.RememberLastCustomer;
 			checkBox1.Checked = Properties.Settings.Default.WarnExcludeAssy;
 			checkBox2.Checked = true;
 			textBox1.Text = Properties.Settings.Default.BOMFilter[0].ToString();
 			textBox2.Text = Properties.Settings.Default.GaugePath;
+			new ToolTip().SetToolTip(textBox2, @"XML data file with gauge size information. Double-click to change.");
 			textBox3.Text = Properties.Settings.Default.BOMTemplatePath;
 			textBox4.Text = Properties.Settings.Default.JPGPath;
+			new ToolTip().SetToolTip(textBox4, @"Where to save JPGs. Double-click to change.");
 			textBox5.Text = Properties.Settings.Default.KPath;
+			new ToolTip().SetToolTip(textBox5, @"K-drive PDF path. Double-click to change.");
 			textBox6.Text = Properties.Settings.Default.GPath;
+			new ToolTip().SetToolTip(textBox6, @"PDF Archive path. Double-click to change.");
 			textBox7.Text = Properties.Settings.Default.MetalPath;
+			new ToolTip().SetToolTip(textBox7, @"Metal root folder. Double-click to change.");
 			textBox8.Text = Properties.Settings.Default.GaugeRegex;
 			checkBox3.Checked = Properties.Settings.Default.SaveFirst;
+			new ToolTip().SetToolTip(checkBox3, @"Save before archiving.");
 			checkBox4.Checked = Properties.Settings.Default.SilenceGaugeErrors;
+			new ToolTip().SetToolTip(checkBox4, @"Ignore gauge discrepancies.");
 			checkBox5.Checked = Properties.Settings.Default.ExportEDrw;
 			checkBox6.Checked = Properties.Settings.Default.ExportImg;
 			checkBox7.Checked = Properties.Settings.Default.CutlistNotSelectedWarning;
 			checkBox8.Checked = Properties.Settings.Default.AutoOpenPriority;
+			new ToolTip().SetToolTip(checkBox8, string.Format(@"When 'Update CNC' goes from checked to unchecked,{0}" +
+																												"the priority window will open at the time the green check is clicked.",
+																												Environment.NewLine));
 			numericUpDown1.Value = Properties.Settings.Default.SPQ;
+			ToolTip tt_ = new ToolTip();
+			string nud1_ = @"Number of parts to amortize setup time over.";
+			tt_.SetToolTip(label8, nud1_);
+			tt_.SetToolTip(numericUpDown1, nud1_);
 		}
 
 		/// <summary>

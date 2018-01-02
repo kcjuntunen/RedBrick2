@@ -328,6 +328,7 @@ namespace RedBrick2 {
 			this.textBox3.Name = "textBox3";
 			this.textBox3.Size = new System.Drawing.Size(375, 22);
 			this.textBox3.TabIndex = 22;
+			this.textBox3.Visible = false;
 			this.textBox3.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox3_MouseDoubleClick);
 			// 
 			// label6
@@ -338,6 +339,7 @@ namespace RedBrick2 {
 			this.label6.Size = new System.Drawing.Size(85, 13);
 			this.label6.TabIndex = 23;
 			this.label6.Text = "BOM Template:";
+			this.label6.Visible = false;
 			// 
 			// label8
 			// 
@@ -610,6 +612,7 @@ namespace RedBrick2 {
 			this.checkBox7.TabIndex = 22;
 			this.checkBox7.Text = "Warn if cutlist not selected";
 			this.checkBox7.UseVisualStyleBackColor = true;
+			this.checkBox7.Visible = false;
 			// 
 			// tabPage3
 			// 
