@@ -1149,6 +1149,7 @@ namespace RedBrick2 {
 			} else if (tabControl1.SelectedTab == tabPage2) {
 				drawingRedbrick.Commit();
 			}
+			eNGINEERINGDataSet.GEN_ODOMETER.IncrementOdometer(Redbrick.Functions.GreenCheck);
 		}
 
 		private void popup_priority_(string _lookup) {
@@ -1959,6 +1960,7 @@ namespace RedBrick2 {
 					MessageBoxDefaultButton.Button2);
 				if (dr_ == DialogResult.Yes) {
 					eNGINEERINGDataSet.CUT_CUTLIST_PARTS.RemovePartFromCutlist(PropertySet);
+					eNGINEERINGDataSet.GEN_ODOMETER.IncrementOdometer(Redbrick.Functions.RemovePart);
 				}
 			}
 		}
@@ -1966,6 +1968,7 @@ namespace RedBrick2 {
 		private void add_prt_btn_MouseClick(object sender, MouseEventArgs e) {
 			AddToExistingCutlist atc_ = new AddToExistingCutlist(PropertySet);
 			atc_.ShowDialog(this);
+			eNGINEERINGDataSet.GEN_ODOMETER.IncrementOdometer(Redbrick.Functions.AddPart);
 		}
 	}
 }

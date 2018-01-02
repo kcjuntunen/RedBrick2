@@ -164,6 +164,7 @@ namespace RedBrick2 {
 					}
 					eit.SetNewECRWIP(en);
 				}
+				eNGINEERINGDataSet.GEN_ODOMETER.IncrementOdometer(Redbrick.Functions.InsertECR);
 			}
 			OnAddedLvl(EventArgs.Empty);
 		}

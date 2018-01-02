@@ -246,7 +246,11 @@ namespace RedBrick2 {
 			/// <summary>Machine Priority dialog executed from SolidWorks.</summary>
 			MachinePrioritySW,  //10
 			/// <summary>Machine Priority dialog executed from AutoCAD.</summary>
-			MachinePriorityACAD //11
+			MachinePriorityACAD,//11
+			/// <summary>Part added to cutlist via 'Add part...' button.</summary>
+			AddPart,            //12
+			/// <summary>Part removed from cutlist via 'Remove...' button.</summary>
+			RemovePart          //13
 		}
 
 		/// <summary>
