@@ -156,12 +156,15 @@ namespace RedBrick2 {
 			Size = Properties.Settings.Default.RBConfigSize;
 
 			cbDefaultMaterial.SelectedValue = Properties.Settings.Default.DefaultMaterial;
+			new ToolTip().SetToolTip(cbDefaultMaterial, @"");
 			cbDept.SelectedValue = Properties.Settings.Default.UserDept;
 			chbDBEnabled.Checked = true;
 			chbFlameWar.Checked = Properties.Settings.Default.FlameWar;
 			chbTestingMode.Checked = true;
 			cbRevLimit.SelectedIndex = Properties.Settings.Default.LvlLimit - 1;
 			chbSounds.Checked = Properties.Settings.Default.MakeSounds;
+			FileInfo fi_ = new FileInfo(Properties.Settings.Default.ClipboardSound);
+			chbSounds.Text = string.Format(@"Sounds ( {0} )", fi_.Name);
 			chbWarnings.Checked = Properties.Settings.Default.Warn;
 			chbOpWarnings.Checked = Properties.Settings.Default.ProgWarn;
 			chbIdiotLight.Checked = Properties.Settings.Default.IdiotLight;
@@ -289,6 +292,10 @@ namespace RedBrick2 {
 		/// <param name="e">Any data come with it?</param>
 		private void chbWarnings_CheckedChanged(object sender, EventArgs e) {
 			Properties.Settings.Default.Warn = chbWarnings.Checked;
+			if (!chbWarnings.Checked) {
+				chbOpWarnings.Checked = false;
+				checkBox7.Checked = false;
+			}
 			tableLayoutPanel5.Enabled = chbWarnings.Checked;
 		}
 
@@ -306,6 +313,8 @@ namespace RedBrick2 {
 				ofd.Filter = "Audio Files (*.wav)|*.wav";
 				if (ofd.ShowDialog() == DialogResult.OK) {
 					Properties.Settings.Default.ClipboardSound = ofd.FileName;
+					FileInfo fi_ = new FileInfo(ofd.FileName);
+					chbSounds.Text = string.Format(@"Sounds ( {0} )", fi_.Name);
 				} else {
 					chbSounds.Checked = false;
 				}

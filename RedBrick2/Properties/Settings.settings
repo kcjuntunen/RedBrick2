@@ -212,10 +212,10 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="AddToCutlistSize" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
+      <Value Profile="(Default)">370, 139</Value>
     </Setting>
     <Setting Name="AddToCutlistLocation" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
+      <Value Profile="(Default)">100, 100</Value>
     </Setting>
     <Setting Name="SketchDimensions" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
@@ -230,6 +230,9 @@
   &lt;string&gt;RD3@Annotations&lt;/string&gt;
   &lt;string&gt;RD4@Annotations&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="OpWarn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

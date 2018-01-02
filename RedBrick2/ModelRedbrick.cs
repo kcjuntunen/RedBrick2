@@ -1233,7 +1233,7 @@ namespace RedBrick2 {
 		}
 
 		private void CheckThickness() {
-			if (cutlistMat.SelectedItem != null) {
+			if (Properties.Settings.Default.Warn && cutlistMat.SelectedItem != null) {
 				DataRowView r_ = cutlistMat.SelectedItem as DataRowView;
 				double matthk_ = Convert.ToDouble(r_[@"THICKNESS"]);
 				double epsilon_ = Properties.Settings.Default.Epsilon;
@@ -1253,51 +1253,54 @@ namespace RedBrick2 {
 		}
 
 		private void CheckOversize() {
-			string message_ = string.Empty;
-			int ps_op_ = 0;
-			int not_cnc_op_ = 0;
-			double oversize_ = 0.0F;
-			int bq_ = Convert.ToInt32(ppb_nud.Value);
-			bool warn_ = false;
-			List<string> ops_ = new List<string> { };
-			List<bool> cnc_ops_ = new List<bool> { };
-			double test_ = 0.0F;
-			if (double.TryParse(overLtb.Text, out test_)) {
-				oversize_ += test_;
-			}
-			if (double.TryParse(overWtb.Text, out test_)) {
-				oversize_ += test_;
-			}
-			for (int i = 0; i < cbxes.Length; i++) {
-				if (cbxes[i].SelectedItem != null) {
-					DataRowView drv_ = cbxes[i].SelectedItem as DataRowView;
-					ops_.Add(drv_[@"OPNAME"].ToString());
-					cnc_ops_.Add(Convert.ToBoolean(drv_[@"OPPROG"]));
-				} else {
-					ops_.Add(string.Empty);
-					cnc_ops_.Add(false);
+			bool ok_ = Properties.Settings.Default.OpWarn;
+			if (Properties.Settings.Default.Warn) {
+				string message_ = string.Empty;
+				int ps_op_ = 0;
+				int not_cnc_op_ = 0;
+				double oversize_ = 0.0F;
+				int bq_ = Convert.ToInt32(ppb_nud.Value);
+				bool warn_ = false;
+				List<string> ops_ = new List<string> { };
+				List<bool> cnc_ops_ = new List<bool> { };
+				double test_ = 0.0F;
+				if (double.TryParse(overLtb.Text, out test_)) {
+					oversize_ += test_;
 				}
-			}
-
-			for (int i = 0; i < cbxes.Length; i++) {
-				if (ops_[i] == @"PS")
-					ps_op_ = i;
-
-				if ((i < cbxes.Length - 1) &&
-					(ops_[i] == @"PS" && (!cnc_ops_[i + 1])// || (ops_[i + 1] == string.Empty)
-					)) {
-					not_cnc_op_ = i + 1;
-					if (bq_ == 1 && oversize_ > 0) {
-						string msg_ = string.Format(@"No CNC op between {0} and {1}; check oversize values.",
-							ops_[ps_op_], ops_[not_cnc_op_]);
-						warn_ = true;
-						ToggleOversizeWarn(true, msg_);
-						break;
+				if (double.TryParse(overWtb.Text, out test_)) {
+					oversize_ += test_;
+				}
+				for (int i = 0; i < cbxes.Length; i++) {
+					if (cbxes[i].SelectedItem != null) {
+						DataRowView drv_ = cbxes[i].SelectedItem as DataRowView;
+						ops_.Add(drv_[@"OPNAME"].ToString());
+						cnc_ops_.Add(Convert.ToBoolean(drv_[@"OPPROG"]));
+					} else {
+						ops_.Add(string.Empty);
+						cnc_ops_.Add(false);
 					}
 				}
-			}
-			if (!warn_) {
-				ToggleOversizeWarn(false);
+
+				for (int i = 0; i < cbxes.Length; i++) {
+					if (ops_[i] == @"PS")
+						ps_op_ = i;
+
+					if ((i < cbxes.Length - 1) &&
+						(ops_[i] == @"PS" && (!cnc_ops_[i + 1])// || (ops_[i + 1] == string.Empty)
+						)) {
+						not_cnc_op_ = i + 1;
+						if (bq_ == 1 && oversize_ > 0) {
+							string msg_ = string.Format(@"No CNC op between {0} and {1}; check oversize values.",
+								ops_[ps_op_], ops_[not_cnc_op_]);
+							warn_ = true;
+							ToggleOversizeWarn(true, msg_);
+							break;
+						}
+					}
+				}
+				if (!warn_) {
+					ToggleOversizeWarn(false);
+				}
 			}
 		}
 
@@ -1483,7 +1486,9 @@ namespace RedBrick2 {
 				double _val;
 				if (double.TryParse(GetDim(dimension), out _val)) {
 					l.Text = Redbrick.enforce_number_format(_val);
-					CheckThickness();
+					if (Properties.Settings.Default.Warn) {
+						CheckThickness();
+					}
 				} else {
 					l.Text = Properties.Settings.Default.ValErr;
 				}
@@ -1755,7 +1760,9 @@ namespace RedBrick2 {
 				ToggleTypeWarn(false);
 				FilterOps(string.Format(@"TYPEID = {0}", (sender as ComboBox).SelectedValue));
 			} else {
-				ToggleTypeWarn(true);
+				if (Properties.Settings.Default.Warn) {
+					ToggleTypeWarn(true);
+				}
 				FilterOps(@"TYPEID = 1");
 			}
 
@@ -1825,7 +1832,8 @@ namespace RedBrick2 {
 		}
 
 		private void textBox1_TextChanged(object sender, EventArgs e) {
-			if ((sender as TextBox).Text == string.Empty) {
+			bool err_ = (sender as TextBox).Text == string.Empty;
+			if (Properties.Settings.Default.Warn && err_) {
 				ToggleDescrWarn(true);
 			} else {
 				ToggleDescrWarn(false);
@@ -1833,7 +1841,8 @@ namespace RedBrick2 {
 		}
 
 		private void textBox11_TextChanged(object sender, EventArgs e) {
-			if ((sender as TextBox).Text == string.Empty || (sender as TextBox).Text == @" ") {
+			bool err_ = (sender as TextBox).Text == string.Empty || (sender as TextBox).Text == @" ";
+			if (Properties.Settings.Default.Warn && err_) {
 				TogglePPBErr(true);
 			} else {
 				TogglePPBErr(false);
@@ -1852,14 +1861,18 @@ namespace RedBrick2 {
 		private void swapLnW_Click(object sender, EventArgs e) {
 			ov_userediting = true;
 			Redbrick.SwapTextBoxContents(lengthtb, widthtb);
-			ToggleEdgeWarn(true);
+			if (Properties.Settings.Default.Warn) {
+				ToggleEdgeWarn(true);
+			}
 			ov_userediting = false;
 		}
 
 		private void swapWnT_Click(object sender, EventArgs e) {
 			ov_userediting = true;
 			Redbrick.SwapTextBoxContents(widthtb, thicknesstb);
-			ToggleEdgeWarn(true);
+			if (Properties.Settings.Default.Warn) {
+				ToggleEdgeWarn(true);
+			}
 			ov_userediting = false;
 		}
 
@@ -1880,7 +1893,7 @@ namespace RedBrick2 {
 
 		private void ppb_nud_ValueChanged(object sender, EventArgs e) {
 			NumericUpDown nud_ = sender as NumericUpDown;
-			if (nud_.Value < 1) {
+			if (Properties.Settings.Default.Warn && nud_.Value < 1) {
 				TogglePPBErr(true);
 			} else {
 				TogglePPBErr(false);
@@ -1896,7 +1909,8 @@ namespace RedBrick2 {
 			if (PropertySet != null && sender != null) {
 				NumericUpDown nud_ = sender as NumericUpDown;
 				PropertySet.CutlistQty = (float)Convert.ToDouble(nud_.Value);
-				if (nud_.Value < 1 && cutlistctl.SelectedItem != null) {
+				bool err_ = nud_.Value < 1 && cutlistctl.SelectedItem != null;
+				if (Properties.Settings.Default.Warn && err_) {
 					ToggleCutlistQtyErr(true);
 				} else {
 					ToggleCutlistQtyErr(false);
