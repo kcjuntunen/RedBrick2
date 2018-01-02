@@ -26,23 +26,23 @@ namespace RedBrick2 {
 			this.components = new System.ComponentModel.Container();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.cutlist_cbx = new System.Windows.Forms.ComboBox();
+			this.cutlistsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.eNGINEERINGDataSet = new RedBrick2.ENGINEERINGDataSet();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.partq_nud = new System.Windows.Forms.NumericUpDown();
-			this.rev_cbx = new System.Windows.Forms.ComboBox();
-			this.revListBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.label3 = new System.Windows.Forms.Label();
 			this.add_btn = new System.Windows.Forms.Button();
 			this.cancel_btn = new System.Windows.Forms.Button();
+			this.rev_cbx = new System.Windows.Forms.ComboBox();
+			this.revListBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.revListTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.RevListTableAdapter();
-			this.cutlistsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.cutlistsTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CutlistsTableAdapter();
 			this.tableLayoutPanel1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cutlistsBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSet)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.partq_nud)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.revListBindingSource)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.cutlistsBindingSource)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tableLayoutPanel1
@@ -87,6 +87,11 @@ namespace RedBrick2 {
 			this.cutlist_cbx.TabIndex = 3;
 			this.cutlist_cbx.ValueMember = "CLID";
 			// 
+			// cutlistsBindingSource
+			// 
+			this.cutlistsBindingSource.DataMember = "Cutlists";
+			this.cutlistsBindingSource.DataSource = this.eNGINEERINGDataSet;
+			// 
 			// eNGINEERINGDataSet
 			// 
 			this.eNGINEERINGDataSet.DataSetName = "ENGINEERINGDataSet";
@@ -125,26 +130,6 @@ namespace RedBrick2 {
             0,
             0});
 			// 
-			// rev_cbx
-			// 
-			this.rev_cbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.rev_cbx.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cutlistsBindingSource, "REV", true));
-			this.rev_cbx.DataSource = this.revListBindingSource;
-			this.rev_cbx.DisplayMember = "REV";
-			this.rev_cbx.FormattingEnabled = true;
-			this.rev_cbx.Location = new System.Drawing.Point(172, 44);
-			this.rev_cbx.Name = "rev_cbx";
-			this.rev_cbx.Size = new System.Drawing.Size(78, 21);
-			this.rev_cbx.TabIndex = 4;
-			this.rev_cbx.ValueMember = "REV";
-			this.rev_cbx.Visible = false;
-			// 
-			// revListBindingSource
-			// 
-			this.revListBindingSource.DataMember = "RevList";
-			this.revListBindingSource.DataSource = this.eNGINEERINGDataSet;
-			// 
 			// label3
 			// 
 			this.label3.AutoSize = true;
@@ -176,14 +161,29 @@ namespace RedBrick2 {
 			this.cancel_btn.UseVisualStyleBackColor = true;
 			this.cancel_btn.Click += new System.EventHandler(this.cancel_btn_Click);
 			// 
+			// rev_cbx
+			// 
+			this.rev_cbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.rev_cbx.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cutlistsBindingSource, "REV", true));
+			this.rev_cbx.DataSource = this.revListBindingSource;
+			this.rev_cbx.DisplayMember = "REV";
+			this.rev_cbx.FormattingEnabled = true;
+			this.rev_cbx.Location = new System.Drawing.Point(172, 44);
+			this.rev_cbx.Name = "rev_cbx";
+			this.rev_cbx.Size = new System.Drawing.Size(78, 21);
+			this.rev_cbx.TabIndex = 4;
+			this.rev_cbx.ValueMember = "REV";
+			this.rev_cbx.Visible = false;
+			// 
+			// revListBindingSource
+			// 
+			this.revListBindingSource.DataMember = "RevList";
+			this.revListBindingSource.DataSource = this.eNGINEERINGDataSet;
+			// 
 			// revListTableAdapter
 			// 
 			this.revListTableAdapter.ClearBeforeFill = true;
-			// 
-			// cutlistsBindingSource
-			// 
-			this.cutlistsBindingSource.DataMember = "Cutlists";
-			this.cutlistsBindingSource.DataSource = this.eNGINEERINGDataSet;
 			// 
 			// cutlistsTableAdapter
 			// 
@@ -202,13 +202,14 @@ namespace RedBrick2 {
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.Text = "Add To Existing Cutlist";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddToExistingCutlist_FormClosing);
 			this.Load += new System.EventHandler(this.AddToExistingCutlist_Load);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cutlistsBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSet)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.partq_nud)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.revListBindingSource)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.cutlistsBindingSource)).EndInit();
 			this.ResumeLayout(false);
 
 		}

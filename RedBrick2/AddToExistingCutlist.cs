@@ -30,6 +30,8 @@ namespace RedBrick2 {
 		}
 
 		private void AddToExistingCutlist_Load(object sender, EventArgs e) {
+			Location = Properties.Settings.Default.AddToCutlistLocation;
+			Size = Properties.Settings.Default.AddToCutlistSize;
 			this.cutlistsTableAdapter.Fill(this.eNGINEERINGDataSet.Cutlists);
 			this.revListTableAdapter.Fill(this.eNGINEERINGDataSet.RevList);
 			cutlist_cbx.SelectedValue = Properties.Settings.Default.LastCutlist;
@@ -40,6 +42,12 @@ namespace RedBrick2 {
 			eNGINEERINGDataSet.CUT_CUTLIST_PARTS.UpdateCutlistPart(props_);
 			add_btn.Enabled = false;
 			cancel_btn.Text = @"Close";
+		}
+
+		private void AddToExistingCutlist_FormClosing(object sender, FormClosingEventArgs e) {
+			Properties.Settings.Default.AddToCutlistLocation = Location;
+			Properties.Settings.Default.AddToCutlistSize = Size;
+			Properties.Settings.Default.Save();
 		}
 	}
 }
