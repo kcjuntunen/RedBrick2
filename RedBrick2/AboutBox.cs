@@ -10,12 +10,16 @@ namespace RedBrick2 {
 	partial class AboutBox : Form {
 		public AboutBox() {
 			InitializeComponent();
+			string descr_ = AssemblyDescription;
 			this.Text = string.Format("About {0}", AssemblyTitle);
 			this.labelProductName.Text = AssemblyProduct;
 			this.labelVersion.Text = string.Format("Version {0}", AssemblyVersion);
 			this.labelCopyright.Text = AssemblyCopyright;
 			this.labelCompanyName.Text = AssemblyCompany;
-			this.textBoxDescription.Text = AssemblyDescription;
+			this.textBoxDescription.Text = descr_ + string.Format("{0}------------------------{0}" +
+				"Crc32.cs Copyright (c) Damien Guard.  All rights reserved.{0}" +
+				"Licensed under the Apache License, Version 2.0 (the \"License\"){0}" +
+				"You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0", System.Environment.NewLine);
 		}
 
 		#region Assembly Attribute Accessors
