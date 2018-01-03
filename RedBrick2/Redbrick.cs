@@ -438,6 +438,11 @@ namespace RedBrick2 {
 			return Properties.Settings.Default.ValErr;
 		}
 
+		/// <summary>
+		/// An attempt to overcome weird tabbing. Focus where you clicked.
+		/// </summary>
+		/// <param name="sender">A control object.</param>
+		/// <param name="e">Mouse Event Args</param>
 		static public void FocusHere(object sender, System.Windows.Forms.MouseEventArgs e) {
 			if (sender is System.Windows.Forms.ComboBox) {
 				if ((sender as System.Windows.Forms.ComboBox).DroppedDown) {

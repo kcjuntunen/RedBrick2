@@ -10,13 +10,19 @@ namespace RedBrick2 {
 	public partial class AddToExistingCutlist : Form {
 		private SwProperties props_;
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
 		public AddToExistingCutlist() {
 			InitializeComponent();
 			Location = Properties.Settings.Default.AddToCutlistLocation;
 			Size = Properties.Settings.Default.AddToCutlistSize;
 		}
 
-
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="_pp">An SwProperties object.</param>
 		public AddToExistingCutlist(SwProperties _pp) : this() {
 			props_ = _pp;
 			Text = _pp.PartLookup;

@@ -333,6 +333,10 @@ namespace RedBrick2 {
 				return parts_.ToArray();
 			}
 
+			/// <summary>
+			/// Delete cutlist, then delete any orphaned parts left over.
+			/// </summary>
+			/// <param name="_clid">A cutlist ID.</param>
 			public void DeleteCutlist(int _clid) {
 				int affected_ = 0;
 				ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter cp_ =
@@ -434,7 +438,7 @@ namespace RedBrick2 {
 			/// Delete part from a selected cutlist. If the part is used nowhere else,
 			/// then delete it, and its child rows.
 			/// </summary>
-			/// <param name="_pp">An SwProperties object with valid CutlistID & PartID.</param>
+			/// <param name="_pp">An SwProperties object with valid CutlistID and PartID.</param>
 			/// <returns>Number of rows affected.</returns>
 			public int RemovePartFromCutlist(SwProperties _pp) {
 				int affected_ = 0;

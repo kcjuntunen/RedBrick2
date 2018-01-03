@@ -615,6 +615,9 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// It's OK to perform an operation if you have IDs.
+		/// </summary>
 		public bool CutlistAndPartIDsOK {
 			get {
 				return PartID > 0 && CutlistID > 0;
