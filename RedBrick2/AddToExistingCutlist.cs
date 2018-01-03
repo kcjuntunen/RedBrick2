@@ -28,7 +28,7 @@ namespace RedBrick2 {
 		/// <param name="_pp">An SwProperties object.</param>
 		public AddToExistingCutlist(SwProperties _pp) : this() {
 			props_ = _pp;
-			Text = _pp.PartLookup;
+			Text = string.Format(@"Adding {0}...", _pp.PartLookup);
 		}
 
 		private void cancel_btn_Click(object sender, EventArgs e) {
@@ -57,6 +57,14 @@ namespace RedBrick2 {
 			Properties.Settings.Default.AddToCutlistLocation = Location;
 			Properties.Settings.Default.AddToCutlistSize = Size;
 			Properties.Settings.Default.Save();
+		}
+
+		private void cutlist_cbx_SelectedIndexChanged(object sender, EventArgs e) {
+			ComboBox c_ = sender as ComboBox;
+			if (c_.SelectedItem != null) {
+				DataRowView d_ = c_.SelectedItem as DataRowView;
+				Text = string.Format(@"Adding {0} to {1}", props_.PartLookup, d_[@"CutlistDisplayName"]);
+			}
 		}
 	}
 }
