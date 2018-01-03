@@ -7,6 +7,9 @@ using System.Text;
 using System.Windows.Forms;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// A form for adding a selected part to an existing Cutlist.
+	/// </summary>
 	public partial class AddToExistingCutlist : Form {
 		private SwProperties props_;
 
