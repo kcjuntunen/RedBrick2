@@ -77,7 +77,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ExportImg" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="BOMLocation" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">1, -1</Value>
@@ -102,7 +102,7 @@
       <Value Profile="(Default)">3042</Value>
     </Setting>
     <Setting Name="FlameWar" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="UserDept" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">6</Value>
