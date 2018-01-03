@@ -310,6 +310,9 @@ namespace RedBrick2 {
 			}
 			PropertySet.Write();
 			RevSet.Write();
+			dirtTracker.IsDirty = false;
+			groupBox5.Text = groupBox5.Text.Replace(Properties.Settings.Default.NotSavedMark, string.Empty);
+
 			(ActiveDoc as DrawingDoc).ForceRebuild();
 		}
 
@@ -363,7 +366,7 @@ namespace RedBrick2 {
 			BuildTree();
 			dirtTracker.Besmirched += dirtTracker_Besmirched;
 			dirtTracker.IsDirty = false;
-			groupBox5.Text.Replace(Properties.Settings.Default.NotSavedMark, string.Empty);
+			groupBox5.Text = groupBox5.Text.Replace(Properties.Settings.Default.NotSavedMark, string.Empty);
 		}
 
 		private void BuildTree() {
