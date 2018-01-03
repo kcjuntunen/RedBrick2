@@ -47,6 +47,7 @@ namespace RedBrick2 {
 		}
 
 		private void add_btn_Click(object sender, EventArgs e) {
+			props_.CutlistQty = (float)Convert.ToDouble(partq_nud.Value);
 			eNGINEERINGDataSet.CUT_PARTS.UpdatePart(props_);
 			eNGINEERINGDataSet.CUT_CUTLIST_PARTS.UpdateCutlistPart(props_);
 			add_btn.Enabled = false;
