@@ -593,7 +593,7 @@ namespace RedBrick2 {
 		/// </summary>
 		public int PartID {
 			get {
-				if (_partID == 0) {
+				if (_partID == 0 && PartLookup != null) {
 					ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cpta_ =
 						new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
 					object test_obj_ = cpta_.GetPartIDByPartnum(PartLookup);
