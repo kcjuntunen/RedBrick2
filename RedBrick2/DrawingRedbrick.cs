@@ -165,7 +165,7 @@ namespace RedBrick2 {
 				if (PartFileInfo.Name.ToUpper().Contains(@"REV")) {
 					string[] revcheck = Path.GetFileNameWithoutExtension(PartFileInfo.Name).
 						Split(new string[] { @"REV" }, StringSplitOptions.RemoveEmptyEntries);
-					RevFromFile = revcheck.Length > 1 ? revcheck[revcheck.Length - 1] : null;
+					RevFromFile = revcheck.Length > 1 ? revcheck[revcheck.Length - 1].Trim() : null;
 				} else {
 					RevFromFile = null;
 				}
