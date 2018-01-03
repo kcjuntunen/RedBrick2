@@ -206,7 +206,8 @@ namespace RedBrick2 {
 			PropertySet.Add(_p.Get());
 			cust_cbx.SelectedValue = (int)_p.Data;
 			if (cust_cbx.SelectedItem != null) {
-				if ((ProjectCustomer != 0) && ((int)cust_cbx.SelectedValue != ProjectCustomer)) {
+				bool err_ = (ProjectCustomer != 0) && ((int)cust_cbx.SelectedValue != ProjectCustomer);
+				if (Properties.Settings.Default.Warn && err_) {
 					ToggleCustomerWarn(true);
 				}
 			} else {
@@ -244,7 +245,8 @@ namespace RedBrick2 {
 			PropertySet.Add(_p.Get());
 			RevFromDrw = _p.Value;
 			rev_cbx.Text = RevFromDrw;
-			if (RevFromFile != null && RevFromDrw != RevFromFile) {
+			bool err_ = RevFromFile != null && RevFromDrw != RevFromFile;
+			if (Properties.Settings.Default.Warn && err_) {
 				ToggleRevWarn(true);
 			}
 		}
@@ -467,23 +469,27 @@ namespace RedBrick2 {
 		}
 
 		private void comboBox14_SelectedIndexChanged(object sender, EventArgs e) {
-			if (RevFromFile == null || (sender as ComboBox).Text == RevFromFile) {
+			bool not_err_ = RevFromFile == null || (sender as ComboBox).Text == RevFromFile;
+			if (not_err_) {
 				ToggleRevWarn(false);
-			} else {
+			} else if (Properties.Settings.Default.Warn) {
 				ToggleRevWarn(true);
 			}
 		}
 
 		private void comboBox12_SelectedIndexChanged(object sender, EventArgs e) {
 			if ((sender as ComboBox).SelectedItem != null) {
-				if ((ProjectCustomer == 0) || (int)(sender as ComboBox).SelectedValue == ProjectCustomer) {
+				bool not_err_ = (ProjectCustomer == 0) || (int)(sender as ComboBox).SelectedValue == ProjectCustomer;
+				if (not_err_) {
 					ToggleCustomerWarn(false);
-				} else {
+				} else if (Properties.Settings.Default.Warn) {
 					ToggleCustomerWarn(true);
 				}
 			} else {
 				(sender as ComboBox).Text = PropertySet[@"CUSTOMER"].Value;
-				ToggleCustomerWarn(true);
+				if (Properties.Settings.Default.Warn) {
+					ToggleCustomerWarn(true);
+				}
 			}
 		}
 
