@@ -754,6 +754,30 @@ namespace RedBrick2 {
 			return lookup_.Trim();
 		}
 
+		public static List<string> WrapText(string _text, int _length) {
+			string[] originalLines = _text.Split(new string[] { " " },
+					StringSplitOptions.None);
+
+			List<string> wrappedLines = new List<string>();
+
+			StringBuilder actualLine = new StringBuilder();
+			int linelength_ = 0;
+			foreach (var item in originalLines) {
+				actualLine.Append(item + @" ");
+				linelength_ += item.Length;
+				if (linelength_ > _length) {
+					wrappedLines.Add(actualLine.ToString());
+					actualLine.Clear();
+					linelength_ = 0;
+				}
+			}
+
+			if (actualLine.Length > 0)
+				wrappedLines.Add(actualLine.ToString());
+
+			return wrappedLines;
+		}
+
 		/// <summary>
 		/// A central place for TreeViewIcons.
 		/// </summary>

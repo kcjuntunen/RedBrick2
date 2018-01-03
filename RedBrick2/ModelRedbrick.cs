@@ -60,6 +60,7 @@ namespace RedBrick2 {
 		private bool cl_userediting = false;
 		private bool cl_stat_userediting = false;
 		private bool data_from_db = false;
+		private string req_info_ = @"No info.";
 		private ComboBox[] cbxes;
 		private ToolTip groupbox_tooltip = new ToolTip();
 		private ToolTip cutlistMat_tooltip = new ToolTip();
@@ -71,6 +72,7 @@ namespace RedBrick2 {
 		private ToolTip partq_tooltip = new ToolTip();
 		private ToolTip over_tooltip = new ToolTip();
 		private ToolTip type_tooltip = new ToolTip();
+		private ToolTip req_tooltip = new ToolTip();
 
 		/// <summary>
 		/// Constructor.
@@ -1347,7 +1349,7 @@ namespace RedBrick2 {
 					ToggleEdgeWarn(false);
 					lastModelDoc = _activeDoc;
 					_activeDoc = value;
-
+					req_info_ = @"No info.";
 					string _fn = _activeDoc.GetPathName();
 					if (_fn != string.Empty) {
 						PartFileInfo = new FileInfo(_fn);
@@ -2016,6 +2018,32 @@ namespace RedBrick2 {
 			AddToExistingCutlist atc_ = new AddToExistingCutlist(PropertySet);
 			atc_.ShowDialog(this);
 			eNGINEERINGDataSet.GEN_ODOMETER.IncrementOdometer(Redbrick.Functions.AddPart);
+		}
+
+		private void groupBox2_MouseHover(object sender, EventArgs e) {
+			if (req_info_ == @"No info.") {
+				ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter ri_ =
+					new ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter();
+				ri_.FillByFixtureID(eNGINEERINGDataSet.RequestInfo, PropertySet.PartLookup);
+				if (eNGINEERINGDataSet.RequestInfo.Count > 0) {
+					ENGINEERINGDataSet.RequestInfoRow r_ =
+						(ENGINEERINGDataSet.RequestInfoRow)eNGINEERINGDataSet.RequestInfo[0];
+					StringBuilder sb_ = new StringBuilder();
+					sb_.AppendFormat(@"Project '{0}' is in '{1}' status.", r_.ITEMNUM, r_.RSNAME);
+					sb_.AppendLine();
+					sb_.AppendLine();
+					foreach (string line in Redbrick.WrapText(r_.DESCRIPTION, 40)) {
+						sb_.AppendLine(line);
+					}
+					sb_.AppendLine();
+					sb_.AppendFormat(@"Created by: {0}", Redbrick.TitleCase(r_.Creator));
+					sb_.AppendLine();
+					sb_.AppendFormat(@"Lead: {0}", Redbrick.TitleCase(r_.Lead));
+					sb_.AppendLine();
+					req_info_ = sb_.ToString();
+				}
+			}
+			req_tooltip.Show(req_info_, sender as GroupBox, 30000);
 		}
 	}
 }

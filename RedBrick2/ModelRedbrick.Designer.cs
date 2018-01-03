@@ -648,6 +648,7 @@
 			this.groupBox2.TabIndex = 0;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "General Properties";
+			this.groupBox2.MouseHover += new System.EventHandler(this.groupBox2_MouseHover);
 			// 
 			// tableLayoutPanel3
 			// 
