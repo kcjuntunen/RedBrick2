@@ -205,7 +205,7 @@ namespace RedBrick2 {
 																												Environment.NewLine));
 			chbWarnings.Checked = Properties.Settings.Default.Warn;
 			new ToolTip().SetToolTip(chbWarnings, @"Toggle validation warnings.");
-			chbOpWarnings.Checked = Properties.Settings.Default.ProgWarn;
+			chbOpWarnings.Checked = Properties.Settings.Default.OpWarn;
 			new ToolTip().SetToolTip(chbOpWarnings, @"Toggle routing validation warnings.");
 			chbIdiotLight.Checked = Properties.Settings.Default.IdiotLight;
 			chbOnlyActive.Checked = Properties.Settings.Default.OnlyActiveAuthors;
@@ -422,16 +422,7 @@ namespace RedBrick2 {
 		private void chbCustomerWarn_CheckedChanged(object sender, EventArgs e) {
 			Properties.Settings.Default.RememberLastCustomer = chbRememberCustomer.Checked;
 		}
-
-		/// <summary>
-		/// Update checkbox data.
-		/// </summary>
-		/// <param name="sender">Who triggered this event?</param>
-		/// <param name="e">Any data come with it?</param>
-		private void chbOpWarnings_CheckedChanged(object sender, EventArgs e) {
-			Properties.Settings.Default.ProgWarn = chbOpWarnings.Checked;
-		}
-
+		
 		/// <summary>
 		/// Update checkbox data.
 		/// </summary>
@@ -594,6 +585,10 @@ namespace RedBrick2 {
 
 		private void textBox8_TextChanged(object sender, EventArgs e) {
 			Properties.Settings.Default.GaugeRegex = textBox8.Text;
+		}
+
+		private void chbOpWarnings_CheckedChanged_1(object sender, EventArgs e) {
+			Properties.Settings.Default.OpWarn = (sender as CheckBox).Checked;
 		}
 	}
 }

@@ -442,7 +442,7 @@ namespace RedBrick2 {
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(408, 437);
+			this.tabPage2.Size = new System.Drawing.Size(553, 389);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Validation Options";
 			this.tabPage2.UseVisualStyleBackColor = true;
@@ -455,7 +455,7 @@ namespace RedBrick2 {
 			this.groupBox2.Controls.Add(this.tableLayoutPanel4);
 			this.groupBox2.Location = new System.Drawing.Point(8, 6);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(394, 425);
+			this.groupBox2.Size = new System.Drawing.Size(539, 377);
 			this.groupBox2.TabIndex = 4;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Validation Options";
@@ -485,7 +485,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel4.Size = new System.Drawing.Size(381, 397);
+			this.tableLayoutPanel4.Size = new System.Drawing.Size(526, 349);
 			this.tableLayoutPanel4.TabIndex = 0;
 			// 
 			// label4
@@ -503,7 +503,7 @@ namespace RedBrick2 {
 			this.textBox1.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.textBox1.Location = new System.Drawing.Point(3, 16);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(375, 20);
+			this.textBox1.Size = new System.Drawing.Size(520, 20);
 			this.textBox1.TabIndex = 19;
 			this.textBox1.Text = "^[Zz][0-9]{5,6}.*|^([A-Za-z]{3,4})([0-9]{4})-?.*";
 			// 
@@ -575,7 +575,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel5.Size = new System.Drawing.Size(375, 260);
+			this.tableLayoutPanel5.Size = new System.Drawing.Size(520, 260);
 			this.tableLayoutPanel5.TabIndex = 22;
 			// 
 			// checkBox1
@@ -600,6 +600,7 @@ namespace RedBrick2 {
 			this.chbOpWarnings.TabIndex = 17;
 			this.chbOpWarnings.Text = "Op Warnings";
 			this.chbOpWarnings.UseVisualStyleBackColor = true;
+			this.chbOpWarnings.CheckedChanged += new System.EventHandler(this.chbOpWarnings_CheckedChanged_1);
 			// 
 			// chbIdiotLight
 			// 
