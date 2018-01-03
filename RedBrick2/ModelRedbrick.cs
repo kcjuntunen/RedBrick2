@@ -244,7 +244,7 @@ namespace RedBrick2 {
 
 		private void ReQuery() {
 			dirtTracker.IsDirty = false;
-			groupBox1.Text.Replace(Properties.Settings.Default.NotSavedMark, string.Empty);
+			groupBox1.Text = groupBox1.Text.Replace(Properties.Settings.Default.NotSavedMark, string.Empty);
 			GetCutlistData();
 			flowLayoutPanel1.Controls.Clear();
 			if (ActiveDoc != null && PropertySet.Count > 0) {
@@ -1182,6 +1182,7 @@ namespace RedBrick2 {
 			} else if (tabControl1.SelectedTab == tabPage2) {
 				drawingRedbrick.Commit();
 			}
+			groupBox1.Text = groupBox1.Text.Replace(Properties.Settings.Default.NotSavedMark, string.Empty);
 			eNGINEERINGDataSet.GEN_ODOMETER.IncrementOdometer(Redbrick.Functions.GreenCheck);
 		}
 
