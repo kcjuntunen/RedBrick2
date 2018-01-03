@@ -108,10 +108,6 @@ namespace RedBrick2 {
 						msg_ += string.Format("Job #: {0}; Due: {1:M/d/yyyy}; Qty: {2:0}; Status: {3}\n",
 							r_.fjobno, r_.fddue_date, r_.fquantity, r_.fstatus);
 					}
-					//foreach (ENGINEERINGDataSet.jomastRow r_ in eNGINEERINGDataSet.jomast) {
-					//	msg_ += string.Format("Job #: {0}; Due: {1:M/d/yyyy}; Qty: {2:0}; Status: {3}\n",
-					//		r_.fjobno, r_.fddue_date, r_.fquantity, r_.fstatus);
-					//}
 					ENGINEERINGDataSetTableAdapters.jomastTotalsTableAdapter jot_ =
 						new ENGINEERINGDataSetTableAdapters.jomastTotalsTableAdapter();
 					jot_.FillCountByItemAndRev(eNGINEERINGDataSet.jomastTotals, partLookup, RevFromDrw);
