@@ -679,7 +679,7 @@ namespace RedBrick2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("^[0-9]{1,2}\\ ?GA\\.?")]
+        [global::System.Configuration.DefaultSettingValueAttribute("^[0-9]{1,2}\\ ?[gG][aA]\\.?")]
         public string GaugeRegex {
             get {
                 return ((string)(this["GaugeRegex"]));
