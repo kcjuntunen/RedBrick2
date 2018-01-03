@@ -1722,8 +1722,6 @@ namespace RedBrick2 {
 			}
 
 			if (cl_userediting) {
-				EnableCutlistSpec(true);
-				ToggleCutlistErr(false);
 				Properties.Settings.Default.LastCutlist = (int)(sender as ComboBox).SelectedValue;
 				Properties.Settings.Default.Save();
 				cl_userediting = false;
@@ -1731,6 +1729,8 @@ namespace RedBrick2 {
 		}
 
 		private void Set_Specific(ENGINEERINGDataSet.CUT_CUTLIST_PARTSRow _row) {
+			EnableCutlistSpec(true);
+			ToggleCutlistErr(false);
 			cutlistMat.SelectedValue = _row.MATID;
 			edgef.SelectedValue = _row.EDGEID_LF;
 			edgeb.SelectedValue = _row.EDGEID_LB;
