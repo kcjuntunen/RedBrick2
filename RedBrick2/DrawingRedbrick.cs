@@ -293,6 +293,9 @@ namespace RedBrick2 {
 		/// Write data to properties.
 		/// </summary>
 		public void Commit() {
+			ArchivePDF.csproj.ArchivePDFWrapper aw_ =
+				new ArchivePDF.csproj.ArchivePDFWrapper(SwApp, Redbrick.GeneratePathSet());
+			aw_.CheckGauges();
 			PropertySet[@"CUSTOMER"].Data = cust_cbx.SelectedValue;
 			PropertySet[@"REVISION LEVEL"].Data = rev_cbx.Text;
 			PropertySet[@"DrawnBy"].Data = auth_cpx.SelectedValue;
