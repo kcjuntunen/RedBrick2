@@ -1293,8 +1293,9 @@ namespace RedBrick2 {
 						)) {
 						not_cnc_op_ = i + 1;
 						if (bq_ == 1 && oversize_ > 0) {
+							string _not_cnc = ops_[not_cnc_op_].Trim() != string.Empty ? ops_[not_cnc_op_] : @"[NO OP]";
 							string msg_ = string.Format(@"No CNC op between {0} and {1}; check oversize values.",
-								ops_[ps_op_], ops_[not_cnc_op_]);
+								ops_[ps_op_], _not_cnc);
 							warn_ = true;
 							ToggleOversizeWarn(true, msg_);
 							break;
