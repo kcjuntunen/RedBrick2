@@ -50,11 +50,9 @@ namespace RedBrick2 {
 		private DirtTracker dirtTracker;
 
 		private bool initialated = false;
-		private bool cutlistMatChanged = false;
 		private bool AssemblyEventsAssigned = false;
 		private bool PartEventsAssigned = false;
 		private bool DrawingEventsAssigned = false;
-		private bool ModelSetup = false;
 		private bool DrawingSetup = false;
 		private bool checked_at_start = false;
 		private bool ov_userediting = false;
@@ -295,8 +293,6 @@ namespace RedBrick2 {
 		private void GetCutlistData() {
 			ToggleNotInDBWarn(true);
 			if (partLookup != null) {
-				ENGINEERINGDataSet.CUT_PARTSDataTable cpdt_ =
-					new ENGINEERINGDataSet.CUT_PARTSDataTable();
 				cpta.FillByPartnum(eNGINEERINGDataSet.CUT_PARTS, partLookup);
 				if (eNGINEERINGDataSet.CUT_PARTS.Count > 0) {
 					Row = eNGINEERINGDataSet.CUT_PARTS.Rows[0] as ENGINEERINGDataSet.CUT_PARTSRow;
@@ -643,8 +639,6 @@ namespace RedBrick2 {
 		}
 
 		private void GetRoutingFromDB() {
-			//double setupTime = 0.0f;
-			//double runTime = 0.0f;
 			if (Row != null) {
 				type_cbx.SelectedValue = Row.TYPE;
 				FilterOps(string.Format(@"TYPEID = {0}", Row.TYPE));
@@ -659,8 +653,6 @@ namespace RedBrick2 {
 				if (i < eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count) {
 					ENGINEERINGDataSet.CUT_PART_OPSRow r =
 						(eNGINEERINGDataSet.CUT_PART_OPS.Rows[i] as ENGINEERINGDataSet.CUT_PART_OPSRow);
-					//setupTime += r.POPSETUP;
-					//runTime += r.POPRUN;
 					current.SelectedValue = r.POPOP;
 					if (PropertySet.ContainsKey(op_)) {
 						OpProperty prop_ = PropertySet[op_] as OpProperty;
@@ -677,10 +669,6 @@ namespace RedBrick2 {
 				}
 			}
 			GetEstimationFromDB();
-			//double setup = setupTime / Properties.Settings.Default.SPQ;
-			//groupBox4.Text = string.Format("Routing (Setup: {0:0} min/Run: {1:0} min)",
-			//	setup * 60,
-			//	runTime * 60);
 		}
 
 		private void GetEstimationFromDB() {
@@ -1709,7 +1697,7 @@ namespace RedBrick2 {
 		}
 
 		private void comboBox_SelectedIndexChanged(object sender, EventArgs e) {
-			cutlistMatChanged = true;
+
 		}
 
 		private void comboBox6_SelectedIndexChanged(object sender, EventArgs e) {
