@@ -2031,10 +2031,10 @@ namespace RedBrick2 {
 					ENGINEERINGDataSet.RequestInfoRow r_ =
 						(ENGINEERINGDataSet.RequestInfoRow)eNGINEERINGDataSet.RequestInfo[0];
 					StringBuilder sb_ = new StringBuilder();
-					if (r_.ITEMNUM != null) {
-						sb_.AppendFormat(@"Project '{0}' is in '{1}' status.", r_.ITEMNUM, r_.RSNAME);
+					if (r_[@"ITEMNUM"] != DBNull.Value) {
+						sb_.AppendFormat(@"Project '{0}' is in '{1}' status.", Convert.ToString(r_.ITEMNUM), r_.RSNAME);
 					} else {
-						sb_.AppendFormat(@"Project '{0}' is in '{1}' status.", r_.FIXID, r_.RSNAME);
+						sb_.AppendFormat(@"Project '{0}' is in '{1}' status.", Convert.ToString(r_.FIXID), r_.RSNAME);
 					}
 					sb_.AppendLine();
 					sb_.AppendLine();
@@ -2042,7 +2042,7 @@ namespace RedBrick2 {
 						sb_.AppendLine(line);
 					}
 					sb_.AppendLine();
-					sb_.AppendFormat(@"Created by {0} on {1:m/d/yyyy}", Redbrick.TitleCase(r_.Creator), r_.CDATE);
+					sb_.AppendFormat(@"Created by {0} on {1:M/d/yyyy}", Redbrick.TitleCase(r_.Creator), r_.CDATE);
 					sb_.AppendLine();
 					sb_.AppendFormat(@"Lead: {0}", Redbrick.TitleCase(r_.Lead));
 					sb_.AppendLine();
