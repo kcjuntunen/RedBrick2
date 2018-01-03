@@ -15830,6 +15830,8 @@ namespace RedBrick2 {
             
             private global::System.Data.DataColumn columnFIXID;
             
+            private global::System.Data.DataColumn columnCDATE;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public RequestInfoDataTable() {
@@ -15921,6 +15923,14 @@ namespace RedBrick2 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CDATEColumn {
+                get {
+                    return this.columnCDATE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -15956,7 +15966,7 @@ namespace RedBrick2 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public RequestInfoRow AddRequestInfoRow(string Creator, string Lead, string CUSTOMER, string DESCRIPTION, string ITEMNUM, string RSNAME, string FIXID) {
+            public RequestInfoRow AddRequestInfoRow(string Creator, string Lead, string CUSTOMER, string DESCRIPTION, string ITEMNUM, string RSNAME, string FIXID, System.DateTime CDATE) {
                 RequestInfoRow rowRequestInfoRow = ((RequestInfoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Creator,
@@ -15965,7 +15975,8 @@ namespace RedBrick2 {
                         DESCRIPTION,
                         ITEMNUM,
                         RSNAME,
-                        FIXID};
+                        FIXID,
+                        CDATE};
                 rowRequestInfoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowRequestInfoRow);
                 return rowRequestInfoRow;
@@ -15995,6 +16006,7 @@ namespace RedBrick2 {
                 this.columnITEMNUM = base.Columns["ITEMNUM"];
                 this.columnRSNAME = base.Columns["RSNAME"];
                 this.columnFIXID = base.Columns["FIXID"];
+                this.columnCDATE = base.Columns["CDATE"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -16014,6 +16026,8 @@ namespace RedBrick2 {
                 base.Columns.Add(this.columnRSNAME);
                 this.columnFIXID = new global::System.Data.DataColumn("FIXID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFIXID);
+                this.columnCDATE = new global::System.Data.DataColumn("CDATE", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCDATE);
                 this.columnCreator.ReadOnly = true;
                 this.columnCreator.MaxLength = 31;
                 this.columnLead.ReadOnly = true;
@@ -24784,6 +24798,22 @@ namespace RedBrick2 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime CDATE {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableRequestInfo.CDATEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CDATE\' in table \'RequestInfo\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRequestInfo.CDATEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsCreatorNull() {
                 return this.IsNull(this.tableRequestInfo.CreatorColumn);
             }
@@ -24864,6 +24894,18 @@ namespace RedBrick2 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetFIXIDNull() {
                 this[this.tableRequestInfo.FIXIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCDATENull() {
+                return this.IsNull(this.tableRequestInfo.CDATEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCDATENull() {
+                this[this.tableRequestInfo.CDATEColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -43408,6 +43450,7 @@ SELECT PARTNUM + N' REV ' + REV AS CutlistDisplayName, CLID, PARTNUM, REV, DRAWI
             tableMapping.ColumnMappings.Add("ITEMNUM", "ITEMNUM");
             tableMapping.ColumnMappings.Add("RSNAME", "RSNAME");
             tableMapping.ColumnMappings.Add("FIXID", "FIXID");
+            tableMapping.ColumnMappings.Add("CDATE", "CDATE");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -43424,27 +43467,33 @@ SELECT PARTNUM + N' REV ' + REV AS CutlistDisplayName, CLID, PARTNUM, REV, DRAWI
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT      GEN_USERS_1.FIRST + ' ' + GEN_USERS_1.LAST + ' ' + IsNull(GEN_USERS_1.SUFFIX, '') AS Creator, GEN_USERS.FIRST + ' ' + GEN_USERS.LAST + ' ' + IsNull(GEN_USERS.SUFFIX, '') AS Lead, GEN_CUSTOMERS.CUSTOMER, 
-                        REQ_REQUESTS.DESCRIPTION, REQ_REQUESTS.ITEMNUM, REQ_REQUESTS_STATUS.RSNAME, REQ_REQUESTS.FIXID
+            this._commandCollection[0].CommandText = @"SELECT      GEN_USERS_1.FIRST + ' ' + GEN_USERS_1.LAST + ' ' + ISNULL(GEN_USERS_1.SUFFIX, '') AS Creator, 
+                        GEN_USERS.FIRST + ' ' + GEN_USERS.LAST + ' ' + ISNULL(GEN_USERS.SUFFIX, '') AS Lead, GEN_CUSTOMERS.CUSTOMER, 
+                        REQ_REQUESTS.DESCRIPTION, REQ_REQUESTS.ITEMNUM, REQ_REQUESTS_STATUS.RSNAME, REQ_REQUESTS.FIXID, 
+                        REQ_REQUESTS.CDATE
 FROM          REQ_REQUESTS INNER JOIN
                         GEN_USERS ON REQ_REQUESTS.LEAD = GEN_USERS.UID INNER JOIN
                         GEN_USERS AS GEN_USERS_1 ON REQ_REQUESTS.CREATEDBY = GEN_USERS_1.UID INNER JOIN
                         GEN_CUSTOMERS ON REQ_REQUESTS.CUSTID = GEN_CUSTOMERS.CUSTID INNER JOIN
                         REQ_REQUESTS_STATUS ON REQ_REQUESTS.STATID = REQ_REQUESTS_STATUS.RSID
-WHERE      (REQ_REQUESTS.FIXID = @fixtureID); 
+WHERE      (REQ_REQUESTS.FIXID = @fixtureID)
+ORDER BY REQ_REQUESTS.CDATE DESC;  
 ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fixtureID", global::System.Data.SqlDbType.NVarChar, 25, global::System.Data.ParameterDirection.Input, 0, 0, "FIXID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT      GEN_USERS_1.FIRST + ' ' + GEN_USERS_1.LAST + ' ' + IsNull(GEN_USERS_1.SUFFIX, '') AS Creator, GEN_USERS.FIRST + ' ' + GEN_USERS.LAST + ' ' + IsNull(GEN_USERS.SUFFIX, '') AS Lead, GEN_CUSTOMERS.CUSTOMER, 
-                        REQ_REQUESTS.DESCRIPTION, REQ_REQUESTS.ITEMNUM, REQ_REQUESTS_STATUS.RSNAME, REQ_REQUESTS.FIXID
+            this._commandCollection[1].CommandText = @"SELECT      GEN_USERS_1.FIRST + ' ' + GEN_USERS_1.LAST + ' ' + ISNULL(GEN_USERS_1.SUFFIX, '') AS Creator, 
+                        GEN_USERS.FIRST + ' ' + GEN_USERS.LAST + ' ' + ISNULL(GEN_USERS.SUFFIX, '') AS Lead, GEN_CUSTOMERS.CUSTOMER, 
+                        REQ_REQUESTS.DESCRIPTION, REQ_REQUESTS.ITEMNUM, REQ_REQUESTS_STATUS.RSNAME, REQ_REQUESTS.FIXID, 
+                        REQ_REQUESTS.CDATE
 FROM          REQ_REQUESTS INNER JOIN
                         GEN_USERS ON REQ_REQUESTS.LEAD = GEN_USERS.UID INNER JOIN
                         GEN_USERS AS GEN_USERS_1 ON REQ_REQUESTS.CREATEDBY = GEN_USERS_1.UID INNER JOIN
                         GEN_CUSTOMERS ON REQ_REQUESTS.CUSTID = GEN_CUSTOMERS.CUSTID INNER JOIN
                         REQ_REQUESTS_STATUS ON REQ_REQUESTS.STATID = REQ_REQUESTS_STATUS.RSID
-WHERE      (REQ_REQUESTS.ITEMNUM = @itemNum); 
+WHERE      (REQ_REQUESTS.ITEMNUM = @itemNum)
+ORDER BY REQ_REQUESTS.CDATE DESC;  
 ";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itemNum", global::System.Data.SqlDbType.NVarChar, 40, global::System.Data.ParameterDirection.Input, 0, 0, "ITEMNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
