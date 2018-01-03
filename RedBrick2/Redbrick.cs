@@ -433,7 +433,7 @@ namespace RedBrick2 {
 		static public string TitleCase(string allCapsInput) {
 			if (allCapsInput != null) {
 				var t = new System.Globalization.CultureInfo("en-US", false).TextInfo;
-				return t.ToTitleCase(allCapsInput.ToLower());
+				return t.ToTitleCase(allCapsInput.ToLower()).Trim();
 			}
 			return Properties.Settings.Default.ValErr;
 		}
