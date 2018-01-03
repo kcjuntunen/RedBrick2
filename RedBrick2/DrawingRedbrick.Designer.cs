@@ -524,6 +524,7 @@ namespace RedBrick2 {
 			this.groupBox5.TabIndex = 0;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "groupBox5";
+			this.groupBox5.MouseHover += new System.EventHandler(this.groupBox5_MouseHover);
 			// 
 			// tableLayoutPanel7
 			// 

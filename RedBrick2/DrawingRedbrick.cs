@@ -22,10 +22,12 @@ namespace RedBrick2 {
 		private ToolTip cust_tooltip = new ToolTip();
 		private ToolTip rev_tooltip = new ToolTip();
 		private ToolTip status_tooltip = new ToolTip();
+		private ToolTip req_tooltip = new ToolTip();
 		private int clid = 0;
 		private bool user_editing = false;
 		private bool jobs = false;
 		private string jobs_msg = string.Empty;
+		private string req_info_ = @"No info.";
 
 		/// <summary>
 		/// Constructor.
@@ -334,6 +336,7 @@ namespace RedBrick2 {
 		/// </summary>
 		public void ReLoad() {
 			dirtTracker.Besmirched -= dirtTracker_Besmirched;
+			req_info_ = @"No info.";
 			InitData();
 
 			if (Properties.Settings.Default.OnlyActiveAuthors) {
@@ -634,6 +637,36 @@ namespace RedBrick2 {
 				jobs_msg = GetJobsDue();
 			}
 			status_tooltip.Show(jobs_msg, sender as Label, 30000);
+		}
+
+		private void groupBox5_MouseHover(object sender, EventArgs e) {
+			if (req_info_ == @"No info.") {
+				ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter ri_ =
+					new ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter();
+				ri_.FillByItemNum(eNGINEERINGDataSet.RequestInfo, partLookup);
+				if (eNGINEERINGDataSet.RequestInfo.Count > 0) {
+					ENGINEERINGDataSet.RequestInfoRow r_ =
+						(ENGINEERINGDataSet.RequestInfoRow)eNGINEERINGDataSet.RequestInfo[0];
+					StringBuilder sb_ = new StringBuilder();
+					if (r_.FIXID != null) {
+						sb_.AppendFormat(@"Project '{0}' is in '{1}' status.", r_.FIXID, r_.RSNAME);
+					} else {
+						sb_.AppendFormat(@"Project '{0}' is in '{1}' status.", r_.ITEMNUM, r_.RSNAME);
+					}
+					sb_.AppendLine();
+					sb_.AppendLine();
+					foreach (string line in Redbrick.WrapText(r_.DESCRIPTION, 40)) {
+						sb_.AppendLine(line);
+					}
+					sb_.AppendLine();
+					sb_.AppendFormat(@"Created by {0} on {1:m/d/yyyy}", Redbrick.TitleCase(r_.Creator), r_.CDATE);
+					sb_.AppendLine();
+					sb_.AppendFormat(@"Lead: {0}", Redbrick.TitleCase(r_.Lead));
+					sb_.AppendLine();
+					req_info_ = sb_.ToString();
+				}
+			}
+			req_tooltip.Show(req_info_, sender as GroupBox, 30000);
 		}
 	}
 }
