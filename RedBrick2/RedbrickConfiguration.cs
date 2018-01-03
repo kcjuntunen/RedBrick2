@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.IO;
+using System.Xml;
 using System.Windows.Forms;
 
 namespace RedBrick2 {
@@ -47,6 +48,36 @@ namespace RedBrick2 {
 			tt.SetToolTip(textBox8, Properties.Resources.RegexHint);
 			tt.SetToolTip(label4, Properties.Resources.RegexHint);
 			tt.SetToolTip(label13, Properties.Resources.RegexHint);
+			init_gauges();
+			init_stats();
+			initialated = true;
+		}
+
+		private void init_gauges() {
+			dataGridView2.AutoResizeRows();
+			dataGridView2.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+			dataGridView2.AutoResizeColumns();
+			dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+			dataGridView2.DataSource = get_gauges();
+
+			dataGridView2.Columns[@"Gauge"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+			dataGridView2.Columns[@"Gauge"].ValueType = typeof(int);
+			dataGridView2.Columns[@"Thickness"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+			dataGridView2.Columns[@"Thickness"].ValueType = typeof(double);
+			dataGridView2.Columns[@"Thickness"].DefaultCellStyle.Format = @"#.###";
+			dataGridView2.Columns[@"TBG"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+		}
+
+		private DataView get_gauges() {
+			DataSet ds_ = new DataSet();
+			FileInfo fi_ = new FileInfo(Properties.Settings.Default.GaugePath);
+			if (fi_.Exists) {
+				ds_.ReadXml(fi_.FullName);
+			}
+			return ds_.Tables[@"Material"].DefaultView;
+		}
+
+		private void init_stats() {
 			var t = new System.Globalization.CultureInfo("en-US", false).TextInfo;
 			ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter guta =
 				new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
@@ -72,7 +103,6 @@ namespace RedBrick2 {
 			dataGridView1.Columns["Avg Daily Usage"].DefaultCellStyle.Format = @"#.###";
 			dataGridView1.Columns["Your Avg Daily Usage"].DefaultCellStyle.Format = @"#.###";
 			dataGridView1.Columns["σ"].DefaultCellStyle.Format = @"#.###";
-			initialated = true;
 		}
 
 		private double WorkDays() {
