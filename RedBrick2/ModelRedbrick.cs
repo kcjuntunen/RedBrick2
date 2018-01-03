@@ -334,13 +334,16 @@ namespace RedBrick2 {
 		private void SelectLastCutlist() {
 			if (ComboBoxContainsValue(Properties.Settings.Default.LastCutlist, cutlistctl)) {
 				cutlistctl.SelectedValue = Properties.Settings.Default.LastCutlist;
+				EnableCutlistSpec(true);
 				ToggleCutlistErr(false);
 			} else if (cutlistctl.Items.Count < 1) {
 				cutlistctl.SelectedValue = -1;
+				EnableCutlistSpec(true);
 				ToggleCutlistErr(false);
 			} else {
 				cutlistctl.SelectedValue = -1;
 				ToggleCutlistErr(true);
+				EnableCutlistSpec(false);
 				GetMaterialFromPart();
 				GetEdgesFromPart();
 			}
@@ -413,6 +416,15 @@ namespace RedBrick2 {
 				Redbrick.UnErr(cutlistctl);
 				cutlist_tooltip.RemoveAll();
 			}
+		}
+
+		private void EnableCutlistSpec(bool on) {
+			cutlistMat.Enabled = on;
+			edgef.Enabled = on;
+			edgeb.Enabled = on;
+			edgel.Enabled = on;
+			edger.Enabled = on;
+			partq.Enabled = on;
 		}
 
 		private void ToggleCutlistQtyErr(bool on) {
@@ -1720,6 +1732,7 @@ namespace RedBrick2 {
 			}
 
 			if (cl_userediting) {
+				EnableCutlistSpec(true);
 				ToggleCutlistErr(false);
 				Properties.Settings.Default.LastCutlist = (int)(sender as ComboBox).SelectedValue;
 				Properties.Settings.Default.Save();
