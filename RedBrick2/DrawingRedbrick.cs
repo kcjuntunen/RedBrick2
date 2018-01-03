@@ -121,12 +121,9 @@ namespace RedBrick2 {
 							msg_ += "...\n";
 						}
 						if (r_.jobqty > 1) {
-							msg_ += string.Format("There are {0} jobs, requiring a total quantity of {1:0} parts,\n"
+							msg_ += string.Format("There are {0} jobs, requiring a total quantity of {1:0} items,\n"
 								+ "with an average of {2:0.0} parts per job.",
 								r_.jobqty, r_.partqty, r_.partavgqty);
-						} else if (r_.jobqty == 1) {
-							msg_ += string.Format(@"There's {0} job, requiring a total quantity of {1:0} parts.",
-								Convert.ToInt32(r_.jobqty), Convert.ToDouble(r_.partqty));
 						}
 					}
 					return msg_;
