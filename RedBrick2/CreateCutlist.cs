@@ -763,7 +763,7 @@ namespace RedBrick2 {
 				row.Cells[@"Part Qty"].Value = item.Value;
 				val.CutlistQty = item.Value;
 
-				row.Cells[@"Include"].Value = r.IsMatch(name);
+				row.Cells[@"Include"].Value = r.IsMatch(name) && row.Cells[@"Department"].Value != null;
 			}
 		}
 
