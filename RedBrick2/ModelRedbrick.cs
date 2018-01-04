@@ -1852,7 +1852,7 @@ namespace RedBrick2 {
 		}
 
 		private void button3_Click(object sender, EventArgs e) {
-			if (eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count > 0) {
+			if (Row != null && eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count > 0) {
 				ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpoa_ =
 					new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
 				ENGINEERINGDataSet.CutPartOpsRow r =
@@ -1864,7 +1864,7 @@ namespace RedBrick2 {
 		}
 
 		private void button4_Click(object sender, EventArgs e) {
-			if (eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count > 1) {
+			if (Row != null && eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count > 1) {
 				ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpoa_ =
 					new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
 				ENGINEERINGDataSet.CutPartOpsRow r =
@@ -1876,7 +1876,7 @@ namespace RedBrick2 {
 		}
 
 		private void button5_Click(object sender, EventArgs e) {
-			if (eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count > 2) {
+			if (Row != null && eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count > 2) {
 				ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpoa_ =
 					new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
 				ENGINEERINGDataSet.CutPartOpsRow r =
@@ -1888,7 +1888,7 @@ namespace RedBrick2 {
 		}
 
 		private void button6_Click(object sender, EventArgs e) {
-			if (eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count > 3) {
+			if (Row != null && eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count > 3) {
 				ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpoa_ =
 					new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
 				ENGINEERINGDataSet.CutPartOpsRow r =
@@ -1900,7 +1900,7 @@ namespace RedBrick2 {
 		}
 
 		private void button7_Click(object sender, EventArgs e) {
-			if (eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count > 4) {
+			if (Row != null && eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count > 4) {
 				ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpoa_ =
 					new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
 				ENGINEERINGDataSet.CutPartOpsRow r =
