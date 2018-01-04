@@ -749,7 +749,7 @@ namespace RedBrick2 {
 			double setupTime = 0.0f;
 			double runTime = 0.0f;
 			string scope_ = string.Empty;
-			if (Properties.Settings.Default.EstimateSource) {
+			if (Properties.Settings.Default.EstimateSource || PropertySet.CutlistID < 1) {
 				scope_ = @"/part";
 				ENGINEERINGDataSet.CUT_PART_OPSDataTable dt_ = cpota.GetDataByPartID(Row.PARTID);
 				for (int i = 0; i < cbxes.Length; i++) {
