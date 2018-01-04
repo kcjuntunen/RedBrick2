@@ -237,6 +237,8 @@ namespace RedBrick2 {
 		/// Dispose of whatever we have.
 		/// </summary>
 		public void DumpActiveDoc() {
+			this.Component = null;
+			configuration = string.Empty;
 			lastModelDoc = null;
 			_activeDoc = null;
 		}
