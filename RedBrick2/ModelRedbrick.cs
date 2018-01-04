@@ -550,7 +550,9 @@ namespace RedBrick2 {
 			data_from_db = isIn;
 			if (isIn) {
 				groupBox1.ForeColor = Properties.Settings.Default.NormalForeground;
-				groupbox_tooltip.SetToolTip(groupBox1, Properties.Resources.InfoFromDB);
+				string hash_ = PropertySet.Hash == Row.HASH ? "\nLocation is correct." : "\nThis part has been moved.";
+				string msg_ = Properties.Resources.InfoFromDB + hash_;
+				groupbox_tooltip.SetToolTip(groupBox1, msg_);
 			} else {
 				groupBox1.ForeColor = Properties.Settings.Default.WarnBackground;
 				groupbox_tooltip.SetToolTip(groupBox1, Properties.Resources.InfoNotFromDB);
