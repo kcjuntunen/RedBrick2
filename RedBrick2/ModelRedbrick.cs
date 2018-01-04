@@ -1283,7 +1283,6 @@ namespace RedBrick2 {
 
 		private void SetupPart() {
 			scrollOffset = new Point(0, flowLayoutPanel1.VerticalScroll.Value);
-			PropertySet = new SwProperties(SwApp, ActiveDoc);
 
 			if (!(_activeDoc is DrawingDoc)) {
 				configuration = _activeDoc.ConfigurationManager.ActiveConfiguration.Name;
