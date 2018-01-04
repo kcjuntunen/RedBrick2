@@ -27733,9 +27733,10 @@ SELECT POPID, POPPART, POPORDER, POPOP, POPSETUP, POPRUN FROM CUT_PART_OPS WHERE
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "POPPART", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT      SUM(CUT_PART_OPS.POPRUN) AS TotalRun\r\nFROM          CUT_PART_OPS INNE" +
-                "R JOIN\r\n                        CUT_CUTLIST_PARTS ON CUT_PART_OPS.POPPART = CUT_" +
-                "CUTLIST_PARTS.PARTID\r\nWHERE      (CUT_CUTLIST_PARTS.CLID = @cutlistID)";
+            this._commandCollection[4].CommandText = @"SELECT Sum([CUT_PART_OPS].[POPRUN]*[CUT_CUTLIST_PARTS].[QTY]) AS TotalRun
+FROM (CUT_CUTLIST_PARTS INNER JOIN CUT_CUTLISTS ON CUT_CUTLIST_PARTS.CLID = CUT_CUTLISTS.CLID) INNER JOIN CUT_PART_OPS ON CUT_CUTLIST_PARTS.PARTID = CUT_PART_OPS.POPPART
+WHERE (((CUT_CUTLISTS.CLID)=@cutlistID));
+";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cutlistID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "CLID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
@@ -28142,14 +28143,9 @@ SELECT POPID, POPPART, POPORDER, POPOP, POPSETUP, POPRUN FROM CUT_PART_OPS WHERE
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual object GetCutlistRunTime(global::System.Nullable<int> cutlistID) {
+        public virtual object GetCutlistRunTime(int cutlistID) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
-            if ((cutlistID.HasValue == true)) {
-                command.Parameters[0].Value = ((int)(cutlistID.Value));
-            }
-            else {
-                command.Parameters[0].Value = global::System.DBNull.Value;
-            }
+            command.Parameters[0].Value = ((int)(cutlistID));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {

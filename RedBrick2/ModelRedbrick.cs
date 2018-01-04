@@ -746,16 +746,21 @@ namespace RedBrick2 {
 		private void GetEstimationFromDB() {
 			double setupTime = 0.0f;
 			double runTime = 0.0f;
+			string scope_ = string.Empty;
 			if (Properties.Settings.Default.EstimateSource) {
+				scope_ = @"/part";
 				ENGINEERINGDataSet.CUT_PART_OPSDataTable dt_ = cpota.GetDataByPartID(Row.PARTID);
 				for (int i = 0; i < cbxes.Length; i++) {
 					ComboBox current = cbxes[i];
 					if (eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count > i) {
-						setupTime += Convert.ToDouble(eNGINEERINGDataSet.CUT_PART_OPS.Rows[i][@"POPSETUP"]);
-						runTime += Convert.ToDouble(eNGINEERINGDataSet.CUT_PART_OPS.Rows[i][@"POPRUN"]);
+						ENGINEERINGDataSet.CUT_PART_OPSRow r_ =
+							(ENGINEERINGDataSet.CUT_PART_OPSRow)eNGINEERINGDataSet.CUT_PART_OPS.Rows[i];
+						setupTime += r_.POPSETUP;
+						runTime += r_.POPRUN;
 					}
 				}
 			} else {
+				scope_ = @"/cutlist";
 				if (PropertySet.CutlistID != 0) {
 					setupTime = Convert.ToDouble(cpota.GetCutlistSetupTime(PropertySet.CutlistID));
 					runTime = Convert.ToDouble(cpota.GetCutlistRunTime(PropertySet.CutlistID));
@@ -763,20 +768,17 @@ namespace RedBrick2 {
 			}
 
 			double setup = (setupTime / Properties.Settings.Default.SPQ) * 60;
-			double run = runTime * 60;
-			string setup_fmt_ = @"Setup: {0:0} min";
-			string run_fmt_ = @"Run: {1:0} min";
-			if (setup > 60) {
-				setup = setup / 60;
-				setup_fmt_ = @"Setup: {0:0.0} hr";
-			}
+			double run = (setup + runTime * 60) * Properties.Settings.Default.SPQ;
+			string run_fmt_ = @"{0:0} min";
 			if (run > 60) {
 				run = run / 60;
-				run_fmt_ = "Run: {1:0.0} hr";
+				run_fmt_ = "{0:0.0} hr";
 			}
-			string fmt_ = string.Format("Routing ({0}/{1}/SPQ: {2})", setup_fmt_, run_fmt_,
-				Properties.Settings.Default.SPQ);
-			groupBox4.Text = string.Format(fmt_, setup, run);
+
+			string fmt_ = string.Format("Routing ({0}/SPQ: {1}{2})", run_fmt_,
+			Properties.Settings.Default.SPQ, scope_);
+
+			groupBox4.Text = string.Format(fmt_, run);
 		}
 
 		private void GetEstimationFromPart() {
@@ -791,10 +793,10 @@ namespace RedBrick2 {
 				}
 			}
 
-			double setup = setupTime / Properties.Settings.Default.SPQ;
-			groupBox4.Text = string.Format("Routing (Setup: {0:0} min/Run: {1:0} min)",
-				setup * 60,
-				runTime * 60);
+			double setup = (setupTime / Properties.Settings.Default.SPQ) * 60;
+			groupBox4.Text = string.Format("Routing ({0:0} min/SPQ: {1}/part)",
+				(setup + runTime * 60) * Properties.Settings.Default.SPQ,
+				Properties.Settings.Default.SPQ);
 		}
 
 		private void GetRoutingFromPart() {
