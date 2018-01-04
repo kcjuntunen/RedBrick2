@@ -1814,6 +1814,7 @@ namespace RedBrick2 {
 			partq.Value = Convert.ToInt32(_row.QTY);
 			PropertySet.CutlistID = _row.CLID;
 			PropertySet.CutlistQty = _row.QTY;
+			GetEstimationFromDB();
 		}
 
 		private void FocusHere(object sender, MouseEventArgs e) {
