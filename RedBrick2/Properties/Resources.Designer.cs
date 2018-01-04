@@ -98,6 +98,15 @@ namespace RedBrick2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The dimension from the cutlist database is {0}&quot;..
+        /// </summary>
+        internal static string DimensionNotMatch {
+            get {
+                return ResourceManager.GetString("DimensionNotMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You should always confirm your edging after swapping dimensions..
         /// </summary>
         internal static string DimensionSwapWarning {

@@ -250,6 +250,8 @@ namespace RedBrick2 {
 		}
 
 		private void ReQuery() {
+			Properties.Settings.Default.NumberFormat = get_format_txt(_activeDoc);
+			Properties.Settings.Default.Save();
 			dirtTracker.IsDirty = false;
 			groupBox1.Text = groupBox1.Text.Replace(Properties.Settings.Default.NotSavedMark, string.Empty);
 			GetCutlistData();
@@ -565,6 +567,18 @@ namespace RedBrick2 {
 				}
 			}
 			return false;
+		}
+
+		static private string get_format_txt(ModelDoc2 _md) {
+			int prec_ = _md.Extension.GetUserPreferenceInteger(
+				(int)swUserPreferenceIntegerValue_e.swDetailingLinearDimPrecision,
+				(int)swUserPreferenceOption_e.swDetailingLinearDimension);
+			string format_txt_ = @"{0:0.";
+			for (int i = 0; i < prec_; i++) {
+				format_txt_ += @"0";
+			}
+			format_txt_ += @"}";
+			return format_txt_;
 		}
 
 		private int IntTryProp(string propname) {

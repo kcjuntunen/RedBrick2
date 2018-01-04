@@ -149,7 +149,7 @@ namespace RedBrick2.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(" *")]
+        [global::System.Configuration.DefaultSettingValueAttribute("*")]
         public string NotSavedMark {
             get {
                 return ((string)(this["NotSavedMark"]));

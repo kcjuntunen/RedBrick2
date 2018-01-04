@@ -190,4 +190,7 @@
   <data name="UpdateHint" xml:space="preserve">
     <value>Add Part/Assembly to the cutlist database.</value>
   </data>
+  <data name="DimensionNotMatch" xml:space="preserve">
+    <value>The dimension from the cutlist database is {0}".</value>
+  </data>
 </root>
