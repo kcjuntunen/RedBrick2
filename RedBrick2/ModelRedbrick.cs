@@ -41,6 +41,11 @@ namespace RedBrick2 {
 		private Single width = 0.0F;
 		private Single thickness = 0.0F;
 
+		private Single db_length = 0.0F;
+		private Single db_width = 0.0F;
+		private Single db_thickness = 0.0F;
+
+
 		private Point scrollOffset;
 
 		private const int WM_PAINT = 0x000F;
@@ -73,7 +78,9 @@ namespace RedBrick2 {
 		private ToolTip over_tooltip = new ToolTip();
 		private ToolTip type_tooltip = new ToolTip();
 		private ToolTip req_tooltip = new ToolTip();
-
+		private ToolTip l_tooltip = new ToolTip();
+		private ToolTip w_tooltip = new ToolTip();
+		private ToolTip t_tooltip = new ToolTip();
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -257,17 +264,23 @@ namespace RedBrick2 {
 				GetRouting();
 
 				if (Row != null) {
-					length = (Single)Row[@"FIN_L"];
-					width = (Single)Row[@"FIN_W"];
-					thickness = (Single)Row[@"THICKNESS"];
+					db_length = (Single)Row[@"FIN_L"];
+					db_width = (Single)Row[@"FIN_W"];
+					db_thickness = (Single)Row[@"THICKNESS"];
+
+					length = DimTryProp(@"LENGTH");
+					width = DimTryProp(@"WIDTH");
+					thickness = DimTryProp(@"THICKNESS");
 
 					length_label.Text = Redbrick.enforce_number_format(length);
 					width_label.Text = Redbrick.enforce_number_format(width);
 					thickness_label.Text = Redbrick.enforce_number_format(thickness);
+					CheckDims();
 				} else {
 					length_label.Text = Redbrick.enforce_number_format(PropertySet[@"LENGTH"].ResolvedValue);
 					width_label.Text = Redbrick.enforce_number_format(PropertySet[@"WIDTH"].ResolvedValue);
 					thickness_label.Text = Redbrick.enforce_number_format(PropertySet[@"THICKNESS"].ResolvedValue);
+					UnErrDims();
 				}
 
 				wall_thickness_label.Text = Redbrick.enforce_number_format(PropertySet[@"WALL THICKNESS"].ResolvedValue);
@@ -292,13 +305,54 @@ namespace RedBrick2 {
 			}
 		}
 
+		private void CheckDims() {
+			if (db_length != length) {
+				l_tooltip.SetToolTip(length_label,
+					string.Format(Properties.Resources.DimensionNotMatch,
+					Redbrick.enforce_number_format(db_length)));
+				Redbrick.Warn(length_label);
+			} else {
+				Redbrick.UnErr(length_label);
+				l_tooltip.RemoveAll();
+			}
+
+			if (db_width != width) {
+				w_tooltip.SetToolTip(width_label,
+					string.Format(Properties.Resources.DimensionNotMatch,
+					Redbrick.enforce_number_format(db_width)));
+				Redbrick.Warn(width_label);
+			} else {
+				Redbrick.UnErr(width_label);
+				w_tooltip.RemoveAll();
+			}
+
+			if (db_thickness != width) {
+				t_tooltip.SetToolTip(thickness_label,
+					string.Format(Properties.Resources.DimensionNotMatch,
+					Redbrick.enforce_number_format(db_thickness)));
+				Redbrick.Warn(thickness_label);
+			} else {
+				Redbrick.UnErr(thickness_label);
+				t_tooltip.RemoveAll();
+			}
+		}
+
+		private void UnErrDims() {
+			Redbrick.UnErr(length_label);
+			Redbrick.UnErr(width_label);
+			Redbrick.UnErr(thickness_label);
+			l_tooltip.RemoveAll();
+			w_tooltip.RemoveAll();
+			t_tooltip.RemoveAll();
+		}
+
 		private void GetCutlistData() {
-			ToggleNotInDBWarn(true);
 			if (partLookup != null) {
 				cpta.FillByPartnum(eNGINEERINGDataSet.CUT_PARTS, partLookup);
 				if (eNGINEERINGDataSet.CUT_PARTS.Count > 0) {
 					Row = eNGINEERINGDataSet.CUT_PARTS.Rows[0] as ENGINEERINGDataSet.CUT_PARTSRow;
 					PropertySet.PartID = Row.PARTID;
+					ToggleNotInDBWarn(true);
 				} else {
 					Row = null;
 					CutlistPartsRow = null;
@@ -324,6 +378,7 @@ namespace RedBrick2 {
 					}
 				}
 			} else {
+				ToggleNotInDBWarn(false);
 				GetDataFromPart();
 			}
 			remove_btn.Enabled = PropertySet.CutlistAndPartIDsOK;
@@ -563,7 +618,6 @@ namespace RedBrick2 {
 		}
 
 		private void GetDataFromPart() {
-			ToggleNotInDBWarn(false);
 			GetDepartmentFromPart();
 			GetMaterialFromPart();
 			GetEdgesFromPart();
