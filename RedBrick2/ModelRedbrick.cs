@@ -751,15 +751,9 @@ namespace RedBrick2 {
 			string scope_ = string.Empty;
 			if (Properties.Settings.Default.EstimateSource || PropertySet.CutlistID < 1) {
 				scope_ = @"/part";
-				ENGINEERINGDataSet.CUT_PART_OPSDataTable dt_ = cpota.GetDataByPartID(Row.PARTID);
-				for (int i = 0; i < cbxes.Length; i++) {
-					ComboBox current = cbxes[i];
-					if (eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count > i) {
-						ENGINEERINGDataSet.CUT_PART_OPSRow r_ =
-							(ENGINEERINGDataSet.CUT_PART_OPSRow)eNGINEERINGDataSet.CUT_PART_OPS.Rows[i];
-						setupTime += r_.POPSETUP;
-						runTime += r_.POPRUN;
-					}
+				if (PropertySet.PartID != 0) {
+					setupTime = Convert.ToDouble(cpota.GetPartSetupTime(PropertySet.PartID));
+					runTime = Convert.ToDouble(cpota.GetPartRunTime(PropertySet.PartID));
 				}
 			} else {
 				scope_ = @"/cutlist";
@@ -769,18 +763,17 @@ namespace RedBrick2 {
 				}
 			}
 
-			double setup = (setupTime / Properties.Settings.Default.SPQ) * 60;
-			double run = (setup + runTime * 60) * Properties.Settings.Default.SPQ;
-			string run_fmt_ = @"{0:0} min";
-			if (run > 60) {
-				run = run / 60;
+			double total_run_ = ((runTime + (setupTime / Properties.Settings.Default.SPQ))) * 60;
+			string run_fmt_ = @"{0:0.0} min";
+			if (total_run_ > 60) {
+				total_run_ = total_run_ / 60;
 				run_fmt_ = "{0:0.0} hr";
 			}
 
 			string fmt_ = string.Format("Routing ({0}/SPQ: {1}{2})", run_fmt_,
 			Properties.Settings.Default.SPQ, scope_);
 
-			groupBox4.Text = string.Format(fmt_, run);
+			groupBox4.Text = string.Format(fmt_, total_run_);
 		}
 
 		private void GetEstimationFromPart() {
@@ -790,14 +783,13 @@ namespace RedBrick2 {
 				ComboBox current = cbxes[i];
 				DataRowView r = current.SelectedItem as DataRowView;
 				if (r != null) {
-					setupTime += (double)r[@"OPSETUP"];
-					runTime += (double)r[@"OPRUN"];
+					setupTime += Convert.ToDouble(r[@"OPSETUP"]);
+					runTime += Convert.ToDouble(r[@"OPRUN"]);
 				}
 			}
 
-			double setup = (setupTime / Properties.Settings.Default.SPQ) * 60;
-			groupBox4.Text = string.Format("Routing ({0:0} min/SPQ: {1}/part)",
-				(setup + runTime * 60) * Properties.Settings.Default.SPQ,
+			double total_run_ = ((runTime + (setupTime / Properties.Settings.Default.SPQ))) * 60;
+			groupBox4.Text = string.Format("Routing ({0:0.0} min/SPQ: {1}/part)", total_run_,
 				Properties.Settings.Default.SPQ);
 		}
 
