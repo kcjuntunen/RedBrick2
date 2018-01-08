@@ -622,7 +622,11 @@ namespace RedBrick2 {
 			data_from_db = isIn;
 			if (isIn) {
 				groupBox1.ForeColor = Properties.Settings.Default.NormalForeground;
-				string hash_ = PropertySet.Hash == Row.HASH ? "\nLocation is correct." : "\nThis part has been moved.";
+				string hash_ = Row[@"HASH"] == DBNull.Value ? "\nOld part; no location information." : string.Empty;
+				if (Row[@"HASH"] != DBNull.Value) {
+					hash_ = PropertySet.Hash == Row.HASH ?
+						"\nLocation is correct." : "\nThis part has been moved.";
+				}
 				string msg_ = Properties.Resources.InfoFromDB + hash_;
 				groupbox_tooltip.SetToolTip(groupBox1, msg_);
 			} else {
