@@ -754,6 +754,12 @@ namespace RedBrick2 {
 			return lookup_.Trim();
 		}
 
+		/// <summary>
+		/// Wrap text to a number of characters.
+		/// </summary>
+		/// <param name="_text">Text to wrap.</param>
+		/// <param name="_length">Number of characters.</param>
+		/// <returns></returns>
 		public static List<string> WrapText(string _text, int _length) {
 			string[] originalLines = _text.Split(new string[] { " " },
 					StringSplitOptions.None);
