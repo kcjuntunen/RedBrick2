@@ -257,7 +257,9 @@ namespace RedBrick2 {
 				if (int.TryParse(ECO, out eco)) {
 					legacy = Redbrick.LastLegacyECR < eco ? string.Empty : @"(Legacy)";
 				}
-				TreeNode topNode = new TreeNode(Level, 0, 0);
+				string shortDescr_ = Description.Length < 20 ? Description : Description.Substring(0, 20) + @"...";
+				string nodeTitle_ = string.Format(@"{0} - {1}", Level, shortDescr_);
+				TreeNode topNode = new TreeNode(nodeTitle_, 0, 0);
 				TreeNode ecoNode = new TreeNode(string.Format(@"ECR #: {0} {1}", ECO, legacy), 1, 1);
 				TreeNode dNode = new TreeNode(string.Format(@"Date: {0}", Date.ToLongDateString()), 2, 2);
 				TreeNode lNode = new TreeNode(string.Format(@"By: {0}", Redbrick.TitleCase(AuthorFullName)), 3, 3);
@@ -310,7 +312,6 @@ namespace RedBrick2 {
 					}
 				}
 				topNode.Nodes.AddRange(new TreeNode[] { ecoNode, descr, dNode, lNode });
-				topNode.Expand();
 				return topNode;
 			}
 			set { Node = value; }
