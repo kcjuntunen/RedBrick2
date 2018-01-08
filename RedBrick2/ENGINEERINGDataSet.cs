@@ -210,7 +210,7 @@ namespace RedBrick2 {
 				return id_ != null ? (int)id_ : 0;
 			}
 		}
-	
+
 		partial class CUT_CUTLISTSDataTable {
 			/// <summary>
 			/// Insert all the data for a complete cutlist.
@@ -318,7 +318,7 @@ namespace RedBrick2 {
 				using (SqlCommand comm = new SqlCommand(sql_, ta_.Connection)) {
 					if ((ta_.Connection.State & System.Data.ConnectionState.Closed)
 						== System.Data.ConnectionState.Closed) {
-							ta_.Connection.Open();
+						ta_.Connection.Open();
 					}
 					try {
 						using (SqlDataReader dr_ = comm.ExecuteReader()) {
@@ -350,7 +350,7 @@ namespace RedBrick2 {
 
 				int[] orp_ = get_orphan_parts_();
 				string q_ = string.Format(@"{0} orphaned parts were found. They should also be deleted. Continue?", orp_.Length);
-				System.Windows.Forms.DialogResult dr_ = System.Windows.Forms.MessageBox.Show(q_, @"Delete orphaned parts?", 
+				System.Windows.Forms.DialogResult dr_ = System.Windows.Forms.MessageBox.Show(q_, @"Delete orphaned parts?",
 					System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Question);
 				if (dr_ == System.Windows.Forms.DialogResult.Yes) {
 					ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter pota_ =
@@ -365,7 +365,7 @@ namespace RedBrick2 {
 			}
 
 		}
-	
+
 		partial class CUT_CUTLIST_PARTSDataTable {
 			/// <summary>
 			/// Update cutlist specific stuff.
@@ -460,7 +460,7 @@ namespace RedBrick2 {
 			}
 
 		}
-	
+
 		partial class GEN_DRAWINGSDataTable {
 			/// <summary>
 			/// Return a location or null from GEN_DRAWINGS.
