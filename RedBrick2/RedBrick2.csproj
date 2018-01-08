@@ -150,7 +150,6 @@
     </Compile>
     <Compile Include="ENGINEERINGDataSet.cs">
       <DependentUpon>ENGINEERINGDataSet.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ENGINEERINGDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -284,9 +283,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>:: ..\..\..\..\GetAssemblyInfoForNSIS\bin\Release\GetAssemblyInfoForNSIS.exe "..\..\..\bin\x64\Release\Redbrick2.dll" "..\..\..\version.nsh"
-:: "C:\Program Files (x86)\NSIS\makensisw.exe" "..\..\..\install.nsi"
-:: move /Y "..\..\..\InstallRedBrick.exe" "\\AMSTORE-SVR-22\cad\Solid Works\Amstore_Macros\Redbrick"
+    <PostBuildEvent>:: ..\GetAssemblyInfoForNSIS\bin\Debug\GetAssemblyInfoForNSIS.exe .\bin\x64\Release\Redbrick2.dll .\version.nsh
+:: "C:\Program Files (x86)\NSIS\makensisw.exe" c:\install.nsi
+:: move /Y ".\InstallRedBrick.exe" "\\AMSTORE-SVR-22\cad\Solid Works\Amstore_Macros\Redbrick"
 :: move /Y ".\version.xml" "\\AMSTORE-SVR-22\cad\Solid Works\Amstore_Macros\Redbrick"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

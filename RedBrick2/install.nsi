@@ -16,7 +16,7 @@ RequestExecutionLevel admin
 Section
   SetOutPath $INSTDIR
 
-  File ".\Resources\redlego.ico"
+  File ".\redlego.ico"
   File ".\bin\x64\Release\Redbrick2.dll.config"
   ; File ".\bin\x64\Release\System.dll"
   ; File ".\bin\x64\Release\System.Data.dll"
