@@ -252,6 +252,7 @@ namespace RedBrick2 {
 		}
 
 		private void ReQuery() {
+			checked_at_start = false;
 			Properties.Settings.Default.NumberFormat = get_format_txt(_activeDoc);
 			Properties.Settings.Default.Save();
 			dirtTracker.IsDirty = false;
