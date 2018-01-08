@@ -290,6 +290,7 @@ namespace RedBrick2 {
 
 				wall_thickness_label.Text = Redbrick.enforce_number_format(PropertySet[@"WALL THICKNESS"].ResolvedValue);
 				CheckThickness();
+				CheckEdgingOps();
 
 				//textBox_TextChanged(PropertySet[@"WALL THICKNESS"].Value, label21);
 
@@ -473,6 +474,38 @@ namespace RedBrick2 {
 			} else {
 				Redbrick.UnErr(cutlistctl);
 				cutlist_tooltip.RemoveAll();
+			}
+		}
+
+		private void ToggleEdgingOpWarn(bool on) {
+			if (on) {
+				Redbrick.Warn(edgef);
+				Redbrick.Warn(edgeb);
+				Redbrick.Warn(edgel);
+				Redbrick.Warn(edger);
+				edging_tooltip.SetToolTip(edgef, Properties.Resources.InconsistentEdgingOp);
+				edging_tooltip.SetToolTip(edgeb, Properties.Resources.InconsistentEdgingOp);
+				edging_tooltip.SetToolTip(edgel, Properties.Resources.InconsistentEdgingOp);
+				edging_tooltip.SetToolTip(edger, Properties.Resources.InconsistentEdgingOp);
+			} else {
+				Redbrick.UnErr(edgef);
+				Redbrick.UnErr(edgeb);
+				Redbrick.UnErr(edgel);
+				Redbrick.UnErr(edger);
+				edging_tooltip.RemoveAll();
+			}
+		}
+
+		private void ToggleEdgingOpWarn(bool on, Control _c) {
+			if (on) {
+				Redbrick.Warn(_c);
+				edging_tooltip.SetToolTip(_c, Properties.Resources.InconsistentEdgingOp);
+			} else {
+				Redbrick.UnErr(edgef);
+				Redbrick.UnErr(edgeb);
+				Redbrick.UnErr(edgel);
+				Redbrick.UnErr(edger);
+				edging_tooltip.RemoveAll();
 			}
 		}
 
@@ -1377,6 +1410,17 @@ namespace RedBrick2 {
 			}
 		}
 
+		private void CheckEdgingOps() {
+			bool ee_ = edging_exists();
+			bool eoe_ = edging_op_exists();
+			bool ok_ = (ee_ && eoe_) || (!ee_ && !eoe_);
+			if (Properties.Settings.Default.Warn && ok_) {
+				ToggleEdgingOpWarn(false);
+			} else {
+				ToggleEdgingOpWarn(true);
+			}
+		}
+
 		/// <summary>
 		/// The PartID from CUT_PARTS.
 		/// </summary>
@@ -1603,6 +1647,7 @@ namespace RedBrick2 {
 			if (float.TryParse(overLtb.Text, out float test_)) {
 				calculate_blanksize_from_oversize(test_, blnkszLtb, length, edge_thickness_);
 			}
+			CheckEdgingOps();
 		}
 
 		private void comboBox3_SelectedIndexChanged(object sender, EventArgs e) {
@@ -1616,6 +1661,7 @@ namespace RedBrick2 {
 			if (float.TryParse(overLtb.Text, out float test_)) {
 				calculate_blanksize_from_oversize(test_, blnkszLtb, length, edge_thickness_);
 			}
+			CheckEdgingOps();
 		}
 
 		private void comboBox4_SelectedIndexChanged(object sender, EventArgs e) {
@@ -1629,6 +1675,7 @@ namespace RedBrick2 {
 			if (float.TryParse(overLtb.Text, out float test_)) {
 				calculate_blanksize_from_oversize(test_, blnkszWtb, width, edge_thickness_);
 			}
+			CheckEdgingOps();
 		}
 
 		private void comboBox5_SelectedIndexChanged(object sender, EventArgs e) {
@@ -1637,6 +1684,12 @@ namespace RedBrick2 {
 				label10.Visible = false;
 			} else {
 				label10.Visible = true;
+				if (edging_op_exists()) {
+					ToggleEdgingOpWarn(false);
+				} else {
+					ToggleEdgingOpWarn(true);
+				}
+				CheckEdgingOps();
 			}
 			float edge_thickness_ = get_edge_thickness_total(edgel, edger);
 			if (float.TryParse(overLtb.Text, out float test_)) {
@@ -1832,6 +1885,27 @@ namespace RedBrick2 {
 			Redbrick.FocusHere(sender, e);
 		}
 
+		private bool edging_exists() {
+			ComboBox[] ebxs_ = new ComboBox[] { edgef, edgeb, edgel, edger };
+			foreach (ComboBox b_ in ebxs_) {
+				if (b_.SelectedIndex > 0) {
+					return true;
+				}
+			}
+			return false;
+		}
+
+		private bool edging_op_exists() {
+			foreach (ComboBox cbx_ in cbxes) {
+				foreach (string op_ in Properties.Settings.Default.EdgingOps) {
+					if (cbx_.Text.ToUpper().Contains(op_)) {
+						return true;
+					}
+				}
+			}
+			return false;
+		}
+
 		private void comboBox6_MouseClick(object sender, MouseEventArgs e) {
 			cl_userediting = true;
 			Redbrick.FocusHere(sender, e);
@@ -1973,6 +2047,7 @@ namespace RedBrick2 {
 
 		private void op_cbx_SelectedIndexChanged(object sender, EventArgs e) {
 			CheckOversize();
+			CheckEdgingOps();
 		}
 
 		private void dimension_textBox_Validated(object sender, EventArgs e) {
@@ -2020,6 +2095,7 @@ namespace RedBrick2 {
 				if (float.TryParse(overLtb.Text, out float test_)) {
 					calculate_blanksize_from_oversize(test_, blnkszLtb, length, edge_thickness_);
 				}
+				CheckEdgingOps();
 			}
 		}
 
@@ -2034,6 +2110,7 @@ namespace RedBrick2 {
 				if (float.TryParse(overLtb.Text, out float test_)) {
 					calculate_blanksize_from_oversize(test_, blnkszLtb, length, edge_thickness_);
 				}
+				CheckEdgingOps();
 			}
 		}
 
@@ -2048,6 +2125,7 @@ namespace RedBrick2 {
 				if (float.TryParse(overLtb.Text, out float test_)) {
 					calculate_blanksize_from_oversize(test_, blnkszWtb, width, edge_thickness_);
 				}
+				CheckEdgingOps();
 			}
 		}
 
@@ -2062,6 +2140,7 @@ namespace RedBrick2 {
 				if (float.TryParse(overLtb.Text, out float test_)) {
 					calculate_blanksize_from_oversize(test_, blnkszWtb, width, edge_thickness_);
 				}
+				CheckEdgingOps();
 			}
 		}
 

@@ -193,4 +193,7 @@
   <data name="DimensionNotMatch" xml:space="preserve">
     <value>The dimension from the cutlist database is {0}".</value>
   </data>
+  <data name="InconsistentEdgingOp" xml:space="preserve">
+    <value>Edging is inconsistent with routing.</value>
+  </data>
 </root>
