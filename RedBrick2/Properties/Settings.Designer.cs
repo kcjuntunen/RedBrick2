@@ -119,7 +119,7 @@ namespace RedBrick2.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\\\\AMSTORE-SVR-02\\shared\\shared\\general\\RedBrick\\InstallRedBrick.exe")]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\\\AMSTORE-SVR-22\\cad\\Solid Works\\Amstore_Macros\\Redbrick\\InstallRedBrick.exe")]
         public string InstallerNetworkPath {
             get {
                 return ((string)(this["InstallerNetworkPath"]));

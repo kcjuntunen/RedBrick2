@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 using SolidWorks.Interop.swcommands;
+using ArchivePDF.csproj;
 
 namespace RedBrick2 {
 	/// <summary>
@@ -136,12 +137,10 @@ namespace RedBrick2 {
 			}
 			if (mbr == DialogResult.Yes) {
 				OnAdded(EventArgs.Empty);
-				ArchivePDF.csproj.ArchivePDFWrapper apw = new ArchivePDF.csproj.ArchivePDFWrapper(RevSet.SwApp);
+				ArchivePDFWrapper apw = new ArchivePDFWrapper(RevSet.SwApp, Redbrick.GeneratePathSet());
 				apw.Archive();
 				ENGINEERINGDataSet.inmastDataTable idt =
 					new ENGINEERINGDataSet.inmastDataTable();
-				ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter gd =
-					new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter();
 				ENGINEERINGDataSet.GEN_DRAWINGSDataTable gdt =
 					new ENGINEERINGDataSet.GEN_DRAWINGSDataTable();
 				ENGINEERINGDataSetTableAdapters.ECR_ITEMSTableAdapter eit =

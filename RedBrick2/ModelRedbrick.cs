@@ -434,7 +434,7 @@ namespace RedBrick2 {
 
 		private void ToggleThicknessWarn(bool on) {
 			if (on) {
-				Redbrick.Warn(cutlistMat);
+				Redbrick.Err(cutlistMat);
 				cutlistMat_tooltip.SetToolTip(cutlistMat, Properties.Resources.ThicknessWarning);
 				cutlistMat_tooltip.SetToolTip(label1, Properties.Resources.ThicknessWarning);
 				cutlistMat_tooltip.SetToolTip(thickness_label, Properties.Resources.ThicknessWarning);
@@ -449,9 +449,9 @@ namespace RedBrick2 {
 
 		private void ToggleThicknessWarn(bool on, string message) {
 			if (on) {
-				Redbrick.Warn(cutlistMat);
-				Redbrick.Warn(thickness_label);
-				Redbrick.Warn(wall_thickness_label);
+				Redbrick.Err(cutlistMat);
+				Redbrick.Err(thickness_label);
+				Redbrick.Err(wall_thickness_label);
 				cutlistMat_tooltip.SetToolTip(cutlistMat, message);
 				cutlistMat_tooltip.SetToolTip(label1, message);
 				cutlistMat_tooltip.SetToolTip(thickness_label, message);
@@ -466,7 +466,7 @@ namespace RedBrick2 {
 
 		private void ToggleCutlistErr(bool on) {
 			if (on) {
-				Redbrick.Err(cutlistctl);
+				Redbrick.Warn(cutlistctl);
 				cutlist_tooltip.SetToolTip(cutlistctl, Properties.Resources.CutlistNotSelectedWarning);
 				cutlist_tooltip.SetToolTip(label11, Properties.Resources.CutlistNotSelectedWarning);
 			} else {
@@ -998,16 +998,12 @@ namespace RedBrick2 {
 			}
 			if (swSelComp != null) {
 				Component = swSelComp;
-				//try {
-				configurationManager = (swSelComp.GetModelDoc2() as ModelDoc2).ConfigurationManager;
-				configuration = swSelComp.ReferencedConfiguration;
-				this.Enabled = true;
-				ReQuery(swSelComp.GetModelDoc2());
-				//} catch (NullReferenceException e) {
-				//	Frame f = SwApp.Frame();
-				//	f.SetStatusBarText(e.Message);
-				//	this.Enabled = false;
-				//}
+				if (swSelComp.GetModelDoc2() is ModelDoc2) {
+					configurationManager = (swSelComp.GetModelDoc2() as ModelDoc2).ConfigurationManager;
+					configuration = swSelComp.ReferencedConfiguration;
+					this.Enabled = true;
+					ReQuery(swSelComp.GetModelDoc2());
+				}
 			} else {
 				// Nothing's selected?
 				// Just look at the root item then.
@@ -1165,6 +1161,8 @@ namespace RedBrick2 {
 				CutlistPartsRow.EDGEID_WL = Convert.ToInt32(edgel.SelectedValue);
 				CutlistPartsRow.EDGEID_WR = Convert.ToInt32(edger.SelectedValue);
 			}
+
+			PropertySet.CutlistQty = (float)Convert.ToDouble(partq.Value);
 		}
 
 		private void UpdateRoutingProperties() {
@@ -1766,7 +1764,7 @@ namespace RedBrick2 {
 		}
 
 		private void comboBox_SelectedIndexChanged(object sender, EventArgs e) {
-
+			CheckThickness();
 		}
 
 		private void comboBox6_SelectedIndexChanged(object sender, EventArgs e) {

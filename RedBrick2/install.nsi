@@ -17,23 +17,23 @@ Section
   SetOutPath $INSTDIR
 
   File ".\Resources\redlego.ico"
-  File ".\bin\x64\Release\Redbrick_Addin.dll.config"
-  File ".\bin\x64\Release\System.dll"
-  File ".\bin\x64\Release\System.Data.dll"
-  File ".\bin\x64\Release\System.Security.dll"
-  File ".\bin\x64\Release\System.Xml.dll"
+  File ".\bin\x64\Release\Redbrick2.dll.config"
+  ; File ".\bin\x64\Release\System.dll"
+  ; File ".\bin\x64\Release\System.Data.dll"
+  ; File ".\bin\x64\Release\System.Security.dll"
+  ; File ".\bin\x64\Release\System.Xml.dll"
   File ".\bin\x64\Release\Machine Priority Control.dll"
   File ".\bin\x64\Release\ArchivePDF.dll"
-  File ".\bin\x64\Release\Newtonsoft.Json.dll"
-  File ".\bin\x64\Release\SolidWorks.Interop.sldworks.dll"
-  File ".\bin\x64\Release\Redbrick_Addin.dll"
+  ; File ".\bin\x64\Release\Newtonsoft.Json.dll"
+  ; File ".\bin\x64\Release\SolidWorks.Interop.sldworks.dll"
+  File ".\bin\x64\Release\Redbrick2.dll"
   
-  Push "$INSTDIR\Redbrick_Addin.dll"
+  Push "$INSTDIR\Redbrick2.dll"
   Call RegisterDotNet
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Redbrick" \
       "DisplayIcon" "$PROGRAMFILES64\Redbrick\redlego.ico"
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Redbrick" \
-      "EstimatedSize" 56992
+      "EstimatedSize" 64714
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Redbrick" \
       "DisplayName" "Amstore Redbrick Property Manager"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Redbrick" \
@@ -51,7 +51,7 @@ Section "Uninstall"
 
   DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Redbrick"
   Delete "$INSTDIR\RemoveRedBrick.exe"
-  Delete "$INSTDIR\Redbrick_Addin.dll.config"
+  Delete "$INSTDIR\Redbrick2.dll.config"
   Delete "$INSTDIR\swTableType.dll"
   Delete "$INSTDIR\Machine Priority Control.dll"
   Delete "$INSTDIR\System.dll"
@@ -61,7 +61,7 @@ Section "Uninstall"
   Delete "$INSTDIR\ArchivePDF.dll"
   Delete "$INSTDIR\Newtonsoft.Json.dll"
   Delete "$INSTDIR\SolidWorks.Interop.sldworks.dll"
-  Delete "$INSTDIR\Redbrick_Addin.dll"
+  Delete "$INSTDIR\Redbrick2.dll"
   Delete "$INSTDIR\redlego.ico"
   RMDir  "$INSTDIR"
 SectionEnd

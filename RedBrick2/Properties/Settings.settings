@@ -35,7 +35,7 @@
       <Value Profile="(Default)">C:\Engineering</Value>
     </Setting>
     <Setting Name="InstallerNetworkPath" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">\\AMSTORE-SVR-02\shared\shared\general\RedBrick\InstallRedBrick.exe</Value>
+      <Value Profile="(Default)">\\AMSTORE-SVR-22\cad\Solid Works\Amstore_Macros\Redbrick\InstallRedBrick.exe</Value>
     </Setting>
     <Setting Name="UsageLink" Type="System.String" Scope="Application">
       <Value Profile="(Default)">https://kcjuntunen.github.io/readbrick_readme.html</Value>

@@ -284,7 +284,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>:: ..\..\..\..\GetAssemblyInfoForNSIS\bin\x64\Release\GetAssemblyInfoForNSIS.exe "..\..\..\bin\x64\Release\Redbrick_Addin.dll" "..\..\..\version.nsh"
+    <PostBuildEvent>:: ..\..\..\..\GetAssemblyInfoForNSIS\bin\Release\GetAssemblyInfoForNSIS.exe "..\..\..\bin\x64\Release\Redbrick2.dll" "..\..\..\version.nsh"
 :: "C:\Program Files (x86)\NSIS\makensisw.exe" "..\..\..\install.nsi"
 :: move /Y "..\..\..\InstallRedBrick.exe" "\\AMSTORE-SVR-22\cad\Solid Works\Amstore_Macros\Redbrick"
 :: move /Y ".\version.xml" "\\AMSTORE-SVR-22\cad\Solid Works\Amstore_Macros\Redbrick"</PostBuildEvent>

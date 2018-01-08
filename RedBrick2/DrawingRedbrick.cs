@@ -338,7 +338,7 @@ namespace RedBrick2 {
 			dirtTracker.Besmirched -= dirtTracker_Besmirched;
 			req_info_ = @"No info.";
 			InitData();
-
+			user_editing = false;
 			if (Properties.Settings.Default.OnlyActiveAuthors) {
 				gENUSERSBindingSource.Filter = @"ACTIVE = True AND DEPT = 6";
 			} else {
@@ -608,6 +608,7 @@ namespace RedBrick2 {
 				if (clid != 0 && cbx_.SelectedItem != null) {
 					cc_.UpdateState(uid, Convert.ToInt32(cbx_.SelectedValue), clid);
 				}
+				user_editing = false;
 			}
 		}
 
