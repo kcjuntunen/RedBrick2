@@ -198,6 +198,11 @@ namespace RedBrick2 {
 				ThisRev = RevSet[index];
 				comboBox1.Text = ThisRev.Level;
 				Text = string.Format(@"Editing Rev Level {0}", comboBox1.Text);
+				if (Properties.Settings.Default.OnlyActiveAuthors) {
+					gENUSERSBindingSource.Filter = string.Format(@"(ACTIVE = True AND DEPT = 6) OR UID = {0}", ThisRev.AuthorID);
+				} else {
+					gENUSERSBindingSource.Filter = @"DEPT = 6";
+				}
 				comboBox2.SelectedIndex = comboBox2.FindString(ThisRev.AuthorFullName);
 				textBox1.Text = ThisRev.ECO;
 				textBox2.Text = ThisRev.Description;

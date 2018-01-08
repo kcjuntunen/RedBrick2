@@ -100,12 +100,12 @@ namespace RedBrick2 {
 		/// </summary>
 		/// <returns></returns>
 		public bool DisconnectFromSW() {
-			CheckUpdate();
 			this.UITearDown();
 			return true;
 		}
 
 		private void UISetup() {
+			CheckUpdate();
 			SetupTranslationAndActionTables();
 			ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter leol =
 				new ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter();
@@ -380,14 +380,16 @@ namespace RedBrick2 {
 				case swMessageBoxResult_e.swMbHitIgnore:
 					break;
 				case swMessageBoxResult_e.swMbHitNo:
+					UITearDown();
 					break;
 				case swMessageBoxResult_e.swMbHitOk:
 					break;
 				case swMessageBoxResult_e.swMbHitRetry:
 					break;
 				case swMessageBoxResult_e.swMbHitYes:
-					//swApp.DestroyNotify += swApp_DestroyNotify;
-					swApp_DestroyNotify();
+					swApp.DestroyNotify += swApp_DestroyNotify;
+					swApp.ExitApp();
+					//swApp_DestroyNotify();
 					//swApp.SendMsgToUser2(Properties.Resources.Restart,
 					//  (int)swMessageBoxIcon_e.swMbWarning,
 					//  (int)swMessageBoxBtn_e.swMbOk);

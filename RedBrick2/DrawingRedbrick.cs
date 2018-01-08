@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Text;
@@ -8,7 +7,6 @@ using System.Windows.Forms;
 
 using System.IO;
 using SolidWorks.Interop.sldworks;
-using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
 	/// <summary>
@@ -217,8 +215,18 @@ namespace RedBrick2 {
 			PropertySet.Add(ap_.Get());
 			PropertySet.Add(afip_.Get());
 			if (afip_.Value != string.Empty) {
+				if (Properties.Settings.Default.OnlyActiveAuthors) {
+					gENUSERSBindingSource.Filter = string.Format(@"(ACTIVE = True AND DEPT = 6) OR UID = {0}", afip_.Data);
+				} else {
+					gENUSERSBindingSource.Filter = @"DEPT = 6";
+				}
 				auth_cpx.SelectedValue = (int)afip_.Data;
 			} else if (ap_.Value != string.Empty) {
+				if (Properties.Settings.Default.OnlyActiveAuthors) {
+					gENUSERSBindingSource.Filter = string.Format(@"(ACTIVE = True AND DEPT = 6) OR UID = {0}", ap_.Data);
+				} else {
+					gENUSERSBindingSource.Filter = @"DEPT = 6";
+				}
 				auth_cpx.SelectedValue = (int)ap_.Data;
 			} else {
 				ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu =
@@ -534,10 +542,10 @@ namespace RedBrick2 {
 		void er_Added(object sender, EventArgs e) {
 			DrawingDoc thisdd = (DrawingDoc)SwApp.ActiveDoc;
 			Commit();
-			int lastrev = revSet.Count - 1;
-			treeView1.Nodes.Add(revSet[lastrev].Node);
-			revSet.Write();
-			thisdd.ForceRebuild();
+			//int lastrev = revSet.Count - 1;
+			//treeView1.Nodes.Add(revSet[lastrev].Node);
+			//revSet.Write();
+			//thisdd.ForceRebuild();
 		}
 
 		private void button7_Click(object sender, EventArgs e) {

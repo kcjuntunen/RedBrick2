@@ -176,6 +176,18 @@ namespace RedBrick2 {
 			author.Data = id;
 		}
 
+		public int AuthorID
+		{
+			get
+			{
+				return (int)author.Data;
+			}
+			set
+			{
+				;
+			}
+		}
+
 		/// <summary>
 		/// The LVL.
 		/// </summary>
