@@ -79,7 +79,7 @@ namespace RedBrick2 {
 			Description = descr;
 
 			author = new AuthorProperty(string.Format(@"LIST {0}", idx), true, SwApp, ActiveDoc);
-			SetAuthor(aut);
+			AuthorID = aut;
 
 			date = new DateProperty(string.Format(@"DATE {0}", idx), true, SwApp, ActiveDoc);
 			Date = dt;
@@ -169,22 +169,15 @@ namespace RedBrick2 {
 		}
 
 		/// <summary>
-		/// Set Author ID.
+		/// Get or set AuthorID.
 		/// </summary>
-		/// <param name="id"></param>
-		public void SetAuthor(int id) {
-			author.Data = id;
-		}
-
 		public int AuthorID
 		{
-			get
-			{
-				return (int)author.Data;
-			}
+			get { return (int)author.Data; }
 			set
 			{
-				;
+				AuthorID = value;
+				author.Data = value;
 			}
 		}
 

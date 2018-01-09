@@ -99,7 +99,7 @@ namespace RedBrick2 {
 		private void button1_Click(object sender, EventArgs e) {
 			ThisRev.ECO = textBox1.Text;
 			ThisRev.Description = textBox2.Text;
-			ThisRev.SetAuthor((int)comboBox2.SelectedValue);
+			ThisRev.AuthorID = Convert.ToInt32(comboBox2.SelectedValue);
 			ThisRev.Date = dateTimePicker1.Value;
 			if (NewRev) {
 				AddECRItem();
