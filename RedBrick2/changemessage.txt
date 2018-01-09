@@ -1,7 +1,6 @@
 
-Tree starts collapsed, but still shows a little useful info.
-Check for edging/edging-op consistency.
-Fixed priority control popping up when it shouldn't.
-Check edging database if there's nothing in XREF.
-Update blanksize when edging is updated.
-Fixed crash when "Only Current Authors" is selected.
+- Dump cutlist parts before updating.
+- Keep state on cutlist update.
+- Department "OTHER" is now excluded by default.
+- Parts save on property update.
+- Fixed edge not pulling from part bug.
