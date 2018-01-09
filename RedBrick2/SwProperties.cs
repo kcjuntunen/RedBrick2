@@ -6,6 +6,7 @@ using System.Data;
 using System.Web;
 
 using SolidWorks.Interop.sldworks;
+using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
 	/// <summary>
@@ -100,6 +101,18 @@ namespace RedBrick2 {
 			//  }
 			//}
 			return res;
+		}
+
+		/// <summary>
+		/// Save the part.
+		/// </summary>
+		/// <returns>Boolean--whether we saved.</returns>
+		public bool Save() {
+			int opt_ = (int)swSaveAsOptions_e.swSaveAsOptions_Silent;
+			int err_ = 0;
+			int warn_ = 0;
+			bool res_ = ActiveDoc.Save3(opt_, ref err_, ref warn_);
+			return res_;
 		}
 
 		/// <summary>

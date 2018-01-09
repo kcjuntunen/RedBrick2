@@ -1285,6 +1285,7 @@ namespace RedBrick2 {
 				drawingRedbrick.Commit();
 			}
 			groupBox1.Text = groupBox1.Text.Replace(Properties.Settings.Default.NotSavedMark, string.Empty);
+			PropertySet.Save();
 			eNGINEERINGDataSet.GEN_ODOMETER.IncrementOdometer(Redbrick.Functions.GreenCheck);
 		}
 
