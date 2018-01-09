@@ -307,7 +307,7 @@ namespace RedBrick2 {
 				int _custid, DateTime _date, int _state, int _auth, List<SwProperties> _ppp) {
 				int affected_ = 0;
 				string sql_ = @"UPDATE CUT_CUTLISTS SET DRAWING = @drawing, CUSTID = @custid, CDATE = @date, DESCR = @descr, " +
-					@"SETUP_BY = @setupby, STATE_BY = @stateby, STATEID = @stateid WHERE PARTNUM=@itemno AND REV=@rev;";
+					@"SETUP_BY = @setupby WHERE PARTNUM=@itemno AND REV=@rev;";
 				ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter ta_ =
 					new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
 				using (SqlCommand comm = new SqlCommand(sql_, ta_.Connection)) {
@@ -316,8 +316,8 @@ namespace RedBrick2 {
 					comm.Parameters.AddWithValue(@"@date", _date);
 					comm.Parameters.AddWithValue(@"@descr", _descr);
 					comm.Parameters.AddWithValue(@"@setupby", _auth);
-					comm.Parameters.AddWithValue(@"@stateby", _auth);
-					comm.Parameters.AddWithValue(@"@stateid", _state);
+					//comm.Parameters.AddWithValue(@"@stateby", _auth);
+					//comm.Parameters.AddWithValue(@"@stateid", _state);
 					comm.Parameters.AddWithValue(@"@itemno", _itemNo);
 					comm.Parameters.AddWithValue(@"@rev", _rev);
 					if (ta_.Connection.State == System.Data.ConnectionState.Closed) {
