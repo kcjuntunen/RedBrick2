@@ -649,18 +649,18 @@ namespace RedBrick2 {
 			/// <param name="descr">A description string.</param>
 			/// <returns>An int ID from CUT_EDGES.</returns>
 			public int GetEdgeIDByDescr(string descr) {
+				int id = -1;
 				if (descr != string.Empty) {
 					ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter ceta =
 						new ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter();
 					ENGINEERINGDataSetTableAdapters.CUT_EDGES_XREFTableAdapter cexta =
 						new ENGINEERINGDataSetTableAdapters.CUT_EDGES_XREFTableAdapter();
-					int id = Convert.ToInt32(cexta.GetEdgeID(Convert.ToString(descr)));
-					ENGINEERINGDataSet.CUT_EDGESDataTable dt = ceta.GetDataByEdgeID(id);
-					if (dt.Rows.Count > 0) {
-						return dt[0].EDGEID;
+					id = Convert.ToInt32(cexta.GetEdgeID(Convert.ToString(descr)));
+					if (id < 1) {
+						id = Convert.ToInt32(ceta.GetEdgeID(descr));
 					}
 				}
-				return -1;
+				return id;
 			}
 		}
 

@@ -721,23 +721,23 @@ namespace RedBrick2 {
 				new ENGINEERINGDataSet.CUT_EDGESDataTable();
 			int er = IntTryProp("EFID");
 			if (er < 1) {
-				er = ed.GetEdgeIDByDescr(StrTryProp("EDGE FRONT (L)"));
+				er = Convert.ToInt32(PropertySet[@"EDGE FRONT (L)"].Data);
 			}
 			edgef.SelectedValue = er;
 			er = IntTryProp("EBID");
 			if (er < 1) {
-				er = ed.GetEdgeIDByDescr(StrTryProp("EDGE BACK (L)"));
+				er = Convert.ToInt32(PropertySet[@"EDGE BACK (L)"].Data);
 			}
 			edgeb.SelectedValue = er;
 			er = IntTryProp("ERID");
 			if (er < 1) {
-				er = ed.GetEdgeIDByDescr(StrTryProp("EDGE RIGHT (W)"));
+				er = Convert.ToInt32(PropertySet[@"EDGE RIGHT (W)"].Data);
 			}
 			edger.SelectedValue = er;
 
 			er = IntTryProp("ELID");
 			if (er < 1) {
-				er = ed.GetEdgeIDByDescr(StrTryProp("EDGE LEFT (W)"));
+				er = Convert.ToInt32(PropertySet[@"EDGE LEFT (W)"].Data);
 			}
 			edgel.SelectedValue = er;
 		}
@@ -1889,7 +1889,7 @@ namespace RedBrick2 {
 		private bool edging_exists() {
 			ComboBox[] ebxs_ = new ComboBox[] { edgef, edgeb, edgel, edger };
 			foreach (ComboBox b_ in ebxs_) {
-				if (b_.SelectedIndex > 0) {
+				if (b_.SelectedItem != null) {
 					return true;
 				}
 			}

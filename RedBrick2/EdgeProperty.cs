@@ -41,26 +41,24 @@ namespace RedBrick2 {
 		/// </summary>
 		public override object Data {
 			get {
+				if (Value == null) {
+					Get();
+				}
 				if (_data == 0) {
-					ENGINEERINGDataSetTableAdapters.CUT_EDGES_XREFTableAdapter cex_ =
-						new ENGINEERINGDataSetTableAdapters.CUT_EDGES_XREFTableAdapter();
-						_data = Convert.ToInt32(cex_.GetEdgeID(Value));
-					if (_data == 0) {
-						ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter ce_ =
-							new ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter();
-						_data = Convert.ToInt32(ce_.GetEdgeID(Value));
-					}
+					ENGINEERINGDataSet.CUT_EDGESDataTable dt_ =
+						new ENGINEERINGDataSet.CUT_EDGESDataTable();
+					_data = dt_.GetEdgeIDByDescr(Value);
 				}
 				return _data;
 			}
 			set {
 				if (value is string) {
-					ENGINEERINGDataSetTableAdapters.CUT_EDGES_XREFTableAdapter cex_ =
-						new ENGINEERINGDataSetTableAdapters.CUT_EDGES_XREFTableAdapter();
+					ENGINEERINGDataSet.CUT_EDGESDataTable dt_ =
+						new ENGINEERINGDataSet.CUT_EDGESDataTable();
 					if ((string)value != string.Empty) {
 						Value = value.ToString();
 						try {
-							_data = (int)cex_.GetEdgeID(value.ToString());
+							_data = dt_.GetEdgeIDByDescr(value.ToString());
 						} catch (Exception) {
 							_data = 0;
 						}
