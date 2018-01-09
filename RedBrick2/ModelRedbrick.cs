@@ -312,7 +312,7 @@ namespace RedBrick2 {
 		}
 
 		private void CheckDims() {
-			if (db_length != length) {
+			if (!Redbrick.FloatEquals(db_length, length)) {
 				l_tooltip.SetToolTip(length_label,
 					string.Format(Properties.Resources.DimensionNotMatch,
 					Redbrick.enforce_number_format(db_length)));
@@ -322,7 +322,7 @@ namespace RedBrick2 {
 				l_tooltip.RemoveAll();
 			}
 
-			if (db_width != width) {
+			if (!Redbrick.FloatEquals(db_width, width)) {
 				w_tooltip.SetToolTip(width_label,
 					string.Format(Properties.Resources.DimensionNotMatch,
 					Redbrick.enforce_number_format(db_width)));
@@ -332,7 +332,7 @@ namespace RedBrick2 {
 				w_tooltip.RemoveAll();
 			}
 
-			if (db_thickness != width) {
+			if (!Redbrick.FloatEquals(db_thickness, thickness)) {
 				t_tooltip.SetToolTip(thickness_label,
 					string.Format(Properties.Resources.DimensionNotMatch,
 					Redbrick.enforce_number_format(db_thickness)));
@@ -1350,7 +1350,7 @@ namespace RedBrick2 {
 				if (Properties.Settings.Default.Warn && err_) {
 					string msg_ = string.Format("Material thickness ({0}) doesn't match dimensions.",
 						Redbrick.enforce_number_format(matthk_));
-					bool equal_ = (Math.Abs(matthk_ - thk_) < epsilon_) || (Math.Abs(matthk_ - wthk_) < epsilon_);
+					bool equal_ = (Redbrick.FloatEquals(matthk_, thk_) || Redbrick.FloatEquals(matthk_, wthk_));
 					ToggleThicknessWarn(!equal_, msg_);
 				} else {
 					ToggleThicknessWarn(false);

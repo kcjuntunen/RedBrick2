@@ -787,6 +787,26 @@ namespace RedBrick2 {
 		}
 
 		/// <summary>
+		/// Compare floating point numbers for equality.
+		/// </summary>
+		/// <param name="_left"></param>
+		/// <param name="_right"></param>
+		/// <returns></returns>
+		static public bool FloatEquals(float _left, float _right) {
+			return Math.Abs(_left - _right) < Properties.Settings.Default.Epsilon;
+		}
+
+		/// <summary>
+		/// Compare floating point numbers for equality.
+		/// </summary>
+		/// <param name="_left"></param>
+		/// <param name="_right"></param>
+		/// <returns></returns>
+		static public bool FloatEquals(double _left, double _right) {
+			return Math.Abs(_left - _right) < Properties.Settings.Default.Epsilon;
+		}
+
+		/// <summary>
 		/// A central place for TreeViewIcons.
 		/// </summary>
 		static public System.Windows.Forms.ImageList TreeViewIcons { get; set; }
