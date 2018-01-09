@@ -1140,6 +1140,7 @@ namespace RedBrick2 {
 						_partlist[partnum_][@"EDGE LEFT (W)"].Data = Convert.ToInt32(dgvr_.Cells[@"el"].Value);
 						_partlist[partnum_][@"EDGE RIGHT (W)"].Data = Convert.ToInt32(dgvr_.Cells[@"er"].Value);
 						_partlist[partnum_].Write();
+						_partlist[partnum_].Save();
 						parts_.Add(_partlist[partnum_]);
 					}
 				}
