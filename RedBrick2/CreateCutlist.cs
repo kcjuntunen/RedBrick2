@@ -1154,5 +1154,20 @@ namespace RedBrick2 {
 				cancel_btn.Text = @"Close";
 			}
 		}
+
+		private void hide_btn_Click(object sender, EventArgs e) {
+			List<DataGridViewRow> l_ = new List<DataGridViewRow>();
+			for (int i = 0; i < dataGridView1.Rows.Count; i++) {
+				DataGridViewRow dgvr_ = dataGridView1.Rows[i];
+				bool inc_ = Convert.ToBoolean(dgvr_.Cells[@"Include"].FormattedValue);
+				if (!inc_ && !dgvr_.IsNewRow) {
+					l_.Add(dgvr_);
+				}
+			}
+
+			foreach (DataGridViewRow item in l_) {
+				dataGridView1.Rows.RemoveAt(item.Index);
+			}
+		}
 	}
 }
