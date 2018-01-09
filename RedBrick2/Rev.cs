@@ -168,15 +168,21 @@ namespace RedBrick2 {
 			date.Delete();
 		}
 
+		private int authorID_;
 		/// <summary>
 		/// Get or set AuthorID.
 		/// </summary>
 		public int AuthorID
 		{
-			get { return (int)author.Data; }
+			get {
+				if (authorID_ == 0) {
+					authorID_ = (int)author.Data;
+				}
+				return authorID_;
+			}
 			set
 			{
-				AuthorID = value;
+				authorID_ = value;
 				author.Data = value;
 			}
 		}
