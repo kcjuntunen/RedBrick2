@@ -1127,7 +1127,7 @@ namespace RedBrick2 {
 
 				for (int i = 0; i < dataGridView1.Rows.Count; i++) {
 					DataGridViewRow dgvr_ = dataGridView1.Rows[i];
-					bool inc_ = Convert.ToBoolean(dgvr_.Cells[@"Include"].Value);
+					bool inc_ = Convert.ToBoolean(dgvr_.Cells[@"Include"].FormattedValue);
 					if (inc_) {
 						string partnum_ = Convert.ToString(dgvr_.Cells[@"Part Number"].Value);
 						_partlist[partnum_][@"DEPARTMENT"].Data = Convert.ToInt32(dgvr_.Cells[@"Department"].Value);
