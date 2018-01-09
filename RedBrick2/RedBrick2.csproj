@@ -285,10 +285,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>:: ..\GetAssemblyInfoForNSIS\bin\Debug\GetAssemblyInfoForNSIS.exe .\bin\x64\Release\Redbrick2.dll .\version.nsh
-:: "C:\Program Files (x86)\NSIS\makensisw.exe" c:\install.nsi
-:: move /Y ".\InstallRedBrick.exe" "\\AMSTORE-SVR-22\cad\Solid Works\Amstore_Macros\Redbrick"
-:: move /Y ".\version.xml" "\\AMSTORE-SVR-22\cad\Solid Works\Amstore_Macros\Redbrick"</PostBuildEvent>
+    <PostBuildEvent>$(SolutionDir)..\GetAssemblyInfoForNSIS\bin\Release\GetAssemblyInfoForNSIS.exe $(OutDir)$(TargetFileName) "$(ProjectDir)"version.nsh
+C:\PROGRA~2\NSIS\makensisw.exe "$(ProjectDir)\install.nsi"
+start net use G: \\AMSTORE-SVR-22\cad
+start xcopy /Y "$(ProjectDir)InstallRedbrick.exe" "G:\Solid Works\Amstore_Macros\Redbrick\"
+start xcopy /Y "$(ProjectDir)version.xml" "G:\Solid Works\Amstore_Macros\Redbrick\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
