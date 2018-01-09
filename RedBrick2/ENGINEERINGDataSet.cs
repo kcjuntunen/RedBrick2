@@ -229,6 +229,7 @@ namespace RedBrick2 {
 				int _custid, DateTime _date, int _state, int _auth, List<SwProperties> _ppp) {
 				int affected_ = 0;
 
+				empty_cutlist_(_itemNo, _rev);
 				int clid_ = update_cutlist_(_itemNo, _drawing, _rev, _descr, _custid, _date, _state, _auth, _ppp);
 				if (clid_ < 1)
 					clid_ = insert_cutlist_(_itemNo, _drawing, _rev, _descr, _custid, _date, _state, _auth, _ppp);
@@ -243,6 +244,30 @@ namespace RedBrick2 {
 						pp_.PartID = partID_;
 						cpdt_.UpdateCutlistPart(pp_);
 						cpot_.UpdateOps(pp_);
+					}
+				}
+				return affected_;
+			}
+
+			private int empty_cutlist_(string _itemNum, string _rev) {
+				int affected_ = 0;
+				ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter ta_ =
+					new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
+				int clid_ = Convert.ToInt32(ta_.GetCutlistID(_itemNum, _rev));
+
+				string SQL = @"DELETE FROM CUT_CUTLIST_PARTS WHERE CLID = @clid";
+
+				if (clid_ > 0) {
+					using (SqlCommand comm_ = new SqlCommand(SQL, ta_.Connection)) {
+						comm_.Parameters.AddWithValue("@clid", clid_);
+						if (ta_.Connection.State == System.Data.ConnectionState.Closed) {
+							ta_.Connection.Open();
+						}
+						try {
+							affected_ = comm_.ExecuteNonQuery();
+						} finally {
+							ta_.Connection.Close();
+						}
 					}
 				}
 				return affected_;
