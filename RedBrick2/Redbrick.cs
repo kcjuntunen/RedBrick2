@@ -380,7 +380,6 @@ namespace RedBrick2 {
 				case swMessageBoxResult_e.swMbHitIgnore:
 					break;
 				case swMessageBoxResult_e.swMbHitNo:
-					UITearDown();
 					break;
 				case swMessageBoxResult_e.swMbHitOk:
 					break;
