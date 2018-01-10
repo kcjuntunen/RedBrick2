@@ -22,7 +22,17 @@ namespace RedBrick2 {
 		protected new int _data = 0;
 
 		public override object Data {
-			get { return _data; }
+			get {
+				if (Value == null) {
+					Get();
+				}
+				if (_data == 0) {
+					if (int.TryParse(Value, out int test_)) {
+						_data = test_;
+					}
+				}
+				return _data;
+			}
 			set {
 				if (value is string) {
 					ENGINEERINGDataSetTableAdapters.CUT_EDGES_XREFTableAdapter cex =

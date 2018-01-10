@@ -75,6 +75,8 @@ namespace RedBrick2 {
 		private ToolTip rev_tooltip = new ToolTip();
 		private ToolTip descr_tooltip = new ToolTip();
 		private ToolTip cust_tooltip = new ToolTip();
+		private ToolTip item_tooltip = new ToolTip();
+		private ToolTip drw_tooltip = new ToolTip();
 
 		private UserProgressBar pb;
 
@@ -717,6 +719,7 @@ namespace RedBrick2 {
 					row.Cells[@"Material"].Value = val[@"CUTLIST MATERIAL"].Data;
 				} else if ((int)val[@"MATID"].Data > 0) {
 					row.Cells[@"Material"].Value = val[@"MATID"].Data;
+					val[@"CUTLIST MATERIAL"].Data = val[@"MATID"].Data;
 				}
 
 				row.Cells[@"L"].Value = Redbrick.enforce_number_format((double)val[@"LENGTH"].Data);
@@ -738,6 +741,7 @@ namespace RedBrick2 {
 						row.Cells[col_].Value = val[op_].Data;
 					} else if ((int)val[opid_].Data > 0) {
 						row.Cells[col_].Value = val[opid_].Data;
+						val[op_].Data = val[opid_].Data;
 					}
 				}
 
@@ -745,24 +749,28 @@ namespace RedBrick2 {
 					row.Cells[@"ef"].Value = val[@"EDGE FRONT (L)"].Data;
 				} else if ((int)val[@"EFID"].Data > 0) {
 					row.Cells[@"ef"].Value = val[@"EFID"].Data;
+					val[@"EDGE FRONT (L)"].Data = val[@"EFID"].Data;
 				}
 
 				if ((int)val[@"EDGE BACK (L)"].Data > 0) {
 					row.Cells[@"eb"].Value = val[@"EDGE BACK (L)"].Data;
 				} else if ((int)val[@"EBID"].Data > 0) {
 					row.Cells[@"eb"].Value = val[@"EBID"].Data;
+					val[@"EDGE BACK (L)"].Data = val[@"EBID"].Data;
 				}
 
 				if ((int)val[@"EDGE LEFT (W)"].Data > 0) {
 					row.Cells[@"el"].Value = val[@"EDGE LEFT (W)"].Data;
 				} else if ((int)val[@"ELID"].Data > 0) {
 					row.Cells[@"el"].Value = val[@"ELID"].Data;
+					val[@"EDGE LEFT (W)"].Data = val[@"ELID"].Data;
 				}
 
 				if ((int)val[@"EDGE RIGHT (W)"].Data > 0) {
 					row.Cells[@"er"].Value = val[@"EDGE RIGHT (W)"].Data;
 				} else if ((int)val[@"ERID"].Data > 0) {
 					row.Cells[@"er"].Value = val[@"ERID"].Data;
+					val[@"EDGE RIGHT (W)"].Data = val[@"ERID"].Data;
 				}
 
 				row.Cells[@"Part Qty"].Value = item.Value;
@@ -846,8 +854,8 @@ namespace RedBrick2 {
 		
 
 		private void comboBox2_SelectedIndexChanged(object sender, EventArgs e) {
+			ComboBox c = sender as ComboBox;
 			if (user_changed_item) {
-				ComboBox c = sender as ComboBox;
 				DataRowView dr = c.SelectedItem as DataRowView;
 				set_rev(dr[@"REV"].ToString());
 				cust_cbx.SelectedValue = (int)dr[@"CUSTID"];
@@ -944,7 +952,14 @@ namespace RedBrick2 {
 			if (c.Text == string.Empty) {
 				ToggleDescrWarn(true);
 			} else {
-				ToggleDescrWarn(false);
+				if (c.Text.Length > eNGINEERINGDataSet.CUT_CUTLISTS.DESCRColumn.MaxLength) {
+					string msg_ = string.Format(Properties.Resources.LengthWarning,
+						eNGINEERINGDataSet.CUT_CUTLISTS.DESCRColumn.MaxLength);
+					Redbrick.Err(c);
+					descr_tooltip.SetToolTip(c, msg_);
+				} else {
+					ToggleDescrWarn(false);
+				}
 			}
 		}
 
@@ -1172,6 +1187,36 @@ namespace RedBrick2 {
 
 			foreach (DataGridViewRow item in l_) {
 				dataGridView1.Rows.RemoveAt(item.Index);
+			}
+			count_includes();
+		}
+
+		private void ref_cbx_TextChanged(object sender, EventArgs e) {
+			ComboBox c = sender as ComboBox;
+			if (c.Text.Length > eNGINEERINGDataSet.CUT_CUTLISTS.DRAWINGColumn.MaxLength) {
+				string msg_ = string.Format(Properties.Resources.LengthWarning,
+					eNGINEERINGDataSet.CUT_CUTLISTS.DRAWINGColumn.MaxLength);
+				Redbrick.Err(c);
+				drw_tooltip.SetToolTip(c, msg_);
+			} else {
+				Redbrick.UnErr(c);
+				drw_tooltip.RemoveAll();
+			}
+		}
+
+		private void itm_cbx_TextUpdate(object sender, EventArgs e) {
+			ComboBox c = sender as ComboBox;
+			if (c.Text.Length > eNGINEERINGDataSet.CUT_CUTLISTS.PARTNUMColumn.MaxLength) {
+				string msg_ = string.Format(Properties.Resources.LengthWarning,
+					eNGINEERINGDataSet.CUT_CUTLISTS.PARTNUMColumn.MaxLength);
+				Redbrick.Err(c);
+				item_tooltip.SetToolTip(c, msg_);
+			} else if (c.Text.Length < 1) {
+				Redbrick.Err(c);
+				item_tooltip.SetToolTip(c, Properties.Resources.EmptyWarning);
+			} else {
+				Redbrick.UnErr(c);
+				item_tooltip.RemoveAll();
 			}
 		}
 	}
