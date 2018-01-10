@@ -24,6 +24,7 @@ namespace RedBrick2 {
 		private int clid = 0;
 		private bool user_editing = false;
 		private bool jobs = false;
+		private bool reload = true;
 		private string jobs_msg = string.Empty;
 		private string req_info_ = @"No info.";
 
@@ -188,9 +189,10 @@ namespace RedBrick2 {
 		}
 
 		int dd__FileSavePostNotify(int saveType, string FileName) {
-			if (FileName.ToUpper().EndsWith(@"SLDDRW")) {
+			if (reload && FileName.ToUpper().EndsWith(@"SLDDRW")) {
 				ReLoad(SwApp.ActiveDoc);
 			}
+			reload = true;
 			return 0;
 		}
 
@@ -505,6 +507,7 @@ namespace RedBrick2 {
 		}
 
 		private void button1_Click(object sender, EventArgs e) {
+			reload = false;
 			EditRev eo = new EditRev(RevSet);
 			eo.Added += er_Added;
 			eo.ShowDialog(this);
