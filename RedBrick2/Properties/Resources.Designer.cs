@@ -116,6 +116,15 @@ namespace RedBrick2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter something in this field..
+        /// </summary>
+        internal static string EmptyWarning {
+            get {
+                return ResourceManager.GetString("EmptyWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edging is inconsistent with routing..
         /// </summary>
         internal static string InconsistentEdgingOp {
@@ -148,6 +157,15 @@ namespace RedBrick2.Properties {
         internal static string InsertIntoEcrItems {
             get {
                 return ResourceManager.GetString("InsertIntoEcrItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This field can be no longer than {0} charaters..
+        /// </summary>
+        internal static string LengthWarning {
+            get {
+                return ResourceManager.GetString("LengthWarning", resourceCulture);
             }
         }
         
