@@ -49,6 +49,7 @@ namespace RedBrick2 {
 			this.cUTPARTTYPESBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.select_btn = new System.Windows.Forms.Button();
 			this.unselect_btn = new System.Windows.Forms.Button();
+			this.hide_btn = new System.Windows.Forms.Button();
 			this.upload_btn = new System.Windows.Forms.Button();
 			this.gEN_CUSTOMERSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.GEN_CUSTOMERSTableAdapter();
 			this.revListTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.RevListTableAdapter();
@@ -59,7 +60,6 @@ namespace RedBrick2 {
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
-			this.hide_btn = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gENCUSTOMERSBindingSource)).BeginInit();
@@ -194,6 +194,7 @@ namespace RedBrick2 {
 			this.itm_cbx.TabIndex = 5;
 			this.itm_cbx.ValueMember = "CLID";
 			this.itm_cbx.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+			this.itm_cbx.TextUpdate += new System.EventHandler(this.itm_cbx_TextUpdate);
 			this.itm_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox2_KeyDown);
 			this.itm_cbx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
 			this.itm_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox1_MouseClick);
@@ -283,6 +284,7 @@ namespace RedBrick2 {
 			this.ref_cbx.Size = new System.Drawing.Size(212, 21);
 			this.ref_cbx.TabIndex = 10;
 			this.ref_cbx.ValueMember = "CLID";
+			this.ref_cbx.TextChanged += new System.EventHandler(this.ref_cbx_TextChanged);
 			this.ref_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.ref_cbx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
 			// 
@@ -358,7 +360,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
 			this.tableLayoutPanel2.RowCount = 1;
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(728, 26);
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(700, 26);
 			this.tableLayoutPanel2.TabIndex = 0;
 			// 
 			// type_cbx
@@ -368,7 +370,7 @@ namespace RedBrick2 {
 			this.type_cbx.DataSource = this.cUTPARTTYPESBindingSource;
 			this.type_cbx.DisplayMember = "TYPEDESC";
 			this.type_cbx.FormattingEnabled = true;
-			this.type_cbx.Location = new System.Drawing.Point(258, 3);
+			this.type_cbx.Location = new System.Drawing.Point(230, 3);
 			this.type_cbx.Name = "type_cbx";
 			this.type_cbx.Size = new System.Drawing.Size(189, 21);
 			this.type_cbx.TabIndex = 14;
@@ -382,7 +384,7 @@ namespace RedBrick2 {
 			// 
 			// select_btn
 			// 
-			this.select_btn.Location = new System.Drawing.Point(453, 3);
+			this.select_btn.Location = new System.Drawing.Point(425, 3);
 			this.select_btn.Name = "select_btn";
 			this.select_btn.Size = new System.Drawing.Size(75, 20);
 			this.select_btn.TabIndex = 15;
@@ -392,13 +394,23 @@ namespace RedBrick2 {
 			// 
 			// unselect_btn
 			// 
-			this.unselect_btn.Location = new System.Drawing.Point(534, 3);
+			this.unselect_btn.Location = new System.Drawing.Point(506, 3);
 			this.unselect_btn.Name = "unselect_btn";
 			this.unselect_btn.Size = new System.Drawing.Size(75, 20);
 			this.unselect_btn.TabIndex = 16;
 			this.unselect_btn.Text = "Unselect";
 			this.unselect_btn.UseVisualStyleBackColor = true;
 			this.unselect_btn.Click += new System.EventHandler(this.unselect_btn_Click);
+			// 
+			// hide_btn
+			// 
+			this.hide_btn.Location = new System.Drawing.Point(587, 3);
+			this.hide_btn.Name = "hide_btn";
+			this.hide_btn.Size = new System.Drawing.Size(110, 20);
+			this.hide_btn.TabIndex = 17;
+			this.hide_btn.Text = "Hide Unchecked";
+			this.hide_btn.UseVisualStyleBackColor = true;
+			this.hide_btn.Click += new System.EventHandler(this.hide_btn_Click);
 			// 
 			// upload_btn
 			// 
@@ -457,16 +469,6 @@ namespace RedBrick2 {
 			// cUT_PART_TYPESTableAdapter
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
-			// 
-			// hide_btn
-			// 
-			this.hide_btn.Location = new System.Drawing.Point(615, 3);
-			this.hide_btn.Name = "hide_btn";
-			this.hide_btn.Size = new System.Drawing.Size(110, 20);
-			this.hide_btn.TabIndex = 17;
-			this.hide_btn.Text = "Hide Unchecked";
-			this.hide_btn.UseVisualStyleBackColor = true;
-			this.hide_btn.Click += new System.EventHandler(this.hide_btn_Click);
 			// 
 			// CreateCutlist
 			// 

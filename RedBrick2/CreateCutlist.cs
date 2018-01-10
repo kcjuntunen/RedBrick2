@@ -86,6 +86,7 @@ namespace RedBrick2 {
 			_swApp = s;
 			InitializeComponent();
 			dataGridView1.DataError += dataGridView1_DataError;
+			dataGridView1.UserDeletedRow += DataGridView1_UserDeletedRow;
 			ConfigurationManager swConfMgr;
 			Configuration swConf;
 			Component2 swRootComp;
@@ -131,8 +132,11 @@ namespace RedBrick2 {
 			Cursor.Current = Cursors.Default;
 			AddColumns();
 			FillTable(_dict, _partlist);
-			toolStripStatusLabel2.Text = string.Format("Included Parts: {0}", count_includes());
-			toolStripStatusLabel1.Text = string.Format("Total Unique Parts: {0}", dataGridView1.Rows.Count - 1);
+			count_includes();
+		}
+
+		private void DataGridView1_UserDeletedRow(object sender, DataGridViewRowEventArgs e) {
+			count_includes();
 		}
 
 		void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e) {
@@ -275,7 +279,7 @@ namespace RedBrick2 {
 			}
 		}
 
-		private int count_includes() {
+		private void count_includes() {
 			int x = 0;
 			foreach (DataGridViewRow row in dataGridView1.Rows) {
 				DataGridViewCheckBoxCell cell_ = row.Cells[@"Include"] as DataGridViewCheckBoxCell;
@@ -283,7 +287,8 @@ namespace RedBrick2 {
 					x++;
 				}
 			}
-			return x;
+			toolStripStatusLabel1.Text = string.Format(@"Total Unique Parts: {0}", dataGridView1.Rows.Count - 1);
+			toolStripStatusLabel2.Text = string.Format(@"Included Parts: {0}", x);
 		}
 
 		private void GetPart(ModelDoc2 m) {
@@ -901,7 +906,7 @@ namespace RedBrick2 {
 			if (name == @"Include" && (e.RowIndex > -1 && e.RowIndex < dataGridView1.Rows.Count)) {
 				DataGridViewCheckBoxCell cbx_ = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewCheckBoxCell;
 				int add = (bool)cbx_.Value ? -1 : 1;
-				toolStripStatusLabel2.Text = string.Format("Included Parts: {0}", count_includes());
+				count_includes();
 			}
 		}
 
@@ -970,7 +975,7 @@ namespace RedBrick2 {
 						if ((int)dept.Value == (int)type_cbx.SelectedValue) {
 							DataGridViewCheckBoxCell inc = item.Cells[@"Include"] as DataGridViewCheckBoxCell;
 							inc.Value = true;
-							toolStripStatusLabel2.Text = string.Format("Included Parts: {0}", count_includes());
+							count_includes();
 						}
 					}
 				}
@@ -984,7 +989,7 @@ namespace RedBrick2 {
 					if ((int)dept.Value == (int)type_cbx.SelectedValue) {
 						DataGridViewCheckBoxCell inc = item.Cells[@"Include"] as DataGridViewCheckBoxCell;
 						inc.Value = false;
-						toolStripStatusLabel2.Text = string.Format("Included Parts: {0}", count_includes());
+						count_includes();
 					}
 				}
 			}
