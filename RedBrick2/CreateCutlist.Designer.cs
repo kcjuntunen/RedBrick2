@@ -189,6 +189,7 @@ namespace RedBrick2 {
 			this.itm_cbx.DisplayMember = "PARTNUM";
 			this.itm_cbx.FormattingEnabled = true;
 			this.itm_cbx.Location = new System.Drawing.Point(114, 33);
+			this.itm_cbx.MaxLength = 35;
 			this.itm_cbx.Name = "itm_cbx";
 			this.itm_cbx.Size = new System.Drawing.Size(201, 21);
 			this.itm_cbx.TabIndex = 5;
@@ -280,6 +281,7 @@ namespace RedBrick2 {
 			this.ref_cbx.DisplayMember = "DRAWING";
 			this.ref_cbx.FormattingEnabled = true;
 			this.ref_cbx.Location = new System.Drawing.Point(527, 3);
+			this.ref_cbx.MaxLength = 30;
 			this.ref_cbx.Name = "ref_cbx";
 			this.ref_cbx.Size = new System.Drawing.Size(212, 21);
 			this.ref_cbx.TabIndex = 10;
@@ -298,6 +300,7 @@ namespace RedBrick2 {
 			this.descr_cbx.DisplayMember = "DESCR";
 			this.descr_cbx.FormattingEnabled = true;
 			this.descr_cbx.Location = new System.Drawing.Point(114, 63);
+			this.descr_cbx.MaxLength = 50;
 			this.descr_cbx.Name = "descr_cbx";
 			this.descr_cbx.Size = new System.Drawing.Size(201, 21);
 			this.descr_cbx.TabIndex = 11;

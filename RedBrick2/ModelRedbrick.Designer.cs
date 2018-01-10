@@ -745,6 +745,7 @@
 			this.tableLayoutPanel3.SetColumnSpan(this.descriptiontb, 2);
 			this.descriptiontb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "DESCR", true));
 			this.descriptiontb.Location = new System.Drawing.Point(3, 16);
+			this.descriptiontb.MaxLength = 35;
 			this.descriptiontb.Name = "descriptiontb";
 			this.descriptiontb.Size = new System.Drawing.Size(264, 22);
 			this.descriptiontb.TabIndex = 7;
@@ -787,6 +788,7 @@
 			this.tableLayoutPanel3.SetColumnSpan(this.commenttb, 2);
 			this.commenttb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "COMMENT", true));
 			this.commenttb.Location = new System.Drawing.Point(3, 227);
+			this.commenttb.MaxLength = 105;
 			this.commenttb.Multiline = true;
 			this.commenttb.Name = "commenttb";
 			this.commenttb.Size = new System.Drawing.Size(264, 42);
