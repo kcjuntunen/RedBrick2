@@ -81,6 +81,8 @@ namespace RedBrick2 {
 		private ToolTip l_tooltip = new ToolTip();
 		private ToolTip w_tooltip = new ToolTip();
 		private ToolTip t_tooltip = new ToolTip();
+		private ToolTip cnc1_tooltip = new ToolTip();
+		private ToolTip cnc2_tooltip = new ToolTip();
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -1913,10 +1915,30 @@ namespace RedBrick2 {
 		}
 
 		private void textBox7_TextChanged(object sender, EventArgs e) {
+			TextBox t_ = sender as TextBox;
+			if (t_.Text.Length > eNGINEERINGDataSet.CUT_PARTS.CNC1Column.MaxLength) {
+				string msg_ = string.Format(Properties.Resources.LengthWarning,
+					eNGINEERINGDataSet.CUT_PARTS.CNC1Column.MaxLength);
+				Redbrick.Err(t_);
+				cnc1_tooltip.SetToolTip(t_, msg_);
+			} else {
+				Redbrick.UnErr(t_);
+				cnc1_tooltip.RemoveAll();
+			}
 			TogglePriorityButton();
 		}
 
 		private void textBox8_TextChanged(object sender, EventArgs e) {
+			TextBox t_ = sender as TextBox;
+			if (t_.Text.Length > eNGINEERINGDataSet.CUT_PARTS.CNC2Column.MaxLength) {
+				string msg_ = string.Format(Properties.Resources.LengthWarning,
+					eNGINEERINGDataSet.CUT_PARTS.CNC1Column.MaxLength);
+				Redbrick.Err(t_);
+				cnc2_tooltip.SetToolTip(t_, msg_);
+			} else {
+				Redbrick.UnErr(t_);
+				cnc1_tooltip.RemoveAll();
+			}
 			TogglePriorityButton();
 		}
 
@@ -1999,8 +2021,14 @@ namespace RedBrick2 {
 
 		private void textBox1_TextChanged(object sender, EventArgs e) {
 			bool err_ = (sender as TextBox).Text == string.Empty;
+			bool length_err_ = (sender as TextBox).Text.Length > eNGINEERINGDataSet.CUT_PARTS.DESCRColumn.MaxLength;
 			if (Properties.Settings.Default.Warn && err_) {
 				ToggleDescrWarn(true);
+			} else if (length_err_) {
+				string msg_ = string.Format(Properties.Resources.LengthWarning,
+					eNGINEERINGDataSet.CUT_PARTS.DESCRColumn.MaxLength);
+				Redbrick.Err(sender as Control);
+				descr_tooltup.SetToolTip(sender as Control, msg_);
 			} else {
 				ToggleDescrWarn(false);
 			}
