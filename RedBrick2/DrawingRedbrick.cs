@@ -204,8 +204,9 @@ namespace RedBrick2 {
 					ToggleCustomerWarn(true);
 				}
 			} else {
-				cust_cbx.Text = _p.Value;
-				ToggleCustomerWarn(true);
+				cust_cbx.SelectedValue = ProjectCustomer;
+				_p.Set(cust_cbx.SelectedValue, cust_cbx.Text);
+				ToggleCustomerWarn(false);
 			}
 		}
 
