@@ -710,8 +710,11 @@ namespace RedBrick2 {
 				if (r.IsMatch(partLookup)) {
 					ENGINEERINGDataSetTableAdapters.SCH_PROJECTSTableAdapter spta =
 						new ENGINEERINGDataSetTableAdapters.SCH_PROJECTSTableAdapter();
-					ENGINEERINGDataSet.SCH_PROJECTSRow row = spta.GetDataByProject(matches.Groups[1].ToString())[0];
-					return row;
+					ENGINEERINGDataSet.SCH_PROJECTSDataTable dt_ = spta.GetDataByProject(matches.Groups[1].ToString());
+					if (dt_.Count > 0) {
+						ENGINEERINGDataSet.SCH_PROJECTSRow row = spta.GetDataByProject(matches.Groups[1].ToString())[0];
+						return row;
+					}
 				}
 				return null;
 			}
