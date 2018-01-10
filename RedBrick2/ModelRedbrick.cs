@@ -65,6 +65,7 @@ namespace RedBrick2 {
 		private bool cl_userediting = false;
 		private bool cl_stat_userediting = false;
 		private bool data_from_db = false;
+		private bool do_savepostnotify = true;
 		private string req_info_ = @"No info.";
 		private ComboBox[] cbxes;
 		private ToolTip groupbox_tooltip = new ToolTip();
@@ -1082,8 +1083,12 @@ namespace RedBrick2 {
 		}
 
 		private int pd_FileSavePostNotify(int saveType, string FileName) {
-			DumpActiveDoc();
-			ActiveDoc = SwApp.ActiveDoc;
+			if (do_savepostnotify) {
+				ModelDoc2 md_ = _activeDoc;
+				DumpActiveDoc();
+				ActiveDoc = SwApp.ActiveDoc;
+			}
+			do_savepostnotify = true;
 			return 0;
 		}
 
@@ -1282,6 +1287,7 @@ namespace RedBrick2 {
 				} else {
 					GetEstimationFromPart();
 				}
+				do_savepostnotify = false;
 				PropertySet.Save();
 				_activeDoc.Rebuild((int)swRebuildOptions_e.swRebuildAll);
 			} else if (tabControl1.SelectedTab == tabPage2) {
