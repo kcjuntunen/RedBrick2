@@ -665,6 +665,49 @@ namespace RedBrick2 {
 		}
 
 		partial class CUT_MATERIALSDataTable {
+			public List<string> GetMaterialPricing(int matid) {
+				List<string> l_ = new List<string>();
+				bool fail_ = false;
+				ENGINEERINGDataSetTableAdapters.CUT_MATERIAL_SIZESTableAdapter cmsta_ =
+					new ENGINEERINGDataSetTableAdapters.CUT_MATERIAL_SIZESTableAdapter();
+				ENGINEERINGDataSetTableAdapters.inmast1TableAdapter ita_ =
+					new ENGINEERINGDataSetTableAdapters.inmast1TableAdapter();
+				ENGINEERINGDataSet.CUT_MATERIAL_SIZESDataTable msdt_ =
+					cmsta_.GetDataByMatID(matid);
+				string sql_ = @"SELECT fpartno, fdescript, flastcost, fonhand, fonorder, fmeasure FROM inmast WHERE ";
+				for (int i = 0; i < msdt_.Count; i++) {
+					if (msdt_[i].PARTNUM.Trim() != string.Empty) {
+						sql_ += string.Format(@"fpartno = '{0}' ", msdt_[i].PARTNUM);
+						if (i < msdt_.Count - 1) {
+							sql_ += @"OR ";
+						}
+					} else {
+						fail_ = true;
+					}
+				}
+				if (!fail_) {
+					using (SqlCommand comm_ = new SqlCommand(sql_, ita_.Connection)) {
+						if (ita_.Connection.State == System.Data.ConnectionState.Closed) {
+							ita_.Connection.Open();
+						}
+						try {
+							using (SqlDataReader dr_ = comm_.ExecuteReader()) {
+								while (dr_.Read()) {
+									l_.Add(
+										string.Format(@"{0}: {1} last purchsed for {2:C}. {3:0.0} {5} on hand, {4:0.0} {5} on order.",
+										dr_.GetString(0).Trim(), dr_.GetString(1).Trim(), 
+										dr_.GetDecimal(2), dr_.GetDecimal(3), dr_.GetDecimal(4),
+										dr_.GetString(5).Trim()));
+								}
+							}
+						} finally {
+							ita_.Connection.Close();
+						}
+					}
+				}
+
+				return l_;
+			}
 			/// <summary>
 			/// Find an ID from a material description.
 			/// </summary>

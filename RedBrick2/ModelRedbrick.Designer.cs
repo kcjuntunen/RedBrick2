@@ -60,6 +60,7 @@
 			this.update_btn = new System.Windows.Forms.Button();
 			this.remove_btn = new System.Windows.Forms.Button();
 			this.add_prt_btn = new System.Windows.Forms.Button();
+			this.pull_btn = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.label12 = new System.Windows.Forms.Label();
@@ -142,7 +143,6 @@
 			this.cUT_PARTSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
 			this.friendlyCutOpsTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
-			this.pull_btn = new System.Windows.Forms.Button();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
@@ -463,6 +463,7 @@
 			this.label6.TabIndex = 0;
 			this.label6.Text = "label6";
 			this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.label6.MouseHover += new System.EventHandler(this.label6_MouseHover);
 			// 
 			// label7
 			// 
@@ -477,6 +478,7 @@
 			this.label7.TabIndex = 0;
 			this.label7.Text = "label7";
 			this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.label7.MouseHover += new System.EventHandler(this.label7_MouseHover);
 			// 
 			// label8
 			// 
@@ -638,6 +640,17 @@
 			this.add_prt_btn.Text = "Add part...";
 			this.add_prt_btn.UseVisualStyleBackColor = true;
 			this.add_prt_btn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.add_prt_btn_MouseClick);
+			// 
+			// pull_btn
+			// 
+			this.pull_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.pull_btn.Location = new System.Drawing.Point(192, 244);
+			this.pull_btn.Name = "pull_btn";
+			this.pull_btn.Size = new System.Drawing.Size(75, 10);
+			this.pull_btn.TabIndex = 14;
+			this.pull_btn.Text = "←";
+			this.pull_btn.UseVisualStyleBackColor = true;
+			this.pull_btn.Click += new System.EventHandler(this.pull_btn_Click);
 			// 
 			// groupBox2
 			// 
@@ -1622,17 +1635,6 @@
 			// cUT_PART_TYPESTableAdapter
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
-			// 
-			// pull_btn
-			// 
-			this.pull_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.pull_btn.Location = new System.Drawing.Point(192, 244);
-			this.pull_btn.Name = "pull_btn";
-			this.pull_btn.Size = new System.Drawing.Size(75, 10);
-			this.pull_btn.TabIndex = 14;
-			this.pull_btn.Text = "←";
-			this.pull_btn.UseVisualStyleBackColor = true;
-			this.pull_btn.Click += new System.EventHandler(this.pull_btn_Click);
 			// 
 			// ModelRedbrick
 			// 

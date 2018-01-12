@@ -84,6 +84,8 @@ namespace RedBrick2 {
 		private ToolTip t_tooltip = new ToolTip();
 		private ToolTip cnc1_tooltip = new ToolTip();
 		private ToolTip cnc2_tooltip = new ToolTip();
+		private ToolTip cutlist_mat_tip = new ToolTip();
+		private ToolTip edgef_mat_tip = new ToolTip();
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -2283,6 +2285,36 @@ namespace RedBrick2 {
 		private void pull_btn_Click(object sender, EventArgs e) {
 			GetMaterialFromPart();
 			GetEdgesFromPart();
+		}
+
+		private void label6_MouseHover(object sender, EventArgs e) {
+			if (cutlistMat.SelectedItem != null) {
+				DataRowView drv_ = cutlistMat.SelectedItem as DataRowView;
+				int matid_ = Convert.ToInt32(drv_[@"MATID"]);
+				string msg_ = string.Empty;
+				ENGINEERINGDataSet.CUT_MATERIALSDataTable dt_ =
+					new ENGINEERINGDataSet.CUT_MATERIALSDataTable();
+				foreach (var item in dt_.GetMaterialPricing(matid_)) {
+					msg_ += string.Format(@"{0}{1}", item, System.Environment.NewLine);
+				}
+				cutlistMat_tooltip.Show(msg_, label6, 30000);
+			}
+		}
+
+		private void label7_MouseHover(object sender, EventArgs e) {
+			// TODO: make a function to look up edging
+
+			//if (edgef.SelectedItem != null) {
+			//	DataRowView drv_ = edgef.SelectedItem as DataRowView;
+			//	int matid_ = Convert.ToInt32(drv_[@"EDGEID"]);
+			//	string msg_ = string.Empty;
+			//	ENGINEERINGDataSet.CUT_MATERIALSDataTable dt_ =
+			//		new ENGINEERINGDataSet.CUT_MATERIALSDataTable();
+			//	foreach (var item in dt_.GetMaterialPricing(matid_)) {
+			//		msg_ += string.Format(@"{0}{1}", item, System.Environment.NewLine);
+			//	}
+			//	edgef_mat_tip.Show(msg_, label7, 30000);
+			//}
 		}
 	}
 }
