@@ -142,6 +142,7 @@
 			this.cUT_PARTSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
 			this.friendlyCutOpsTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
+			this.pull_btn = new System.Windows.Forms.Button();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
@@ -237,6 +238,7 @@
 			this.tableLayoutPanel2.Controls.Add(this.update_btn, 1, 13);
 			this.tableLayoutPanel2.Controls.Add(this.remove_btn, 1, 14);
 			this.tableLayoutPanel2.Controls.Add(this.add_prt_btn, 0, 14);
+			this.tableLayoutPanel2.Controls.Add(this.pull_btn, 1, 12);
 			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 18);
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -582,7 +584,7 @@
 			this.stat_cbx.DataSource = this.cUTSTATESBindingSource;
 			this.stat_cbx.DisplayMember = "STATE";
 			this.stat_cbx.FormattingEnabled = true;
-			this.stat_cbx.Location = new System.Drawing.Point(3, 257);
+			this.stat_cbx.Location = new System.Drawing.Point(3, 260);
 			this.stat_cbx.Name = "stat_cbx";
 			this.stat_cbx.Size = new System.Drawing.Size(183, 21);
 			this.stat_cbx.TabIndex = 9;
@@ -608,7 +610,7 @@
 			// 
 			// update_btn
 			// 
-			this.update_btn.Location = new System.Drawing.Point(192, 257);
+			this.update_btn.Location = new System.Drawing.Point(192, 260);
 			this.update_btn.Name = "update_btn";
 			this.update_btn.Size = new System.Drawing.Size(75, 23);
 			this.update_btn.TabIndex = 11;
@@ -619,7 +621,7 @@
 			// remove_btn
 			// 
 			this.remove_btn.Enabled = false;
-			this.remove_btn.Location = new System.Drawing.Point(192, 286);
+			this.remove_btn.Location = new System.Drawing.Point(192, 289);
 			this.remove_btn.Name = "remove_btn";
 			this.remove_btn.Size = new System.Drawing.Size(75, 23);
 			this.remove_btn.TabIndex = 12;
@@ -629,7 +631,7 @@
 			// 
 			// add_prt_btn
 			// 
-			this.add_prt_btn.Location = new System.Drawing.Point(3, 286);
+			this.add_prt_btn.Location = new System.Drawing.Point(3, 289);
 			this.add_prt_btn.Name = "add_prt_btn";
 			this.add_prt_btn.Size = new System.Drawing.Size(75, 23);
 			this.add_prt_btn.TabIndex = 13;
@@ -1161,6 +1163,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.ppb_nud.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.cUTPARTSBindingSource, "BLANKQTY", true));
 			this.ppb_nud.Location = new System.Drawing.Point(185, 57);
+			this.ppb_nud.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
 			this.ppb_nud.Name = "ppb_nud";
 			this.ppb_nud.Size = new System.Drawing.Size(82, 22);
 			this.ppb_nud.TabIndex = 21;
@@ -1616,6 +1623,17 @@
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
 			// 
+			// pull_btn
+			// 
+			this.pull_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.pull_btn.Location = new System.Drawing.Point(192, 244);
+			this.pull_btn.Name = "pull_btn";
+			this.pull_btn.Size = new System.Drawing.Size(75, 10);
+			this.pull_btn.TabIndex = 14;
+			this.pull_btn.Text = "←";
+			this.pull_btn.UseVisualStyleBackColor = true;
+			this.pull_btn.Click += new System.EventHandler(this.pull_btn_Click);
+			// 
 			// ModelRedbrick
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -1786,5 +1804,6 @@
 		private System.Windows.Forms.Button update_btn;
 		private System.Windows.Forms.Button remove_btn;
 		private System.Windows.Forms.Button add_prt_btn;
-  }
+		private System.Windows.Forms.Button pull_btn;
+	}
 }
