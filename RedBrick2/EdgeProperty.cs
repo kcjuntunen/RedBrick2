@@ -49,7 +49,7 @@ namespace RedBrick2 {
 						new ENGINEERINGDataSet.CUT_EDGESDataTable();
 					_data = dt_.GetEdgeIDByDescr(Value);
 				}
-				return _data;
+				return _data < 1 ? 0 : _data;
 			}
 			set {
 				if (value is string) {
