@@ -202,4 +202,10 @@
   <data name="LengthWarning" xml:space="preserve">
     <value>This field can be no longer than {0} charaters.</value>
   </data>
+  <data name="InDBReadOnlyWarning" xml:space="preserve">
+    <value>Property data has been saved to the cutlist database, but it could not be saved to the part because it's read-only.</value>
+  </data>
+  <data name="NotInDBReadOnlyWarning" xml:space="preserve">
+    <value>Properties could not be saved to read-only part.</value>
+  </data>
 </root>

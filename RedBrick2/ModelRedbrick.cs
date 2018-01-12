@@ -255,7 +255,6 @@ namespace RedBrick2 {
 		}
 
 		private void ReQuery() {
-			checked_at_start = false;
 			Properties.Settings.Default.NumberFormat = get_format_txt(_activeDoc);
 			Properties.Settings.Default.Save();
 			dirtTracker.IsDirty = false;
@@ -1252,6 +1251,17 @@ namespace RedBrick2 {
 			//Row.OP5ID = Convert.ToInt32(op5_cbx.SelectedValue);
 		}
 
+		private void save_part() {
+			string warning_ = data_from_db ? 
+				Properties.Resources.InDBReadOnlyWarning : Properties.Resources.NotInDBReadOnlyWarning;
+			if (Properties.Settings.Default.ReadOnlyWarn && _activeDoc.IsOpenedReadOnly()) {
+				MessageBox.Show(this, warning_, @"Read only",
+					MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			} else {
+				PropertySet.Save();
+			}
+		}
+
 		/// <summary>
 		/// Populate and write properties. Create proper rows to be Updated into the db.
 		/// </summary>
@@ -1283,16 +1293,18 @@ namespace RedBrick2 {
 					GetEstimationFromDB();
 					if (Properties.Settings.Default.AutoOpenPriority && checked_at_start && !updateCNCcb.Checked) {
 						popup_priority_(PropertySet.PartLookup);
+						checked_at_start = false;
 					}
 				} else {
 					GetEstimationFromPart();
 				}
 				do_savepostnotify = false;
-				PropertySet.Save();
+				save_part();
 				_activeDoc.Rebuild((int)swRebuildOptions_e.swRebuildAll);
 			} else if (tabControl1.SelectedTab == tabPage2) {
 				drawingRedbrick.Commit();
 			}
+			checked_at_start = updateCNCcb.Checked;
 			groupBox1.Text = groupBox1.Text.Replace(Properties.Settings.Default.NotSavedMark, string.Empty);
 			eNGINEERINGDataSet.GEN_ODOMETER.IncrementOdometer(Redbrick.Functions.GreenCheck);
 		}

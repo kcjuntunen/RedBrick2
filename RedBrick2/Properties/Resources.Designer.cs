@@ -134,6 +134,15 @@ namespace RedBrick2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Property data has been saved to the cutlist database, but it could not be saved to the part because it&apos;s read-only..
+        /// </summary>
+        internal static string InDBReadOnlyWarning {
+            get {
+                return ResourceManager.GetString("InDBReadOnlyWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The information in the Property Editor is in the database..
         /// </summary>
         internal static string InfoFromDB {
@@ -184,6 +193,15 @@ namespace RedBrick2.Properties {
         internal static string NoDescriptionWarning {
             get {
                 return ResourceManager.GetString("NoDescriptionWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Properties could not be saved to read-only part..
+        /// </summary>
+        internal static string NotInDBReadOnlyWarning {
+            get {
+                return ResourceManager.GetString("NotInDBReadOnlyWarning", resourceCulture);
             }
         }
         

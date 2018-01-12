@@ -234,7 +234,8 @@ namespace RedBrick2 {
 			new ToolTip().SetToolTip(checkBox4, @"Ignore gauge discrepancies.");
 			checkBox5.Checked = Properties.Settings.Default.ExportEDrw;
 			checkBox6.Checked = Properties.Settings.Default.ExportImg;
-			checkBox7.Checked = Properties.Settings.Default.CutlistNotSelectedWarning;
+			readonly_warn_cb.Checked = Properties.Settings.Default.ReadOnlyWarn;
+			new ToolTip().SetToolTip(readonly_warn_cb, @"Read only parts can't be saved.");
 			checkBox8.Checked = Properties.Settings.Default.AutoOpenPriority;
 			new ToolTip().SetToolTip(checkBox8, string.Format(@"When 'Update CNC' goes from checked to unchecked,{0}" +
 																												"the priority window will open at the time the green check is clicked.",
@@ -350,7 +351,7 @@ namespace RedBrick2 {
 			Properties.Settings.Default.Warn = chbWarnings.Checked;
 			if (!chbWarnings.Checked) {
 				chbOpWarnings.Checked = false;
-				checkBox7.Checked = false;
+				readonly_warn_cb.Checked = false;
 			}
 			tableLayoutPanel5.Enabled = chbWarnings.Checked;
 		}
@@ -484,8 +485,8 @@ namespace RedBrick2 {
 			Properties.Settings.Default.ExportImg = checkBox6.Checked;
 		}
 
-		private void checkBox7_CheckedChanged(object sender, EventArgs e) {
-			Properties.Settings.Default.CutlistNotSelectedWarning = checkBox7.Checked;
+		private void readonly_warn_cb_CheckedChanged(object sender, EventArgs e) {
+			Properties.Settings.Default.ReadOnlyWarn = readonly_warn_cb.Checked;
 		}
 
 		private void checkBox1_CheckedChanged_1(object sender, EventArgs e) {

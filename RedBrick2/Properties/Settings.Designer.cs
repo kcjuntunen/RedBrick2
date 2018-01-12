@@ -679,7 +679,7 @@ namespace RedBrick2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("^[0-9]{1,2}\\ ?[gG][aA]\\.?")]
+        [global::System.Configuration.DefaultSettingValueAttribute("^[0-9]*\\ ?[gG][aA]\\.?")]
         public string GaugeRegex {
             get {
                 return ((string)(this["GaugeRegex"]));
@@ -831,6 +831,18 @@ namespace RedBrick2.Properties {
             }
             set {
                 this["EdgingOps"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ReadOnlyWarn {
+            get {
+                return ((bool)(this["ReadOnlyWarn"]));
+            }
+            set {
+                this["ReadOnlyWarn"] = value;
             }
         }
     }

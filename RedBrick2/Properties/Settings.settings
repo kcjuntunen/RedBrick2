@@ -188,7 +188,7 @@
       <Value Profile="(Default)">\\AMSTORE-SVR-02\shared\shared\general\Engineering Utility\ECR Drawings\</Value>
     </Setting>
     <Setting Name="GaugeRegex" Type="System.String" Scope="User">
-      <Value Profile="(Default)">^[0-9]{1,2}\ ?[gG][aA]\.?</Value>
+      <Value Profile="(Default)">^[0-9]*\ ?[gG][aA]\.?</Value>
     </Setting>
     <Setting Name="CreateCutlistLocation" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">100, 100</Value>
@@ -240,6 +240,9 @@
   &lt;string&gt;EB&lt;/string&gt;
   &lt;string&gt;CEB&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="ReadOnlyWarn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>
