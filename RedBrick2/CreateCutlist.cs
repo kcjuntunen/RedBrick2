@@ -1145,6 +1145,7 @@ namespace RedBrick2 {
 
 		private void upload_btn_Click(object sender, EventArgs e) {
 			if (cust_cbx.SelectedItem != null && uid != null) {
+				Cursor = Cursors.WaitCursor;
 				List<SwProperties> parts_ = new List<SwProperties>();
 
 				for (int i = 0; i < dataGridView1.Rows.Count; i++) {
@@ -1172,6 +1173,7 @@ namespace RedBrick2 {
 					dateTimePicker1.Value, Properties.Settings.Default.DefaultState, Convert.ToInt32(uid), parts_);
 				(sender as Control).Enabled = false;
 				cancel_btn.Text = @"Close";
+				Cursor = Cursors.Arrow;
 			}
 		}
 
