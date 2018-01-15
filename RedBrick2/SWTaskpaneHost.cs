@@ -29,7 +29,7 @@ namespace RedBrick2 {
 		/// Mmmm.... coookies.... Do I even use this?
 		/// </summary>
 		public int cookie;
-		private ModelRedbrick mrb;
+		public ModelRedbrick mrb;
 		private bool initialated = false;
 
 		/// <summary>
