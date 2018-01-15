@@ -66,7 +66,12 @@ namespace RedBrick2 {
 		private bool cl_stat_userediting = false;
 		private bool data_from_db = false;
 		private bool do_savepostnotify = true;
-		private string req_info_ = @"No info.";
+		private string req_info_ = string.Empty;
+		private string mat_price_ = string.Empty;
+		private string edgef_price_ = string.Empty;
+		private string edgeb_price_ = string.Empty;
+		private string edgel_price_ = string.Empty;
+		private string edger_price_ = string.Empty;
 		private ComboBox[] cbxes;
 		private ToolTip groupbox_tooltip = new ToolTip();
 		private ToolTip cutlistMat_tooltip = new ToolTip();
@@ -86,6 +91,9 @@ namespace RedBrick2 {
 		private ToolTip cnc2_tooltip = new ToolTip();
 		private ToolTip cutlist_mat_tip = new ToolTip();
 		private ToolTip edgef_mat_tip = new ToolTip();
+		private ToolTip edgeb_mat_tip = new ToolTip();
+		private ToolTip edgel_mat_tip = new ToolTip();
+		private ToolTip edger_mat_tip = new ToolTip();
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -668,12 +676,26 @@ namespace RedBrick2 {
 				string msg_ = Properties.Resources.InfoFromDB + hash_;
 				groupbox_tooltip.SetToolTip(groupBox1, msg_);
 			} else {
+				string msg_ = Properties.Resources.InfoNotFromDB;
+				//if (Properties.Settings.Default.ExtraInfo) {
+				//	msg_ += GetLocations();
+				//}
 				groupBox1.ForeColor = Properties.Settings.Default.WarnBackground;
-				groupbox_tooltip.SetToolTip(groupBox1, Properties.Resources.InfoNotFromDB);
+				groupbox_tooltip.SetToolTip(groupBox1, msg_);
 				foreach (Control control in groupBox1.Controls) {
 					control.ForeColor = Properties.Settings.Default.NormalForeground;
 				}
 			}
+		}
+
+		private string GetLocations() {
+			List<string> l_ = eNGINEERINGDataSet.CLIENT_STUFF.GetLocations(partLookup);
+			string loc_ = string.Empty;
+			for (int i = 0; i < l_.Count; i++) {
+				loc_ += l_[i] + "\n";
+			}
+			System.Diagnostics.Debug.Print(loc_);
+			return "\n" + loc_;
 		}
 
 		private void GetDataFromPart() {
@@ -1487,7 +1509,12 @@ namespace RedBrick2 {
 					ToggleEdgeWarn(false);
 					lastModelDoc = _activeDoc;
 					_activeDoc = value;
-					req_info_ = @"No info.";
+					req_info_ = string.Empty;
+					mat_price_ = string.Empty;
+					edgef_price_ = string.Empty;
+					edgeb_price_ = string.Empty;
+					edgel_price_ = string.Empty;
+					edger_price_ = string.Empty;
 					string _fn = _activeDoc.GetPathName();
 					if (_fn != string.Empty) {
 						PartFileInfo = new FileInfo(_fn);
@@ -1666,11 +1693,19 @@ namespace RedBrick2 {
 				label7.Visible = false;
 			} else {
 				label7.Visible = true;
+				if (edging_op_exists()) {
+					ToggleEdgingOpWarn(false);
+				} else {
+					ToggleEdgingOpWarn(true);
+				}
+				edger_price_ = string.Empty;
+				CheckEdgingOps();
 			}
 			float edge_thickness_ = get_edge_thickness_total(edgef, edgeb);
 			if (float.TryParse(overLtb.Text, out float test_)) {
 				calculate_blanksize_from_oversize(test_, blnkszLtb, length, edge_thickness_);
 			}
+			edgef_price_ = string.Empty;
 			CheckEdgingOps();
 		}
 
@@ -1680,11 +1715,19 @@ namespace RedBrick2 {
 				label8.Visible = false;
 			} else {
 				label8.Visible = true;
+				if (edging_op_exists()) {
+					ToggleEdgingOpWarn(false);
+				} else {
+					ToggleEdgingOpWarn(true);
+				}
+				edger_price_ = string.Empty;
+				CheckEdgingOps();
 			}
 			float edge_thickness_ = get_edge_thickness_total(edgef, edgeb);
 			if (float.TryParse(overLtb.Text, out float test_)) {
 				calculate_blanksize_from_oversize(test_, blnkszLtb, length, edge_thickness_);
 			}
+			edgeb_price_ = string.Empty;
 			CheckEdgingOps();
 		}
 
@@ -1694,11 +1737,19 @@ namespace RedBrick2 {
 				label9.Visible = false;
 			} else {
 				label9.Visible = true;
+				if (edging_op_exists()) {
+					ToggleEdgingOpWarn(false);
+				} else {
+					ToggleEdgingOpWarn(true);
+				}
+				edger_price_ = string.Empty;
+				CheckEdgingOps();
 			}
 			float edge_thickness_ = get_edge_thickness_total(edgel, edger);
 			if (float.TryParse(overLtb.Text, out float test_)) {
 				calculate_blanksize_from_oversize(test_, blnkszWtb, width, edge_thickness_);
 			}
+			edgel_price_ = string.Empty;
 			CheckEdgingOps();
 		}
 
@@ -1713,6 +1764,7 @@ namespace RedBrick2 {
 				} else {
 					ToggleEdgingOpWarn(true);
 				}
+				edger_price_ = string.Empty;
 				CheckEdgingOps();
 			}
 			float edge_thickness_ = get_edge_thickness_total(edgel, edger);
@@ -1862,6 +1914,7 @@ namespace RedBrick2 {
 		}
 
 		private void comboBox_SelectedIndexChanged(object sender, EventArgs e) {
+			mat_price_ = string.Empty;
 			CheckThickness();
 		}
 
@@ -2253,7 +2306,7 @@ namespace RedBrick2 {
 		}
 
 		private void groupBox2_MouseHover(object sender, EventArgs e) {
-			if (req_info_ == @"No info.") {
+			if (Properties.Settings.Default.ExtraInfo && req_info_ == string.Empty) {
 				ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter ri_ =
 					new ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter();
 				ri_.FillByFixtureID(eNGINEERINGDataSet.RequestInfo, PropertySet.PartLookup);
@@ -2287,34 +2340,86 @@ namespace RedBrick2 {
 			GetEdgesFromPart();
 		}
 
+		private string GetMaterialPrices(int _matid) {
+			if (mat_price_ != string.Empty) {
+				return mat_price_;
+			}
+
+			string msg_ = string.Empty;
+			ENGINEERINGDataSet.CUT_MATERIALSDataTable dt_ =
+				new ENGINEERINGDataSet.CUT_MATERIALSDataTable();
+			foreach (var item in dt_.GetMaterialPricing(_matid)) {
+				msg_ += string.Format(@"{0} {1}{2}", Properties.Settings.Default.Bullet, item, System.Environment.NewLine);
+			}
+			mat_price_ = msg_;
+			return mat_price_;
+		}
+
+		private void GetEdgePrices(int _edgeid, ref string _info) {
+			if (_info != string.Empty) {
+				return;
+			}
+
+			string msg_ = string.Empty;
+			ENGINEERINGDataSet.CUT_MATERIALSDataTable dt_ =
+				new ENGINEERINGDataSet.CUT_MATERIALSDataTable();
+			foreach (var item in dt_.GetEdgePricing(_edgeid)) {
+				msg_ += string.Format(@"{0} {1}{2}", Properties.Settings.Default.Bullet, item, System.Environment.NewLine);
+			}
+			_info = msg_;
+		}
+
 		private void label6_MouseHover(object sender, EventArgs e) {
-			if (cutlistMat.SelectedItem != null) {
+			if (Properties.Settings.Default.ExtraInfo && cutlistMat.SelectedItem != null) {
 				DataRowView drv_ = cutlistMat.SelectedItem as DataRowView;
 				int matid_ = Convert.ToInt32(drv_[@"MATID"]);
-				string msg_ = string.Empty;
-				ENGINEERINGDataSet.CUT_MATERIALSDataTable dt_ =
-					new ENGINEERINGDataSet.CUT_MATERIALSDataTable();
-				foreach (var item in dt_.GetMaterialPricing(matid_)) {
-					msg_ += string.Format(@"{0}{1}", item, System.Environment.NewLine);
-				}
-				cutlistMat_tooltip.Show(msg_, label6, 30000);
+				string msg_ = GetMaterialPrices(matid_);
+				cutlistMat_tooltip.Show(msg_, sender as Label, 30000);
 			}
 		}
 
 		private void label7_MouseHover(object sender, EventArgs e) {
-			// TODO: make a function to look up edging
+			if (Properties.Settings.Default.ExtraInfo && edgef.SelectedItem != null) {
+				DataRowView drv_ = edgef.SelectedItem as DataRowView;
+				int edgeid_ = Convert.ToInt32(drv_[@"EDGEID"]);
+				GetEdgePrices(edgeid_, ref edgef_price_);
+				edgef_mat_tip.Show(edgef_price_, sender as Label, 30000);
+			} else {
+				edgef_price_ = string.Empty;
+			}
+		}
 
-			//if (edgef.SelectedItem != null) {
-			//	DataRowView drv_ = edgef.SelectedItem as DataRowView;
-			//	int matid_ = Convert.ToInt32(drv_[@"EDGEID"]);
-			//	string msg_ = string.Empty;
-			//	ENGINEERINGDataSet.CUT_MATERIALSDataTable dt_ =
-			//		new ENGINEERINGDataSet.CUT_MATERIALSDataTable();
-			//	foreach (var item in dt_.GetMaterialPricing(matid_)) {
-			//		msg_ += string.Format(@"{0}{1}", item, System.Environment.NewLine);
-			//	}
-			//	edgef_mat_tip.Show(msg_, label7, 30000);
-			//}
+		private void label8_MouseHover(object sender, EventArgs e) {
+			if (Properties.Settings.Default.ExtraInfo && edgeb.SelectedItem != null) {
+				DataRowView drv_ = edgeb.SelectedItem as DataRowView;
+				int edgeid_ = Convert.ToInt32(drv_[@"EDGEID"]);
+				GetEdgePrices(edgeid_, ref edgeb_price_);
+				edgeb_mat_tip.Show(edgeb_price_, sender as Label, 30000);
+			} else {
+				edgeb_price_ = string.Empty;
+			}
+		}
+
+		private void label9_MouseHover(object sender, EventArgs e) {
+			if (Properties.Settings.Default.ExtraInfo && edgel.SelectedItem != null) {
+				DataRowView drv_ = edgel.SelectedItem as DataRowView;
+				int edgeid_ = Convert.ToInt32(drv_[@"EDGEID"]);
+				GetEdgePrices(edgeid_, ref edgel_price_);
+				edgel_mat_tip.Show(edgel_price_, sender as Label, 30000);
+			} else {
+				edgel_price_ = string.Empty;
+			}
+		}
+
+		private void label10_MouseHover(object sender, EventArgs e) {
+			if (Properties.Settings.Default.ExtraInfo && edger.SelectedItem != null) {
+				DataRowView drv_ = edger.SelectedItem as DataRowView;
+				int edgeid_ = Convert.ToInt32(drv_[@"EDGEID"]);
+				GetEdgePrices(edgeid_, ref edger_price_);
+				edger_mat_tip.Show(edger_price_, sender as Label, 30000);
+			} else {
+				edger_price_ = string.Empty;
+			}
 		}
 	}
 }

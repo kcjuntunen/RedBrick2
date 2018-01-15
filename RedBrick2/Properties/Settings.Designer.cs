@@ -845,5 +845,39 @@ namespace RedBrick2.Properties {
                 this["ReadOnlyWarn"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ExtraInfo {
+            get {
+                return ((bool)(this["ExtraInfo"]));
+            }
+            set {
+                this["ExtraInfo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("•")]
+        public string Bullet {
+            get {
+                return ((string)(this["Bullet"]));
+            }
+            set {
+                this["Bullet"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=AMSTORE-SQL-05;Initial Catalog=QUIKTRAC;Integrated Security=True")]
+        public string QUIKTRACConnectionString {
+            get {
+                return ((string)(this["QUIKTRACConnectionString"]));
+            }
+        }
     }
 }

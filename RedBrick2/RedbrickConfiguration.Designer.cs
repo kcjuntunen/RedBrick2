@@ -37,7 +37,7 @@ namespace RedBrick2 {
 			this.eNGINEERINGDataSet = new RedBrick2.ENGINEERINGDataSet();
 			this.chbOnlyActive = new System.Windows.Forms.CheckBox();
 			this.chbOnlyActiveCustomers = new System.Windows.Forms.CheckBox();
-			this.checkBox2 = new System.Windows.Forms.CheckBox();
+			this.extra_info_chb = new System.Windows.Forms.CheckBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.cbDept = new System.Windows.Forms.ComboBox();
 			this.gENDEPTSBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -135,7 +135,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel1.Controls.Add(this.cbDefaultMaterial, 0, 5);
 			this.tableLayoutPanel1.Controls.Add(this.chbOnlyActive, 0, 6);
 			this.tableLayoutPanel1.Controls.Add(this.chbOnlyActiveCustomers, 0, 7);
-			this.tableLayoutPanel1.Controls.Add(this.checkBox2, 0, 8);
+			this.tableLayoutPanel1.Controls.Add(this.extra_info_chb, 0, 8);
 			this.tableLayoutPanel1.Controls.Add(this.label1, 0, 10);
 			this.tableLayoutPanel1.Controls.Add(this.cbDept, 0, 11);
 			this.tableLayoutPanel1.Controls.Add(this.chbSounds, 0, 9);
@@ -267,19 +267,16 @@ namespace RedBrick2 {
 			this.chbOnlyActiveCustomers.UseVisualStyleBackColor = true;
 			this.chbOnlyActiveCustomers.CheckedChanged += new System.EventHandler(this.chbOnlyActiveCustomers_CheckedChanged);
 			// 
-			// checkBox2
+			// extra_info_chb
 			// 
-			this.checkBox2.AutoSize = true;
-			this.checkBox2.Checked = true;
-			this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox2.Location = new System.Drawing.Point(3, 175);
-			this.checkBox2.Name = "checkBox2";
-			this.checkBox2.Size = new System.Drawing.Size(132, 17);
-			this.checkBox2.TabIndex = 21;
-			this.checkBox2.Text = "Hide L x W x H Fields";
-			this.checkBox2.UseVisualStyleBackColor = true;
-			this.checkBox2.Visible = false;
-			this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+			this.extra_info_chb.AutoSize = true;
+			this.extra_info_chb.Location = new System.Drawing.Point(3, 175);
+			this.extra_info_chb.Name = "extra_info_chb";
+			this.extra_info_chb.Size = new System.Drawing.Size(176, 17);
+			this.extra_info_chb.TabIndex = 21;
+			this.extra_info_chb.Text = "Show extra mouse hover info";
+			this.extra_info_chb.UseVisualStyleBackColor = true;
+			this.extra_info_chb.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
 			// 
 			// label1
 			// 
@@ -1067,7 +1064,7 @@ namespace RedBrick2 {
     private System.Windows.Forms.CheckBox chbSounds;
     private System.Windows.Forms.CheckBox chbOnlyActive;
     private System.Windows.Forms.CheckBox chbOnlyActiveCustomers;
-    private System.Windows.Forms.CheckBox checkBox2;
+    private System.Windows.Forms.CheckBox extra_info_chb;
     private System.Windows.Forms.GroupBox groupBox1;
     private System.Windows.Forms.TabControl tabControl1;
     private System.Windows.Forms.TabPage tabPage1;

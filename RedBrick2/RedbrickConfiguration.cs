@@ -214,7 +214,7 @@ namespace RedBrick2 {
 			new ToolTip().SetToolTip(chbOnlyActiveCustomers, @"Only show currently active customers.");
 			chbRememberCustomer.Checked = Properties.Settings.Default.RememberLastCustomer;
 			checkBox1.Checked = Properties.Settings.Default.WarnExcludeAssy;
-			checkBox2.Checked = true;
+			extra_info_chb.Checked = Properties.Settings.Default.ExtraInfo;
 			textBox1.Text = Properties.Settings.Default.BOMFilter[0].ToString();
 			textBox2.Text = Properties.Settings.Default.GaugePath;
 			new ToolTip().SetToolTip(textBox2, @"XML data file with gauge size information. Double-click to change.");
@@ -447,7 +447,7 @@ namespace RedBrick2 {
 		/// <param name="sender">Who triggered this event?</param>
 		/// <param name="e">Any data come with it?</param>
 		private void checkBox2_CheckedChanged(object sender, EventArgs e) {
-			//Properties.Settings.Default.CHIHideLWH = checkBox2.Checked;
+			Properties.Settings.Default.ExtraInfo = extra_info_chb.Checked;
 		}
 
 		/// <summary>

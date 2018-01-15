@@ -4,6 +4,23 @@ using System.Data.SqlClient;
 
 namespace RedBrick2 {
 	public partial class ENGINEERINGDataSet {
+		partial class CLIENT_STUFFDataTable {
+			public List<string> GetLocations(string _item) {
+				List<string> l_ = new List<string>();
+				double sum_ = 0.0F;
+				ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter cs_ =
+					new ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter();
+				ENGINEERINGDataSet.CLIENT_STUFFDataTable dt_ = cs_.GetData(_item);
+				for (int i = 0; i < dt_.Count; i++) {
+					ENGINEERINGDataSet.CLIENT_STUFFRow r_ = dt_[i];
+					l_.Add(string.Format("{0,-10}  {1,-9:0.0} {2,-3}", r_.LOC, r_.QTY, r_.UofM));
+					sum_ += Convert.ToDouble(r_.QTY);
+				}
+				l_.Add(string.Format("{0,-10}  {1,-9:0.0} {2,-3}", " ", sum_, " "));
+				return l_;
+			}
+		}
+
 		partial class CUT_PART_OPSDataTable {
 			/// <summary>
 			/// Update new OP tables.
@@ -665,6 +682,42 @@ namespace RedBrick2 {
 		}
 
 		partial class CUT_MATERIALSDataTable {
+			public List<string> GetEdgePricing(int edgeid) {
+				List<string> l_ = new List<string>();
+				ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter ceta_ =
+					new ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter();
+				ENGINEERINGDataSetTableAdapters.inmast1TableAdapter ita_ =
+					new ENGINEERINGDataSetTableAdapters.inmast1TableAdapter();
+				ENGINEERINGDataSet.CUT_EDGESDataTable dt_ = ceta_.GetDataByEdgeID(edgeid);
+				for (int i = 0; i < dt_.Rows.Count; i++) {
+					if (dt_[i].MATID > 0) {
+						l_.AddRange(GetMaterialPricing(dt_[i].MATID));
+					} else {
+						string sql_ = @"SELECT fpartno, fdescript, flastcost, fonhand, fonorder, fmeasure FROM inmast WHERE " +
+							string.Format(@"fpartno = '{0}'", dt_[i].PARTNUM);
+						using (SqlCommand comm_ = new SqlCommand(sql_, ita_.Connection)) {
+							if (ita_.Connection.State == System.Data.ConnectionState.Closed) {
+								ita_.Connection.Open();
+							}
+							try {
+								using (SqlDataReader dr_ = comm_.ExecuteReader()) {
+									while (dr_.Read()) {
+										l_.Add(
+											string.Format("{0}: '{1}' last purchsed for {2:C}/{5}.\n\t{3:0.0} {5} on hand, {4:0.0} {5} on order.",
+											dr_.GetString(0).Trim(), dr_.GetString(1).Trim(),
+											dr_.GetDecimal(2), dr_.GetDecimal(3), dr_.GetDecimal(4),
+											dr_.GetString(5).Trim()));
+									}
+								}
+							} finally {
+								ita_.Connection.Close();
+							}
+						}
+					}
+				}
+				return l_;
+			}
+
 			public List<string> GetMaterialPricing(int matid) {
 				List<string> l_ = new List<string>();
 				bool fail_ = false;
@@ -694,8 +747,8 @@ namespace RedBrick2 {
 							using (SqlDataReader dr_ = comm_.ExecuteReader()) {
 								while (dr_.Read()) {
 									l_.Add(
-										string.Format(@"{0}: {1} last purchsed for {2:C}. {3:0.0} {5} on hand, {4:0.0} {5} on order.",
-										dr_.GetString(0).Trim(), dr_.GetString(1).Trim(), 
+										string.Format("{0}: '{1}' last purchsed for {2:C}/{5}.\n\t {3:0.0} {5} on hand, {4:0.0} {5} on order.",
+										dr_.GetString(0).Trim(), dr_.GetString(1).Trim(),
 										dr_.GetDecimal(2), dr_.GetDecimal(3), dr_.GetDecimal(4),
 										dr_.GetString(5).Trim()));
 								}

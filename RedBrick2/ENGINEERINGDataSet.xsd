@@ -2,10 +2,11 @@
 <xs:schema id="ENGINEERINGDataSet" targetNamespace="http://tempuri.org/ENGINEERINGDataSet.xsd" xmlns:mstns="http://tempuri.org/ENGINEERINGDataSet.xsd" xmlns="http://tempuri.org/ENGINEERINGDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="2" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ENGINEERINGConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ENGINEERINGConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.RedBrick2.Properties.Settings.GlobalReference.Default.ENGINEERINGConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="M2MDATA01ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="M2MDATA01ConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.RedBrick2.Properties.Settings.GlobalReference.Default.M2MDATA01ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="QUIKTRACConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="QUIKTRACConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.RedBrick2.Properties.Settings.GlobalReference.Default.QUIKTRACConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CUT_OPSTableAdapter" GeneratorDataComponentClassName="CUT_OPSTableAdapter" Name="CUT_OPS" UserDataComponentName="CUT_OPSTableAdapter">
@@ -3692,6 +3693,298 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CLIENT_STUFFTableAdapter" GeneratorDataComponentClassName="CLIENT_STUFFTableAdapter" Name="CLIENT_STUFF" UserDataComponentName="CLIENT_STUFFTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="QUIKTRACConnectionString (Settings)" DbObjectName="QUIKTRAC.dbo.CLIENT_STUFF" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [CLIENT_STUFF] WHERE (([SERIAL] = @Original_SERIAL) AND ((@IsNull_CLIENT_NUM = 1 AND [CLIENT_NUM] IS NULL) OR ([CLIENT_NUM] = @Original_CLIENT_NUM)) AND ((@IsNull_EMP_NUM = 1 AND [EMP_NUM] IS NULL) OR ([EMP_NUM] = @Original_EMP_NUM)) AND ((@IsNull_ITEM = 1 AND [ITEM] IS NULL) OR ([ITEM] = @Original_ITEM)) AND ((@IsNull_ITEM_DESC = 1 AND [ITEM_DESC] IS NULL) OR ([ITEM_DESC] = @Original_ITEM_DESC)) AND ((@IsNull_DATETIME = 1 AND [DATETIME] IS NULL) OR ([DATETIME] = @Original_DATETIME)) AND ((@IsNull_QTY = 1 AND [QTY] IS NULL) OR ([QTY] = @Original_QTY)) AND ((@IsNull_LOC = 1 AND [LOC] IS NULL) OR ([LOC] = @Original_LOC)) AND ((@IsNull_WH = 1 AND [WH] IS NULL) OR ([WH] = @Original_WH)) AND ((@IsNull_PO = 1 AND [PO] IS NULL) OR ([PO] = @Original_PO)) AND ((@IsNull_LOT = 1 AND [LOT] IS NULL) OR ([LOT] = @Original_LOT)) AND ((@IsNull_BOL = 1 AND [BOL] IS NULL) OR ([BOL] = @Original_BOL)) AND ((@IsNull_WEIGHT = 1 AND [WEIGHT] IS NULL) OR ([WEIGHT] = @Original_WEIGHT)) AND ((@IsNull_PKG_SLIP = 1 AND [PKG_SLIP] IS NULL) OR ([PKG_SLIP] = @Original_PKG_SLIP)) AND ((@IsNull_METHOD = 1 AND [METHOD] IS NULL) OR ([METHOD] = @Original_METHOD)) AND ((@IsNull_MULTI_REL = 1 AND [MULTI_REL] IS NULL) OR ([MULTI_REL] = @Original_MULTI_REL)) AND ((@IsNull_COMMENTS = 1 AND [COMMENTS] IS NULL) OR ([COMMENTS] = @Original_COMMENTS)) AND ((@IsNull_FIFO = 1 AND [FIFO] IS NULL) OR ([FIFO] = @Original_FIFO)) AND ((@IsNull_UofM = 1 AND [UofM] IS NULL) OR ([UofM] = @Original_UofM)) AND ((@IsNull_HOLD = 1 AND [HOLD] IS NULL) OR ([HOLD] = @Original_HOLD)) AND ((@IsNull_QtyPerPallet = 1 AND [QtyPerPallet] IS NULL) OR ([QtyPerPallet] = @Original_QtyPerPallet)) AND ((@IsNull_SERIALDATE = 1 AND [SERIALDATE] IS NULL) OR ([SERIALDATE] = @Original_SERIALDATE)) AND ((@IsNull_PALLETS = 1 AND [PALLETS] IS NULL) OR ([PALLETS] = @Original_PALLETS)) AND ((@IsNull_LABOR = 1 AND [LABOR] IS NULL) OR ([LABOR] = @Original_LABOR)) AND ((@IsNull_NC = 1 AND [NC] IS NULL) OR ([NC] = @Original_NC)) AND ((@IsNull_STACK_RATE = 1 AND [STACK_RATE] IS NULL) OR ([STACK_RATE] = @Original_STACK_RATE)) AND ((@IsNull_PART_REV = 1 AND [PART_REV] IS NULL) OR ([PART_REV] = @Original_PART_REV)) AND ((@IsNull_BIN = 1 AND [BIN] IS NULL) OR ([BIN] = @Original_BIN)) AND ((@IsNull_REV = 1 AND [REV] IS NULL) OR ([REV] = @Original_REV)) AND ((@IsNull_CATEGORY = 1 AND [CATEGORY] IS NULL) OR ([CATEGORY] = @Original_CATEGORY)) AND ((@IsNull_INSPECT = 1 AND [INSPECT] IS NULL) OR ([INSPECT] = @Original_INSPECT)) AND ((@IsNull_PHANTOM = 1 AND [PHANTOM] IS NULL) OR ([PHANTOM] = @Original_PHANTOM)) AND ((@IsNull_JOBNO = 1 AND [JOBNO] IS NULL) OR ([JOBNO] = @Original_JOBNO)) AND ((@IsNull_FINISHED_GOOD = 1 AND [FINISHED_GOOD] IS NULL) OR ([FINISHED_GOOD] = @Original_FINISHED_GOOD)) AND ((@IsNull_PART_IDENT = 1 AND [PART_IDENT] IS NULL) OR ([PART_IDENT] = @Original_PART_IDENT)) AND ((@IsNull_LOCIDENT1 = 1 AND [LOCIDENT1] IS NULL) OR ([LOCIDENT1] = @Original_LOCIDENT1)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_SERIAL" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="SERIAL" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CLIENT_NUM" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CLIENT_NUM" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_CLIENT_NUM" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CLIENT_NUM" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_EMP_NUM" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="EMP_NUM" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_EMP_NUM" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="EMP_NUM" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ITEM" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ITEM" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_ITEM" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ITEM" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ITEM_DESC" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ITEM_DESC" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_ITEM_DESC" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ITEM_DESC" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_DATETIME" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="DATETIME" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_DATETIME" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="DATETIME" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_QTY" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="QTY" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_QTY" Precision="18" ProviderType="Decimal" Scale="3" Size="0" SourceColumn="QTY" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_LOC" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="LOC" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_LOC" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="LOC" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_WH" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="WH" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_WH" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="WH" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PO" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PO" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_PO" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PO" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_LOT" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="LOT" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_LOT" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="LOT" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_BOL" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="BOL" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_BOL" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="BOL" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_WEIGHT" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="WEIGHT" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_WEIGHT" Precision="18" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="WEIGHT" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PKG_SLIP" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PKG_SLIP" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_PKG_SLIP" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PKG_SLIP" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_METHOD" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="METHOD" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_METHOD" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="METHOD" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_MULTI_REL" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MULTI_REL" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_MULTI_REL" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MULTI_REL" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_COMMENTS" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="COMMENTS" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_COMMENTS" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="COMMENTS" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_FIFO" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FIFO" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_FIFO" Precision="0" ProviderType="SmallDateTime" Scale="0" Size="0" SourceColumn="FIFO" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_UofM" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="UofM" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_UofM" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="UofM" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_HOLD" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="HOLD" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_HOLD" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="HOLD" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_QtyPerPallet" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="QtyPerPallet" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_QtyPerPallet" Precision="18" ProviderType="Decimal" Scale="0" Size="0" SourceColumn="QtyPerPallet" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_SERIALDATE" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="SERIALDATE" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_SERIALDATE" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="SERIALDATE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PALLETS" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PALLETS" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_PALLETS" Precision="18" ProviderType="Decimal" Scale="0" Size="0" SourceColumn="PALLETS" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_LABOR" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="LABOR" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_LABOR" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="LABOR" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_NC" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="NC" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_NC" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="NC" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_STACK_RATE" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="STACK_RATE" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_STACK_RATE" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="STACK_RATE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PART_REV" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PART_REV" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_PART_REV" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PART_REV" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_BIN" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="BIN" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_BIN" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="BIN" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_REV" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="REV" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_REV" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="REV" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CATEGORY" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CATEGORY" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_CATEGORY" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CATEGORY" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_INSPECT" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="INSPECT" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_INSPECT" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="INSPECT" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PHANTOM" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PHANTOM" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_PHANTOM" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PHANTOM" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_JOBNO" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="JOBNO" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_JOBNO" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="JOBNO" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_FINISHED_GOOD" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FINISHED_GOOD" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_FINISHED_GOOD" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FINISHED_GOOD" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PART_IDENT" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PART_IDENT" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_PART_IDENT" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="PART_IDENT" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_LOCIDENT1" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="LOCIDENT1" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_LOCIDENT1" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="LOCIDENT1" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [CLIENT_STUFF] ([SERIAL], [CLIENT_NUM], [EMP_NUM], [ITEM], [ITEM_DESC], [DATETIME], [QTY], [LOC], [WH], [PO], [LOT], [BOL], [WEIGHT], [PKG_SLIP], [METHOD], [MULTI_REL], [COMMENTS], [FIFO], [UofM], [HOLD], [QtyPerPallet], [SERIALDATE], [PALLETS], [LABOR], [NC], [STACK_RATE], [PART_REV], [BIN], [REV], [CATEGORY], [INSPECT], [PHANTOM], [JOBNO], [FINISHED_GOOD], [PART_IDENT], [LOCIDENT1]) VALUES (@SERIAL, @CLIENT_NUM, @EMP_NUM, @ITEM, @ITEM_DESC, @DATETIME, @QTY, @LOC, @WH, @PO, @LOT, @BOL, @WEIGHT, @PKG_SLIP, @METHOD, @MULTI_REL, @COMMENTS, @FIFO, @UofM, @HOLD, @QtyPerPallet, @SERIALDATE, @PALLETS, @LABOR, @NC, @STACK_RATE, @PART_REV, @BIN, @REV, @CATEGORY, @INSPECT, @PHANTOM, @JOBNO, @FINISHED_GOOD, @PART_IDENT, @LOCIDENT1);
+SELECT SERIAL, CLIENT_NUM, EMP_NUM, ITEM, ITEM_DESC, DATETIME, QTY, LOC, WH, PO, LOT, BOL, WEIGHT, PKG_SLIP, METHOD, MULTI_REL, COMMENTS, FIFO, UofM, HOLD, QtyPerPallet, SERIALDATE, PALLETS, LABOR, NC, STACK_RATE, PART_REV, BIN, REV, CATEGORY, INSPECT, PHANTOM, JOBNO, FINISHED_GOOD, PART_IDENT, LOCIDENT1 FROM CLIENT_STUFF WHERE (SERIAL = @SERIAL)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@SERIAL" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="SERIAL" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@CLIENT_NUM" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CLIENT_NUM" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@EMP_NUM" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="EMP_NUM" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@ITEM" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ITEM" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@ITEM_DESC" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ITEM_DESC" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@DATETIME" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="DATETIME" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@QTY" Precision="18" ProviderType="Decimal" Scale="3" Size="0" SourceColumn="QTY" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@LOC" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="LOC" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@WH" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="WH" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@PO" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@LOT" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="LOT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@BOL" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="BOL" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@WEIGHT" Precision="18" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="WEIGHT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@PKG_SLIP" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PKG_SLIP" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@METHOD" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="METHOD" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MULTI_REL" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MULTI_REL" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@COMMENTS" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="COMMENTS" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@FIFO" Precision="0" ProviderType="SmallDateTime" Scale="0" Size="0" SourceColumn="FIFO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@UofM" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="UofM" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@HOLD" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="HOLD" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@QtyPerPallet" Precision="18" ProviderType="Decimal" Scale="0" Size="0" SourceColumn="QtyPerPallet" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@SERIALDATE" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="SERIALDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@PALLETS" Precision="18" ProviderType="Decimal" Scale="0" Size="0" SourceColumn="PALLETS" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@LABOR" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="LABOR" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@NC" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="NC" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@STACK_RATE" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="STACK_RATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@PART_REV" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PART_REV" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@BIN" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="BIN" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@REV" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="REV" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@CATEGORY" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CATEGORY" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@INSPECT" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="INSPECT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@PHANTOM" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PHANTOM" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@JOBNO" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="JOBNO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@FINISHED_GOOD" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FINISHED_GOOD" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@PART_IDENT" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="PART_IDENT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@LOCIDENT1" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="LOCIDENT1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT      CLIENT_STUFF.*
+FROM          CLIENT_STUFF
+WHERE      (ITEM = @itemnum)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="itemnum" ColumnName="ITEM" DataSourceName="QUIKTRAC.dbo.CLIENT_STUFF" DataTypeServer="nvarchar(30)" DbType="String" Direction="Input" ParameterName="@itemnum" Precision="0" ProviderType="NVarChar" Scale="0" Size="30" SourceColumn="ITEM" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [CLIENT_STUFF] SET [SERIAL] = @SERIAL, [CLIENT_NUM] = @CLIENT_NUM, [EMP_NUM] = @EMP_NUM, [ITEM] = @ITEM, [ITEM_DESC] = @ITEM_DESC, [DATETIME] = @DATETIME, [QTY] = @QTY, [LOC] = @LOC, [WH] = @WH, [PO] = @PO, [LOT] = @LOT, [BOL] = @BOL, [WEIGHT] = @WEIGHT, [PKG_SLIP] = @PKG_SLIP, [METHOD] = @METHOD, [MULTI_REL] = @MULTI_REL, [COMMENTS] = @COMMENTS, [FIFO] = @FIFO, [UofM] = @UofM, [HOLD] = @HOLD, [QtyPerPallet] = @QtyPerPallet, [SERIALDATE] = @SERIALDATE, [PALLETS] = @PALLETS, [LABOR] = @LABOR, [NC] = @NC, [STACK_RATE] = @STACK_RATE, [PART_REV] = @PART_REV, [BIN] = @BIN, [REV] = @REV, [CATEGORY] = @CATEGORY, [INSPECT] = @INSPECT, [PHANTOM] = @PHANTOM, [JOBNO] = @JOBNO, [FINISHED_GOOD] = @FINISHED_GOOD, [PART_IDENT] = @PART_IDENT, [LOCIDENT1] = @LOCIDENT1 WHERE (([SERIAL] = @Original_SERIAL) AND ((@IsNull_CLIENT_NUM = 1 AND [CLIENT_NUM] IS NULL) OR ([CLIENT_NUM] = @Original_CLIENT_NUM)) AND ((@IsNull_EMP_NUM = 1 AND [EMP_NUM] IS NULL) OR ([EMP_NUM] = @Original_EMP_NUM)) AND ((@IsNull_ITEM = 1 AND [ITEM] IS NULL) OR ([ITEM] = @Original_ITEM)) AND ((@IsNull_ITEM_DESC = 1 AND [ITEM_DESC] IS NULL) OR ([ITEM_DESC] = @Original_ITEM_DESC)) AND ((@IsNull_DATETIME = 1 AND [DATETIME] IS NULL) OR ([DATETIME] = @Original_DATETIME)) AND ((@IsNull_QTY = 1 AND [QTY] IS NULL) OR ([QTY] = @Original_QTY)) AND ((@IsNull_LOC = 1 AND [LOC] IS NULL) OR ([LOC] = @Original_LOC)) AND ((@IsNull_WH = 1 AND [WH] IS NULL) OR ([WH] = @Original_WH)) AND ((@IsNull_PO = 1 AND [PO] IS NULL) OR ([PO] = @Original_PO)) AND ((@IsNull_LOT = 1 AND [LOT] IS NULL) OR ([LOT] = @Original_LOT)) AND ((@IsNull_BOL = 1 AND [BOL] IS NULL) OR ([BOL] = @Original_BOL)) AND ((@IsNull_WEIGHT = 1 AND [WEIGHT] IS NULL) OR ([WEIGHT] = @Original_WEIGHT)) AND ((@IsNull_PKG_SLIP = 1 AND [PKG_SLIP] IS NULL) OR ([PKG_SLIP] = @Original_PKG_SLIP)) AND ((@IsNull_METHOD = 1 AND [METHOD] IS NULL) OR ([METHOD] = @Original_METHOD)) AND ((@IsNull_MULTI_REL = 1 AND [MULTI_REL] IS NULL) OR ([MULTI_REL] = @Original_MULTI_REL)) AND ((@IsNull_COMMENTS = 1 AND [COMMENTS] IS NULL) OR ([COMMENTS] = @Original_COMMENTS)) AND ((@IsNull_FIFO = 1 AND [FIFO] IS NULL) OR ([FIFO] = @Original_FIFO)) AND ((@IsNull_UofM = 1 AND [UofM] IS NULL) OR ([UofM] = @Original_UofM)) AND ((@IsNull_HOLD = 1 AND [HOLD] IS NULL) OR ([HOLD] = @Original_HOLD)) AND ((@IsNull_QtyPerPallet = 1 AND [QtyPerPallet] IS NULL) OR ([QtyPerPallet] = @Original_QtyPerPallet)) AND ((@IsNull_SERIALDATE = 1 AND [SERIALDATE] IS NULL) OR ([SERIALDATE] = @Original_SERIALDATE)) AND ((@IsNull_PALLETS = 1 AND [PALLETS] IS NULL) OR ([PALLETS] = @Original_PALLETS)) AND ((@IsNull_LABOR = 1 AND [LABOR] IS NULL) OR ([LABOR] = @Original_LABOR)) AND ((@IsNull_NC = 1 AND [NC] IS NULL) OR ([NC] = @Original_NC)) AND ((@IsNull_STACK_RATE = 1 AND [STACK_RATE] IS NULL) OR ([STACK_RATE] = @Original_STACK_RATE)) AND ((@IsNull_PART_REV = 1 AND [PART_REV] IS NULL) OR ([PART_REV] = @Original_PART_REV)) AND ((@IsNull_BIN = 1 AND [BIN] IS NULL) OR ([BIN] = @Original_BIN)) AND ((@IsNull_REV = 1 AND [REV] IS NULL) OR ([REV] = @Original_REV)) AND ((@IsNull_CATEGORY = 1 AND [CATEGORY] IS NULL) OR ([CATEGORY] = @Original_CATEGORY)) AND ((@IsNull_INSPECT = 1 AND [INSPECT] IS NULL) OR ([INSPECT] = @Original_INSPECT)) AND ((@IsNull_PHANTOM = 1 AND [PHANTOM] IS NULL) OR ([PHANTOM] = @Original_PHANTOM)) AND ((@IsNull_JOBNO = 1 AND [JOBNO] IS NULL) OR ([JOBNO] = @Original_JOBNO)) AND ((@IsNull_FINISHED_GOOD = 1 AND [FINISHED_GOOD] IS NULL) OR ([FINISHED_GOOD] = @Original_FINISHED_GOOD)) AND ((@IsNull_PART_IDENT = 1 AND [PART_IDENT] IS NULL) OR ([PART_IDENT] = @Original_PART_IDENT)) AND ((@IsNull_LOCIDENT1 = 1 AND [LOCIDENT1] IS NULL) OR ([LOCIDENT1] = @Original_LOCIDENT1)));
+SELECT SERIAL, CLIENT_NUM, EMP_NUM, ITEM, ITEM_DESC, DATETIME, QTY, LOC, WH, PO, LOT, BOL, WEIGHT, PKG_SLIP, METHOD, MULTI_REL, COMMENTS, FIFO, UofM, HOLD, QtyPerPallet, SERIALDATE, PALLETS, LABOR, NC, STACK_RATE, PART_REV, BIN, REV, CATEGORY, INSPECT, PHANTOM, JOBNO, FINISHED_GOOD, PART_IDENT, LOCIDENT1 FROM CLIENT_STUFF WHERE (SERIAL = @SERIAL)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@SERIAL" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="SERIAL" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@CLIENT_NUM" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CLIENT_NUM" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@EMP_NUM" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="EMP_NUM" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@ITEM" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ITEM" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@ITEM_DESC" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ITEM_DESC" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@DATETIME" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="DATETIME" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@QTY" Precision="18" ProviderType="Decimal" Scale="3" Size="0" SourceColumn="QTY" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@LOC" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="LOC" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@WH" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="WH" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@PO" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@LOT" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="LOT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@BOL" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="BOL" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@WEIGHT" Precision="18" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="WEIGHT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@PKG_SLIP" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PKG_SLIP" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@METHOD" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="METHOD" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MULTI_REL" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MULTI_REL" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@COMMENTS" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="COMMENTS" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@FIFO" Precision="0" ProviderType="SmallDateTime" Scale="0" Size="0" SourceColumn="FIFO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@UofM" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="UofM" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@HOLD" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="HOLD" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@QtyPerPallet" Precision="18" ProviderType="Decimal" Scale="0" Size="0" SourceColumn="QtyPerPallet" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@SERIALDATE" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="SERIALDATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@PALLETS" Precision="18" ProviderType="Decimal" Scale="0" Size="0" SourceColumn="PALLETS" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@LABOR" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="LABOR" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@NC" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="NC" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@STACK_RATE" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="STACK_RATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@PART_REV" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PART_REV" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@BIN" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="BIN" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@REV" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="REV" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@CATEGORY" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CATEGORY" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@INSPECT" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="INSPECT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@PHANTOM" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PHANTOM" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@JOBNO" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="JOBNO" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@FINISHED_GOOD" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FINISHED_GOOD" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@PART_IDENT" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="PART_IDENT" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@LOCIDENT1" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="LOCIDENT1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_SERIAL" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="SERIAL" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CLIENT_NUM" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CLIENT_NUM" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_CLIENT_NUM" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CLIENT_NUM" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_EMP_NUM" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="EMP_NUM" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_EMP_NUM" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="EMP_NUM" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ITEM" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ITEM" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_ITEM" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ITEM" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ITEM_DESC" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ITEM_DESC" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_ITEM_DESC" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="ITEM_DESC" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_DATETIME" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="DATETIME" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_DATETIME" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="DATETIME" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_QTY" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="QTY" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_QTY" Precision="18" ProviderType="Decimal" Scale="3" Size="0" SourceColumn="QTY" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_LOC" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="LOC" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_LOC" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="LOC" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_WH" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="WH" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_WH" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="WH" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PO" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PO" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_PO" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PO" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_LOT" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="LOT" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_LOT" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="LOT" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_BOL" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="BOL" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_BOL" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="BOL" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_WEIGHT" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="WEIGHT" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_WEIGHT" Precision="18" ProviderType="Decimal" Scale="2" Size="0" SourceColumn="WEIGHT" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PKG_SLIP" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PKG_SLIP" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_PKG_SLIP" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PKG_SLIP" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_METHOD" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="METHOD" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_METHOD" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="METHOD" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_MULTI_REL" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="MULTI_REL" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_MULTI_REL" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MULTI_REL" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_COMMENTS" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="COMMENTS" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_COMMENTS" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="COMMENTS" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_FIFO" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FIFO" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_FIFO" Precision="0" ProviderType="SmallDateTime" Scale="0" Size="0" SourceColumn="FIFO" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_UofM" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="UofM" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_UofM" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="UofM" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_HOLD" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="HOLD" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_HOLD" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="HOLD" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_QtyPerPallet" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="QtyPerPallet" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_QtyPerPallet" Precision="18" ProviderType="Decimal" Scale="0" Size="0" SourceColumn="QtyPerPallet" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_SERIALDATE" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="SERIALDATE" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_SERIALDATE" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="SERIALDATE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PALLETS" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PALLETS" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_PALLETS" Precision="18" ProviderType="Decimal" Scale="0" Size="0" SourceColumn="PALLETS" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_LABOR" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="LABOR" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_LABOR" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="LABOR" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_NC" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="NC" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_NC" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="NC" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_STACK_RATE" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="STACK_RATE" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_STACK_RATE" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="STACK_RATE" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PART_REV" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PART_REV" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_PART_REV" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PART_REV" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_BIN" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="BIN" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_BIN" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="BIN" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_REV" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="REV" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_REV" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="REV" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_CATEGORY" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="CATEGORY" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_CATEGORY" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="CATEGORY" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_INSPECT" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="INSPECT" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_INSPECT" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="INSPECT" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PHANTOM" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PHANTOM" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_PHANTOM" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PHANTOM" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_JOBNO" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="JOBNO" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_JOBNO" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="JOBNO" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_FINISHED_GOOD" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FINISHED_GOOD" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_FINISHED_GOOD" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="FINISHED_GOOD" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PART_IDENT" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PART_IDENT" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_PART_IDENT" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="PART_IDENT" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_LOCIDENT1" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="LOCIDENT1" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="StringFixedLength" Direction="Input" ParameterName="@Original_LOCIDENT1" Precision="0" ProviderType="NChar" Scale="0" Size="0" SourceColumn="LOCIDENT1" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="SERIAL" DataSetColumn="SERIAL" />
+              <Mapping SourceColumn="CLIENT_NUM" DataSetColumn="CLIENT_NUM" />
+              <Mapping SourceColumn="EMP_NUM" DataSetColumn="EMP_NUM" />
+              <Mapping SourceColumn="ITEM" DataSetColumn="ITEM" />
+              <Mapping SourceColumn="ITEM_DESC" DataSetColumn="ITEM_DESC" />
+              <Mapping SourceColumn="DATETIME" DataSetColumn="DATETIME" />
+              <Mapping SourceColumn="QTY" DataSetColumn="QTY" />
+              <Mapping SourceColumn="LOC" DataSetColumn="LOC" />
+              <Mapping SourceColumn="WH" DataSetColumn="WH" />
+              <Mapping SourceColumn="PO" DataSetColumn="PO" />
+              <Mapping SourceColumn="LOT" DataSetColumn="LOT" />
+              <Mapping SourceColumn="BOL" DataSetColumn="BOL" />
+              <Mapping SourceColumn="WEIGHT" DataSetColumn="WEIGHT" />
+              <Mapping SourceColumn="PKG_SLIP" DataSetColumn="PKG_SLIP" />
+              <Mapping SourceColumn="METHOD" DataSetColumn="METHOD" />
+              <Mapping SourceColumn="MULTI_REL" DataSetColumn="MULTI_REL" />
+              <Mapping SourceColumn="COMMENTS" DataSetColumn="COMMENTS" />
+              <Mapping SourceColumn="FIFO" DataSetColumn="FIFO" />
+              <Mapping SourceColumn="UofM" DataSetColumn="UofM" />
+              <Mapping SourceColumn="HOLD" DataSetColumn="HOLD" />
+              <Mapping SourceColumn="QtyPerPallet" DataSetColumn="QtyPerPallet" />
+              <Mapping SourceColumn="SERIALDATE" DataSetColumn="SERIALDATE" />
+              <Mapping SourceColumn="PALLETS" DataSetColumn="PALLETS" />
+              <Mapping SourceColumn="LABOR" DataSetColumn="LABOR" />
+              <Mapping SourceColumn="NC" DataSetColumn="NC" />
+              <Mapping SourceColumn="STACK_RATE" DataSetColumn="STACK_RATE" />
+              <Mapping SourceColumn="PART_REV" DataSetColumn="PART_REV" />
+              <Mapping SourceColumn="BIN" DataSetColumn="BIN" />
+              <Mapping SourceColumn="REV" DataSetColumn="REV" />
+              <Mapping SourceColumn="CATEGORY" DataSetColumn="CATEGORY" />
+              <Mapping SourceColumn="INSPECT" DataSetColumn="INSPECT" />
+              <Mapping SourceColumn="PHANTOM" DataSetColumn="PHANTOM" />
+              <Mapping SourceColumn="JOBNO" DataSetColumn="JOBNO" />
+              <Mapping SourceColumn="FINISHED_GOOD" DataSetColumn="FINISHED_GOOD" />
+              <Mapping SourceColumn="PART_IDENT" DataSetColumn="PART_IDENT" />
+              <Mapping SourceColumn="LOCIDENT1" DataSetColumn="LOCIDENT1" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -3700,7 +3993,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
   <xs:element name="ENGINEERINGDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="ENGINEERINGDataSet" msprop:Generator_UserDSName="ENGINEERINGDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="CUT_OPS" msprop:Generator_TableClassName="CUT_OPSDataTable" msprop:Generator_TableVarName="tableCUT_OPS" msprop:Generator_RowChangedName="CUT_OPSRowChanged" msprop:Generator_TablePropName="CUT_OPS" msprop:Generator_RowDeletingName="CUT_OPSRowDeleting" msprop:Generator_RowChangingName="CUT_OPSRowChanging" msprop:Generator_RowEvHandlerName="CUT_OPSRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_OPSRowDeleted" msprop:Generator_RowClassName="CUT_OPSRow" msprop:Generator_UserTableName="CUT_OPS" msprop:Generator_RowEvArgName="CUT_OPSRowChangeEvent">
+        <xs:element name="CUT_OPS" msprop:Generator_TableClassName="CUT_OPSDataTable" msprop:Generator_TableVarName="tableCUT_OPS" msprop:Generator_TablePropName="CUT_OPS" msprop:Generator_RowDeletingName="CUT_OPSRowDeleting" msprop:Generator_RowChangingName="CUT_OPSRowChanging" msprop:Generator_RowEvHandlerName="CUT_OPSRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_OPSRowDeleted" msprop:Generator_UserTableName="CUT_OPS" msprop:Generator_RowChangedName="CUT_OPSRowChanged" msprop:Generator_RowEvArgName="CUT_OPSRowChangeEvent" msprop:Generator_RowClassName="CUT_OPSRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="OPID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnOPID" msprop:Generator_ColumnPropNameInRow="OPID" msprop:Generator_ColumnPropNameInTable="OPIDColumn" msprop:Generator_UserColumnName="OPID" type="xs:int" />
@@ -3726,7 +4019,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CUT_OPS_METHODS" msprop:Generator_TableClassName="CUT_OPS_METHODSDataTable" msprop:Generator_TableVarName="tableCUT_OPS_METHODS" msprop:Generator_RowChangedName="CUT_OPS_METHODSRowChanged" msprop:Generator_TablePropName="CUT_OPS_METHODS" msprop:Generator_RowDeletingName="CUT_OPS_METHODSRowDeleting" msprop:Generator_RowChangingName="CUT_OPS_METHODSRowChanging" msprop:Generator_RowEvHandlerName="CUT_OPS_METHODSRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_OPS_METHODSRowDeleted" msprop:Generator_RowClassName="CUT_OPS_METHODSRow" msprop:Generator_UserTableName="CUT_OPS_METHODS" msprop:Generator_RowEvArgName="CUT_OPS_METHODSRowChangeEvent">
+        <xs:element name="CUT_OPS_METHODS" msprop:Generator_TableClassName="CUT_OPS_METHODSDataTable" msprop:Generator_TableVarName="tableCUT_OPS_METHODS" msprop:Generator_TablePropName="CUT_OPS_METHODS" msprop:Generator_RowDeletingName="CUT_OPS_METHODSRowDeleting" msprop:Generator_RowChangingName="CUT_OPS_METHODSRowChanging" msprop:Generator_RowEvHandlerName="CUT_OPS_METHODSRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_OPS_METHODSRowDeleted" msprop:Generator_UserTableName="CUT_OPS_METHODS" msprop:Generator_RowChangedName="CUT_OPS_METHODSRowChanged" msprop:Generator_RowEvArgName="CUT_OPS_METHODSRowChangeEvent" msprop:Generator_RowClassName="CUT_OPS_METHODSRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="METHID" msprop:Generator_ColumnVarNameInTable="columnMETHID" msprop:Generator_ColumnPropNameInRow="METHID" msprop:Generator_ColumnPropNameInTable="METHIDColumn" msprop:Generator_UserColumnName="METHID" type="xs:int" />
@@ -3740,7 +4033,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CUT_OPS_TYPES" msprop:Generator_TableClassName="CUT_OPS_TYPESDataTable" msprop:Generator_TableVarName="tableCUT_OPS_TYPES" msprop:Generator_RowChangedName="CUT_OPS_TYPESRowChanged" msprop:Generator_TablePropName="CUT_OPS_TYPES" msprop:Generator_RowDeletingName="CUT_OPS_TYPESRowDeleting" msprop:Generator_RowChangingName="CUT_OPS_TYPESRowChanging" msprop:Generator_RowEvHandlerName="CUT_OPS_TYPESRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_OPS_TYPESRowDeleted" msprop:Generator_RowClassName="CUT_OPS_TYPESRow" msprop:Generator_UserTableName="CUT_OPS_TYPES" msprop:Generator_RowEvArgName="CUT_OPS_TYPESRowChangeEvent">
+        <xs:element name="CUT_OPS_TYPES" msprop:Generator_TableClassName="CUT_OPS_TYPESDataTable" msprop:Generator_TableVarName="tableCUT_OPS_TYPES" msprop:Generator_TablePropName="CUT_OPS_TYPES" msprop:Generator_RowDeletingName="CUT_OPS_TYPESRowDeleting" msprop:Generator_RowChangingName="CUT_OPS_TYPESRowChanging" msprop:Generator_RowEvHandlerName="CUT_OPS_TYPESRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_OPS_TYPESRowDeleted" msprop:Generator_UserTableName="CUT_OPS_TYPES" msprop:Generator_RowChangedName="CUT_OPS_TYPESRowChanged" msprop:Generator_RowEvArgName="CUT_OPS_TYPESRowChangeEvent" msprop:Generator_RowClassName="CUT_OPS_TYPESRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="OTID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnOTID" msprop:Generator_ColumnPropNameInRow="OTID" msprop:Generator_ColumnPropNameInTable="OTIDColumn" msprop:Generator_UserColumnName="OTID" type="xs:int" />
@@ -3750,7 +4043,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CUT_PART_OPS" msprop:Generator_TableClassName="CUT_PART_OPSDataTable" msprop:Generator_TableVarName="tableCUT_PART_OPS" msprop:Generator_RowChangedName="CUT_PART_OPSRowChanged" msprop:Generator_TablePropName="CUT_PART_OPS" msprop:Generator_RowDeletingName="CUT_PART_OPSRowDeleting" msprop:Generator_RowChangingName="CUT_PART_OPSRowChanging" msprop:Generator_RowEvHandlerName="CUT_PART_OPSRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_PART_OPSRowDeleted" msprop:Generator_RowClassName="CUT_PART_OPSRow" msprop:Generator_UserTableName="CUT_PART_OPS" msprop:Generator_RowEvArgName="CUT_PART_OPSRowChangeEvent">
+        <xs:element name="CUT_PART_OPS" msprop:Generator_TableClassName="CUT_PART_OPSDataTable" msprop:Generator_TableVarName="tableCUT_PART_OPS" msprop:Generator_TablePropName="CUT_PART_OPS" msprop:Generator_RowDeletingName="CUT_PART_OPSRowDeleting" msprop:Generator_RowChangingName="CUT_PART_OPSRowChanging" msprop:Generator_RowEvHandlerName="CUT_PART_OPSRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_PART_OPSRowDeleted" msprop:Generator_UserTableName="CUT_PART_OPS" msprop:Generator_RowChangedName="CUT_PART_OPSRowChanged" msprop:Generator_RowEvArgName="CUT_PART_OPSRowChangeEvent" msprop:Generator_RowClassName="CUT_PART_OPSRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="POPID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnPOPID" msprop:Generator_ColumnPropNameInRow="POPID" msprop:Generator_ColumnPropNameInTable="POPIDColumn" msprop:Generator_UserColumnName="POPID" type="xs:int" />
@@ -3762,7 +4055,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CUT_PARTS" msprop:Generator_TableClassName="CUT_PARTSDataTable" msprop:Generator_TableVarName="tableCUT_PARTS" msprop:Generator_TablePropName="CUT_PARTS" msprop:Generator_RowDeletingName="CUT_PARTSRowDeleting" msprop:Generator_RowChangingName="CUT_PARTSRowChanging" msprop:Generator_RowEvHandlerName="CUT_PARTSRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_PARTSRowDeleted" msprop:Generator_UserTableName="CUT_PARTS" msprop:Generator_RowChangedName="CUT_PARTSRowChanged" msprop:Generator_RowEvArgName="CUT_PARTSRowChangeEvent" msprop:Generator_RowClassName="CUT_PARTSRow">
+        <xs:element name="CUT_PARTS" msprop:Generator_TableClassName="CUT_PARTSDataTable" msprop:Generator_TableVarName="tableCUT_PARTS" msprop:Generator_RowChangedName="CUT_PARTSRowChanged" msprop:Generator_TablePropName="CUT_PARTS" msprop:Generator_RowDeletingName="CUT_PARTSRowDeleting" msprop:Generator_RowChangingName="CUT_PARTSRowChanging" msprop:Generator_RowEvHandlerName="CUT_PARTSRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_PARTSRowDeleted" msprop:Generator_RowClassName="CUT_PARTSRow" msprop:Generator_UserTableName="CUT_PARTS" msprop:Generator_RowEvArgName="CUT_PARTSRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="PARTID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnPARTID" msprop:Generator_ColumnPropNameInRow="PARTID" msprop:Generator_ColumnPropNameInTable="PARTIDColumn" msprop:Generator_UserColumnName="PARTID" type="xs:int" />
@@ -3813,7 +4106,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CUT_CUTLIST_PARTS" msprop:Generator_TableClassName="CUT_CUTLIST_PARTSDataTable" msprop:Generator_TableVarName="tableCUT_CUTLIST_PARTS" msprop:Generator_TablePropName="CUT_CUTLIST_PARTS" msprop:Generator_RowDeletingName="CUT_CUTLIST_PARTSRowDeleting" msprop:Generator_RowChangingName="CUT_CUTLIST_PARTSRowChanging" msprop:Generator_RowEvHandlerName="CUT_CUTLIST_PARTSRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_CUTLIST_PARTSRowDeleted" msprop:Generator_UserTableName="CUT_CUTLIST_PARTS" msprop:Generator_RowChangedName="CUT_CUTLIST_PARTSRowChanged" msprop:Generator_RowEvArgName="CUT_CUTLIST_PARTSRowChangeEvent" msprop:Generator_RowClassName="CUT_CUTLIST_PARTSRow">
+        <xs:element name="CUT_CUTLIST_PARTS" msprop:Generator_TableClassName="CUT_CUTLIST_PARTSDataTable" msprop:Generator_TableVarName="tableCUT_CUTLIST_PARTS" msprop:Generator_RowChangedName="CUT_CUTLIST_PARTSRowChanged" msprop:Generator_TablePropName="CUT_CUTLIST_PARTS" msprop:Generator_RowDeletingName="CUT_CUTLIST_PARTSRowDeleting" msprop:Generator_RowChangingName="CUT_CUTLIST_PARTSRowChanging" msprop:Generator_RowEvHandlerName="CUT_CUTLIST_PARTSRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_CUTLIST_PARTSRowDeleted" msprop:Generator_RowClassName="CUT_CUTLIST_PARTSRow" msprop:Generator_UserTableName="CUT_CUTLIST_PARTS" msprop:Generator_RowEvArgName="CUT_CUTLIST_PARTSRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CLPARTID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnCLPARTID" msprop:Generator_ColumnPropNameInRow="CLPARTID" msprop:Generator_ColumnPropNameInTable="CLPARTIDColumn" msprop:Generator_UserColumnName="CLPARTID" type="xs:int" />
@@ -3828,7 +4121,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CUT_MATERIALS" msprop:Generator_TableClassName="CUT_MATERIALSDataTable" msprop:Generator_TableVarName="tableCUT_MATERIALS" msprop:Generator_RowChangedName="CUT_MATERIALSRowChanged" msprop:Generator_TablePropName="CUT_MATERIALS" msprop:Generator_RowDeletingName="CUT_MATERIALSRowDeleting" msprop:Generator_RowChangingName="CUT_MATERIALSRowChanging" msprop:Generator_RowEvHandlerName="CUT_MATERIALSRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_MATERIALSRowDeleted" msprop:Generator_RowClassName="CUT_MATERIALSRow" msprop:Generator_UserTableName="CUT_MATERIALS" msprop:Generator_RowEvArgName="CUT_MATERIALSRowChangeEvent">
+        <xs:element name="CUT_MATERIALS" msprop:Generator_TableClassName="CUT_MATERIALSDataTable" msprop:Generator_TableVarName="tableCUT_MATERIALS" msprop:Generator_TablePropName="CUT_MATERIALS" msprop:Generator_RowDeletingName="CUT_MATERIALSRowDeleting" msprop:Generator_RowChangingName="CUT_MATERIALSRowChanging" msprop:Generator_RowEvHandlerName="CUT_MATERIALSRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_MATERIALSRowDeleted" msprop:Generator_UserTableName="CUT_MATERIALS" msprop:Generator_RowChangedName="CUT_MATERIALSRowChanged" msprop:Generator_RowEvArgName="CUT_MATERIALSRowChangeEvent" msprop:Generator_RowClassName="CUT_MATERIALSRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="MATID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnMATID" msprop:Generator_ColumnPropNameInRow="MATID" msprop:Generator_ColumnPropNameInTable="MATIDColumn" msprop:Generator_UserColumnName="MATID" type="xs:int" />
@@ -3865,7 +4158,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CUT_EDGES" msprop:Generator_TableClassName="CUT_EDGESDataTable" msprop:Generator_TableVarName="tableCUT_EDGES" msprop:Generator_RowChangedName="CUT_EDGESRowChanged" msprop:Generator_TablePropName="CUT_EDGES" msprop:Generator_RowDeletingName="CUT_EDGESRowDeleting" msprop:Generator_RowChangingName="CUT_EDGESRowChanging" msprop:Generator_RowEvHandlerName="CUT_EDGESRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_EDGESRowDeleted" msprop:Generator_RowClassName="CUT_EDGESRow" msprop:Generator_UserTableName="CUT_EDGES" msprop:Generator_RowEvArgName="CUT_EDGESRowChangeEvent">
+        <xs:element name="CUT_EDGES" msprop:Generator_TableClassName="CUT_EDGESDataTable" msprop:Generator_TableVarName="tableCUT_EDGES" msprop:Generator_TablePropName="CUT_EDGES" msprop:Generator_RowDeletingName="CUT_EDGESRowDeleting" msprop:Generator_RowChangingName="CUT_EDGESRowChanging" msprop:Generator_RowEvHandlerName="CUT_EDGESRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_EDGESRowDeleted" msprop:Generator_UserTableName="CUT_EDGES" msprop:Generator_RowChangedName="CUT_EDGESRowChanged" msprop:Generator_RowEvArgName="CUT_EDGESRowChangeEvent" msprop:Generator_RowClassName="CUT_EDGESRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="EDGEID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnEDGEID" msprop:Generator_ColumnPropNameInRow="EDGEID" msprop:Generator_ColumnPropNameInTable="EDGEIDColumn" msprop:Generator_UserColumnName="EDGEID" type="xs:int" />
@@ -3896,7 +4189,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="GEN_ODOMETER" msprop:Generator_TableClassName="GEN_ODOMETERDataTable" msprop:Generator_TableVarName="tableGEN_ODOMETER" msprop:Generator_TablePropName="GEN_ODOMETER" msprop:Generator_RowDeletingName="GEN_ODOMETERRowDeleting" msprop:Generator_RowChangingName="GEN_ODOMETERRowChanging" msprop:Generator_RowEvHandlerName="GEN_ODOMETERRowChangeEventHandler" msprop:Generator_RowDeletedName="GEN_ODOMETERRowDeleted" msprop:Generator_UserTableName="GEN_ODOMETER" msprop:Generator_RowChangedName="GEN_ODOMETERRowChanged" msprop:Generator_RowEvArgName="GEN_ODOMETERRowChangeEvent" msprop:Generator_RowClassName="GEN_ODOMETERRow">
+        <xs:element name="GEN_ODOMETER" msprop:Generator_TableClassName="GEN_ODOMETERDataTable" msprop:Generator_TableVarName="tableGEN_ODOMETER" msprop:Generator_RowChangedName="GEN_ODOMETERRowChanged" msprop:Generator_TablePropName="GEN_ODOMETER" msprop:Generator_RowDeletingName="GEN_ODOMETERRowDeleting" msprop:Generator_RowChangingName="GEN_ODOMETERRowChanging" msprop:Generator_RowEvHandlerName="GEN_ODOMETERRowChangeEventHandler" msprop:Generator_RowDeletedName="GEN_ODOMETERRowDeleted" msprop:Generator_RowClassName="GEN_ODOMETERRow" msprop:Generator_UserTableName="GEN_ODOMETER" msprop:Generator_RowEvArgName="GEN_ODOMETERRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -3906,7 +4199,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="GEN_USERS" msprop:Generator_TableClassName="GEN_USERSDataTable" msprop:Generator_TableVarName="tableGEN_USERS" msprop:Generator_TablePropName="GEN_USERS" msprop:Generator_RowDeletingName="GEN_USERSRowDeleting" msprop:Generator_RowChangingName="GEN_USERSRowChanging" msprop:Generator_RowEvHandlerName="GEN_USERSRowChangeEventHandler" msprop:Generator_RowDeletedName="GEN_USERSRowDeleted" msprop:Generator_UserTableName="GEN_USERS" msprop:Generator_RowChangedName="GEN_USERSRowChanged" msprop:Generator_RowEvArgName="GEN_USERSRowChangeEvent" msprop:Generator_RowClassName="GEN_USERSRow">
+        <xs:element name="GEN_USERS" msprop:Generator_TableClassName="GEN_USERSDataTable" msprop:Generator_TableVarName="tableGEN_USERS" msprop:Generator_RowChangedName="GEN_USERSRowChanged" msprop:Generator_TablePropName="GEN_USERS" msprop:Generator_RowDeletingName="GEN_USERSRowDeleting" msprop:Generator_RowChangingName="GEN_USERSRowChanging" msprop:Generator_RowEvHandlerName="GEN_USERSRowChangeEventHandler" msprop:Generator_RowDeletedName="GEN_USERSRowDeleted" msprop:Generator_RowClassName="GEN_USERSRow" msprop:Generator_UserTableName="GEN_USERS" msprop:Generator_RowEvArgName="GEN_USERSRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="UID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnUID" msprop:Generator_ColumnPropNameInRow="UID" msprop:Generator_ColumnPropNameInTable="UIDColumn" msprop:Generator_UserColumnName="UID" type="xs:int" />
@@ -4011,7 +4304,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CUT_EDGES_XREF" msprop:Generator_TableClassName="CUT_EDGES_XREFDataTable" msprop:Generator_TableVarName="tableCUT_EDGES_XREF" msprop:Generator_TablePropName="CUT_EDGES_XREF" msprop:Generator_RowDeletingName="CUT_EDGES_XREFRowDeleting" msprop:Generator_RowChangingName="CUT_EDGES_XREFRowChanging" msprop:Generator_RowEvHandlerName="CUT_EDGES_XREFRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_EDGES_XREFRowDeleted" msprop:Generator_UserTableName="CUT_EDGES_XREF" msprop:Generator_RowChangedName="CUT_EDGES_XREFRowChanged" msprop:Generator_RowEvArgName="CUT_EDGES_XREFRowChangeEvent" msprop:Generator_RowClassName="CUT_EDGES_XREFRow">
+        <xs:element name="CUT_EDGES_XREF" msprop:Generator_TableClassName="CUT_EDGES_XREFDataTable" msprop:Generator_TableVarName="tableCUT_EDGES_XREF" msprop:Generator_RowChangedName="CUT_EDGES_XREFRowChanged" msprop:Generator_TablePropName="CUT_EDGES_XREF" msprop:Generator_RowDeletingName="CUT_EDGES_XREFRowDeleting" msprop:Generator_RowChangingName="CUT_EDGES_XREFRowChanging" msprop:Generator_RowEvHandlerName="CUT_EDGES_XREFRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_EDGES_XREFRowDeleted" msprop:Generator_RowClassName="CUT_EDGES_XREFRow" msprop:Generator_UserTableName="CUT_EDGES_XREF" msprop:Generator_RowEvArgName="CUT_EDGES_XREFRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="EDGEID" msprop:Generator_ColumnVarNameInTable="columnEDGEID" msprop:Generator_ColumnPropNameInRow="EDGEID" msprop:Generator_ColumnPropNameInTable="EDGEIDColumn" msprop:Generator_UserColumnName="EDGEID" type="xs:int" />
@@ -4025,7 +4318,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CUT_PART_TYPES" msprop:Generator_TableClassName="CUT_PART_TYPESDataTable" msprop:Generator_TableVarName="tableCUT_PART_TYPES" msprop:Generator_TablePropName="CUT_PART_TYPES" msprop:Generator_RowDeletingName="CUT_PART_TYPESRowDeleting" msprop:Generator_RowChangingName="CUT_PART_TYPESRowChanging" msprop:Generator_RowEvHandlerName="CUT_PART_TYPESRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_PART_TYPESRowDeleted" msprop:Generator_UserTableName="CUT_PART_TYPES" msprop:Generator_RowChangedName="CUT_PART_TYPESRowChanged" msprop:Generator_RowEvArgName="CUT_PART_TYPESRowChangeEvent" msprop:Generator_RowClassName="CUT_PART_TYPESRow">
+        <xs:element name="CUT_PART_TYPES" msprop:Generator_TableClassName="CUT_PART_TYPESDataTable" msprop:Generator_TableVarName="tableCUT_PART_TYPES" msprop:Generator_RowChangedName="CUT_PART_TYPESRowChanged" msprop:Generator_TablePropName="CUT_PART_TYPES" msprop:Generator_RowDeletingName="CUT_PART_TYPESRowDeleting" msprop:Generator_RowChangingName="CUT_PART_TYPESRowChanging" msprop:Generator_RowEvHandlerName="CUT_PART_TYPESRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_PART_TYPESRowDeleted" msprop:Generator_RowClassName="CUT_PART_TYPESRow" msprop:Generator_UserTableName="CUT_PART_TYPES" msprop:Generator_RowEvArgName="CUT_PART_TYPESRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="TYPEID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTYPEID" msprop:Generator_ColumnPropNameInRow="TYPEID" msprop:Generator_ColumnPropNameInTable="TYPEIDColumn" msprop:Generator_UserColumnName="TYPEID" type="xs:int" />
@@ -4041,7 +4334,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CutlistParts" msprop:Generator_TableClassName="CutlistPartsDataTable" msprop:Generator_TableVarName="tableCutlistParts" msprop:Generator_RowChangedName="CutlistPartsRowChanged" msprop:Generator_TablePropName="CutlistParts" msprop:Generator_RowDeletingName="CutlistPartsRowDeleting" msprop:Generator_RowChangingName="CutlistPartsRowChanging" msprop:Generator_RowEvHandlerName="CutlistPartsRowChangeEventHandler" msprop:Generator_RowDeletedName="CutlistPartsRowDeleted" msprop:Generator_RowClassName="CutlistPartsRow" msprop:Generator_UserTableName="CutlistParts" msprop:Generator_RowEvArgName="CutlistPartsRowChangeEvent">
+        <xs:element name="CutlistParts" msprop:Generator_TableClassName="CutlistPartsDataTable" msprop:Generator_TableVarName="tableCutlistParts" msprop:Generator_TablePropName="CutlistParts" msprop:Generator_RowDeletingName="CutlistPartsRowDeleting" msprop:Generator_RowChangingName="CutlistPartsRowChanging" msprop:Generator_RowEvHandlerName="CutlistPartsRowChangeEventHandler" msprop:Generator_RowDeletedName="CutlistPartsRowDeleted" msprop:Generator_UserTableName="CutlistParts" msprop:Generator_RowChangedName="CutlistPartsRowChanged" msprop:Generator_RowEvArgName="CutlistPartsRowChangeEvent" msprop:Generator_RowClassName="CutlistPartsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CLID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnCLID" msprop:Generator_ColumnPropNameInRow="CLID" msprop:Generator_ColumnPropNameInTable="CLIDColumn" msprop:Generator_UserColumnName="CLID" type="xs:int" />
@@ -4106,7 +4399,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="FriendlyCutOps" msprop:Generator_TableClassName="FriendlyCutOpsDataTable" msprop:Generator_TableVarName="tableFriendlyCutOps" msprop:Generator_RowChangedName="FriendlyCutOpsRowChanged" msprop:Generator_TablePropName="FriendlyCutOps" msprop:Generator_RowDeletingName="FriendlyCutOpsRowDeleting" msprop:Generator_RowChangingName="FriendlyCutOpsRowChanging" msprop:Generator_RowEvHandlerName="FriendlyCutOpsRowChangeEventHandler" msprop:Generator_RowDeletedName="FriendlyCutOpsRowDeleted" msprop:Generator_RowClassName="FriendlyCutOpsRow" msprop:Generator_UserTableName="FriendlyCutOps" msprop:Generator_RowEvArgName="FriendlyCutOpsRowChangeEvent">
+        <xs:element name="FriendlyCutOps" msprop:Generator_TableClassName="FriendlyCutOpsDataTable" msprop:Generator_TableVarName="tableFriendlyCutOps" msprop:Generator_TablePropName="FriendlyCutOps" msprop:Generator_RowDeletingName="FriendlyCutOpsRowDeleting" msprop:Generator_RowChangingName="FriendlyCutOpsRowChanging" msprop:Generator_RowEvHandlerName="FriendlyCutOpsRowChangeEventHandler" msprop:Generator_RowDeletedName="FriendlyCutOpsRowDeleted" msprop:Generator_UserTableName="FriendlyCutOps" msprop:Generator_RowChangedName="FriendlyCutOpsRowChanged" msprop:Generator_RowEvArgName="FriendlyCutOpsRowChangeEvent" msprop:Generator_RowClassName="FriendlyCutOpsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="FRIENDLYNAME" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnFRIENDLYNAME" msprop:Generator_ColumnPropNameInRow="FRIENDLYNAME" msprop:Generator_ColumnPropNameInTable="FRIENDLYNAMEColumn" msprop:Generator_UserColumnName="FRIENDLYNAME" minOccurs="0">
@@ -4141,7 +4434,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CutPartOps" msprop:Generator_TableClassName="CutPartOpsDataTable" msprop:Generator_TableVarName="tableCutPartOps" msprop:Generator_RowChangedName="CutPartOpsRowChanged" msprop:Generator_TablePropName="CutPartOps" msprop:Generator_RowDeletingName="CutPartOpsRowDeleting" msprop:Generator_RowChangingName="CutPartOpsRowChanging" msprop:Generator_RowEvHandlerName="CutPartOpsRowChangeEventHandler" msprop:Generator_RowDeletedName="CutPartOpsRowDeleted" msprop:Generator_RowClassName="CutPartOpsRow" msprop:Generator_UserTableName="CutPartOps" msprop:Generator_RowEvArgName="CutPartOpsRowChangeEvent">
+        <xs:element name="CutPartOps" msprop:Generator_TableClassName="CutPartOpsDataTable" msprop:Generator_TableVarName="tableCutPartOps" msprop:Generator_TablePropName="CutPartOps" msprop:Generator_RowDeletingName="CutPartOpsRowDeleting" msprop:Generator_RowChangingName="CutPartOpsRowChanging" msprop:Generator_RowEvHandlerName="CutPartOpsRowChangeEventHandler" msprop:Generator_RowDeletedName="CutPartOpsRowDeleted" msprop:Generator_UserTableName="CutPartOps" msprop:Generator_RowChangedName="CutPartOpsRowChanged" msprop:Generator_RowEvArgName="CutPartOpsRowChangeEvent" msprop:Generator_RowClassName="CutPartOpsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="POPID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnPOPID" msprop:Generator_ColumnPropNameInRow="POPID" msprop:Generator_ColumnPropNameInTable="POPIDColumn" msprop:Generator_UserColumnName="POPID" type="xs:int" />
@@ -4171,7 +4464,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="GEN_CUSTOMERS" msprop:Generator_TableClassName="GEN_CUSTOMERSDataTable" msprop:Generator_TableVarName="tableGEN_CUSTOMERS" msprop:Generator_RowChangedName="GEN_CUSTOMERSRowChanged" msprop:Generator_TablePropName="GEN_CUSTOMERS" msprop:Generator_RowDeletingName="GEN_CUSTOMERSRowDeleting" msprop:Generator_RowChangingName="GEN_CUSTOMERSRowChanging" msprop:Generator_RowEvHandlerName="GEN_CUSTOMERSRowChangeEventHandler" msprop:Generator_RowDeletedName="GEN_CUSTOMERSRowDeleted" msprop:Generator_RowClassName="GEN_CUSTOMERSRow" msprop:Generator_UserTableName="GEN_CUSTOMERS" msprop:Generator_RowEvArgName="GEN_CUSTOMERSRowChangeEvent">
+        <xs:element name="GEN_CUSTOMERS" msprop:Generator_TableClassName="GEN_CUSTOMERSDataTable" msprop:Generator_TableVarName="tableGEN_CUSTOMERS" msprop:Generator_TablePropName="GEN_CUSTOMERS" msprop:Generator_RowDeletingName="GEN_CUSTOMERSRowDeleting" msprop:Generator_RowChangingName="GEN_CUSTOMERSRowChanging" msprop:Generator_RowEvHandlerName="GEN_CUSTOMERSRowChangeEventHandler" msprop:Generator_RowDeletedName="GEN_CUSTOMERSRowDeleted" msprop:Generator_UserTableName="GEN_CUSTOMERS" msprop:Generator_RowChangedName="GEN_CUSTOMERSRowChanged" msprop:Generator_RowEvArgName="GEN_CUSTOMERSRowChangeEvent" msprop:Generator_RowClassName="GEN_CUSTOMERSRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CUSTID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnCUSTID" msprop:Generator_ColumnPropNameInRow="CUSTID" msprop:Generator_ColumnPropNameInTable="CUSTIDColumn" msprop:Generator_UserColumnName="CUSTID" type="xs:int" />
@@ -4217,7 +4510,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CUT_STATES" msprop:Generator_TableClassName="CUT_STATESDataTable" msprop:Generator_TableVarName="tableCUT_STATES" msprop:Generator_TablePropName="CUT_STATES" msprop:Generator_RowDeletingName="CUT_STATESRowDeleting" msprop:Generator_RowChangingName="CUT_STATESRowChanging" msprop:Generator_RowEvHandlerName="CUT_STATESRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_STATESRowDeleted" msprop:Generator_UserTableName="CUT_STATES" msprop:Generator_RowChangedName="CUT_STATESRowChanged" msprop:Generator_RowEvArgName="CUT_STATESRowChangeEvent" msprop:Generator_RowClassName="CUT_STATESRow">
+        <xs:element name="CUT_STATES" msprop:Generator_TableClassName="CUT_STATESDataTable" msprop:Generator_TableVarName="tableCUT_STATES" msprop:Generator_RowChangedName="CUT_STATESRowChanged" msprop:Generator_TablePropName="CUT_STATES" msprop:Generator_RowDeletingName="CUT_STATESRowDeleting" msprop:Generator_RowChangingName="CUT_STATESRowChanging" msprop:Generator_RowEvHandlerName="CUT_STATESRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_STATESRowDeleted" msprop:Generator_RowClassName="CUT_STATESRow" msprop:Generator_UserTableName="CUT_STATES" msprop:Generator_RowEvArgName="CUT_STATESRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -4232,7 +4525,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CUT_CUTLISTS" msprop:Generator_TableClassName="CUT_CUTLISTSDataTable" msprop:Generator_TableVarName="tableCUT_CUTLISTS" msprop:Generator_RowChangedName="CUT_CUTLISTSRowChanged" msprop:Generator_TablePropName="CUT_CUTLISTS" msprop:Generator_RowDeletingName="CUT_CUTLISTSRowDeleting" msprop:Generator_RowChangingName="CUT_CUTLISTSRowChanging" msprop:Generator_RowEvHandlerName="CUT_CUTLISTSRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_CUTLISTSRowDeleted" msprop:Generator_RowClassName="CUT_CUTLISTSRow" msprop:Generator_UserTableName="CUT_CUTLISTS" msprop:Generator_RowEvArgName="CUT_CUTLISTSRowChangeEvent">
+        <xs:element name="CUT_CUTLISTS" msprop:Generator_TableClassName="CUT_CUTLISTSDataTable" msprop:Generator_TableVarName="tableCUT_CUTLISTS" msprop:Generator_TablePropName="CUT_CUTLISTS" msprop:Generator_RowDeletingName="CUT_CUTLISTSRowDeleting" msprop:Generator_RowChangingName="CUT_CUTLISTSRowChanging" msprop:Generator_RowEvHandlerName="CUT_CUTLISTSRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_CUTLISTSRowDeleted" msprop:Generator_UserTableName="CUT_CUTLISTS" msprop:Generator_RowChangedName="CUT_CUTLISTSRowChanged" msprop:Generator_RowEvArgName="CUT_CUTLISTSRowChangeEvent" msprop:Generator_RowClassName="CUT_CUTLISTSRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CLID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnCLID" msprop:Generator_ColumnPropNameInRow="CLID" msprop:Generator_ColumnPropNameInTable="CLIDColumn" msprop:Generator_UserColumnName="CLID" type="xs:int" />
@@ -4276,7 +4569,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CUT_DRAWING_MATERIALS" msprop:Generator_TableClassName="CUT_DRAWING_MATERIALSDataTable" msprop:Generator_TableVarName="tableCUT_DRAWING_MATERIALS" msprop:Generator_RowChangedName="CUT_DRAWING_MATERIALSRowChanged" msprop:Generator_TablePropName="CUT_DRAWING_MATERIALS" msprop:Generator_RowDeletingName="CUT_DRAWING_MATERIALSRowDeleting" msprop:Generator_RowChangingName="CUT_DRAWING_MATERIALSRowChanging" msprop:Generator_RowEvHandlerName="CUT_DRAWING_MATERIALSRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_DRAWING_MATERIALSRowDeleted" msprop:Generator_RowClassName="CUT_DRAWING_MATERIALSRow" msprop:Generator_UserTableName="CUT_DRAWING_MATERIALS" msprop:Generator_RowEvArgName="CUT_DRAWING_MATERIALSRowChangeEvent">
+        <xs:element name="CUT_DRAWING_MATERIALS" msprop:Generator_TableClassName="CUT_DRAWING_MATERIALSDataTable" msprop:Generator_TableVarName="tableCUT_DRAWING_MATERIALS" msprop:Generator_TablePropName="CUT_DRAWING_MATERIALS" msprop:Generator_RowDeletingName="CUT_DRAWING_MATERIALSRowDeleting" msprop:Generator_RowChangingName="CUT_DRAWING_MATERIALSRowChanging" msprop:Generator_RowEvHandlerName="CUT_DRAWING_MATERIALSRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_DRAWING_MATERIALSRowDeleted" msprop:Generator_UserTableName="CUT_DRAWING_MATERIALS" msprop:Generator_RowChangedName="CUT_DRAWING_MATERIALSRowChanged" msprop:Generator_RowEvArgName="CUT_DRAWING_MATERIALSRowChangeEvent" msprop:Generator_RowClassName="CUT_DRAWING_MATERIALSRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="DMATID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnDMATID" msprop:Generator_ColumnPropNameInRow="DMATID" msprop:Generator_ColumnPropNameInTable="DMATIDColumn" msprop:Generator_UserColumnName="DMATID" type="xs:int" />
@@ -4290,7 +4583,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ECR_LEGACY" msprop:Generator_TableClassName="ECR_LEGACYDataTable" msprop:Generator_TableVarName="tableECR_LEGACY" msprop:Generator_TablePropName="ECR_LEGACY" msprop:Generator_RowDeletingName="ECR_LEGACYRowDeleting" msprop:Generator_RowChangingName="ECR_LEGACYRowChanging" msprop:Generator_RowEvHandlerName="ECR_LEGACYRowChangeEventHandler" msprop:Generator_RowDeletedName="ECR_LEGACYRowDeleted" msprop:Generator_UserTableName="ECR_LEGACY" msprop:Generator_RowChangedName="ECR_LEGACYRowChanged" msprop:Generator_RowEvArgName="ECR_LEGACYRowChangeEvent" msprop:Generator_RowClassName="ECR_LEGACYRow">
+        <xs:element name="ECR_LEGACY" msprop:Generator_TableClassName="ECR_LEGACYDataTable" msprop:Generator_TableVarName="tableECR_LEGACY" msprop:Generator_RowChangedName="ECR_LEGACYRowChanged" msprop:Generator_TablePropName="ECR_LEGACY" msprop:Generator_RowDeletingName="ECR_LEGACYRowDeleting" msprop:Generator_RowChangingName="ECR_LEGACYRowChanging" msprop:Generator_RowEvHandlerName="ECR_LEGACYRowChangeEventHandler" msprop:Generator_RowDeletedName="ECR_LEGACYRowDeleted" msprop:Generator_RowClassName="ECR_LEGACYRow" msprop:Generator_UserTableName="ECR_LEGACY" msprop:Generator_RowEvArgName="ECR_LEGACYRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="LGCYID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnLGCYID" msprop:Generator_ColumnPropNameInRow="LGCYID" msprop:Generator_ColumnPropNameInTable="LGCYIDColumn" msprop:Generator_UserColumnName="LGCYID" type="xs:int" />
@@ -4335,7 +4628,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ECRObjLookup" msprop:Generator_TableClassName="ECRObjLookupDataTable" msprop:Generator_TableVarName="tableECRObjLookup" msprop:Generator_TablePropName="ECRObjLookup" msprop:Generator_RowDeletingName="ECRObjLookupRowDeleting" msprop:Generator_RowChangingName="ECRObjLookupRowChanging" msprop:Generator_RowEvHandlerName="ECRObjLookupRowChangeEventHandler" msprop:Generator_RowDeletedName="ECRObjLookupRowDeleted" msprop:Generator_UserTableName="ECRObjLookup" msprop:Generator_RowChangedName="ECRObjLookupRowChanged" msprop:Generator_RowEvArgName="ECRObjLookupRowChangeEvent" msprop:Generator_RowClassName="ECRObjLookupRow">
+        <xs:element name="ECRObjLookup" msprop:Generator_TableClassName="ECRObjLookupDataTable" msprop:Generator_TableVarName="tableECRObjLookup" msprop:Generator_RowChangedName="ECRObjLookupRowChanged" msprop:Generator_TablePropName="ECRObjLookup" msprop:Generator_RowDeletingName="ECRObjLookupRowDeleting" msprop:Generator_RowChangingName="ECRObjLookupRowChanging" msprop:Generator_RowEvHandlerName="ECRObjLookupRowChangeEventHandler" msprop:Generator_RowDeletedName="ECRObjLookupRowDeleted" msprop:Generator_RowClassName="ECRObjLookupRow" msprop:Generator_UserTableName="ECRObjLookup" msprop:Generator_RowEvArgName="ECRObjLookupRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ECR_NUM" msprop:Generator_ColumnVarNameInTable="columnECR_NUM" msprop:Generator_ColumnPropNameInRow="ECR_NUM" msprop:Generator_ColumnPropNameInTable="ECR_NUMColumn" msprop:Generator_UserColumnName="ECR_NUM" type="xs:int" />
@@ -4378,7 +4671,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="LegacyECRObjLookup" msprop:Generator_TableClassName="LegacyECRObjLookupDataTable" msprop:Generator_TableVarName="tableLegacyECRObjLookup" msprop:Generator_TablePropName="LegacyECRObjLookup" msprop:Generator_RowDeletingName="LegacyECRObjLookupRowDeleting" msprop:Generator_RowChangingName="LegacyECRObjLookupRowChanging" msprop:Generator_RowEvHandlerName="LegacyECRObjLookupRowChangeEventHandler" msprop:Generator_RowDeletedName="LegacyECRObjLookupRowDeleted" msprop:Generator_UserTableName="LegacyECRObjLookup" msprop:Generator_RowChangedName="LegacyECRObjLookupRowChanged" msprop:Generator_RowEvArgName="LegacyECRObjLookupRowChangeEvent" msprop:Generator_RowClassName="LegacyECRObjLookupRow">
+        <xs:element name="LegacyECRObjLookup" msprop:Generator_TableClassName="LegacyECRObjLookupDataTable" msprop:Generator_TableVarName="tableLegacyECRObjLookup" msprop:Generator_RowChangedName="LegacyECRObjLookupRowChanged" msprop:Generator_TablePropName="LegacyECRObjLookup" msprop:Generator_RowDeletingName="LegacyECRObjLookupRowDeleting" msprop:Generator_RowChangingName="LegacyECRObjLookupRowChanging" msprop:Generator_RowEvHandlerName="LegacyECRObjLookupRowChangeEventHandler" msprop:Generator_RowDeletedName="LegacyECRObjLookupRowDeleted" msprop:Generator_RowClassName="LegacyECRObjLookupRow" msprop:Generator_UserTableName="LegacyECRObjLookup" msprop:Generator_RowEvArgName="LegacyECRObjLookupRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="LGCYID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnLGCYID" msprop:Generator_ColumnPropNameInRow="LGCYID" msprop:Generator_ColumnPropNameInTable="LGCYIDColumn" msprop:Generator_UserColumnName="LGCYID" type="xs:int" />
@@ -4416,7 +4709,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="RevList" msprop:Generator_TableClassName="RevListDataTable" msprop:Generator_TableVarName="tableRevList" msprop:Generator_RowChangedName="RevListRowChanged" msprop:Generator_TablePropName="RevList" msprop:Generator_RowDeletingName="RevListRowDeleting" msprop:Generator_RowChangingName="RevListRowChanging" msprop:Generator_RowEvHandlerName="RevListRowChangeEventHandler" msprop:Generator_RowDeletedName="RevListRowDeleted" msprop:Generator_RowClassName="RevListRow" msprop:Generator_UserTableName="RevList" msprop:Generator_RowEvArgName="RevListRowChangeEvent">
+        <xs:element name="RevList" msprop:Generator_TableClassName="RevListDataTable" msprop:Generator_TableVarName="tableRevList" msprop:Generator_TablePropName="RevList" msprop:Generator_RowDeletingName="RevListRowDeleting" msprop:Generator_RowChangingName="RevListRowChanging" msprop:Generator_RowEvHandlerName="RevListRowChangeEventHandler" msprop:Generator_RowDeletedName="RevListRowDeleted" msprop:Generator_UserTableName="RevList" msprop:Generator_RowChangedName="RevListRowChanged" msprop:Generator_RowEvArgName="RevListRowChangeEvent" msprop:Generator_RowClassName="RevListRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="REV" msprop:Generator_ColumnVarNameInTable="columnREV" msprop:Generator_ColumnPropNameInRow="REV" msprop:Generator_ColumnPropNameInTable="REVColumn" msprop:Generator_UserColumnName="REV" minOccurs="0">
@@ -4429,7 +4722,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SCH_PROJECTS" msprop:Generator_TableClassName="SCH_PROJECTSDataTable" msprop:Generator_TableVarName="tableSCH_PROJECTS" msprop:Generator_RowChangedName="SCH_PROJECTSRowChanged" msprop:Generator_TablePropName="SCH_PROJECTS" msprop:Generator_RowDeletingName="SCH_PROJECTSRowDeleting" msprop:Generator_RowChangingName="SCH_PROJECTSRowChanging" msprop:Generator_RowEvHandlerName="SCH_PROJECTSRowChangeEventHandler" msprop:Generator_RowDeletedName="SCH_PROJECTSRowDeleted" msprop:Generator_RowClassName="SCH_PROJECTSRow" msprop:Generator_UserTableName="SCH_PROJECTS" msprop:Generator_RowEvArgName="SCH_PROJECTSRowChangeEvent">
+        <xs:element name="SCH_PROJECTS" msprop:Generator_TableClassName="SCH_PROJECTSDataTable" msprop:Generator_TableVarName="tableSCH_PROJECTS" msprop:Generator_TablePropName="SCH_PROJECTS" msprop:Generator_RowDeletingName="SCH_PROJECTSRowDeleting" msprop:Generator_RowChangingName="SCH_PROJECTSRowChanging" msprop:Generator_RowEvHandlerName="SCH_PROJECTSRowChangeEventHandler" msprop:Generator_RowDeletedName="SCH_PROJECTSRowDeleted" msprop:Generator_UserTableName="SCH_PROJECTS" msprop:Generator_RowChangedName="SCH_PROJECTSRowChanged" msprop:Generator_RowEvArgName="SCH_PROJECTSRowChangeEvent" msprop:Generator_RowClassName="SCH_PROJECTSRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="PID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnPID" msprop:Generator_ColumnPropNameInRow="PID" msprop:Generator_ColumnPropNameInTable="PIDColumn" msprop:Generator_UserColumnName="PID" type="xs:int" />
@@ -4453,7 +4746,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="GEN_DEPTS" msprop:Generator_TableClassName="GEN_DEPTSDataTable" msprop:Generator_TableVarName="tableGEN_DEPTS" msprop:Generator_RowChangedName="GEN_DEPTSRowChanged" msprop:Generator_TablePropName="GEN_DEPTS" msprop:Generator_RowDeletingName="GEN_DEPTSRowDeleting" msprop:Generator_RowChangingName="GEN_DEPTSRowChanging" msprop:Generator_RowEvHandlerName="GEN_DEPTSRowChangeEventHandler" msprop:Generator_RowDeletedName="GEN_DEPTSRowDeleted" msprop:Generator_RowClassName="GEN_DEPTSRow" msprop:Generator_UserTableName="GEN_DEPTS" msprop:Generator_RowEvArgName="GEN_DEPTSRowChangeEvent">
+        <xs:element name="GEN_DEPTS" msprop:Generator_TableClassName="GEN_DEPTSDataTable" msprop:Generator_TableVarName="tableGEN_DEPTS" msprop:Generator_TablePropName="GEN_DEPTS" msprop:Generator_RowDeletingName="GEN_DEPTSRowDeleting" msprop:Generator_RowChangingName="GEN_DEPTSRowChanging" msprop:Generator_RowEvHandlerName="GEN_DEPTSRowChangeEventHandler" msprop:Generator_RowDeletedName="GEN_DEPTSRowDeleted" msprop:Generator_UserTableName="GEN_DEPTS" msprop:Generator_RowChangedName="GEN_DEPTSRowChanged" msprop:Generator_RowEvArgName="GEN_DEPTSRowChangeEvent" msprop:Generator_RowClassName="GEN_DEPTSRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="DEPT_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnDEPT_ID" msprop:Generator_ColumnPropNameInRow="DEPT_ID" msprop:Generator_ColumnPropNameInTable="DEPT_IDColumn" msprop:Generator_UserColumnName="DEPT_ID" type="xs:int" />
@@ -4473,7 +4766,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ECR_ITEMS" msprop:Generator_TableClassName="ECR_ITEMSDataTable" msprop:Generator_TableVarName="tableECR_ITEMS" msprop:Generator_RowChangedName="ECR_ITEMSRowChanged" msprop:Generator_TablePropName="ECR_ITEMS" msprop:Generator_RowDeletingName="ECR_ITEMSRowDeleting" msprop:Generator_RowChangingName="ECR_ITEMSRowChanging" msprop:Generator_RowEvHandlerName="ECR_ITEMSRowChangeEventHandler" msprop:Generator_RowDeletedName="ECR_ITEMSRowDeleted" msprop:Generator_RowClassName="ECR_ITEMSRow" msprop:Generator_UserTableName="ECR_ITEMS" msprop:Generator_RowEvArgName="ECR_ITEMSRowChangeEvent">
+        <xs:element name="ECR_ITEMS" msprop:Generator_TableClassName="ECR_ITEMSDataTable" msprop:Generator_TableVarName="tableECR_ITEMS" msprop:Generator_TablePropName="ECR_ITEMS" msprop:Generator_RowDeletingName="ECR_ITEMSRowDeleting" msprop:Generator_RowChangingName="ECR_ITEMSRowChanging" msprop:Generator_RowEvHandlerName="ECR_ITEMSRowChangeEventHandler" msprop:Generator_RowDeletedName="ECR_ITEMSRowDeleted" msprop:Generator_UserTableName="ECR_ITEMS" msprop:Generator_RowChangedName="ECR_ITEMSRowChanged" msprop:Generator_RowEvArgName="ECR_ITEMSRowChangeEvent" msprop:Generator_RowClassName="ECR_ITEMSRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ITEM_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnITEM_ID" msprop:Generator_ColumnPropNameInRow="ITEM_ID" msprop:Generator_ColumnPropNameInTable="ITEM_IDColumn" msprop:Generator_UserColumnName="ITEM_ID" type="xs:int" />
@@ -4519,7 +4812,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="inmast" msprop:Generator_TableClassName="inmastDataTable" msprop:Generator_TableVarName="tableinmast" msprop:Generator_RowChangedName="inmastRowChanged" msprop:Generator_TablePropName="inmast" msprop:Generator_RowDeletingName="inmastRowDeleting" msprop:Generator_RowChangingName="inmastRowChanging" msprop:Generator_RowEvHandlerName="inmastRowChangeEventHandler" msprop:Generator_RowDeletedName="inmastRowDeleted" msprop:Generator_RowClassName="inmastRow" msprop:Generator_UserTableName="inmast" msprop:Generator_RowEvArgName="inmastRowChangeEvent">
+        <xs:element name="inmast" msprop:Generator_TableClassName="inmastDataTable" msprop:Generator_TableVarName="tableinmast" msprop:Generator_TablePropName="inmast" msprop:Generator_RowDeletingName="inmastRowDeleting" msprop:Generator_RowChangingName="inmastRowChanging" msprop:Generator_RowEvHandlerName="inmastRowChangeEventHandler" msprop:Generator_RowDeletedName="inmastRowDeleted" msprop:Generator_UserTableName="inmast" msprop:Generator_RowChangedName="inmastRowChanged" msprop:Generator_RowEvArgName="inmastRowChangeEvent" msprop:Generator_RowClassName="inmastRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="fpartno" msprop:Generator_ColumnVarNameInTable="columnfpartno" msprop:Generator_ColumnPropNameInRow="fpartno" msprop:Generator_ColumnPropNameInTable="fpartnoColumn" msprop:Generator_UserColumnName="fpartno">
@@ -4962,7 +5255,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ECR_DRAWINGS" msprop:Generator_TableClassName="ECR_DRAWINGSDataTable" msprop:Generator_TableVarName="tableECR_DRAWINGS" msprop:Generator_RowChangedName="ECR_DRAWINGSRowChanged" msprop:Generator_TablePropName="ECR_DRAWINGS" msprop:Generator_RowDeletingName="ECR_DRAWINGSRowDeleting" msprop:Generator_RowChangingName="ECR_DRAWINGSRowChanging" msprop:Generator_RowEvHandlerName="ECR_DRAWINGSRowChangeEventHandler" msprop:Generator_RowDeletedName="ECR_DRAWINGSRowDeleted" msprop:Generator_RowClassName="ECR_DRAWINGSRow" msprop:Generator_UserTableName="ECR_DRAWINGS" msprop:Generator_RowEvArgName="ECR_DRAWINGSRowChangeEvent">
+        <xs:element name="ECR_DRAWINGS" msprop:Generator_TableClassName="ECR_DRAWINGSDataTable" msprop:Generator_TableVarName="tableECR_DRAWINGS" msprop:Generator_TablePropName="ECR_DRAWINGS" msprop:Generator_RowDeletingName="ECR_DRAWINGSRowDeleting" msprop:Generator_RowChangingName="ECR_DRAWINGSRowChanging" msprop:Generator_RowEvHandlerName="ECR_DRAWINGSRowChangeEventHandler" msprop:Generator_RowDeletedName="ECR_DRAWINGSRowDeleted" msprop:Generator_UserTableName="ECR_DRAWINGS" msprop:Generator_RowChangedName="ECR_DRAWINGSRowChanged" msprop:Generator_RowEvArgName="ECR_DRAWINGSRowChangeEvent" msprop:Generator_RowClassName="ECR_DRAWINGSRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="DRAW_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnDRAW_ID" msprop:Generator_ColumnPropNameInRow="DRAW_ID" msprop:Generator_ColumnPropNameInTable="DRAW_IDColumn" msprop:Generator_UserColumnName="DRAW_ID" type="xs:int" />
@@ -4992,7 +5285,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="GEN_DRAWINGS" msprop:Generator_TableClassName="GEN_DRAWINGSDataTable" msprop:Generator_TableVarName="tableGEN_DRAWINGS" msprop:Generator_RowChangedName="GEN_DRAWINGSRowChanged" msprop:Generator_TablePropName="GEN_DRAWINGS" msprop:Generator_RowDeletingName="GEN_DRAWINGSRowDeleting" msprop:Generator_RowChangingName="GEN_DRAWINGSRowChanging" msprop:Generator_RowEvHandlerName="GEN_DRAWINGSRowChangeEventHandler" msprop:Generator_RowDeletedName="GEN_DRAWINGSRowDeleted" msprop:Generator_RowClassName="GEN_DRAWINGSRow" msprop:Generator_UserTableName="GEN_DRAWINGS" msprop:Generator_RowEvArgName="GEN_DRAWINGSRowChangeEvent">
+        <xs:element name="GEN_DRAWINGS" msprop:Generator_TableClassName="GEN_DRAWINGSDataTable" msprop:Generator_TableVarName="tableGEN_DRAWINGS" msprop:Generator_TablePropName="GEN_DRAWINGS" msprop:Generator_RowDeletingName="GEN_DRAWINGSRowDeleting" msprop:Generator_RowChangingName="GEN_DRAWINGSRowChanging" msprop:Generator_RowEvHandlerName="GEN_DRAWINGSRowChangeEventHandler" msprop:Generator_RowDeletedName="GEN_DRAWINGSRowDeleted" msprop:Generator_UserTableName="GEN_DRAWINGS" msprop:Generator_RowChangedName="GEN_DRAWINGSRowChanged" msprop:Generator_RowEvArgName="GEN_DRAWINGSRowChangeEvent" msprop:Generator_RowClassName="GEN_DRAWINGSRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="FileID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnFileID" msprop:Generator_ColumnPropNameInRow="FileID" msprop:Generator_ColumnPropNameInTable="FileIDColumn" msprop:Generator_UserColumnName="FileID" type="xs:int" />
@@ -5014,7 +5307,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="GEN_DRAWINGS_MTL" msprop:Generator_TableClassName="GEN_DRAWINGS_MTLDataTable" msprop:Generator_TableVarName="tableGEN_DRAWINGS_MTL" msprop:Generator_RowChangedName="GEN_DRAWINGS_MTLRowChanged" msprop:Generator_TablePropName="GEN_DRAWINGS_MTL" msprop:Generator_RowDeletingName="GEN_DRAWINGS_MTLRowDeleting" msprop:Generator_RowChangingName="GEN_DRAWINGS_MTLRowChanging" msprop:Generator_RowEvHandlerName="GEN_DRAWINGS_MTLRowChangeEventHandler" msprop:Generator_RowDeletedName="GEN_DRAWINGS_MTLRowDeleted" msprop:Generator_RowClassName="GEN_DRAWINGS_MTLRow" msprop:Generator_UserTableName="GEN_DRAWINGS_MTL" msprop:Generator_RowEvArgName="GEN_DRAWINGS_MTLRowChangeEvent">
+        <xs:element name="GEN_DRAWINGS_MTL" msprop:Generator_TableClassName="GEN_DRAWINGS_MTLDataTable" msprop:Generator_TableVarName="tableGEN_DRAWINGS_MTL" msprop:Generator_TablePropName="GEN_DRAWINGS_MTL" msprop:Generator_RowDeletingName="GEN_DRAWINGS_MTLRowDeleting" msprop:Generator_RowChangingName="GEN_DRAWINGS_MTLRowChanging" msprop:Generator_RowEvHandlerName="GEN_DRAWINGS_MTLRowChangeEventHandler" msprop:Generator_RowDeletedName="GEN_DRAWINGS_MTLRowDeleted" msprop:Generator_UserTableName="GEN_DRAWINGS_MTL" msprop:Generator_RowChangedName="GEN_DRAWINGS_MTLRowChanged" msprop:Generator_RowEvArgName="GEN_DRAWINGS_MTLRowChangeEvent" msprop:Generator_RowClassName="GEN_DRAWINGS_MTLRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="FileID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnFileID" msprop:Generator_ColumnPropNameInRow="FileID" msprop:Generator_ColumnPropNameInTable="FileIDColumn" msprop:Generator_UserColumnName="FileID" type="xs:int" />
@@ -5036,7 +5329,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="jomast" msprop:Generator_TableClassName="jomastDataTable" msprop:Generator_TableVarName="tablejomast" msprop:Generator_TablePropName="jomast" msprop:Generator_RowDeletingName="jomastRowDeleting" msprop:Generator_RowChangingName="jomastRowChanging" msprop:Generator_RowEvHandlerName="jomastRowChangeEventHandler" msprop:Generator_RowDeletedName="jomastRowDeleted" msprop:Generator_UserTableName="jomast" msprop:Generator_RowChangedName="jomastRowChanged" msprop:Generator_RowEvArgName="jomastRowChangeEvent" msprop:Generator_RowClassName="jomastRow">
+        <xs:element name="jomast" msprop:Generator_TableClassName="jomastDataTable" msprop:Generator_TableVarName="tablejomast" msprop:Generator_RowChangedName="jomastRowChanged" msprop:Generator_TablePropName="jomast" msprop:Generator_RowDeletingName="jomastRowDeleting" msprop:Generator_RowChangingName="jomastRowChanging" msprop:Generator_RowEvHandlerName="jomastRowChangeEventHandler" msprop:Generator_RowDeletedName="jomastRowDeleted" msprop:Generator_RowClassName="jomastRow" msprop:Generator_UserTableName="jomast" msprop:Generator_RowEvArgName="jomastRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="fjobno" msprop:Generator_ColumnVarNameInTable="columnfjobno" msprop:Generator_ColumnPropNameInRow="fjobno" msprop:Generator_ColumnPropNameInTable="fjobnoColumn" msprop:Generator_UserColumnName="fjobno">
@@ -5058,7 +5351,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="jomastTotals" msprop:Generator_TableClassName="jomastTotalsDataTable" msprop:Generator_TableVarName="tablejomastTotals" msprop:Generator_TablePropName="jomastTotals" msprop:Generator_RowDeletingName="jomastTotalsRowDeleting" msprop:Generator_RowChangingName="jomastTotalsRowChanging" msprop:Generator_RowEvHandlerName="jomastTotalsRowChangeEventHandler" msprop:Generator_RowDeletedName="jomastTotalsRowDeleted" msprop:Generator_UserTableName="jomastTotals" msprop:Generator_RowChangedName="jomastTotalsRowChanged" msprop:Generator_RowEvArgName="jomastTotalsRowChangeEvent" msprop:Generator_RowClassName="jomastTotalsRow">
+        <xs:element name="jomastTotals" msprop:Generator_TableClassName="jomastTotalsDataTable" msprop:Generator_TableVarName="tablejomastTotals" msprop:Generator_RowChangedName="jomastTotalsRowChanged" msprop:Generator_TablePropName="jomastTotals" msprop:Generator_RowDeletingName="jomastTotalsRowDeleting" msprop:Generator_RowChangingName="jomastTotalsRowChanging" msprop:Generator_RowEvHandlerName="jomastTotalsRowChangeEventHandler" msprop:Generator_RowDeletedName="jomastTotalsRowDeleted" msprop:Generator_RowClassName="jomastTotalsRow" msprop:Generator_UserTableName="jomastTotals" msprop:Generator_RowEvArgName="jomastTotalsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="jobqty" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnjobqty" msprop:Generator_ColumnPropNameInRow="jobqty" msprop:Generator_ColumnPropNameInTable="jobqtyColumn" msprop:Generator_UserColumnName="jobqty" type="xs:int" minOccurs="0" />
@@ -5067,7 +5360,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Cutlists" msprop:Generator_TableClassName="CutlistsDataTable" msprop:Generator_TableVarName="tableCutlists" msprop:Generator_TablePropName="Cutlists" msprop:Generator_RowDeletingName="CutlistsRowDeleting" msprop:Generator_RowChangingName="CutlistsRowChanging" msprop:Generator_RowEvHandlerName="CutlistsRowChangeEventHandler" msprop:Generator_RowDeletedName="CutlistsRowDeleted" msprop:Generator_UserTableName="Cutlists" msprop:Generator_RowChangedName="CutlistsRowChanged" msprop:Generator_RowEvArgName="CutlistsRowChangeEvent" msprop:Generator_RowClassName="CutlistsRow">
+        <xs:element name="Cutlists" msprop:Generator_TableClassName="CutlistsDataTable" msprop:Generator_TableVarName="tableCutlists" msprop:Generator_RowChangedName="CutlistsRowChanged" msprop:Generator_TablePropName="Cutlists" msprop:Generator_RowDeletingName="CutlistsRowDeleting" msprop:Generator_RowChangingName="CutlistsRowChanging" msprop:Generator_RowEvHandlerName="CutlistsRowChangeEventHandler" msprop:Generator_RowDeletedName="CutlistsRowDeleted" msprop:Generator_RowClassName="CutlistsRow" msprop:Generator_UserTableName="Cutlists" msprop:Generator_RowEvArgName="CutlistsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CutlistDisplayName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCutlistDisplayName" msprop:Generator_ColumnPropNameInRow="CutlistDisplayName" msprop:Generator_ColumnPropNameInTable="CutlistDisplayNameColumn" msprop:Generator_UserColumnName="CutlistDisplayName" minOccurs="0">
@@ -5118,7 +5411,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="RequestInfo" msprop:Generator_TableClassName="RequestInfoDataTable" msprop:Generator_TableVarName="tableRequestInfo" msprop:Generator_RowChangedName="RequestInfoRowChanged" msprop:Generator_TablePropName="RequestInfo" msprop:Generator_RowDeletingName="RequestInfoRowDeleting" msprop:Generator_RowChangingName="RequestInfoRowChanging" msprop:Generator_RowEvHandlerName="RequestInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="RequestInfoRowDeleted" msprop:Generator_RowClassName="RequestInfoRow" msprop:Generator_UserTableName="RequestInfo" msprop:Generator_RowEvArgName="RequestInfoRowChangeEvent">
+        <xs:element name="RequestInfo" msprop:Generator_TableClassName="RequestInfoDataTable" msprop:Generator_TableVarName="tableRequestInfo" msprop:Generator_TablePropName="RequestInfo" msprop:Generator_RowDeletingName="RequestInfoRowDeleting" msprop:Generator_RowChangingName="RequestInfoRowChanging" msprop:Generator_RowEvHandlerName="RequestInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="RequestInfoRowDeleted" msprop:Generator_UserTableName="RequestInfo" msprop:Generator_RowChangedName="RequestInfoRowChanged" msprop:Generator_RowEvArgName="RequestInfoRowChangeEvent" msprop:Generator_RowClassName="RequestInfoRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Creator" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCreator" msprop:Generator_ColumnPropNameInRow="Creator" msprop:Generator_ColumnPropNameInTable="CreatorColumn" msprop:Generator_UserColumnName="Creator" minOccurs="0">
@@ -5174,7 +5467,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CUT_MATERIAL_SIZES" msprop:Generator_TableClassName="CUT_MATERIAL_SIZESDataTable" msprop:Generator_TableVarName="tableCUT_MATERIAL_SIZES" msprop:Generator_TablePropName="CUT_MATERIAL_SIZES" msprop:Generator_RowDeletingName="CUT_MATERIAL_SIZESRowDeleting" msprop:Generator_RowChangingName="CUT_MATERIAL_SIZESRowChanging" msprop:Generator_RowEvHandlerName="CUT_MATERIAL_SIZESRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_MATERIAL_SIZESRowDeleted" msprop:Generator_UserTableName="CUT_MATERIAL_SIZES" msprop:Generator_RowChangedName="CUT_MATERIAL_SIZESRowChanged" msprop:Generator_RowEvArgName="CUT_MATERIAL_SIZESRowChangeEvent" msprop:Generator_RowClassName="CUT_MATERIAL_SIZESRow">
+        <xs:element name="CUT_MATERIAL_SIZES" msprop:Generator_TableClassName="CUT_MATERIAL_SIZESDataTable" msprop:Generator_TableVarName="tableCUT_MATERIAL_SIZES" msprop:Generator_RowChangedName="CUT_MATERIAL_SIZESRowChanged" msprop:Generator_TablePropName="CUT_MATERIAL_SIZES" msprop:Generator_RowDeletingName="CUT_MATERIAL_SIZESRowDeleting" msprop:Generator_RowChangingName="CUT_MATERIAL_SIZESRowChanging" msprop:Generator_RowEvHandlerName="CUT_MATERIAL_SIZESRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_MATERIAL_SIZESRowDeleted" msprop:Generator_RowClassName="CUT_MATERIAL_SIZESRow" msprop:Generator_UserTableName="CUT_MATERIAL_SIZES" msprop:Generator_RowEvArgName="CUT_MATERIAL_SIZESRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="PARTNUM" msprop:Generator_ColumnVarNameInTable="columnPARTNUM" msprop:Generator_ColumnPropNameInRow="PARTNUM" msprop:Generator_ColumnPropNameInTable="PARTNUMColumn" msprop:Generator_UserColumnName="PARTNUM" minOccurs="0">
@@ -5190,7 +5483,7 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="inmast1" msprop:Generator_TableClassName="inmast1DataTable" msprop:Generator_TableVarName="tableinmast1" msprop:Generator_TablePropName="inmast1" msprop:Generator_RowDeletingName="inmast1RowDeleting" msprop:Generator_RowChangingName="inmast1RowChanging" msprop:Generator_RowEvHandlerName="inmast1RowChangeEventHandler" msprop:Generator_RowDeletedName="inmast1RowDeleted" msprop:Generator_UserTableName="inmast1" msprop:Generator_RowChangedName="inmast1RowChanged" msprop:Generator_RowEvArgName="inmast1RowChangeEvent" msprop:Generator_RowClassName="inmast1Row">
+        <xs:element name="inmast1" msprop:Generator_TableClassName="inmast1DataTable" msprop:Generator_TableVarName="tableinmast1" msprop:Generator_RowChangedName="inmast1RowChanged" msprop:Generator_TablePropName="inmast1" msprop:Generator_RowDeletingName="inmast1RowDeleting" msprop:Generator_RowChangingName="inmast1RowChanging" msprop:Generator_RowEvHandlerName="inmast1RowChangeEventHandler" msprop:Generator_RowDeletedName="inmast1RowDeleted" msprop:Generator_RowClassName="inmast1Row" msprop:Generator_UserTableName="inmast1" msprop:Generator_RowEvArgName="inmast1RowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="flastcost" msprop:Generator_ColumnVarNameInTable="columnflastcost" msprop:Generator_ColumnPropNameInRow="flastcost" msprop:Generator_ColumnPropNameInTable="flastcostColumn" msprop:Generator_UserColumnName="flastcost" type="xs:decimal" />
@@ -5213,6 +5506,228 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CLIENT_STUFF" msprop:Generator_TableClassName="CLIENT_STUFFDataTable" msprop:Generator_TableVarName="tableCLIENT_STUFF" msprop:Generator_TablePropName="CLIENT_STUFF" msprop:Generator_RowDeletingName="CLIENT_STUFFRowDeleting" msprop:Generator_RowChangingName="CLIENT_STUFFRowChanging" msprop:Generator_RowEvHandlerName="CLIENT_STUFFRowChangeEventHandler" msprop:Generator_RowDeletedName="CLIENT_STUFFRowDeleted" msprop:Generator_UserTableName="CLIENT_STUFF" msprop:Generator_RowChangedName="CLIENT_STUFFRowChanged" msprop:Generator_RowEvArgName="CLIENT_STUFFRowChangeEvent" msprop:Generator_RowClassName="CLIENT_STUFFRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SERIAL" msprop:Generator_ColumnVarNameInTable="columnSERIAL" msprop:Generator_ColumnPropNameInRow="SERIAL" msprop:Generator_ColumnPropNameInTable="SERIALColumn" msprop:Generator_UserColumnName="SERIAL">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="36" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CLIENT_NUM" msprop:Generator_ColumnVarNameInTable="columnCLIENT_NUM" msprop:Generator_ColumnPropNameInRow="CLIENT_NUM" msprop:Generator_ColumnPropNameInTable="CLIENT_NUMColumn" msprop:Generator_UserColumnName="CLIENT_NUM" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EMP_NUM" msprop:Generator_ColumnVarNameInTable="columnEMP_NUM" msprop:Generator_ColumnPropNameInRow="EMP_NUM" msprop:Generator_ColumnPropNameInTable="EMP_NUMColumn" msprop:Generator_UserColumnName="EMP_NUM" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ITEM" msprop:Generator_ColumnVarNameInTable="columnITEM" msprop:Generator_ColumnPropNameInRow="ITEM" msprop:Generator_ColumnPropNameInTable="ITEMColumn" msprop:Generator_UserColumnName="ITEM" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ITEM_DESC" msprop:Generator_ColumnVarNameInTable="columnITEM_DESC" msprop:Generator_ColumnPropNameInRow="ITEM_DESC" msprop:Generator_ColumnPropNameInTable="ITEM_DESCColumn" msprop:Generator_UserColumnName="ITEM_DESC" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DATETIME" msprop:Generator_ColumnVarNameInTable="columnDATETIME" msprop:Generator_ColumnPropNameInRow="DATETIME" msprop:Generator_ColumnPropNameInTable="DATETIMEColumn" msprop:Generator_UserColumnName="DATETIME" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="QTY" msprop:Generator_ColumnVarNameInTable="columnQTY" msprop:Generator_ColumnPropNameInRow="QTY" msprop:Generator_ColumnPropNameInTable="QTYColumn" msprop:Generator_UserColumnName="QTY" type="xs:decimal" minOccurs="0" />
+              <xs:element name="LOC" msprop:Generator_ColumnVarNameInTable="columnLOC" msprop:Generator_ColumnPropNameInRow="LOC" msprop:Generator_ColumnPropNameInTable="LOCColumn" msprop:Generator_UserColumnName="LOC" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="WH" msprop:Generator_ColumnVarNameInTable="columnWH" msprop:Generator_ColumnPropNameInRow="WH" msprop:Generator_ColumnPropNameInTable="WHColumn" msprop:Generator_UserColumnName="WH" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PO" msprop:Generator_ColumnVarNameInTable="columnPO" msprop:Generator_ColumnPropNameInRow="PO" msprop:Generator_ColumnPropNameInTable="POColumn" msprop:Generator_UserColumnName="PO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LOT" msprop:Generator_ColumnVarNameInTable="columnLOT" msprop:Generator_ColumnPropNameInRow="LOT" msprop:Generator_ColumnPropNameInTable="LOTColumn" msprop:Generator_UserColumnName="LOT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BOL" msprop:Generator_ColumnVarNameInTable="columnBOL" msprop:Generator_ColumnPropNameInRow="BOL" msprop:Generator_ColumnPropNameInTable="BOLColumn" msprop:Generator_UserColumnName="BOL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="WEIGHT" msprop:Generator_ColumnVarNameInTable="columnWEIGHT" msprop:Generator_ColumnPropNameInRow="WEIGHT" msprop:Generator_ColumnPropNameInTable="WEIGHTColumn" msprop:Generator_UserColumnName="WEIGHT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PKG_SLIP" msprop:Generator_ColumnVarNameInTable="columnPKG_SLIP" msprop:Generator_ColumnPropNameInRow="PKG_SLIP" msprop:Generator_ColumnPropNameInTable="PKG_SLIPColumn" msprop:Generator_UserColumnName="PKG_SLIP" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="METHOD" msprop:Generator_ColumnVarNameInTable="columnMETHOD" msprop:Generator_ColumnPropNameInRow="METHOD" msprop:Generator_ColumnPropNameInTable="METHODColumn" msprop:Generator_UserColumnName="METHOD" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MULTI_REL" msprop:Generator_ColumnVarNameInTable="columnMULTI_REL" msprop:Generator_ColumnPropNameInRow="MULTI_REL" msprop:Generator_ColumnPropNameInTable="MULTI_RELColumn" msprop:Generator_UserColumnName="MULTI_REL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="COMMENTS" msprop:Generator_ColumnVarNameInTable="columnCOMMENTS" msprop:Generator_ColumnPropNameInRow="COMMENTS" msprop:Generator_ColumnPropNameInTable="COMMENTSColumn" msprop:Generator_UserColumnName="COMMENTS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FIFO" msprop:Generator_ColumnVarNameInTable="columnFIFO" msprop:Generator_ColumnPropNameInRow="FIFO" msprop:Generator_ColumnPropNameInTable="FIFOColumn" msprop:Generator_UserColumnName="FIFO" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="UofM" msprop:Generator_ColumnVarNameInTable="columnUofM" msprop:Generator_ColumnPropNameInRow="UofM" msprop:Generator_ColumnPropNameInTable="UofMColumn" msprop:Generator_UserColumnName="UofM" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="HOLD" msprop:Generator_ColumnVarNameInTable="columnHOLD" msprop:Generator_ColumnPropNameInRow="HOLD" msprop:Generator_ColumnPropNameInTable="HOLDColumn" msprop:Generator_UserColumnName="HOLD" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="QtyPerPallet" msprop:Generator_ColumnVarNameInTable="columnQtyPerPallet" msprop:Generator_ColumnPropNameInRow="QtyPerPallet" msprop:Generator_ColumnPropNameInTable="QtyPerPalletColumn" msprop:Generator_UserColumnName="QtyPerPallet" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SERIALDATE" msprop:Generator_ColumnVarNameInTable="columnSERIALDATE" msprop:Generator_ColumnPropNameInRow="SERIALDATE" msprop:Generator_ColumnPropNameInTable="SERIALDATEColumn" msprop:Generator_UserColumnName="SERIALDATE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PALLETS" msprop:Generator_ColumnVarNameInTable="columnPALLETS" msprop:Generator_ColumnPropNameInRow="PALLETS" msprop:Generator_ColumnPropNameInTable="PALLETSColumn" msprop:Generator_UserColumnName="PALLETS" type="xs:decimal" minOccurs="0" />
+              <xs:element name="LABOR" msprop:Generator_ColumnVarNameInTable="columnLABOR" msprop:Generator_ColumnPropNameInRow="LABOR" msprop:Generator_ColumnPropNameInTable="LABORColumn" msprop:Generator_UserColumnName="LABOR" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NC" msprop:Generator_ColumnVarNameInTable="columnNC" msprop:Generator_ColumnPropNameInRow="NC" msprop:Generator_ColumnPropNameInTable="NCColumn" msprop:Generator_UserColumnName="NC" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="STACK_RATE" msprop:Generator_ColumnVarNameInTable="columnSTACK_RATE" msprop:Generator_ColumnPropNameInRow="STACK_RATE" msprop:Generator_ColumnPropNameInTable="STACK_RATEColumn" msprop:Generator_UserColumnName="STACK_RATE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PART_REV" msprop:Generator_ColumnVarNameInTable="columnPART_REV" msprop:Generator_ColumnPropNameInRow="PART_REV" msprop:Generator_ColumnPropNameInTable="PART_REVColumn" msprop:Generator_UserColumnName="PART_REV" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BIN" msprop:Generator_ColumnVarNameInTable="columnBIN" msprop:Generator_ColumnPropNameInRow="BIN" msprop:Generator_ColumnPropNameInTable="BINColumn" msprop:Generator_UserColumnName="BIN" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="REV" msprop:Generator_ColumnVarNameInTable="columnREV" msprop:Generator_ColumnPropNameInRow="REV" msprop:Generator_ColumnPropNameInTable="REVColumn" msprop:Generator_UserColumnName="REV" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CATEGORY" msprop:Generator_ColumnVarNameInTable="columnCATEGORY" msprop:Generator_ColumnPropNameInRow="CATEGORY" msprop:Generator_ColumnPropNameInTable="CATEGORYColumn" msprop:Generator_UserColumnName="CATEGORY" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="INSPECT" msprop:Generator_ColumnVarNameInTable="columnINSPECT" msprop:Generator_ColumnPropNameInRow="INSPECT" msprop:Generator_ColumnPropNameInTable="INSPECTColumn" msprop:Generator_UserColumnName="INSPECT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PHANTOM" msprop:Generator_ColumnVarNameInTable="columnPHANTOM" msprop:Generator_ColumnPropNameInRow="PHANTOM" msprop:Generator_ColumnPropNameInTable="PHANTOMColumn" msprop:Generator_UserColumnName="PHANTOM" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="JOBNO" msprop:Generator_ColumnVarNameInTable="columnJOBNO" msprop:Generator_ColumnPropNameInRow="JOBNO" msprop:Generator_ColumnPropNameInTable="JOBNOColumn" msprop:Generator_UserColumnName="JOBNO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FINISHED_GOOD" msprop:Generator_ColumnVarNameInTable="columnFINISHED_GOOD" msprop:Generator_ColumnPropNameInRow="FINISHED_GOOD" msprop:Generator_ColumnPropNameInTable="FINISHED_GOODColumn" msprop:Generator_UserColumnName="FINISHED_GOOD" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PART_IDENT" msprop:Generator_ColumnVarNameInTable="columnPART_IDENT" msprop:Generator_ColumnPropNameInRow="PART_IDENT" msprop:Generator_ColumnPropNameInTable="PART_IDENTColumn" msprop:Generator_UserColumnName="PART_IDENT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="12" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LOCIDENT1" msprop:Generator_ColumnVarNameInTable="columnLOCIDENT1" msprop:Generator_ColumnPropNameInRow="LOCIDENT1" msprop:Generator_ColumnPropNameInTable="LOCIDENT1Column" msprop:Generator_UserColumnName="LOCIDENT1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="12" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -5332,6 +5847,10 @@ WHERE      (fpartno = @fpartno) AND (fcstscode &lt;&gt; 'O')</CommandText>
     <xs:unique name="CUT_MATERIAL_SIZES_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:CUT_MATERIAL_SIZES" />
       <xs:field xpath="mstns:SHEETID" />
+    </xs:unique>
+    <xs:unique name="CLIENT_STUFF_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CLIENT_STUFF" />
+      <xs:field xpath="mstns:SERIAL" />
     </xs:unique>
   </xs:element>
 </xs:schema>

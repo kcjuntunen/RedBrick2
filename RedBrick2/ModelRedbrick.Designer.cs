@@ -493,6 +493,7 @@
 			this.label8.TabIndex = 0;
 			this.label8.Text = "label8";
 			this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.label8.MouseHover += new System.EventHandler(this.label8_MouseHover);
 			// 
 			// label9
 			// 
@@ -507,6 +508,7 @@
 			this.label9.TabIndex = 0;
 			this.label9.Text = "label9";
 			this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.label9.MouseHover += new System.EventHandler(this.label9_MouseHover);
 			// 
 			// label10
 			// 
@@ -521,6 +523,7 @@
 			this.label10.TabIndex = 0;
 			this.label10.Text = "label10";
 			this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.label10.MouseHover += new System.EventHandler(this.label10_MouseHover);
 			// 
 			// label11
 			// 
