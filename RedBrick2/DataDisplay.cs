@@ -20,7 +20,8 @@ namespace RedBrick2 {
 			foreach (DataGridViewColumn col_ in dataGridView1.Columns) {
 				if (col_.Name == @"LOC" ||
 					col_.Name == @"QTY" ||
-					col_.Name == @"UofM") {
+					col_.Name == @"UofM" ||
+					col_.Name == @"REV") {
 					col_.Visible = true;
 				} else {
 					col_.Visible = false;
