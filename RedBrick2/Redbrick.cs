@@ -756,10 +756,25 @@ namespace RedBrick2 {
 		/// <returns>A string for DB searches.</returns>
 		static public string FileInfoToLookup(System.IO.FileInfo _fi) {
 			string lookup_ =  System.IO.Path.GetFileNameWithoutExtension(_fi.FullName);
-			if (lookup_.StartsWith(@"Z")) {
-				lookup_ = lookup_.Split(' ')[0];
+			if (conforming_partnumber(lookup_)) {
+				if (lookup_.StartsWith(@"Z")) {
+					lookup_ = lookup_.Split(' ')[0];
+				}
+				return lookup_.Trim();
 			}
-			return lookup_.Trim();
+			System.Text.RegularExpressions.Regex r_ =
+				new System.Text.RegularExpressions.Regex(@"[0-9]{6}");
+			System.Text.RegularExpressions.Match m_ = r_.Match(lookup_);
+			return m_.Groups[0].Value;
+		}
+
+		static private bool conforming_partnumber(string part_) {
+			System.Text.RegularExpressions.Regex r_ =
+				new System.Text.RegularExpressions.Regex(Redbrick.BOMFilter[0]);
+			if (r_.IsMatch(part_)) {
+				return true;
+			}
+			return false;
 		}
 
 		/// <summary>
