@@ -179,8 +179,9 @@ namespace RedBrick2 {
 					ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter ta_ =
 						new ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter();
 					System.IO.FileInfo fi_ = new System.IO.FileInfo((swApp.ActiveDoc as ModelDoc2).GetPathName());
-					System.Data.DataView dv_ = ta_.GetData(Redbrick.FileInfoToLookup(fi_)).DefaultView;
-					DataDisplay d_ = new DataDisplay(dv_);
+					string lu_ = Redbrick.FileInfoToLookup(fi_);
+					System.Data.DataView dv_ = ta_.GetData(lu_).DefaultView;
+					DataDisplay d_ = new DataDisplay(dv_, string.Format(@"{0} - QuickTrack Locations", lu_));
 					d_.ShowDialog(taskpaneHost);
 					break;
 				default:
