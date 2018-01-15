@@ -66,6 +66,8 @@
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.Text = "DataDisplay";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DataDisplay_FormClosing);
+			this.Load += new System.EventHandler(this.DataDisplay_Load);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			this.ResumeLayout(false);

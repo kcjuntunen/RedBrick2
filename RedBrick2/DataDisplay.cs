@@ -28,5 +28,15 @@ namespace RedBrick2 {
 			}
 		}
 
+		private void DataDisplay_Load(object sender, EventArgs e) {
+			Location = Properties.Settings.Default.QTLocation;
+			Size = Properties.Settings.Default.QTSize;
+		}
+
+		private void DataDisplay_FormClosing(object sender, FormClosingEventArgs e) {
+			Properties.Settings.Default.QTLocation = Location;
+			Properties.Settings.Default.QTSize = Size;
+			Properties.Settings.Default.Save();
+		}
 	}
 }

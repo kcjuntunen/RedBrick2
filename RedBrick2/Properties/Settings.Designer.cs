@@ -879,5 +879,29 @@ namespace RedBrick2.Properties {
                 return ((string)(this["QUIKTRACConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
+        public global::System.Drawing.Point QTLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["QTLocation"]));
+            }
+            set {
+                this["QTLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("300, 300")]
+        public global::System.Drawing.Size QTSize {
+            get {
+                return ((global::System.Drawing.Size)(this["QTSize"]));
+            }
+            set {
+                this["QTSize"] = value;
+            }
+        }
     }
 }

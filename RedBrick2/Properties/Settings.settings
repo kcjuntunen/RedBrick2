@@ -258,5 +258,11 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=AMSTORE-SQL-05;Initial Catalog=QUIKTRAC;Integrated Security=True</Value>
     </Setting>
+    <Setting Name="QTLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">100, 100</Value>
+    </Setting>
+    <Setting Name="QTSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">300, 300</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
