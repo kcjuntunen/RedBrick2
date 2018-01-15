@@ -147,7 +147,7 @@ namespace RedBrick2 {
 				BuildStuff();
 			}
 			mrb.DumpActiveDoc();
-			mrb.ReQuery(SwApp.ActiveDoc);
+			mrb.ReStart();
 		}
 
 		/// <summary>

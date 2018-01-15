@@ -763,7 +763,7 @@
 			this.tableLayoutPanel3.SetColumnSpan(this.descriptiontb, 2);
 			this.descriptiontb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "DESCR", true));
 			this.descriptiontb.Location = new System.Drawing.Point(3, 16);
-			this.descriptiontb.MaxLength = 35;
+			this.descriptiontb.MaxLength = 1000;
 			this.descriptiontb.Name = "descriptiontb";
 			this.descriptiontb.Size = new System.Drawing.Size(264, 22);
 			this.descriptiontb.TabIndex = 7;

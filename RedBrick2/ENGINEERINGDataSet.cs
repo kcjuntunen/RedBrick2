@@ -145,7 +145,12 @@ namespace RedBrick2 {
 				ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter ta_ =
 					new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
 				using (SqlCommand comm = new SqlCommand(sql_, ta_.Connection)) {
-					comm.Parameters.AddWithValue("@descr", _pp[@"Description"].Data);
+					int descr_limit_ = new ENGINEERINGDataSet.CUT_PARTSDataTable().DESCRColumn.MaxLength;
+					if (_pp[@"Description"].Data.ToString().Length > descr_limit_) {
+						comm.Parameters.AddWithValue("@descr", _pp[@"Description"].Data.ToString().Substring(0, descr_limit_));
+					} else {
+						comm.Parameters.AddWithValue("@descr", _pp[@"Description"].Data);
+					}
 					comm.Parameters.AddWithValue("@finl", Convert.ToDouble(_pp[@"LENGTH"].Data));
 					comm.Parameters.AddWithValue("@finw", Convert.ToDouble(_pp[@"WIDTH"].Data));
 					comm.Parameters.AddWithValue("@thk", Convert.ToDouble(_pp[@"THICKNESS"].Data));

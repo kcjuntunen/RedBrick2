@@ -257,6 +257,12 @@ namespace RedBrick2 {
 			_activeDoc = null;
 		}
 
+		public void ReStart() {
+			cUT_MATERIALSTableAdapter.Fill(eNGINEERINGDataSet.CUT_MATERIALS);
+			cUT_EDGESTableAdapter.Fill(eNGINEERINGDataSet.CUT_EDGES);
+			ReQuery(SwApp.ActiveDoc);
+		}
+
 		/// <summary>
 		/// Query over again.
 		/// </summary>
@@ -1144,7 +1150,12 @@ namespace RedBrick2 {
 
 			PropertySet[@"COMMENT"].Data = commenttb.Text;
 
-			Row.DESCR = descriptiontb.Text;
+			int descr_limit_ = eNGINEERINGDataSet.CUT_PARTS.DESCRColumn.MaxLength;
+			if (descriptiontb.Text.Length > descr_limit_) {
+				Row.DESCR = descriptiontb.Text.Substring(0, descr_limit_);
+			} else {
+				Row.DESCR = descriptiontb.Text;
+			}
 			float test_ = 0.0F;
 			if (float.TryParse(length_label.Text, out test_)) {
 				Row.FIN_L = test_;
