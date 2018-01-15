@@ -1,6 +1,12 @@
 
-- Dump cutlist parts before updating.
-- Keep state on cutlist update.
-- Department "OTHER" is now excluded by default.
-- Parts save on property update.
-- Fixed edge not pulling from part bug.
+1) Fixed priority window aggressively auto-popping up.
+2) Handled empty customer info in drawings.
+3) More active blank size calculations.
+4) Optional read-only warning.
+5) Hourglass cursor while cutlist is uploading.
+6) No -1's in edge fields.
+7) Optional material lookups when hovering over the material colors.
+8) Added a QuickTrack lookup (the question mark button).
+9) Adjusted gauge note detection Regex a bit.
+10) Allowed descriptions that are too long to insert into the DB.
+11) Possibly enabled material/edging boxes to update on refresh.
