@@ -26,7 +26,7 @@ namespace RedBrick2 {
 		private bool jobs = false;
 		private bool reload = true;
 		private string jobs_msg = string.Empty;
-		private string req_info_ = @"No info.";
+		private string req_info_ = string.Empty;
 
 		/// <summary>
 		/// Constructor.
@@ -347,7 +347,7 @@ namespace RedBrick2 {
 		/// </summary>
 		public void ReLoad() {
 			dirtTracker.Besmirched -= dirtTracker_Besmirched;
-			req_info_ = @"No info.";
+			req_info_ = string.Empty;
 			InitData();
 			user_editing = false;
 			if (Properties.Settings.Default.OnlyActiveAuthors) {
@@ -646,40 +646,58 @@ namespace RedBrick2 {
 		}
 
 		private void label45_MouseHover(object sender, EventArgs e) {
-			if (!jobs) {
+			if (Properties.Settings.Default.ExtraInfo && !jobs) {
 				jobs_msg = GetJobsDue();
 			}
 			status_tooltip.Show(jobs_msg, sender as Label, 30000);
 		}
 
-		private void groupBox5_MouseHover(object sender, EventArgs e) {
-			if (req_info_ == @"No info.") {
-				ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter ri_ =
-					new ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter();
-				ri_.FillByItemNum(eNGINEERINGDataSet.RequestInfo, partLookup);
-				if (eNGINEERINGDataSet.RequestInfo.Count > 0) {
-					ENGINEERINGDataSet.RequestInfoRow r_ =
-						(ENGINEERINGDataSet.RequestInfoRow)eNGINEERINGDataSet.RequestInfo[0];
-					StringBuilder sb_ = new StringBuilder();
-					if (r_[@"FIXID"] != DBNull.Value) {
-						sb_.AppendFormat(@"Project '{0}' is in '{1}' status.", Convert.ToString(r_.FIXID), r_.RSNAME);
-					} else {
-						sb_.AppendFormat(@"Project '{0}' is in '{1}' status.", Convert.ToString(r_.ITEMNUM), r_.RSNAME);
-					}
-					sb_.AppendLine();
-					sb_.AppendLine();
-					foreach (string line in Redbrick.WrapText(r_.DESCRIPTION, 40)) {
-						sb_.AppendLine(line);
-					}
-					sb_.AppendLine();
-					sb_.AppendFormat(@"Created by {0} on {1:M/d/yyyy}", Redbrick.TitleCase(r_.Creator), r_.CDATE);
-					sb_.AppendLine();
-					sb_.AppendFormat(@"Lead: {0}", Redbrick.TitleCase(r_.Lead));
-					sb_.AppendLine();
-					req_info_ = sb_.ToString();
+		private void display_req_info(Control sender) {
+			ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter ri_ =
+				new ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter();
+			ri_.FillByItemNum(eNGINEERINGDataSet.RequestInfo, partLookup);
+			if (eNGINEERINGDataSet.RequestInfo.Count > 0) {
+				ENGINEERINGDataSet.RequestInfoRow r_ =
+					(ENGINEERINGDataSet.RequestInfoRow)eNGINEERINGDataSet.RequestInfo[0];
+				StringBuilder sb_ = new StringBuilder();
+				if (r_[@"FIXID"] != DBNull.Value) {
+					sb_.AppendFormat(@"Project '{0}' is in '{1}' status.", Convert.ToString(r_.FIXID), r_.RSNAME);
+				} else {
+					sb_.AppendFormat(@"Project '{0}' is in '{1}' status.", Convert.ToString(r_.ITEMNUM), r_.RSNAME);
 				}
+				sb_.AppendLine();
+				sb_.AppendLine();
+				foreach (string line in Redbrick.WrapText(r_.DESCRIPTION, 40)) {
+					sb_.AppendLine(line);
+				}
+				sb_.AppendLine();
+				sb_.AppendFormat(@"Created by {0} on {1:M/d/yyyy}", Redbrick.TitleCase(r_.Creator), r_.CDATE);
+				sb_.AppendLine();
+				sb_.AppendFormat(@"Lead: {0}", Redbrick.TitleCase(r_.Lead));
+				sb_.AppendLine();
+				req_info_ = sb_.ToString();
 			}
-			req_tooltip.Show(req_info_, sender as GroupBox, 30000);
+		}
+
+		private string GetLocations() {
+			string msg_ = string.Empty;
+			List<string> l_ = eNGINEERINGDataSet.CLIENT_STUFF.GetLocations(partLookup);
+			if (l_.Count < 1) {
+				return string.Empty;
+			}
+			string loc_ = string.Empty;
+			for (int i = 0; i < l_.Count; i++) {
+				loc_ += l_[i] + "\n";
+			}
+			System.Diagnostics.Debug.Print(loc_);
+			return loc_;
+		}
+
+		private void groupBox5_MouseHover(object sender, EventArgs e) {
+			//if (Properties.Settings.Default.ExtraInfo && req_info_ == string.Empty) {
+			//	req_info_ = GetLocations();
+			//}
+			//req_tooltip.Show(req_info_, sender as GroupBox, 30000);
 		}
 	}
 }
