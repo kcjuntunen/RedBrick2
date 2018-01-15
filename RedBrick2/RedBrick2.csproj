@@ -132,6 +132,12 @@
       <DependentUpon>CreateCutlist.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomerProperty.cs" />
+    <Compile Include="DataDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataDisplay.Designer.cs">
+      <DependentUpon>DataDisplay.cs</DependentUpon>
+    </Compile>
     <Compile Include="DateProperty.cs" />
     <Compile Include="DepartmentProperty.cs" />
     <Compile Include="DeptId.cs" />
@@ -245,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreateCutlist.resx">
       <DependentUpon>CreateCutlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataDisplay.resx">
+      <DependentUpon>DataDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DrawingRedbrick.resx">
       <DependentUpon>DrawingRedbrick.cs</DependentUpon>

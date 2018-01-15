@@ -175,7 +175,13 @@ namespace RedBrick2 {
 					apw.Archive();
 					break;
 				case 4:
-					System.Diagnostics.Process.Start(Properties.Settings.Default.UsageLink);
+					//System.Diagnostics.Process.Start(Properties.Settings.Default.UsageLink);
+					ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter ta_ =
+						new ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter();
+					System.IO.FileInfo fi_ = new System.IO.FileInfo((swApp.ActiveDoc as ModelDoc2).GetPathName());
+					System.Data.DataView dv_ = ta_.GetData(Redbrick.FileInfoToLookup(fi_)).DefaultView;
+					DataDisplay d_ = new DataDisplay(dv_);
+					d_.ShowDialog(taskpaneHost);
 					break;
 				default:
 					break;
@@ -783,6 +789,33 @@ namespace RedBrick2 {
 				wrappedLines.Add(actualLine.ToString());
 
 			return wrappedLines;
+		}
+
+		public static string WrapTextReturnString(string _text, int _length) {
+			string[] originalLines = _text.Split(new string[] { " " },
+					StringSplitOptions.None);
+
+			List<string> wrappedLines = new List<string>();
+
+			StringBuilder actualLine = new StringBuilder();
+			int linelength_ = 0;
+			foreach (var item in originalLines) {
+				actualLine.Append(item + @" ");
+				linelength_ += item.Length;
+				if (linelength_ > _length) {
+					wrappedLines.Add(actualLine.ToString());
+					actualLine.Clear();
+					linelength_ = 0;
+				}
+			}
+
+			if (actualLine.Length > 0)
+				wrappedLines.Add(actualLine.ToString());
+			string str_ = string.Empty;
+			foreach (var item in wrappedLines) {
+				str_ += item + "\n";
+			}
+			return str_;
 		}
 
 		/// <summary>
