@@ -765,7 +765,10 @@ namespace RedBrick2 {
 			System.Text.RegularExpressions.Regex r_ =
 				new System.Text.RegularExpressions.Regex(@"[0-9]{6}");
 			System.Text.RegularExpressions.Match m_ = r_.Match(lookup_);
-			return m_.Groups[0].Value;
+			if (m_.Groups[0].Value != string.Empty) {
+				return m_.Groups[0].Value;
+			}
+			return lookup_;
 		}
 
 		static private bool conforming_partnumber(string part_) {
