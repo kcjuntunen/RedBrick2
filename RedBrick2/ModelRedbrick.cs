@@ -1899,11 +1899,11 @@ namespace RedBrick2 {
 
 		static private Single get_edge_thickness_total(ComboBox c1, ComboBox c2) {
 			Single _edge_thickness = 0.0F;
-			if (c1.SelectedItem != null) {
+			if (c1.SelectedItem != null && c1.SelectedIndex > 0) {
 				_edge_thickness += Convert.ToSingle((c1.SelectedItem as DataRowView)[@"THICKNESS"]);
 			}
 
-			if (c2.SelectedItem != null) {
+			if (c2.SelectedItem != null && c2.SelectedIndex > 0) {
 				_edge_thickness += Convert.ToSingle((c2.SelectedItem as DataRowView)[@"THICKNESS"]);
 			}
 			return _edge_thickness;
@@ -2295,10 +2295,8 @@ namespace RedBrick2 {
 		private void remove_btn_MouseClick(object sender, MouseEventArgs e) {
 			if (cutlistctl.SelectedItem != null) {
 				DataRowView rv_ = cutlistctl.SelectedItem as DataRowView;
-				string cutlist_name_ = string.Format(@"{0} REV {1}",
-					Convert.ToString(rv_[@"PARTNUM"]),
-					Convert.ToString(rv_[@"REV"]));
-				string q_ = string.Format(@"Do you really want to remove {0} from {1}?", PropertySet.PartLookup, cutlist_name_);
+				string cutlist_name_ = Convert.ToString(rv_[@"CutlistDisplayName"]);
+				string q_ = string.Format(@"Do you really want to remove '{0}' from '{1}'?", PropertySet.PartLookup, cutlist_name_);
 				DialogResult dr_ = MessageBox.Show(this, q_, @"RLY?",
 					MessageBoxButtons.YesNo,
 					MessageBoxIcon.Question,
