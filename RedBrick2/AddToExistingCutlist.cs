@@ -47,11 +47,14 @@ namespace RedBrick2 {
 		}
 
 		private void add_btn_Click(object sender, EventArgs e) {
-			props_.CutlistQty = (float)Convert.ToDouble(partq_nud.Value);
-			eNGINEERINGDataSet.CUT_PARTS.UpdatePart(props_);
-			eNGINEERINGDataSet.CUT_CUTLIST_PARTS.UpdateCutlistPart(props_);
-			add_btn.Enabled = false;
-			cancel_btn.Text = @"Close";
+			if (cutlist_cbx.SelectedItem != null) {
+				props_.CutlistID = Convert.ToInt32((cutlist_cbx.SelectedItem as DataRowView)[@"CLID"]);
+				props_.CutlistQty = (float)Convert.ToDouble(partq_nud.Value);
+				eNGINEERINGDataSet.CUT_PARTS.UpdatePart(props_);
+				eNGINEERINGDataSet.CUT_CUTLIST_PARTS.UpdateCutlistPart(props_);
+				add_btn.Enabled = false;
+				cancel_btn.Text = @"Close";
+			}
 		}
 
 		private void AddToExistingCutlist_FormClosing(object sender, FormClosingEventArgs e) {
