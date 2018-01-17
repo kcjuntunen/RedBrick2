@@ -14,6 +14,7 @@ namespace RedBrick2 {
 
 		public DataDisplay(DataView _dv, string _title) {
 			InitializeComponent();
+			toolStripStatusLabel1.Text = @"Total quantity: 0";
 			dv_ = _dv;
 			dataGridView1.DataSource = dv_;
 			Text = _title;
@@ -29,9 +30,18 @@ namespace RedBrick2 {
 			}
 		}
 
+		private void _sum_qty() {
+			double sum_ = 0.0f;
+			foreach (DataGridViewRow r_ in dataGridView1.Rows) {
+				sum_ += Convert.ToDouble(r_.Cells[@"QTY"].Value);
+			}
+			toolStripStatusLabel1.Text = string.Format(@"Total quantity: {0}", sum_);
+		}
+
 		private void DataDisplay_Load(object sender, EventArgs e) {
 			Location = Properties.Settings.Default.QTLocation;
 			Size = Properties.Settings.Default.QTSize;
+			_sum_qty();
 		}
 
 		private void DataDisplay_FormClosing(object sender, FormClosingEventArgs e) {

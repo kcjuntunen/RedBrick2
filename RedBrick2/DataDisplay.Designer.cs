@@ -25,8 +25,11 @@
 		private void InitializeComponent() {
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tableLayoutPanel1
@@ -54,11 +57,28 @@
 			this.dataGridView1.Size = new System.Drawing.Size(262, 213);
 			this.dataGridView1.TabIndex = 0;
 			// 
+			// statusStrip1
+			// 
+			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+			this.statusStrip1.Location = new System.Drawing.Point(0, 251);
+			this.statusStrip1.Name = "statusStrip1";
+			this.statusStrip1.Size = new System.Drawing.Size(292, 22);
+			this.statusStrip1.TabIndex = 1;
+			this.statusStrip1.Text = "statusStrip1";
+			// 
+			// toolStripStatusLabel1
+			// 
+			this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+			this.toolStripStatusLabel1.Size = new System.Drawing.Size(117, 17);
+			this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+			// 
 			// DataDisplay
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(292, 273);
+			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
@@ -70,7 +90,10 @@
 			this.Load += new System.EventHandler(this.DataDisplay_Load);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+			this.statusStrip1.ResumeLayout(false);
+			this.statusStrip1.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -78,5 +101,7 @@
 
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 		private System.Windows.Forms.DataGridView dataGridView1;
+		private System.Windows.Forms.StatusStrip statusStrip1;
+		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
 	}
 }
