@@ -31,6 +31,7 @@ namespace RedBrick2 {
 		public int cookie;
 		public ModelRedbrick mrb;
 		private bool initialated = false;
+		private bool openpostnotify = false;
 
 		/// <summary>
 		/// Constructor.
@@ -69,7 +70,9 @@ namespace RedBrick2 {
 		}
 
 		private int SwApp_FileOpenPostNotify(string FileName) {
-			ConnectSelection();
+			if (openpostnotify) {
+				ConnectSelection();
+			}
 			return 0;
 		}
 
