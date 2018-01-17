@@ -1,2 +1,4 @@
 
-Probably fixed squirrelly edging.
+1) Configuration confusion during cutlist creation maybe resolved.
+2) Added "Update CNC" field to BOM window.
+3) Color tooltip added for material and edging on BOM window.

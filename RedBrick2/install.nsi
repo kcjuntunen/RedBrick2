@@ -9,7 +9,7 @@ VIAddVersionKey ProductVersion ${VERSION}
 VIAddVersionKey ProductName "RedBrick"
 VIAddversionkey FileVersion ${VERSION}
 VIAddVersionKey FileDescription "Connect Solidworks to cutlist data."
-VIAddVersionKey LegalCopyright  "2017 K. C. Juntunen"
+VIAddVersionKey LegalCopyright  "2017-2018 K. C. Juntunen"
 InstallDir "$PROGRAMFILES64\RedBrick\"
 RequestExecutionLevel admin
 
@@ -33,7 +33,7 @@ Section
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Redbrick" \
       "DisplayIcon" "$PROGRAMFILES64\Redbrick\redlego.ico"
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Redbrick" \
-      "EstimatedSize" 64714
+      "EstimatedSize" 2045
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Redbrick" \
       "DisplayName" "Amstore Redbrick Property Manager"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Redbrick" \
