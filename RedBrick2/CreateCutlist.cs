@@ -298,8 +298,6 @@ namespace RedBrick2 {
 			string name = Path.GetFileNameWithoutExtension(m.GetPathName());
 			SwProperties s = new SwProperties(_swApp);
 			s.Configuration = _config.Name;
-			Configuration c_ = m.GetActiveConfiguration();
-			s.Configuration = c_.Name;
 			s.GetProperties(m);
 			s.PartFileInfo = new FileInfo(m.GetPathName());
 			itm_cbx.Text = partLookup;
@@ -343,9 +341,8 @@ namespace RedBrick2 {
 					name = Redbrick.FileInfoToLookup(fi_);
 					pb.UpdateTitle(name);
 					SwProperties s = new SwProperties(_swApp, md);
-					s.Configuration = _config.Name;
-					Configuration c_ = md.GetActiveConfiguration();
-					s.Configuration = c_.Name;
+					s.Configuration = swChildComp.ReferencedConfiguration;
+					ConfigurationManager cm_ = md.ConfigurationManager;
 					s.GetProperties(md);
 					if (!_dict.ContainsKey(name)) {
 						_dict.Add(name, 1);
