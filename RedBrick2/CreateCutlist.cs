@@ -654,7 +654,13 @@ namespace RedBrick2 {
 			inc.HeaderText = @"Include";
 			inc.SortMode = DataGridViewColumnSortMode.Programmatic;
 
-			foreach (var item in new object[] { inc, dpt_col,
+			DataGridViewCheckBoxColumn upd = new DataGridViewCheckBoxColumn();
+			upd.Name = @"upd";
+			upd.CellTemplate = new DataGridViewCheckBoxCell();
+			upd.HeaderText = @"Update CNC";
+			upd.SortMode = DataGridViewColumnSortMode.Programmatic;
+
+			foreach (var item in new object[] { inc, dpt_col, upd,
 			  part_number, descr, part_qty, mat,
 				length, width, thickness, blnk_qty, overl, overw, cnc1, cnc2,
 				op1, op2, op3, op4, op5,
@@ -779,6 +785,8 @@ namespace RedBrick2 {
 
 				row.Cells[@"Part Qty"].Value = item.Value;
 				val.CutlistQty = item.Value;
+
+				row.Cells[@"upd"].Value = val[@"UPDATE CNC"].Data;
 
 				row.Cells[@"Include"].Value = r.IsMatch(name)
 					&& row.Cells[@"Department"].Value != null
@@ -1191,6 +1199,7 @@ namespace RedBrick2 {
 						_partlist[partnum_][@"EDGE BACK (L)"].Data = Convert.ToInt32(dgvr_.Cells[@"eb"].Value);
 						_partlist[partnum_][@"EDGE LEFT (W)"].Data = Convert.ToInt32(dgvr_.Cells[@"el"].Value);
 						_partlist[partnum_][@"EDGE RIGHT (W)"].Data = Convert.ToInt32(dgvr_.Cells[@"er"].Value);
+						_partlist[partnum_][@"UPDATE CNC"].Data = Convert.ToBoolean(dgvr_.Cells[@"upd"].FormattedValue);
 						_partlist[partnum_].Write();
 						_partlist[partnum_].Save();
 						parts_.Add(_partlist[partnum_]);
