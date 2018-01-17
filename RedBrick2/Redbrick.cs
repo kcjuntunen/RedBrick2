@@ -138,7 +138,7 @@ namespace RedBrick2 {
 				//result = taskpaneView.AddStandardButton((int)swTaskPaneBitmapsOptions_e.swTaskPaneBitmapsOptions_Close, "Close");
 				result = taskpaneView.AddCustomButton(Properties.Settings.Default.NetPath + Properties.Settings.Default.RefreshIcon, "Refresh");
 				result = taskpaneView.AddCustomButton(Properties.Settings.Default.NetPath + Properties.Settings.Default.ArchiveIcon, "Archive PDF");
-				result = taskpaneView.AddCustomButton(Properties.Settings.Default.NetPath + Properties.Settings.Default.HelpIcon, "Usage Help");
+				result = taskpaneView.AddCustomButton(Properties.Settings.Default.NetPath + Properties.Settings.Default.GlassesIcon, "Usage Help");
 
 				taskpaneView.TaskPaneToolbarButtonClicked += taskpaneView_TaskPaneToolbarButtonClicked;
 				taskpaneHost.cookie = cookie;
@@ -175,14 +175,15 @@ namespace RedBrick2 {
 					apw.Archive();
 					break;
 				case 4:
-					//System.Diagnostics.Process.Start(Properties.Settings.Default.UsageLink);
-					ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter ta_ =
-						new ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter();
-					System.IO.FileInfo fi_ = new System.IO.FileInfo(taskpaneHost.mrb.ActiveDoc.GetPathName());
-					string lu_ = Redbrick.FileInfoToLookup(fi_);
-					System.Data.DataView dv_ = ta_.GetData(lu_).DefaultView;
-					DataDisplay d_ = new DataDisplay(dv_, string.Format(@"{0} - QuickTrack Locations", lu_));
-					d_.ShowDialog(taskpaneHost);
+					if (taskpaneHost.mrb != null && taskpaneHost.mrb.ActiveDoc != null) {
+						ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter ta_ =
+							new ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter();
+						System.IO.FileInfo fi_ = new System.IO.FileInfo(taskpaneHost.mrb.ActiveDoc.GetPathName());
+						string lu_ = Redbrick.FileInfoToLookup(fi_);
+						System.Data.DataView dv_ = ta_.GetData(lu_).DefaultView;
+						DataDisplay d_ = new DataDisplay(dv_, string.Format(@"{0} - QuickTrack Locations", lu_));
+						d_.ShowDialog(taskpaneHost);
+					}
 					break;
 				default:
 					break;

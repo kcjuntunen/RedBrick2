@@ -68,7 +68,7 @@ namespace RedBrick2.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\\\\cad\\\\Solid Works\\\\Amstore_Macros\\\\ICONS\\\\Archive PDF.bmp")]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\\\cad\\\\Solid Works\\\\Amstore_Macros\\\\ICONS\\\\Archive-icon.bmp")]
         public string ArchiveIcon {
             get {
                 return ((string)(this["ArchiveIcon"]));
@@ -901,6 +901,18 @@ namespace RedBrick2.Properties {
             }
             set {
                 this["QTSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\\\cad\\\\Solid Works\\\\Amstore_Macros\\\\ICONS\\\\Glasses-icon.bmp")]
+        public string GlassesIcon {
+            get {
+                return ((string)(this["GlassesIcon"]));
+            }
+            set {
+                this["GlassesIcon"] = value;
             }
         }
     }

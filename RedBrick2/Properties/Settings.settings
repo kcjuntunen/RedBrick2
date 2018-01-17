@@ -20,7 +20,7 @@
       <Value Profile="(Default)">\\cad\\Solid Works\\Amstore_Macros\\ICONS\\Refresh-icon.bmp</Value>
     </Setting>
     <Setting Name="ArchiveIcon" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">\\cad\\Solid Works\\Amstore_Macros\\ICONS\\Archive PDF.bmp</Value>
+      <Value Profile="(Default)">\\cad\\Solid Works\\Amstore_Macros\\ICONS\\Archive-icon.bmp</Value>
     </Setting>
     <Setting Name="HelpIcon" Type="System.String" Scope="Application">
       <Value Profile="(Default)">\\cad\\Solid Works\\Amstore_Macros\\ICONS\\help_and_support.bmp</Value>
@@ -263,6 +263,9 @@
     </Setting>
     <Setting Name="QTSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">300, 300</Value>
+    </Setting>
+    <Setting Name="GlassesIcon" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\\cad\\Solid Works\\Amstore_Macros\\ICONS\\Glasses-icon.bmp</Value>
     </Setting>
   </Settings>
 </SettingsFile>

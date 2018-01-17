@@ -125,6 +125,16 @@ namespace RedBrick2.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Glasses_icon {
+            get {
+                object obj = ResourceManager.GetObject("Glasses_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edging is inconsistent with routing..
         /// </summary>
         internal static string InconsistentEdgingOp {
