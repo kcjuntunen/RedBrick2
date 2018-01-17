@@ -692,6 +692,13 @@ namespace RedBrick2 {
 			}
 		}
 
+		private void SetMaterialCellTooltip(DataGridViewComboBoxCell _c, string _id_field) {
+			DataTable dv_ = _c.DataSource as DataTable;
+			string filter_ = string.Format(@"{0} = {1}", _id_field, Convert.ToString(_c.Value));
+			DataRow[] dr_ = dv_.Select(filter_);
+			_c.ToolTipText = Convert.ToString(dr_[0][@"COLOR"]);
+		}
+
 		private void FillTable(SortedDictionary<string, int> pl, SortedDictionary<string, SwProperties> sp) {
 			System.Text.RegularExpressions.Regex r =
 				new System.Text.RegularExpressions.Regex(Redbrick.BOMFilter[0]);
@@ -883,6 +890,11 @@ namespace RedBrick2 {
 				DataGridViewCell dpt_cell_ = grid_.Rows[e.RowIndex].Cells[@"Department"];
 				DataGridViewCell ppb_cell_ = grid_.Rows[e.RowIndex].Cells[@"Blank Qty"];
 				DataGridViewCell descr_cell_ = grid_.Rows[e.RowIndex].Cells[@"Description"];
+				DataGridViewComboBoxCell mat_ = grid_.Rows[e.RowIndex].Cells[@"Material"] as DataGridViewComboBoxCell;
+				DataGridViewComboBoxCell ef_ = grid_.Rows[e.RowIndex].Cells[@"ef"] as DataGridViewComboBoxCell;
+				DataGridViewComboBoxCell eb_ = grid_.Rows[e.RowIndex].Cells[@"eb"] as DataGridViewComboBoxCell;
+				DataGridViewComboBoxCell er_ = grid_.Rows[e.RowIndex].Cells[@"er"] as DataGridViewComboBoxCell;
+				DataGridViewComboBoxCell el_ = grid_.Rows[e.RowIndex].Cells[@"el"] as DataGridViewComboBoxCell;
 				if (dpt_cell_.Value != null) {
 					ToggleCellWarn(dpt_cell_, false);
 				} else {
@@ -902,6 +914,26 @@ namespace RedBrick2 {
 					(descr_cell_.Value.ToString() == string.Empty ||
 					descr_cell_.Value.ToString().Contains("$"))) {
 					ToggleCellWarn(descr_cell_, true);
+				}
+
+				if (mat_.Value != null && (int)mat_.Value > 0) {
+					SetMaterialCellTooltip(mat_, @"MATID");
+				}
+
+				if (ef_.Value != null && (int)ef_.Value > 0) {
+					SetMaterialCellTooltip(ef_, @"EDGEID");
+				}
+
+				if (eb_.Value != null && (int)eb_.Value > 0) {
+					SetMaterialCellTooltip(eb_, @"EDGEID");
+				}
+
+				if (er_.Value != null && (int)er_.Value > 0) {
+					SetMaterialCellTooltip(er_, @"EDGEID");
+				}
+
+				if (el_.Value != null && (int)el_.Value > 0) {
+					SetMaterialCellTooltip(el_, @"EDGEID");
 				}
 			}
 		}
