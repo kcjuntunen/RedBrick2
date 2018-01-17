@@ -1322,7 +1322,7 @@ namespace RedBrick2 {
 					if (Row != null && Row.PARTID > 0) {
 						eNGINEERINGDataSet.CUT_PARTS.UpdatePart(PropertySet);
 						//cpta.Update(Row);
-						if (CutlistPartsRow != null && CutlistPartsRow.CLPARTID > 0) {
+						if (CutlistPartsRow != null && PropertySet.CutlistAndPartIDsOK) {
 							eNGINEERINGDataSet.CUT_CUTLIST_PARTS.UpdateCutlistPart(PropertySet);
 							//ccpta.Update(CutlistPartsRow);
 						}
@@ -2451,6 +2451,21 @@ namespace RedBrick2 {
 				edger_mat_tip.Show(edger_price_, sender as Label, 30000);
 			} else {
 				edger_price_ = string.Empty;
+			}
+		}
+
+		private void cutlistctl_TextChanged(object sender, EventArgs e) {
+			ComboBox c_ = sender as ComboBox;
+			if (c_.Text.Trim() == string.Empty) {
+				c_.SelectedIndex = -1;
+				PropertySet.CutlistID = 0;
+				CutlistPartsRow = null;
+				GetMaterialFromPart();
+				GetEdgesFromPart();
+				ToggleCutlistErr(true);
+				EnableCutlistSpec(false);
+				Properties.Settings.Default.LastCutlist = 0;
+				Properties.Settings.Default.Save();
 			}
 		}
 	}
