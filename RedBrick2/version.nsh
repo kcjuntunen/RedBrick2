@@ -1,3 +1,3 @@
-!define VERSION "2.0.0.7"
+!define VERSION "2.0.0.10"
 !define DESCRIPTION "RedBrick"
-!define COPYRIGHT "Copyright © K. C. Juntunen 2017"
+!define COPYRIGHT "Copyright © K. C. Juntunen 2017-2018"
