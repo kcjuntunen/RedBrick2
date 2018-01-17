@@ -1941,12 +1941,11 @@ namespace RedBrick2 {
 			// unpredicably--at least where the column count is high. I haven't seen values shift in
 			// the first few columns.
 			if (cutlistctl.SelectedIndex > -1) {
-
 				if (eNGINEERINGDataSet.CUT_CUTLIST_PARTS.Count > 0) {
 					CutlistPartsRow = eNGINEERINGDataSet.CUT_CUTLIST_PARTS[0];
 				}
 
-				ccpta.FillByCutlistIDAndPartID(eNGINEERINGDataSet.CUT_CUTLIST_PARTS, Row.PARTID,
+				ccpta.FillByCutlistIDAndPartID(eNGINEERINGDataSet.CUT_CUTLIST_PARTS, PropertySet.PartID,
 					Convert.ToInt32(cutlistctl.SelectedValue));
 				if (eNGINEERINGDataSet.CUT_CUTLIST_PARTS.Rows.Count > 0) {
 					CutlistPartsRow = (eNGINEERINGDataSet.CUT_CUTLIST_PARTS.Rows[0] as ENGINEERINGDataSet.CUT_CUTLIST_PARTSRow);

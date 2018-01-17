@@ -276,7 +276,6 @@
 			this.cutlistMat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.cutlistMat.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.cutlistMat.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-			this.cutlistMat.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cutlistPartsBindingSource, "MATID", true));
 			this.cutlistMat.DataSource = this.cUTMATERIALSBindingSource1;
 			this.cutlistMat.DisplayMember = "DESCR";
 			this.cutlistMat.FormattingEnabled = true;
@@ -320,7 +319,6 @@
 			this.edgef.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.edgef.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.edgef.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-			this.edgef.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cutlistPartsBindingSource, "EDGEID_LF", true));
 			this.edgef.DataSource = this.cUTEDGESBindingSource;
 			this.edgef.DisplayMember = "DESCR";
 			this.edgef.FormattingEnabled = true;
@@ -355,7 +353,6 @@
 			this.edgeb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.edgeb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.edgeb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-			this.edgeb.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cutlistPartsBindingSource, "EDGEID_LB", true));
 			this.edgeb.DataSource = this.cUTEDGESBindingSource1;
 			this.edgeb.DisplayMember = "DESCR";
 			this.edgeb.FormattingEnabled = true;
@@ -400,7 +397,6 @@
 			this.edgel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.edgel.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.edgel.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-			this.edgel.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cutlistPartsBindingSource, "EDGEID_WL", true));
 			this.edgel.DataSource = this.cUTEDGESBindingSource2;
 			this.edgel.DisplayMember = "DESCR";
 			this.edgel.FormattingEnabled = true;
@@ -430,7 +426,6 @@
 			this.edger.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.edger.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.edger.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-			this.edger.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cutlistPartsBindingSource, "EDGEID_WR", true));
 			this.edger.DataSource = this.cUTEDGESBindingSource3;
 			this.edger.DisplayMember = "DESCR";
 			this.edger.FormattingEnabled = true;
@@ -548,7 +543,6 @@
 			// 
 			this.partq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.partq.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.cutlistPartsBindingSource, "QTY", true));
 			this.partq.Location = new System.Drawing.Point(192, 216);
 			this.partq.Name = "partq";
 			this.partq.Size = new System.Drawing.Size(75, 22);
