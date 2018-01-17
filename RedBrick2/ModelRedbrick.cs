@@ -414,6 +414,7 @@ namespace RedBrick2 {
 				cutlistctl.SelectedValue = Properties.Settings.Default.LastCutlist;
 				EnableCutlistSpec(true);
 				ToggleCutlistErr(false);
+				comboBox6_SelectedIndexChanged(cutlistctl, new EventArgs());
 			} else if (cutlistctl.Items.Count < 1) {
 				cutlistctl.SelectedValue = -1;
 				EnableCutlistSpec(true);
