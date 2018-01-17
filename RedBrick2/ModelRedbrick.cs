@@ -391,7 +391,6 @@ namespace RedBrick2 {
 				blnkszLtb.Text = Redbrick.enforce_number_format(blnkszLtb.Text);
 				blnkszWtb.Text = Redbrick.enforce_number_format(blnkszWtb.Text);
 				checked_at_start = updateCNCcb.Checked;
-				SelectLastCutlist();
 			}
 			if (Row != null) {
 				cpota.FillByPartID(eNGINEERINGDataSet.CUT_PART_OPS, Row.PARTID);
@@ -407,6 +406,7 @@ namespace RedBrick2 {
 				GetDataFromPart();
 			}
 			remove_btn.Enabled = PropertySet.CutlistAndPartIDsOK;
+			SelectLastCutlist();
 		}
 
 		private void SelectLastCutlist() {
@@ -418,6 +418,8 @@ namespace RedBrick2 {
 				cutlistctl.SelectedValue = -1;
 				EnableCutlistSpec(true);
 				ToggleCutlistErr(false);
+				GetMaterialFromPart();
+				GetEdgesFromPart();
 			} else {
 				cutlistctl.SelectedValue = -1;
 				ToggleCutlistErr(true);
@@ -1940,6 +1942,9 @@ namespace RedBrick2 {
 			// of (sender as ComboBox).SelectedItem. Well, it turns out that the values shift around
 			// unpredicably--at least where the column count is high. I haven't seen values shift in
 			// the first few columns.
+			if (dirtTracker != null) {
+				dirtTracker.Besmirched -= dirtTracker_Besmirched;
+			}
 			if (cutlistctl.SelectedIndex > -1) {
 				if (eNGINEERINGDataSet.CUT_CUTLIST_PARTS.Count > 0) {
 					CutlistPartsRow = eNGINEERINGDataSet.CUT_CUTLIST_PARTS[0];
@@ -1957,6 +1962,10 @@ namespace RedBrick2 {
 				Properties.Settings.Default.LastCutlist = (int)(sender as ComboBox).SelectedValue;
 				Properties.Settings.Default.Save();
 				cl_userediting = false;
+			}
+
+			if (dirtTracker != null) {
+				dirtTracker.Besmirched += dirtTracker_Besmirched;
 			}
 		}
 
