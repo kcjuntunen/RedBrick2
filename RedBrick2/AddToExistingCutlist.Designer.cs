@@ -87,6 +87,7 @@ namespace RedBrick2 {
 			this.cutlist_cbx.TabIndex = 3;
 			this.cutlist_cbx.ValueMember = "CLID";
 			this.cutlist_cbx.SelectedIndexChanged += new System.EventHandler(this.cutlist_cbx_SelectedIndexChanged);
+			this.cutlist_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cutlist_cbx_KeyDown);
 			// 
 			// cutlistsBindingSource
 			// 

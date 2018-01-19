@@ -70,5 +70,9 @@ namespace RedBrick2 {
 				Text = string.Format(@"Adding {0} to {1}", props_.PartLookup, d_[@"CutlistDisplayName"]);
 			}
 		}
+
+		private void cutlist_cbx_KeyDown(object sender, KeyEventArgs e) {
+			(sender as ComboBox).DroppedDown = false;
+		}
 	}
 }
