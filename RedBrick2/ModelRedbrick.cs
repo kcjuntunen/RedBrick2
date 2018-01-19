@@ -2456,7 +2456,7 @@ namespace RedBrick2 {
 
 		private void cutlistctl_TextChanged(object sender, EventArgs e) {
 			ComboBox c_ = sender as ComboBox;
-			if (c_.Text.Trim() == string.Empty) {
+			if (cl_userediting && c_.Text.Trim() == string.Empty) {
 				c_.SelectedIndex = -1;
 				PropertySet.CutlistID = 0;
 				CutlistPartsRow = null;
