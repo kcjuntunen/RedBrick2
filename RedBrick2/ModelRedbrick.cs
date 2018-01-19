@@ -2466,6 +2466,7 @@ namespace RedBrick2 {
 				EnableCutlistSpec(false);
 				Properties.Settings.Default.LastCutlist = 0;
 				Properties.Settings.Default.Save();
+				cl_userediting = false;
 			}
 		}
 
