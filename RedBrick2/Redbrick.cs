@@ -278,9 +278,9 @@ namespace RedBrick2 {
 		private void SetupTranslationAndActionTables() {
 			if (!translationSetup) {
 				translation.Add(@"LGCYID", @"Legacy ID");
-				translation.Add(@"DateRequested", @"Date Requested");
-				translation.Add(@"DateStarted", @"Date Started");
-				translation.Add(@"DateCompleted", @"Date Completed");
+				translation.Add(@"DateRequested", @"Requested");
+				translation.Add(@"DateStarted", @"Started");
+				translation.Add(@"DateCompleted", @"Completed");
 				translation.Add(@"AffectedParts", @"Affected Parts");
 				translation.Add(@"Change", @"Change");
 				translation.Add(@"Engineer", @"Engineer");
