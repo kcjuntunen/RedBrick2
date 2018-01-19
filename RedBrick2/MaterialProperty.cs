@@ -80,7 +80,7 @@ namespace RedBrick2 {
 					ENGINEERINGDataSet.CUT_MATERIALSDataTable cmdt = cmta.GetDataByDescr(Value);
 					FriendlyValue = Value;
 					if (cmdt.Rows.Count > 0) {
-						_data = (int)cmdt.Rows[0][@"MATID"];
+						_data = Convert.ToInt32(cmdt.Rows[0][@"MATID"]);
 					}
 				}
 				return _data;

@@ -47,7 +47,7 @@ namespace RedBrick2 {
 				if (_data == 0) {
 					ENGINEERINGDataSet.CUT_EDGESDataTable dt_ =
 						new ENGINEERINGDataSet.CUT_EDGESDataTable();
-					_data = dt_.GetEdgeIDByDescr(Value);
+					_data = Convert.ToInt32(dt_.GetEdgeIDByDescr(Value));
 				}
 				return _data < 1 ? 0 : _data;
 			}

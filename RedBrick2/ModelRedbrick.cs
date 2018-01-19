@@ -744,10 +744,8 @@ namespace RedBrick2 {
 
 		private void GetMaterialFromPart() {
 			int mr = (int)IntTryProp("MATID");
-			if (mr < 1) {
-				ENGINEERINGDataSet.CUT_MATERIALSDataTable md =
-					new ENGINEERINGDataSet.CUT_MATERIALSDataTable();
-				mr = md.GetMaterialIDByDescr(StrTryProp("CUTLIST MATERIAL"));
+			if (mr < 1 && PropertySet.Contains("CUTLIST MATERIAL")) {
+				mr = (int)PropertySet[@"CUTLIST MATERIAL"].Data;
 			}
 			cutlistMat.SelectedValue = mr;
 		}
@@ -756,24 +754,24 @@ namespace RedBrick2 {
 			ENGINEERINGDataSet.CUT_EDGESDataTable ed =
 				new ENGINEERINGDataSet.CUT_EDGESDataTable();
 			int er = IntTryProp("EFID");
-			if (er < 1) {
-				er = Convert.ToInt32(PropertySet[@"EDGE FRONT (L)"].Data);
+			if (er < 1 && PropertySet.Contains(@"EDGE FRONT (L)")) {
+				er = (int)PropertySet[@"EDGE FRONT (L)"].Data;
 			}
 			edgef.SelectedValue = er;
 			er = IntTryProp("EBID");
-			if (er < 1) {
-				er = Convert.ToInt32(PropertySet[@"EDGE BACK (L)"].Data);
+			if (er < 1 && PropertySet.Contains(@"EDGE BACK (L)")) {
+				er = (int)PropertySet[@"EDGE BACK (L)"].Data;
 			}
 			edgeb.SelectedValue = er;
 			er = IntTryProp("ERID");
-			if (er < 1) {
-				er = Convert.ToInt32(PropertySet[@"EDGE RIGHT (W)"].Data);
+			if (er < 1 && PropertySet.Contains(@"EDGE RIGHT (W)")) {
+				er = (int)PropertySet[@"EDGE RIGHT (W)"].Data;
 			}
 			edger.SelectedValue = er;
 
 			er = IntTryProp("ELID");
-			if (er < 1) {
-				er = Convert.ToInt32(PropertySet[@"EDGE LEFT (W)"].Data);
+			if (er < 1 && PropertySet.Contains(@"EDGE LEFT (W)")) {
+				er = (int)PropertySet[@"EDGE LEFT (W)"].Data;
 			}
 			edgel.SelectedValue = er;
 		}
@@ -1959,7 +1957,7 @@ namespace RedBrick2 {
 				}
 			}
 
-			if (cl_userediting) {
+			if (cl_userediting && (sender as ComboBox).SelectedValue != null) {
 				Properties.Settings.Default.LastCutlist = (int)(sender as ComboBox).SelectedValue;
 				Properties.Settings.Default.Save();
 				cl_userediting = false;
