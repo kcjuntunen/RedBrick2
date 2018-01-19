@@ -566,7 +566,7 @@
 			this.cutlistctl.ValueMember = "CLID";
 			this.cutlistctl.SelectedIndexChanged += new System.EventHandler(this.comboBox6_SelectedIndexChanged);
 			this.cutlistctl.TextChanged += new System.EventHandler(this.cutlistctl_TextChanged);
-			this.cutlistctl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
+			this.cutlistctl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cutlistctl_KeyDown);
 			this.cutlistctl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cutlistctl_KeyPress);
 			this.cutlistctl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox6_MouseClick);
 			this.cutlistctl.Resize += new System.EventHandler(this.comboBox_Resize);

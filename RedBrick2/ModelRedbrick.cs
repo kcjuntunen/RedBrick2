@@ -2468,5 +2468,10 @@ namespace RedBrick2 {
 				Properties.Settings.Default.Save();
 			}
 		}
+
+		private void cutlistctl_KeyDown(object sender, KeyEventArgs e) {
+			(sender as ComboBox).DroppedDown = false;
+			cl_userediting = true;
+		}
 	}
 }
