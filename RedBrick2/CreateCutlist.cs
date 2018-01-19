@@ -89,15 +89,29 @@ namespace RedBrick2 {
 			InitializeComponent();
 			dataGridView1.DataError += dataGridView1_DataError;
 			dataGridView1.UserDeletedRow += DataGridView1_UserDeletedRow;
+
+			ModelDoc2 m = _swApp.ActiveDoc;
+			topName = Path.GetFileNameWithoutExtension(m.GetPathName());
+
+			rev_in_filename = topName.Contains(@"REV");
+			_config = m.GetActiveConfiguration();
+			assembly_rdo.Enabled = !(m is DrawingDoc);
+		}
+
+		private void guess_customer() {
+			ENGINEERINGDataSet.SCH_PROJECTSRow r =
+				(new ENGINEERINGDataSet.SCH_PROJECTSDataTable()).GetCorrectCustomer(topName);
+			if (r != null) {
+				cust_cbx.SelectedValue = r.CUSTID;
+			}
+			upload_btn.Enabled = false;
+		}
+
+		private void go() {
 			ConfigurationManager swConfMgr;
 			Configuration swConf;
 			Component2 swRootComp;
 			ModelDoc2 m = _swApp.ActiveDoc;
-
-			topName = Path.GetFileNameWithoutExtension(m.GetPathName());
-			rev_in_filename = topName.Contains(@"REV");
-
-			_config = m.GetActiveConfiguration();
 			swConfMgr = (ConfigurationManager)m.ConfigurationManager;
 			swConf = (Configuration)swConfMgr.ActiveConfiguration;
 			if (_swApp.ActiveDoc is DrawingDoc) {
@@ -131,9 +145,9 @@ namespace RedBrick2 {
 			}
 			//dataGridView1.DataSource = ToDataTable(_dict, _partlist);
 			pb.End();
-			Cursor.Current = Cursors.Default;
 			AddColumns();
 			FillTable(_dict, _partlist);
+			Cursor.Current = Cursors.Default;
 			count_includes();
 		}
 
@@ -205,7 +219,8 @@ namespace RedBrick2 {
 				gENCUSTOMERSBindingSource.Filter = @"CUSTACTIVE = True";
 			}
 			this.revListTableAdapter.Fill(this.eNGINEERINGDataSet.RevList);
-
+			PartFileInfo = new FileInfo((_swApp.ActiveDoc as ModelDoc2).GetPathName());
+			partLookup = Redbrick.FileInfoToLookup(PartFileInfo);
 			ENGINEERINGDataSet.SCH_PROJECTSRow spr = (new ENGINEERINGDataSet.SCH_PROJECTSDataTable()).GetCorrectCustomer(partLookup);
 			if (spr != null) {
 				cust_cbx.SelectedValue = spr.CUSTID;
@@ -215,7 +230,10 @@ namespace RedBrick2 {
 				cust_cbx.SelectedIndex = cust_cbx.FindString(_cp.Value.Split('-')[0].Trim());
 			}
 			dateTimePicker1.Value = DateTime.Now;
+			upload_btn.Enabled = false;
 			settle_rev(topName);
+
+			//guess_customer();
 			get_names();
 		}
 
@@ -229,17 +247,6 @@ namespace RedBrick2 {
 		}
 
 		private void get_names() {
-			StringProperty stpr = null;
-			if (_swApp.ActiveDoc is DrawingDoc) {
-				SolidWorks.Interop.sldworks.View _v = Redbrick.GetFirstView(_swApp);
-				stpr = new StringProperty(@"Description", true, _swApp, _v.ReferencedDocument, string.Empty);
-			} else {
-				stpr = new StringProperty(@"Description", true, _swApp, _swApp.ActiveDoc, string.Empty);
-			}
-
-			stpr.Get();
-
-			descr_cbx.Text = stpr.Value;
 			if (descr_cbx.Text == string.Empty) {
 				ToggleDescrWarn(true);
 			}
@@ -250,6 +257,17 @@ namespace RedBrick2 {
 				ref_cbx.Text = topName;
 			}
 
+
+			SwProperty stpr = null;
+			if (_swApp.ActiveDoc is DrawingDoc) {
+				SolidWorks.Interop.sldworks.View _v = Redbrick.GetFirstView(_swApp);
+				stpr = new SwProperty(@"Description", true, _swApp, _v.ReferencedDocument);
+				stpr.Configuration = string.Empty;
+			} else {
+				stpr = new SwProperty(@"Description", true, _swApp, _swApp.ActiveDoc);
+			}
+			stpr.Get();
+			descr_cbx.Text = stpr.Value;
 		}
 
 		private void settle_rev(string pnwe) {
@@ -293,7 +311,20 @@ namespace RedBrick2 {
 			toolStripStatusLabel2.Text = string.Format(@"Included Parts: {0}", x);
 		}
 
+		private void empty_table() {
+			_dict.Clear();
+			_partlist.Clear();
+			dataGridView1.Rows.Clear();
+			dataGridView1.Columns.Clear();
+			dataGridView1.Refresh();
+		}
+
 		private void GetPart(ModelDoc2 m) {
+			if (dataGridView1.Rows.Count > 0) {
+				empty_table();
+			}
+			_swApp.GetUserProgressBar(out pb);
+			Cursor.Current = Cursors.WaitCursor;
 			pb.Start(0, 1, @"Enumerating parts...");
 			string name = Path.GetFileNameWithoutExtension(m.GetPathName());
 			SwProperties s = new SwProperties(_swApp);
@@ -307,9 +338,17 @@ namespace RedBrick2 {
 			_partlist.Add(name, s);
 			pb.UpdateTitle(m.GetTitle());
 			pb.UpdateProgress(1);
+			AddColumns();
+			FillTable(_dict, _partlist);
+			pb.End();
+			Cursor.Current = Cursors.Default;
+			count_includes();
 		}
 
 		private void TraverseComponent(Component2 swComp, long nLevel) {
+			if (dataGridView1.Rows.Count > 0) {
+				empty_table();
+			}
 			int pos = 0;
 			object[] vChildComp;
 			Component2 swChildComp;
@@ -903,6 +942,16 @@ namespace RedBrick2 {
 				DataGridViewComboBoxCell eb_ = grid_.Rows[e.RowIndex].Cells[@"eb"] as DataGridViewComboBoxCell;
 				DataGridViewComboBoxCell er_ = grid_.Rows[e.RowIndex].Cells[@"er"] as DataGridViewComboBoxCell;
 				DataGridViewComboBoxCell el_ = grid_.Rows[e.RowIndex].Cells[@"el"] as DataGridViewComboBoxCell;
+
+				//object ds_ = (grid_.Rows[e.RowIndex].Cells[@"Op 1"] as DataGridViewComboBoxCell).DataSource;
+				//if (ds_ is DataTable && dpt_cell_.Value != null) {
+				//	object ds_filtered_ = (ds_ as DataTable).Select(string.Format(@"TYPEID = {0}", dpt_cell_.Value));
+				//	for (int i = 1; i < Properties.Settings.Default.OpCount + 1; i++) {
+				//		string opcol_ = string.Format(@"Op {0}", i);
+				//		(grid_.Rows[e.RowIndex].Cells[opcol_] as DataGridViewComboBoxCell).DataSource = ds_filtered_;
+				//	}
+				//}
+
 				if (dpt_cell_.Value != null) {
 					ToggleCellWarn(dpt_cell_, false);
 				} else {
@@ -1258,6 +1307,16 @@ namespace RedBrick2 {
 				Redbrick.UnErr(c);
 				item_tooltip.RemoveAll();
 			}
+		}
+
+		private void scan_Click(object sender, EventArgs e) {
+			ModelDoc2 m_ = _swApp.ActiveDoc;
+			if (parts_rdo.Checked) {
+				go();
+			} else if (!(m_ is DrawingDoc) && assembly_rdo.Checked) {
+				GetPart(m_);
+			}
+			upload_btn.Enabled = true;
 		}
 	}
 }

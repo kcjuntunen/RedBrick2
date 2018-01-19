@@ -51,15 +51,18 @@ namespace RedBrick2 {
 			this.unselect_btn = new System.Windows.Forms.Button();
 			this.hide_btn = new System.Windows.Forms.Button();
 			this.upload_btn = new System.Windows.Forms.Button();
+			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+			this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.gEN_CUSTOMERSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.GEN_CUSTOMERSTableAdapter();
 			this.revListTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.RevListTableAdapter();
 			this.cUT_CUTLISTSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
 			this.cutlistPartsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.cutlistPartsTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CutlistPartsTableAdapter();
-			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-			this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
+			this.assembly_rdo = new System.Windows.Forms.RadioButton();
+			this.parts_rdo = new System.Windows.Forms.RadioButton();
+			this.scan = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gENCUSTOMERSBindingSource)).BeginInit();
@@ -69,8 +72,8 @@ namespace RedBrick2 {
 			this.panel1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.cUTPARTTYPESBindingSource)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.cutlistPartsBindingSource)).BeginInit();
 			this.statusStrip1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cutlistPartsBindingSource)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// dataGridView1
@@ -107,6 +110,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel1.Controls.Add(this.itm_cbx, 1, 1);
 			this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
 			this.tableLayoutPanel1.Controls.Add(this.rev_cbx, 2, 1);
+			this.tableLayoutPanel1.Controls.Add(this.scan, 0, 5);
 			this.tableLayoutPanel1.Controls.Add(this.dateTimePicker1, 4, 1);
 			this.tableLayoutPanel1.Controls.Add(this.label5, 3, 1);
 			this.tableLayoutPanel1.Controls.Add(this.label4, 3, 0);
@@ -116,7 +120,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel1.Controls.Add(this.cancel_btn, 4, 5);
 			this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 4);
 			this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 3);
-			this.tableLayoutPanel1.Controls.Add(this.upload_btn, 0, 5);
+			this.tableLayoutPanel1.Controls.Add(this.upload_btn, 1, 5);
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(13, 13);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			this.tableLayoutPanel1.RowCount = 6;
@@ -349,21 +353,26 @@ namespace RedBrick2 {
 			this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tableLayoutPanel2.ColumnCount = 5;
+			this.tableLayoutPanel2.ColumnCount = 8;
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-			this.tableLayoutPanel2.Controls.Add(this.type_cbx, 1, 0);
-			this.tableLayoutPanel2.Controls.Add(this.select_btn, 2, 0);
-			this.tableLayoutPanel2.Controls.Add(this.unselect_btn, 3, 0);
-			this.tableLayoutPanel2.Controls.Add(this.hide_btn, 4, 0);
+			this.tableLayoutPanel2.Controls.Add(this.hide_btn, 7, 0);
+			this.tableLayoutPanel2.Controls.Add(this.unselect_btn, 6, 0);
+			this.tableLayoutPanel2.Controls.Add(this.select_btn, 5, 0);
+			this.tableLayoutPanel2.Controls.Add(this.type_cbx, 4, 0);
+			this.tableLayoutPanel2.Controls.Add(this.assembly_rdo, 0, 0);
+			this.tableLayoutPanel2.Controls.Add(this.parts_rdo, 1, 0);
 			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
 			this.tableLayoutPanel2.RowCount = 1;
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(700, 26);
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(728, 26);
 			this.tableLayoutPanel2.TabIndex = 0;
 			// 
 			// type_cbx
@@ -373,7 +382,7 @@ namespace RedBrick2 {
 			this.type_cbx.DataSource = this.cUTPARTTYPESBindingSource;
 			this.type_cbx.DisplayMember = "TYPEDESC";
 			this.type_cbx.FormattingEnabled = true;
-			this.type_cbx.Location = new System.Drawing.Point(230, 3);
+			this.type_cbx.Location = new System.Drawing.Point(258, 3);
 			this.type_cbx.Name = "type_cbx";
 			this.type_cbx.Size = new System.Drawing.Size(189, 21);
 			this.type_cbx.TabIndex = 14;
@@ -387,7 +396,7 @@ namespace RedBrick2 {
 			// 
 			// select_btn
 			// 
-			this.select_btn.Location = new System.Drawing.Point(425, 3);
+			this.select_btn.Location = new System.Drawing.Point(453, 3);
 			this.select_btn.Name = "select_btn";
 			this.select_btn.Size = new System.Drawing.Size(75, 20);
 			this.select_btn.TabIndex = 15;
@@ -397,7 +406,7 @@ namespace RedBrick2 {
 			// 
 			// unselect_btn
 			// 
-			this.unselect_btn.Location = new System.Drawing.Point(506, 3);
+			this.unselect_btn.Location = new System.Drawing.Point(534, 3);
 			this.unselect_btn.Name = "unselect_btn";
 			this.unselect_btn.Size = new System.Drawing.Size(75, 20);
 			this.unselect_btn.TabIndex = 16;
@@ -407,7 +416,7 @@ namespace RedBrick2 {
 			// 
 			// hide_btn
 			// 
-			this.hide_btn.Location = new System.Drawing.Point(587, 3);
+			this.hide_btn.Location = new System.Drawing.Point(615, 3);
 			this.hide_btn.Name = "hide_btn";
 			this.hide_btn.Size = new System.Drawing.Size(110, 20);
 			this.hide_btn.TabIndex = 17;
@@ -417,13 +426,36 @@ namespace RedBrick2 {
 			// 
 			// upload_btn
 			// 
-			this.upload_btn.Location = new System.Drawing.Point(3, 318);
+			this.upload_btn.Location = new System.Drawing.Point(114, 318);
 			this.upload_btn.Name = "upload_btn";
-			this.upload_btn.Size = new System.Drawing.Size(75, 23);
+			this.upload_btn.Size = new System.Drawing.Size(105, 23);
 			this.upload_btn.TabIndex = 16;
 			this.upload_btn.Text = "Upload";
 			this.upload_btn.UseVisualStyleBackColor = true;
 			this.upload_btn.Click += new System.EventHandler(this.upload_btn_Click);
+			// 
+			// statusStrip1
+			// 
+			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel2});
+			this.statusStrip1.Location = new System.Drawing.Point(0, 361);
+			this.statusStrip1.Name = "statusStrip1";
+			this.statusStrip1.Size = new System.Drawing.Size(767, 22);
+			this.statusStrip1.TabIndex = 2;
+			this.statusStrip1.Text = "statusStrip1";
+			// 
+			// toolStripStatusLabel1
+			// 
+			this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+			this.toolStripStatusLabel1.Size = new System.Drawing.Size(113, 17);
+			this.toolStripStatusLabel1.Text = "Total Unique Parts: 0";
+			// 
+			// toolStripStatusLabel2
+			// 
+			this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+			this.toolStripStatusLabel2.Size = new System.Drawing.Size(92, 17);
+			this.toolStripStatusLabel2.Text = "Included Parts: 0";
 			// 
 			// gEN_CUSTOMERSTableAdapter
 			// 
@@ -446,32 +478,41 @@ namespace RedBrick2 {
 			// 
 			this.cutlistPartsTableAdapter.ClearBeforeFill = true;
 			// 
-			// statusStrip1
-			// 
-			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.toolStripStatusLabel2});
-			this.statusStrip1.Location = new System.Drawing.Point(0, 361);
-			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(767, 22);
-			this.statusStrip1.TabIndex = 2;
-			this.statusStrip1.Text = "statusStrip1";
-			// 
-			// toolStripStatusLabel1
-			// 
-			this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-			this.toolStripStatusLabel1.Size = new System.Drawing.Size(117, 17);
-			this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
-			// 
-			// toolStripStatusLabel2
-			// 
-			this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-			this.toolStripStatusLabel2.Size = new System.Drawing.Size(117, 17);
-			this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
-			// 
 			// cUT_PART_TYPESTableAdapter
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
+			// 
+			// assembly_rdo
+			// 
+			this.assembly_rdo.AutoSize = true;
+			this.assembly_rdo.Location = new System.Drawing.Point(3, 3);
+			this.assembly_rdo.Name = "assembly_rdo";
+			this.assembly_rdo.Size = new System.Drawing.Size(72, 17);
+			this.assembly_rdo.TabIndex = 18;
+			this.assembly_rdo.Text = "Assembly";
+			this.assembly_rdo.UseVisualStyleBackColor = true;
+			// 
+			// parts_rdo
+			// 
+			this.parts_rdo.AutoSize = true;
+			this.parts_rdo.Checked = true;
+			this.parts_rdo.Location = new System.Drawing.Point(81, 3);
+			this.parts_rdo.Name = "parts_rdo";
+			this.parts_rdo.Size = new System.Drawing.Size(50, 17);
+			this.parts_rdo.TabIndex = 19;
+			this.parts_rdo.TabStop = true;
+			this.parts_rdo.Text = "Parts";
+			this.parts_rdo.UseVisualStyleBackColor = true;
+			// 
+			// scan
+			// 
+			this.scan.Location = new System.Drawing.Point(3, 318);
+			this.scan.Name = "scan";
+			this.scan.Size = new System.Drawing.Size(105, 23);
+			this.scan.TabIndex = 20;
+			this.scan.Text = "Scan Tree";
+			this.scan.UseVisualStyleBackColor = true;
+			this.scan.Click += new System.EventHandler(this.scan_Click);
 			// 
 			// CreateCutlist
 			// 
@@ -499,10 +540,11 @@ namespace RedBrick2 {
 			((System.ComponentModel.ISupportInitialize)(this.revListBindingSource)).EndInit();
 			this.panel1.ResumeLayout(false);
 			this.tableLayoutPanel2.ResumeLayout(false);
+			this.tableLayoutPanel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.cUTPARTTYPESBindingSource)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.cutlistPartsBindingSource)).EndInit();
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cutlistPartsBindingSource)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -546,5 +588,8 @@ namespace RedBrick2 {
 		private ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cUT_PART_TYPESTableAdapter;
 		private System.Windows.Forms.Button upload_btn;
 		private System.Windows.Forms.Button hide_btn;
+		private System.Windows.Forms.RadioButton assembly_rdo;
+		private System.Windows.Forms.RadioButton parts_rdo;
+		private System.Windows.Forms.Button scan;
 	}
 }
