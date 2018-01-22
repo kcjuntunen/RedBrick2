@@ -1923,6 +1923,20 @@ namespace RedBrick2 {
 			return _edge_thickness;
 		}
 
+		private void recalculate_blanksizeL() {
+			if (float.TryParse(overLtb.Text, out float test_)) {
+				float edge_thickness_ = get_edge_thickness_total(edgef, edgeb);
+				calculate_blanksize_from_oversize(test_, blnkszLtb, length, edge_thickness_);
+			}
+		}
+
+		private void recalculate_blanksizeW() {
+			if (float.TryParse(overLtb.Text, out float test_)) {
+				float edge_thickness_ = get_edge_thickness_total(edgel, edger);
+				calculate_blanksize_from_oversize(test_, blnkszWtb, width, edge_thickness_);
+			}
+		}
+
 		static private void calculate_blanksize_from_oversize(Single ov_box_val, TextBox bl_box, Single length, Single total_edging) {
 			Decimal _val = Math.Round(Convert.ToDecimal((length + ov_box_val) - total_edging), 3);
 			bl_box.Text = Redbrick.enforce_number_format(_val);
@@ -2227,10 +2241,7 @@ namespace RedBrick2 {
 					PropertySet[@"EDGE FRONT (L)"].Data = 0;
 					PropertySet[@"EFID"].Data = 0;
 				}
-				float edge_thickness_ = get_edge_thickness_total(edgef, edgeb);
-				if (float.TryParse(overLtb.Text, out float test_)) {
-					calculate_blanksize_from_oversize(test_, blnkszLtb, length, edge_thickness_);
-				}
+				recalculate_blanksizeL();
 				CheckEdgingOps();
 			}
 		}
@@ -2244,10 +2255,7 @@ namespace RedBrick2 {
 					PropertySet[@"EDGE BACK (L)"].Data = 0;
 					PropertySet[@"EBID"].Data = 0;
 				}
-				float edge_thickness_ = get_edge_thickness_total(edgef, edgeb);
-				if (float.TryParse(overLtb.Text, out float test_)) {
-					calculate_blanksize_from_oversize(test_, blnkszLtb, length, edge_thickness_);
-				}
+				recalculate_blanksizeL();
 				CheckEdgingOps();
 			}
 		}
@@ -2261,10 +2269,7 @@ namespace RedBrick2 {
 					PropertySet[@"EDGE LEFT (W)"].Data = 0;
 					PropertySet[@"ELID"].Data = 0;
 				}
-				float edge_thickness_ = get_edge_thickness_total(edgel, edger);
-				if (float.TryParse(overLtb.Text, out float test_)) {
-					calculate_blanksize_from_oversize(test_, blnkszWtb, width, edge_thickness_);
-				}
+				recalculate_blanksizeW();
 				CheckEdgingOps();
 			}
 		}
@@ -2278,10 +2283,7 @@ namespace RedBrick2 {
 					PropertySet[@"EDGE RIGHT (W)"].Data = 0;
 					PropertySet[@"ERID"].Data = 0;
 				}
-				float edge_thickness_ = get_edge_thickness_total(edgel, edger);
-				if (float.TryParse(overLtb.Text, out float test_)) {
-					calculate_blanksize_from_oversize(test_, blnkszWtb, width, edge_thickness_);
-				}
+				recalculate_blanksizeW();
 				CheckEdgingOps();
 			}
 		}
@@ -2478,6 +2480,28 @@ namespace RedBrick2 {
 		private void cutlistctl_KeyDown(object sender, KeyEventArgs e) {
 			(sender as ComboBox).DroppedDown = false;
 			cl_userediting = true;
+		}
+
+		private void edgeL_KeyDown(object sender, KeyEventArgs e) {
+			ComboBox c_ = sender as ComboBox;
+			c_.DroppedDown = false;
+			//if (e.Control && (e.KeyCode == Keys.V || e.KeyCode == Keys.Insert || e.KeyCode == Keys.X)) {
+			//	if (c_.Items.Contains(c_.Text)) {
+			//		c_.SelectedIndex = c_.Items.IndexOf(c_.Text);
+			//	}
+			//	recalculate_blanksizeL();
+			//}
+		}
+
+		private void edgeW_KeyDown(object sender, KeyEventArgs e) {
+			ComboBox c_ = sender as ComboBox;
+			c_.DroppedDown = false;
+			//if (e.Control && (e.KeyCode == Keys.V || e.KeyCode == Keys.Insert || e.KeyCode == Keys.X)) {
+			//	if (c_.Items.Contains(c_.Text)) {
+			//		c_.SelectedIndex = c_.Items.IndexOf(c_.Text);
+			//	}
+			//	recalculate_blanksizeW();
+			//}
 		}
 	}
 }
