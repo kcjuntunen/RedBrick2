@@ -53,6 +53,7 @@ namespace RedBrick2 {
 		public SwProperties(SldWorks sw, ModelDoc2 md)
 			: this(sw) {
 			ActiveDoc = md;
+			PartFileInfo = new System.IO.FileInfo(md.GetPathName());
 		}
 
 		/// <summary>
@@ -221,16 +222,22 @@ namespace RedBrick2 {
         matid, efid, ebid, erid, elid
       }) {
 				item.Configuration = Configuration;
+				item.PartFileInfo = PartFileInfo;
+				item.Hash = Hash;
 				item.Get();
 				Add(item);
 			}
 			foreach (SwProperty p_ in ops_) {
 				p_.Configuration = Configuration;
+				p_.PartFileInfo = PartFileInfo;
+				p_.Hash = Hash;
 				p_.Get();
 				Add(p_);
 			}
 			foreach (SwProperty p_ in opids_) {
 				p_.Configuration = Configuration;
+				p_.PartFileInfo = PartFileInfo;
+				p_.Hash = Hash;
 				p_.Get();
 				Add(p_);
 			}

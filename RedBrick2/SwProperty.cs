@@ -35,7 +35,7 @@ namespace RedBrick2 {
 			ActiveDoc = md;
 			if (ActiveDoc != null) {
 				GetPropertyManager();
-				GetFileInfo();
+				//GetFileInfo();
 				SetDefaults();
 			}
 		}
@@ -55,7 +55,7 @@ namespace RedBrick2 {
 			ActiveDoc = comp.GetModelDoc2();
 			if (ActiveDoc != null) {
 				GetPropertyManager();
-				GetFileInfo();
+				//GetFileInfo();
 				SetDefaults();
 			}
 		}
@@ -75,7 +75,7 @@ namespace RedBrick2 {
 				} else {
 					PartID = 0;
 				}
-				Hash = Redbrick.GetHash(string.Format(@"{0}\\{1}", PartFileInfo.Directory.FullName, PartFileInfo.Name));
+				Hash = Redbrick.GetHash(PartFileInfo);
 			}
 		}
 
