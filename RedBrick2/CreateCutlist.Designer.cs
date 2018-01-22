@@ -36,6 +36,7 @@ namespace RedBrick2 {
 			this.label3 = new System.Windows.Forms.Label();
 			this.rev_cbx = new System.Windows.Forms.ComboBox();
 			this.revListBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.scan = new System.Windows.Forms.Button();
 			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
@@ -45,11 +46,13 @@ namespace RedBrick2 {
 			this.cancel_btn = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+			this.hide_btn = new System.Windows.Forms.Button();
+			this.unselect_btn = new System.Windows.Forms.Button();
+			this.select_btn = new System.Windows.Forms.Button();
 			this.type_cbx = new System.Windows.Forms.ComboBox();
 			this.cUTPARTTYPESBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.select_btn = new System.Windows.Forms.Button();
-			this.unselect_btn = new System.Windows.Forms.Button();
-			this.hide_btn = new System.Windows.Forms.Button();
+			this.toplvl_rdo = new System.Windows.Forms.RadioButton();
+			this.parts_rdo = new System.Windows.Forms.RadioButton();
 			this.upload_btn = new System.Windows.Forms.Button();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -60,9 +63,6 @@ namespace RedBrick2 {
 			this.cutlistPartsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.cutlistPartsTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CutlistPartsTableAdapter();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
-			this.assembly_rdo = new System.Windows.Forms.RadioButton();
-			this.parts_rdo = new System.Windows.Forms.RadioButton();
-			this.scan = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gENCUSTOMERSBindingSource)).BeginInit();
@@ -244,6 +244,16 @@ namespace RedBrick2 {
 			this.revListBindingSource.DataMember = "RevList";
 			this.revListBindingSource.DataSource = this.eNGINEERINGDataSet;
 			// 
+			// scan
+			// 
+			this.scan.Location = new System.Drawing.Point(3, 318);
+			this.scan.Name = "scan";
+			this.scan.Size = new System.Drawing.Size(105, 23);
+			this.scan.TabIndex = 20;
+			this.scan.Text = "Scan Tree";
+			this.scan.UseVisualStyleBackColor = true;
+			this.scan.Click += new System.EventHandler(this.scan_Click);
+			// 
 			// dateTimePicker1
 			// 
 			this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -366,7 +376,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel2.Controls.Add(this.unselect_btn, 6, 0);
 			this.tableLayoutPanel2.Controls.Add(this.select_btn, 5, 0);
 			this.tableLayoutPanel2.Controls.Add(this.type_cbx, 4, 0);
-			this.tableLayoutPanel2.Controls.Add(this.assembly_rdo, 0, 0);
+			this.tableLayoutPanel2.Controls.Add(this.toplvl_rdo, 0, 0);
 			this.tableLayoutPanel2.Controls.Add(this.parts_rdo, 1, 0);
 			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -374,6 +384,36 @@ namespace RedBrick2 {
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel2.Size = new System.Drawing.Size(728, 26);
 			this.tableLayoutPanel2.TabIndex = 0;
+			// 
+			// hide_btn
+			// 
+			this.hide_btn.Location = new System.Drawing.Point(615, 3);
+			this.hide_btn.Name = "hide_btn";
+			this.hide_btn.Size = new System.Drawing.Size(110, 20);
+			this.hide_btn.TabIndex = 17;
+			this.hide_btn.Text = "Hide Unchecked";
+			this.hide_btn.UseVisualStyleBackColor = true;
+			this.hide_btn.Click += new System.EventHandler(this.hide_btn_Click);
+			// 
+			// unselect_btn
+			// 
+			this.unselect_btn.Location = new System.Drawing.Point(534, 3);
+			this.unselect_btn.Name = "unselect_btn";
+			this.unselect_btn.Size = new System.Drawing.Size(75, 20);
+			this.unselect_btn.TabIndex = 16;
+			this.unselect_btn.Text = "Unselect";
+			this.unselect_btn.UseVisualStyleBackColor = true;
+			this.unselect_btn.Click += new System.EventHandler(this.unselect_btn_Click);
+			// 
+			// select_btn
+			// 
+			this.select_btn.Location = new System.Drawing.Point(453, 3);
+			this.select_btn.Name = "select_btn";
+			this.select_btn.Size = new System.Drawing.Size(75, 20);
+			this.select_btn.TabIndex = 15;
+			this.select_btn.Text = "Select";
+			this.select_btn.UseVisualStyleBackColor = true;
+			this.select_btn.Click += new System.EventHandler(this.select_btn_Click);
 			// 
 			// type_cbx
 			// 
@@ -394,35 +434,27 @@ namespace RedBrick2 {
 			this.cUTPARTTYPESBindingSource.DataMember = "CUT_PART_TYPES";
 			this.cUTPARTTYPESBindingSource.DataSource = this.eNGINEERINGDataSet;
 			// 
-			// select_btn
+			// toplvl_rdo
 			// 
-			this.select_btn.Location = new System.Drawing.Point(453, 3);
-			this.select_btn.Name = "select_btn";
-			this.select_btn.Size = new System.Drawing.Size(75, 20);
-			this.select_btn.TabIndex = 15;
-			this.select_btn.Text = "Select";
-			this.select_btn.UseVisualStyleBackColor = true;
-			this.select_btn.Click += new System.EventHandler(this.select_btn_Click);
+			this.toplvl_rdo.AutoSize = true;
+			this.toplvl_rdo.Location = new System.Drawing.Point(3, 3);
+			this.toplvl_rdo.Name = "toplvl_rdo";
+			this.toplvl_rdo.Size = new System.Drawing.Size(96, 17);
+			this.toplvl_rdo.TabIndex = 18;
+			this.toplvl_rdo.Text = "Top-level only";
+			this.toplvl_rdo.UseVisualStyleBackColor = true;
 			// 
-			// unselect_btn
+			// parts_rdo
 			// 
-			this.unselect_btn.Location = new System.Drawing.Point(534, 3);
-			this.unselect_btn.Name = "unselect_btn";
-			this.unselect_btn.Size = new System.Drawing.Size(75, 20);
-			this.unselect_btn.TabIndex = 16;
-			this.unselect_btn.Text = "Unselect";
-			this.unselect_btn.UseVisualStyleBackColor = true;
-			this.unselect_btn.Click += new System.EventHandler(this.unselect_btn_Click);
-			// 
-			// hide_btn
-			// 
-			this.hide_btn.Location = new System.Drawing.Point(615, 3);
-			this.hide_btn.Name = "hide_btn";
-			this.hide_btn.Size = new System.Drawing.Size(110, 20);
-			this.hide_btn.TabIndex = 17;
-			this.hide_btn.Text = "Hide Unchecked";
-			this.hide_btn.UseVisualStyleBackColor = true;
-			this.hide_btn.Click += new System.EventHandler(this.hide_btn_Click);
+			this.parts_rdo.AutoSize = true;
+			this.parts_rdo.Checked = true;
+			this.parts_rdo.Location = new System.Drawing.Point(105, 3);
+			this.parts_rdo.Name = "parts_rdo";
+			this.parts_rdo.Size = new System.Drawing.Size(75, 17);
+			this.parts_rdo.TabIndex = 19;
+			this.parts_rdo.TabStop = true;
+			this.parts_rdo.Text = "Parts only";
+			this.parts_rdo.UseVisualStyleBackColor = true;
 			// 
 			// upload_btn
 			// 
@@ -481,38 +513,6 @@ namespace RedBrick2 {
 			// cUT_PART_TYPESTableAdapter
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
-			// 
-			// assembly_rdo
-			// 
-			this.assembly_rdo.AutoSize = true;
-			this.assembly_rdo.Location = new System.Drawing.Point(3, 3);
-			this.assembly_rdo.Name = "assembly_rdo";
-			this.assembly_rdo.Size = new System.Drawing.Size(72, 17);
-			this.assembly_rdo.TabIndex = 18;
-			this.assembly_rdo.Text = "Assembly";
-			this.assembly_rdo.UseVisualStyleBackColor = true;
-			// 
-			// parts_rdo
-			// 
-			this.parts_rdo.AutoSize = true;
-			this.parts_rdo.Checked = true;
-			this.parts_rdo.Location = new System.Drawing.Point(81, 3);
-			this.parts_rdo.Name = "parts_rdo";
-			this.parts_rdo.Size = new System.Drawing.Size(50, 17);
-			this.parts_rdo.TabIndex = 19;
-			this.parts_rdo.TabStop = true;
-			this.parts_rdo.Text = "Parts";
-			this.parts_rdo.UseVisualStyleBackColor = true;
-			// 
-			// scan
-			// 
-			this.scan.Location = new System.Drawing.Point(3, 318);
-			this.scan.Name = "scan";
-			this.scan.Size = new System.Drawing.Size(105, 23);
-			this.scan.TabIndex = 20;
-			this.scan.Text = "Scan Tree";
-			this.scan.UseVisualStyleBackColor = true;
-			this.scan.Click += new System.EventHandler(this.scan_Click);
 			// 
 			// CreateCutlist
 			// 
@@ -588,7 +588,7 @@ namespace RedBrick2 {
 		private ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cUT_PART_TYPESTableAdapter;
 		private System.Windows.Forms.Button upload_btn;
 		private System.Windows.Forms.Button hide_btn;
-		private System.Windows.Forms.RadioButton assembly_rdo;
+		private System.Windows.Forms.RadioButton toplvl_rdo;
 		private System.Windows.Forms.RadioButton parts_rdo;
 		private System.Windows.Forms.Button scan;
 	}

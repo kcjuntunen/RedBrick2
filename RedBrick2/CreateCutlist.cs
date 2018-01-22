@@ -62,6 +62,7 @@ namespace RedBrick2 {
 		private bool rev_changed_by_user = false;
 		private bool rev_in_filename = false;
 		private bool user_changed_item = false;
+		private ModelDoc2 mDoc = null;
 		private Configuration _config = null;
 		private int? uid = null;
 		private bool[] sort_directions = { false, false, false, false, false, false,
@@ -90,12 +91,19 @@ namespace RedBrick2 {
 			dataGridView1.DataError += dataGridView1_DataError;
 			dataGridView1.UserDeletedRow += DataGridView1_UserDeletedRow;
 
-			ModelDoc2 m = _swApp.ActiveDoc;
-			topName = Path.GetFileNameWithoutExtension(m.GetPathName());
-
+			mDoc = _swApp.ActiveDoc;
 			rev_in_filename = topName.Contains(@"REV");
-			_config = m.GetActiveConfiguration();
-			assembly_rdo.Enabled = !(m is DrawingDoc);
+			topName = Path.GetFileNameWithoutExtension(mDoc.GetPathName());
+			if (mDoc is DrawingDoc) {
+				mDoc = get_selected_views_modeldoc(mDoc);
+			} else {
+				_config = mDoc.GetActiveConfiguration();
+				Text = string.Format(@"{0} - {1}", topName, _config.Name);
+			}
+			if (mDoc is PartDoc) {
+				toplvl_rdo.Checked = true;
+				parts_rdo.Enabled = false;
+			}
 		}
 
 		private void guess_customer() {
@@ -107,28 +115,33 @@ namespace RedBrick2 {
 			upload_btn.Enabled = false;
 		}
 
-		private void go() {
+		private ModelDoc2 get_selected_views_modeldoc(ModelDoc2 _m) {
+			ModelDoc2 res_;
+			SolidWorks.Interop.sldworks.View _v = GetSelectedView(_m);
+			if (_v == null) {
+				_v = Redbrick.GetFirstView(_swApp);
+			}
+			res_ = _v.ReferencedDocument;
+			sourceComp = _v.Name;
+			_config = res_.GetConfigurationByName(_v.ReferencedConfiguration);
+			Text = string.Format(@"{0} - {1} (from {2})", topName, _config.Name, sourceComp);
+			return res_;
+		}
+
+		private void GetAssembly(ModelDoc2 _m) {
 			ConfigurationManager swConfMgr;
 			Configuration swConf;
 			Component2 swRootComp;
-			ModelDoc2 m = _swApp.ActiveDoc;
+			ModelDoc2 m = _m;
 			swConfMgr = (ConfigurationManager)m.ConfigurationManager;
 			swConf = (Configuration)swConfMgr.ActiveConfiguration;
 			if (_swApp.ActiveDoc is DrawingDoc) {
-				SolidWorks.Interop.sldworks.View _v = GetSelectedView(m);
-				if (_v == null) {
-					_v = Redbrick.GetFirstView(_swApp);
-				}
-				m = _v.ReferencedDocument;
-				sourceComp = _v.Name;
-				_config = m.GetConfigurationByName(_v.ReferencedConfiguration);
-				swConf = _config;
-				Text = string.Format(@"{0} - {1} (from {2})", topName, _config.Name, sourceComp);
+				//
 			} else {
 				Text = string.Format(@"{0} - {1}", topName, _config.Name);
 			}
 
-			swRootComp = (Component2)swConf.GetRootComponent();
+			swRootComp = (Component2)_config.GetRootComponent();
 
 			PartFileInfo = new FileInfo(m.GetPathName());
 			partLookup = Redbrick.FileInfoToLookup(PartFileInfo);
@@ -258,13 +271,13 @@ namespace RedBrick2 {
 			}
 
 
-			SwProperty stpr = null;
+			StringProperty stpr = null;
 			if (_swApp.ActiveDoc is DrawingDoc) {
 				SolidWorks.Interop.sldworks.View _v = Redbrick.GetFirstView(_swApp);
-				stpr = new SwProperty(@"Description", true, _swApp, _v.ReferencedDocument);
+				stpr = new StringProperty(@"Description", true, _swApp, _v.ReferencedDocument as ModelDoc2, string.Empty);
 				stpr.Configuration = string.Empty;
 			} else {
-				stpr = new SwProperty(@"Description", true, _swApp, _swApp.ActiveDoc);
+				stpr = new StringProperty(@"Description", true, _swApp, _swApp.ActiveDoc as ModelDoc2, string.Empty);
 			}
 			stpr.Get();
 			descr_cbx.Text = stpr.Value;
@@ -322,6 +335,9 @@ namespace RedBrick2 {
 		private void GetPart(ModelDoc2 m) {
 			if (dataGridView1.Rows.Count > 0) {
 				empty_table();
+			}
+			if (m is DrawingDoc) {
+				m = get_selected_views_modeldoc(m);
 			}
 			_swApp.GetUserProgressBar(out pb);
 			Cursor.Current = Cursors.WaitCursor;
@@ -1310,11 +1326,10 @@ namespace RedBrick2 {
 		}
 
 		private void scan_Click(object sender, EventArgs e) {
-			ModelDoc2 m_ = _swApp.ActiveDoc;
-			if (parts_rdo.Checked) {
-				go();
-			} else if (!(m_ is DrawingDoc) && assembly_rdo.Checked) {
-				GetPart(m_);
+			if (parts_rdo.Checked && mDoc is AssemblyDoc) {
+				GetAssembly(mDoc);
+			} else if (toplvl_rdo.Checked) {
+				GetPart(mDoc);
 			}
 			upload_btn.Enabled = true;
 		}
