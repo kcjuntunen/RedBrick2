@@ -100,6 +100,14 @@ namespace RedBrick2 {
 				_config = mDoc.GetActiveConfiguration();
 				Text = string.Format(@"{0} - {1}", topName, _config.Name);
 			}
+
+			string[] c_ = mDoc.GetConfigurationNames();
+			foreach (string item in c_) {
+				config_cbx.Items.Add(item);
+			}
+
+			config_cbx.SelectedItem = _config.Name;
+
 			if (mDoc is PartDoc) {
 				toplvl_rdo.Checked = true;
 				parts_rdo.Enabled = false;
@@ -248,6 +256,9 @@ namespace RedBrick2 {
 
 			//guess_customer();
 			get_names();
+
+			config_cbx.SelectionStart = 0;
+			config_cbx.SelectionLength = 0;
 		}
 
 		private void check_ok() {
@@ -1332,6 +1343,14 @@ namespace RedBrick2 {
 				GetPart(mDoc);
 			}
 			upload_btn.Enabled = true;
+		}
+
+		private void config_cbx_SelectedIndexChanged(object sender, EventArgs e) {
+			if ((sender as ComboBox).SelectedItem != null) {
+				_config = mDoc.GetConfigurationByName((sender as ComboBox).SelectedItem.ToString());
+				Text = string.Format(@"{0} - {1}", topName, _config.Name);
+				empty_table();
+			}
 		}
 	}
 }

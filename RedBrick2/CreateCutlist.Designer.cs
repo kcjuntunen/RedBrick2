@@ -63,6 +63,8 @@ namespace RedBrick2 {
 			this.cutlistPartsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.cutlistPartsTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CutlistPartsTableAdapter();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
+			this.config_cbx = new System.Windows.Forms.ComboBox();
+			this.label7 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gENCUSTOMERSBindingSource)).BeginInit();
@@ -121,6 +123,8 @@ namespace RedBrick2 {
 			this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 4);
 			this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 3);
 			this.tableLayoutPanel1.Controls.Add(this.upload_btn, 1, 5);
+			this.tableLayoutPanel1.Controls.Add(this.config_cbx, 4, 2);
+			this.tableLayoutPanel1.Controls.Add(this.label7, 3, 2);
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(13, 13);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			this.tableLayoutPanel1.RowCount = 6;
@@ -514,6 +518,28 @@ namespace RedBrick2 {
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
 			// 
+			// config_cbx
+			// 
+			this.config_cbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.config_cbx.FormattingEnabled = true;
+			this.config_cbx.Location = new System.Drawing.Point(527, 63);
+			this.config_cbx.Name = "config_cbx";
+			this.config_cbx.Size = new System.Drawing.Size(212, 21);
+			this.config_cbx.TabIndex = 21;
+			this.config_cbx.SelectedIndexChanged += new System.EventHandler(this.config_cbx_SelectedIndexChanged);
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.label7.Location = new System.Drawing.Point(372, 60);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(149, 30);
+			this.label7.TabIndex = 22;
+			this.label7.Text = "Configuration";
+			this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
 			// CreateCutlist
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -591,5 +617,7 @@ namespace RedBrick2 {
 		private System.Windows.Forms.RadioButton toplvl_rdo;
 		private System.Windows.Forms.RadioButton parts_rdo;
 		private System.Windows.Forms.Button scan;
+		private System.Windows.Forms.ComboBox config_cbx;
+		private System.Windows.Forms.Label label7;
 	}
 }
