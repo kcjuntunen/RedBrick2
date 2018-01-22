@@ -1638,6 +1638,10 @@ namespace RedBrick2 {
 			Dimension d = ActiveDoc.Parameter(prp);
 			if (d != null) {
 				return d.Value.ToString();
+			}
+
+			if (double.TryParse(prp, out double test_)) {
+				return prp;
 			} else {
 				return DimensionByEquation(prp);
 			}
