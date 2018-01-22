@@ -1,5 +1,4 @@
 
-1) Added Top-level/parts selector to the cutlist creator window.
-2) Added configuration selector to cutlist creator windows.
-3) Added total qty to the status bar of QuickTrack lookup window.
-4) Added glasses icon for QuickTrack lookups.
+1) Changed dimension resolution so Ben can type raw numbers in.
+2) Filtered '^' symbols, so virtual parts can be inserted into cutlist and used normally.
+3) Packaged some dlls and an hopeful effort to make Ken's computer less special.
