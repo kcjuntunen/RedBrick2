@@ -562,6 +562,7 @@ namespace RedBrick2 {
 		/// <returns>An appropriately styled number.</returns>
 		static public string enforce_number_format(string input) {
 			double _val = 0.0F;
+			input = input.Replace("\"", string.Empty);
 			if (double.TryParse(input, out _val)) {
 				return string.Format(Properties.Settings.Default.NumberFormat, _val);
 			}
