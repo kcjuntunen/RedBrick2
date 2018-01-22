@@ -62,6 +62,7 @@ namespace RedBrick2 {
 		private bool rev_changed_by_user = false;
 		private bool rev_in_filename = false;
 		private bool user_changed_item = false;
+		private bool user_changed_config = false;
 		private ModelDoc2 mDoc = null;
 		private Configuration _config = null;
 		private int? uid = null;
@@ -1346,11 +1347,24 @@ namespace RedBrick2 {
 		}
 
 		private void config_cbx_SelectedIndexChanged(object sender, EventArgs e) {
-			if ((sender as ComboBox).SelectedItem != null) {
+			if (user_changed_config && (sender as ComboBox).SelectedItem != null) {
 				_config = mDoc.GetConfigurationByName((sender as ComboBox).SelectedItem.ToString());
 				Text = string.Format(@"{0} - {1}", topName, _config.Name);
 				empty_table();
+				user_changed_config = false;
 			}
+		}
+
+		private void config_cbx_MouseClick(object sender, MouseEventArgs e) {
+			user_changed_config = true;
+		}
+
+		private void config_cbx_Enter(object sender, EventArgs e) {
+			user_changed_config = true;
+		}
+
+		private void config_cbx_Leave(object sender, EventArgs e) {
+			user_changed_config = false;
 		}
 	}
 }

@@ -54,6 +54,8 @@ namespace RedBrick2 {
 			this.toplvl_rdo = new System.Windows.Forms.RadioButton();
 			this.parts_rdo = new System.Windows.Forms.RadioButton();
 			this.upload_btn = new System.Windows.Forms.Button();
+			this.config_cbx = new System.Windows.Forms.ComboBox();
+			this.label7 = new System.Windows.Forms.Label();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -63,8 +65,6 @@ namespace RedBrick2 {
 			this.cutlistPartsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.cutlistPartsTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CutlistPartsTableAdapter();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
-			this.config_cbx = new System.Windows.Forms.ComboBox();
-			this.label7 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gENCUSTOMERSBindingSource)).BeginInit();
@@ -470,6 +470,31 @@ namespace RedBrick2 {
 			this.upload_btn.UseVisualStyleBackColor = true;
 			this.upload_btn.Click += new System.EventHandler(this.upload_btn_Click);
 			// 
+			// config_cbx
+			// 
+			this.config_cbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.config_cbx.FormattingEnabled = true;
+			this.config_cbx.Location = new System.Drawing.Point(527, 63);
+			this.config_cbx.Name = "config_cbx";
+			this.config_cbx.Size = new System.Drawing.Size(212, 21);
+			this.config_cbx.TabIndex = 21;
+			this.config_cbx.SelectedIndexChanged += new System.EventHandler(this.config_cbx_SelectedIndexChanged);
+			this.config_cbx.Enter += new System.EventHandler(this.config_cbx_Enter);
+			this.config_cbx.Leave += new System.EventHandler(this.config_cbx_Leave);
+			this.config_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.config_cbx_MouseClick);
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.label7.Location = new System.Drawing.Point(372, 60);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(149, 30);
+			this.label7.TabIndex = 22;
+			this.label7.Text = "Configuration";
+			this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
 			// statusStrip1
 			// 
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -517,28 +542,6 @@ namespace RedBrick2 {
 			// cUT_PART_TYPESTableAdapter
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
-			// 
-			// config_cbx
-			// 
-			this.config_cbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.config_cbx.FormattingEnabled = true;
-			this.config_cbx.Location = new System.Drawing.Point(527, 63);
-			this.config_cbx.Name = "config_cbx";
-			this.config_cbx.Size = new System.Drawing.Size(212, 21);
-			this.config_cbx.TabIndex = 21;
-			this.config_cbx.SelectedIndexChanged += new System.EventHandler(this.config_cbx_SelectedIndexChanged);
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label7.Location = new System.Drawing.Point(372, 60);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(149, 30);
-			this.label7.TabIndex = 22;
-			this.label7.Text = "Configuration";
-			this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// CreateCutlist
 			// 
