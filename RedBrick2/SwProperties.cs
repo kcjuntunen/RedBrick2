@@ -139,6 +139,13 @@ namespace RedBrick2 {
 			deptid.ToDB = false;
 
 			DepartmentProperty department = new DepartmentProperty(@"DEPARTMENT", true, SwApp, md, @"DEPTID");
+			if (PartFileInfo == null) {
+				PartFileInfo = new System.IO.FileInfo(ActiveDoc.GetPathName());
+			}
+			department.PartFileInfo = PartFileInfo;
+			department.Hash = Hash;
+			deptid.PartFileInfo = PartFileInfo;
+			deptid.Hash = Hash;
 			IntProperty blankQty = new IntProperty(@"BLANK QTY", true, SwApp, md, @"CUT_PARTS", @"BLANKQTY");
 
 			StringProperty material = new StringProperty(@"MATERIAL", true, SwApp, md, string.Empty);
@@ -241,7 +248,6 @@ namespace RedBrick2 {
 				p_.Get();
 				Add(p_);
 			}
-			PartFileInfo = _innerDict[@"DEPARTMENT"].PartFileInfo;
 		}
 
 		#region inherited
