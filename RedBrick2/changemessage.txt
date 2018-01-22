@@ -1,4 +1,5 @@
 
-1) Configuration confusion during cutlist creation maybe resolved.
-2) Added "Update CNC" field to BOM window.
-3) Color tooltip added for material and edging on BOM window.
+1) Added Top-level/parts selector to the cutlist creator window.
+2) Added configuration selector to cutlist creator windows.
+3) Added total qty to the status bar of QuickTrack lookup window.
+4) Added glasses icon for QuickTrack lookups.
