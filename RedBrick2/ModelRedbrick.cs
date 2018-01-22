@@ -1135,7 +1135,10 @@ namespace RedBrick2 {
 		}
 
 		private string EnQuote(string stuff) {
-			return string.Format("\"{0}\"", stuff.Replace("\"", string.Empty));
+			if (!double.TryParse(stuff, out double test_)) {
+				return string.Format("\"{0}\"", stuff.Replace("\"", string.Empty));
+			}
+			return stuff;
 		}
 
 		private void UpdateGeneralProperties() {
