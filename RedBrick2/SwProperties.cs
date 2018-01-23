@@ -53,7 +53,9 @@ namespace RedBrick2 {
 		public SwProperties(SldWorks sw, ModelDoc2 md)
 			: this(sw) {
 			ActiveDoc = md;
-			PartFileInfo = new System.IO.FileInfo(md.GetPathName());
+			if (md.GetPathName() != string.Empty) {
+				PartFileInfo = new System.IO.FileInfo(md.GetPathName());
+			}
 		}
 
 		/// <summary>
