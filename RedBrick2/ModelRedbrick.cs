@@ -1341,11 +1341,15 @@ namespace RedBrick2 {
 				do_savepostnotify = false;
 				save_part();
 				_activeDoc.Rebuild((int)swRebuildOptions_e.swRebuildAll);
+				checked_at_start = updateCNCcb.Checked;
+				groupBox1.Text = groupBox1.Text.Replace(Properties.Settings.Default.NotSavedMark, string.Empty);
+				recalculate_blanksizeL();
+				recalculate_blanksizeW();
+				int gc_ = GC.GetGeneration(this);
+				GC.Collect(gc_, GCCollectionMode.Optimized);
 			} else if (tabControl1.SelectedTab == tabPage2) {
 				drawingRedbrick.Commit();
 			}
-			checked_at_start = updateCNCcb.Checked;
-			groupBox1.Text = groupBox1.Text.Replace(Properties.Settings.Default.NotSavedMark, string.Empty);
 			eNGINEERINGDataSet.GEN_ODOMETER.IncrementOdometer(Redbrick.Functions.GreenCheck);
 		}
 
@@ -1518,6 +1522,8 @@ namespace RedBrick2 {
 			get { return _activeDoc; }
 			set {
 				//allowPaint = false;
+				int gc_ = GC.GetGeneration(this);
+				GC.Collect(gc_, GCCollectionMode.Optimized);
 				if (value != null && value != ActiveDoc) {
 					DisconnectEvents();
 					Show();

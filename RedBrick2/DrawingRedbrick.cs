@@ -346,6 +346,8 @@ namespace RedBrick2 {
 		/// Reload everything with current ModelDoc2.
 		/// </summary>
 		public void ReLoad() {
+			int gc_ = GC.GetGeneration(this);
+			GC.Collect(gc_, GCCollectionMode.Optimized);
 			dirtTracker.Besmirched -= dirtTracker_Besmirched;
 			req_info_ = string.Empty;
 			InitData();
