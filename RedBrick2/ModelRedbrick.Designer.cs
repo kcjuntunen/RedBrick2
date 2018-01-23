@@ -1001,6 +1001,7 @@
 			this.cnc1tb.TabIndex = 12;
 			this.cnc1tb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.cnc1tb.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
+			this.cnc1tb.Leave += new System.EventHandler(this.cnc1tb_Leave);
 			// 
 			// label25
 			// 
@@ -1096,6 +1097,7 @@
 			this.cnc2tb.TabIndex = 13;
 			this.cnc2tb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.cnc2tb.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
+			this.cnc2tb.Leave += new System.EventHandler(this.cnc2tb_Leave);
 			// 
 			// label23
 			// 

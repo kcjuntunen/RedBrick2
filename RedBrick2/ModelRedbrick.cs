@@ -157,6 +157,23 @@ namespace RedBrick2 {
 			bool no_cnc2 = (cnc2tb.Text == @"NA") || (cnc2tb.Text == string.Empty);
 			bool enabled = data_from_db && !(no_cnc1 && no_cnc2);
 			prioritybtn.Enabled = enabled;
+			cnc1tb.ForeColor = Color.Gray;
+			Font fn_ = new Font(cutlistMat.Font, FontStyle.Regular);
+			Font fn2_ = new Font(cnc1tb.Font, FontStyle.Italic);
+			if (no_cnc1) {
+				cnc1tb.Font = fn2_;
+				cnc1tb.ForeColor = Color.Gray;
+			} else {
+				cnc1tb.Font = fn_;
+				cnc1tb.ForeColor = Color.Black;
+			}
+			if (no_cnc2) {
+				cnc2tb.Font = fn2_;
+				cnc2tb.ForeColor = Color.Gray;
+			} else {
+				cnc2tb.Font = fn_;
+				cnc2tb.ForeColor = Color.Black;
+			}
 		}
 
 		/// <summary>
@@ -2508,6 +2525,18 @@ namespace RedBrick2 {
 			//	}
 			//	recalculate_blanksizeW();
 			//}
+		}
+
+		private void cnc1tb_Leave(object sender, EventArgs e) {
+			if ((sender as TextBox).Text == string.Empty) {
+				(sender as TextBox).Text = @"NA";
+			}
+		}
+
+		private void cnc2tb_Leave(object sender, EventArgs e) {
+			if ((sender as TextBox).Text == string.Empty) {
+				(sender as TextBox).Text = @"NA";
+			}
 		}
 	}
 }
