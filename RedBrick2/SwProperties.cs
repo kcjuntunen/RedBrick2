@@ -141,7 +141,7 @@ namespace RedBrick2 {
 			deptid.ToDB = false;
 
 			DepartmentProperty department = new DepartmentProperty(@"DEPARTMENT", true, SwApp, md, @"DEPTID");
-			if (PartFileInfo == null) {
+			if (PartFileInfo == null && ActiveDoc.GetPathName() != string.Empty) {
 				PartFileInfo = new System.IO.FileInfo(ActiveDoc.GetPathName());
 			}
 			department.PartFileInfo = PartFileInfo;
@@ -231,22 +231,28 @@ namespace RedBrick2 {
         matid, efid, ebid, erid, elid
       }) {
 				item.Configuration = Configuration;
-				item.PartFileInfo = PartFileInfo;
-				item.Hash = Hash;
+				if (PartFileInfo != null) {
+					item.PartFileInfo = PartFileInfo;
+					item.Hash = Hash;
+				}
 				item.Get();
 				Add(item);
 			}
 			foreach (SwProperty p_ in ops_) {
 				p_.Configuration = Configuration;
-				p_.PartFileInfo = PartFileInfo;
-				p_.Hash = Hash;
+				if (PartFileInfo != null) {
+					p_.PartFileInfo = PartFileInfo;
+					p_.Hash = Hash;
+				}
 				p_.Get();
 				Add(p_);
 			}
 			foreach (SwProperty p_ in opids_) {
 				p_.Configuration = Configuration;
-				p_.PartFileInfo = PartFileInfo;
-				p_.Hash = Hash;
+				if (PartFileInfo != null) {
+					p_.PartFileInfo = PartFileInfo;
+					p_.Hash = Hash;
+				}
 				p_.Get();
 				Add(p_);
 			}
