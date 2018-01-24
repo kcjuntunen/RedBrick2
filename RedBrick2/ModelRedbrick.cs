@@ -683,7 +683,7 @@ namespace RedBrick2 {
 		private float DimTryProp(string propname) {
 			float _out = 0;
 			if (PropertySet.ContainsKey(propname)) {
-				if (float.TryParse(PropertySet[propname].ResolvedValue, out _out)) {
+				if (float.TryParse(PropertySet[propname].ResolvedValue.Replace("\"", string.Empty), out _out)) {
 					return _out;
 				}
 			}
