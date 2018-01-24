@@ -2201,6 +2201,8 @@ namespace RedBrick2 {
 				ToggleEdgeWarn(true);
 			}
 			ov_userediting = false;
+			recalculate_blanksizeL();
+			recalculate_blanksizeW();
 		}
 
 		private void swapWnT_Click(object sender, EventArgs e) {
@@ -2210,6 +2212,8 @@ namespace RedBrick2 {
 				ToggleEdgeWarn(true);
 			}
 			ov_userediting = false;
+			recalculate_blanksizeL();
+			recalculate_blanksizeW();
 		}
 
 		private void cutlistctl_KeyPress(object sender, KeyPressEventArgs e) {
@@ -2400,6 +2404,8 @@ namespace RedBrick2 {
 		private void pull_btn_Click(object sender, EventArgs e) {
 			GetMaterialFromPart();
 			GetEdgesFromPart();
+			recalculate_blanksizeL();
+			recalculate_blanksizeW();
 		}
 
 		private string GetMaterialPrices(int _matid) {
