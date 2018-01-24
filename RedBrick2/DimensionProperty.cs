@@ -64,7 +64,7 @@ namespace RedBrick2 {
 			get {
 				if (_data < .001) {
 					double test_ = 0.0F;
-					if (double.TryParse(ResolvedValue, out test_)) {
+					if (double.TryParse(ResolvedValue.Replace("\"", string.Empty), out test_)) {
 						_data = test_;
 					}
 				}
