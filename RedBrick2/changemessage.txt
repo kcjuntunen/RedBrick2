@@ -1,4 +1,4 @@
 
-1) Changed dimension resolution so Ben can type raw numbers in.
-2) Filtered '^' symbols, so virtual parts can be inserted into cutlist and used normally.
-3) Packaged some dlls and an hopeful effort to make Ken's computer less special.
+1) More frequent blanksize calculation.
+2) Fiddled with dimension resolution a little.
+3) Began to mess with font styles.
