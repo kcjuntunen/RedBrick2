@@ -1948,14 +1948,14 @@ namespace RedBrick2 {
 
 		private void recalculate_blanksizeL() {
 			if (float.TryParse(overLtb.Text, out float test_)) {
-				float edge_thickness_ = get_edge_thickness_total(edgef, edgeb);
+				float edge_thickness_ = get_edge_thickness_total(edgel, edger);
 				calculate_blanksize_from_oversize(test_, blnkszLtb, length, edge_thickness_);
 			}
 		}
 
 		private void recalculate_blanksizeW() {
-			if (float.TryParse(overLtb.Text, out float test_)) {
-				float edge_thickness_ = get_edge_thickness_total(edgel, edger);
+			if (float.TryParse(overWtb.Text, out float test_)) {
+				float edge_thickness_ = get_edge_thickness_total(edgef, edgeb);
 				calculate_blanksize_from_oversize(test_, blnkszWtb, width, edge_thickness_);
 			}
 		}
