@@ -1,4 +1,4 @@
 
-1) More frequent blanksize calculation.
-2) Fiddled with dimension resolution a little.
-3) Began to mess with font styles.
+1) Adjusted blanksize calculation.
+2) Upgraded .NET 4.5 to 4.7.
+3) Made cutlist selection more reliably blank.
