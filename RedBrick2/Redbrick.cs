@@ -114,6 +114,9 @@ namespace RedBrick2 {
 				LastLegacyECR = _maxecr;
 			}
 
+			AppDomain appDomain = AppDomain.CurrentDomain;
+			appDomain.UnhandledException += AppDomain_UnhandledException;
+
 			TreeViewIcons = new System.Windows.Forms.ImageList();
 			TreeViewIcons.ImageSize = new System.Drawing.Size(20, 20);
 			TreeViewIcons.Images.Add(System.Drawing.Image.FromFile(@"G:\Solid Works\Amstore_Macros\ICONS\rev.png"));
@@ -149,6 +152,14 @@ namespace RedBrick2 {
 					System.Windows.Forms.MessageBoxButtons.OK,
 					System.Windows.Forms.MessageBoxIcon.Error);
 			}
+		}
+
+		private void AppDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) {
+			Exception e_ = (Exception)e.ExceptionObject;
+			string output_ = string.Format("{0}\n{1}\n{2}", e_.Message, e_.StackTrace, e_.Source);
+			System.Windows.Forms.MessageBox.Show(output_, @"ERR",
+				System.Windows.Forms.MessageBoxButtons.OK, 
+				System.Windows.Forms.MessageBoxIcon.Error);
 		}
 
 		int taskpaneView_TaskPaneToolbarButtonClicked(int ButtonIndex) {
