@@ -48,9 +48,6 @@ namespace RedBrick2 {
 
 		private Point scrollOffset;
 
-		private const int WM_PAINT = 0x000F;
-		private bool allowPaint;
-
 		private ModelDoc2 lastModelDoc = null;
 		private DirtTracker dirtTracker;
 
@@ -194,17 +191,6 @@ namespace RedBrick2 {
 				commenttb.CharacterCasing = CharacterCasing.Normal;
 				cnc1tb.CharacterCasing = CharacterCasing.Normal;
 				cnc2tb.CharacterCasing = CharacterCasing.Normal;
-			}
-		}
-
-		/// <summary>
-		/// Trying to pause drawing reduce flickering. Doing so causes the Redbrick
-		/// to hang though. So "allowPaint" is always true.
-		/// </summary>
-		/// <param name="m">A Message value.</param>
-		protected override void WndProc(ref Message m) {
-			if ((m.Msg != WM_PAINT || (allowPaint && m.Msg == WM_PAINT))) {
-				base.WndProc(ref m);
 			}
 		}
 
@@ -1532,7 +1518,6 @@ namespace RedBrick2 {
 		public ModelDoc2 ActiveDoc {
 			get { return _activeDoc; }
 			set {
-				//allowPaint = false;
 				int gc_ = GC.GetGeneration(this);
 				GC.Collect(gc_, GCCollectionMode.Optimized);
 				if (value != null && value != ActiveDoc) {
@@ -1624,7 +1609,6 @@ namespace RedBrick2 {
 						//Hide();
 					}
 				}
-				allowPaint = true;
 			}
 		}
 
