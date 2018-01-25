@@ -393,7 +393,6 @@ namespace RedBrick2 {
 				cpota.FillByPartID(eNGINEERINGDataSet.CUT_PART_OPS, Row.PARTID);
 				if (cutlistctl.SelectedItem != null) {
 					ccpta.FillByCutlistIDAndPartID(eNGINEERINGDataSet.CUT_CUTLIST_PARTS, Row.PARTID, Convert.ToInt32(cutlistctl.SelectedValue));
-					PropertySet.CutlistID = Convert.ToInt32(cutlistctl.SelectedValue);
 					if (eNGINEERINGDataSet.CUT_CUTLIST_PARTS.Count > 0) {
 						CutlistPartsRow = eNGINEERINGDataSet.CUT_CUTLIST_PARTS[0];
 					}
@@ -409,6 +408,7 @@ namespace RedBrick2 {
 		private void SelectLastCutlist() {
 			if (ComboBoxContainsValue(Properties.Settings.Default.LastCutlist, cutlistctl)) {
 				cutlistctl.SelectedValue = Properties.Settings.Default.LastCutlist;
+				PropertySet.CutlistID = Convert.ToInt32(cutlistctl.SelectedValue);
 				EnableCutlistSpec(true);
 				ToggleCutlistErr(false);
 				comboBox6_SelectedIndexChanged(cutlistctl, new EventArgs());
