@@ -331,14 +331,8 @@ namespace RedBrick2 {
 				//textBox_TextChanged(PropertySet[@"WALL THICKNESS"].Value, label21);
 
 				flowLayoutPanel1.VerticalScroll.Value = scrollOffset.Y;
-				float _val = 0.0F;
-				if (float.TryParse(overLtb.Text, out _val)) {
-					calculate_blanksize_from_oversize(_val, blnkszLtb, length, get_edge_thickness_total(edgel, edger));
-				}
-
-				if (float.TryParse(overWtb.Text, out _val)) {
-					calculate_blanksize_from_oversize(_val, blnkszWtb, width, get_edge_thickness_total(edgef, edgeb));
-				}
+				recalculate_blanksizeL();
+				recalculate_blanksizeW();
 
 				groupBox1.Text = string.Format(@"{0} - {1}",
 					partLookup, configuration);
