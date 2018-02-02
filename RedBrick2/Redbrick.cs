@@ -146,8 +146,9 @@ namespace RedBrick2 {
 				taskpaneView.TaskPaneToolbarButtonClicked += taskpaneView_TaskPaneToolbarButtonClicked;
 				taskpaneHost.cookie = cookie;
 				taskpaneHost.Start();
-			} catch (Exception e) {
-				System.Windows.Forms.MessageBox.Show(e.Message,
+			} catch (Exception e_) {
+				string output_ = string.Format("{0}\n{1}\n{2}", e_.Message, e_.StackTrace, e_.Source);
+				System.Windows.Forms.MessageBox.Show(output_,
 					@"Redbrick Error",
 					System.Windows.Forms.MessageBoxButtons.OK,
 					System.Windows.Forms.MessageBoxIcon.Error);
@@ -157,7 +158,7 @@ namespace RedBrick2 {
 		private void AppDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) {
 			Exception e_ = (Exception)e.ExceptionObject;
 			string output_ = string.Format("{0}\n{1}\n{2}", e_.Message, e_.StackTrace, e_.Source);
-			System.Windows.Forms.MessageBox.Show(output_, @"ERR",
+			System.Windows.Forms.MessageBox.Show(output_, @"Redbrick Error - " + e_.HResult.ToString(),
 				System.Windows.Forms.MessageBoxButtons.OK, 
 				System.Windows.Forms.MessageBoxIcon.Error);
 		}
