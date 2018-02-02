@@ -1368,6 +1368,9 @@ namespace RedBrick2 {
 				drawingRedbrick.Commit();
 			}
 			eNGINEERINGDataSet.GEN_ODOMETER.IncrementOdometer(Redbrick.Functions.GreenCheck);
+			ModelDoc2 tmp_ = _activeDoc;
+			DumpActiveDoc();
+			ReQuery(tmp_);
 		}
 
 		private void popup_priority_(string _lookup) {
@@ -2346,7 +2349,9 @@ namespace RedBrick2 {
 		private void update_btn_MouseClick(object sender, MouseEventArgs e) {
 			CreateCutlist cc_ = new CreateCutlist(SwApp);
 			cc_.ShowDialog(this);
-			ReQuery(_activeDoc);
+			ModelDoc2 tmp_ = _activeDoc;
+			DumpActiveDoc();
+			ReQuery(tmp_);
 		}
 
 		private void remove_btn_MouseClick(object sender, MouseEventArgs e) {
