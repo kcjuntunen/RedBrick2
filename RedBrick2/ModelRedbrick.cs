@@ -1445,7 +1445,6 @@ namespace RedBrick2 {
 		}
 
 		private void CheckOversize() {
-			bool ok_ = Properties.Settings.Default.OpWarn;
 			if (Properties.Settings.Default.Warn) {
 				string message_ = string.Empty;
 				int ps_op_ = 0;
