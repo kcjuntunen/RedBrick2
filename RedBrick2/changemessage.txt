@@ -1,4 +1,9 @@
 
-1) Adjusted blanksize calculation.
-2) Upgraded .NET 4.5 to 4.7.
-3) Made cutlist selection more reliably blank.
+1) Added Select & Unselect button.
+2) Requery after cutlist upload.
+3) Removed "Delete Cutlist..." button.
+4) eDrawings exporting is no longer optional on Archiving.
+5) More aggressively check for oversize errors.
+6) Fixed subtle strangeness with oversize textboxes.
+7) Slightly changed description population behavior on Create Cutlist window.
+8) Added .Trim() in various places.
