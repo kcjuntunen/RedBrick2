@@ -1155,8 +1155,12 @@ namespace RedBrick2 {
 		}
 
 		private void UpdateGeneralProperties() {
-			DataRowView _drv = type_cbx.SelectedItem as DataRowView;
-			PropertySet[@"DEPARTMENT"].Set(type_cbx.SelectedValue, _drv[@"TYPEDESC"].ToString());
+			if (type_cbx.SelectedItem != null) {
+				DataRowView _drv = type_cbx.SelectedItem as DataRowView;
+				PropertySet[@"DEPARTMENT"].Set(type_cbx.SelectedValue, _drv[@"TYPEDESC"].ToString());
+			} else {
+				PropertySet[@"DEPARTMENT"].Set(0, @"WOOD");
+			}
 			PropertySet[@"Description"].Data = descriptiontb.Text;
 
 			// Dimensions get special treatment since the mgr stores weird strings, and DB stores doubles.
