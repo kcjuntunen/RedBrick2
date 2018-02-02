@@ -567,6 +567,7 @@ namespace RedBrick2 {
 		private void button2_Click(object sender, EventArgs e) {
 			CreateCutlist c = new CreateCutlist(SwApp);
 			c.ShowDialog(this);
+			ReLoad();
 		}
 
 		private void enterJump(object sender, object[] boxes) {

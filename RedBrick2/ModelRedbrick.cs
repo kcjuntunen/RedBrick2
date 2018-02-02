@@ -2342,6 +2342,7 @@ namespace RedBrick2 {
 		private void update_btn_MouseClick(object sender, MouseEventArgs e) {
 			CreateCutlist cc_ = new CreateCutlist(SwApp);
 			cc_.ShowDialog(this);
+			ReQuery(_activeDoc);
 		}
 
 		private void remove_btn_MouseClick(object sender, MouseEventArgs e) {
