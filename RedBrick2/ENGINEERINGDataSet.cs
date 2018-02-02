@@ -135,6 +135,30 @@ namespace RedBrick2 {
 				return partid_ > 0 ? partid_ : insert_part_(_pp);
 			}
 
+			public int update_general_properties_(SwProperties _pp) {
+				int affected_ = 0;
+				string sql_ = @"UPDATE CUT_PARTS SET FIN_L = @finl, FIN_W = @finw, THICKNESS = @thk, " +
+					@"HASH = @hash WHERE PARTNUM=@prtNo";
+				ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter ta_ =
+					new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
+				using (SqlCommand comm = new SqlCommand(sql_, ta_.Connection)) {
+					comm.Parameters.AddWithValue(@"@prtNo", _pp.PartLookup);
+					comm.Parameters.AddWithValue(@"@finl", Convert.ToDouble(_pp[@"LENGTH"].Data));
+					comm.Parameters.AddWithValue(@"@finw", Convert.ToDouble(_pp[@"WIDTH"].Data));
+					comm.Parameters.AddWithValue(@"@thk", Convert.ToDouble(_pp[@"THICKNESS"].Data));
+					comm.Parameters.AddWithValue(@"@hash", Convert.ToInt32(_pp.Hash));
+					if (ta_.Connection.State == System.Data.ConnectionState.Closed) {
+						ta_.Connection.Open();
+					}
+					try {
+						affected_ = comm.ExecuteNonQuery();
+					} finally {
+						ta_.Connection.Close();
+					}
+				}
+				return affected_;
+			}
+
 			private int update_part_(SwProperties _pp) {
 				int affected_ = 0;
 				string sql_ = @"UPDATE CUT_PARTS SET DESCR = @descr, FIN_L = @finl, FIN_W = @finw, THICKNESS = @thk, " +

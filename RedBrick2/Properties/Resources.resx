@@ -211,4 +211,7 @@
   <data name="Glasses_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Glasses-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="WannaUpdateDimensions" xml:space="preserve">
+    <value>The current dimensions differ from what's in the database. Do you want to update the dimensions in the database?{0}</value>
+  </data>
 </root>

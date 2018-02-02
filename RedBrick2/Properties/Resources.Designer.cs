@@ -343,5 +343,14 @@ namespace RedBrick2.Properties {
                 return ResourceManager.GetString("UpdateHint", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The current dimensions differ from what&apos;s in the database. Do you want to update the dimensions in the database?{0}.
+        /// </summary>
+        internal static string WannaUpdateDimensions {
+            get {
+                return ResourceManager.GetString("WannaUpdateDimensions", resourceCulture);
+            }
+        }
     }
 }

@@ -1133,9 +1133,34 @@ namespace RedBrick2 {
 				ModelDoc2 md_ = _activeDoc;
 				DumpActiveDoc();
 				ActiveDoc = SwApp.ActiveDoc;
+				maybe_update_general_properties();
 			}
 			do_savepostnotify = true;
 			return 0;
+		}
+
+		private void maybe_update_general_properties() {
+			if (data_from_db) {
+				if (!Redbrick.FloatEquals(db_length.ToString(), length_label.Text) ||
+						!Redbrick.FloatEquals(db_width.ToString(), width_label.Text) ||
+						!Redbrick.FloatEquals(db_thickness.ToString(), thickness_label.Text)) {
+					string dims_ = string.Format("\n\n{0,-20} {1,15} {2,15}\n", "     ", "Database", "Part");
+					dims_ += string.Format("\n{0,-20} {1,15} {2,15}\n", "Length", 
+						Redbrick.enforce_number_format(db_length), length_label.Text);
+					dims_ += string.Format("\n{0,-20} {1,15} {2,15}\n", "Width",
+						Redbrick.enforce_number_format(db_width), width_label.Text);
+					dims_ += string.Format("\n{0,-20} {1,15} {2,15}\n", "Thickness",
+						Redbrick.enforce_number_format(db_thickness), thickness_label.Text);
+					string message_ = string.Format(Properties.Resources.WannaUpdateDimensions, dims_);
+					DialogResult dr_ = MessageBox.Show(message_, @"Save dimensions?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+					if (dr_ == DialogResult.Yes) {
+						eNGINEERINGDataSet.CUT_PARTS.update_general_properties_(PropertySet);
+						ModelDoc2 md_ = _activeDoc;
+						DumpActiveDoc();
+						ActiveDoc = SwApp.ActiveDoc;
+					}
+				}
+			}
 		}
 
 		private int pd_ActiveConfigChangePostNotify() {
