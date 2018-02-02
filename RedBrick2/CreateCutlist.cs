@@ -287,9 +287,10 @@ namespace RedBrick2 {
 			if (_swApp.ActiveDoc is DrawingDoc) {
 				SolidWorks.Interop.sldworks.View _v = Redbrick.GetFirstView(_swApp);
 				stpr = new StringProperty(@"Description", true, _swApp, _v.ReferencedDocument as ModelDoc2, string.Empty);
-				stpr.Configuration = string.Empty;
+				stpr.Configuration = _v.ReferencedConfiguration;
 			} else {
 				stpr = new StringProperty(@"Description", true, _swApp, _swApp.ActiveDoc as ModelDoc2, string.Empty);
+				stpr.Configuration = (_swApp.ActiveDoc as ModelDoc2).ConfigurationManager.ActiveConfiguration.Name;
 			}
 			stpr.Get();
 			descr_cbx.Text = stpr.Value;
