@@ -110,9 +110,9 @@ namespace RedBrick2 {
 			this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel5.Name = "tableLayoutPanel5";
 			this.tableLayoutPanel5.RowCount = 4;
-			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.28726F));
-			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.02439F));
-			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 34.68835F));
+			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.78177F));
+			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40.35083F));
+			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35.8674F));
 			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
 			this.tableLayoutPanel5.Size = new System.Drawing.Size(353, 789);
 			this.tableLayoutPanel5.TabIndex = 1;
@@ -123,7 +123,7 @@ namespace RedBrick2 {
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox6.Controls.Add(this.tableLayoutPanel6);
 			this.groupBox6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.groupBox6.Location = new System.Drawing.Point(3, 199);
+			this.groupBox6.Location = new System.Drawing.Point(3, 181);
 			this.groupBox6.Name = "groupBox6";
 			this.groupBox6.Size = new System.Drawing.Size(347, 271);
 			this.groupBox6.TabIndex = 1;
@@ -448,9 +448,9 @@ namespace RedBrick2 {
 			this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.treeView1.Location = new System.Drawing.Point(3, 491);
+			this.treeView1.Location = new System.Drawing.Point(3, 483);
 			this.treeView1.Name = "treeView1";
-			this.treeView1.Size = new System.Drawing.Size(347, 253);
+			this.treeView1.Size = new System.Drawing.Size(347, 262);
 			this.treeView1.TabIndex = 2;
 			this.treeView1.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.treeView1_DrawNode);
 			// 
@@ -465,7 +465,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel1.Controls.Add(this.button1, 0, 0);
 			this.tableLayoutPanel1.Controls.Add(this.button6, 1, 0);
 			this.tableLayoutPanel1.Controls.Add(this.button7, 2, 0);
-			this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 750);
+			this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 751);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			this.tableLayoutPanel1.RowCount = 1;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -520,7 +520,7 @@ namespace RedBrick2 {
 			this.groupBox5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.groupBox5.Location = new System.Drawing.Point(3, 3);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(347, 190);
+			this.groupBox5.Size = new System.Drawing.Size(347, 172);
 			this.groupBox5.TabIndex = 0;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "groupBox5";
@@ -544,11 +544,11 @@ namespace RedBrick2 {
 			this.tableLayoutPanel7.Controls.Add(this.auth_cpx, 2, 1);
 			this.tableLayoutPanel7.Controls.Add(this.dateTimePicker1, 0, 3);
 			this.tableLayoutPanel7.Controls.Add(this.rev_cbx, 1, 4);
-			this.tableLayoutPanel7.Controls.Add(this.status_cbx, 1, 5);
-			this.tableLayoutPanel7.Controls.Add(this.button2, 2, 3);
-			this.tableLayoutPanel7.Controls.Add(this.button3, 2, 4);
 			this.tableLayoutPanel7.Controls.Add(this.button4, 2, 5);
 			this.tableLayoutPanel7.Controls.Add(this.button5, 2, 6);
+			this.tableLayoutPanel7.Controls.Add(this.button3, 1, 6);
+			this.tableLayoutPanel7.Controls.Add(this.status_cbx, 1, 5);
+			this.tableLayoutPanel7.Controls.Add(this.button2, 2, 4);
 			this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 16);
 			this.tableLayoutPanel7.Name = "tableLayoutPanel7";
 			this.tableLayoutPanel7.RowCount = 7;
@@ -559,7 +559,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel7.Size = new System.Drawing.Size(341, 168);
+			this.tableLayoutPanel7.Size = new System.Drawing.Size(341, 150);
 			this.tableLayoutPanel7.TabIndex = 0;
 			// 
 			// label41
@@ -589,7 +589,7 @@ namespace RedBrick2 {
 			// 
 			this.label45.AutoSize = true;
 			this.label45.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label45.Location = new System.Drawing.Point(3, 111);
+			this.label45.Location = new System.Drawing.Point(3, 110);
 			this.label45.Name = "label45";
 			this.label45.Size = new System.Drawing.Size(62, 29);
 			this.label45.TabIndex = 4;
@@ -601,7 +601,7 @@ namespace RedBrick2 {
 			// 
 			this.label44.AutoSize = true;
 			this.label44.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label44.Location = new System.Drawing.Point(3, 82);
+			this.label44.Location = new System.Drawing.Point(3, 81);
 			this.label44.Name = "label44";
 			this.label44.Size = new System.Drawing.Size(62, 29);
 			this.label44.TabIndex = 3;
@@ -669,10 +669,10 @@ namespace RedBrick2 {
 			// 
 			this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tableLayoutPanel7.SetColumnSpan(this.dateTimePicker1, 2);
+			this.tableLayoutPanel7.SetColumnSpan(this.dateTimePicker1, 3);
 			this.dateTimePicker1.Location = new System.Drawing.Point(3, 56);
 			this.dateTimePicker1.Name = "dateTimePicker1";
-			this.dateTimePicker1.Size = new System.Drawing.Size(198, 22);
+			this.dateTimePicker1.Size = new System.Drawing.Size(335, 22);
 			this.dateTimePicker1.TabIndex = 7;
 			// 
 			// rev_cbx
@@ -682,7 +682,7 @@ namespace RedBrick2 {
 			this.rev_cbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.rev_cbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.rev_cbx.FormattingEnabled = true;
-			this.rev_cbx.Location = new System.Drawing.Point(71, 85);
+			this.rev_cbx.Location = new System.Drawing.Point(71, 84);
 			this.rev_cbx.Name = "rev_cbx";
 			this.rev_cbx.Size = new System.Drawing.Size(130, 21);
 			this.rev_cbx.TabIndex = 8;
@@ -699,7 +699,7 @@ namespace RedBrick2 {
 			this.status_cbx.DataSource = this.cUTSTATESBindingSource;
 			this.status_cbx.DisplayMember = "STATE";
 			this.status_cbx.FormattingEnabled = true;
-			this.status_cbx.Location = new System.Drawing.Point(71, 114);
+			this.status_cbx.Location = new System.Drawing.Point(71, 113);
 			this.status_cbx.Name = "status_cbx";
 			this.status_cbx.Size = new System.Drawing.Size(130, 21);
 			this.status_cbx.TabIndex = 9;
@@ -720,7 +720,7 @@ namespace RedBrick2 {
 			// 
 			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.button2.Location = new System.Drawing.Point(207, 56);
+			this.button2.Location = new System.Drawing.Point(207, 84);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(131, 23);
 			this.button2.TabIndex = 10;
@@ -732,9 +732,9 @@ namespace RedBrick2 {
 			// 
 			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.button3.Location = new System.Drawing.Point(207, 85);
+			this.button3.Location = new System.Drawing.Point(71, 142);
 			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(131, 23);
+			this.button3.Size = new System.Drawing.Size(130, 23);
 			this.button3.TabIndex = 11;
 			this.button3.Text = "Delete Cutlist...";
 			this.button3.UseVisualStyleBackColor = true;
@@ -745,7 +745,7 @@ namespace RedBrick2 {
 			// 
 			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.button4.Location = new System.Drawing.Point(207, 114);
+			this.button4.Location = new System.Drawing.Point(207, 113);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(131, 23);
 			this.button4.TabIndex = 12;
@@ -757,7 +757,7 @@ namespace RedBrick2 {
 			// 
 			this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.button5.Location = new System.Drawing.Point(207, 143);
+			this.button5.Location = new System.Drawing.Point(207, 142);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(131, 23);
 			this.button5.TabIndex = 13;
