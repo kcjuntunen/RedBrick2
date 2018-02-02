@@ -359,9 +359,6 @@ namespace RedBrick2 {
 			s.Configuration = _config.Name;
 			s.GetProperties(m);
 			s.PartFileInfo = new FileInfo(m.GetPathName());
-			itm_cbx.Text = partLookup;
-			ref_cbx.Text = partLookup;
-			descr_cbx.Text = s[@"Description"].Value;
 			_dict.Add(name, 1);
 			_partlist.Add(name, s);
 			pb.UpdateTitle(m.GetTitle());
