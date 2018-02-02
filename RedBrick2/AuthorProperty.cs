@@ -74,7 +74,7 @@ namespace RedBrick2 {
 		public override object Data {
 			get { return _data; }
 			set {
-				_data = (int)value;
+				_data = Convert.ToInt32(value);
 				ENGINEERINGDataSet.GEN_USERSDataTable dt = gu.GetDataByUID(_data);
 				if (dt.Rows.Count > 0) {
 					Value = dt[0].INITIAL.Substring(0, 2);
