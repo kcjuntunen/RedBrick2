@@ -788,6 +788,7 @@ namespace RedBrick2 {
 			this.checkBox5.TabIndex = 4;
 			this.checkBox5.Text = "Export EDrawings Files";
 			this.checkBox5.UseVisualStyleBackColor = true;
+			this.checkBox5.Visible = false;
 			this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
 			// 
 			// checkBox6
