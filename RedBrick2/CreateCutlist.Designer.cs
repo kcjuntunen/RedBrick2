@@ -65,6 +65,7 @@ namespace RedBrick2 {
 			this.cutlistPartsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.cutlistPartsTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CutlistPartsTableAdapter();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
+			this.sltnunslct_btn = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gENCUSTOMERSBindingSource)).BeginInit();
@@ -87,7 +88,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel1.SetColumnSpan(this.dataGridView1, 5);
 			this.dataGridView1.Location = new System.Drawing.Point(3, 133);
 			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.Size = new System.Drawing.Size(736, 179);
+			this.dataGridView1.Size = new System.Drawing.Size(1098, 179);
 			this.dataGridView1.TabIndex = 0;
 			this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
 			this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
@@ -134,7 +135,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(742, 345);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(1104, 345);
 			this.tableLayoutPanel1.TabIndex = 1;
 			// 
 			// label1
@@ -143,7 +144,7 @@ namespace RedBrick2 {
 			this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label1.Location = new System.Drawing.Point(3, 0);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(105, 30);
+			this.label1.Size = new System.Drawing.Size(159, 30);
 			this.label1.TabIndex = 1;
 			this.label1.Text = "Customer";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -154,7 +155,7 @@ namespace RedBrick2 {
 			this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label2.Location = new System.Drawing.Point(3, 30);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(105, 30);
+			this.label2.Size = new System.Drawing.Size(159, 30);
 			this.label2.TabIndex = 2;
 			this.label2.Text = "Item Number";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -168,9 +169,9 @@ namespace RedBrick2 {
 			this.cust_cbx.DataSource = this.gENCUSTOMERSBindingSource;
 			this.cust_cbx.DisplayMember = "CUSTOMER";
 			this.cust_cbx.FormattingEnabled = true;
-			this.cust_cbx.Location = new System.Drawing.Point(114, 3);
+			this.cust_cbx.Location = new System.Drawing.Point(168, 3);
 			this.cust_cbx.Name = "cust_cbx";
-			this.cust_cbx.Size = new System.Drawing.Size(201, 21);
+			this.cust_cbx.Size = new System.Drawing.Size(303, 21);
 			this.cust_cbx.TabIndex = 4;
 			this.cust_cbx.ValueMember = "CUSTID";
 			this.cust_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
@@ -196,10 +197,10 @@ namespace RedBrick2 {
 			this.itm_cbx.DataSource = this.cUTCUTLISTSBindingSource;
 			this.itm_cbx.DisplayMember = "PARTNUM";
 			this.itm_cbx.FormattingEnabled = true;
-			this.itm_cbx.Location = new System.Drawing.Point(114, 33);
+			this.itm_cbx.Location = new System.Drawing.Point(168, 33);
 			this.itm_cbx.MaxLength = 35;
 			this.itm_cbx.Name = "itm_cbx";
-			this.itm_cbx.Size = new System.Drawing.Size(201, 21);
+			this.itm_cbx.Size = new System.Drawing.Size(303, 21);
 			this.itm_cbx.TabIndex = 5;
 			this.itm_cbx.ValueMember = "CLID";
 			this.itm_cbx.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
@@ -219,7 +220,7 @@ namespace RedBrick2 {
 			this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label3.Location = new System.Drawing.Point(3, 60);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(105, 30);
+			this.label3.Size = new System.Drawing.Size(159, 30);
 			this.label3.TabIndex = 3;
 			this.label3.Text = "Item Description";
 			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -233,9 +234,9 @@ namespace RedBrick2 {
 			this.rev_cbx.DataSource = this.revListBindingSource;
 			this.rev_cbx.DisplayMember = "REV";
 			this.rev_cbx.FormattingEnabled = true;
-			this.rev_cbx.Location = new System.Drawing.Point(321, 33);
+			this.rev_cbx.Location = new System.Drawing.Point(477, 33);
 			this.rev_cbx.Name = "rev_cbx";
-			this.rev_cbx.Size = new System.Drawing.Size(45, 21);
+			this.rev_cbx.Size = new System.Drawing.Size(71, 21);
 			this.rev_cbx.TabIndex = 6;
 			this.rev_cbx.ValueMember = "REV";
 			this.rev_cbx.SelectedValueChanged += new System.EventHandler(this.comboBox3_SelectedValueChanged);
@@ -262,18 +263,18 @@ namespace RedBrick2 {
 			// 
 			this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.dateTimePicker1.Location = new System.Drawing.Point(527, 33);
+			this.dateTimePicker1.Location = new System.Drawing.Point(785, 33);
 			this.dateTimePicker1.Name = "dateTimePicker1";
-			this.dateTimePicker1.Size = new System.Drawing.Size(212, 22);
+			this.dateTimePicker1.Size = new System.Drawing.Size(316, 22);
 			this.dateTimePicker1.TabIndex = 9;
 			// 
 			// label5
 			// 
 			this.label5.AutoSize = true;
 			this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label5.Location = new System.Drawing.Point(372, 30);
+			this.label5.Location = new System.Drawing.Point(554, 30);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(149, 30);
+			this.label5.Size = new System.Drawing.Size(225, 30);
 			this.label5.TabIndex = 8;
 			this.label5.Text = "Date";
 			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -282,9 +283,9 @@ namespace RedBrick2 {
 			// 
 			this.label4.AutoSize = true;
 			this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label4.Location = new System.Drawing.Point(372, 0);
+			this.label4.Location = new System.Drawing.Point(554, 0);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(149, 30);
+			this.label4.Size = new System.Drawing.Size(225, 30);
 			this.label4.TabIndex = 7;
 			this.label4.Text = "Drawing Reference";
 			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -298,10 +299,10 @@ namespace RedBrick2 {
 			this.ref_cbx.DataSource = this.cUTCUTLISTSBindingSource;
 			this.ref_cbx.DisplayMember = "DRAWING";
 			this.ref_cbx.FormattingEnabled = true;
-			this.ref_cbx.Location = new System.Drawing.Point(527, 3);
+			this.ref_cbx.Location = new System.Drawing.Point(785, 3);
 			this.ref_cbx.MaxLength = 30;
 			this.ref_cbx.Name = "ref_cbx";
-			this.ref_cbx.Size = new System.Drawing.Size(212, 21);
+			this.ref_cbx.Size = new System.Drawing.Size(316, 21);
 			this.ref_cbx.TabIndex = 10;
 			this.ref_cbx.ValueMember = "CLID";
 			this.ref_cbx.TextChanged += new System.EventHandler(this.ref_cbx_TextChanged);
@@ -317,10 +318,10 @@ namespace RedBrick2 {
 			this.descr_cbx.DataSource = this.cUTCUTLISTSBindingSource;
 			this.descr_cbx.DisplayMember = "DESCR";
 			this.descr_cbx.FormattingEnabled = true;
-			this.descr_cbx.Location = new System.Drawing.Point(114, 63);
+			this.descr_cbx.Location = new System.Drawing.Point(168, 63);
 			this.descr_cbx.MaxLength = 50;
 			this.descr_cbx.Name = "descr_cbx";
-			this.descr_cbx.Size = new System.Drawing.Size(201, 21);
+			this.descr_cbx.Size = new System.Drawing.Size(303, 21);
 			this.descr_cbx.TabIndex = 11;
 			this.descr_cbx.ValueMember = "CLID";
 			this.descr_cbx.TextChanged += new System.EventHandler(this.comboBox5_TextChanged);
@@ -331,9 +332,9 @@ namespace RedBrick2 {
 			// 
 			this.label6.AutoSize = true;
 			this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label6.Location = new System.Drawing.Point(321, 0);
+			this.label6.Location = new System.Drawing.Point(477, 0);
 			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(45, 30);
+			this.label6.Size = new System.Drawing.Size(71, 30);
 			this.label6.TabIndex = 12;
 			this.label6.Text = "REV";
 			this.label6.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -341,7 +342,7 @@ namespace RedBrick2 {
 			// cancel_btn
 			// 
 			this.cancel_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.cancel_btn.Location = new System.Drawing.Point(664, 319);
+			this.cancel_btn.Location = new System.Drawing.Point(1026, 319);
 			this.cancel_btn.Name = "cancel_btn";
 			this.cancel_btn.Size = new System.Drawing.Size(75, 23);
 			this.cancel_btn.TabIndex = 13;
@@ -359,7 +360,7 @@ namespace RedBrick2 {
 			this.panel1.Controls.Add(this.tableLayoutPanel2);
 			this.panel1.Location = new System.Drawing.Point(3, 93);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(736, 34);
+			this.panel1.Size = new System.Drawing.Size(1098, 34);
 			this.panel1.TabIndex = 15;
 			// 
 			// tableLayoutPanel2
@@ -367,7 +368,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tableLayoutPanel2.ColumnCount = 8;
+			this.tableLayoutPanel2.ColumnCount = 9;
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
@@ -376,22 +377,24 @@ namespace RedBrick2 {
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-			this.tableLayoutPanel2.Controls.Add(this.hide_btn, 7, 0);
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.tableLayoutPanel2.Controls.Add(this.unselect_btn, 6, 0);
 			this.tableLayoutPanel2.Controls.Add(this.select_btn, 5, 0);
 			this.tableLayoutPanel2.Controls.Add(this.type_cbx, 4, 0);
 			this.tableLayoutPanel2.Controls.Add(this.toplvl_rdo, 0, 0);
 			this.tableLayoutPanel2.Controls.Add(this.parts_rdo, 1, 0);
+			this.tableLayoutPanel2.Controls.Add(this.hide_btn, 8, 0);
+			this.tableLayoutPanel2.Controls.Add(this.sltnunslct_btn, 7, 0);
 			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
 			this.tableLayoutPanel2.RowCount = 1;
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(728, 26);
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(1090, 26);
 			this.tableLayoutPanel2.TabIndex = 0;
 			// 
 			// hide_btn
 			// 
-			this.hide_btn.Location = new System.Drawing.Point(615, 3);
+			this.hide_btn.Location = new System.Drawing.Point(977, 3);
 			this.hide_btn.Name = "hide_btn";
 			this.hide_btn.Size = new System.Drawing.Size(110, 20);
 			this.hide_btn.TabIndex = 17;
@@ -401,7 +404,7 @@ namespace RedBrick2 {
 			// 
 			// unselect_btn
 			// 
-			this.unselect_btn.Location = new System.Drawing.Point(534, 3);
+			this.unselect_btn.Location = new System.Drawing.Point(784, 3);
 			this.unselect_btn.Name = "unselect_btn";
 			this.unselect_btn.Size = new System.Drawing.Size(75, 20);
 			this.unselect_btn.TabIndex = 16;
@@ -411,7 +414,7 @@ namespace RedBrick2 {
 			// 
 			// select_btn
 			// 
-			this.select_btn.Location = new System.Drawing.Point(453, 3);
+			this.select_btn.Location = new System.Drawing.Point(703, 3);
 			this.select_btn.Name = "select_btn";
 			this.select_btn.Size = new System.Drawing.Size(75, 20);
 			this.select_btn.TabIndex = 15;
@@ -426,7 +429,7 @@ namespace RedBrick2 {
 			this.type_cbx.DataSource = this.cUTPARTTYPESBindingSource;
 			this.type_cbx.DisplayMember = "TYPEDESC";
 			this.type_cbx.FormattingEnabled = true;
-			this.type_cbx.Location = new System.Drawing.Point(258, 3);
+			this.type_cbx.Location = new System.Drawing.Point(508, 3);
 			this.type_cbx.Name = "type_cbx";
 			this.type_cbx.Size = new System.Drawing.Size(189, 21);
 			this.type_cbx.TabIndex = 14;
@@ -462,7 +465,7 @@ namespace RedBrick2 {
 			// 
 			// upload_btn
 			// 
-			this.upload_btn.Location = new System.Drawing.Point(114, 318);
+			this.upload_btn.Location = new System.Drawing.Point(168, 318);
 			this.upload_btn.Name = "upload_btn";
 			this.upload_btn.Size = new System.Drawing.Size(105, 23);
 			this.upload_btn.TabIndex = 16;
@@ -475,9 +478,9 @@ namespace RedBrick2 {
 			this.config_cbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.config_cbx.FormattingEnabled = true;
-			this.config_cbx.Location = new System.Drawing.Point(527, 63);
+			this.config_cbx.Location = new System.Drawing.Point(785, 63);
 			this.config_cbx.Name = "config_cbx";
-			this.config_cbx.Size = new System.Drawing.Size(212, 21);
+			this.config_cbx.Size = new System.Drawing.Size(316, 21);
 			this.config_cbx.TabIndex = 21;
 			this.config_cbx.SelectedIndexChanged += new System.EventHandler(this.config_cbx_SelectedIndexChanged);
 			this.config_cbx.Enter += new System.EventHandler(this.config_cbx_Enter);
@@ -488,9 +491,9 @@ namespace RedBrick2 {
 			// 
 			this.label7.AutoSize = true;
 			this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label7.Location = new System.Drawing.Point(372, 60);
+			this.label7.Location = new System.Drawing.Point(554, 60);
 			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(149, 30);
+			this.label7.Size = new System.Drawing.Size(225, 30);
 			this.label7.TabIndex = 22;
 			this.label7.Text = "Configuration";
 			this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -502,7 +505,7 @@ namespace RedBrick2 {
             this.toolStripStatusLabel2});
 			this.statusStrip1.Location = new System.Drawing.Point(0, 361);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(767, 22);
+			this.statusStrip1.Size = new System.Drawing.Size(1129, 22);
 			this.statusStrip1.TabIndex = 2;
 			this.statusStrip1.Text = "statusStrip1";
 			// 
@@ -543,11 +546,21 @@ namespace RedBrick2 {
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
 			// 
+			// sltnunslct_btn
+			// 
+			this.sltnunslct_btn.Location = new System.Drawing.Point(865, 3);
+			this.sltnunslct_btn.Name = "sltnunslct_btn";
+			this.sltnunslct_btn.Size = new System.Drawing.Size(106, 20);
+			this.sltnunslct_btn.TabIndex = 20;
+			this.sltnunslct_btn.Text = "Select && Unselect";
+			this.sltnunslct_btn.UseVisualStyleBackColor = true;
+			this.sltnunslct_btn.Click += new System.EventHandler(this.sltnunslct_btn_Click);
+			// 
 			// CreateCutlist
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(767, 383);
+			this.ClientSize = new System.Drawing.Size(1129, 383);
 			this.ControlBox = false;
 			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.tableLayoutPanel1);
@@ -622,5 +635,6 @@ namespace RedBrick2 {
 		private System.Windows.Forms.Button scan;
 		private System.Windows.Forms.ComboBox config_cbx;
 		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.Button sltnunslct_btn;
 	}
 }

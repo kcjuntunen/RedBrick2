@@ -1102,11 +1102,11 @@ namespace RedBrick2 {
 						if ((int)dept.Value == (int)type_cbx.SelectedValue) {
 							DataGridViewCheckBoxCell inc = item.Cells[@"Include"] as DataGridViewCheckBoxCell;
 							inc.Value = true;
-							count_includes();
 						}
 					}
 				}
 			}
+			count_includes();
 		}
 
 		private void unselect_btn_Click(object sender, EventArgs e) {
@@ -1116,10 +1116,30 @@ namespace RedBrick2 {
 					if ((int)dept.Value == (int)type_cbx.SelectedValue) {
 						DataGridViewCheckBoxCell inc = item.Cells[@"Include"] as DataGridViewCheckBoxCell;
 						inc.Value = false;
-						count_includes();
 					}
 				}
 			}
+			count_includes();
+		}
+
+		private void sltnunslct_btn_Click(object sender, EventArgs e) {
+			System.Text.RegularExpressions.Regex r =
+				new System.Text.RegularExpressions.Regex(Redbrick.BOMFilter[0]);
+			foreach (DataGridViewRow item in dataGridView1.Rows) {
+				string part_ = (string)item.Cells[@"Part Number"].Value;
+				if (part_ != null && r.IsMatch(part_)) {
+					DataGridViewComboBoxCell dept = item.Cells[@"Department"] as DataGridViewComboBoxCell;
+					if (dept.Value != null) {
+						DataGridViewCheckBoxCell inc = item.Cells[@"Include"] as DataGridViewCheckBoxCell;
+						if ((int)dept.Value == (int)type_cbx.SelectedValue) {
+							inc.Value = true;
+						} else {
+							inc.Value = false;
+						}
+					}
+				}
+			}
+			count_includes();
 		}
 
 		private void comboBox_KeyDown(object sender, KeyEventArgs e) {
