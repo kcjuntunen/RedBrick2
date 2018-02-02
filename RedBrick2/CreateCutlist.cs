@@ -1268,7 +1268,7 @@ namespace RedBrick2 {
 					if (inc_) {
 						string partnum_ = Convert.ToString(dgvr_.Cells[@"Part Number"].Value);
 						_partlist[partnum_][@"DEPARTMENT"].Data = Convert.ToInt32(dgvr_.Cells[@"Department"].Value);
-						_partlist[partnum_][@"Description"].Data = Convert.ToString(dgvr_.Cells[@"Description"].Value);
+						_partlist[partnum_][@"Description"].Data = Convert.ToString(dgvr_.Cells[@"Description"].Value.ToString().Trim());
 						_partlist[partnum_].CutlistQty = Convert.ToInt32(dgvr_.Cells[@"Part Qty"].Value);
 						_partlist[partnum_][@"BLANK QTY"].Data = Convert.ToInt32(dgvr_.Cells[@"Blank Qty"].Value);
 						_partlist[partnum_][@"CUTLIST MATERIAL"].Data = Convert.ToInt32(dgvr_.Cells[@"Material"].Value);
@@ -1284,7 +1284,7 @@ namespace RedBrick2 {
 				}
 
 				int custid_ = Convert.ToInt32(cust_cbx.SelectedValue);
-				dt_cc.UpdateCutlist(itm_cbx.Text, ref_cbx.Text, rev_cbx.Text, descr_cbx.Text, custid_,
+				dt_cc.UpdateCutlist(itm_cbx.Text.Trim(), ref_cbx.Text.Trim(), rev_cbx.Text.Trim(), descr_cbx.Text.Trim(), custid_,
 					dateTimePicker1.Value, Properties.Settings.Default.DefaultState, Convert.ToInt32(uid), parts_);
 				(sender as Control).Enabled = false;
 				cancel_btn.Text = @"Close";
