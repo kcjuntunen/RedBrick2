@@ -154,23 +154,23 @@ namespace RedBrick2 {
 			bool no_cnc2 = (cnc2tb.Text == @"NA") || (cnc2tb.Text == string.Empty);
 			bool enabled = data_from_db && !(no_cnc1 && no_cnc2);
 			prioritybtn.Enabled = enabled;
-			cnc1tb.ForeColor = Color.Gray;
-			Font fn_ = new Font(cutlistMat.Font, FontStyle.Regular);
-			Font fn2_ = new Font(cnc1tb.Font, FontStyle.Italic);
-			if (no_cnc1) {
-				cnc1tb.Font = fn2_;
-				cnc1tb.ForeColor = Color.Gray;
-			} else {
-				cnc1tb.Font = fn_;
-				cnc1tb.ForeColor = Color.Black;
-			}
-			if (no_cnc2) {
-				cnc2tb.Font = fn2_;
-				cnc2tb.ForeColor = Color.Gray;
-			} else {
-				cnc2tb.Font = fn_;
-				cnc2tb.ForeColor = Color.Black;
-			}
+			//cnc1tb.ForeColor = Color.Gray;
+			//Font fn_ = new Font(cutlistMat.Font, FontStyle.Regular);
+			//Font fn2_ = new Font(cnc1tb.Font, FontStyle.Italic);
+			//if (no_cnc1) {
+			//	cnc1tb.Font = fn2_;
+			//	cnc1tb.ForeColor = Color.Gray;
+			//} else {
+			//	cnc1tb.Font = fn_;
+			//	cnc1tb.ForeColor = Color.Black;
+			//}
+			//if (no_cnc2) {
+			//	cnc2tb.Font = fn2_;
+			//	cnc2tb.ForeColor = Color.Gray;
+			//} else {
+			//	cnc2tb.Font = fn_;
+			//	cnc2tb.ForeColor = Color.Black;
+			//}
 		}
 
 		/// <summary>
@@ -409,10 +409,12 @@ namespace RedBrick2 {
 			if (ComboBoxContainsValue(Properties.Settings.Default.LastCutlist, cutlistctl)) {
 				cutlistctl.SelectedValue = Properties.Settings.Default.LastCutlist;
 				PropertySet.CutlistID = Convert.ToInt32(cutlistctl.SelectedValue);
+				//CutlistSelected(true);
 				EnableCutlistSpec(true);
 				ToggleCutlistErr(false);
 				comboBox6_SelectedIndexChanged(cutlistctl, new EventArgs());
 			} else if (cutlistctl.Items.Count < 1) {
+				//CutlistSelected(false);
 				cutlistctl.SelectedValue = -1;
 				EnableCutlistSpec(true);
 				ToggleCutlistErr(false);
@@ -420,10 +422,24 @@ namespace RedBrick2 {
 				GetEdgesFromPart();
 			} else {
 				cutlistctl.SelectedValue = -1;
+				//CutlistSelected(false);
 				ToggleCutlistErr(true);
 				EnableCutlistSpec(false);
 				GetMaterialFromPart();
 				GetEdgesFromPart();
+			}
+		}
+
+		private void CutlistSelected(bool _s) {
+			Font fn_ = cutlistMat.Font;
+			if (!_s) {
+				Font fn2_ = new Font(fn_, FontStyle.Italic);
+				cutlistctl.Font = fn2_;
+				cutlistctl.ForeColor = Color.Gray;
+				cutlistctl.Text = @"No cutlist selected";
+			} else {
+				cutlistctl.Font = fn_;
+				cutlistctl.ForeColor = Color.Black;
 			}
 		}
 
@@ -1993,6 +2009,7 @@ namespace RedBrick2 {
 		private void Set_Specific(ENGINEERINGDataSet.CUT_CUTLIST_PARTSRow _row) {
 			EnableCutlistSpec(true);
 			ToggleCutlistErr(false);
+			//CutlistSelected(true);
 			cutlistMat.SelectedValue = _row.MATID;
 			edgef.SelectedValue = _row.EDGEID_LF;
 			edgeb.SelectedValue = _row.EDGEID_LB;
@@ -2242,7 +2259,7 @@ namespace RedBrick2 {
 			if (cbx_.Text == string.Empty) {
 				cbx_.SelectedIndex = -1;
 				label7.Visible = false;
-				if (PropertySet != null) {
+				if (PropertySet != null && PropertySet.Contains(@"EDGE FRONT (L)")) {
 					PropertySet[@"EDGE FRONT (L)"].Data = 0;
 					PropertySet[@"EFID"].Data = 0;
 				}
@@ -2256,7 +2273,7 @@ namespace RedBrick2 {
 			if (cbx_.Text == string.Empty) {
 				cbx_.SelectedIndex = -1;
 				label8.Visible = false;
-				if (PropertySet != null) {
+				if (PropertySet != null && PropertySet.Contains(@"EDGE BACK (L)")) {
 					PropertySet[@"EDGE BACK (L)"].Data = 0;
 					PropertySet[@"EBID"].Data = 0;
 				}
@@ -2270,7 +2287,7 @@ namespace RedBrick2 {
 			if (cbx_.Text == string.Empty) {
 				cbx_.SelectedIndex = -1;
 				label7.Visible = false;
-				if (PropertySet != null) {
+				if (PropertySet != null && PropertySet.Contains(@"EDGE LEFT (W)")) {
 					PropertySet[@"EDGE LEFT (W)"].Data = 0;
 					PropertySet[@"ELID"].Data = 0;
 				}
@@ -2284,7 +2301,7 @@ namespace RedBrick2 {
 			if (cbx_.Text == string.Empty) {
 				cbx_.SelectedIndex = -1;
 				label10.Visible = false;
-				if (PropertySet != null) {
+				if (PropertySet != null && PropertySet.Contains(@"EDGE RIGHT (W)")) {
 					PropertySet[@"EDGE RIGHT (W)"].Data = 0;
 					PropertySet[@"ERID"].Data = 0;
 				}
@@ -2476,6 +2493,7 @@ namespace RedBrick2 {
 				CutlistPartsRow = null;
 				GetMaterialFromPart();
 				GetEdgesFromPart();
+				//CutlistSelected(false);
 				ToggleCutlistErr(true);
 				EnableCutlistSpec(false);
 				Properties.Settings.Default.LastCutlist = 0;
