@@ -401,7 +401,6 @@ namespace RedBrick2 {
 				ToggleNotInDBWarn(false);
 				GetDataFromPart();
 			}
-			remove_btn.Enabled = PropertySet.CutlistAndPartIDsOK;
 			SelectLastCutlist();
 		}
 
@@ -428,6 +427,7 @@ namespace RedBrick2 {
 				GetMaterialFromPart();
 				GetEdgesFromPart();
 			}
+			remove_btn.Enabled = PropertySet.CutlistAndPartIDsOK;
 		}
 
 		private void CutlistSelected(bool _s) {
