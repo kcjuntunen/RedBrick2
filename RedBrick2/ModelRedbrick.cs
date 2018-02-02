@@ -223,6 +223,7 @@ namespace RedBrick2 {
 					if (float.TryParse((sender as TextBox).Text, out test_)) {
 						calculate_blanksize_from_oversize(test_, blnkszLtb, length, _edge_thickness);
 					}
+					CheckOversize();
 					ov_userediting = false;
 				}
 			}
@@ -244,6 +245,7 @@ namespace RedBrick2 {
 					if (float.TryParse((sender as TextBox).Text, out test_)) {
 						calculate_blanksize_from_oversize(test_, blnkszWtb, width, _edge_thickness);
 					}
+					CheckOversize();
 					ov_userediting = false;
 				}
 			}
