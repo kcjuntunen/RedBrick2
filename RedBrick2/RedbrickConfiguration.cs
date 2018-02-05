@@ -214,7 +214,6 @@ namespace RedBrick2 {
 			chbOnlyActiveCustomers.Checked = Properties.Settings.Default.OnlyCurrentCustomers;
 			new ToolTip().SetToolTip(chbOnlyActiveCustomers, @"Only show currently active customers.");
 			chbRememberCustomer.Checked = Properties.Settings.Default.RememberLastCustomer;
-			dimwarn_chb.Checked = Properties.Settings.Default.WarnExcludeAssy;
 			extra_info_chb.Checked = Properties.Settings.Default.ExtraInfo;
 			textBox1.Text = Properties.Settings.Default.BOMFilter[0].ToString();
 			textBox2.Text = Properties.Settings.Default.GaugePath;
