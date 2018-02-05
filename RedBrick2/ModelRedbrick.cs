@@ -1004,38 +1004,31 @@ namespace RedBrick2 {
 			DisplayDimension d_ = (DisplayDimension)displayDim;
 			Dimension dim_ = d_.GetDimension2(0);
 			if (dim_.FullName.Contains(PropertySet[@"LENGTH"].Value.Replace("\"", string.Empty))) {
-				string val_ = GetDim(PropertySet[@"LENGTH"].Value);
 				PropertySet[@"LENGTH"].Data = dim_.Value;
-
-				ov_userediting = true;
-				textBox_TextChanged(dim_.FullName, length_label);
-				ov_userediting = false;
-
 				length = (float)dim_.Value;
 			}
 
 			if (dim_.FullName.Contains(PropertySet[@"WIDTH"].Value.Replace("\"", string.Empty))) {
-				string val_ = GetDim(PropertySet[@"WIDTH"].Value);
-				PropertySet[@"LENGTH"].Data = dim_.Value;
-
-				ov_userediting = true;
-				textBox_TextChanged(dim_.FullName, width_label);
-				ov_userediting = false;
-
+				PropertySet[@"WIDTH"].Data = dim_.Value;
 				width = (float)dim_.Value;
 			}
 
 			if (dim_.FullName.Contains(PropertySet[@"THICKNESS"].Value.Replace("\"", string.Empty))) {
-				string val_ = GetDim(PropertySet[@"THICKNESS"].Value);
-				PropertySet[@"LENGTH"].Data = dim_.Value;
-
-				ov_userediting = true;
-				textBox_TextChanged(dim_.FullName, thickness_label);
-				ov_userediting = false;
-
+				PropertySet[@"THICKNESS"].Data = dim_.Value;
 				thickness = (float)dim_.Value;
 			}
+			ReReadDims();
 			CheckDims();
+		}
+
+		private void ReReadDims() {
+			TextBox[] cc_ = new TextBox[] { lengthtb, widthtb, thicknesstb, wallthicknesstb };
+			Label[] ll_ = new Label[] { length_label, width_label, thickness_label, wall_thickness_label };
+			ov_userediting = true;
+			for (int i = 0; i < cc_.Length; i++) {
+				textBox_TextChanged(cc_[i].Text, ll_[i]);
+			}
+			ov_userediting = false;
 		}
 
 		private void DisconnectPartEvents() {
