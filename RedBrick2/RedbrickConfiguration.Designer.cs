@@ -61,7 +61,7 @@ namespace RedBrick2 {
 			this.chbWarnings = new System.Windows.Forms.CheckBox();
 			this.checkBox8 = new System.Windows.Forms.CheckBox();
 			this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
+			this.dimwarn_chb = new System.Windows.Forms.CheckBox();
 			this.chbOpWarnings = new System.Windows.Forms.CheckBox();
 			this.chbIdiotLight = new System.Windows.Forms.CheckBox();
 			this.readonly_warn_cb = new System.Windows.Forms.CheckBox();
@@ -560,7 +560,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel5.ColumnCount = 2;
 			this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
 			this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel5.Controls.Add(this.checkBox1, 1, 0);
+			this.tableLayoutPanel5.Controls.Add(this.dimwarn_chb, 1, 0);
 			this.tableLayoutPanel5.Controls.Add(this.chbOpWarnings, 1, 1);
 			this.tableLayoutPanel5.Controls.Add(this.chbIdiotLight, 1, 3);
 			this.tableLayoutPanel5.Controls.Add(this.readonly_warn_cb, 1, 2);
@@ -575,18 +575,18 @@ namespace RedBrick2 {
 			this.tableLayoutPanel5.Size = new System.Drawing.Size(520, 260);
 			this.tableLayoutPanel5.TabIndex = 22;
 			// 
-			// checkBox1
+			// dimwarn_chb
 			// 
-			this.checkBox1.AutoSize = true;
-			this.checkBox1.Checked = true;
-			this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox1.Location = new System.Drawing.Point(43, 3);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(140, 17);
-			this.checkBox1.TabIndex = 18;
-			this.checkBox1.Text = "Exclude assembly level";
-			this.checkBox1.UseVisualStyleBackColor = true;
-			this.checkBox1.Visible = false;
+			this.dimwarn_chb.AutoSize = true;
+			this.dimwarn_chb.Checked = true;
+			this.dimwarn_chb.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.dimwarn_chb.Location = new System.Drawing.Point(43, 3);
+			this.dimwarn_chb.Name = "dimwarn_chb";
+			this.dimwarn_chb.Size = new System.Drawing.Size(329, 17);
+			this.dimwarn_chb.TabIndex = 18;
+			this.dimwarn_chb.Text = "Warn on save if dims are changed and cutlist isn\'t updated";
+			this.dimwarn_chb.UseVisualStyleBackColor = true;
+			this.dimwarn_chb.CheckedChanged += new System.EventHandler(this.dimwarn_chb_CheckedChanged);
 			// 
 			// chbOpWarnings
 			// 
@@ -1091,7 +1091,7 @@ namespace RedBrick2 {
     private System.Windows.Forms.Label label6;
     private System.Windows.Forms.CheckBox checkBox8;
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-    private System.Windows.Forms.CheckBox checkBox1;
+    private System.Windows.Forms.CheckBox dimwarn_chb;
     private System.Windows.Forms.CheckBox chbOpWarnings;
     private System.Windows.Forms.CheckBox chbIdiotLight;
     private System.Windows.Forms.CheckBox readonly_warn_cb;

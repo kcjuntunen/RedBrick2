@@ -1194,7 +1194,7 @@ namespace RedBrick2 {
 		}
 
 		private void maybe_update_general_properties() {
-			if (data_from_db) {
+			if (Properties.Settings.Default.NotifyDimensionChangeOnSave && data_from_db) {
 				if (!Redbrick.FloatEquals(db_length.ToString(), length_label.Text) ||
 						!Redbrick.FloatEquals(db_width.ToString(), width_label.Text) ||
 						!Redbrick.FloatEquals(db_thickness.ToString(), thickness_label.Text)) {

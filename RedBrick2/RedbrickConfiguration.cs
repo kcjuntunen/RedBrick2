@@ -205,6 +205,7 @@ namespace RedBrick2 {
 																												Environment.NewLine));
 			chbWarnings.Checked = Properties.Settings.Default.Warn;
 			new ToolTip().SetToolTip(chbWarnings, @"Toggle validation warnings.");
+			dimwarn_chb.Checked = Properties.Settings.Default.NotifyDimensionChangeOnSave;
 			chbOpWarnings.Checked = Properties.Settings.Default.OpWarn;
 			new ToolTip().SetToolTip(chbOpWarnings, @"Toggle routing validation warnings.");
 			chbIdiotLight.Checked = Properties.Settings.Default.IdiotLight;
@@ -213,7 +214,7 @@ namespace RedBrick2 {
 			chbOnlyActiveCustomers.Checked = Properties.Settings.Default.OnlyCurrentCustomers;
 			new ToolTip().SetToolTip(chbOnlyActiveCustomers, @"Only show currently active customers.");
 			chbRememberCustomer.Checked = Properties.Settings.Default.RememberLastCustomer;
-			checkBox1.Checked = Properties.Settings.Default.WarnExcludeAssy;
+			dimwarn_chb.Checked = Properties.Settings.Default.WarnExcludeAssy;
 			extra_info_chb.Checked = Properties.Settings.Default.ExtraInfo;
 			textBox1.Text = Properties.Settings.Default.BOMFilter[0].ToString();
 			textBox2.Text = Properties.Settings.Default.GaugePath;
@@ -352,6 +353,7 @@ namespace RedBrick2 {
 			if (!chbWarnings.Checked) {
 				chbOpWarnings.Checked = false;
 				readonly_warn_cb.Checked = false;
+				dimwarn_chb.Checked = false;
 			}
 			tableLayoutPanel5.Enabled = chbWarnings.Checked;
 		}
@@ -430,7 +432,7 @@ namespace RedBrick2 {
 		/// <param name="sender">Who triggered this event?</param>
 		/// <param name="e">Any data come with it?</param>
 		private void checkBox1_CheckedChanged(object sender, EventArgs e) {
-			Properties.Settings.Default.WarnExcludeAssy = checkBox1.Checked;
+			Properties.Settings.Default.WarnExcludeAssy = dimwarn_chb.Checked;
 		}
 
 		/// <summary>
@@ -490,7 +492,7 @@ namespace RedBrick2 {
 		}
 
 		private void checkBox1_CheckedChanged_1(object sender, EventArgs e) {
-			Properties.Settings.Default.WarnExcludeAssy = checkBox1.Checked;
+			Properties.Settings.Default.WarnExcludeAssy = dimwarn_chb.Checked;
 		}
 
 		private void combobox_KeyDown(object sender, KeyEventArgs e) {
@@ -590,6 +592,10 @@ namespace RedBrick2 {
 
 		private void chbOpWarnings_CheckedChanged_1(object sender, EventArgs e) {
 			Properties.Settings.Default.OpWarn = (sender as CheckBox).Checked;
+		}
+
+		private void dimwarn_chb_CheckedChanged(object sender, EventArgs e) {
+			Properties.Settings.Default.NotifyDimensionChangeOnSave = (sender as CheckBox).Checked;
 		}
 	}
 }

@@ -939,5 +939,17 @@ namespace RedBrick2.Properties {
                 this["UpdateDimensionsLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool NotifyDimensionChangeOnSave {
+            get {
+                return ((bool)(this["NotifyDimensionChangeOnSave"]));
+            }
+            set {
+                this["NotifyDimensionChangeOnSave"] = value;
+            }
+        }
     }
 }
