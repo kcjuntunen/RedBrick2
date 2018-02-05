@@ -996,6 +996,11 @@ namespace RedBrick2 {
 		}
 
 		private int Pd_DimensionChangeNotify(object displayDim) {
+			UpdateDims(displayDim);
+			return 0;
+		}
+
+		private void UpdateDims(object displayDim) {
 			DisplayDimension d_ = (DisplayDimension)displayDim;
 			Dimension dim_ = d_.GetDimension2(0);
 			if (dim_.FullName.Contains(PropertySet[@"LENGTH"].Value.Replace("\"", string.Empty))) {
@@ -1031,7 +1036,6 @@ namespace RedBrick2 {
 				thickness = (float)dim_.Value;
 			}
 			CheckDims();
-			return 0;
 		}
 
 		private void DisconnectPartEvents() {
@@ -1081,6 +1085,7 @@ namespace RedBrick2 {
 				// switching docs
 				ad.ActiveViewChangeNotify += ad_ActiveViewChangeNotify;
 
+				ad.DimensionChangeNotify += Ad_DimensionChangeNotify;
 				ad.ActiveConfigChangePostNotify += ad_ActiveConfigChangePostNotify;
 				ad.ViewNewNotify2 += ad_ViewNewNotify2;
 				//DisconnectDrawingEvents();
@@ -1088,6 +1093,11 @@ namespace RedBrick2 {
 			} else {
 				// We're already set up, I guess.
 			}
+		}
+
+		private int Ad_DimensionChangeNotify(object displayDim) {
+			UpdateDims(displayDim);
+			return 0;
 		}
 
 		private int Ad_FileSavePostNotify(int saveType, string FileName) {
@@ -1167,6 +1177,7 @@ namespace RedBrick2 {
 			if (AssemblyEventsAssigned) {
 				//ad.UserSelectionPreNotify -= ad_UserSelectionPreNotify;
 				ad.UserSelectionPostNotify -= ad_UserSelectionPostNotify;
+				ad.DimensionChangeNotify -= Ad_DimensionChangeNotify;
 				ad.FileSavePostNotify -= Ad_FileSavePostNotify;
 				ad.DestroyNotify2 -= ad_DestroyNotify2;
 				//ad.ActiveDisplayStateChangePostNotify -= ad_ActiveDisplayStateChangePostNotify;
