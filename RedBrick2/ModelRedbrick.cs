@@ -1068,6 +1068,7 @@ namespace RedBrick2 {
 				swSelMgr = md.SelectionManager;
 				//ad.UserSelectionPreNotify += ad_UserSelectionPreNotify;
 
+				ad.FileSavePostNotify += Ad_FileSavePostNotify;
 				// user clicks part/subassembly
 				ad.UserSelectionPostNotify += ad_UserSelectionPostNotify;
 
@@ -1087,6 +1088,17 @@ namespace RedBrick2 {
 			} else {
 				// We're already set up, I guess.
 			}
+		}
+
+		private int Ad_FileSavePostNotify(int saveType, string FileName) {
+			if (do_savepostnotify) {
+				ModelDoc2 md_ = _activeDoc;
+				DumpActiveDoc();
+				ActiveDoc = SwApp.ActiveDoc;
+				maybe_update_general_properties();
+			}
+			do_savepostnotify = true;
+			return 0;
 		}
 
 		int ad_ViewNewNotify2(object viewBeingAdded) {
@@ -1155,6 +1167,7 @@ namespace RedBrick2 {
 			if (AssemblyEventsAssigned) {
 				//ad.UserSelectionPreNotify -= ad_UserSelectionPreNotify;
 				ad.UserSelectionPostNotify -= ad_UserSelectionPostNotify;
+				ad.FileSavePostNotify -= Ad_FileSavePostNotify;
 				ad.DestroyNotify2 -= ad_DestroyNotify2;
 				//ad.ActiveDisplayStateChangePostNotify -= ad_ActiveDisplayStateChangePostNotify;
 				ad.ActiveViewChangeNotify -= ad_ActiveViewChangeNotify;
