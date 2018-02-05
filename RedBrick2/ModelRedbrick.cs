@@ -330,34 +330,21 @@ namespace RedBrick2 {
 		}
 
 		private void CheckDims() {
-			if (!Redbrick.FloatEquals(db_length, length)) {
-				l_tooltip.SetToolTip(length_label,
-					string.Format(Properties.Resources.DimensionNotMatch,
-					Redbrick.enforce_number_format(db_length)));
-				Redbrick.Warn(length_label);
-			} else {
-				Redbrick.UnErr(length_label);
-				l_tooltip.RemoveAll();
-			}
+			Label[] ll_ = new Label[] { length_label, width_label, thickness_label };
+			ToolTip[] tt_ = new ToolTip[] { l_tooltip, w_tooltip, t_tooltip };
+			float[] db_dims_ = new float[] { db_length, db_width, db_thickness };
+			float[] dims_ = new float[] { length, width, thickness };
 
-			if (!Redbrick.FloatEquals(db_width, width)) {
-				w_tooltip.SetToolTip(width_label,
-					string.Format(Properties.Resources.DimensionNotMatch,
-					Redbrick.enforce_number_format(db_width)));
-				Redbrick.Warn(width_label);
-			} else {
-				Redbrick.UnErr(width_label);
-				w_tooltip.RemoveAll();
-			}
-
-			if (!Redbrick.FloatEquals(db_thickness, thickness)) {
-				t_tooltip.SetToolTip(thickness_label,
-					string.Format(Properties.Resources.DimensionNotMatch,
-					Redbrick.enforce_number_format(db_thickness)));
-				Redbrick.Warn(thickness_label);
-			} else {
-				Redbrick.UnErr(thickness_label);
-				t_tooltip.RemoveAll();
+			for (int i = 0; i < ll_.Length; i++) {
+				if (!Redbrick.FloatEquals(db_dims_[i], dims_[i])) {
+					tt_[i].SetToolTip(ll_[i],
+						string.Format(Properties.Resources.DimensionNotMatch,
+						Redbrick.enforce_number_format(db_dims_[i])));
+					Redbrick.Warn(ll_[i]);
+				} else {
+					Redbrick.UnErr(ll_[i]);
+					tt_[i].RemoveAll();
+				}
 			}
 		}
 
