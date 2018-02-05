@@ -222,6 +222,12 @@
       <DependentUpon>SWTaskpaneHost.cs</DependentUpon>
     </Compile>
     <Compile Include="Traverser.cs" />
+    <Compile Include="UpdateDimensions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateDimensions.Designer.cs">
+      <DependentUpon>UpdateDimensions.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -280,6 +286,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SWTaskpaneHost.resx">
       <DependentUpon>SWTaskpaneHost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateDimensions.resx">
+      <DependentUpon>UpdateDimensions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

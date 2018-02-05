@@ -345,7 +345,7 @@ namespace RedBrick2.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The current dimensions differ from what&apos;s in the database. Do you want to update the dimensions in the database?{0}.
+        ///   Looks up a localized string similar to The current dimensions differ from what&apos;s in the database. Do you want to update the dimensions in the database?.
         /// </summary>
         internal static string WannaUpdateDimensions {
             get {

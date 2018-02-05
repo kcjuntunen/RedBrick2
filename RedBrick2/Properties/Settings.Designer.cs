@@ -915,5 +915,29 @@ namespace RedBrick2.Properties {
                 this["GlassesIcon"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("370, 230")]
+        public global::System.Drawing.Size UpdateDimensionsSize {
+            get {
+                return ((global::System.Drawing.Size)(this["UpdateDimensionsSize"]));
+            }
+            set {
+                this["UpdateDimensionsSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
+        public global::System.Drawing.Point UpdateDimensionsLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["UpdateDimensionsLocation"]));
+            }
+            set {
+                this["UpdateDimensionsLocation"] = value;
+            }
+        }
     }
 }

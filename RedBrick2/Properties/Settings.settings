@@ -267,5 +267,11 @@
     <Setting Name="GlassesIcon" Type="System.String" Scope="User">
       <Value Profile="(Default)">\\cad\\Solid Works\\Amstore_Macros\\ICONS\\Glasses-icon.bmp</Value>
     </Setting>
+    <Setting Name="UpdateDimensionsSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">370, 230</Value>
+    </Setting>
+    <Setting Name="UpdateDimensionsLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">100, 100</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
