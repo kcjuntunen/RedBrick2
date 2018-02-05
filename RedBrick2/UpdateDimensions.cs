@@ -31,6 +31,7 @@ namespace RedBrick2 {
 			Location = Properties.Settings.Default.UpdateDimensionsLocation;
 			Size = Properties.Settings.Default.UpdateDimensionsSize;
 
+			label6.MaximumSize = new Size(panel1.Width - 10, panel1.Height);
 			label6.Text = Properties.Resources.WannaUpdateDimensions;
 
 			db_length_label.Text = Redbrick.enforce_number_format(db_length);
@@ -75,6 +76,10 @@ namespace RedBrick2 {
 
 		private void UpdateDimensions_FormClosing(object sender, FormClosingEventArgs e) {
 			Properties.Settings.Default.Save();
+		}
+
+		private void panel1_SizeChanged(object sender, EventArgs e) {
+			label6.MaximumSize = new Size(panel1.Width - 10, panel1.Height);
 		}
 	}
 }

@@ -238,6 +238,7 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(334, 42);
 			this.panel1.TabIndex = 15;
+			this.panel1.SizeChanged += new System.EventHandler(this.panel1_SizeChanged);
 			// 
 			// UpdateDimensions
 			// 
@@ -249,9 +250,13 @@
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.button2);
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.MaximizeBox = false;
 			this.MaximumSize = new System.Drawing.Size(600, 400);
+			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(367, 230);
 			this.Name = "UpdateDimensions";
+			this.ShowIcon = false;
+			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Update Dimensions?";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UpdateDimensions_FormClosing);
