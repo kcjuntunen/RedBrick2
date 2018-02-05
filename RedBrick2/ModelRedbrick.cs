@@ -986,6 +986,7 @@ namespace RedBrick2 {
 				pd = (PartDoc)ActiveDoc;
 				// When the config changes, the app knows.
 				pd.ActiveConfigChangePostNotify += pd_ActiveConfigChangePostNotify;
+				pd.DimensionChangeNotify += Pd_DimensionChangeNotify;
 				pd.FileSavePostNotify += pd_FileSavePostNotify;
 				//pd.ChangeCustomPropertyNotify += pd_ChangeCustomPropertyNotify;
 				pd.DestroyNotify2 += pd_DestroyNotify2;
@@ -994,10 +995,50 @@ namespace RedBrick2 {
 			}
 		}
 
+		private int Pd_DimensionChangeNotify(object displayDim) {
+			DisplayDimension d_ = (DisplayDimension)displayDim;
+			Dimension dim_ = d_.GetDimension2(0);
+			if (dim_.FullName.Contains(PropertySet[@"LENGTH"].Value.Replace("\"", string.Empty))) {
+				string val_ = GetDim(PropertySet[@"LENGTH"].Value);
+				PropertySet[@"LENGTH"].Data = dim_.Value;
+
+				ov_userediting = true;
+				textBox_TextChanged(dim_.FullName, length_label);
+				ov_userediting = false;
+
+				length = (float)dim_.Value;
+			}
+
+			if (dim_.FullName.Contains(PropertySet[@"WIDTH"].Value.Replace("\"", string.Empty))) {
+				string val_ = GetDim(PropertySet[@"WIDTH"].Value);
+				PropertySet[@"LENGTH"].Data = dim_.Value;
+
+				ov_userediting = true;
+				textBox_TextChanged(dim_.FullName, width_label);
+				ov_userediting = false;
+
+				width = (float)dim_.Value;
+			}
+
+			if (dim_.FullName.Contains(PropertySet[@"THICKNESS"].Value.Replace("\"", string.Empty))) {
+				string val_ = GetDim(PropertySet[@"THICKNESS"].Value);
+				PropertySet[@"LENGTH"].Data = dim_.Value;
+
+				ov_userediting = true;
+				textBox_TextChanged(dim_.FullName, thickness_label);
+				ov_userediting = false;
+
+				thickness = (float)dim_.Value;
+			}
+			CheckDims();
+			return 0;
+		}
+
 		private void DisconnectPartEvents() {
 			// unhook 'em all
 			if (PartEventsAssigned) {
 				pd.ActiveConfigChangePostNotify -= pd_ActiveConfigChangePostNotify;
+				pd.DimensionChangeNotify -= Pd_DimensionChangeNotify;
 				pd.DestroyNotify2 -= pd_DestroyNotify2;
 				//pd.ChangeCustomPropertyNotify -= pd_ChangeCustomPropertyNotify;
 				pd.FileSavePostNotify -= pd_FileSavePostNotify;
