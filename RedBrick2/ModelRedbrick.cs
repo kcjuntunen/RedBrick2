@@ -1005,7 +1005,9 @@ namespace RedBrick2 {
 				thickness = (float)dim_.Value;
 			}
 			ReReadDims();
-			CheckDims();
+			if (data_from_db) {
+				CheckDims();
+			}
 		}
 
 		private void ReReadDims() {
