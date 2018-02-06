@@ -16,12 +16,12 @@ namespace RedBrick2 {
 	/// </summary>
 	public partial class ModelRedbrick : UserControl {
 		private SwProperties PropertySet;
-		private ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cpta =
-			new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
-		private ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter ccpta =
-			new ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter();
-		private ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter cpota =
-			new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter();
+		//private ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cpta =
+		//	new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
+		//private ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter ccpta =
+		//	new ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter();
+		//private ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter cpota =
+		//	new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter();
 
 		private ENGINEERINGDataSet.CUT_PARTSRow Row = null;
 		private ENGINEERINGDataSet.CUT_CUTLIST_PARTSRow CutlistPartsRow = null;
@@ -359,6 +359,8 @@ namespace RedBrick2 {
 
 		private void GetCutlistData() {
 			if (partLookup != null) {
+				ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cpta =
+					new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
 				cpta.FillByPartnum(eNGINEERINGDataSet.CUT_PARTS, partLookup);
 				if (eNGINEERINGDataSet.CUT_PARTS.Count > 0) {
 					Row = eNGINEERINGDataSet.CUT_PARTS.Rows[0] as ENGINEERINGDataSet.CUT_PARTSRow;
@@ -379,8 +381,12 @@ namespace RedBrick2 {
 				checked_at_start = updateCNCcb.Checked;
 			}
 			if (Row != null) {
+				ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter cpota =
+					new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter();
 				cpota.FillByPartID(eNGINEERINGDataSet.CUT_PART_OPS, Row.PARTID);
 				if (cutlistctl.SelectedItem != null) {
+					ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter ccpta =
+						new ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter();
 					ccpta.FillByCutlistIDAndPartID(eNGINEERINGDataSet.CUT_CUTLIST_PARTS, Row.PARTID, Convert.ToInt32(cutlistctl.SelectedValue));
 					if (eNGINEERINGDataSet.CUT_CUTLIST_PARTS.Count > 0) {
 						CutlistPartsRow = eNGINEERINGDataSet.CUT_CUTLIST_PARTS[0];
@@ -679,6 +685,8 @@ namespace RedBrick2 {
 			data_from_db = isIn;
 			if (isIn) {
 				groupBox1.ForeColor = Properties.Settings.Default.NormalForeground;
+				ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cpta =
+					new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
 				string hash_ = Row[@"HASH"] == DBNull.Value ? "\nOld part; no location information." : string.Empty;
 				if (Row[@"HASH"] != DBNull.Value) {
 					hash_ = PropertySet.Hash == Row.HASH ?
@@ -792,6 +800,8 @@ namespace RedBrick2 {
 				FilterOps(string.Format(@"TYPEID = {0}", Row.TYPE));
 			}
 
+			ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter cpota =
+				new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter();
 			cpota.FillByPartID(eNGINEERINGDataSet.CUT_PART_OPS, Row.PARTID);
 
 			for (int i = 0; i < cbxes.Length; i++) {
@@ -823,6 +833,8 @@ namespace RedBrick2 {
 			double setupTime = 0.0f;
 			double runTime = 0.0f;
 			string scope_ = string.Empty;
+			ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter cpota =
+				new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter();
 			if (Properties.Settings.Default.EstimateSource || PropertySet.CutlistID < 1) {
 				scope_ = @"/part";
 				if (PropertySet.PartID != 0) {
@@ -2057,6 +2069,8 @@ namespace RedBrick2 {
 					CutlistPartsRow = eNGINEERINGDataSet.CUT_CUTLIST_PARTS[0];
 				}
 
+			ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter ccpta =
+					new ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter();
 				ccpta.FillByCutlistIDAndPartID(eNGINEERINGDataSet.CUT_CUTLIST_PARTS, PropertySet.PartID,
 					Convert.ToInt32(cutlistctl.SelectedValue));
 				if (eNGINEERINGDataSet.CUT_CUTLIST_PARTS.Rows.Count > 0) {
