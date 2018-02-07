@@ -2107,6 +2107,8 @@ namespace RedBrick2 {
 				if (eNGINEERINGDataSet.CUT_CUTLIST_PARTS.Rows.Count > 0) {
 					CutlistPartsRow = (eNGINEERINGDataSet.CUT_CUTLIST_PARTS.Rows[0] as ENGINEERINGDataSet.CUT_CUTLIST_PARTSRow);
 					Set_Specific(CutlistPartsRow);
+					DataRowView drv_ = cutlistctl.SelectedItem as DataRowView;
+					stat_cbx.SelectedValue = Convert.ToInt32(drv_[@"STATEID"]);
 				}
 			}
 

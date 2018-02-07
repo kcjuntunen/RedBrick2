@@ -580,7 +580,6 @@
 			// 
 			this.stat_cbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.stat_cbx.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cutlistPartsBindingSource, "STATEID", true));
 			this.stat_cbx.DataSource = this.cUTSTATESBindingSource;
 			this.stat_cbx.DisplayMember = "STATE";
 			this.stat_cbx.FormattingEnabled = true;
