@@ -204,7 +204,7 @@ namespace RedBrick2 {
 		}
 
 		private void UITearDown() {
-			taskpaneHost = null;
+			taskpaneHost.Dispose();
 			taskpaneView.DeleteView();
 			Marshal.ReleaseComObject(taskpaneView);
 			taskpaneView = null;

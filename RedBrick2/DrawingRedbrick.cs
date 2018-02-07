@@ -27,6 +27,7 @@ namespace RedBrick2 {
 		private bool reload = true;
 		private string jobs_msg = string.Empty;
 		private string req_info_ = string.Empty;
+		private DrawingDoc dd_ = null;
 
 		/// <summary>
 		/// Constructor.
@@ -159,36 +160,47 @@ namespace RedBrick2 {
 				}
 			}
 			treeView1.Nodes.Clear();
-			string path_ = ActiveDoc.GetPathName();
-			if (path_ != string.Empty) {
-				PartFileInfo = new FileInfo(path_);
-				partLookup = Redbrick.FileInfoToLookup(PartFileInfo);
-				if (PartFileInfo.Name.ToUpper().Contains(@"REV")) {
-					string[] revcheck = Path.GetFileNameWithoutExtension(PartFileInfo.Name).
-						Split(new string[] { @"REV" }, StringSplitOptions.RemoveEmptyEntries);
-					RevFromFile = revcheck.Length > 1 ? revcheck[revcheck.Length - 1].Trim() : null;
+			if (ActiveDoc != null) {
+				string path_ = ActiveDoc.GetPathName();
+				if (path_ != string.Empty) {
+					PartFileInfo = new FileInfo(path_);
+					partLookup = Redbrick.FileInfoToLookup(PartFileInfo);
+					if (PartFileInfo.Name.ToUpper().Contains(@"REV")) {
+						string[] revcheck = Path.GetFileNameWithoutExtension(PartFileInfo.Name).
+							Split(new string[] { @"REV" }, StringSplitOptions.RemoveEmptyEntries);
+						RevFromFile = revcheck.Length > 1 ? revcheck[revcheck.Length - 1].Trim() : null;
+					} else {
+						RevFromFile = null;
+					}
+					ENGINEERINGDataSet.SCH_PROJECTSRow r =
+						(new ENGINEERINGDataSet.SCH_PROJECTSDataTable()).GetCorrectCustomer(partLookup);
+					if (r != null) {
+						ProjectCustomer = r.CUSTID;
+						projectDescr = r.DESCRIPTION;
+					} else {
+						ProjectCustomer = 0;
+						projectDescr = string.Empty;
+					}
+					//ProjectCustomer = GetCorrectCustomer();
+					groupBox5.Text = projectDescr != string.Empty ? string.Format(@"{0} - {1}", partLookup, Redbrick.TitleCase(projectDescr)) : partLookup;
 				} else {
-					RevFromFile = null;
+					groupBox5.Text = @"New Drawing";
+					dd_ = ActiveDoc as DrawingDoc;
+					dd_.FileSavePostNotify += dd__FileSavePostNotify;
 				}
-				ENGINEERINGDataSet.SCH_PROJECTSRow r =
-					(new ENGINEERINGDataSet.SCH_PROJECTSDataTable()).GetCorrectCustomer(partLookup);
-				if (r != null) {
-					ProjectCustomer = r.CUSTID;
-					projectDescr = r.DESCRIPTION;
-				} else {
-					ProjectCustomer = 0;
-					projectDescr = string.Empty;
-				}
-				//ProjectCustomer = GetCorrectCustomer();
-				groupBox5.Text = projectDescr != string.Empty ? string.Format(@"{0} - {1}", partLookup, projectDescr) : partLookup;
-			} else {
-				groupBox5.Text = @"New Drawing";
-				DrawingDoc dd_ = ActiveDoc as DrawingDoc;
-				dd_.FileSavePostNotify += dd__FileSavePostNotify;
 			}
 		}
 
-		int dd__FileSavePostNotify(int saveType, string FileName) {
+		public void DumpData() {
+			if (dd_ != null) {
+				dd_.FileSavePostNotify -= dd__FileSavePostNotify;
+				dd_ = null;
+			}
+			ActiveDoc = null;
+			GC.Collect(GC.GetGeneration(this));
+		}
+
+		private int dd__FileSavePostNotify(int saveType, string FileName) {
 			if (reload && FileName.ToUpper().EndsWith(@"SLDDRW")) {
 				ReLoad(SwApp.ActiveDoc);
 			}
@@ -348,6 +360,7 @@ namespace RedBrick2 {
 		public void ReLoad() {
 			int gc_ = GC.GetGeneration(this);
 			GC.Collect(gc_, GCCollectionMode.Optimized);
+			ActiveDoc = SwApp.ActiveDoc as ModelDoc2;
 			dirtTracker.Besmirched -= dirtTracker_Besmirched;
 			req_info_ = string.Empty;
 			InitData();
@@ -513,6 +526,7 @@ namespace RedBrick2 {
 			EditRev eo = new EditRev(RevSet);
 			eo.Added += er_Added;
 			eo.ShowDialog(this);
+			eo.Dispose();
 			BuildTree();
 		}
 
@@ -537,10 +551,12 @@ namespace RedBrick2 {
 				EditRev er = new EditRev(SelectedNode(), RevSet);
 				er.Added += er_Added;
 				er.ShowDialog(this);
+				er.Dispose();
 			} else {
 				EditRev er = new EditRev(0, RevSet);
 				er.Added += er_Added;
 				er.ShowDialog(this);
+				er.Dispose();
 			}
 			BuildTree();
 		}
@@ -567,6 +583,7 @@ namespace RedBrick2 {
 		private void button2_Click(object sender, EventArgs e) {
 			CreateCutlist c = new CreateCutlist(SwApp);
 			c.ShowDialog(this);
+			c.Dispose();
 			ReLoad();
 		}
 

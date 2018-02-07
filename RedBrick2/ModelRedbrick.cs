@@ -259,7 +259,11 @@ namespace RedBrick2 {
 			this.Component = null;
 			configuration = string.Empty;
 			lastModelDoc = null;
-			_activeDoc = null;
+			ActiveDoc = null;
+			DisconnectEvents();
+			if (drawingRedbrick != null) {
+				drawingRedbrick.DumpData();
+			}
 		}
 
 		public void ReStart() {
@@ -953,6 +957,7 @@ namespace RedBrick2 {
 
 		int dd_DestroyNotify2(int DestroyType) {
 			Hide();
+			DumpActiveDoc();
 			return 0;
 		}
 
@@ -1454,6 +1459,7 @@ namespace RedBrick2 {
 			Machine_Priority_Control.MachinePriority m_ =
 				new Machine_Priority_Control.MachinePriority(_lookup);
 			m_.ShowDialog(this);
+			m_.Dispose();
 		}
 
 		private void SetupDrawing() {
@@ -1646,11 +1652,17 @@ namespace RedBrick2 {
 					PropertySet = new SwProperties(SwApp, _activeDoc);
 					switch (odType) {
 						case swDocumentTypes_e.swDocASSEMBLY:                     //Window looking at assembly.
+							if (drawingRedbrick != null) {
+								drawingRedbrick.DumpData();
+							}
 							(tabPage1 as Control).Enabled = true;
 							//DisconnectAssemblyEvents();
 							ConnectAssemblyEvents(SwApp.ActiveDoc as ModelDoc2);
 							switch (dType) {
 								case swDocumentTypes_e.swDocASSEMBLY:                     //Selected sub-assembly in window.
+									if (drawingRedbrick != null) {
+										drawingRedbrick.DumpData();
+									}
 									(tabPage2 as Control).Enabled = false;
 									SetupPart();
 									break;
@@ -1689,6 +1701,9 @@ namespace RedBrick2 {
 							tabControl1.SelectedTab = tabPage2;
 							break;
 						case swDocumentTypes_e.swDocPART:                         //Window looking at part.
+							if (drawingRedbrick != null) {
+								drawingRedbrick.DumpData();
+							}
 							Component = null;
 							(tabPage1 as Control).Enabled = true;
 							if (odType != swDocumentTypes_e.swDocDRAWING) {
@@ -1705,6 +1720,18 @@ namespace RedBrick2 {
 					}
 				} else {
 					if (value == null) {
+						//Row = null;
+						//CutlistPartsRow = null;
+						//_activeDoc = null;
+						this.Component = null;
+						configuration = string.Empty;
+						lastModelDoc = null;
+						_activeDoc = null;
+						DisconnectEvents();
+						if (drawingRedbrick != null) {
+							drawingRedbrick.DumpData();
+						}
+						GC.Collect(GC.GetGeneration(this), GCCollectionMode.Optimized);
 						//Hide();
 					}
 				}
@@ -2427,6 +2454,7 @@ namespace RedBrick2 {
 		private void update_btn_MouseClick(object sender, MouseEventArgs e) {
 			CreateCutlist cc_ = new CreateCutlist(SwApp);
 			cc_.ShowDialog(this);
+			cc_.Dispose();
 			ModelDoc2 tmp_ = _activeDoc;
 			DumpActiveDoc();
 			ReQuery(tmp_);
