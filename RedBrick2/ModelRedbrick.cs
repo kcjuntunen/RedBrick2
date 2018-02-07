@@ -546,6 +546,7 @@ namespace RedBrick2 {
 			edgel.Enabled = on;
 			edger.Enabled = on;
 			partq.Enabled = on;
+			stat_cbx.Enabled = on;
 		}
 
 		private void ToggleCutlistQtyErr(bool on) {

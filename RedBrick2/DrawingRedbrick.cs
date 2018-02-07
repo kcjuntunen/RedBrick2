@@ -249,7 +249,7 @@ namespace RedBrick2 {
 			rev_cbx.DataSource = rl.GetData();
 			SwProperty _p = new StringProperty(@"REVISION LEVEL", true, SwApp, ActiveDoc, string.Empty);
 			PropertySet.Add(_p.Get());
-			RevFromDrw = _p.Value;
+			RevFromDrw = _p.Value.Trim();
 			rev_cbx.Text = RevFromDrw;
 			bool err_ = RevFromFile != null && RevFromDrw != RevFromFile;
 			if (Properties.Settings.Default.Warn && err_) {
