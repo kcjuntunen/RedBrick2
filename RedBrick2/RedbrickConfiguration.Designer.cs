@@ -674,7 +674,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel6.Size = new System.Drawing.Size(395, 384);
+			this.tableLayoutPanel6.Size = new System.Drawing.Size(541, 384);
 			this.tableLayoutPanel6.TabIndex = 0;
 			// 
 			// label5
@@ -693,7 +693,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel6.SetColumnSpan(this.textBox2, 2);
 			this.textBox2.Location = new System.Drawing.Point(3, 16);
 			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(389, 22);
+			this.textBox2.Size = new System.Drawing.Size(535, 22);
 			this.textBox2.TabIndex = 1;
 			this.textBox2.DoubleClick += new System.EventHandler(this.textBox2_DoubleClick);
 			// 
@@ -740,7 +740,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel6.SetColumnSpan(this.textBox4, 2);
 			this.textBox4.Location = new System.Drawing.Point(3, 57);
 			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(389, 22);
+			this.textBox4.Size = new System.Drawing.Size(535, 22);
 			this.textBox4.TabIndex = 10;
 			this.textBox4.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox4_MouseDoubleClick);
 			// 
@@ -751,7 +751,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel6.SetColumnSpan(this.textBox5, 2);
 			this.textBox5.Location = new System.Drawing.Point(3, 98);
 			this.textBox5.Name = "textBox5";
-			this.textBox5.Size = new System.Drawing.Size(389, 22);
+			this.textBox5.Size = new System.Drawing.Size(535, 22);
 			this.textBox5.TabIndex = 11;
 			this.textBox5.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox5_MouseDoubleClick);
 			// 
@@ -762,7 +762,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel6.SetColumnSpan(this.textBox6, 2);
 			this.textBox6.Location = new System.Drawing.Point(3, 139);
 			this.textBox6.Name = "textBox6";
-			this.textBox6.Size = new System.Drawing.Size(389, 22);
+			this.textBox6.Size = new System.Drawing.Size(535, 22);
 			this.textBox6.TabIndex = 12;
 			this.textBox6.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox6_MouseDoubleClick);
 			// 
@@ -773,7 +773,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel6.SetColumnSpan(this.textBox7, 2);
 			this.textBox7.Location = new System.Drawing.Point(3, 180);
 			this.textBox7.Name = "textBox7";
-			this.textBox7.Size = new System.Drawing.Size(389, 22);
+			this.textBox7.Size = new System.Drawing.Size(535, 22);
 			this.textBox7.TabIndex = 13;
 			this.textBox7.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox7_MouseDoubleClick);
 			// 
@@ -796,7 +796,7 @@ namespace RedBrick2 {
 			this.checkBox6.AutoSize = true;
 			this.checkBox6.Checked = true;
 			this.checkBox6.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBox6.Location = new System.Drawing.Point(200, 270);
+			this.checkBox6.Location = new System.Drawing.Point(273, 270);
 			this.checkBox6.Name = "checkBox6";
 			this.checkBox6.Size = new System.Drawing.Size(155, 17);
 			this.checkBox6.TabIndex = 5;
@@ -807,7 +807,7 @@ namespace RedBrick2 {
 			// checkBox4
 			// 
 			this.checkBox4.AutoSize = true;
-			this.checkBox4.Location = new System.Drawing.Point(200, 247);
+			this.checkBox4.Location = new System.Drawing.Point(273, 247);
 			this.checkBox4.Name = "checkBox4";
 			this.checkBox4.Size = new System.Drawing.Size(149, 17);
 			this.checkBox4.TabIndex = 3;
@@ -845,7 +845,7 @@ namespace RedBrick2 {
 			this.textBox8.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.textBox8.Location = new System.Drawing.Point(3, 221);
 			this.textBox8.Name = "textBox8";
-			this.textBox8.Size = new System.Drawing.Size(389, 20);
+			this.textBox8.Size = new System.Drawing.Size(535, 20);
 			this.textBox8.TabIndex = 15;
 			this.textBox8.Text = "^[0-9]{1,2}\\ ?GA\\.?";
 			this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
