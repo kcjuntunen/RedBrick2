@@ -260,6 +260,7 @@ namespace RedBrick2 {
 			configuration = string.Empty;
 			lastModelDoc = null;
 			ActiveDoc = null;
+			PropertySet = null;
 			DisconnectEvents();
 			if (drawingRedbrick != null) {
 				drawingRedbrick.DumpData();

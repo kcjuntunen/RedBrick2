@@ -197,6 +197,7 @@ namespace RedBrick2 {
 				dd_ = null;
 			}
 			ActiveDoc = null;
+			PropertySet = null;
 			GC.Collect(GC.GetGeneration(this));
 		}
 
