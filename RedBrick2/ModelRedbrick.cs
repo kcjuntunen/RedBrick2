@@ -550,6 +550,9 @@ namespace RedBrick2 {
 			edgel.Enabled = on;
 			edger.Enabled = on;
 			partq.Enabled = on;
+			if (!on) {
+				stat_cbx.SelectedIndex = -1;
+			}
 			stat_cbx.Enabled = on;
 		}
 
