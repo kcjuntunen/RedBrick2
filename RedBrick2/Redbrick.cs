@@ -172,7 +172,7 @@ namespace RedBrick2 {
 					break;
 				case 1:
 					RedbrickConfiguration rbc = new RedbrickConfiguration();
-					rbc.ShowDialog();
+					rbc.ShowDialog(taskpaneHost);
 					taskpaneHost.ConnectSelection(true);
 					taskpaneHost.ToggleFlameWar(Properties.Settings.Default.FlameWar);
 					break;
