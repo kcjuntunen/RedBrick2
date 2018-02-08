@@ -195,6 +195,7 @@ namespace RedBrick2 {
 						System.Data.DataView dv_ = ta_.GetData(lu_).DefaultView;
 						DataDisplay d_ = new DataDisplay(dv_, string.Format(@"{0} - QuickTrack Locations", lu_));
 						d_.ShowDialog(taskpaneHost);
+						d_.Dispose();
 					}
 					break;
 				default:
