@@ -114,8 +114,8 @@ namespace RedBrick2 {
 				LastLegacyECR = _maxecr;
 			}
 
-			AppDomain appDomain = AppDomain.CurrentDomain;
-			appDomain.UnhandledException += AppDomain_UnhandledException;
+			//AppDomain appDomain = AppDomain.CurrentDomain;
+			//appDomain.UnhandledException += AppDomain_UnhandledException;
 
 			TreeViewIcons = new System.Windows.Forms.ImageList();
 			TreeViewIcons.ImageSize = new System.Drawing.Size(20, 20);
