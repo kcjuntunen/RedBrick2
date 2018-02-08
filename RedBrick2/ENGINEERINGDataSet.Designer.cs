@@ -37173,15 +37173,16 @@ WHERE      (CUT_PARTS.PARTID = @partID) AND (CUT_CUTLISTS.CLID = @clid)";
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@clid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "CLID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @"SELECT      CUT_CUTLISTS.CLID, CUT_CUTLISTS.PARTNUM + N' REV ' + CUT_CUTLISTS.REV AS CutlistDisplayName, CUT_CUTLISTS.PARTNUM AS CUTLIST, 
-                        CUT_CUTLISTS.REV, CUT_CUTLISTS.DRAWING, CUT_CUTLISTS.CUSTID, CUT_CUTLISTS.CDATE, CUT_CUTLISTS.DESCR, CUT_CUTLISTS.LENGTH, 
-                        CUT_CUTLISTS.WIDTH, CUT_CUTLISTS.HEIGHT, CUT_CUTLISTS.SETUP_BY, CUT_CUTLISTS.STATE_BY, CUT_CUTLISTS.STATEID, 
-                        CUT_PARTS.PARTID, CUT_PARTS.PARTNUM, CUT_CUTLIST_PARTS.MATID, CUT_CUTLIST_PARTS.EDGEID_LF, CUT_CUTLIST_PARTS.EDGEID_LB, 
-                        CUT_CUTLIST_PARTS.EDGEID_WR, CUT_CUTLIST_PARTS.EDGEID_WL, CUT_CUTLIST_PARTS.QTY, CUT_PARTS.TYPE
-FROM          CUT_CUTLIST_PARTS INNER JOIN
-                        CUT_CUTLISTS ON CUT_CUTLIST_PARTS.CLID = CUT_CUTLISTS.CLID INNER JOIN
-                        CUT_PARTS ON CUT_CUTLIST_PARTS.PARTID = CUT_PARTS.PARTID
-WHERE      (CUT_PARTS.PARTNUM = @partnum)";
+            this._commandCollection[2].CommandText = @"SELECT        CUT_CUTLISTS.CLID, CUT_CUTLISTS.PARTNUM + N' REV ' + CUT_CUTLISTS.REV AS CutlistDisplayName, CUT_CUTLISTS.PARTNUM AS CUTLIST, 
+                         CUT_CUTLISTS.REV, CUT_CUTLISTS.DRAWING, CUT_CUTLISTS.CUSTID, CUT_CUTLISTS.CDATE, CUT_CUTLISTS.DESCR, CUT_CUTLISTS.LENGTH, 
+                         CUT_CUTLISTS.WIDTH, CUT_CUTLISTS.HEIGHT, CUT_CUTLISTS.SETUP_BY, CUT_CUTLISTS.STATE_BY, CUT_CUTLISTS.STATEID, CUT_PARTS.PARTID, 
+                         CUT_PARTS.PARTNUM, CUT_CUTLIST_PARTS.MATID, CUT_CUTLIST_PARTS.EDGEID_LF, CUT_CUTLIST_PARTS.EDGEID_LB, CUT_CUTLIST_PARTS.EDGEID_WR, 
+                         CUT_CUTLIST_PARTS.EDGEID_WL, CUT_CUTLIST_PARTS.QTY, CUT_PARTS.TYPE
+FROM            CUT_CUTLIST_PARTS INNER JOIN
+                         CUT_CUTLISTS ON CUT_CUTLIST_PARTS.CLID = CUT_CUTLISTS.CLID INNER JOIN
+                         CUT_PARTS ON CUT_CUTLIST_PARTS.PARTID = CUT_PARTS.PARTID
+WHERE        (CUT_PARTS.PARTNUM = @partnum)
+ORDER BY CUTLIST, CUT_CUTLISTS.REV";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partnum", global::System.Data.SqlDbType.NVarChar, 25, global::System.Data.ParameterDirection.Input, 0, 0, "PARTNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
