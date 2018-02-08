@@ -198,7 +198,7 @@ namespace RedBrick2 {
 			}
 			ActiveDoc = null;
 			PropertySet = null;
-			GC.Collect(GC.GetGeneration(this));
+			//GC.Collect(GC.GetGeneration(this));
 		}
 
 		private int dd__FileSavePostNotify(int saveType, string FileName) {
@@ -359,8 +359,8 @@ namespace RedBrick2 {
 		/// Reload everything with current ModelDoc2.
 		/// </summary>
 		public void ReLoad() {
-			int gc_ = GC.GetGeneration(this);
-			GC.Collect(gc_, GCCollectionMode.Optimized);
+			//int gc_ = GC.GetGeneration(this);
+			//GC.Collect(gc_, GCCollectionMode.Optimized);
 			ActiveDoc = SwApp.ActiveDoc as ModelDoc2;
 			dirtTracker.Besmirched -= dirtTracker_Besmirched;
 			req_info_ = string.Empty;

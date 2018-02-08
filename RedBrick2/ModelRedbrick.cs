@@ -1451,8 +1451,8 @@ namespace RedBrick2 {
 				groupBox1.Text = groupBox1.Text.Replace(Properties.Settings.Default.NotSavedMark, string.Empty);
 				recalculate_blanksizeL();
 				recalculate_blanksizeW();
-				int gc_ = GC.GetGeneration(this);
-				GC.Collect(gc_, GCCollectionMode.Optimized);
+				//int gc_ = GC.GetGeneration(this);
+				//GC.Collect(gc_, GCCollectionMode.Optimized);
 			} else if (tabControl1.SelectedTab == tabPage2) {
 				drawingRedbrick.Commit();
 			}
@@ -1630,8 +1630,8 @@ namespace RedBrick2 {
 		public ModelDoc2 ActiveDoc {
 			get { return _activeDoc; }
 			set {
-				int gc_ = GC.GetGeneration(this);
-				GC.Collect(gc_, GCCollectionMode.Optimized);
+				//int gc_ = GC.GetGeneration(this);
+				//GC.Collect(gc_, GCCollectionMode.Optimized);
 				if (value != null && value != ActiveDoc) {
 					DisconnectEvents();
 					Show();
@@ -1738,7 +1738,7 @@ namespace RedBrick2 {
 						if (drawingRedbrick != null) {
 							drawingRedbrick.DumpData();
 						}
-						GC.Collect(GC.GetGeneration(this), GCCollectionMode.Optimized);
+						//GC.Collect(GC.GetGeneration(this), GCCollectionMode.Optimized);
 						//Hide();
 					}
 				}

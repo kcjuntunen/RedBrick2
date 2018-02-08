@@ -145,7 +145,7 @@ namespace RedBrick2 {
 		}
 
 		internal void ConnectSelection(bool _restart) {
-			System.GC.Collect(2, GCCollectionMode.Forced);
+			//System.GC.Collect(2, GCCollectionMode.Forced);
 			if (SwApp.ActiveDoc != null) {
 				BuildStuff();
 			}
