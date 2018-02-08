@@ -1051,6 +1051,7 @@ namespace RedBrick2 {
 				//pd.ChangeCustomPropertyNotify -= pd_ChangeCustomPropertyNotify;
 				pd.FileSavePostNotify -= pd_FileSavePostNotify;
 			}
+			pd = null;
 			PartEventsAssigned = false;
 		}
 
@@ -1066,6 +1067,7 @@ namespace RedBrick2 {
 		private void DisconnectDrawingEvents() {
 			if (DrawingEventsAssigned) {
 				dd.UserSelectionPostNotify -= dd_UserSelectionPostNotify;
+				dd = null;
 				DrawingEventsAssigned = false;
 			}
 		}
@@ -1189,6 +1191,7 @@ namespace RedBrick2 {
 				ad.ActiveConfigChangePostNotify -= ad_ActiveConfigChangePostNotify;
 				//swSelMgr = null;
 			}
+			ad = null;
 			AssemblyEventsAssigned = false;
 		}
 
