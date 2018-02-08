@@ -515,7 +515,9 @@ namespace RedBrick2 {
 					ToggleCustomerWarn(true);
 				}
 			} else {
-				(sender as ComboBox).Text = PropertySet[@"CUSTOMER"].Value;
+				if (PropertySet != null && PropertySet.Contains(@"CUSTOMER")) {
+					(sender as ComboBox).Text = PropertySet[@"CUSTOMER"].Value;
+				}
 				if (Properties.Settings.Default.Warn) {
 					ToggleCustomerWarn(true);
 				}
