@@ -320,6 +320,7 @@ namespace RedBrick2 {
 				wall_thickness_label.Text = Redbrick.enforce_number_format(PropertySet[@"WALL THICKNESS"].ResolvedValue);
 				CheckThickness();
 				CheckEdgingOps();
+				TogglePriorityButton();
 
 				//textBox_TextChanged(PropertySet[@"WALL THICKNESS"].Value, label21);
 
