@@ -1,9 +1,5 @@
 
-1) Added Select & Unselect button.
-2) Requery after cutlist upload.
-3) Removed "Delete Cutlist..." button.
-4) eDrawings exporting is no longer optional on Archiving.
-5) More aggressively check for oversize errors.
-6) Fixed subtle strangeness with oversize textboxes.
-7) Slightly changed description population behavior on Create Cutlist window.
-8) Added .Trim() in various places.
+1) On save, ask to update Cutlist data if dims changed.
+2) Immediately update dimension info in property editor when they change.
+3) Nicer sorting in "Cutlist" box.
+4) Optimized a little to go easier on RAM.
