@@ -391,7 +391,7 @@ namespace RedBrick2 {
 			if (nLevel == 1) {
 				pb.Start(0, vChildComp.Length, @"Enumerating parts...");
 			}
-			for (i = 0; i < vChildComp.Length; i++) {
+			for (i = 0; vChildComp != null && i < vChildComp.Length; i++) {
 				swChildComp = (Component2)vChildComp[i];
 				//Debug.Print("comp" + sPadStr + "+" + swChildComp.Name2 + " <" + swChildComp.ReferencedConfiguration + ">");
 				FileInfo fi_;
