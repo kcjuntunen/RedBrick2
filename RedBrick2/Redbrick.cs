@@ -775,28 +775,39 @@ namespace RedBrick2 {
 				lookup_ = lookup_.Split('^')[0];
 			}
 
-			if (conforming_partnumber(lookup_)) {
-				if (lookup_.StartsWith(@"Z")) {
-					lookup_ = lookup_.Split(' ')[0];
-				}
-				return lookup_.Trim();
+			if (conforming_partnumber(lookup_) && !lookup_.StartsWith(@"Z")) {
+					return lookup_.Trim();
 			}
+
+			// Z #
 			System.Text.RegularExpressions.Regex r_ =
-				new System.Text.RegularExpressions.Regex(@"[0-9]{6}");
+				new System.Text.RegularExpressions.Regex(@"Z[0-9]{5,6}");
 			System.Text.RegularExpressions.Match m_ = r_.Match(lookup_);
 			if (m_.Groups[0].Value != string.Empty) {
 				return m_.Groups[0].Value;
 			}
+			
+			// Raw part #
+			r_ = new System.Text.RegularExpressions.Regex(@"[0-9]{6}");
+			m_ = r_.Match(lookup_);
+			if (m_.Groups[0].Value != string.Empty) {
+				return m_.Groups[0].Value;
+			}
+			
+			// McMaster-Carr #
+			r_ = new System.Text.RegularExpressions.Regex(@"[0-9]{4,5}[A-Z][0-9]*");
+			m_ = r_.Match(lookup_);
+			if (m_.Groups[0].Value != string.Empty) {
+				return m_.Groups[0].Value;
+			}
+
 			return lookup_;
 		}
 
-		static private bool conforming_partnumber(string part_) {
+		static private bool conforming_partnumber(string _part) {
 			System.Text.RegularExpressions.Regex r_ =
 				new System.Text.RegularExpressions.Regex(Redbrick.BOMFilter[0]);
-			if (r_.IsMatch(part_)) {
-				return true;
-			}
-			return false;
+			return r_.IsMatch(_part);
 		}
 
 		/// <summary>
