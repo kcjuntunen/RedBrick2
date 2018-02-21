@@ -1,14 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.IO;
 using System.Windows.Forms;
 
 using SolidWorks.Interop.sldworks;
-using SolidWorks.Interop.swconst;
 using SolidWorks.Interop.swcommands;
 using ArchivePDF.csproj;
 
