@@ -555,7 +555,7 @@ namespace RedBrick2 {
 				er.Added += er_Added;
 				er.ShowDialog(this);
 				er.Dispose();
-			} else {
+			} else if (RevSet != null && RevSet.Count > 0) {
 				EditRev er = new EditRev(0, RevSet);
 				er.Added += er_Added;
 				er.ShowDialog(this);
