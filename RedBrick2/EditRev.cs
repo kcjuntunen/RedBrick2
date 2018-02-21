@@ -19,6 +19,7 @@ namespace RedBrick2 {
 	public partial class EditRev : Form {
 		private int index = 0;
 		private bool NewRev = false;
+		private bool del_flag_ = true;
 		private Revs RevSet;
 		private Rev ThisRev;
 		private StringProperty level;
@@ -104,6 +105,7 @@ namespace RedBrick2 {
 			if (NewRev) {
 				AddECRItem();
 			}
+			del_flag_ = false;
 			Close();
 		}
 
@@ -213,10 +215,6 @@ namespace RedBrick2 {
 		}
 
 		private void button2_Click(object sender, EventArgs e) {
-			if (NewRev) {
-				RevSet.Remove(ThisRev);
-			}
-
 			Close();
 		}
 
@@ -225,6 +223,9 @@ namespace RedBrick2 {
 		}
 
 		private void EditRev_FormClosing(object sender, FormClosingEventArgs e) {
+			if (del_flag_ && NewRev) {
+				RevSet.Remove(ThisRev);
+			}
 			Properties.Settings.Default.EditWindowLocation = Location;
 			Properties.Settings.Default.EditRevSize = Size;
 			Properties.Settings.Default.Save();
