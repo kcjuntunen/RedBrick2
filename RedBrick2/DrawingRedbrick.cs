@@ -400,6 +400,9 @@ namespace RedBrick2 {
 			foreach (Rev r in RevSet) {
 				treeView1.Nodes.Add(r.Node);
 			}
+			bool enab_ = RevSet != null && RevSet.Count > 0;
+			button6.Enabled = enab_;
+			button7.Enabled = enab_;
 		}
 
 		private Revs RevSet {
