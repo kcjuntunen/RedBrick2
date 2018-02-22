@@ -202,10 +202,10 @@
 			// action_lbl
 			// 
 			this.action_lbl.AutoSize = true;
-			this.action_lbl.Dock = System.Windows.Forms.DockStyle.Right;
-			this.action_lbl.Location = new System.Drawing.Point(39, 63);
+			this.action_lbl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.action_lbl.Location = new System.Drawing.Point(3, 63);
 			this.action_lbl.Name = "action_lbl";
-			this.action_lbl.Size = new System.Drawing.Size(58, 30);
+			this.action_lbl.Size = new System.Drawing.Size(94, 30);
 			this.action_lbl.TabIndex = 9;
 			this.action_lbl.Text = "Searching";
 			this.action_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -244,6 +244,7 @@
 			this.MaximumSize = new System.Drawing.Size(617, 238);
 			this.MinimumSize = new System.Drawing.Size(617, 238);
 			this.Name = "FormatFixtureBk";
+			this.ShowIcon = false;
 			this.Text = "Format Fixture Book";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormatFixtureBk_FormClosing);
 			this.Load += new System.EventHandler(this.FormatFixtureBk_Load);

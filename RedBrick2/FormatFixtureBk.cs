@@ -49,18 +49,26 @@ namespace RedBrick2 {
 		private LinkedList<PageInfo> maybe_create_from_slddrws(ExcelReader _er) {
 			var ll_ = _er.ReadFile();
 			CheckForMissingFilesAndThrow(ll_);
-			do_create_from_slddrw(ll_);
-			return ll_;
+			return do_create_from_slddrw(ll_);
 		}
 
-		private void do_create_from_slddrw(LinkedList<PageInfo> _ll) {
+		private LinkedList<PageInfo> do_create_from_slddrw(LinkedList<PageInfo> _ll) {
 			PDFCreator p = new PDFCreator();
 			p.Opening += P_Opening;
 			p.Closing += P_Closing;
-			p.CreateDrawings(SwApp, _ll);
+			var new_ll_ = p.CreateDrawings(SwApp, _ll);
 			toggle_lbls(false);
 			p.Opening -= P_Opening;
 			p.Closing -= P_Closing;
+			return (new_ll_);
+		}
+
+		private void do_merge_temp_files(LinkedList<PageInfo> _ll) {
+			toggle_lbls(false);
+			PDFCreator.Merge(_ll, new FileInfo(saveAs_tb.Text));
+			toggle_lbls(true);
+			action_lbl.Text = @"Done";
+			target_lbl.Text = @"(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ ✧ﾟ･: *ヽ(◕ヮ◕ヽ)";
 		}
 
 		private void create_from_SLDDRW() {
@@ -76,14 +84,7 @@ namespace RedBrick2 {
 			ExcelReader er_ = new ExcelReader(masterXLS_tb.Text, extOpt, srchOpt);
 			try {
 				er_.NewDir += Er__NewDir;
-				er_.NewDir -= Er__NewDir;
-				maybe_create_from_slddrws(er_);
-				er_ = new ExcelReader(masterXLS_tb.Text,
-					ExcelReader.ExcelReaderExtensionOptions.PDF,
-					ExcelReader.ExcelReaderSearchOptions.TEMP_DIR);
-				er_.NewDir += Er__NewDir;
-				PDFCreator.Merge(er_.ReadFile(), new FileInfo(saveAs_tb.Text));
-				toggle_lbls(false);
+				do_merge_temp_files(maybe_create_from_slddrws(er_));
 				er_.NewDir -= Er__NewDir;
 			} catch (ExcelReaderException ere) {
 				MessageBox.Show(ere.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -93,7 +94,8 @@ namespace RedBrick2 {
 				string msg_ = string.Format(@"{0}{1}Continue?", x.Message, System.Environment.NewLine);
 				DialogResult dr_ = MessageBox.Show(x.Message, @"Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
 				if (dr_ == DialogResult.OK) {
-					do_create_from_slddrw(er_.ReadFile());
+					er_ = new ExcelReader(masterXLS_tb.Text, extOpt, srchOpt);
+					do_merge_temp_files(do_create_from_slddrw(er_.ReadFile()));
 				}
 			}
 		}
@@ -174,13 +176,13 @@ namespace RedBrick2 {
 
 		private void P_Closing(object sender, System.EventArgs e) {
 			toggle_lbls(true);
-			action_lbl.Text = @"Closing";
+			action_lbl.Text = @"Processing";
 			target_lbl.Text = (e as FileSystemEventArgs).Name;
 		}
 
 		private void P_Opening(object sender, System.EventArgs e) {
 			toggle_lbls(true);
-			action_lbl.Text = @"Opening";
+			action_lbl.Text = @"Processing";
 			target_lbl.Text = (e as FileSystemEventArgs).Name;
 		}
 
