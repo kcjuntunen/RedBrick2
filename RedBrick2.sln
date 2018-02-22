@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedBrick2", "RedBrick2\RedBrick2.csproj", "{02283F3A-9AFE-4FB5-A3B2-4CAD44A94028}"
 EndProject
@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6ACF38
 	ProjectSection(SolutionItems) = preProject
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedBrickUnitTest", "RedBrickUnitTest\RedBrickUnitTest.csproj", "{99FEA863-70B0-4AD6-A7DA-C0CED20E208C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +56,22 @@ Global
 		{10E79494-E4AE-4231-B3C6-13D965CD8411}.Release|x64.ActiveCfg = Release|x64
 		{10E79494-E4AE-4231-B3C6-13D965CD8411}.Release|x64.Build.0 = Release|x64
 		{10E79494-E4AE-4231-B3C6-13D965CD8411}.Release|x86.ActiveCfg = Release|Any CPU
+		{99FEA863-70B0-4AD6-A7DA-C0CED20E208C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99FEA863-70B0-4AD6-A7DA-C0CED20E208C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99FEA863-70B0-4AD6-A7DA-C0CED20E208C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{99FEA863-70B0-4AD6-A7DA-C0CED20E208C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{99FEA863-70B0-4AD6-A7DA-C0CED20E208C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{99FEA863-70B0-4AD6-A7DA-C0CED20E208C}.Debug|x64.Build.0 = Debug|Any CPU
+		{99FEA863-70B0-4AD6-A7DA-C0CED20E208C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{99FEA863-70B0-4AD6-A7DA-C0CED20E208C}.Debug|x86.Build.0 = Debug|Any CPU
+		{99FEA863-70B0-4AD6-A7DA-C0CED20E208C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99FEA863-70B0-4AD6-A7DA-C0CED20E208C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99FEA863-70B0-4AD6-A7DA-C0CED20E208C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{99FEA863-70B0-4AD6-A7DA-C0CED20E208C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{99FEA863-70B0-4AD6-A7DA-C0CED20E208C}.Release|x64.ActiveCfg = Release|Any CPU
+		{99FEA863-70B0-4AD6-A7DA-C0CED20E208C}.Release|x64.Build.0 = Release|Any CPU
+		{99FEA863-70B0-4AD6-A7DA-C0CED20E208C}.Release|x86.ActiveCfg = Release|Any CPU
+		{99FEA863-70B0-4AD6-A7DA-C0CED20E208C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

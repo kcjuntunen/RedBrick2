@@ -276,5 +276,11 @@
     <Setting Name="NotifyDimensionChangeOnSave" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="FBLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">100, 100</Value>
+    </Setting>
+    <Setting Name="FBLastPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G:\ZALES\FIXTURE BOOK\SECTIONS</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -951,5 +951,29 @@ namespace RedBrick2.Properties {
                 this["NotifyDimensionChangeOnSave"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
+        public global::System.Drawing.Point FBLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["FBLocation"]));
+            }
+            set {
+                this["FBLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G:\\ZALES\\FIXTURE BOOK\\SECTIONS")]
+        public string FBLastPath {
+            get {
+                return ((string)(this["FBLastPath"]));
+            }
+            set {
+                this["FBLastPath"] = value;
+            }
+        }
     }
 }
