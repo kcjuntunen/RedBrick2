@@ -1,5 +1,4 @@
 
-1) On save, ask to update Cutlist data if dims changed.
-2) Immediately update dimension info in property editor when they change.
-3) Nicer sorting in "Cutlist" box.
-4) Optimized a little to go easier on RAM.
+1) Fixed weird behavior when [X] is clicked on the Edit Rev window.
+2) Made some buttons unclickable whenever they're not usable.
+3) Added fixture book renumbering tool.
