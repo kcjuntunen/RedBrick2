@@ -282,5 +282,8 @@
     <Setting Name="FBLastPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">G:\ZALES\FIXTURE BOOK\SECTIONS</Value>
     </Setting>
+    <Setting Name="FBIcon" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\cad\Solid Works\Amstore_Macros\ICONS\book-icon-5783.png</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

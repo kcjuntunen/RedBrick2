@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 
 using SolidWorks.Interop.sldworks;
-using SolidWorks.Interop.swcommands;
 using SolidWorks.Interop.swconst;
 using SolidWorks.Interop.swpublished;
 
@@ -46,7 +44,7 @@ namespace RedBrick2 {
 			swApp = (SldWorks)ThisSW;
 			cookie = Cookie;
 
-			bool res = swApp.SetAddinCallbackInfo(0, this, cookie);
+			bool res = swApp.SetAddinCallbackInfo2(0, this, cookie);
 			if (CheckNetwork()) {
 				UISetup();
 				return true;
@@ -141,8 +139,9 @@ namespace RedBrick2 {
 				//result = taskpaneView.AddStandardButton((int)swTaskPaneBitmapsOptions_e.swTaskPaneBitmapsOptions_Close, "Close");
 				result = taskpaneView.AddCustomButton(Properties.Settings.Default.NetPath + Properties.Settings.Default.RefreshIcon, "Refresh");
 				result = taskpaneView.AddCustomButton(Properties.Settings.Default.NetPath + Properties.Settings.Default.ArchiveIcon, "Archive PDF");
-				result = taskpaneView.AddCustomButton(Properties.Settings.Default.NetPath + Properties.Settings.Default.GlassesIcon, "Usage Help");
-
+				result = taskpaneView.AddCustomButton(Properties.Settings.Default.NetPath + Properties.Settings.Default.GlassesIcon, "QuikTrac Lookup");
+				result = taskpaneView.AddCustomButton(Properties.Settings.Default.NetPath + Properties.Settings.Default.FBIcon, "Renumber Fixturebook");
+				
 				taskpaneView.TaskPaneToolbarButtonClicked += taskpaneView_TaskPaneToolbarButtonClicked;
 				taskpaneHost.cookie = cookie;
 				taskpaneHost.Start();
@@ -155,6 +154,27 @@ namespace RedBrick2 {
 			}
 		}
 
+		private void add_menu_items() {
+			System.Reflection.Assembly thisAssembly = default(System.Reflection.Assembly);
+			int mId_ = 0;
+			string[] images = new string[3];
+
+			thisAssembly = System.Reflection.Assembly.GetAssembly(this.GetType());
+			mId_ = swApp.AddMenu((int)swDocumentTypes_e.swDocDRAWING, @"Redbrick Tools", 0);
+			mId_ = swApp.AddMenuItem5((int)swDocumentTypes_e.swDocDRAWING, cookie, @"Reformat Fixture Book@Redbrick Tools", 0,
+				@"RenumberFB", @"RenumberFBEnableMethod",
+				@"Renumber drawings in a fixture book according to a formatted Excel document.",
+				new string[3]);
+
+			thisAssembly = null;
+		}
+
+		private void RenumberFB() {
+			FormatFixtureBk ffb = new FormatFixtureBk(swApp);
+			ffb.ShowDialog(taskpaneHost);
+			ffb.Dispose();
+		}
+
 		private void AppDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) {
 			Exception e_ = (Exception)e.ExceptionObject;
 			string output_ = string.Format("{0}\n{1}\n{2}", e_.Message, e_.StackTrace, e_.Source);
@@ -163,40 +183,59 @@ namespace RedBrick2 {
 				System.Windows.Forms.MessageBoxIcon.Error);
 		}
 
+		public void QuikTracLookup() {
+			if (taskpaneHost.mrb != null && taskpaneHost.mrb.ActiveDoc != null) {
+				ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter ta_ =
+					new ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter();
+				System.IO.FileInfo fi_ = new System.IO.FileInfo(taskpaneHost.mrb.ActiveDoc.GetPathName());
+				string lu_ = Redbrick.FileInfoToLookup(fi_);
+				System.Data.DataView dv_ = ta_.GetData(lu_).DefaultView;
+				DataDisplay d_ = new DataDisplay(dv_, string.Format(@"{0} - QuicTrac Locations", lu_));
+				d_.ShowDialog(taskpaneHost);
+				d_.Dispose();
+			}
+		}
+
+		public void ArchivePDF() {
+			ENGINEERINGDataSet.GEN_ODOMETERDataTable gota =
+				new ENGINEERINGDataSet.GEN_ODOMETERDataTable();
+			gota.IncrementOdometer(Functions.ArchivePDF);
+			ArchivePDF.csproj.ArchivePDFWrapper apw = new ArchivePDF.csproj.ArchivePDFWrapper(swApp, GeneratePathSet());
+			apw.Archive();
+		}
+
+		public void ConfigureRedbrick() {
+			RedbrickConfiguration rbc = new RedbrickConfiguration();
+			rbc.ShowDialog(taskpaneHost);
+			taskpaneHost.ConnectSelection(true);
+			taskpaneHost.ToggleFlameWar(Properties.Settings.Default.FlameWar);
+		}
+
+		public void GreenCheck() {
+			taskpaneHost.Write();
+			if (Properties.Settings.Default.MakeSounds)
+				System.Media.SystemSounds.Beep.Play();
+		}
+
 		int taskpaneView_TaskPaneToolbarButtonClicked(int ButtonIndex) {
 			switch (ButtonIndex) {
 				case 0:
-					taskpaneHost.Write();
-					if (Properties.Settings.Default.MakeSounds)
-						System.Media.SystemSounds.Beep.Play();
+					GreenCheck();
 					break;
 				case 1:
-					RedbrickConfiguration rbc = new RedbrickConfiguration();
-					rbc.ShowDialog(taskpaneHost);
-					taskpaneHost.ConnectSelection(true);
-					taskpaneHost.ToggleFlameWar(Properties.Settings.Default.FlameWar);
+					ConfigureRedbrick();
 					break;
 				case 2:
 					taskpaneHost.ReStart();
 					break;
 				case 3:
-					ENGINEERINGDataSet.GEN_ODOMETERDataTable gota =
-						new ENGINEERINGDataSet.GEN_ODOMETERDataTable();
-					gota.IncrementOdometer(Functions.ArchivePDF);
-					ArchivePDF.csproj.ArchivePDFWrapper apw = new ArchivePDF.csproj.ArchivePDFWrapper(swApp, GeneratePathSet());
-					apw.Archive();
+					ArchivePDF();
 					break;
 				case 4:
-					if (taskpaneHost.mrb != null && taskpaneHost.mrb.ActiveDoc != null) {
-						ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter ta_ =
-							new ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter();
-						System.IO.FileInfo fi_ = new System.IO.FileInfo(taskpaneHost.mrb.ActiveDoc.GetPathName());
-						string lu_ = Redbrick.FileInfoToLookup(fi_);
-						System.Data.DataView dv_ = ta_.GetData(lu_).DefaultView;
-						DataDisplay d_ = new DataDisplay(dv_, string.Format(@"{0} - QuickTrack Locations", lu_));
-						d_.ShowDialog(taskpaneHost);
-						d_.Dispose();
-					}
+					QuikTracLookup();
+					break;
+				case 5:
+					RenumberFB();
 					break;
 				default:
 					break;
@@ -208,6 +247,9 @@ namespace RedBrick2 {
 			taskpaneHost.Dispose();
 			taskpaneView.DeleteView();
 			Marshal.ReleaseComObject(taskpaneView);
+			Marshal.ReleaseComObject(swApp);
+			GC.Collect();
+			GC.WaitForPendingFinalizers();
 			taskpaneView = null;
 		}
 
@@ -776,7 +818,7 @@ namespace RedBrick2 {
 			}
 
 			if (conforming_partnumber(lookup_) && !lookup_.StartsWith(@"Z")) {
-					return lookup_.Trim();
+				return lookup_.Trim();
 			}
 
 			// Z #

@@ -975,5 +975,17 @@ namespace RedBrick2.Properties {
                 this["FBLastPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\cad\\Solid Works\\Amstore_Macros\\ICONS\\book-icon-5783.png")]
+        public string FBIcon {
+            get {
+                return ((string)(this["FBIcon"]));
+            }
+            set {
+                this["FBIcon"] = value;
+            }
+        }
     }
 }
