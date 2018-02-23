@@ -175,6 +175,10 @@
     <Compile Include="FormatFixtureBk.Designer.cs">
       <DependentUpon>FormatFixtureBk.cs</DependentUpon>
     </Compile>
+    <Compile Include="MaterialByNum.cs" />
+    <Compile Include="MaterialByNum.Designer.cs">
+      <DependentUpon>MaterialByNum.cs</DependentUpon>
+    </Compile>
     <Compile Include="MaterialProperty.cs" />
     <Compile Include="DoubleProperty.cs" />
     <Compile Include="IntProperty.cs" />
@@ -280,6 +284,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormatFixtureBk.resx">
       <DependentUpon>FormatFixtureBk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MaterialByNum.resx">
+      <DependentUpon>MaterialByNum.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModelRedbrick.resx">
       <DependentUpon>ModelRedbrick.cs</DependentUpon>

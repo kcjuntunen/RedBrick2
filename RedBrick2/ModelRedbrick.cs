@@ -2633,17 +2633,6 @@ namespace RedBrick2 {
 			cl_userediting = true;
 		}
 
-		private void edgeL_KeyDown(object sender, KeyEventArgs e) {
-			ComboBox c_ = sender as ComboBox;
-			c_.DroppedDown = false;
-			//if (e.Control && (e.KeyCode == Keys.V || e.KeyCode == Keys.Insert || e.KeyCode == Keys.X)) {
-			//	if (c_.Items.Contains(c_.Text)) {
-			//		c_.SelectedIndex = c_.Items.IndexOf(c_.Text);
-			//	}
-			//	recalculate_blanksizeL();
-			//}
-		}
-
 		private void edgeW_KeyDown(object sender, KeyEventArgs e) {
 			ComboBox c_ = sender as ComboBox;
 			c_.DroppedDown = false;
@@ -2664,6 +2653,111 @@ namespace RedBrick2 {
 		private void cnc2tb_Leave(object sender, EventArgs e) {
 			if ((sender as TextBox).Text == string.Empty) {
 				(sender as TextBox).Text = @"NA";
+			}
+		}
+
+		//private void cutlistMat_MouseDoubleClick(object sender, MouseEventArgs e) {
+		//}
+
+		private void M__FoundMatID(object sender, EventArgs e) {
+			MaterialByNumEventArgs mbp_ = (e as MaterialByNumEventArgs);
+			if (mbp_.ID > 0) {
+				cutlistMat.SelectedValue = mbp_.ID;
+			}
+		}
+
+		private void cutlistMat_KeyDown(object sender, KeyEventArgs e) {
+			if (e.Control && e.KeyCode == Keys.Space) {
+				MaterialByNum m_ = new MaterialByNum(MaterialByNum.Table.MATERIAL);
+				m_.FoundMatID += M__FoundMatID;
+				m_.Location = Cursor.Position;
+				m_.ShowDialog(cutlistMat);
+				m_.FoundMatID -= M__FoundMatID;
+				m_.Dispose();
+			}
+		}
+
+		private void edgeF_KeyDown(object sender, KeyEventArgs e) {
+			ComboBox c_ = sender as ComboBox;
+			c_.DroppedDown = false;
+			if (e.Control && e.KeyCode == Keys.Space) {
+				MaterialByNum m_ = new MaterialByNum(MaterialByNum.Table.EDGING);
+				m_.Text = @"Edge by part #";
+				m_.FoundMatID += M__FoundEdgeFID;
+				m_.Location = Cursor.Position;
+				m_.ShowDialog(edgef);
+				m_.FoundMatID -= M__FoundEdgeFID;
+				m_.Dispose();
+			}
+		}
+
+		private void M__FoundEdgeFID(object sender, EventArgs e) {
+			MaterialByNumEventArgs mbp_ = (e as MaterialByNumEventArgs);
+			if (mbp_.ID > 0) {
+				edgef.SelectedValue = mbp_.ID;
+			}
+		}
+
+		private void edgeB_KeyDown(object sender, KeyEventArgs e) {
+			ComboBox c_ = sender as ComboBox;
+			c_.DroppedDown = false;
+			if (e.Control && e.KeyCode == Keys.Space) {
+				MaterialByNum m_ = new MaterialByNum(MaterialByNum.Table.EDGING);
+				m_.Text = @"Edge by part #";
+				m_.FoundMatID += M__FoundEdgeBID;
+				m_.Location = Cursor.Position;
+				m_.ShowDialog(edgef);
+				m_.FoundMatID -= M__FoundEdgeBID;
+				m_.Dispose();
+			}
+		}
+
+		private void M__FoundEdgeBID(object sender, EventArgs e) {
+			MaterialByNumEventArgs mbp_ = (e as MaterialByNumEventArgs);
+			if (mbp_.ID > 0) {
+				edgeb.SelectedValue = mbp_.ID;
+			}
+		}
+
+		private void edgeL_KeyDown(object sender, KeyEventArgs e) {
+			ComboBox c_ = sender as ComboBox;
+			c_.DroppedDown = false;
+			if (e.Control && e.KeyCode == Keys.Space) {
+				MaterialByNum m_ = new MaterialByNum(MaterialByNum.Table.EDGING);
+				m_.Text = @"Edge by part #";
+				m_.FoundMatID += M__FoundEdgeLID;
+				m_.Location = Cursor.Position;
+				m_.ShowDialog(edgef);
+				m_.FoundMatID -= M__FoundEdgeLID;
+				m_.Dispose();
+			}
+		}
+
+		private void M__FoundEdgeLID(object sender, EventArgs e) {
+			MaterialByNumEventArgs mbp_ = (e as MaterialByNumEventArgs);
+			if (mbp_.ID > 0) {
+				edgel.SelectedValue = mbp_.ID;
+			}
+		}
+
+		private void edgeR_KeyDown(object sender, KeyEventArgs e) {
+			ComboBox c_ = sender as ComboBox;
+			c_.DroppedDown = false;
+			if (e.Control && e.KeyCode == Keys.Space) {
+				MaterialByNum m_ = new MaterialByNum(MaterialByNum.Table.EDGING);
+				m_.Text = @"Edge by part #";
+				m_.FoundMatID += M__FoundEdgeRID;
+				m_.Location = Cursor.Position;
+				m_.ShowDialog(edgef);
+				m_.FoundMatID -= M__FoundEdgeRID;
+				m_.Dispose();
+			}
+		}
+
+		private void M__FoundEdgeRID(object sender, EventArgs e) {
+			MaterialByNumEventArgs mbp_ = (e as MaterialByNumEventArgs);
+			if (mbp_.ID > 0) {
+				edger.SelectedValue = mbp_.ID;
 			}
 		}
 	}
