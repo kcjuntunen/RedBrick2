@@ -2,24 +2,6 @@
 using System.Windows.Forms;
 
 namespace RedBrick2 {
-	public class MaterialByNumEventArgs : EventArgs {
-	private int _id = 0;
-	public int ID
-	{
-		get
-		{
-			return _id;
-		}
-		private set
-		{
-			_id = value;
-		}
-	}
-	public MaterialByNumEventArgs(int mat_id) {
-		_id = mat_id;
-	}
-}
-
 	public partial class MaterialByNum : Form {
 		public enum Table {
 			MATERIAL,
@@ -72,5 +54,23 @@ namespace RedBrick2 {
 			}
 		}
 	}
+
+	public class MaterialByNumEventArgs : EventArgs {
+	private int _id = 0;
+	public int ID
+	{
+		get
+		{
+			return _id;
+		}
+		private set
+		{
+			_id = value;
+		}
+	}
+	public MaterialByNumEventArgs(int mat_id) {
+		_id = mat_id;
+	}
+}
 }
 
