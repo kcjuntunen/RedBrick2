@@ -27,7 +27,7 @@ namespace RedBrick2 {
 
 		private int get_edging(string search_term_) {
 			int res_ = 0;
-			if (search_term_.Length > 0) {
+			if (search_term_.Length > 0 && search_term_ != @"SEE JOB BOM") {
 				ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter cet_ =
 					new ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter();
 				res_ = Convert.ToInt32(cet_.EdgeIDbyEdgenum(search_term_));
