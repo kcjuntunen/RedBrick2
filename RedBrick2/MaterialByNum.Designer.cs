@@ -28,27 +28,29 @@
 			// 
 			// rawPartNo_tb
 			// 
-			this.rawPartNo_tb.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.rawPartNo_tb.Location = new System.Drawing.Point(13, 13);
+			this.rawPartNo_tb.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.rawPartNo_tb.Location = new System.Drawing.Point(0, 0);
 			this.rawPartNo_tb.Name = "rawPartNo_tb";
-			this.rawPartNo_tb.Size = new System.Drawing.Size(107, 22);
+			this.rawPartNo_tb.Size = new System.Drawing.Size(134, 22);
 			this.rawPartNo_tb.TabIndex = 0;
 			this.rawPartNo_tb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.rawPartNo_tb_KeyPress);
 			// 
-			// MaterialByPart
+			// MaterialByNum
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(132, 46);
+			this.ClientSize = new System.Drawing.Size(134, 24);
 			this.ControlBox = false;
 			this.Controls.Add(this.rawPartNo_tb);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
 			this.MaximizeBox = false;
+			this.MaximumSize = new System.Drawing.Size(150, 58);
 			this.MinimizeBox = false;
-			this.Name = "MaterialByPart";
+			this.MinimumSize = new System.Drawing.Size(150, 58);
+			this.Name = "MaterialByNum";
+			this.Opacity = 0.9D;
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
