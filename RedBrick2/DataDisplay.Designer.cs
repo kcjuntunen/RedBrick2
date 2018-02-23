@@ -70,7 +70,7 @@
 			// toolStripStatusLabel1
 			// 
 			this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-			this.toolStripStatusLabel1.Size = new System.Drawing.Size(117, 17);
+			this.toolStripStatusLabel1.Size = new System.Drawing.Size(109, 17);
 			this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
 			// 
 			// DataDisplay
@@ -80,6 +80,8 @@
 			this.ClientSize = new System.Drawing.Size(292, 273);
 			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.tableLayoutPanel1);
+			this.DoubleBuffered = true;
+			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "DataDisplay";

@@ -71,7 +71,7 @@
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(605, 204);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(609, 211);
 			this.tableLayoutPanel1.TabIndex = 0;
 			// 
 			// groupBox1
@@ -140,7 +140,7 @@
 			// 
 			// xls_browse
 			// 
-			this.xls_browse.Location = new System.Drawing.Point(528, 96);
+			this.xls_browse.Location = new System.Drawing.Point(532, 96);
 			this.xls_browse.Name = "xls_browse";
 			this.xls_browse.Size = new System.Drawing.Size(74, 23);
 			this.xls_browse.TabIndex = 3;
@@ -169,7 +169,7 @@
 			// 
 			// saveAs_browse
 			// 
-			this.saveAs_browse.Location = new System.Drawing.Point(528, 125);
+			this.saveAs_browse.Location = new System.Drawing.Point(532, 125);
 			this.saveAs_browse.Name = "saveAs_browse";
 			this.saveAs_browse.Size = new System.Drawing.Size(74, 23);
 			this.saveAs_browse.TabIndex = 6;
@@ -180,7 +180,7 @@
 			// cancel
 			// 
 			this.cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.cancel.Location = new System.Drawing.Point(528, 178);
+			this.cancel.Location = new System.Drawing.Point(532, 185);
 			this.cancel.Name = "cancel";
 			this.cancel.Size = new System.Drawing.Size(74, 23);
 			this.cancel.TabIndex = 7;
@@ -191,7 +191,7 @@
 			// go
 			// 
 			this.go.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.go.Location = new System.Drawing.Point(447, 178);
+			this.go.Location = new System.Drawing.Point(451, 185);
 			this.go.Name = "go";
 			this.go.Size = new System.Drawing.Size(75, 23);
 			this.go.TabIndex = 8;
@@ -226,7 +226,7 @@
 			// 
 			this.openbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.openbtn.Enabled = false;
-			this.openbtn.Location = new System.Drawing.Point(3, 178);
+			this.openbtn.Location = new System.Drawing.Point(3, 185);
 			this.openbtn.Name = "openbtn";
 			this.openbtn.Size = new System.Drawing.Size(94, 23);
 			this.openbtn.TabIndex = 11;
@@ -238,8 +238,9 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(605, 204);
+			this.ClientSize = new System.Drawing.Size(609, 211);
 			this.Controls.Add(this.tableLayoutPanel1);
+			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.MaximumSize = new System.Drawing.Size(617, 238);
 			this.MinimumSize = new System.Drawing.Size(617, 238);

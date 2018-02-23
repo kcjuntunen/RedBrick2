@@ -262,6 +262,7 @@
 			this.ClientSize = new System.Drawing.Size(192, 252);
 			this.ControlBox = false;
 			this.Controls.Add(this.tableLayoutPanel1);
+			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.MinimumSize = new System.Drawing.Size(200, 260);
 			this.Name = "EditOp";

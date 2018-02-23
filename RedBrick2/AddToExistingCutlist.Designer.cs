@@ -198,6 +198,7 @@ namespace RedBrick2 {
 			this.ClientSize = new System.Drawing.Size(362, 112);
 			this.ControlBox = false;
 			this.Controls.Add(this.tableLayoutPanel1);
+			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.MinimumSize = new System.Drawing.Size(370, 120);
 			this.Name = "AddToExistingCutlist";

@@ -46,13 +46,14 @@ namespace RedBrick2 {
 			this.cancel_btn = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-			this.hide_btn = new System.Windows.Forms.Button();
 			this.unselect_btn = new System.Windows.Forms.Button();
 			this.select_btn = new System.Windows.Forms.Button();
 			this.type_cbx = new System.Windows.Forms.ComboBox();
 			this.cUTPARTTYPESBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.toplvl_rdo = new System.Windows.Forms.RadioButton();
 			this.parts_rdo = new System.Windows.Forms.RadioButton();
+			this.hide_btn = new System.Windows.Forms.Button();
+			this.sltnunslct_btn = new System.Windows.Forms.Button();
 			this.upload_btn = new System.Windows.Forms.Button();
 			this.config_cbx = new System.Windows.Forms.ComboBox();
 			this.label7 = new System.Windows.Forms.Label();
@@ -65,7 +66,6 @@ namespace RedBrick2 {
 			this.cutlistPartsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.cutlistPartsTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CutlistPartsTableAdapter();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
-			this.sltnunslct_btn = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gENCUSTOMERSBindingSource)).BeginInit();
@@ -392,16 +392,6 @@ namespace RedBrick2 {
 			this.tableLayoutPanel2.Size = new System.Drawing.Size(1090, 26);
 			this.tableLayoutPanel2.TabIndex = 0;
 			// 
-			// hide_btn
-			// 
-			this.hide_btn.Location = new System.Drawing.Point(977, 3);
-			this.hide_btn.Name = "hide_btn";
-			this.hide_btn.Size = new System.Drawing.Size(110, 20);
-			this.hide_btn.TabIndex = 17;
-			this.hide_btn.Text = "Hide Unchecked";
-			this.hide_btn.UseVisualStyleBackColor = true;
-			this.hide_btn.Click += new System.EventHandler(this.hide_btn_Click);
-			// 
 			// unselect_btn
 			// 
 			this.unselect_btn.Location = new System.Drawing.Point(784, 3);
@@ -463,6 +453,26 @@ namespace RedBrick2 {
 			this.parts_rdo.Text = "Parts only";
 			this.parts_rdo.UseVisualStyleBackColor = true;
 			// 
+			// hide_btn
+			// 
+			this.hide_btn.Location = new System.Drawing.Point(977, 3);
+			this.hide_btn.Name = "hide_btn";
+			this.hide_btn.Size = new System.Drawing.Size(110, 20);
+			this.hide_btn.TabIndex = 17;
+			this.hide_btn.Text = "Hide Unchecked";
+			this.hide_btn.UseVisualStyleBackColor = true;
+			this.hide_btn.Click += new System.EventHandler(this.hide_btn_Click);
+			// 
+			// sltnunslct_btn
+			// 
+			this.sltnunslct_btn.Location = new System.Drawing.Point(865, 3);
+			this.sltnunslct_btn.Name = "sltnunslct_btn";
+			this.sltnunslct_btn.Size = new System.Drawing.Size(106, 20);
+			this.sltnunslct_btn.TabIndex = 20;
+			this.sltnunslct_btn.Text = "Select && Unselect";
+			this.sltnunslct_btn.UseVisualStyleBackColor = true;
+			this.sltnunslct_btn.Click += new System.EventHandler(this.sltnunslct_btn_Click);
+			// 
 			// upload_btn
 			// 
 			this.upload_btn.Location = new System.Drawing.Point(168, 318);
@@ -512,13 +522,13 @@ namespace RedBrick2 {
 			// toolStripStatusLabel1
 			// 
 			this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-			this.toolStripStatusLabel1.Size = new System.Drawing.Size(113, 17);
+			this.toolStripStatusLabel1.Size = new System.Drawing.Size(108, 17);
 			this.toolStripStatusLabel1.Text = "Total Unique Parts: 0";
 			// 
 			// toolStripStatusLabel2
 			// 
 			this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-			this.toolStripStatusLabel2.Size = new System.Drawing.Size(92, 17);
+			this.toolStripStatusLabel2.Size = new System.Drawing.Size(89, 17);
 			this.toolStripStatusLabel2.Text = "Included Parts: 0";
 			// 
 			// gEN_CUSTOMERSTableAdapter
@@ -546,16 +556,6 @@ namespace RedBrick2 {
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
 			// 
-			// sltnunslct_btn
-			// 
-			this.sltnunslct_btn.Location = new System.Drawing.Point(865, 3);
-			this.sltnunslct_btn.Name = "sltnunslct_btn";
-			this.sltnunslct_btn.Size = new System.Drawing.Size(106, 20);
-			this.sltnunslct_btn.TabIndex = 20;
-			this.sltnunslct_btn.Text = "Select && Unselect";
-			this.sltnunslct_btn.UseVisualStyleBackColor = true;
-			this.sltnunslct_btn.Click += new System.EventHandler(this.sltnunslct_btn_Click);
-			// 
 			// CreateCutlist
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -564,6 +564,7 @@ namespace RedBrick2 {
 			this.ControlBox = false;
 			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.tableLayoutPanel1);
+			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Name = "CreateCutlist";
 			this.ShowIcon = false;

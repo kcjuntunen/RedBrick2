@@ -249,6 +249,7 @@
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.button2);
+			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.MaximizeBox = false;
 			this.MaximumSize = new System.Drawing.Size(600, 400);
