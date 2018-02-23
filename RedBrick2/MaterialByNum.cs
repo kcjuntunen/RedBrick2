@@ -42,7 +42,7 @@ namespace RedBrick2 {
 
 		private void rawPartNo_tb_KeyPress(object sender, KeyPressEventArgs e) {
 			if (e.KeyChar == (char)Keys.Enter) {
-				string search_term_ = (sender as TextBox).Text;
+				string search_term_ = (sender as TextBox).Text.Trim();
 				if (_t == Table.MATERIAL) {
 					OnFoundMatID(new MaterialByNumEventArgs(get_material(search_term_)));
 				}
