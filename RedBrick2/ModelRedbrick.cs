@@ -2667,6 +2667,7 @@ namespace RedBrick2 {
 		}
 
 		private void cutlistMat_KeyDown(object sender, KeyEventArgs e) {
+			(sender as ComboBox).DroppedDown = false;
 			if (e.Control && e.KeyCode == Keys.Space) {
 				MaterialByNum m_ = new MaterialByNum(MaterialByNum.Table.MATERIAL);
 				m_.FoundMatID += M__FoundMatID;
@@ -2678,8 +2679,7 @@ namespace RedBrick2 {
 		}
 
 		private void edgeF_KeyDown(object sender, KeyEventArgs e) {
-			ComboBox c_ = sender as ComboBox;
-			c_.DroppedDown = false;
+			(sender as ComboBox).DroppedDown = false;
 			if (e.Control && e.KeyCode == Keys.Space) {
 				MaterialByNum m_ = new MaterialByNum(MaterialByNum.Table.EDGING);
 				m_.Text = @"Edge by part #";
@@ -2699,8 +2699,7 @@ namespace RedBrick2 {
 		}
 
 		private void edgeB_KeyDown(object sender, KeyEventArgs e) {
-			ComboBox c_ = sender as ComboBox;
-			c_.DroppedDown = false;
+			(sender as ComboBox).DroppedDown = false;
 			if (e.Control && e.KeyCode == Keys.Space) {
 				MaterialByNum m_ = new MaterialByNum(MaterialByNum.Table.EDGING);
 				m_.Text = @"Edge by part #";
@@ -2720,8 +2719,7 @@ namespace RedBrick2 {
 		}
 
 		private void edgeL_KeyDown(object sender, KeyEventArgs e) {
-			ComboBox c_ = sender as ComboBox;
-			c_.DroppedDown = false;
+			(sender as ComboBox).DroppedDown = false;
 			if (e.Control && e.KeyCode == Keys.Space) {
 				MaterialByNum m_ = new MaterialByNum(MaterialByNum.Table.EDGING);
 				m_.Text = @"Edge by part #";
@@ -2741,8 +2739,7 @@ namespace RedBrick2 {
 		}
 
 		private void edgeR_KeyDown(object sender, KeyEventArgs e) {
-			ComboBox c_ = sender as ComboBox;
-			c_.DroppedDown = false;
+			(sender as ComboBox).DroppedDown = false;
 			if (e.Control && e.KeyCode == Keys.Space) {
 				MaterialByNum m_ = new MaterialByNum(MaterialByNum.Table.EDGING);
 				m_.Text = @"Edge by part #";
