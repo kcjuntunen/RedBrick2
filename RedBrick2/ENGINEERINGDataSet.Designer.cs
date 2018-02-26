@@ -45891,7 +45891,7 @@ SELECT FileID, FName, FPath, DateCreated FROM GEN_DRAWINGS_MTL WHERE (FileID = @
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = @"INSERT INTO [CUT_CUTLISTS] ([PARTNUM], [REV], [DRAWING], [CUSTID], [CDATE], [DESCR], [LENGTH], [WIDTH], [HEIGHT], [SETUP_BY], [STATE_BY], [STATEID]) VALUES (@PARTNUM, @REV, @DRAWING, @CUSTID, @CDATE, @DESCR, @LENGTH, @WIDTH, @HEIGHT, @SETUP_BY, @STATE_BY, @STATEID);
-SELECT PARTNUM + N' REV ' + REV AS CutlistDisplayName, CLID, PARTNUM, REV, DRAWING, CUSTID, CDATE, DESCR, LENGTH, WIDTH, HEIGHT, SETUP_BY, STATE_BY, STATEID, CLTS FROM CUT_CUTLISTS WHERE (CLID = SCOPE_IDENTITY())";
+SELECT PARTNUM + N' REV ' + REV AS CutlistDisplayName, CLID, PARTNUM, REV, DRAWING, CUSTID, CDATE, DESCR, LENGTH, WIDTH, HEIGHT, SETUP_BY, STATE_BY, STATEID, CLTS FROM CUT_CUTLISTS WHERE (CLID = SCOPE_IDENTITY()) ORDER BY CutlistDisplayName";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PARTNUM", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PARTNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@REV", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "REV", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -45908,7 +45908,7 @@ SELECT PARTNUM + N' REV ' + REV AS CutlistDisplayName, CLID, PARTNUM, REV, DRAWI
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = @"UPDATE [CUT_CUTLISTS] SET [PARTNUM] = @PARTNUM, [REV] = @REV, [DRAWING] = @DRAWING, [CUSTID] = @CUSTID, [CDATE] = @CDATE, [DESCR] = @DESCR, [LENGTH] = @LENGTH, [WIDTH] = @WIDTH, [HEIGHT] = @HEIGHT, [SETUP_BY] = @SETUP_BY, [STATE_BY] = @STATE_BY, [STATEID] = @STATEID WHERE (([CLID] = @Original_CLID) AND ((@IsNull_CLTS = 1 AND [CLTS] IS NULL) OR ([CLTS] = @Original_CLTS)));
-SELECT PARTNUM + N' REV ' + REV AS CutlistDisplayName, CLID, PARTNUM, REV, DRAWING, CUSTID, CDATE, DESCR, LENGTH, WIDTH, HEIGHT, SETUP_BY, STATE_BY, STATEID, CLTS FROM CUT_CUTLISTS WHERE (CLID = @CLID)";
+SELECT PARTNUM + N' REV ' + REV AS CutlistDisplayName, CLID, PARTNUM, REV, DRAWING, CUSTID, CDATE, DESCR, LENGTH, WIDTH, HEIGHT, SETUP_BY, STATE_BY, STATEID, CLTS FROM CUT_CUTLISTS WHERE (CLID = @CLID) ORDER BY CutlistDisplayName";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PARTNUM", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PARTNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@REV", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "REV", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -45941,9 +45941,10 @@ SELECT PARTNUM + N' REV ' + REV AS CutlistDisplayName, CLID, PARTNUM, REV, DRAWI
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT      PARTNUM + N\' REV \' + REV AS CutlistDisplayName, CLID, PARTNUM, REV, D" +
-                "RAWING, CUSTID, CDATE, DESCR, LENGTH, WIDTH, HEIGHT, \n                        SE" +
-                "TUP_BY, STATE_BY, STATEID, CLTS\nFROM          CUT_CUTLISTS";
+            this._commandCollection[0].CommandText = "SELECT     PARTNUM + N\' REV \' + REV AS CutlistDisplayName, CLID, PARTNUM, REV, DR" +
+                "AWING, CUSTID, CDATE, DESCR, LENGTH, WIDTH, HEIGHT, SETUP_BY, STATE_BY, \r\n      " +
+                "                STATEID, CLTS\r\nFROM         CUT_CUTLISTS\r\nORDER BY CutlistDispla" +
+                "yName";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
