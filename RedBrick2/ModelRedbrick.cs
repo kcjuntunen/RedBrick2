@@ -1217,8 +1217,9 @@ namespace RedBrick2 {
 				if (!Redbrick.FloatEquals(db_length.ToString(), length_label.Text) ||
 						!Redbrick.FloatEquals(db_width.ToString(), width_label.Text) ||
 						!Redbrick.FloatEquals(db_thickness.ToString(), thickness_label.Text)) {
-					UpdateDimensions ud_ = new UpdateDimensions(PropertySet, db_length, db_width, db_thickness);
-					ud_.ShowDialog(this);
+					using (UpdateDimensions ud_ = new UpdateDimensions(PropertySet, db_length, db_width, db_thickness)) {
+						ud_.ShowDialog(this);
+					}
 					ModelDoc2 md_ = _activeDoc;
 					DumpActiveDoc();
 					ActiveDoc = SwApp.ActiveDoc;
@@ -1464,10 +1465,10 @@ namespace RedBrick2 {
 		}
 
 		private void popup_priority_(string _lookup) {
-			Machine_Priority_Control.MachinePriority m_ =
-				new Machine_Priority_Control.MachinePriority(_lookup);
-			m_.ShowDialog(this);
-			m_.Dispose();
+			using (Machine_Priority_Control.MachinePriority m_ =
+				new Machine_Priority_Control.MachinePriority(_lookup)) {
+				m_.ShowDialog(this);
+			}
 		}
 
 		private void SetupDrawing() {
@@ -2248,8 +2249,9 @@ namespace RedBrick2 {
 					new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
 				ENGINEERINGDataSet.CutPartOpsRow r =
 					(cpoa_.GetDataByIDnOrder(Row.PARTID, 3)[0] as ENGINEERINGDataSet.CutPartOpsRow);
-				EditOp eo = new EditOp(r);
-				eo.ShowDialog(this);
+				using (EditOp eo = new EditOp(r)) {
+					eo.ShowDialog(this);
+				}
 			}
 			GetRouting();
 		}
@@ -2260,8 +2262,9 @@ namespace RedBrick2 {
 					new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
 				ENGINEERINGDataSet.CutPartOpsRow r =
 					(cpoa_.GetDataByIDnOrder(Row.PARTID, 4)[0] as ENGINEERINGDataSet.CutPartOpsRow);
-				EditOp eo = new EditOp(r);
-				eo.ShowDialog(this);
+				using (EditOp eo = new EditOp(r)) {
+					eo.ShowDialog(this);
+				}
 			}
 			GetRouting();
 		}
@@ -2272,8 +2275,9 @@ namespace RedBrick2 {
 					new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
 				ENGINEERINGDataSet.CutPartOpsRow r =
 					(cpoa_.GetDataByIDnOrder(Row.PARTID, 5)[0] as ENGINEERINGDataSet.CutPartOpsRow);
-				EditOp eo = new EditOp(r);
+				using (EditOp eo = new EditOp(r)) {
 				eo.ShowDialog(this);
+				}
 			}
 			GetRouting();
 		}
@@ -2462,9 +2466,9 @@ namespace RedBrick2 {
 		}
 
 		private void update_btn_MouseClick(object sender, MouseEventArgs e) {
-			CreateCutlist cc_ = new CreateCutlist(SwApp);
-			cc_.ShowDialog(this);
-			cc_.Dispose();
+			using (CreateCutlist cc_ = new CreateCutlist(SwApp)) {
+				cc_.ShowDialog(this);
+			}
 			ModelDoc2 tmp_ = _activeDoc;
 			DumpActiveDoc();
 			ReQuery(tmp_);
@@ -2487,9 +2491,10 @@ namespace RedBrick2 {
 		}
 
 		private void add_prt_btn_MouseClick(object sender, MouseEventArgs e) {
-			AddToExistingCutlist atc_ = new AddToExistingCutlist(PropertySet);
-			atc_.ShowDialog(this);
-			eNGINEERINGDataSet.GEN_ODOMETER.IncrementOdometer(Redbrick.Functions.AddPart);
+			using (AddToExistingCutlist atc_ = new AddToExistingCutlist(PropertySet)) {
+				atc_.ShowDialog(this);
+				eNGINEERINGDataSet.GEN_ODOMETER.IncrementOdometer(Redbrick.Functions.AddPart);
+			}
 		}
 
 		private void groupBox2_MouseHover(object sender, EventArgs e) {
@@ -2669,25 +2674,25 @@ namespace RedBrick2 {
 		private void cutlistMat_KeyDown(object sender, KeyEventArgs e) {
 			(sender as ComboBox).DroppedDown = false;
 			if (e.Control && e.KeyCode == Keys.Space) {
-				MaterialByNum m_ = new MaterialByNum(MaterialByNum.Table.MATERIAL);
-				m_.FoundMatID += M__FoundMatID;
-				m_.Location = Cursor.Position;
-				m_.ShowDialog(cutlistMat);
-				m_.FoundMatID -= M__FoundMatID;
-				m_.Dispose();
+				using (MaterialByNum m_ = new MaterialByNum(MaterialByNum.Table.MATERIAL)) {
+					m_.FoundMatID += M__FoundMatID;
+					m_.Location = Cursor.Position;
+					m_.ShowDialog(cutlistMat);
+					m_.FoundMatID -= M__FoundMatID;
+				}
 			}
 		}
 
 		private void edgeF_KeyDown(object sender, KeyEventArgs e) {
 			(sender as ComboBox).DroppedDown = false;
 			if (e.Control && e.KeyCode == Keys.Space) {
-				MaterialByNum m_ = new MaterialByNum(MaterialByNum.Table.EDGING);
-				m_.Text = @"Edge by part #";
-				m_.FoundMatID += M__FoundEdgeFID;
-				m_.Location = Cursor.Position;
-				m_.ShowDialog(edgef);
-				m_.FoundMatID -= M__FoundEdgeFID;
-				m_.Dispose();
+				using (MaterialByNum m_ = new MaterialByNum(MaterialByNum.Table.EDGING)) {
+					m_.Text = @"Edge by part #";
+					m_.FoundMatID += M__FoundEdgeFID;
+					m_.Location = Cursor.Position;
+					m_.ShowDialog(edgef);
+					m_.FoundMatID -= M__FoundEdgeFID;
+				}
 			}
 		}
 
@@ -2701,13 +2706,13 @@ namespace RedBrick2 {
 		private void edgeB_KeyDown(object sender, KeyEventArgs e) {
 			(sender as ComboBox).DroppedDown = false;
 			if (e.Control && e.KeyCode == Keys.Space) {
-				MaterialByNum m_ = new MaterialByNum(MaterialByNum.Table.EDGING);
-				m_.Text = @"Edge by part #";
-				m_.FoundMatID += M__FoundEdgeBID;
-				m_.Location = Cursor.Position;
-				m_.ShowDialog(edgef);
-				m_.FoundMatID -= M__FoundEdgeBID;
-				m_.Dispose();
+				using (MaterialByNum m_ = new MaterialByNum(MaterialByNum.Table.EDGING)) {
+					m_.Text = @"Edge by part #";
+					m_.FoundMatID += M__FoundEdgeBID;
+					m_.Location = Cursor.Position;
+					m_.ShowDialog(edgeb);
+					m_.FoundMatID -= M__FoundEdgeBID;
+				}
 			}
 		}
 
@@ -2721,13 +2726,13 @@ namespace RedBrick2 {
 		private void edgeL_KeyDown(object sender, KeyEventArgs e) {
 			(sender as ComboBox).DroppedDown = false;
 			if (e.Control && e.KeyCode == Keys.Space) {
-				MaterialByNum m_ = new MaterialByNum(MaterialByNum.Table.EDGING);
-				m_.Text = @"Edge by part #";
-				m_.FoundMatID += M__FoundEdgeLID;
-				m_.Location = Cursor.Position;
-				m_.ShowDialog(edgef);
-				m_.FoundMatID -= M__FoundEdgeLID;
-				m_.Dispose();
+				using (MaterialByNum m_ = new MaterialByNum(MaterialByNum.Table.EDGING)) {
+					m_.Text = @"Edge by part #";
+					m_.FoundMatID += M__FoundEdgeLID;
+					m_.Location = Cursor.Position;
+					m_.ShowDialog(edgel);
+					m_.FoundMatID -= M__FoundEdgeLID;
+				}
 			}
 		}
 
@@ -2741,13 +2746,13 @@ namespace RedBrick2 {
 		private void edgeR_KeyDown(object sender, KeyEventArgs e) {
 			(sender as ComboBox).DroppedDown = false;
 			if (e.Control && e.KeyCode == Keys.Space) {
-				MaterialByNum m_ = new MaterialByNum(MaterialByNum.Table.EDGING);
-				m_.Text = @"Edge by part #";
-				m_.FoundMatID += M__FoundEdgeRID;
-				m_.Location = Cursor.Position;
-				m_.ShowDialog(edgef);
-				m_.FoundMatID -= M__FoundEdgeRID;
-				m_.Dispose();
+				using (MaterialByNum m_ = new MaterialByNum(MaterialByNum.Table.EDGING)) {
+					m_.Text = @"Edge by part #";
+					m_.FoundMatID += M__FoundEdgeRID;
+					m_.Location = Cursor.Position;
+					m_.ShowDialog(edger);
+					m_.FoundMatID -= M__FoundEdgeRID;
+				}
 			}
 		}
 

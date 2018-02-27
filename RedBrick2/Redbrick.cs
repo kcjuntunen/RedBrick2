@@ -170,9 +170,9 @@ namespace RedBrick2 {
 		}
 
 		private void RenumberFB() {
-			FormatFixtureBk ffb = new FormatFixtureBk(swApp);
-			ffb.ShowDialog(taskpaneHost);
-			ffb.Dispose();
+			using (FormatFixtureBk ffb = new FormatFixtureBk(swApp)) {
+				ffb.ShowDialog(taskpaneHost);
+			}
 		}
 
 		private void AppDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) {
@@ -190,9 +190,9 @@ namespace RedBrick2 {
 				System.IO.FileInfo fi_ = new System.IO.FileInfo(taskpaneHost.mrb.ActiveDoc.GetPathName());
 				string lu_ = Redbrick.FileInfoToLookup(fi_);
 				System.Data.DataView dv_ = ta_.GetData(lu_).DefaultView;
-				DataDisplay d_ = new DataDisplay(dv_, string.Format(@"{0} - QuicTrac Locations", lu_));
-				d_.ShowDialog(taskpaneHost);
-				d_.Dispose();
+				using (DataDisplay d_ = new DataDisplay(dv_, string.Format(@"{0} - QuicTrac Locations", lu_))) {
+					d_.ShowDialog(taskpaneHost);
+				}
 			}
 		}
 
@@ -205,8 +205,9 @@ namespace RedBrick2 {
 		}
 
 		public void ConfigureRedbrick() {
-			RedbrickConfiguration rbc = new RedbrickConfiguration();
-			rbc.ShowDialog(taskpaneHost);
+			using (RedbrickConfiguration rbc = new RedbrickConfiguration()) {
+				rbc.ShowDialog(taskpaneHost);
+			}
 			taskpaneHost.ConnectSelection(true);
 			taskpaneHost.ToggleFlameWar(Properties.Settings.Default.FlameWar);
 		}
