@@ -719,7 +719,7 @@ namespace RedBrick2 {
 					new ENGINEERINGDataSetTableAdapters.inmast1TableAdapter();
 				ENGINEERINGDataSet.CUT_EDGESDataTable dt_ = ceta_.GetDataByEdgeID(edgeid);
 				for (int i = 0; i < dt_.Rows.Count; i++) {
-					if (dt_[i].MATID > 0) {
+					if (dt_[i][@"MATID"] != DBNull.Value && dt_[i].MATID > 0) {
 						l_.AddRange(GetMaterialPricing(dt_[i].MATID));
 					} else {
 						string sql_ = @"SELECT fpartno, fdescript, flastcost, fonhand, fonorder, fmeasure FROM inmast WHERE " +
