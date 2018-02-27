@@ -2541,13 +2541,13 @@ namespace RedBrick2 {
 				return mat_price_;
 			}
 
-			string msg_ = string.Empty;
+			StringBuilder sb_ = new StringBuilder();
 			ENGINEERINGDataSet.CUT_MATERIALSDataTable dt_ =
 				new ENGINEERINGDataSet.CUT_MATERIALSDataTable();
 			foreach (var item in dt_.GetMaterialPricing(_matid)) {
-				msg_ += string.Format(@"{0} {1}{2}", Properties.Settings.Default.Bullet, item, System.Environment.NewLine);
+				sb_.AppendFormat(@"{0} {1}{2}", Properties.Settings.Default.Bullet, item, System.Environment.NewLine);
 			}
-			mat_price_ = msg_;
+			mat_price_ = sb_.ToString();
 			return mat_price_;
 		}
 
@@ -2556,13 +2556,13 @@ namespace RedBrick2 {
 				return;
 			}
 
-			string msg_ = string.Empty;
+			StringBuilder sb_ = new StringBuilder();
 			ENGINEERINGDataSet.CUT_MATERIALSDataTable dt_ =
 				new ENGINEERINGDataSet.CUT_MATERIALSDataTable();
 			foreach (var item in dt_.GetEdgePricing(_edgeid)) {
-				msg_ += string.Format(@"{0} {1}{2}", Properties.Settings.Default.Bullet, item, System.Environment.NewLine);
+				sb_.AppendFormat(@"{0} {1}{2}", Properties.Settings.Default.Bullet, item, System.Environment.NewLine);
 			}
-			_info = msg_;
+			_info = sb_.ToString();
 		}
 
 		private void label6_MouseHover(object sender, EventArgs e) {

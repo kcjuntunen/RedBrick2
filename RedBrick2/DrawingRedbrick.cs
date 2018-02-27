@@ -99,15 +99,15 @@ namespace RedBrick2 {
 				jo_.FillByItemAndRev(eNGINEERINGDataSet.jomast, partLookup, RevFromDrw);
 				int lim_ = eNGINEERINGDataSet.jomast.Count > 3 ? 3 : eNGINEERINGDataSet.jomast.Count;
 				if (lim_ > 0) {
-					string msg_ = string.Format("Open/Released jobs for {0} REV {1}\n", partLookup, RevFromDrw);
-					int len_ = msg_.Length;
+					StringBuilder sb_ = new StringBuilder(string.Format("Open/Released jobs for {0} REV {1}\n", partLookup, RevFromDrw));
+					int len_ = sb_.ToString().Length;
 					for (int i = 0; i < len_; i++) {
-						msg_ += "-";
+						sb_.Append("-");
 					}
-					msg_ += "\n";
+					sb_.Append(System.Environment.NewLine);
 					for (int i = 0; i < lim_; i++) {
 						ENGINEERINGDataSet.jomastRow r_ = eNGINEERINGDataSet.jomast[i];
-						msg_ += string.Format("Job #: {0}; Due: {1:M/d/yyyy}; Qty: {2:0}; Status: {3}\n",
+						sb_.AppendFormat("Job #: {0}; Due: {1:M/d/yyyy}; Qty: {2:0}; Status: {3}\n",
 							r_.fjobno, r_.fddue_date, r_.fquantity, r_.fstatus);
 					}
 					ENGINEERINGDataSetTableAdapters.jomastTotalsTableAdapter jot_ =
@@ -116,15 +116,15 @@ namespace RedBrick2 {
 					if (eNGINEERINGDataSet.jomastTotals.Count > 0) {
 						ENGINEERINGDataSet.jomastTotalsRow r_ = eNGINEERINGDataSet.jomastTotals[0] as ENGINEERINGDataSet.jomastTotalsRow;
 						if (r_.jobqty > lim_) {
-							msg_ += "...\n";
+							sb_.AppendFormat(@"...{0}", System.Environment.NewLine);
 						}
 						if (r_.jobqty > 1) {
-							msg_ += string.Format("There are {0} jobs, requiring a total quantity of {1:0} items,\n"
+							sb_.AppendFormat("There are {0} jobs, requiring a total quantity of {1:0} items,\n"
 								+ "with an average of {2:0.0} parts per job.",
 								r_.jobqty, r_.partqty, r_.partavgqty);
 						}
 					}
-					return msg_;
+					return sb_.ToString();
 				}
 			}
 			return @"No jobs.";
