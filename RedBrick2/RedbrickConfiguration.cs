@@ -263,7 +263,7 @@ namespace RedBrick2 {
 		private void cbDept_SelectedIndexChanged(object sender, EventArgs e) {
 			if (initialated) {
 				int tp = 0;
-				if (int.TryParse(cbDept.SelectedValue.ToString(), out tp)) {
+				if (cbDept.SelectedValue != null && int.TryParse(cbDept.SelectedValue.ToString(), out tp)) {
 					Properties.Settings.Default.UserDept = tp;
 				}
 			}
@@ -328,7 +328,9 @@ namespace RedBrick2 {
 		/// <param name="e">Any data come with it?</param>
 		private void cbDefaultMaterial_SelectedIndexChanged(object sender, EventArgs e) {
 			int tp = Properties.Settings.Default.DefaultMaterial;
-			if (initialated && int.TryParse(cbDefaultMaterial.SelectedValue.ToString(), out tp)) {
+			if (initialated
+				&& cbDefaultMaterial.SelectedValue != null
+				&& int.TryParse(cbDefaultMaterial.SelectedValue.ToString(), out tp)) {
 				Properties.Settings.Default.DefaultMaterial = tp;
 			}
 		}

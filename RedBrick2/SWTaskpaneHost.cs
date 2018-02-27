@@ -149,11 +149,13 @@ namespace RedBrick2 {
 			if (SwApp.ActiveDoc != null) {
 				BuildStuff();
 			}
-			mrb.DumpActiveDoc();
-			if (_restart) {
-				mrb.ReStart();
-			} else {
-				mrb.ReQuery(SwApp.ActiveDoc as ModelDoc2);
+			if (mrb != null) {
+				mrb.DumpActiveDoc();
+				if (_restart) {
+					mrb.ReStart();
+				} else {
+					mrb.ReQuery(SwApp.ActiveDoc as ModelDoc2);
+				}
 			}
 		}
 
