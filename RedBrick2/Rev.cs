@@ -112,12 +112,14 @@ namespace RedBrick2 {
 			if (int.TryParse(ECO, out _ecrn)) {
 				if (_ecrn > Redbrick.LastLegacyECR) {
 					ENGINEERINGDataSet.ECRObjLookupDataTable dt = eol.GetDataByECO(_ecrn);
-					ENGINEERINGDataSet.ECRObjLookupRow r = (ENGINEERINGDataSet.ECRObjLookupRow)dt.Rows[0];
-					foreach (System.Data.DataColumn col in dt.Columns) {
-						if (col.ToString().Contains(@"ReqBy")) {
-							ecoData.Add(col.ToString(), Redbrick.TitleCase(r[col.ToString()].ToString()));
-						} else {
-							ecoData.Add(col.ToString(), r[col.ToString()].ToString());
+					if (dt.Rows.Count > 0) {
+						ENGINEERINGDataSet.ECRObjLookupRow r = (ENGINEERINGDataSet.ECRObjLookupRow)dt.Rows[0];
+						foreach (System.Data.DataColumn col in dt.Columns) {
+							if (col.ToString().Contains(@"ReqBy")) {
+								ecoData.Add(col.ToString(), Redbrick.TitleCase(r[col.ToString()].ToString()));
+							} else {
+								ecoData.Add(col.ToString(), r[col.ToString()].ToString());
+							}
 						}
 					}
 				} else {
