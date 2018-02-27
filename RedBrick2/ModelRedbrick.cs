@@ -2225,8 +2225,9 @@ namespace RedBrick2 {
 					new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
 				ENGINEERINGDataSet.CutPartOpsRow r =
 					(cpoa_.GetDataByIDnOrder(Row.PARTID, 1)[0] as ENGINEERINGDataSet.CutPartOpsRow);
-				EditOp eo = new EditOp(r);
-				eo.ShowDialog(this);
+				using (EditOp eo = new EditOp(r)) {
+					eo.ShowDialog(this);
+				}
 			}
 			GetRouting();
 		}
@@ -2237,8 +2238,9 @@ namespace RedBrick2 {
 					new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
 				ENGINEERINGDataSet.CutPartOpsRow r =
 					(cpoa_.GetDataByIDnOrder(Row.PARTID, 2)[0] as ENGINEERINGDataSet.CutPartOpsRow);
-				EditOp eo = new EditOp(r);
-				eo.ShowDialog(this);
+				using (EditOp eo = new EditOp(r)) {
+					eo.ShowDialog(this);
+				}
 			}
 			GetRouting();
 		}
