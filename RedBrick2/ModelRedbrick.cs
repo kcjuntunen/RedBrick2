@@ -1057,12 +1057,16 @@ namespace RedBrick2 {
 		}
 
 		private void DisconnectEvents() {
-			if (SwApp.ActiveDoc != lastModelDoc) {
-				DisconnectAssemblyEvents();
-				//lastModelDoc = SwApp.ActiveDoc;
+			try {
+				if (SwApp.ActiveDoc != lastModelDoc) {
+					DisconnectAssemblyEvents();
+					//lastModelDoc = SwApp.ActiveDoc;
+				}
+				DisconnectPartEvents();
+				DisconnectDrawingEvents();
+			} catch (Exception e_) {
+				MessageBox.Show(e_.Message);
 			}
-			DisconnectPartEvents();
-			DisconnectDrawingEvents();
 		}
 
 		private void DisconnectDrawingEvents() {
