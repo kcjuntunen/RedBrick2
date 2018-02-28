@@ -16,13 +16,6 @@ namespace RedBrick2 {
 	/// </summary>
 	public partial class ModelRedbrick : UserControl {
 		private SwProperties PropertySet;
-		//private ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cpta =
-		//	new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
-		//private ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter ccpta =
-		//	new ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter();
-		//private ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter cpota =
-		//	new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter();
-
 		private ENGINEERINGDataSet.CUT_PARTSRow Row = null;
 		private ENGINEERINGDataSet.CUT_CUTLIST_PARTSRow CutlistPartsRow = null;
 
@@ -2674,9 +2667,6 @@ namespace RedBrick2 {
 				(sender as TextBox).Text = @"NA";
 			}
 		}
-
-		//private void cutlistMat_MouseDoubleClick(object sender, MouseEventArgs e) {
-		//}
 
 		private void M__FoundMatID(object sender, EventArgs e) {
 			MaterialByNumEventArgs mbp_ = (e as MaterialByNumEventArgs);
