@@ -537,7 +537,7 @@ namespace RedBrick2 {
 			if (!on) {
 				if (data_from_db) {
 					ToggleCutlistErr(false);
-					Redbrick.SetGroupBoxColor(groupBox1, Color.Green);
+					Redbrick.SetGroupBoxColor(groupBox1, Color.Blue);
 					StringBuilder sb_ = new StringBuilder(groupbox_tooltip.GetToolTip(groupBox1));
 					sb_.AppendLine();
 					sb_.AppendFormat(@"No cutlist selected. Data will be written to the configuration '{0}',{1}",
@@ -547,6 +547,8 @@ namespace RedBrick2 {
 					groupbox_tooltip.SetToolTip(groupBox1, sb_.ToString());
 					stat_cbx.SelectedIndex = -1;
 				}
+			} else {
+				ToggleNotInDBWarn(true);
 			}
 			partq.Enabled = on;
 			stat_cbx.Enabled = on;
