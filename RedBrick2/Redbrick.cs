@@ -796,6 +796,18 @@ namespace RedBrick2 {
 			c.BackColor = Properties.Settings.Default.WarnForeground;
 		}
 
+		public static void Alert(System.Windows.Forms.Control c) {
+			c.BackColor = Properties.Settings.Default.AlertBackground;
+			c.ForeColor = Properties.Settings.Default.NormalForeground;
+		}
+
+		public static void SetGroupBoxColor(System.Windows.Forms.GroupBox g, System.Drawing.Color c) {
+			g.ForeColor = c;
+			foreach (System.Windows.Forms.Control control in g.Controls) {
+				control.ForeColor = Properties.Settings.Default.NormalForeground;
+			}
+		}
+
 		/// <summary>
 		/// Swap the text of two TextBoxes.
 		/// </summary>

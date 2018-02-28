@@ -404,22 +404,17 @@ namespace RedBrick2 {
 				PropertySet.CutlistID = Convert.ToInt32(cutlistctl.SelectedValue);
 				//CutlistSelected(true);
 				EnableCutlistSpec(true);
-				ToggleCutlistErr(false);
 				comboBox6_SelectedIndexChanged(cutlistctl, new EventArgs());
 			} else if (cutlistctl.Items.Count < 1) {
-				//CutlistSelected(false);
 				cutlistctl.SelectedValue = -1;
-				EnableCutlistSpec(true);
-				ToggleCutlistErr(false);
 				GetMaterialFromPart();
 				GetEdgesFromPart();
+				EnableCutlistSpec(false);
 			} else {
 				cutlistctl.SelectedValue = -1;
-				//CutlistSelected(false);
-				ToggleCutlistErr(true);
-				EnableCutlistSpec(false);
 				GetMaterialFromPart();
 				GetEdgesFromPart();
+				EnableCutlistSpec(false);
 			}
 			remove_btn.Enabled = PropertySet.CutlistAndPartIDsOK;
 		}
@@ -539,15 +534,21 @@ namespace RedBrick2 {
 		}
 
 		private void EnableCutlistSpec(bool on) {
-			cutlistMat.Enabled = on;
-			edgef.Enabled = on;
-			edgeb.Enabled = on;
-			edgel.Enabled = on;
-			edger.Enabled = on;
-			partq.Enabled = on;
 			if (!on) {
-				stat_cbx.SelectedIndex = -1;
+				if (data_from_db) {
+					ToggleCutlistErr(false);
+					Redbrick.SetGroupBoxColor(groupBox1, Color.Green);
+					StringBuilder sb_ = new StringBuilder(groupbox_tooltip.GetToolTip(groupBox1));
+					sb_.AppendLine();
+					sb_.AppendFormat(@"No cutlist selected. Data will be written to the configuration '{0}',{1}",
+						configuration, System.Environment.NewLine);
+					sb_.Append(@"Only configuration non-specific data will be written to the cutlist.");
+					groupbox_tooltip.RemoveAll();
+					groupbox_tooltip.SetToolTip(groupBox1, sb_.ToString());
+					stat_cbx.SelectedIndex = -1;
+				}
 			}
+			partq.Enabled = on;
 			stat_cbx.Enabled = on;
 		}
 
@@ -699,14 +700,8 @@ namespace RedBrick2 {
 				groupbox_tooltip.SetToolTip(groupBox1, msg_);
 			} else {
 				string msg_ = Properties.Resources.InfoNotFromDB;
-				//if (Properties.Settings.Default.ExtraInfo) {
-				//	msg_ += GetLocations();
-				//}
-				groupBox1.ForeColor = Properties.Settings.Default.WarnBackground;
 				groupbox_tooltip.SetToolTip(groupBox1, msg_);
-				foreach (Control control in groupBox1.Controls) {
-					control.ForeColor = Properties.Settings.Default.NormalForeground;
-				}
+				Redbrick.SetGroupBoxColor(groupBox1, Color.Red);
 			}
 		}
 
@@ -1231,7 +1226,6 @@ namespace RedBrick2 {
 			ReQuery(md);
 			cutlistctl.SelectedIndex = -1;
 			Properties.Settings.Default.LastCutlist = -1;
-			ToggleCutlistErr(true);
 			return 0;
 		}
 
@@ -2128,8 +2122,6 @@ namespace RedBrick2 {
 
 		private void Set_Specific(ENGINEERINGDataSet.CUT_CUTLIST_PARTSRow _row) {
 			EnableCutlistSpec(true);
-			ToggleCutlistErr(false);
-			//CutlistSelected(true);
 			cutlistMat.SelectedValue = _row.MATID;
 			edgef.SelectedValue = _row.EDGEID_LF;
 			edgeb.SelectedValue = _row.EDGEID_LB;
@@ -2631,8 +2623,6 @@ namespace RedBrick2 {
 				CutlistPartsRow = null;
 				GetMaterialFromPart();
 				GetEdgesFromPart();
-				//CutlistSelected(false);
-				ToggleCutlistErr(true);
 				EnableCutlistSpec(false);
 				Properties.Settings.Default.LastCutlist = 0;
 				Properties.Settings.Default.Save();
