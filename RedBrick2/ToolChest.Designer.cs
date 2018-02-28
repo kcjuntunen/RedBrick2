@@ -81,8 +81,10 @@
 			this.MinimumSize = new System.Drawing.Size(200, 150);
 			this.Name = "ToolChest";
 			this.ShowIcon = false;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Tool Chest";
 			this.TopMost = true;
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ToolChest_FormClosing);
 			this.groupBox1.ResumeLayout(false);
 			this.ResumeLayout(false);
 

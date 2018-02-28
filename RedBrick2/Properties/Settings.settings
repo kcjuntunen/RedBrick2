@@ -291,5 +291,8 @@
     <Setting Name="AlertForeground" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Crimson</Value>
     </Setting>
+    <Setting Name="ToolChestLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">960, 540</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

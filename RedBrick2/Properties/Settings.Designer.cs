@@ -1011,5 +1011,17 @@ namespace RedBrick2.Properties {
                 this["AlertForeground"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("960, 540")]
+        public global::System.Drawing.Point ToolChestLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["ToolChestLocation"]));
+            }
+            set {
+                this["ToolChestLocation"] = value;
+            }
+        }
     }
 }

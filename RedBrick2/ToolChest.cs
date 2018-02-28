@@ -13,6 +13,7 @@ namespace RedBrick2 {
 		public ToolChest(SldWorks s) {
 			swApp = s;
 			InitializeComponent();
+			Location = Properties.Settings.Default.ToolChestLocation;
 		}
 
 		private void button1_Click(object sender, EventArgs e) {
@@ -24,6 +25,11 @@ namespace RedBrick2 {
 		private void button2_Click(object sender, EventArgs e) {
 			DrawingCompiler.SolidWorksMacro s = new DrawingCompiler.SolidWorksMacro();
 			s.Main(swApp);
+		}
+
+		private void ToolChest_FormClosing(object sender, FormClosingEventArgs e) {
+			Properties.Settings.Default.ToolChestLocation = Location;
+			Properties.Settings.Default.Save();
 		}
 	}
 }
