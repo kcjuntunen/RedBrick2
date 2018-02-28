@@ -25,7 +25,11 @@ Section
   File ".\bin\x64\Release\Machine Priority Control.dll"
 	File ".\bin\x64\Release\FormatFixtureBook.dll"
 	File ".\bin\x64\Release\EPPlus.dll"
+	File ".\bin\x64\Release\DrawingCompiler.dll"
 	File ".\bin\x64\Release\itextsharp.dll"
+	File ".\bin\x64\Release\itextsharp.xtra.dll"
+	File ".\bin\x64\Release\itextsharp.pdfa.dll"
+	File ".\bin\x64\Release\ICSharpCode.SharpZipLib.dll"
   File ".\bin\x64\Release\ArchivePDF.dll"
   ; File ".\bin\x64\Release\Newtonsoft.Json.dll"
   File ".\bin\x64\Release\SolidWorks.Interop.sldworks.dll"
@@ -36,7 +40,7 @@ Section
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Redbrick" \
       "DisplayIcon" "$PROGRAMFILES64\Redbrick\redlego.ico"
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Redbrick" \
-      "EstimatedSize" 15275
+      "EstimatedSize" 15717
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Redbrick" \
       "DisplayName" "Amstore Redbrick Property Manager"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Redbrick" \
@@ -58,6 +62,7 @@ Section "Uninstall"
   ; Delete "$INSTDIR\swTableType.dll"
 	Delete "$INSTDIR\FormatFixtureBook.dll"
 	Delete "$INSTDIR\EPPlus.dll"
+	Delete "$INSTDIR\DrawingCompiler.dll"
 	Delete "$INSTDIR\itextsharp.dll"
   Delete "$INSTDIR\Machine Priority Control.dll"
   Delete "$INSTDIR\System.dll"
