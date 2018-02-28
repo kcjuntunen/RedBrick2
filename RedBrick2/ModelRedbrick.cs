@@ -2321,11 +2321,19 @@ namespace RedBrick2 {
 			}
 		}
 
+		private bool edging_defined() {
+			bool edging_defined_ = edgef.SelectedValue != null && (int)edgef.SelectedValue > 0;
+			edging_defined_ |= edgeb.SelectedValue != null && (int)edgeb.SelectedValue > 0;
+			edging_defined_ |= edgel.SelectedValue != null && (int)edgel.SelectedValue > 0;
+			edging_defined_ |= edger.SelectedValue != null && (int)edger.SelectedValue > 0;
+			return edging_defined_;
+		}
+
 		private void swapLnW_Click(object sender, EventArgs e) {
 			ov_userediting = true;
 			Redbrick.SwapTextBoxContents(lengthtb, widthtb);
 			if (Properties.Settings.Default.Warn) {
-				ToggleEdgeWarn(true);
+				ToggleEdgeWarn(edging_defined());
 			}
 			ov_userediting = false;
 			recalculate_blanksizeL();
@@ -2336,7 +2344,7 @@ namespace RedBrick2 {
 			ov_userediting = true;
 			Redbrick.SwapTextBoxContents(widthtb, thicknesstb);
 			if (Properties.Settings.Default.Warn) {
-				ToggleEdgeWarn(true);
+				ToggleEdgeWarn(edging_defined());
 			}
 			ov_userediting = false;
 			recalculate_blanksizeL();
