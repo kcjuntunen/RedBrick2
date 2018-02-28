@@ -80,6 +80,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ArchivePDF\ArchivePDF\bin\Release\ArchivePDF.dll</HintPath>
     </Reference>
+    <Reference Include="DrawingCompiler">
+      <HintPath>..\..\DrawingCollector\DrawingCollector\DrawingCompiler\bin\x64\Debug\DrawingCompiler.dll</HintPath>
+    </Reference>
     <Reference Include="FormatFixtureBook, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Source\Repos\FormatFixtureBook\FormatFixtureBook\bin\x64\Release\FormatFixtureBook.dll</HintPath>
@@ -237,6 +240,12 @@
     <Compile Include="SWTaskpaneHost.Designer.cs">
       <DependentUpon>SWTaskpaneHost.cs</DependentUpon>
     </Compile>
+    <Compile Include="ToolChest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolChest.Designer.cs">
+      <DependentUpon>ToolChest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Traverser.cs" />
     <Compile Include="UpdateDimensions.cs">
       <SubType>Form</SubType>
@@ -309,6 +318,9 @@
     <EmbeddedResource Include="SWTaskpaneHost.resx">
       <DependentUpon>SWTaskpaneHost.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ToolChest.resx">
+      <DependentUpon>ToolChest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UpdateDimensions.resx">
       <DependentUpon>UpdateDimensions.cs</DependentUpon>
     </EmbeddedResource>
@@ -328,7 +340,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"$(SolutionDir)".\GetAssemblyInfoForNSIS\bin\Release\GetAssemblyInfoForNSIS.exe
-C:\PROGRA~2\NSIS\makensisw.exe "$(ProjectDir)\install.nsi"
+:: C:\PROGRA~2\NSIS\makensisw.exe "$(ProjectDir)\install.nsi"
 :: start net use G: \\AMSTORE-SVR-22\cad
 :: start xcopy /Y "$(ProjectDir)InstallRedbrick.exe" "G:\Solid Works\Amstore_Macros\Redbrick\"
 :: start xcopy /Y "$(ProjectDir)version.xml" "G:\Solid Works\Amstore_Macros\Redbrick\"</PostBuildEvent>

@@ -130,17 +130,15 @@ namespace RedBrick2 {
 				string ver = cv.ToString();
 				taskpaneView = swApp.CreateTaskpaneView2(Properties.Settings.Default.NetPath + Properties.Settings.Default.Icon,
 						string.Format(Properties.Resources.Title, ver));
-
 				taskpaneHost = (SWTaskpaneHost)taskpaneView.AddControl(SWTaskpaneHost.SWTASKPANE_PROGID, string.Empty);
 				taskpaneHost.OnRequestSW += new Func<SldWorks>(delegate { return swApp; });
 
 				bool result = taskpaneView.AddStandardButton((int)swTaskPaneBitmapsOptions_e.swTaskPaneBitmapsOptions_Ok, "OK");
 				result = taskpaneView.AddStandardButton((int)swTaskPaneBitmapsOptions_e.swTaskPaneBitmapsOptions_Options, "Configuration");
-				//result = taskpaneView.AddStandardButton((int)swTaskPaneBitmapsOptions_e.swTaskPaneBitmapsOptions_Close, "Close");
 				result = taskpaneView.AddCustomButton(Properties.Settings.Default.NetPath + Properties.Settings.Default.RefreshIcon, "Refresh");
 				result = taskpaneView.AddCustomButton(Properties.Settings.Default.NetPath + Properties.Settings.Default.ArchiveIcon, "Archive PDF");
 				result = taskpaneView.AddCustomButton(Properties.Settings.Default.NetPath + Properties.Settings.Default.GlassesIcon, "QuikTrac Lookup");
-				result = taskpaneView.AddCustomButton(Properties.Settings.Default.NetPath + Properties.Settings.Default.FBIcon, "Renumber Fixturebook");
+				result = taskpaneView.AddCustomButton(Properties.Settings.Default.NetPath + Properties.Settings.Default.ToolsIcon, "Tools");
 				
 				taskpaneView.TaskPaneToolbarButtonClicked += taskpaneView_TaskPaneToolbarButtonClicked;
 				taskpaneHost.cookie = cookie;
@@ -218,6 +216,12 @@ namespace RedBrick2 {
 				System.Media.SystemSounds.Beep.Play();
 		}
 
+		private void OpenToolChest() {
+			using (ToolChest t_ = new ToolChest(swApp)) {
+				t_.ShowDialog(taskpaneHost);
+			}
+		}
+
 		int taskpaneView_TaskPaneToolbarButtonClicked(int ButtonIndex) {
 			switch (ButtonIndex) {
 				case 0:
@@ -236,7 +240,7 @@ namespace RedBrick2 {
 					QuikTracLookup();
 					break;
 				case 5:
-					RenumberFB();
+					OpenToolChest();
 					break;
 				default:
 					break;

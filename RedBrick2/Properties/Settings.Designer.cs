@@ -609,7 +609,7 @@ namespace RedBrick2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Window")]
         public global::System.Drawing.Color NormalBackground {
             get {
                 return ((global::System.Drawing.Color)(this["NormalBackground"]));
@@ -978,13 +978,37 @@ namespace RedBrick2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\\cad\\Solid Works\\Amstore_Macros\\ICONS\\book-icon-5783.png")]
-        public string FBIcon {
+        [global::System.Configuration.DefaultSettingValueAttribute("\\cad\\Solid Works\\Amstore_Macros\\ICONS\\Tools.bmp")]
+        public string ToolsIcon {
             get {
-                return ((string)(this["FBIcon"]));
+                return ((string)(this["ToolsIcon"]));
             }
             set {
-                this["FBIcon"] = value;
+                this["ToolsIcon"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("LightSteelBlue")]
+        public global::System.Drawing.Color AlertBackground {
+            get {
+                return ((global::System.Drawing.Color)(this["AlertBackground"]));
+            }
+            set {
+                this["AlertBackground"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Crimson")]
+        public global::System.Drawing.Color AlertForeground {
+            get {
+                return ((global::System.Drawing.Color)(this["AlertForeground"]));
+            }
+            set {
+                this["AlertForeground"] = value;
             }
         }
     }

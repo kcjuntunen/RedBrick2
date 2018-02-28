@@ -165,7 +165,7 @@
       <Value Profile="(Default)">Yellow</Value>
     </Setting>
     <Setting Name="NormalBackground" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">White</Value>
+      <Value Profile="(Default)">Window</Value>
     </Setting>
     <Setting Name="NormalForeground" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Black</Value>
@@ -282,8 +282,14 @@
     <Setting Name="FBLastPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">G:\ZALES\FIXTURE BOOK\SECTIONS</Value>
     </Setting>
-    <Setting Name="FBIcon" Type="System.String" Scope="User">
-      <Value Profile="(Default)">\cad\Solid Works\Amstore_Macros\ICONS\book-icon-5783.png</Value>
+    <Setting Name="ToolsIcon" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\cad\Solid Works\Amstore_Macros\ICONS\Tools.bmp</Value>
+    </Setting>
+    <Setting Name="AlertBackground" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightSteelBlue</Value>
+    </Setting>
+    <Setting Name="AlertForeground" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Crimson</Value>
     </Setting>
   </Settings>
 </SettingsFile>
