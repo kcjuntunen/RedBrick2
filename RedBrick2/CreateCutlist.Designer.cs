@@ -522,13 +522,13 @@ namespace RedBrick2 {
 			// toolStripStatusLabel1
 			// 
 			this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-			this.toolStripStatusLabel1.Size = new System.Drawing.Size(108, 17);
+			this.toolStripStatusLabel1.Size = new System.Drawing.Size(116, 17);
 			this.toolStripStatusLabel1.Text = "Total Unique Parts: 0";
 			// 
 			// toolStripStatusLabel2
 			// 
 			this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-			this.toolStripStatusLabel2.Size = new System.Drawing.Size(89, 17);
+			this.toolStripStatusLabel2.Size = new System.Drawing.Size(94, 17);
 			this.toolStripStatusLabel2.Text = "Included Parts: 0";
 			// 
 			// gEN_CUSTOMERSTableAdapter

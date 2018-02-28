@@ -1302,7 +1302,15 @@ namespace RedBrick2 {
 				}
 
 				int custid_ = Convert.ToInt32(cust_cbx.SelectedValue);
-				dt_cc.UpdateCutlist(itm_cbx.Text.Trim(), ref_cbx.Text.Trim(), rev_cbx.Text.Trim(), descr_cbx.Text.Trim(), custid_,
+				string item_no_ = itm_cbx.Text.Trim();
+				string descr_ = descr_cbx.Text.Trim();
+				if (item_no_.Length > dt_cc.PARTNUMColumn.MaxLength)
+					item_no_ = item_no_.Substring(0, dt_cc.PARTNUMColumn.MaxLength);
+
+				if (descr_.Length > dt_cc.DESCRColumn.MaxLength)
+					descr_ = descr_.Substring(0, dt_cc.DESCRColumn.MaxLength);
+
+				dt_cc.UpdateCutlist(item_no_, ref_cbx.Text.Trim(), rev_cbx.Text.Trim(), descr_, custid_,
 					dateTimePicker1.Value, Properties.Settings.Default.DefaultState, Convert.ToInt32(uid), parts_);
 				(sender as Control).Enabled = false;
 				cancel_btn.Text = @"Close";
