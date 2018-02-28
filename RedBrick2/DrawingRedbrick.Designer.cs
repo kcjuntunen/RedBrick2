@@ -71,12 +71,12 @@ namespace RedBrick2 {
 			this.gENUSERSBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
 			this.rev_cbx = new System.Windows.Forms.ComboBox();
+			this.button4 = new System.Windows.Forms.Button();
+			this.button5 = new System.Windows.Forms.Button();
+			this.button3 = new System.Windows.Forms.Button();
 			this.status_cbx = new System.Windows.Forms.ComboBox();
 			this.cUTSTATESBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.button2 = new System.Windows.Forms.Button();
-			this.button3 = new System.Windows.Forms.Button();
-			this.button4 = new System.Windows.Forms.Button();
-			this.button5 = new System.Windows.Forms.Button();
 			this.gEN_CUSTOMERSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.GEN_CUSTOMERSTableAdapter();
 			this.gEN_USERSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
 			this.cUT_STATESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_STATESTableAdapter();
@@ -387,8 +387,6 @@ namespace RedBrick2 {
 			// 
 			this.fin1_tb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.fin1_tb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-			this.fin1_tb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
 			this.fin1_tb.Location = new System.Drawing.Point(105, 16);
 			this.fin1_tb.Name = "fin1_tb";
 			this.fin1_tb.Size = new System.Drawing.Size(233, 22);
@@ -399,8 +397,6 @@ namespace RedBrick2 {
 			// 
 			this.fin2_tb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.fin2_tb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-			this.fin2_tb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
 			this.fin2_tb.Location = new System.Drawing.Point(105, 57);
 			this.fin2_tb.Name = "fin2_tb";
 			this.fin2_tb.Size = new System.Drawing.Size(233, 22);
@@ -411,8 +407,6 @@ namespace RedBrick2 {
 			// 
 			this.fin3_tb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.fin3_tb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-			this.fin3_tb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
 			this.fin3_tb.Location = new System.Drawing.Point(105, 98);
 			this.fin3_tb.Name = "fin3_tb";
 			this.fin3_tb.Size = new System.Drawing.Size(233, 22);
@@ -423,8 +417,6 @@ namespace RedBrick2 {
 			// 
 			this.fin4_tb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.fin4_tb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-			this.fin4_tb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
 			this.fin4_tb.Location = new System.Drawing.Point(105, 139);
 			this.fin4_tb.Name = "fin4_tb";
 			this.fin4_tb.Size = new System.Drawing.Size(233, 22);
@@ -435,8 +427,6 @@ namespace RedBrick2 {
 			// 
 			this.fin5_tb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.fin5_tb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-			this.fin5_tb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
 			this.fin5_tb.Location = new System.Drawing.Point(105, 180);
 			this.fin5_tb.Name = "fin5_tb";
 			this.fin5_tb.Size = new System.Drawing.Size(233, 22);
@@ -690,6 +680,43 @@ namespace RedBrick2 {
 			this.rev_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.rev_cbx.Resize += new System.EventHandler(this.comboBox_Resize);
 			// 
+			// button4
+			// 
+			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.button4.Location = new System.Drawing.Point(207, 113);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(131, 23);
+			this.button4.TabIndex = 12;
+			this.button4.Text = "Examine BOM";
+			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Visible = false;
+			// 
+			// button5
+			// 
+			this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.button5.Location = new System.Drawing.Point(207, 142);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(131, 23);
+			this.button5.TabIndex = 13;
+			this.button5.Text = "Material List";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Visible = false;
+			// 
+			// button3
+			// 
+			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.button3.Location = new System.Drawing.Point(71, 142);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(130, 23);
+			this.button3.TabIndex = 11;
+			this.button3.Text = "Delete Cutlist...";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Visible = false;
+			this.button3.Click += new System.EventHandler(this.button3_Click);
+			// 
 			// status_cbx
 			// 
 			this.status_cbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -727,43 +754,6 @@ namespace RedBrick2 {
 			this.button2.Text = "Update Cutlist...";
 			this.button2.UseVisualStyleBackColor = true;
 			this.button2.Click += new System.EventHandler(this.button2_Click);
-			// 
-			// button3
-			// 
-			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.button3.Location = new System.Drawing.Point(71, 142);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(130, 23);
-			this.button3.TabIndex = 11;
-			this.button3.Text = "Delete Cutlist...";
-			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Visible = false;
-			this.button3.Click += new System.EventHandler(this.button3_Click);
-			// 
-			// button4
-			// 
-			this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.button4.Location = new System.Drawing.Point(207, 113);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(131, 23);
-			this.button4.TabIndex = 12;
-			this.button4.Text = "Examine BOM";
-			this.button4.UseVisualStyleBackColor = true;
-			this.button4.Visible = false;
-			// 
-			// button5
-			// 
-			this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.button5.Location = new System.Drawing.Point(207, 142);
-			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(131, 23);
-			this.button5.TabIndex = 13;
-			this.button5.Text = "Material List";
-			this.button5.UseVisualStyleBackColor = true;
-			this.button5.Visible = false;
 			// 
 			// gEN_CUSTOMERSTableAdapter
 			// 
