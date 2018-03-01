@@ -1,4 +1,14 @@
 
-1) Fixed weird behavior when [X] is clicked on the Edit Rev window.
-2) Made some buttons unclickable whenever they're not usable.
-3) Added fixture book renumbering tool.
+1) Allow editing configuration-specific properties with no cutlist selected.
+   - Data will be written to the selected configuration, but not to the cutlist.
+   - Non-specific data will still update the cutlist.
+2) Added Material/Edge by M2M part number feature:
+   - Click on material, or edge combobox.
+   - Press CTRL+Space
+   - Enter a number
+   - Press Enter
+3) The list in the "Add part" window is now sorted.
+4) Removed absurd suggestions in the "Finish" textboxes.
+5) Improved the style of the Edit Rev window.
+6) Moved the Reformat Fixture Book button into a tool box window.
+7) Handled some rare nulls.
