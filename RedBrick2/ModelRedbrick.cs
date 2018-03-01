@@ -2413,7 +2413,7 @@ namespace RedBrick2 {
 			ComboBox cbx_ = sender as ComboBox;
 			if (cbx_.Text == string.Empty) {
 				cbx_.SelectedIndex = -1;
-				label7.Visible = false;
+				label9.Visible = false;
 				if (PropertySet != null && PropertySet.Contains(@"EDGE LEFT (W)")) {
 					PropertySet[@"EDGE LEFT (W)"].Data = 0;
 					PropertySet[@"ELID"].Data = 0;
