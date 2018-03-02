@@ -391,6 +391,7 @@ namespace RedBrick2 {
 			this.fin1_tb.Name = "fin1_tb";
 			this.fin1_tb.Size = new System.Drawing.Size(233, 22);
 			this.fin1_tb.TabIndex = 15;
+			this.fin1_tb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
 			this.fin1_tb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyUp);
 			// 
 			// fin2_tb
@@ -401,6 +402,7 @@ namespace RedBrick2 {
 			this.fin2_tb.Name = "fin2_tb";
 			this.fin2_tb.Size = new System.Drawing.Size(233, 22);
 			this.fin2_tb.TabIndex = 16;
+			this.fin2_tb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
 			this.fin2_tb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyUp);
 			// 
 			// fin3_tb
@@ -411,6 +413,7 @@ namespace RedBrick2 {
 			this.fin3_tb.Name = "fin3_tb";
 			this.fin3_tb.Size = new System.Drawing.Size(233, 22);
 			this.fin3_tb.TabIndex = 17;
+			this.fin3_tb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
 			this.fin3_tb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyUp);
 			// 
 			// fin4_tb
@@ -421,6 +424,7 @@ namespace RedBrick2 {
 			this.fin4_tb.Name = "fin4_tb";
 			this.fin4_tb.Size = new System.Drawing.Size(233, 22);
 			this.fin4_tb.TabIndex = 18;
+			this.fin4_tb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
 			this.fin4_tb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyUp);
 			// 
 			// fin5_tb
@@ -431,6 +435,7 @@ namespace RedBrick2 {
 			this.fin5_tb.Name = "fin5_tb";
 			this.fin5_tb.Size = new System.Drawing.Size(233, 22);
 			this.fin5_tb.TabIndex = 19;
+			this.fin5_tb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
 			this.fin5_tb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyUp);
 			// 
 			// treeView1

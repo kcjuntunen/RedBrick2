@@ -593,21 +593,23 @@ namespace RedBrick2 {
 			ReLoad();
 		}
 
-		private void enterJump(object sender, object[] boxes) {
+		private void jump(object sender, object[] boxes, string format) {
 			for (int i = 0; i < boxes.Length; i++) {
 				if (sender == boxes[i] && i < boxes.Length) {
 					if (sender is TextBox) {
 						TextBox cur = sender as TextBox;
 						TextBox nxt = boxes[i + 1] as TextBox;
+						int ending_pos_ = nxt.Text.Length;
 						if (cur.SelectionStart < cur.TextLength) {
 							int curPos = cur.SelectionStart;
 							cur.SelectionLength = cur.TextLength - curPos;
 							string selectedText = cur.SelectedText;
 							cur.Text = cur.Text.Remove(curPos);
-							nxt.Text = string.Format(@"{0}{1}", selectedText, nxt.Text).Trim();
+							nxt.Text = string.Format(format, selectedText, nxt.Text).Trim();
 						}
 						nxt.Focus();
 						nxt.SelectionLength = 0;
+						nxt.SelectionStart = ending_pos_;
 					} else if (sender is ComboBox) {
 						(boxes[i + 1] as ComboBox).Focus();
 					}
@@ -615,23 +617,29 @@ namespace RedBrick2 {
 			}
 		}
 
-		private void textBox_KeyUp(object sender, KeyEventArgs e) {
-			if (e.KeyCode == Keys.Enter && e.Shift) {
+		private void textBox_KeyDown(object sender, KeyEventArgs e) {
+			TextBox t_ = (TextBox)sender;
+			if (t_.SelectionStart == 0 && e.KeyCode == Keys.Back) {
 				TextBox[] tbs = { fin5_tb, fin4_tb, fin3_tb, fin2_tb, fin1_tb };
-				enterJump((sender as TextBox), tbs);
-			} else if (e.KeyCode == Keys.Enter) {
+				jump(sender, tbs, @"{1} {0}");
+			}
+		}
+
+		private void textBox_KeyUp(object sender, KeyEventArgs e) {
+			if (e.KeyCode == Keys.Enter) {
 				TextBox[] tbs = { fin1_tb, fin2_tb, fin3_tb, fin4_tb, fin5_tb };
-				enterJump((sender as TextBox), tbs);
+				jump(sender, tbs, @"{0}{1}");
 			}
 		}
 
 		private void comboBox_KeyUp(object sender, KeyEventArgs e) {
-			if (e.KeyCode == Keys.Enter && e.Shift) {
+			ComboBox c_ = (ComboBox)sender;
+			if (c_.SelectionStart == 0 && e.KeyCode == Keys.Back) {
 				ComboBox[] cbs = { mat5_cbx, mat4_cbx, mat3_cbx, mat2_cbx, mat1_cbx };
-				enterJump((sender as ComboBox), cbs);
+				jump((sender as ComboBox), cbs, @"{1} {0}");
 			} else if (e.KeyCode == Keys.Enter) {
 				ComboBox[] cbs = { mat1_cbx, mat2_cbx, mat3_cbx, mat4_cbx, mat5_cbx };
-				enterJump((sender as ComboBox), cbs);
+				jump((sender as ComboBox), cbs, @"{0}{1}");
 			}
 		}
 
