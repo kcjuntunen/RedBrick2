@@ -1,14 +1,7 @@
 
-1) Allow editing configuration-specific properties with no cutlist selected.
-   - Data will be written to the selected configuration, but not to the cutlist.
-   - Non-specific data will still update the cutlist.
-2) Added Material/Edge by M2M part number feature:
-   - Click on material, or edge combobox.
-   - Press CTRL+Space
-   - Enter a number
-   - Press Enter
-3) The list in the "Add part" window is now sorted.
-4) Removed absurd suggestions in the "Finish" textboxes.
-5) Improved the style of the Edit Rev window.
-6) Moved the Reformat Fixture Book button into a tool box window.
-7) Handled some rare nulls.
+1) The "Create Cutlist" window now resolves lightweight components before trying to traverse the tree.
+2) Un-crisscrossed edging oversize calculation.
+3) Enter and backspace act just the way you'd expect in the Finish fields on drawings.
+4) Closed a loophole that allowed Chris' naughty characters to get in the Cutlist Database.
+5) Fixed a label that wasn't hiding when it should.
+6) [Tab] will work like [ENTER] in the "Material by M2M number" popup.
