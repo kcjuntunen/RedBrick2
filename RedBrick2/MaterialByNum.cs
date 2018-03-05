@@ -40,15 +40,14 @@ namespace RedBrick2 {
 			FoundMatID?.Invoke(this, mbp);
 		}
 
-		private void rawPartNo_tb_KeyPress(object sender, KeyPressEventArgs e) {
-			if (e.KeyChar == (char)Keys.Enter) {
+		private void rawPartNo_tb_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e) {
+			if (e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter) {
 				string search_term_ = (sender as TextBox).Text.Trim();
 				if (_t == Table.MATERIAL) {
 					OnFoundMatID(new MaterialByNumEventArgs(get_material(search_term_)));
 				}
 				if (_t == Table.EDGING) {
 					OnFoundMatID(new MaterialByNumEventArgs(get_edging(search_term_)));
-
 				}
 				Close();
 			}

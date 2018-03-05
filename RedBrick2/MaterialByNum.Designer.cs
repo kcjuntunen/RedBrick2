@@ -31,15 +31,15 @@
 			this.rawPartNo_tb.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.rawPartNo_tb.Location = new System.Drawing.Point(0, 0);
 			this.rawPartNo_tb.Name = "rawPartNo_tb";
-			this.rawPartNo_tb.Size = new System.Drawing.Size(144, 22);
+			this.rawPartNo_tb.Size = new System.Drawing.Size(134, 22);
 			this.rawPartNo_tb.TabIndex = 0;
-			this.rawPartNo_tb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.rawPartNo_tb_KeyPress);
+			this.rawPartNo_tb.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.rawPartNo_tb_PreviewKeyDown);
 			// 
 			// MaterialByNum
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(144, 34);
+			this.ClientSize = new System.Drawing.Size(134, 24);
 			this.ControlBox = false;
 			this.Controls.Add(this.rawPartNo_tb);
 			this.DoubleBuffered = true;
