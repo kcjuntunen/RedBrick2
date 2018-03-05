@@ -102,6 +102,10 @@ namespace RedBrick2 {
 				Text = string.Format(@"{0} - {1}", topName, _config.Name);
 			}
 
+			if (mDoc is AssemblyDoc) {
+				(mDoc as AssemblyDoc).ResolveAllLightWeightComponents(true);
+			}
+
 			string[] c_ = mDoc.GetConfigurationNames();
 			foreach (string item in c_) {
 				config_cbx.Items.Add(item);
