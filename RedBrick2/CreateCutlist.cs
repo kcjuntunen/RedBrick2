@@ -1303,7 +1303,7 @@ namespace RedBrick2 {
 
 				int custid_ = Convert.ToInt32(cust_cbx.SelectedValue);
 				string item_no_ = itm_cbx.Text.Trim();
-				string descr_ = descr_cbx.Text.Trim();
+				string descr_ = Redbrick.FilterString(descr_cbx.Text);
 				if (item_no_.Length > dt_cc.PARTNUMColumn.MaxLength)
 					item_no_ = item_no_.Substring(0, dt_cc.PARTNUMColumn.MaxLength);
 

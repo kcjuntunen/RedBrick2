@@ -868,7 +868,22 @@ namespace RedBrick2 {
 				new System.Text.RegularExpressions.Regex(Redbrick.BOMFilter[0]);
 			return r_.IsMatch(_part);
 		}
+		static public string FilterString(object input) {
+			string filtered = input.ToString();
+			char[,] chars = new char[,] {
+					{'\u0027', '\u2032'},
+					{'\u0022', '\u2033'},
+					{';', '\u037E'},
+					{'%', '\u066A'},
+					{'*', '\u2217'}
+				};
 
+			for (int j = 0; j < chars.GetLength(0); j++) {
+				filtered = filtered.Replace(chars[j, 0], chars[j, 1]);
+			}
+
+			return filtered.Trim();
+		}
 		/// <summary>
 		/// Wrap text to a number of characters.
 		/// </summary>
