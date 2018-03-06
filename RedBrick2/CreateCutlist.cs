@@ -16,35 +16,6 @@ namespace RedBrick2 {
 	/// This is the form for collecting and inserting all property data into the cutlist.
 	/// </summary>
 	public partial class CreateCutlist : Form {
-		private ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cpt =
-			new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
-		private ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cmt =
-			new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter();
-		private ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter fco =
-			new ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter();
-		private ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter ce =
-			new ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter();
-		private ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter guta =
-			new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
-
-		private ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter ta_ccp =
-			new ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter();
-		private ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter ta_cp =
-			new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
-		private ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter ta_cpo =
-			new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter();
-		private ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter ta_cc =
-		new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
-
-		private ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable dt_ccp =
-			new ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable();
-		private ENGINEERINGDataSet.CUT_PARTSDataTable dt_cp =
-			new ENGINEERINGDataSet.CUT_PARTSDataTable();
-		private ENGINEERINGDataSet.CUT_PART_OPSDataTable dt_cpo =
-			new ENGINEERINGDataSet.CUT_PART_OPSDataTable();
-		private ENGINEERINGDataSet.CUT_CUTLISTSDataTable dt_cc =
-			new ENGINEERINGDataSet.CUT_CUTLISTSDataTable();
-
 		private SortedDictionary<string, int> _dict = new SortedDictionary<string, int>();
 		private SortedDictionary<string, SwProperties> _partlist = new SortedDictionary<string, SwProperties>();
 		private SldWorks _swApp;
@@ -239,7 +210,11 @@ namespace RedBrick2 {
 			//this.cUT_CUTLISTSTableAdapter.Fill(this.eNGINEERINGDataSet.CUT_CUTLISTS);
 			// TODO: This line of code loads data into the 'eNGINEERINGDataSet.GEN_CUSTOMERS' table. You can move, or remove it, as needed.
 			this.gEN_CUSTOMERSTableAdapter.Fill(this.eNGINEERINGDataSet.GEN_CUSTOMERS);
-			uid = guta.GetUID(System.Environment.UserName);
+
+			using (ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter guta =
+				new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
+				uid = guta.GetUID(System.Environment.UserName);
+			}
 
 			if (Properties.Settings.Default.OnlyCurrentCustomers) {
 				gENCUSTOMERSBindingSource.Filter = @"CUSTACTIVE = True";
@@ -488,25 +463,26 @@ namespace RedBrick2 {
 		}
 
 		private ENGINEERINGDataSet.CUT_PARTSDataTable Translate(DataTable dt) {
-			ENGINEERINGDataSet.CUT_PARTSDataTable outdt = new ENGINEERINGDataSet.CUT_PARTSDataTable();
-			//ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable outdt = new ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable();
-			for (int i = 0; i < dt.Rows.Count; i++) {
-				DataRow row = dt.Rows[i];
-				if ((bool)row[@"Include"]) {
-					SwProperties p = _partlist[row["Part Number"].ToString()];
-					ENGINEERINGDataSet.CUT_PARTSRow r = (ENGINEERINGDataSet.CUT_PARTSRow)outdt.NewRow();
-					r.BLANKQTY = (int)row["Blank Qty"];
-					r.CNC1 = (string)p[@"CNC1"].Data;
-					r.CNC2 = (string)p[@"CNC2"].Data;
-					r.COMMENT = (string)p["COMMENT"].Data;
-					r.DESCR = row[@"Description"].ToString();
-					r.FIN_L = (float)p[@"LENGTH"].Data;
-					r.FIN_W = (float)p[@"WIDTH"].Data;
-					r.THICKNESS = (float)p[@"THICKNESS"].Data;
-					r.HASH = p[@"DEPARTMART"].Hash;
+			using (ENGINEERINGDataSet.CUT_PARTSDataTable outdt = new ENGINEERINGDataSet.CUT_PARTSDataTable()) {
+				//ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable outdt = new ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable();
+				for (int i = 0; i < dt.Rows.Count; i++) {
+					DataRow row = dt.Rows[i];
+					if ((bool)row[@"Include"]) {
+						SwProperties p = _partlist[row["Part Number"].ToString()];
+						ENGINEERINGDataSet.CUT_PARTSRow r = (ENGINEERINGDataSet.CUT_PARTSRow)outdt.NewRow();
+						r.BLANKQTY = (int)row["Blank Qty"];
+						r.CNC1 = (string)p[@"CNC1"].Data;
+						r.CNC2 = (string)p[@"CNC2"].Data;
+						r.COMMENT = (string)p["COMMENT"].Data;
+						r.DESCR = row[@"Description"].ToString();
+						r.FIN_L = (float)p[@"LENGTH"].Data;
+						r.FIN_W = (float)p[@"WIDTH"].Data;
+						r.THICKNESS = (float)p[@"THICKNESS"].Data;
+						r.HASH = p[@"DEPARTMART"].Hash;
+					}
 				}
+				return outdt;
 			}
-			return outdt;
 		}
 
 		private void AddColumns() {
@@ -537,7 +513,10 @@ namespace RedBrick2 {
 			mat.DisplayMember = @"DESCR";
 			mat.ValueMember = @"MATID";
 			mat.AutoComplete = true;
-			mat.DataSource = cmt.GetData();
+
+			using (ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cmt = new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter()) {
+				mat.DataSource = cmt.GetData();
+			}
 			mat.SortMode = DataGridViewColumnSortMode.Programmatic;
 			mat.FlatStyle = FlatStyle.Popup;
 
@@ -600,7 +579,10 @@ namespace RedBrick2 {
 			op1.DisplayMember = @"OPNAME";
 			op1.ValueMember = @"OPID";
 			op1.AutoComplete = true;
-			op1.DataSource = fco.GetData();
+			using (ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter fco =
+				new ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter()) {
+				op1.DataSource = fco.GetData();
+			}
 			op1.ValueType = typeof(int);
 			op1.SortMode = DataGridViewColumnSortMode.Programmatic;
 			op1.FlatStyle = FlatStyle.Popup;
@@ -613,7 +595,10 @@ namespace RedBrick2 {
 			op2.DisplayMember = @"OPNAME";
 			op2.ValueMember = @"OPID";
 			op2.AutoComplete = true;
-			op2.DataSource = fco.GetData();
+			using (ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter fco =
+				new ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter()) {
+				op2.DataSource = fco.GetData();
+			}
 			op2.ValueType = typeof(int);
 			op2.SortMode = DataGridViewColumnSortMode.Programmatic;
 			op2.FlatStyle = FlatStyle.Popup;
@@ -626,7 +611,10 @@ namespace RedBrick2 {
 			op3.DisplayMember = @"OPNAME";
 			op3.ValueMember = @"OPID";
 			op3.AutoComplete = true;
-			op3.DataSource = fco.GetData();
+			using (ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter fco =
+				new ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter()) {
+				op3.DataSource = fco.GetData();
+			}
 			op3.ValueType = typeof(int);
 			op3.SortMode = DataGridViewColumnSortMode.Programmatic;
 			op3.FlatStyle = FlatStyle.Popup;
@@ -639,7 +627,10 @@ namespace RedBrick2 {
 			op4.DisplayMember = @"OPNAME";
 			op4.ValueMember = @"OPID";
 			op4.AutoComplete = true;
-			op4.DataSource = fco.GetData();
+			using (ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter fco =
+				new ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter()) {
+				op4.DataSource = fco.GetData();
+			}
 			op4.ValueType = typeof(int);
 			op4.SortMode = DataGridViewColumnSortMode.Programmatic;
 			op4.FlatStyle = FlatStyle.Popup;
@@ -652,7 +643,10 @@ namespace RedBrick2 {
 			op5.DisplayMember = @"OPNAME";
 			op5.ValueMember = @"OPID";
 			op5.AutoComplete = true;
-			op5.DataSource = fco.GetData();
+			using (ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter fco =
+				new ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter()) {
+				op5.DataSource = fco.GetData();
+			}
 			op5.ValueType = typeof(int);
 			op5.SortMode = DataGridViewColumnSortMode.Programmatic;
 			op5.FlatStyle = FlatStyle.Popup;
@@ -665,7 +659,10 @@ namespace RedBrick2 {
 			dpt_col.DisplayMember = @"TYPEDESC";
 			dpt_col.ValueMember = @"TYPEID";
 			dpt_col.AutoComplete = true;
-			dpt_col.DataSource = cpt.GetData();
+			using (ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cpt =
+				new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter()) {
+				dpt_col.DataSource = cpt.GetData();
+			}
 			dpt_col.SortMode = DataGridViewColumnSortMode.Programmatic;
 			dpt_col.FlatStyle = FlatStyle.Popup;
 
@@ -677,7 +674,10 @@ namespace RedBrick2 {
 			ef.DisplayMember = @"DESCR";
 			ef.ValueMember = @"EDGEID";
 			ef.AutoComplete = true;
-			ef.DataSource = ce.GetData();
+			using (ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter ce =
+				new ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter()) {
+				ef.DataSource = ce.GetData();
+			}
 			ef.SortMode = DataGridViewColumnSortMode.Programmatic;
 			ef.FlatStyle = FlatStyle.Popup;
 
@@ -689,7 +689,10 @@ namespace RedBrick2 {
 			eb.DisplayMember = @"DESCR";
 			eb.ValueMember = @"EDGEID";
 			eb.AutoComplete = true;
-			eb.DataSource = ce.GetData();
+			using (ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter ce =
+				new ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter()) {
+				eb.DataSource = ce.GetData();
+			}
 			eb.SortMode = DataGridViewColumnSortMode.Programmatic;
 			eb.FlatStyle = FlatStyle.Popup;
 
@@ -701,7 +704,10 @@ namespace RedBrick2 {
 			el.DisplayMember = @"DESCR";
 			el.ValueMember = @"EDGEID";
 			el.AutoComplete = true;
-			el.DataSource = ce.GetData();
+			using (ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter ce =
+				new ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter()) {
+				el.DataSource = ce.GetData();
+			}
 			el.SortMode = DataGridViewColumnSortMode.Programmatic;
 			el.FlatStyle = FlatStyle.Popup;
 
@@ -713,7 +719,10 @@ namespace RedBrick2 {
 			er.DisplayMember = @"DESCR";
 			er.ValueMember = @"EDGEID";
 			er.AutoComplete = true;
-			er.DataSource = ce.GetData();
+			using (ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter ce =
+				new ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter()) {
+				er.DataSource = ce.GetData();
+			}
 			er.SortMode = DataGridViewColumnSortMode.Programmatic;
 			er.FlatStyle = FlatStyle.Popup;
 
@@ -768,10 +777,11 @@ namespace RedBrick2 {
 		}
 
 		private void SetMaterialCellTooltip(DataGridViewComboBoxCell _c, string _id_field) {
-			DataTable dv_ = _c.DataSource as DataTable;
-			string filter_ = string.Format(@"{0} = {1}", _id_field, Convert.ToString(_c.Value));
-			DataRow[] dr_ = dv_.Select(filter_);
-			_c.ToolTipText = Convert.ToString(dr_[0][@"COLOR"]);
+			using (DataTable dv_ = _c.DataSource as DataTable) {
+				string filter_ = string.Format(@"{0} = {1}", _id_field, Convert.ToString(_c.Value));
+				DataRow[] dr_ = dv_.Select(filter_);
+				_c.ToolTipText = Convert.ToString(dr_[0][@"COLOR"]);
+			}
 		}
 
 		private void FillTable(SortedDictionary<string, int> pl, SortedDictionary<string, SwProperties> sp) {
@@ -783,10 +793,13 @@ namespace RedBrick2 {
 				int idx = dataGridView1.Rows.Add();
 				DataGridViewRow row = dataGridView1.Rows[idx];
 
-				if ((int)val[@"DEPARTMENT"].Data > 0 && (int)val[@"DEPARTMENT"].Data <= (int)cpt.TypeCount()) {
-					SetType((int)val[@"DEPARTMENT"].Data, val, row);
-				} else if ((int)val[@"DEPTID"].Data > 0) {
-					SetType((int)val[@"DEPTID"].Data, val, row);
+				using (ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cpt =
+					new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter()) {
+					if ((int)val[@"DEPARTMENT"].Data > 0 && (int)val[@"DEPARTMENT"].Data <= (int)cpt.TypeCount()) {
+						SetType((int)val[@"DEPARTMENT"].Data, val, row);
+					} else if ((int)val[@"DEPTID"].Data > 0) {
+						SetType((int)val[@"DEPTID"].Data, val, row);
+					}
 				}
 
 				row.Cells[@"Part Number"].Value = name;
@@ -864,7 +877,10 @@ namespace RedBrick2 {
 		}
 
 		private void FillCutlistTable() {
-			ta_cc.FillByName(eNGINEERINGDataSet.CUT_CUTLISTS, itm, rev_cbx.Text);
+			using (ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter ta_cc =
+				new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter()) {
+				ta_cc.FillByName(eNGINEERINGDataSet.CUT_CUTLISTS, itm, rev_cbx.Text);
+			}
 			if (eNGINEERINGDataSet.CUT_CUTLISTS.Rows.Count < 1) {
 				eNGINEERINGDataSet.CUT_CUTLISTS.AddCUT_CUTLISTSRow(
 					itm, rev_cbx.Text, refr, (int)cust_cbx.SelectedValue, dateTimePicker1.Value,
@@ -877,27 +893,42 @@ namespace RedBrick2 {
 
 		private void AddPart(SwProperties _pp) {
 			string partnum_ = _pp.PartLookup;
-			ta_cp.FillByPartnum(dt_cp, partnum_);
-			ta_ccp.FillByCutlistIDAndPartID(dt_ccp, _pp.PartID, clid);
-			if (dt_cp.Rows.Count < 1) {
-				eNGINEERINGDataSet.CUT_PARTS.AddCUT_PARTSRow(partnum_, (string)_pp[@"Description"].Data,
-					(float)(double)_pp[@"LENGTH"].Data, (float)(double)_pp[@"WIDTH"].Data,
-					(float)(double)_pp[@"THICKNESS"].Data, (string)_pp[@"CNC1"].Data,
-					(string)_pp[@"CNC2"].Data, (int)_pp[@"BLANK QTY"].Data,
-					(float)(double)_pp[@"OVERL"].Data, (float)(double)_pp[@"OVERW"].Data,
-					//(int)_pp[@"OP1"].Data, (int)_pp[@"OP2"].Data, (int)_pp[@"OP3"].Data,
-					//(int)_pp[@"OP4"].Data, (int)_pp[@"OP5"].Data,
-					(string)_pp[@"COMMENT"].Data,
-					(bool)_pp[@"UPDATE CNC"].Data, (int)_pp[@"DEPARTMENT"].Data,
-					_pp.Hash);
-			}
 
-			if (dt_ccp.Rows.Count < 1) {
-				eNGINEERINGDataSet.CUT_CUTLIST_PARTS.AddCUT_CUTLIST_PARTSRow(clid, _pp.PartID,
-					(int)_pp[@"CUTLIST MATERIAL"].Data,
-					(int)_pp[@"EDGE FRONT (L)"].Data, (int)_pp[@"EDGE BACK (L)"].Data,
-					(int)_pp[@"EDGE RIGHT (W)"].Data, (int)_pp[@"EDGE LEFT (W)"].Data,
-					_pp.CutlistQty);
+			using (ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter ta_cp =
+				new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter()) {
+				using (ENGINEERINGDataSet.CUT_PARTSDataTable dt_cp =
+						new ENGINEERINGDataSet.CUT_PARTSDataTable()) {
+					ta_cp.FillByPartnum(dt_cp, partnum_);
+
+					using (ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter ta_ccp =
+						new ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter()) {
+
+						using (ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable dt_ccp =
+							new ENGINEERINGDataSet.CUT_CUTLIST_PARTSDataTable()) {
+							ta_ccp.FillByCutlistIDAndPartID(dt_ccp, _pp.PartID, clid);
+							if (dt_cp.Rows.Count < 1) {
+								eNGINEERINGDataSet.CUT_PARTS.AddCUT_PARTSRow(partnum_, (string)_pp[@"Description"].Data,
+									(float)(double)_pp[@"LENGTH"].Data, (float)(double)_pp[@"WIDTH"].Data,
+									(float)(double)_pp[@"THICKNESS"].Data, (string)_pp[@"CNC1"].Data,
+									(string)_pp[@"CNC2"].Data, (int)_pp[@"BLANK QTY"].Data,
+									(float)(double)_pp[@"OVERL"].Data, (float)(double)_pp[@"OVERW"].Data,
+									//(int)_pp[@"OP1"].Data, (int)_pp[@"OP2"].Data, (int)_pp[@"OP3"].Data,
+									//(int)_pp[@"OP4"].Data, (int)_pp[@"OP5"].Data,
+									(string)_pp[@"COMMENT"].Data,
+									(bool)_pp[@"UPDATE CNC"].Data, (int)_pp[@"DEPARTMENT"].Data,
+									_pp.Hash);
+							}
+
+							if (dt_ccp.Rows.Count < 1) {
+								eNGINEERINGDataSet.CUT_CUTLIST_PARTS.AddCUT_CUTLIST_PARTSRow(clid, _pp.PartID,
+									(int)_pp[@"CUTLIST MATERIAL"].Data,
+									(int)_pp[@"EDGE FRONT (L)"].Data, (int)_pp[@"EDGE BACK (L)"].Data,
+									(int)_pp[@"EDGE RIGHT (W)"].Data, (int)_pp[@"EDGE LEFT (W)"].Data,
+									_pp.CutlistQty);
+							}
+						}
+					}
+				}
 			}
 		}
 
@@ -1201,19 +1232,23 @@ namespace RedBrick2 {
 
 		private FileInfo find_pdf(string doc) {
 			string searchterm_ = string.Format(@"{0}.PDF", doc);
-			ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter gdta =
-				new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter();
-			ENGINEERINGDataSet.GEN_DRAWINGSDataTable dt = gdta.GetDataByFName(searchterm_);
-			if (dt.Rows.Count > 0) {
-				ENGINEERINGDataSet.GEN_DRAWINGSRow r = (dt.Rows[0] as ENGINEERINGDataSet.GEN_DRAWINGSRow);
-				return new FileInfo(string.Format(@"{0}{1}", r.FPath, r.FName));
-			} else {
-				ENGINEERINGDataSetTableAdapters.GEN_DRAWINGS_MTLTableAdapter gdmta =
-					new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGS_MTLTableAdapter();
-				ENGINEERINGDataSet.GEN_DRAWINGS_MTLDataTable mdt = gdmta.GetDataByFName(searchterm_);
-				if (mdt.Rows.Count > 0) {
-					ENGINEERINGDataSet.GEN_DRAWINGS_MTLRow mr = (mdt.Rows[0] as ENGINEERINGDataSet.GEN_DRAWINGS_MTLRow);
-					return new FileInfo(string.Format(@"{0}{1}", mr.FPath, mr.FName));
+			using (ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter gdta =
+				new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter()) {
+				using (ENGINEERINGDataSet.GEN_DRAWINGSDataTable dt = gdta.GetDataByFName(searchterm_)) {
+					if (dt.Rows.Count > 0) {
+						ENGINEERINGDataSet.GEN_DRAWINGSRow r = (dt.Rows[0] as ENGINEERINGDataSet.GEN_DRAWINGSRow);
+						return new FileInfo(string.Format(@"{0}{1}", r.FPath, r.FName));
+					} else {
+						using (ENGINEERINGDataSetTableAdapters.GEN_DRAWINGS_MTLTableAdapter gdmta =
+							new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGS_MTLTableAdapter()) {
+							using (ENGINEERINGDataSet.GEN_DRAWINGS_MTLDataTable mdt = gdmta.GetDataByFName(searchterm_)) {
+								if (mdt.Rows.Count > 0) {
+									ENGINEERINGDataSet.GEN_DRAWINGS_MTLRow mr = (mdt.Rows[0] as ENGINEERINGDataSet.GEN_DRAWINGS_MTLRow);
+									return new FileInfo(string.Format(@"{0}{1}", mr.FPath, mr.FName));
+								}
+							}
+						}
+					}
 				}
 			}
 			return null;
@@ -1305,19 +1340,21 @@ namespace RedBrick2 {
 					}
 				}
 
-				int custid_ = Convert.ToInt32(cust_cbx.SelectedValue);
-				string item_no_ = itm_cbx.Text.Trim();
-				string descr_ = Redbrick.FilterString(descr_cbx.Text);
-				if (item_no_.Length > dt_cc.PARTNUMColumn.MaxLength)
-					item_no_ = item_no_.Substring(0, dt_cc.PARTNUMColumn.MaxLength);
+				using (ENGINEERINGDataSet.CUT_CUTLISTSDataTable dt_cc = new ENGINEERINGDataSet.CUT_CUTLISTSDataTable()) {
+					int custid_ = Convert.ToInt32(cust_cbx.SelectedValue);
+					string item_no_ = itm_cbx.Text.Trim();
+					string descr_ = Redbrick.FilterString(descr_cbx.Text);
+					if (item_no_.Length > dt_cc.PARTNUMColumn.MaxLength)
+						item_no_ = item_no_.Substring(0, dt_cc.PARTNUMColumn.MaxLength);
 
-				if (descr_.Length > dt_cc.DESCRColumn.MaxLength)
-					descr_ = descr_.Substring(0, dt_cc.DESCRColumn.MaxLength);
+					if (descr_.Length > dt_cc.DESCRColumn.MaxLength)
+						descr_ = descr_.Substring(0, dt_cc.DESCRColumn.MaxLength);
 
-				dt_cc.UpdateCutlist(item_no_, ref_cbx.Text.Trim(), rev_cbx.Text.Trim(), descr_, custid_,
-					dateTimePicker1.Value, Properties.Settings.Default.DefaultState, Convert.ToInt32(uid), parts_);
-				(sender as Control).Enabled = false;
-				cancel_btn.Text = @"Close";
+					dt_cc.UpdateCutlist(item_no_, ref_cbx.Text.Trim(), rev_cbx.Text.Trim(), descr_, custid_,
+						dateTimePicker1.Value, Properties.Settings.Default.DefaultState, Convert.ToInt32(uid), parts_);
+					(sender as Control).Enabled = false;
+					cancel_btn.Text = @"Close";
+				}
 				Cursor = Cursors.Arrow;
 			}
 		}

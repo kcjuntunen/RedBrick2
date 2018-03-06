@@ -6,12 +6,6 @@ using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
 	class OpId  : IntProperty {
-		ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter cota =
-			new ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter();
-
-		//ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter cpota =
-		//	new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter();
-
 		public OpId(string name, bool global, SldWorks sw, ModelDoc2 md, string fieldName)
 			: base(name, global, sw, md, @"CUT_PART_OPS", fieldName) {
 				DoNotWrite = true;
@@ -41,14 +35,15 @@ namespace RedBrick2 {
 		public override object Data {
 			get {
 				if (_data == 0) {
-					ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter fcota =
-						new ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter();
-					int opid_ = 0;
-					if (int.TryParse(Value, out opid_)) {
-						string name_ = (string)fcota.GetOpNameByOldID(opid_);
-						int? testvl_ = fcota.GetID(_type, name_);
-						if (testvl_ != null) {
-							_data = (int)testvl_;
+					using (ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter fcota =
+						new ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter()) {
+						int opid_ = 0;
+						if (int.TryParse(Value, out opid_)) {
+							string name_ = (string)fcota.GetOpNameByOldID(opid_);
+							int? testvl_ = fcota.GetID(_type, name_);
+							if (testvl_ != null) {
+								_data = (int)testvl_;
+							}
 						}
 					}
 				}
@@ -57,14 +52,21 @@ namespace RedBrick2 {
 			set {
 				if (value is string) {
 					try {
-						ENGINEERINGDataSet.CUT_PARTSDataTable cpdt =
-							new ENGINEERINGDataSet.CUT_PARTSDataTable();
-						cpdt = cpta.GetDataByPartID(PartID);
-						OpType = (int)cpdt.Rows[0][@"TYPE"];
+						using (ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cpta =
+							new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter()) {
+							using (ENGINEERINGDataSet.CUT_PARTSDataTable cpdt =
+								new ENGINEERINGDataSet.CUT_PARTSDataTable()) {
+								cpta.FillByPartID(cpdt, PartID);
+								OpType = (int)cpdt.Rows[0][@"TYPE"];
+							}
+						}
 					} catch (Exception) {
 
 					}
-					_data = (int)cota.GetOpIDByName(value.ToString(), OpType);
+					using (ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter cota =
+						new ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter()) {
+						_data = (int)cota.GetOpIDByName(value.ToString(), OpType);
+					}
 				} else {
 					try {
 						_data = int.Parse(value.ToString());

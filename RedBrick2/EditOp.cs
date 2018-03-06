@@ -13,12 +13,6 @@ namespace RedBrick2 {
 	/// A window for editing routing data.
 	/// </summary>
 	public partial class EditOp : Form {
-		private ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpota =
-			new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
-
-		private ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter cpo =
-			new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter();
-
 		private ENGINEERINGDataSet.CutPartOpsRow currentRow;
 		private SwProperties PropertySet;
 		private int PartID;
@@ -35,23 +29,27 @@ namespace RedBrick2 {
 			PartID = PropertySet[@"DEPARTMENT"].PartID;
 			NewOp = true;
 
-			ENGINEERINGDataSet.CutPartOpsDataTable dt = new ENGINEERINGDataSet.CutPartOpsDataTable();
-			int _next = 1;
-			currentRow = (ENGINEERINGDataSet.CutPartOpsRow)dt.NewRow();
-			currentRow.POPPART = props.PartsData.PARTID;
-
-			if (PartID > 0) {
-				try {
-					_next = (int)cpota.GetNextInOrder(PartID);
-				} catch (Exception) {
-					// We found no rows.
-				}
-				currentRow.POPORDER = _next;
+			using (ENGINEERINGDataSet.CutPartOpsDataTable dt = new ENGINEERINGDataSet.CutPartOpsDataTable()) {
+				int _next = 1;
+				currentRow = (ENGINEERINGDataSet.CutPartOpsRow)dt.NewRow();
 				currentRow.POPPART = props.PartsData.PARTID;
-			} else {
-				currentRow.POPORDER = 1;
+
+				if (PartID > 0) {
+					try {
+						using (ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpota =
+							new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter()) {
+							_next = (int)cpota.GetNextInOrder(PartID);
+						}
+					} catch (Exception) {
+						// We found no rows.
+					}
+					currentRow.POPORDER = _next;
+					currentRow.POPPART = props.PartsData.PARTID;
+				} else {
+					currentRow.POPORDER = 1;
+				}
+				currentRow.TYPEID = (int)PropertySet[@"DEPARTMENT"].Data;
 			}
-			currentRow.TYPEID = (int)PropertySet[@"DEPARTMENT"].Data;
 		}
 
 		/// <summary>
@@ -121,13 +119,16 @@ namespace RedBrick2 {
 			currentRow.OPRUN = 0.0F;
 			currentRow.OPSETUP = 0.0F;
 
-			if (NewOp && PartID > 0) {
-				currentRow.Table.Rows.Add(currentRow);
-				foreach (ENGINEERINGDataSet.CutPartOpsRow row in currentRow.Table.Rows) {
-					cpota.Update(row);
+			using (ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpota =
+				new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter()) {
+				if (NewOp && PartID > 0) {
+					currentRow.Table.Rows.Add(currentRow);
+					foreach (ENGINEERINGDataSet.CutPartOpsRow row in currentRow.Table.Rows) {
+						cpota.Update(row);
+					}
+				} else {
+					cpota.Update(currentRow);
 				}
-			} else {
-				cpota.Update(currentRow);
 			}
 			Close();
 		}

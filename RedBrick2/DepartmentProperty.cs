@@ -19,22 +19,23 @@ namespace RedBrick2 {
 
 		public override SwProperty Get() {
 			InnerGet();
-			ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cpt =
-				new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
-			if (Value != string.Empty) {
-				int? _id = cpt.GetIDByDescr(Value);
-				if (_id != null) {
-					_data = (int)_id;
+			using (ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cpt =
+				new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter()) {
+				if (Value != string.Empty) {
+					int? _id = cpt.GetIDByDescr(Value);
+					if (_id != null) {
+						_data = (int)_id;
+					} else {
+						_data = 1;
+					}
 				} else {
-					_data = 1;
-				}
-			} else {
-				IntProperty i = new IntProperty(@"DEPTID", true, SwApp, ActiveDoc, @"CUT_PARTS", FieldName);
-				i.Get();
-				int tmp = 0;
-				if (int.TryParse(i.Value, out tmp)) {
-					_data = tmp;
-					Value = (string)cpt.GetDescrByID(tmp);
+					IntProperty i = new IntProperty(@"DEPTID", true, SwApp, ActiveDoc, @"CUT_PARTS", FieldName);
+					i.Get();
+					int tmp = 0;
+					if (int.TryParse(i.Value, out tmp)) {
+						_data = tmp;
+						Value = (string)cpt.GetDescrByID(tmp);
+					}
 				}
 			}
 			return this;
@@ -45,15 +46,16 @@ namespace RedBrick2 {
 		public override object Data {
 			get { return _data; }
 			set {
-				ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cpt =
-					new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
-				int res_ = 0;
-				if (int.TryParse(value.ToString(), out res_)) {
-					_data = res_;
-					Value = (string)cpt.GetDescrByID(_data);
-				} else {
-					_data = (int)cpt.GetIDByDescr(value.ToString());
-					Value = value.ToString();
+				using (ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cpt =
+					new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter()) {
+					int res_ = 0;
+					if (int.TryParse(value.ToString(), out res_)) {
+						_data = res_;
+						Value = (string)cpt.GetDescrByID(_data);
+					} else {
+						_data = (int)cpt.GetIDByDescr(value.ToString());
+						Value = value.ToString();
+					}
 				}
 			}
 		}

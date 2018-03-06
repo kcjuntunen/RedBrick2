@@ -8,9 +8,6 @@ namespace RedBrick2 {
 	/// A routing property. "Value" should be a routing name, and "Data" should be an OPID.
 	/// </summary>
 	public class OpProperty : IntProperty {
-		ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter cota =
-			new ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter();
-
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -42,19 +39,22 @@ namespace RedBrick2 {
 			InnerGet();
 			int intval = 0;
 			int tp = 0;
-			ENGINEERINGDataSet.CUT_PARTSDataTable cpdt = new ENGINEERINGDataSet.CUT_PARTSDataTable();
-			cpdt = cpta.GetDataByPartID(PartID);
-
-			if (cpdt.Rows.Count > 0) {
-				tp = (int)cpdt.Rows[0][@"TYPE"];
+			using (ENGINEERINGDataSet.CUT_PARTSDataTable cpdt = cpta.GetDataByPartID(PartID)) {
+				if (cpdt.Rows.Count > 0) {
+					tp = (int)cpdt.Rows[0][@"TYPE"];
+				}
 			}
 			
 			if (int.TryParse(Value, out intval)) {
-					ENGINEERINGDataSet.CUT_OPSDataTable codt = cota.GetDataByOpID(intval, tp);
-					if (codt.Rows.Count > 0) {
-						FriendlyValue = codt.Rows[0][@"OPNAME"].ToString();
-						Data = intval;
+				using (ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter cota =
+					new ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter()) {
+					using (ENGINEERINGDataSet.CUT_OPSDataTable codt = cota.GetDataByOpID(intval, tp)) {
+						if (codt.Rows.Count > 0) {
+							FriendlyValue = codt.Rows[0][@"OPNAME"].ToString();
+							Data = intval;
+						}
 					}
+				}
 			} else {
 				//ENGINEERINGDataSet.CUT_OPSDataTable codt = cota.GetDataByOpName(Value, tp);
 				FriendlyValue = Value;
@@ -91,24 +91,27 @@ namespace RedBrick2 {
 		public override object Data {
 			get {
 				if (_data == 0) {
-					ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter fcota =
-						new ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter();
-					_data = Convert.ToInt32(fcota.GetID(_type, Value));
+					using (ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter fcota =
+						new ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter()) {
+						_data = Convert.ToInt32(fcota.GetID(_type, Value));
+					}
 				}
 				return _data;
 			}
 
 			set {
 				int res_ = 0;
-				if (int.TryParse(value.ToString(), out res_)) {
-					_data = res_;
-					Value = Convert.ToString(cota.GetOpNameByID(_data));
-				} else {
-					_data = Convert.ToInt32(cota.GetOpIDByName(value.ToString(), OpType));
-					Value = value.ToString();
+				using (ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter cota =
+					new ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter()) {
+					if (int.TryParse(value.ToString(), out res_)) {
+						_data = res_;
+						Value = Convert.ToString(cota.GetOpNameByID(_data));
+					} else {
+						_data = Convert.ToInt32(cota.GetOpIDByName(value.ToString(), OpType));
+						Value = value.ToString();
+					}
 				}
 			}
 		}
-
 	}
 }

@@ -105,11 +105,12 @@ namespace RedBrick2 {
 		private void UISetup() {
 			CheckUpdate();
 			SetupTranslationAndActionTables();
-			ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter leol =
-				new ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter();
-			int _maxecr = 0;
-			if (int.TryParse(leol.GetLastLegacyECR().ToString(), out _maxecr)) {
-				LastLegacyECR = _maxecr;
+			using (ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter leol =
+				new ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter()) {
+				int _maxecr = 0;
+				if (int.TryParse(leol.GetLastLegacyECR().ToString(), out _maxecr)) {
+					LastLegacyECR = _maxecr;
+				}
 			}
 
 			//AppDomain appDomain = AppDomain.CurrentDomain;
@@ -183,23 +184,25 @@ namespace RedBrick2 {
 
 		public void QuikTracLookup() {
 			if (taskpaneHost.mrb != null && taskpaneHost.mrb.ActiveDoc != null) {
-				ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter ta_ =
-					new ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter();
-				System.IO.FileInfo fi_ = new System.IO.FileInfo(taskpaneHost.mrb.ActiveDoc.GetPathName());
-				string lu_ = Redbrick.FileInfoToLookup(fi_);
-				System.Data.DataView dv_ = ta_.GetData(lu_).DefaultView;
-				using (DataDisplay d_ = new DataDisplay(dv_, string.Format(@"{0} - QuicTrac Locations", lu_))) {
-					d_.ShowDialog(taskpaneHost);
+				using (ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter ta_ =
+					new ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter()) {
+					System.IO.FileInfo fi_ = new System.IO.FileInfo(taskpaneHost.mrb.ActiveDoc.GetPathName());
+					string lu_ = FileInfoToLookup(fi_);
+					System.Data.DataView dv_ = ta_.GetData(lu_).DefaultView;
+					using (DataDisplay d_ = new DataDisplay(dv_, string.Format(@"{0} - QuicTrac Locations", lu_))) {
+						d_.ShowDialog(taskpaneHost);
+					}
 				}
 			}
 		}
 
 		public void ArchivePDF() {
-			ENGINEERINGDataSet.GEN_ODOMETERDataTable gota =
-				new ENGINEERINGDataSet.GEN_ODOMETERDataTable();
-			gota.IncrementOdometer(Functions.ArchivePDF);
-			ArchivePDF.csproj.ArchivePDFWrapper apw = new ArchivePDF.csproj.ArchivePDFWrapper(swApp, GeneratePathSet());
-			apw.Archive();
+			using (ENGINEERINGDataSet.GEN_ODOMETERDataTable gota =
+				new ENGINEERINGDataSet.GEN_ODOMETERDataTable()) {
+				gota.IncrementOdometer(Functions.ArchivePDF);
+				ArchivePDF.csproj.ArchivePDFWrapper apw = new ArchivePDF.csproj.ArchivePDFWrapper(swApp, GeneratePathSet());
+				apw.Archive();
+			}
 		}
 
 		public void ConfigureRedbrick() {
@@ -834,7 +837,7 @@ namespace RedBrick2 {
 				lookup_ = lookup_.Split('^')[0];
 			}
 
-			if (conforming_partnumber(lookup_) && !lookup_.StartsWith(@"Z")) {
+			if (IsConformingPartnumber(lookup_) && !lookup_.StartsWith(@"Z")) {
 				return lookup_.Trim();
 			}
 
@@ -863,7 +866,7 @@ namespace RedBrick2 {
 			return lookup_;
 		}
 
-		static private bool conforming_partnumber(string _part) {
+		static public bool IsConformingPartnumber(string _part) {
 			System.Text.RegularExpressions.Regex r_ =
 				new System.Text.RegularExpressions.Regex(Redbrick.BOMFilter[0]);
 			return r_.IsMatch(_part);

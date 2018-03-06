@@ -358,9 +358,10 @@ namespace RedBrick2 {
 
 		private void GetCutlistData() {
 			if (partLookup != null) {
-				ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cpta =
-					new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
-				cpta.FillByPartnum(eNGINEERINGDataSet.CUT_PARTS, partLookup);
+				using (ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cpta =
+					new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter()) {
+					cpta.FillByPartnum(eNGINEERINGDataSet.CUT_PARTS, partLookup);
+				}
 				if (eNGINEERINGDataSet.CUT_PARTS.Count > 0) {
 					Row = eNGINEERINGDataSet.CUT_PARTS.Rows[0] as ENGINEERINGDataSet.CUT_PARTSRow;
 					PropertySet.PartID = Row.PARTID;
@@ -380,13 +381,15 @@ namespace RedBrick2 {
 				checked_at_start = updateCNCcb.Checked;
 			}
 			if (Row != null) {
-				ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter cpota =
-					new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter();
-				cpota.FillByPartID(eNGINEERINGDataSet.CUT_PART_OPS, Row.PARTID);
+				using (ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter cpota =
+					new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter()) {
+					cpota.FillByPartID(eNGINEERINGDataSet.CUT_PART_OPS, Row.PARTID);
+				}
 				if (cutlistctl.SelectedItem != null) {
-					ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter ccpta =
-						new ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter();
-					ccpta.FillByCutlistIDAndPartID(eNGINEERINGDataSet.CUT_CUTLIST_PARTS, Row.PARTID, Convert.ToInt32(cutlistctl.SelectedValue));
+					using (ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter ccpta =
+						new ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter()) {
+						ccpta.FillByCutlistIDAndPartID(eNGINEERINGDataSet.CUT_CUTLIST_PARTS, Row.PARTID, Convert.ToInt32(cutlistctl.SelectedValue));
+					}
 					if (eNGINEERINGDataSet.CUT_CUTLIST_PARTS.Count > 0) {
 						CutlistPartsRow = eNGINEERINGDataSet.CUT_CUTLIST_PARTS[0];
 					}
@@ -691,15 +694,16 @@ namespace RedBrick2 {
 			data_from_db = isIn;
 			if (isIn) {
 				groupBox1.ForeColor = Properties.Settings.Default.NormalForeground;
-				ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cpta =
-					new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
-				string hash_ = Row[@"HASH"] == DBNull.Value ? "\nOld part; no location information." : string.Empty;
-				if (Row[@"HASH"] != DBNull.Value) {
-					hash_ = PropertySet.Hash == Row.HASH ?
-						"\nLocation is correct." : "\nThis part has been moved.";
-				}
+				//using (ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cpta =
+				//	new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter()) {
+					string hash_ = Row[@"HASH"] == DBNull.Value ? "\nOld part; no location information." : string.Empty;
+					if (Row[@"HASH"] != DBNull.Value) {
+						hash_ = PropertySet.Hash == Row.HASH ?
+							"\nLocation is correct." : "\nThis part has been moved.";
+					}
 				string msg_ = Properties.Resources.InfoFromDB + hash_;
 				groupbox_tooltip.SetToolTip(groupBox1, msg_);
+				//}
 			} else {
 				string msg_ = Properties.Resources.InfoNotFromDB;
 				groupbox_tooltip.SetToolTip(groupBox1, msg_);
@@ -741,15 +745,16 @@ namespace RedBrick2 {
 		private void GetDepartmentFromPart() {
 			int type = IntTryProp(@"DEPTID");
 			if (type < 1) {
-				ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter pta =
-					new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
-				string dept = StrTryProp(@"DEPARTMENT");
-				if (dept != string.Empty) {
-					type = (int)pta.GetIDByDescr(StrTryProp(@"DEPARTMENT"));
+				using (ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter pta =
+					new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter()) {
+					string dept = StrTryProp(@"DEPARTMENT");
+					if (dept != string.Empty) {
+						type = (int)pta.GetIDByDescr(StrTryProp(@"DEPARTMENT"));
+					}
 				}
+				type_cbx.SelectedValue = type;
+				FilterOps(string.Format(@"TYPEID = {0}", type));
 			}
-			type_cbx.SelectedValue = type;
-			FilterOps(string.Format(@"TYPEID = {0}", type));
 		}
 
 		private void GetMaterialFromPart() {
@@ -761,8 +766,8 @@ namespace RedBrick2 {
 		}
 
 		private void GetEdgesFromPart() {
-			ENGINEERINGDataSet.CUT_EDGESDataTable ed =
-				new ENGINEERINGDataSet.CUT_EDGESDataTable();
+			//ENGINEERINGDataSet.CUT_EDGESDataTable ed =
+			//	new ENGINEERINGDataSet.CUT_EDGESDataTable();
 			int er = IntTryProp("EFID");
 			if (er < 1 && PropertySet.Contains(@"EDGE FRONT (L)")) {
 				er = (int)PropertySet[@"EDGE FRONT (L)"].Data;
@@ -800,30 +805,30 @@ namespace RedBrick2 {
 				FilterOps(string.Format(@"TYPEID = {0}", Row.TYPE));
 			}
 
-			ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter cpota =
-				new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter();
-			cpota.FillByPartID(eNGINEERINGDataSet.CUT_PART_OPS, Row.PARTID);
-
-			for (int i = 0; i < cbxes.Length; i++) {
-				ComboBox current = cbxes[i];
-				string op_ = string.Format(@"OP{0}", i + 1);
-				string opid_ = string.Format(@"OP{0}ID", i + 1);
-				if (i < eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count) {
-					ENGINEERINGDataSet.CUT_PART_OPSRow r =
-						(eNGINEERINGDataSet.CUT_PART_OPS.Rows[i] as ENGINEERINGDataSet.CUT_PART_OPSRow);
-					current.SelectedValue = r.POPOP;
-					if (PropertySet.ContainsKey(op_)) {
-						OpProperty prop_ = PropertySet[op_] as OpProperty;
-						prop_.OpType = Convert.ToInt32(type_cbx.SelectedValue);
-						prop_.Data = r.POPOP;
+			using (ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter cpota =
+				new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter()) {
+				cpota.FillByPartID(eNGINEERINGDataSet.CUT_PART_OPS, Row.PARTID);
+				for (int i = 0; i < cbxes.Length; i++) {
+					ComboBox current = cbxes[i];
+					string op_ = string.Format(@"OP{0}", i + 1);
+					string opid_ = string.Format(@"OP{0}ID", i + 1);
+					if (i < eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count) {
+						ENGINEERINGDataSet.CUT_PART_OPSRow r =
+							(eNGINEERINGDataSet.CUT_PART_OPS.Rows[i] as ENGINEERINGDataSet.CUT_PART_OPSRow);
+						current.SelectedValue = r.POPOP;
+						if (PropertySet.ContainsKey(op_)) {
+							OpProperty prop_ = PropertySet[op_] as OpProperty;
+							prop_.OpType = Convert.ToInt32(type_cbx.SelectedValue);
+							prop_.Data = r.POPOP;
+						}
+						if (PropertySet.ContainsKey(opid_)) {
+							OpId propid_ = PropertySet[opid_] as OpId;
+							propid_.OpType = Convert.ToInt32(type_cbx.SelectedValue);
+							propid_.Set(r.POPOP, r.POPOP.ToString());
+						}
+					} else {
+						current.SelectedValue = -1;
 					}
-					if (PropertySet.ContainsKey(opid_)) {
-						OpId propid_ = PropertySet[opid_] as OpId;
-						propid_.OpType = Convert.ToInt32(type_cbx.SelectedValue);
-						propid_.Set(r.POPOP, r.POPOP.ToString());
-					}
-				} else {
-					current.SelectedValue = -1;
 				}
 			}
 			GetEstimationFromDB();
@@ -833,19 +838,20 @@ namespace RedBrick2 {
 			double setupTime = 0.0f;
 			double runTime = 0.0f;
 			string scope_ = string.Empty;
-			ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter cpota =
-				new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter();
-			if (Properties.Settings.Default.EstimateSource || PropertySet.CutlistID < 1) {
-				scope_ = @"/part";
-				if (PropertySet.PartID != 0) {
-					setupTime = Convert.ToDouble(cpota.GetPartSetupTime(PropertySet.PartID));
-					runTime = Convert.ToDouble(cpota.GetPartRunTime(PropertySet.PartID));
-				}
-			} else {
-				scope_ = @"/cutlist";
-				if (PropertySet.CutlistID != 0) {
-					setupTime = Convert.ToDouble(cpota.GetCutlistSetupTime(PropertySet.CutlistID));
-					runTime = Convert.ToDouble(cpota.GetCutlistRunTime(PropertySet.CutlistID));
+			using (ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter cpota =
+				new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter()) {
+				if (Properties.Settings.Default.EstimateSource || PropertySet.CutlistID < 1) {
+					scope_ = @"/part";
+					if (PropertySet.PartID != 0) {
+						setupTime = Convert.ToDouble(cpota.GetPartSetupTime(PropertySet.PartID));
+						runTime = Convert.ToDouble(cpota.GetPartRunTime(PropertySet.PartID));
+					}
+				} else {
+					scope_ = @"/cutlist";
+					if (PropertySet.CutlistID != 0) {
+						setupTime = Convert.ToDouble(cpota.GetCutlistSetupTime(PropertySet.CutlistID));
+						runTime = Convert.ToDouble(cpota.GetCutlistRunTime(PropertySet.CutlistID));
+					}
 				}
 			}
 
@@ -1408,10 +1414,11 @@ namespace RedBrick2 {
 		/// </summary>
 		public void Commit() {
 			if (Row == null) {
-				ENGINEERINGDataSet.CUT_PARTSDataTable dt =
-					new ENGINEERINGDataSet.CUT_PARTSDataTable();
-				Row = dt.NewRow() as ENGINEERINGDataSet.CUT_PARTSRow;
-				Row.PARTNUM = partLookup;
+				using (ENGINEERINGDataSet.CUT_PARTSDataTable dt =
+					new ENGINEERINGDataSet.CUT_PARTSDataTable()) {
+					Row = dt.NewRow() as ENGINEERINGDataSet.CUT_PARTSRow;
+					Row.PARTNUM = partLookup;
+				}
 			}
 			if (tabControl1.SelectedTab == tabPage1) {
 				UpdateGeneralProperties();
@@ -2099,10 +2106,11 @@ namespace RedBrick2 {
 					CutlistPartsRow = eNGINEERINGDataSet.CUT_CUTLIST_PARTS[0];
 				}
 
-			ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter ccpta =
-					new ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter();
-				ccpta.FillByCutlistIDAndPartID(eNGINEERINGDataSet.CUT_CUTLIST_PARTS, PropertySet.PartID,
+				using (ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter ccpta =
+						new ENGINEERINGDataSetTableAdapters.CUT_CUTLIST_PARTSTableAdapter()) {
+					ccpta.FillByCutlistIDAndPartID(eNGINEERINGDataSet.CUT_CUTLIST_PARTS, PropertySet.PartID,
 					Convert.ToInt32(cutlistctl.SelectedValue));
+				}
 				if (eNGINEERINGDataSet.CUT_CUTLIST_PARTS.Rows.Count > 0) {
 					CutlistPartsRow = (eNGINEERINGDataSet.CUT_CUTLIST_PARTS.Rows[0] as ENGINEERINGDataSet.CUT_CUTLIST_PARTSRow);
 					Set_Specific(CutlistPartsRow);
@@ -2212,12 +2220,13 @@ namespace RedBrick2 {
 
 		private void button3_Click(object sender, EventArgs e) {
 			if (Row != null && eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count > 0) {
-				ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpoa_ =
-					new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
-				ENGINEERINGDataSet.CutPartOpsRow r =
-					(cpoa_.GetDataByIDnOrder(Row.PARTID, 1)[0] as ENGINEERINGDataSet.CutPartOpsRow);
-				using (EditOp eo = new EditOp(r)) {
-					eo.ShowDialog(this);
+				using (ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpoa_ =
+					new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter()) {
+					ENGINEERINGDataSet.CutPartOpsRow r =
+						(cpoa_.GetDataByIDnOrder(Row.PARTID, 1)[0] as ENGINEERINGDataSet.CutPartOpsRow);
+					using (EditOp eo = new EditOp(r)) {
+						eo.ShowDialog(this);
+					}
 				}
 			}
 			GetRouting();
@@ -2225,12 +2234,13 @@ namespace RedBrick2 {
 
 		private void button4_Click(object sender, EventArgs e) {
 			if (Row != null && eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count > 1) {
-				ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpoa_ =
-					new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
-				ENGINEERINGDataSet.CutPartOpsRow r =
-					(cpoa_.GetDataByIDnOrder(Row.PARTID, 2)[0] as ENGINEERINGDataSet.CutPartOpsRow);
-				using (EditOp eo = new EditOp(r)) {
-					eo.ShowDialog(this);
+				using (ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpoa_ =
+					new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter()) {
+					ENGINEERINGDataSet.CutPartOpsRow r =
+						(cpoa_.GetDataByIDnOrder(Row.PARTID, 2)[0] as ENGINEERINGDataSet.CutPartOpsRow);
+					using (EditOp eo = new EditOp(r)) {
+						eo.ShowDialog(this);
+					}
 				}
 			}
 			GetRouting();
@@ -2238,12 +2248,13 @@ namespace RedBrick2 {
 
 		private void button5_Click(object sender, EventArgs e) {
 			if (Row != null && eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count > 2) {
-				ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpoa_ =
-					new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
-				ENGINEERINGDataSet.CutPartOpsRow r =
-					(cpoa_.GetDataByIDnOrder(Row.PARTID, 3)[0] as ENGINEERINGDataSet.CutPartOpsRow);
-				using (EditOp eo = new EditOp(r)) {
-					eo.ShowDialog(this);
+				using (ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpoa_ =
+					new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter()) {
+					ENGINEERINGDataSet.CutPartOpsRow r =
+						(cpoa_.GetDataByIDnOrder(Row.PARTID, 3)[0] as ENGINEERINGDataSet.CutPartOpsRow);
+					using (EditOp eo = new EditOp(r)) {
+						eo.ShowDialog(this);
+					}
 				}
 			}
 			GetRouting();
@@ -2251,25 +2262,27 @@ namespace RedBrick2 {
 
 		private void button6_Click(object sender, EventArgs e) {
 			if (Row != null && eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count > 3) {
-				ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpoa_ =
-					new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
-				ENGINEERINGDataSet.CutPartOpsRow r =
-					(cpoa_.GetDataByIDnOrder(Row.PARTID, 4)[0] as ENGINEERINGDataSet.CutPartOpsRow);
-				using (EditOp eo = new EditOp(r)) {
-					eo.ShowDialog(this);
+				using (ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpoa_ =
+					new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter()) {
+					ENGINEERINGDataSet.CutPartOpsRow r =
+						(cpoa_.GetDataByIDnOrder(Row.PARTID, 4)[0] as ENGINEERINGDataSet.CutPartOpsRow);
+					using (EditOp eo = new EditOp(r)) {
+						eo.ShowDialog(this);
+					}
 				}
+				GetRouting();
 			}
-			GetRouting();
 		}
 
 		private void button7_Click(object sender, EventArgs e) {
 			if (Row != null && eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count > 4) {
-				ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpoa_ =
-					new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter();
-				ENGINEERINGDataSet.CutPartOpsRow r =
-					(cpoa_.GetDataByIDnOrder(Row.PARTID, 5)[0] as ENGINEERINGDataSet.CutPartOpsRow);
-				using (EditOp eo = new EditOp(r)) {
-				eo.ShowDialog(this);
+				using (ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter cpoa_ =
+					new ENGINEERINGDataSetTableAdapters.CutPartOpsTableAdapter()) {
+					ENGINEERINGDataSet.CutPartOpsRow r =
+						(cpoa_.GetDataByIDnOrder(Row.PARTID, 5)[0] as ENGINEERINGDataSet.CutPartOpsRow);
+					using (EditOp eo = new EditOp(r)) {
+						eo.ShowDialog(this);
+					}
 				}
 			}
 			GetRouting();
@@ -2441,16 +2454,18 @@ namespace RedBrick2 {
 			if (cl_stat_userediting && cutlistctl.SelectedItem != null) {
 				DataRowView rv_ = cutlistctl.SelectedItem as DataRowView;
 				int clid_ = Convert.ToInt32(rv_[@"CLID"]);
-				ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu_ =
-					new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
-				ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter cc_ =
-					new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
-				ComboBox cbx_ = sender as ComboBox;
-				int uid = Convert.ToInt32(gu_.GetUID(System.Environment.UserName));
-				if (clid_ != 0 && cbx_.SelectedItem != null) {
-					cc_.UpdateState(uid, Convert.ToInt32(cbx_.SelectedValue), clid_);
+				using (ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu_ =
+					new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
+					using (ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter cc_ =
+						new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter()) {
+						ComboBox cbx_ = sender as ComboBox;
+						int uid = Convert.ToInt32(gu_.GetUID(System.Environment.UserName));
+						if (clid_ != 0 && cbx_.SelectedItem != null) {
+							cc_.UpdateState(uid, Convert.ToInt32(cbx_.SelectedValue), clid_);
+						}
+						cl_stat_userediting = false;
+					}
 				}
-				cl_stat_userediting = false;
 			}
 		}
 
@@ -2500,9 +2515,10 @@ namespace RedBrick2 {
 
 		private void groupBox2_MouseHover(object sender, EventArgs e) {
 			if (Properties.Settings.Default.ExtraInfo && req_info_ == string.Empty) {
-				ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter ri_ =
-					new ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter();
-				ri_.FillByFixtureID(eNGINEERINGDataSet.RequestInfo, PropertySet.PartLookup);
+				using (ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter ri_ =
+					new ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter()) {
+					ri_.FillByFixtureID(eNGINEERINGDataSet.RequestInfo, PropertySet.PartLookup);
+				}
 				if (eNGINEERINGDataSet.RequestInfo.Count > 0) {
 					ENGINEERINGDataSet.RequestInfoRow r_ =
 						(ENGINEERINGDataSet.RequestInfoRow)eNGINEERINGDataSet.RequestInfo[0];
@@ -2541,12 +2557,13 @@ namespace RedBrick2 {
 			}
 
 			StringBuilder sb_ = new StringBuilder();
-			ENGINEERINGDataSet.CUT_MATERIALSDataTable dt_ =
-				new ENGINEERINGDataSet.CUT_MATERIALSDataTable();
-			foreach (var item in dt_.GetMaterialPricing(_matid)) {
-				sb_.AppendFormat(@"{0} {1}{2}", Properties.Settings.Default.Bullet, item, System.Environment.NewLine);
+			using (ENGINEERINGDataSet.CUT_MATERIALSDataTable dt_ =
+				new ENGINEERINGDataSet.CUT_MATERIALSDataTable()) {
+				foreach (var item in dt_.GetMaterialPricing(_matid)) {
+					sb_.AppendFormat(@"{0} {1}{2}", Properties.Settings.Default.Bullet, item, System.Environment.NewLine);
+				}
+				mat_price_ = sb_.ToString();
 			}
-			mat_price_ = sb_.ToString();
 			return mat_price_;
 		}
 
@@ -2556,10 +2573,11 @@ namespace RedBrick2 {
 			}
 
 			StringBuilder sb_ = new StringBuilder();
-			ENGINEERINGDataSet.CUT_MATERIALSDataTable dt_ =
-				new ENGINEERINGDataSet.CUT_MATERIALSDataTable();
-			foreach (var item in dt_.GetEdgePricing(_edgeid)) {
-				sb_.AppendFormat(@"{0} {1}{2}", Properties.Settings.Default.Bullet, item, System.Environment.NewLine);
+			using (ENGINEERINGDataSet.CUT_MATERIALSDataTable dt_ =
+				new ENGINEERINGDataSet.CUT_MATERIALSDataTable()) {
+				foreach (var item in dt_.GetEdgePricing(_edgeid)) {
+					sb_.AppendFormat(@"{0} {1}{2}", Properties.Settings.Default.Bullet, item, System.Environment.NewLine);
+				}
 			}
 			_info = sb_.ToString();
 		}

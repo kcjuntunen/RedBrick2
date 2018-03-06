@@ -12,9 +12,6 @@ namespace RedBrick2 {
 	/// A property where "Data" is an int of an ID from GEN_USERS.
 	/// </summary>
 	public class AuthorProperty : StringProperty {
-		ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu =
-			new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
-
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -34,17 +31,21 @@ namespace RedBrick2 {
 		public override SwProperty Get() {
 			InnerGet();
 			if (Value.Length > 0) {
-				ENGINEERINGDataSet.GEN_USERSDataTable dt =
-					new ENGINEERINGDataSet.GEN_USERSDataTable();
-				ENGINEERINGDataSet.GEN_USERSRow row = null;
-				string initial_lookup_ = string.Format(@"{0}%", Value.Substring(0, 2));
-				gu.FillByInitialAndDepartment(dt, initial_lookup_, Properties.Settings.Default.UserDept);
-				if (dt.Rows.Count > 0) {
-					row = dt[0];
-					_data = row.UID;
-					FullName = row.Fullname;
-				} else {
-					FullName = Value;
+				using (ENGINEERINGDataSet.GEN_USERSDataTable dt =
+					new ENGINEERINGDataSet.GEN_USERSDataTable()) {
+					ENGINEERINGDataSet.GEN_USERSRow row = null;
+					string initial_lookup_ = string.Format(@"{0}%", Value.Substring(0, 2));
+					using (ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu =
+						new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
+						gu.FillByInitialAndDepartment(dt, initial_lookup_, Properties.Settings.Default.UserDept);
+					}
+					if (dt.Rows.Count > 0) {
+						row = dt[0];
+						_data = row.UID;
+						FullName = row.Fullname;
+					} else {
+						FullName = Value;
+					}
 				}
 			}
 			return this;
@@ -73,14 +74,19 @@ namespace RedBrick2 {
 		/// </summary>
 		public override object Data {
 			get { return _data; }
-			set {
+			set
+			{
 				_data = Convert.ToInt32(value);
-				ENGINEERINGDataSet.GEN_USERSDataTable dt = gu.GetDataByUID(_data);
-				if (dt.Rows.Count > 0) {
-					Value = dt[0].INITIAL.Substring(0, 2);
-					FullName = dt[0].Fullname;
-				} else {
-					FullName = Value;
+				using (ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu =
+					new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
+					using (ENGINEERINGDataSet.GEN_USERSDataTable dt = gu.GetDataByUID(_data)) {
+						if (dt.Rows.Count > 0) {
+							Value = dt[0].INITIAL.Substring(0, 2);
+							FullName = dt[0].Fullname;
+						} else {
+							FullName = Value;
+						}
+					}
 				}
 			}
 		}

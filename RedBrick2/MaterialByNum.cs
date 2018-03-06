@@ -18,9 +18,10 @@ namespace RedBrick2 {
 		private int get_material(string search_term_) {
 			int res_ = 0;
 			if (search_term_.Length > 0) {
-				ENGINEERINGDataSetTableAdapters.CUT_MATERIAL_SIZESTableAdapter cms_ =
-					new ENGINEERINGDataSetTableAdapters.CUT_MATERIAL_SIZESTableAdapter();
-				res_ = Convert.ToInt32(cms_.MatIDbyPartnum(search_term_));
+				using (ENGINEERINGDataSetTableAdapters.CUT_MATERIAL_SIZESTableAdapter cms_ =
+					new ENGINEERINGDataSetTableAdapters.CUT_MATERIAL_SIZESTableAdapter()) {
+					res_ = Convert.ToInt32(cms_.MatIDbyPartnum(search_term_));
+				}
 			}
 			return res_;
 		}
@@ -28,9 +29,10 @@ namespace RedBrick2 {
 		private int get_edging(string search_term_) {
 			int res_ = 0;
 			if (search_term_.Length > 0 && search_term_ != @"SEE JOB BOM") {
-				ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter cet_ =
-					new ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter();
-				res_ = Convert.ToInt32(cet_.EdgeIDbyEdgenum(search_term_));
+				using (ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter cet_ =
+					new ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter()) {
+					res_ = Convert.ToInt32(cet_.EdgeIDbyEdgenum(search_term_));
+				}
 			}
 			return res_;
 		}

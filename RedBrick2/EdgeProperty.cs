@@ -45,42 +45,44 @@ namespace RedBrick2 {
 					Get();
 				}
 				if (_data == 0) {
-					ENGINEERINGDataSet.CUT_EDGESDataTable dt_ =
-						new ENGINEERINGDataSet.CUT_EDGESDataTable();
-					_data = Convert.ToInt32(dt_.GetEdgeIDByDescr(Value));
+					using (ENGINEERINGDataSet.CUT_EDGESDataTable dt_ =
+						new ENGINEERINGDataSet.CUT_EDGESDataTable()) {
+						_data = Convert.ToInt32(dt_.GetEdgeIDByDescr(Value));
+					}
 				}
 				return _data < 1 ? 0 : _data;
 			}
 			set {
 				if (value is string) {
-					ENGINEERINGDataSet.CUT_EDGESDataTable dt_ =
-						new ENGINEERINGDataSet.CUT_EDGESDataTable();
-					if ((string)value != string.Empty) {
-						Value = value.ToString();
-						try {
-							_data = dt_.GetEdgeIDByDescr(value.ToString());
-						} catch (Exception) {
+					using (ENGINEERINGDataSet.CUT_EDGESDataTable dt_ =
+						new ENGINEERINGDataSet.CUT_EDGESDataTable()) {
+						if ((string)value != string.Empty) {
+							Value = value.ToString();
+							try {
+								_data = dt_.GetEdgeIDByDescr(value.ToString());
+							} catch (Exception) {
+								_data = 0;
+							}
+						} else {
 							_data = 0;
 						}
-					} else {
-						_data = 0;
 					}
 				} else {
-					ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter ce =
-						new ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter();
-					if (value != null) {
-						int res;
-						if (!int.TryParse(value.ToString(), out res)) {
-							res = 0;
+					using (ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter ce =
+						new ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter()) {
+						if (value != null) {
+							int res;
+							if (!int.TryParse(value.ToString(), out res)) {
+								res = 0;
+							}
+							_data = res;
+							Value = (string)ce.GetEdgeDescrByID(res);
+						} else {
+							_data = 0;
 						}
-						_data = res;
-						Value = (string)ce.GetEdgeDescrByID(res);
-					} else {
-						_data = 0;
 					}
 				}
 			}
 		}
-
 	}
 }

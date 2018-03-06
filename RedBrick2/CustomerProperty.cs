@@ -10,9 +10,6 @@ namespace RedBrick2 {
 	/// A property that manages customer data.
 	/// </summary>
 	public class CustomerProperty : StringProperty {
-		ENGINEERINGDataSetTableAdapters.GEN_CUSTOMERSTableAdapter gc =
-			new ENGINEERINGDataSetTableAdapters.GEN_CUSTOMERSTableAdapter();
-
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -35,7 +32,10 @@ namespace RedBrick2 {
 
 			ENGINEERINGDataSet.GEN_CUSTOMERSRow row = null;
 			try {
-				row = gc.GetDataBySearchTerm(searchTerm + '%')[0];
+				using (ENGINEERINGDataSetTableAdapters.GEN_CUSTOMERSTableAdapter gc =
+					new ENGINEERINGDataSetTableAdapters.GEN_CUSTOMERSTableAdapter()) {
+					row = gc.GetDataBySearchTerm(searchTerm + '%')[0];
+				}
 			} catch (Exception) {
 				//
 			}
@@ -55,23 +55,27 @@ namespace RedBrick2 {
 		/// <summary>
 		/// Data formated for entry into a db.
 		/// </summary>
-		public override object Data {
+		public override object Data
+		{
 			get { return _data; }
-			set {
+			set
+			{
 				if (value != null) {
 					_data = (int)value;
-					ENGINEERINGDataSet.GEN_CUSTOMERSDataTable dt_ = gc.GetDataByCustID(_data);
-					if (dt_.Count > 0) {
-						ENGINEERINGDataSet.GEN_CUSTOMERSRow row = dt_[0] as ENGINEERINGDataSet.GEN_CUSTOMERSRow;
-						if (row != null) {
-							string firstWord = row.CUSTOMER.Split(' ')[0];
-							string shortCustName = string.Format(@"{0} - {1}", firstWord, row.CUSTNUM);
-							Value = shortCustName;
+					using (ENGINEERINGDataSetTableAdapters.GEN_CUSTOMERSTableAdapter gc =
+						new ENGINEERINGDataSetTableAdapters.GEN_CUSTOMERSTableAdapter()) {
+						ENGINEERINGDataSet.GEN_CUSTOMERSDataTable dt_ = gc.GetDataByCustID(_data);
+						if (dt_.Count > 0) {
+							ENGINEERINGDataSet.GEN_CUSTOMERSRow row = dt_[0] as ENGINEERINGDataSet.GEN_CUSTOMERSRow;
+							if (row != null) {
+								string firstWord = row.CUSTOMER.Split(' ')[0];
+								string shortCustName = string.Format(@"{0} - {1}", firstWord, row.CUSTNUM);
+								Value = shortCustName;
+							}
 						}
 					}
 				}
 			}
 		}
-
 	}
 }

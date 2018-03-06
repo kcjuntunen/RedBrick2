@@ -95,9 +95,10 @@ namespace RedBrick2 {
 		private string GetJobsDue() {
 			if (partLookup != null && partLookup != string.Empty &&
 				RevFromDrw != null && RevFromDrw != string.Empty) {
-				ENGINEERINGDataSetTableAdapters.jomastTableAdapter jo_ =
-					new ENGINEERINGDataSetTableAdapters.jomastTableAdapter();
-				jo_.FillByItemAndRev(eNGINEERINGDataSet.jomast, partLookup, RevFromDrw);
+				using (ENGINEERINGDataSetTableAdapters.jomastTableAdapter jo_ =
+					new ENGINEERINGDataSetTableAdapters.jomastTableAdapter()) {
+					jo_.FillByItemAndRev(eNGINEERINGDataSet.jomast, partLookup, RevFromDrw);
+				}
 				int lim_ = eNGINEERINGDataSet.jomast.Count > 3 ? 3 : eNGINEERINGDataSet.jomast.Count;
 				if (lim_ > 0) {
 					StringBuilder sb_ = new StringBuilder(string.Format("Open/Released jobs for {0} REV {1}\n", partLookup, RevFromDrw));
@@ -111,9 +112,10 @@ namespace RedBrick2 {
 						sb_.AppendFormat("Job #: {0}; Due: {1:M/d/yyyy}; Qty: {2:0}; Status: {3}\n",
 							r_.fjobno, r_.fddue_date, r_.fquantity, r_.fstatus);
 					}
-					ENGINEERINGDataSetTableAdapters.jomastTotalsTableAdapter jot_ =
-						new ENGINEERINGDataSetTableAdapters.jomastTotalsTableAdapter();
-					jot_.FillCountByItemAndRev(eNGINEERINGDataSet.jomastTotals, partLookup, RevFromDrw);
+					using (ENGINEERINGDataSetTableAdapters.jomastTotalsTableAdapter jot_ =
+						new ENGINEERINGDataSetTableAdapters.jomastTotalsTableAdapter()) {
+						jot_.FillCountByItemAndRev(eNGINEERINGDataSet.jomastTotals, partLookup, RevFromDrw);
+					}
 					if (eNGINEERINGDataSet.jomastTotals.Count > 0) {
 						ENGINEERINGDataSet.jomastTotalsRow r_ = eNGINEERINGDataSet.jomastTotals[0] as ENGINEERINGDataSet.jomastTotalsRow;
 						if (r_.jobqty > lim_) {
@@ -277,28 +279,30 @@ namespace RedBrick2 {
 				}
 				auth_cpx.SelectedValue = (int)ap_.Data;
 			} else {
-				ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu =
-					new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
-				int? uid = gu.GetUID(System.Environment.UserName);
-				if (uid > 0) {
-					auth_cpx.SelectedValue = uid;
+				using (ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu =
+					new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
+					int? uid = gu.GetUID(System.Environment.UserName);
+					if (uid > 0) {
+						auth_cpx.SelectedValue = uid;
+					}
 				}
 			}
 		}
 
 		private void FigureOutRev() {
-			ENGINEERINGDataSetTableAdapters.RevListTableAdapter rl =
-				new ENGINEERINGDataSetTableAdapters.RevListTableAdapter();
-			rev_cbx.DisplayMember = @"REV";
-			rev_cbx.ValueMember = @"REV";
-			rev_cbx.DataSource = rl.GetData();
-			SwProperty _p = new StringProperty(@"REVISION LEVEL", true, SwApp, ActiveDoc, string.Empty);
-			PropertySet.Add(_p.Get());
-			RevFromDrw = _p.Value.Trim();
-			rev_cbx.Text = RevFromDrw;
-			bool err_ = RevFromFile != null && RevFromDrw != RevFromFile;
-			if (Properties.Settings.Default.Warn && err_) {
-				ToggleRevWarn(true);
+			using (ENGINEERINGDataSetTableAdapters.RevListTableAdapter rl =
+				new ENGINEERINGDataSetTableAdapters.RevListTableAdapter()) {
+				rev_cbx.DisplayMember = @"REV";
+				rev_cbx.ValueMember = @"REV";
+				rev_cbx.DataSource = rl.GetData();
+				SwProperty _p = new StringProperty(@"REVISION LEVEL", true, SwApp, ActiveDoc, string.Empty);
+				PropertySet.Add(_p.Get());
+				RevFromDrw = _p.Value.Trim();
+				rev_cbx.Text = RevFromDrw;
+				bool err_ = RevFromFile != null && RevFromDrw != RevFromFile;
+				if (Properties.Settings.Default.Warn && err_) {
+					ToggleRevWarn(true);
+				}
 			}
 		}
 
@@ -326,15 +330,17 @@ namespace RedBrick2 {
 
 		private void FigureOutStatus() {
 			if (partLookup != null && partLookup.Length > 0) {
-				ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter cc =
-					new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
-				ENGINEERINGDataSet.CUT_CUTLISTSDataTable dt =
-					cc.GetDataByName(partLookup, RevFromDrw.ToString());
-				if (dt.Rows.Count > 0) {
-					status_cbx.SelectedValue = dt[0].STATEID;
-					clid = dt[0].CLID;
-				} else {
-					status_cbx.SelectedValue = -1;
+				using (ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter cc =
+					new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter()) {
+					using (ENGINEERINGDataSet.CUT_CUTLISTSDataTable dt =
+						cc.GetDataByName(partLookup, RevFromDrw.ToString())) {
+						if (dt.Rows.Count > 0) {
+							status_cbx.SelectedValue = dt[0].STATEID;
+							clid = dt[0].CLID;
+						} else {
+							status_cbx.SelectedValue = -1;
+						}
+					}
 				}
 			}
 			button3.Enabled = clid > 0;
@@ -686,14 +692,16 @@ namespace RedBrick2 {
 
 		private void status_cbx_SelectedIndexChanged(object sender, EventArgs e) {
 			if (user_editing) {
-				ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu_ =
-					new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
-				ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter cc_ =
-					new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
-				ComboBox cbx_ = sender as ComboBox;
-				int uid = Convert.ToInt32(gu_.GetUID(System.Environment.UserName));
-				if (clid != 0 && cbx_.SelectedItem != null) {
-					cc_.UpdateState(uid, Convert.ToInt32(cbx_.SelectedValue), clid);
+				using (ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu_ =
+					new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
+					using (ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter cc_ =
+						new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter()) {
+						ComboBox cbx_ = sender as ComboBox;
+						int uid = Convert.ToInt32(gu_.GetUID(System.Environment.UserName));
+						if (clid != 0 && cbx_.SelectedItem != null) {
+							cc_.UpdateState(uid, Convert.ToInt32(cbx_.SelectedValue), clid);
+						}
+					}
 				}
 				user_editing = false;
 			}
@@ -728,12 +736,12 @@ namespace RedBrick2 {
 		}
 
 		private void display_req_info(Control sender) {
-			ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter ri_ =
-				new ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter();
-			ri_.FillByItemNum(eNGINEERINGDataSet.RequestInfo, partLookup);
+			using (ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter ri_ =
+				new ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter()) {
+				ri_.FillByItemNum(eNGINEERINGDataSet.RequestInfo, partLookup);
+			}
 			if (eNGINEERINGDataSet.RequestInfo.Count > 0) {
-				ENGINEERINGDataSet.RequestInfoRow r_ =
-					(ENGINEERINGDataSet.RequestInfoRow)eNGINEERINGDataSet.RequestInfo[0];
+				ENGINEERINGDataSet.RequestInfoRow r_ = eNGINEERINGDataSet.RequestInfo[0];
 				StringBuilder sb_ = new StringBuilder();
 				if (r_[@"FIXID"] != DBNull.Value) {
 					sb_.AppendFormat(@"Project '{0}' is in '{1}' status.", Convert.ToString(r_.FIXID), r_.RSNAME);

@@ -79,30 +79,31 @@ namespace RedBrick2 {
 
 		private void init_stats() {
 			var t = new System.Globalization.CultureInfo("en-US", false).TextInfo;
-			ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter guta =
-				new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
-			string currentUserName = t.ToTitleCase(guta.GetCurrentUserFullname(Environment.UserName));
-			dataGridView1.AutoResizeRows();
-			dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-			dataGridView1.AutoResizeColumns();
-			dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-			dataGridView1.DataSource = get_stats();
-			dataGridView1.Columns["Avg Daily Usage"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-			dataGridView1.Columns["Total Since Reset"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-			dataGridView1.Columns["Your Avg Daily Usage"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-			dataGridView1.Columns["Your Total Since Reset"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-			dataGridView1.Columns["σ"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+			using (ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter guta =
+				new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
+				string currentUserName = t.ToTitleCase(guta.GetCurrentUserFullname(Environment.UserName));
+				dataGridView1.AutoResizeRows();
+				dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+				dataGridView1.AutoResizeColumns();
+				dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+				dataGridView1.DataSource = get_stats();
+				dataGridView1.Columns["Avg Daily Usage"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+				dataGridView1.Columns["Total Since Reset"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+				dataGridView1.Columns["Your Avg Daily Usage"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+				dataGridView1.Columns["Your Total Since Reset"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+				dataGridView1.Columns["σ"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-			dataGridView1.Columns["Avg Daily Usage"].ToolTipText = string.Format(@"{0} work days since {1}", workDays, odometerStart.ToShortDateString());
-			dataGridView1.Columns["Total Since Reset"].ToolTipText = @"Reset @ " + odometerStart.ToShortDateString();
-			dataGridView1.Columns["Your Avg Daily Usage"].ToolTipText = string.Format(@"{0}'s average", currentUserName);
-			dataGridView1.Columns["Your Total Since Reset"].ToolTipText =
-				string.Format(@"{0}'s total, reset @ {1}", currentUserName, odometerStart.ToShortDateString());
-			dataGridView1.Columns["σ"].ToolTipText = @"Standard deviation";
+				dataGridView1.Columns["Avg Daily Usage"].ToolTipText = string.Format(@"{0} work days since {1}", workDays, odometerStart.ToShortDateString());
+				dataGridView1.Columns["Total Since Reset"].ToolTipText = @"Reset @ " + odometerStart.ToShortDateString();
+				dataGridView1.Columns["Your Avg Daily Usage"].ToolTipText = string.Format(@"{0}'s average", currentUserName);
+				dataGridView1.Columns["Your Total Since Reset"].ToolTipText =
+					string.Format(@"{0}'s total, reset @ {1}", currentUserName, odometerStart.ToShortDateString());
+				dataGridView1.Columns["σ"].ToolTipText = @"Standard deviation";
 
-			dataGridView1.Columns["Avg Daily Usage"].DefaultCellStyle.Format = @"#.###";
-			dataGridView1.Columns["Your Avg Daily Usage"].DefaultCellStyle.Format = @"#.###";
-			dataGridView1.Columns["σ"].DefaultCellStyle.Format = @"#.###";
+				dataGridView1.Columns["Avg Daily Usage"].DefaultCellStyle.Format = @"#.###";
+				dataGridView1.Columns["Your Avg Daily Usage"].DefaultCellStyle.Format = @"#.###";
+				dataGridView1.Columns["σ"].DefaultCellStyle.Format = @"#.###";
+			}
 		}
 
 		private double WorkDays() {
@@ -120,58 +121,61 @@ namespace RedBrick2 {
 		}
 
 		private DataView get_stats() {
-			ENGINEERINGDataSetTableAdapters.GEN_ODOMETERTableAdapter gota =
-				new ENGINEERINGDataSetTableAdapters.GEN_ODOMETERTableAdapter();
-			ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter guta =
-				new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
-			DataTable dt = new DataTable();
-			dt.Columns.Add("Function");
-			dt.Columns.Add("Avg Daily Usage", typeof(double));
-			dt.Columns.Add("Total Since Reset", typeof(int));
-			dt.Columns.Add("Your Avg Daily Usage", typeof(double));
-			dt.Columns.Add("Your Total Since Reset", typeof(int));
-			dt.Columns.Add("σ", typeof(double));
-			workDays = WorkDays();
-			foreach (object item in Enum.GetValues(typeof(Redbrick.Functions))) {
-				string x = Enum.GetName(typeof(Redbrick.Functions), (Redbrick.Functions)item);
-				int f = 0;
-				int mf = 0;
+			using (ENGINEERINGDataSetTableAdapters.GEN_ODOMETERTableAdapter gota =
+				 new ENGINEERINGDataSetTableAdapters.GEN_ODOMETERTableAdapter()) {
+				using (ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter guta =
+					new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
+					using (DataTable dt = new DataTable()) {
+						dt.Columns.Add("Function");
+						dt.Columns.Add("Avg Daily Usage", typeof(double));
+						dt.Columns.Add("Total Since Reset", typeof(int));
+						dt.Columns.Add("Your Avg Daily Usage", typeof(double));
+						dt.Columns.Add("Your Total Since Reset", typeof(int));
+						dt.Columns.Add("σ", typeof(double));
+						workDays = WorkDays();
+						foreach (object item in Enum.GetValues(typeof(Redbrick.Functions))) {
+							string x = Enum.GetName(typeof(Redbrick.Functions), (Redbrick.Functions)item);
+							int f = 0;
+							int mf = 0;
 
-				try {
-					f = (int)gota.GetOdometerTotalValue((int)item);
-				} catch (Exception) {
-					//
-				}
+							try {
+								f = (int)gota.GetOdometerTotalValue((int)item);
+							} catch (Exception) {
+								//
+							}
 
-				try {
-					mf = (int)gota.GetOdometerValue((int)item, guta.GetUID(Environment.UserName));
-				} catch (Exception) {
-					//
-				}
+							try {
+								mf = (int)gota.GetOdometerValue((int)item, guta.GetUID(Environment.UserName));
+							} catch (Exception) {
+								//
+							}
 
-				double y = f / workDays;
-				double my = mf / workDays;
-				double σ = 0;
+							double y = f / workDays;
+							double my = mf / workDays;
+							double σ = 0;
 
-				try {
-					σ = (double)gota.GetOdometerStdDev((int)item);
-				} catch (Exception) {
-					//
-				}
+							try {
+								σ = (double)gota.GetOdometerStdDev((int)item);
+							} catch (Exception) {
+								//
+							}
 
-				if (y > 0) {
-					DataRow dr = dt.NewRow();
-					dr["Function"] = x;
-					dr["Avg Daily Usage"] = y;
-					dr["Total Since Reset"] = f;
-					dr["Your Avg Daily Usage"] = my;
-					dr["Your Total Since Reset"] = mf;
-					dr["σ"] = σ;
-					dt.Rows.Add(dr);
+							if (y > 0) {
+								DataRow dr = dt.NewRow();
+								dr["Function"] = x;
+								dr["Avg Daily Usage"] = y;
+								dr["Total Since Reset"] = f;
+								dr["Your Avg Daily Usage"] = my;
+								dr["Your Total Since Reset"] = mf;
+								dr["σ"] = σ;
+								dt.Rows.Add(dr);
+							}
+						}
+						dt.DefaultView.Sort = "[Avg Daily Usage] DESC";
+						return dt.DefaultView;
+					}
 				}
 			}
-			dt.DefaultView.Sort = "[Avg Daily Usage] DESC";
-			return dt.DefaultView;
 		}
 
 		/// <summary>

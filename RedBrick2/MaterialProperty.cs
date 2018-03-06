@@ -8,9 +8,6 @@ namespace RedBrick2 {
 	/// A property where "Data" returns an int, and "Value" returns a description.
 	/// </summary>
 	public class MaterialProperty : IntProperty {
-		ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cmta =
-			new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter();
-
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -42,21 +39,24 @@ namespace RedBrick2 {
 			InnerGet();
 			int intval = 0;
 			int tp = 0;
-			ENGINEERINGDataSet.CUT_PARTSDataTable cpdt = new ENGINEERINGDataSet.CUT_PARTSDataTable();
-			cpdt = cpta.GetDataByPartID(PartID);
-
-			if (cpdt.Rows.Count > 0) {
-				tp = (int)cpdt.Rows[0][@"TYPE"];
+			using (ENGINEERINGDataSet.CUT_PARTSDataTable cpdt = cpta.GetDataByPartID(PartID)) {
+				if (cpdt.Rows.Count > 0) {
+					tp = (int)cpdt.Rows[0][@"TYPE"];
+				}
 			}
 
 			if (int.TryParse(Value, out intval)) {
-				ENGINEERINGDataSet.CUT_MATERIALSDataTable cmdt = cmta.GetDataByMatID(intval);
-				if (cmdt.Rows.Count > 0) {
-					FriendlyValue = cmdt.Rows[0][@"DESCR"].ToString(); ;
-					_data = intval;
-				}
-			} else {
+				using (ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cmta =
+					new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter()) {
+					using (ENGINEERINGDataSet.CUT_MATERIALSDataTable cmdt = cmta.GetDataByMatID(intval)) {
+						if (cmdt.Rows.Count > 0) {
+							FriendlyValue = cmdt.Rows[0][@"DESCR"].ToString(); ;
+							_data = intval;
+						} else {
 
+						}
+					}
+				}
 			}
 			return this;
 		}
@@ -77,30 +77,34 @@ namespace RedBrick2 {
 		public override object Data {
 			get {
 				if (_data == 0) {
-					ENGINEERINGDataSet.CUT_MATERIALSDataTable cmdt = cmta.GetDataByDescr(Value);
-					FriendlyValue = Value;
-					if (cmdt.Rows.Count > 0) {
-						_data = Convert.ToInt32(cmdt.Rows[0][@"MATID"]);
+					using (ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cmta =
+						new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter()) {
+						using (ENGINEERINGDataSet.CUT_MATERIALSDataTable cmdt = cmta.GetDataByDescr(Value)) {
+							FriendlyValue = Value;
+							if (cmdt.Rows.Count > 0) {
+								_data = Convert.ToInt32(cmdt.Rows[0][@"MATID"]);
+							}
+						}
 					}
 				}
 				return _data;
 			}
 			set {
-				ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cmta =
-					new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter();
-				try {
-					int res;
-					if (int.TryParse(value.ToString(), out res)) {
-						_data = res;
-						Value = cmta.GetDataByMatID(res)[0].DESCR;
-					} else {
-						Value = value.ToString();
+				using (ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cmta =
+					new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter()) {
+					try {
+						int res;
+						if (int.TryParse(value.ToString(), out res)) {
+							_data = res;
+							Value = cmta.GetDataByMatID(res)[0].DESCR;
+						} else {
+							Value = value.ToString();
+						}
+					} catch (Exception) {
+						_data = Properties.Settings.Default.DefaultMaterial;
 					}
-				} catch (Exception) {
-					_data = Properties.Settings.Default.DefaultMaterial;
 				}
 			}
 		}
-
 	}
 }

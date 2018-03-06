@@ -17,8 +17,6 @@ namespace RedBrick2 {
 		private Revs RevSet;
 		private Rev ThisRev;
 		private StringProperty level;
-		private ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter guta =
-			new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
 
 		/// <summary>
 		/// Constructor.
@@ -121,43 +119,49 @@ namespace RedBrick2 {
 			string question = string.Format(Properties.Resources.InsertIntoEcrItems, ThisRev.PartNumber, ThisRev.ECO);
 
 			DialogResult mbr = DialogResult.No;
-			ENGINEERINGDataSet.ECRObjLookupDataTable eoldt =
-				new ENGINEERINGDataSet.ECRObjLookupDataTable();
-			ENGINEERINGDataSet.ECR_ITEMSDataTable eidt =
-				new ENGINEERINGDataSet.ECR_ITEMSDataTable();
 			int en = 0;
-			if (int.TryParse(ThisRev.ECO, out en) &&
-				!eoldt.ECRIsBogus(en) &&
-				!eidt.ECRItemExists(en, ThisRev.PartNumber, level.Value)) {
-				mbr = (DialogResult)MessageBox.Show(this, question, @"Insert ECR?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+			using (ENGINEERINGDataSet.ECRObjLookupDataTable eoldt =
+				new ENGINEERINGDataSet.ECRObjLookupDataTable()) {
+				using (ENGINEERINGDataSet.ECR_ITEMSDataTable eidt =
+					new ENGINEERINGDataSet.ECR_ITEMSDataTable()) {
+					if (int.TryParse(ThisRev.ECO, out en) &&
+						!eoldt.ECRIsBogus(en) &&
+						!eidt.ECRItemExists(en, ThisRev.PartNumber, level.Value)) {
+						mbr = (DialogResult)MessageBox.Show(this, question, @"Insert ECR?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+					}
+				}
 			}
 			if (mbr == DialogResult.Yes) {
 				OnAdded(EventArgs.Empty);
 				ArchivePDFWrapper apw = new ArchivePDFWrapper(RevSet.SwApp, Redbrick.GeneratePathSet());
 				apw.Archive();
-				ENGINEERINGDataSet.inmastDataTable idt =
-					new ENGINEERINGDataSet.inmastDataTable();
-				ENGINEERINGDataSet.GEN_DRAWINGSDataTable gdt =
-					new ENGINEERINGDataSet.GEN_DRAWINGSDataTable();
-				ENGINEERINGDataSetTableAdapters.ECR_ITEMSTableAdapter eit =
-					new ENGINEERINGDataSetTableAdapters.ECR_ITEMSTableAdapter();
-				int parttype = idt.GetECRItemType(ThisRev.PartNumber, level.Value);
-				eit.InsertECRItem(en, ThisRev.PartNumber, level.Value, parttype);
-				int ecr_item_id = (int)eit.GetECRItem(en, ThisRev.PartNumber, level.Value);
-				string pdf_lookup = Path.GetFileNameWithoutExtension(ThisRev.ReferencedFile.Name);
-				gdt = gdt.GetPDFData(pdf_lookup);
-				if (gdt.Rows.Count > 0) {
-					System.Data.DataRow r = gdt.Rows[0];
-					FileInfo orig_path = gdt.GetPDFLocation(pdf_lookup);
-					FileInfo drw_file = new FileInfo(string.Format(@"{0}\{1}_{2}-{3}.PDF", orig_path.DirectoryName, en, ThisRev.PartNumber, ThisRev.Level));
-					FileInfo dest_file = new FileInfo(string.Format(@"{0}\{1}", Properties.Settings.Default.ECRDrawingsDestination, drw_file.Name));
-					ENGINEERINGDataSetTableAdapters.ECR_DRAWINGSTableAdapter edta =
-						new ENGINEERINGDataSetTableAdapters.ECR_DRAWINGSTableAdapter();
-					edta.InsertECRDrawing(ecr_item_id, (int)gdt.Rows[0][@"FileID"], ThisRev.Level, drw_file.Name, orig_path.FullName);
-					if (!dest_file.Exists) { // Doublecheck
-						orig_path.CopyTo(dest_file.FullName, false); // Triplecheck
+				using (ENGINEERINGDataSet.inmastDataTable idt =
+					new ENGINEERINGDataSet.inmastDataTable()) {
+						string pdf_lookup = Path.GetFileNameWithoutExtension(ThisRev.ReferencedFile.Name);
+
+					using (ENGINEERINGDataSet.GEN_DRAWINGSDataTable gdt =
+						new ENGINEERINGDataSet.GEN_DRAWINGSDataTable()) {
+						ENGINEERINGDataSetTableAdapters.ECR_ITEMSTableAdapter eit =
+							new ENGINEERINGDataSetTableAdapters.ECR_ITEMSTableAdapter();
+						int parttype = idt.GetECRItemType(ThisRev.PartNumber, level.Value);
+						eit.InsertECRItem(en, ThisRev.PartNumber, level.Value, parttype);
+						int ecr_item_id = (int)eit.GetECRItem(en, ThisRev.PartNumber, level.Value);
+						using (ENGINEERINGDataSet.GEN_DRAWINGSDataTable gdtt = gdt.GetPDFData(pdf_lookup)) {
+							if (gdtt.Rows.Count > 0) {
+								System.Data.DataRow r = gdtt.Rows[0];
+								FileInfo orig_path = gdtt.GetPDFLocation(pdf_lookup);
+								FileInfo drw_file = new FileInfo(string.Format(@"{0}\{1}_{2}-{3}.PDF", orig_path.DirectoryName, en, ThisRev.PartNumber, ThisRev.Level));
+								FileInfo dest_file = new FileInfo(string.Format(@"{0}\{1}", Properties.Settings.Default.ECRDrawingsDestination, drw_file.Name));
+								ENGINEERINGDataSetTableAdapters.ECR_DRAWINGSTableAdapter edta =
+									new ENGINEERINGDataSetTableAdapters.ECR_DRAWINGSTableAdapter();
+								edta.InsertECRDrawing(ecr_item_id, (int)gdtt.Rows[0][@"FileID"], ThisRev.Level, drw_file.Name, orig_path.FullName);
+								if (!dest_file.Exists) { // Doublecheck
+									orig_path.CopyTo(dest_file.FullName, false); // Triplecheck
+								}
+								eit.SetNewECRWIP(en);
+							}
+						}
 					}
-					eit.SetNewECRWIP(en);
 				}
 				eNGINEERINGDataSet.GEN_ODOMETER.IncrementOdometer(Redbrick.Functions.InsertECR);
 			}
@@ -177,18 +181,21 @@ namespace RedBrick2 {
 			}
 
 			if (NewRev) {
-				int? uid = guta.GetUID(System.Environment.UserName);
-				if (uid == null) {
-					throw new NullReferenceException(@"Hmm... Maybe you're not in the DB.");
-				}
-				index = RevSet.NewRev(string.Empty, string.Empty, (int)uid, DateTime.Now);
-				ThisRev = RevSet[RevSet.Count - 1];
-				comboBox1.Text = ThisRev.Level;
-				Text = string.Format(@"Creating Rev Level {0}", comboBox1.Text);
-				comboBox2.SelectedIndex = comboBox2.FindString(ThisRev.AuthorFullName);
-				if (ThisRev.Level == @"AA") {
-					textBox1.Text = @"NA";
-					textBox2.Text = @"RELEASED";
+				using (ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter guta =
+				new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
+					int? uid = guta.GetUID(System.Environment.UserName);
+					if (uid == null) {
+						throw new NullReferenceException(@"Hmm... Maybe you're not in the DB.");
+					}
+					index = RevSet.NewRev(string.Empty, string.Empty, (int)uid, DateTime.Now);
+					ThisRev = RevSet[RevSet.Count - 1];
+					comboBox1.Text = ThisRev.Level;
+					Text = string.Format(@"Creating Rev Level {0}", comboBox1.Text);
+					comboBox2.SelectedIndex = comboBox2.FindString(ThisRev.AuthorFullName);
+					if (ThisRev.Level == @"AA") {
+						textBox1.Text = @"NA";
+						textBox2.Text = @"RELEASED";
+					}
 				}
 			} else {
 				ThisRev = RevSet[index];

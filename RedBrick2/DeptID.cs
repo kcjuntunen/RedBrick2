@@ -39,22 +39,23 @@ namespace RedBrick2 {
 		/// <returns>This.</returns>
 		public override SwProperty Get() {
 			InnerGet();
-			ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cpt =
-				new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
-			if (Value != string.Empty) {
-				int? _id = cpt.GetIDByDescr(Value);
-				if (_id != null) {
-					_data = (int)_id;
+			using (ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cpt =
+				new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter()) {
+				if (Value != string.Empty) {
+					int? _id = cpt.GetIDByDescr(Value);
+					if (_id != null) {
+						_data = (int)_id;
+					} else {
+						_data = 1;
+					}
 				} else {
-					_data = 1;
-				}
-			} else {
-				IntProperty i = new IntProperty(@"DEPTID", true, SwApp, ActiveDoc, @"CUT_PARTS", FieldName);
-				i.Get();
-				int tmp = 0;
-				if (int.TryParse(i.Value, out tmp)) {
-					_data = tmp;
-					Value = (string)cpt.GetDescrByID(tmp);
+					IntProperty i = new IntProperty(@"DEPTID", true, SwApp, ActiveDoc, @"CUT_PARTS", FieldName);
+					i.Get();
+					int tmp = 0;
+					if (int.TryParse(i.Value, out tmp)) {
+						_data = tmp;
+						Value = (string)cpt.GetDescrByID(tmp);
+					}
 				}
 			}
 			return this;
@@ -70,22 +71,23 @@ namespace RedBrick2 {
 		/// </summary>
 		public override object Data {
 			get { return _data; }
-			set {
-				ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cpt =
-					new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
-				if (value is string) {
-					_data = (int)cpt.GetIDByDescr(value.ToString());
-					Value = value.ToString();
-				} else {
-					try {
-						_data = int.Parse(value.ToString());
-						Value = (string)cpt.GetDescrByID(_data);
-					} catch (Exception) {
-						_data = 1;
+			set
+			{
+				using (ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter cpt =
+					new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter()) {
+					if (value is string) {
+						_data = (int)cpt.GetIDByDescr(value.ToString());
+						Value = value.ToString();
+					} else {
+						try {
+							_data = int.Parse(value.ToString());
+							Value = (string)cpt.GetDescrByID(_data);
+						} catch (Exception) {
+							_data = 1;
+						}
 					}
 				}
 			}
 		}
-
 	}
 }

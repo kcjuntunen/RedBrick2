@@ -61,8 +61,9 @@ namespace RedBrick2 {
 		}
 
 		private void button1_Click(object sender, EventArgs e) {
-			ENGINEERINGDataSet.CUT_PARTSDataTable cp_ = new ENGINEERINGDataSet.CUT_PARTSDataTable();
-			cp_.update_general_properties_(PropertySet);
+			using (ENGINEERINGDataSet.CUT_PARTSDataTable cp_ = new ENGINEERINGDataSet.CUT_PARTSDataTable()) {
+				cp_.update_general_properties_(PropertySet);
+			}
 			Properties.Settings.Default.UpdateDimensionsLocation = Location;
 			Properties.Settings.Default.UpdateDimensionsSize = Size;
 			Close();

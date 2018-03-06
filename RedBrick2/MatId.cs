@@ -6,9 +6,6 @@ using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
 	class MatId : IntProperty {
-		ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cmta =
-			new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter();
-
 		public MatId(string name, bool global, SldWorks sw, ModelDoc2 md, string fieldName)
 			: base(name, global, sw, md, @"", fieldName) {
 				DoNotWrite = true;
@@ -27,24 +24,29 @@ namespace RedBrick2 {
 			InnerGet();
 			int intval = 0;
 			int tp = 0;
-			ENGINEERINGDataSet.CUT_PARTSDataTable cpdt = new ENGINEERINGDataSet.CUT_PARTSDataTable();
-			cpdt = cpta.GetDataByPartID(PartID);
-
-			if (cpdt.Rows.Count > 0) {
-				tp = (int)cpdt.Rows[0][@"TYPE"];
+			using (ENGINEERINGDataSet.CUT_PARTSDataTable cpdt = cpta.GetDataByPartID(PartID)) {
+				if (cpdt.Rows.Count > 0) {
+					tp = (int)cpdt.Rows[0][@"TYPE"];
+				}
 			}
 
-			if (int.TryParse(Value, out intval)) {
-				ENGINEERINGDataSet.CUT_MATERIALSDataTable cmdt = cmta.GetDataByMatID(intval);
-				if (cmdt.Rows.Count > 0) {
-					FriendlyValue = cmdt.Rows[0][@"DESCR"].ToString(); ;
-					Data = intval;
-				}
-			} else if (Value != null) {
-				ENGINEERINGDataSet.CUT_MATERIALSDataTable cmdt = cmta.GetDataByDescr(Value);
-				FriendlyValue = Value;
-				if (cmdt.Rows.Count > 0) {
-					Value = cmdt.Rows[0][@"MATID"].ToString();
+			using (ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cmta =
+				new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter()) {
+
+				if (int.TryParse(Value, out intval)) {
+					using (ENGINEERINGDataSet.CUT_MATERIALSDataTable cmdt = cmta.GetDataByMatID(intval)) {
+						if (cmdt.Rows.Count > 0) {
+							FriendlyValue = cmdt.Rows[0][@"DESCR"].ToString(); ;
+							Data = intval;
+						}
+					}
+				} else if (Value != null) {
+					using (ENGINEERINGDataSet.CUT_MATERIALSDataTable cmdt = cmta.GetDataByDescr(Value)) {
+						FriendlyValue = Value;
+						if (cmdt.Rows.Count > 0) {
+							Value = cmdt.Rows[0][@"MATID"].ToString();
+						}
+					}
 				}
 			}
 			return this;

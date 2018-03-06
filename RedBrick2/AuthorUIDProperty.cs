@@ -6,9 +6,6 @@ using SolidWorks.Interop.swconst;
 
 namespace RedBrick2 {
 	class AuthorUIDProperty : StringProperty {
-		ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu =
-			new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
-		
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -28,14 +25,17 @@ namespace RedBrick2 {
 		public override SwProperty Get() {
 			InnerGet();
 			if (Value.Length > 0) {
-				ENGINEERINGDataSet.GEN_USERSDataTable dt = gu.GetDataByUsername(Value);
-				if (dt.Rows.Count > 0) {
-					ENGINEERINGDataSet.GEN_USERSRow row = dt.Rows[0] as ENGINEERINGDataSet.GEN_USERSRow;
-					row = dt[0];
-					_data = row.UID;
-					FullName = row.Fullname;
-				} else {
-					FullName = Value;
+				using (ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu =
+					new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
+					ENGINEERINGDataSet.GEN_USERSDataTable dt = gu.GetDataByUsername(Value);
+					if (dt.Rows.Count > 0) {
+						ENGINEERINGDataSet.GEN_USERSRow row = dt.Rows[0] as ENGINEERINGDataSet.GEN_USERSRow;
+						row = dt[0];
+						_data = row.UID;
+						FullName = row.Fullname;
+					} else {
+						FullName = Value;
+					}
 				}
 			}
 			return this;
@@ -67,12 +67,15 @@ namespace RedBrick2 {
 			set {
 				if (value is int) {
 					_data = (int)value;
-					ENGINEERINGDataSet.GEN_USERSDataTable dt = gu.GetDataByUID(_data);
-					if (dt.Rows.Count > 0) {
-						Value = dt[0].USERNAME;
-						FullName = dt[0].Fullname;
-					} else {
-						FullName = Value;
+					using (ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu =
+						new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
+						ENGINEERINGDataSet.GEN_USERSDataTable dt = gu.GetDataByUID(_data);
+						if (dt.Rows.Count > 0) {
+							Value = dt[0].USERNAME;
+							FullName = dt[0].Fullname;
+						} else {
+							FullName = Value;
+						}
 					}
 				}
 			}
