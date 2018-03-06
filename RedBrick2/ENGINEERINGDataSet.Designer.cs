@@ -15937,6 +15937,8 @@ namespace RedBrick2 {
             
             private global::System.Data.DataColumn columnCDATE;
             
+            private global::System.Data.DataColumn columnCUSTID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public RequestInfoDataTable() {
@@ -16036,6 +16038,14 @@ namespace RedBrick2 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CUSTIDColumn {
+                get {
+                    return this.columnCUSTID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -16071,7 +16081,7 @@ namespace RedBrick2 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public RequestInfoRow AddRequestInfoRow(string Creator, string Lead, string CUSTOMER, string DESCRIPTION, string ITEMNUM, string RSNAME, string FIXID, System.DateTime CDATE) {
+            public RequestInfoRow AddRequestInfoRow(string Creator, string Lead, string CUSTOMER, string DESCRIPTION, string ITEMNUM, string RSNAME, string FIXID, System.DateTime CDATE, int CUSTID) {
                 RequestInfoRow rowRequestInfoRow = ((RequestInfoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Creator,
@@ -16081,7 +16091,8 @@ namespace RedBrick2 {
                         ITEMNUM,
                         RSNAME,
                         FIXID,
-                        CDATE};
+                        CDATE,
+                        CUSTID};
                 rowRequestInfoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowRequestInfoRow);
                 return rowRequestInfoRow;
@@ -16112,6 +16123,7 @@ namespace RedBrick2 {
                 this.columnRSNAME = base.Columns["RSNAME"];
                 this.columnFIXID = base.Columns["FIXID"];
                 this.columnCDATE = base.Columns["CDATE"];
+                this.columnCUSTID = base.Columns["CUSTID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -16133,6 +16145,8 @@ namespace RedBrick2 {
                 base.Columns.Add(this.columnFIXID);
                 this.columnCDATE = new global::System.Data.DataColumn("CDATE", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCDATE);
+                this.columnCUSTID = new global::System.Data.DataColumn("CUSTID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCUSTID);
                 this.columnCreator.ReadOnly = true;
                 this.columnCreator.MaxLength = 31;
                 this.columnLead.ReadOnly = true;
@@ -26349,6 +26363,22 @@ namespace RedBrick2 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int CUSTID {
+                get {
+                    try {
+                        return ((int)(this[this.tableRequestInfo.CUSTIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CUSTID\' in table \'RequestInfo\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRequestInfo.CUSTIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsCreatorNull() {
                 return this.IsNull(this.tableRequestInfo.CreatorColumn);
             }
@@ -26441,6 +26471,18 @@ namespace RedBrick2 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetCDATENull() {
                 this[this.tableRequestInfo.CDATEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCUSTIDNull() {
+                return this.IsNull(this.tableRequestInfo.CUSTIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCUSTIDNull() {
+                this[this.tableRequestInfo.CUSTIDColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -46365,6 +46407,7 @@ SELECT PARTNUM + N' REV ' + REV AS CutlistDisplayName, CLID, PARTNUM, REV, DRAWI
             tableMapping.ColumnMappings.Add("RSNAME", "RSNAME");
             tableMapping.ColumnMappings.Add("FIXID", "FIXID");
             tableMapping.ColumnMappings.Add("CDATE", "CDATE");
+            tableMapping.ColumnMappings.Add("CUSTID", "CUSTID");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -46381,33 +46424,31 @@ SELECT PARTNUM + N' REV ' + REV AS CutlistDisplayName, CLID, PARTNUM, REV, DRAWI
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT      GEN_USERS_1.FIRST + ' ' + GEN_USERS_1.LAST + ' ' + ISNULL(GEN_USERS_1.SUFFIX, '') AS Creator, 
-                        GEN_USERS.FIRST + ' ' + GEN_USERS.LAST + ' ' + ISNULL(GEN_USERS.SUFFIX, '') AS Lead, GEN_CUSTOMERS.CUSTOMER, 
-                        REQ_REQUESTS.DESCRIPTION, REQ_REQUESTS.ITEMNUM, REQ_REQUESTS_STATUS.RSNAME, REQ_REQUESTS.FIXID, 
-                        REQ_REQUESTS.CDATE
-FROM          REQ_REQUESTS INNER JOIN
-                        GEN_USERS ON REQ_REQUESTS.LEAD = GEN_USERS.UID INNER JOIN
-                        GEN_USERS AS GEN_USERS_1 ON REQ_REQUESTS.CREATEDBY = GEN_USERS_1.UID INNER JOIN
-                        GEN_CUSTOMERS ON REQ_REQUESTS.CUSTID = GEN_CUSTOMERS.CUSTID INNER JOIN
-                        REQ_REQUESTS_STATUS ON REQ_REQUESTS.STATID = REQ_REQUESTS_STATUS.RSID
-WHERE      (REQ_REQUESTS.FIXID = @fixtureID)
-ORDER BY REQ_REQUESTS.CDATE DESC;  
+            this._commandCollection[0].CommandText = @"SELECT     GEN_USERS_1.FIRST + ' ' + GEN_USERS_1.LAST + ' ' + ISNULL(GEN_USERS_1.SUFFIX, '') AS Creator, 
+                      GEN_USERS.FIRST + ' ' + GEN_USERS.LAST + ' ' + ISNULL(GEN_USERS.SUFFIX, '') AS Lead, GEN_CUSTOMERS.CUSTOMER, REQ_REQUESTS.DESCRIPTION, 
+                      REQ_REQUESTS.ITEMNUM, REQ_REQUESTS_STATUS.RSNAME, REQ_REQUESTS.FIXID, REQ_REQUESTS.CDATE, REQ_REQUESTS.CUSTID
+FROM         REQ_REQUESTS INNER JOIN
+                      GEN_USERS ON REQ_REQUESTS.LEAD = GEN_USERS.UID INNER JOIN
+                      GEN_USERS AS GEN_USERS_1 ON REQ_REQUESTS.CREATEDBY = GEN_USERS_1.UID INNER JOIN
+                      GEN_CUSTOMERS ON REQ_REQUESTS.CUSTID = GEN_CUSTOMERS.CUSTID INNER JOIN
+                      REQ_REQUESTS_STATUS ON REQ_REQUESTS.STATID = REQ_REQUESTS_STATUS.RSID
+WHERE     (REQ_REQUESTS.FIXID = @fixtureID)
+ORDER BY REQ_REQUESTS.CDATE DESC;   
 ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fixtureID", global::System.Data.SqlDbType.NVarChar, 25, global::System.Data.ParameterDirection.Input, 0, 0, "FIXID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT      GEN_USERS_1.FIRST + ' ' + GEN_USERS_1.LAST + ' ' + ISNULL(GEN_USERS_1.SUFFIX, '') AS Creator, 
-                        GEN_USERS.FIRST + ' ' + GEN_USERS.LAST + ' ' + ISNULL(GEN_USERS.SUFFIX, '') AS Lead, GEN_CUSTOMERS.CUSTOMER, 
-                        REQ_REQUESTS.DESCRIPTION, REQ_REQUESTS.ITEMNUM, REQ_REQUESTS_STATUS.RSNAME, REQ_REQUESTS.FIXID, 
-                        REQ_REQUESTS.CDATE
-FROM          REQ_REQUESTS INNER JOIN
-                        GEN_USERS ON REQ_REQUESTS.LEAD = GEN_USERS.UID INNER JOIN
-                        GEN_USERS AS GEN_USERS_1 ON REQ_REQUESTS.CREATEDBY = GEN_USERS_1.UID INNER JOIN
-                        GEN_CUSTOMERS ON REQ_REQUESTS.CUSTID = GEN_CUSTOMERS.CUSTID INNER JOIN
-                        REQ_REQUESTS_STATUS ON REQ_REQUESTS.STATID = REQ_REQUESTS_STATUS.RSID
-WHERE      (REQ_REQUESTS.ITEMNUM = @itemNum)
-ORDER BY REQ_REQUESTS.CDATE DESC;  
+            this._commandCollection[1].CommandText = @"SELECT     GEN_USERS_1.FIRST + ' ' + GEN_USERS_1.LAST + ' ' + ISNULL(GEN_USERS_1.SUFFIX, '') AS Creator, 
+                      GEN_USERS.FIRST + ' ' + GEN_USERS.LAST + ' ' + ISNULL(GEN_USERS.SUFFIX, '') AS Lead, GEN_CUSTOMERS.CUSTOMER, REQ_REQUESTS.DESCRIPTION, 
+                      REQ_REQUESTS.ITEMNUM, REQ_REQUESTS_STATUS.RSNAME, REQ_REQUESTS.FIXID, REQ_REQUESTS.CDATE, REQ_REQUESTS.CUSTID
+FROM         REQ_REQUESTS INNER JOIN
+                      GEN_USERS ON REQ_REQUESTS.LEAD = GEN_USERS.UID INNER JOIN
+                      GEN_USERS AS GEN_USERS_1 ON REQ_REQUESTS.CREATEDBY = GEN_USERS_1.UID INNER JOIN
+                      GEN_CUSTOMERS ON REQ_REQUESTS.CUSTID = GEN_CUSTOMERS.CUSTID INNER JOIN
+                      REQ_REQUESTS_STATUS ON REQ_REQUESTS.STATID = REQ_REQUESTS_STATUS.RSID
+WHERE     (REQ_REQUESTS.ITEMNUM = @itemNum)
+ORDER BY REQ_REQUESTS.CDATE DESC;   
 ";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itemNum", global::System.Data.SqlDbType.NVarChar, 40, global::System.Data.ParameterDirection.Input, 0, 0, "ITEMNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));

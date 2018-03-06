@@ -17,6 +17,7 @@ namespace RedBrick2 {
 		private string projectDescr;
 		private Revs revSet;
 		private DirtTracker dirtTracker;
+		private ToolTip title_tooltip = new ToolTip();
 		private ToolTip cust_tooltip = new ToolTip();
 		private ToolTip rev_tooltip = new ToolTip();
 		private ToolTip status_tooltip = new ToolTip();
@@ -172,21 +173,52 @@ namespace RedBrick2 {
 					} else {
 						RevFromFile = null;
 					}
-					ENGINEERINGDataSet.SCH_PROJECTSRow r =
-						(new ENGINEERINGDataSet.SCH_PROJECTSDataTable()).GetCorrectCustomer(partLookup);
-					if (r != null) {
-						ProjectCustomer = r.CUSTID;
-						projectDescr = r.DESCRIPTION;
-					} else {
-						ProjectCustomer = 0;
-						projectDescr = string.Empty;
-					}
+					int cust = 0;
+					get_cust_and_descr(partLookup, ref cust, ref projectDescr);
+					ProjectCustomer = cust;
 					//ProjectCustomer = GetCorrectCustomer();
-					groupBox5.Text = projectDescr != string.Empty ? string.Format(@"{0} - {1}", partLookup, Redbrick.TitleCase(projectDescr)) : partLookup;
+					groupBox5.Text = projectDescr != string.Empty ? string.Format(@"{0} - {1}", partLookup, projectDescr) : partLookup;
 				} else {
 					groupBox5.Text = @"New Drawing";
 					dd_ = ActiveDoc as DrawingDoc;
 					dd_.FileSavePostNotify += dd__FileSavePostNotify;
+				}
+			}
+		}
+
+		private void get_cust_and_descr(string lookup, ref int cust, ref string descr) {
+			cust = 0;
+			descr = string.Empty;
+			title_tooltip.RemoveAll();
+			void get_correct_customer_(string l_, ref int c_, ref string d_) {
+				ENGINEERINGDataSet.SCH_PROJECTSRow r =
+					(new ENGINEERINGDataSet.SCH_PROJECTSDataTable()).GetCorrectCustomer(l_);
+				if (r != null) {
+					c_ = r.CUSTID;
+					d_ = Redbrick.TitleCase(r.DESCRIPTION);
+				} else {
+					c_ = 0;
+					d_ = string.Empty;
+				}
+			}
+			if (Redbrick.IsConformingPartnumber(lookup)) {
+				get_correct_customer_(lookup, ref cust, ref descr);
+			title_tooltip.SetToolTip(groupBox5, descr);
+			} else {
+				using (ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter rqta_ =
+					new ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter()) {
+					using (ENGINEERINGDataSet.RequestInfoDataTable rqdt_ =
+						new ENGINEERINGDataSet.RequestInfoDataTable()) {
+						rqta_.FillByItemNum(rqdt_, lookup);
+						if (rqdt_.Rows.Count > 0) {
+							cust = rqdt_[0].CUSTID;
+							descr = rqdt_[0].FIXID.Trim();
+							string tt_ = string.Empty;
+							int cc_ = 0;
+							get_correct_customer_(descr, ref cc_, ref tt_);
+							title_tooltip.SetToolTip(groupBox5, tt_);
+						}
+					}
 				}
 			}
 		}
