@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using System.IO;
-using System.Linq;
 
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;

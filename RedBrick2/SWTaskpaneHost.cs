@@ -1,15 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
 
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swcommands;
 using SolidWorks.Interop.swconst;
-using SolidWorks.Interop.swpublished;
 
 using System.Runtime.InteropServices;
 
