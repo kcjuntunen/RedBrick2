@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// A warning to inform users that dimensions on the part and the database do not match.
+	/// </summary>
 	public partial class UpdateDimensions : Form {
 		private SwProperties PropertySet;
 		private double db_length = 0.0f;
@@ -18,6 +21,13 @@ namespace RedBrick2 {
 		private double width = 0.0f;
 		private double thickness = 0.0f;
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="pp">A <see cref="SwProperties"/> object with dimension information from the part.</param>
+		/// <param name="db_l">Length from the db.</param>
+		/// <param name="db_w">Width from the db.</param>
+		/// <param name="db_t">Thickness from the db.</param>
 		public UpdateDimensions(SwProperties pp, double db_l, double db_w, double db_t) {
 			PropertySet = pp;
 			db_length = db_l;

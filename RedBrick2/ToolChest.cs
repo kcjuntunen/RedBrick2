@@ -4,12 +4,23 @@ using System.Windows.Forms;
 using SolidWorks.Interop.sldworks;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// A landing pad for buttons that launch different tools.
+	/// </summary>
 	public partial class ToolChest : Form {
 		private SldWorks swApp;
+		/// <summary>
+		/// Constructor.
+		/// </summary>
 		public ToolChest() {
 			InitializeComponent();
 		}
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="s">Accepts a <see cref="SldWorks"/> object because some
+		/// of these tools require it.</param>
 		public ToolChest(SldWorks s) {
 			swApp = s;
 			InitializeComponent();
