@@ -46421,7 +46421,7 @@ SELECT PARTNUM + N' REV ' + REV AS CutlistDisplayName, CLID, PARTNUM, REV, DRAWI
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT     GEN_USERS_1.FIRST + ' ' + GEN_USERS_1.LAST + ' ' + ISNULL(GEN_USERS_1.SUFFIX, '') AS Creator, 
@@ -46452,6 +46452,21 @@ ORDER BY REQ_REQUESTS.CDATE DESC;
 ";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itemNum", global::System.Data.SqlDbType.NVarChar, 40, global::System.Data.ParameterDirection.Input, 0, 0, "ITEMNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = @"SELECT     GEN_USERS_1.FIRST + ' ' + GEN_USERS_1.LAST + ' ' + ISNULL(GEN_USERS_1.SUFFIX, '') AS Creator, 
+                      GEN_USERS.FIRST + ' ' + GEN_USERS.LAST + ' ' + ISNULL(GEN_USERS.SUFFIX, '') AS Lead, GEN_CUSTOMERS.CUSTOMER, REQ_REQUESTS.DESCRIPTION, 
+                      REQ_REQUESTS.ITEMNUM, REQ_REQUESTS_STATUS.RSNAME, REQ_REQUESTS.FIXID, REQ_REQUESTS.CDATE, REQ_REQUESTS.CUSTID
+FROM         REQ_REQUESTS INNER JOIN
+                      GEN_USERS ON REQ_REQUESTS.LEAD = GEN_USERS.UID INNER JOIN
+                      GEN_USERS AS GEN_USERS_1 ON REQ_REQUESTS.CREATEDBY = GEN_USERS_1.UID INNER JOIN
+                      GEN_CUSTOMERS ON REQ_REQUESTS.CUSTID = GEN_CUSTOMERS.CUSTID INNER JOIN
+                      REQ_REQUESTS_STATUS ON REQ_REQUESTS.STATID = REQ_REQUESTS_STATUS.RSID
+WHERE     (REQ_REQUESTS.ITEMNUM = @itemNum) AND (REQ_REQUESTS.FIXID <> N'')
+ORDER BY REQ_REQUESTS.CDATE DESC;    
+";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itemNum", global::System.Data.SqlDbType.NVarChar, 40, global::System.Data.ParameterDirection.Input, 0, 0, "ITEMNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -46515,6 +46530,42 @@ ORDER BY REQ_REQUESTS.CDATE DESC;
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual ENGINEERINGDataSet.RequestInfoDataTable GetDataByItemNum(string itemNum) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((itemNum == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(itemNum));
+            }
+            ENGINEERINGDataSet.RequestInfoDataTable dataTable = new ENGINEERINGDataSet.RequestInfoDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByItemNumFixIDNotNull(ENGINEERINGDataSet.RequestInfoDataTable dataTable, string itemNum) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((itemNum == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(itemNum));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ENGINEERINGDataSet.RequestInfoDataTable GetDataByItemNumFixIDNotNull(string itemNum) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             if ((itemNum == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }

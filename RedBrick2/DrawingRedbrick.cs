@@ -211,7 +211,7 @@ namespace RedBrick2 {
 					new ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter()) {
 					using (ENGINEERINGDataSet.RequestInfoDataTable rqdt_ =
 						new ENGINEERINGDataSet.RequestInfoDataTable()) {
-						rqta_.FillByItemNum(rqdt_, lookup);
+						rqta_.FillByItemNumFixIDNotNull(rqdt_, lookup);
 						if (rqdt_.Rows.Count > 0) {
 							cust = rqdt_[0].CUSTID;
 							if (rqdt_[0][@"FIXID"] != DBNull.Value) {
