@@ -141,7 +141,7 @@ namespace RedBrick2 {
 				return partid_ > 0 ? partid_ : insert_part_(_pp);
 			}
 
-			public int update_general_properties_(SwProperties _pp) {
+			private int update_general_properties_(SwProperties _pp) {
 				int affected_ = 0;
 				using (ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter ta_ =
 					new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter()) {
