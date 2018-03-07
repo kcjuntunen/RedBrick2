@@ -182,7 +182,7 @@ namespace RedBrick2 {
 				System.Windows.Forms.MessageBoxIcon.Error);
 		}
 
-		public void QuikTracLookup() {
+		private void QuikTracLookup() {
 			if (taskpaneHost.mrb != null && taskpaneHost.mrb.ActiveDoc != null) {
 				using (ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter ta_ =
 					new ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter()) {
@@ -196,7 +196,7 @@ namespace RedBrick2 {
 			}
 		}
 
-		public void ArchivePDF() {
+		private void ArchivePDF() {
 			using (ENGINEERINGDataSet.GEN_ODOMETERDataTable gota =
 				new ENGINEERINGDataSet.GEN_ODOMETERDataTable()) {
 				gota.IncrementOdometer(Functions.ArchivePDF);
@@ -205,7 +205,7 @@ namespace RedBrick2 {
 			}
 		}
 
-		public void ConfigureRedbrick() {
+		private void ConfigureRedbrick() {
 			using (RedbrickConfiguration rbc = new RedbrickConfiguration()) {
 				rbc.ShowDialog(taskpaneHost);
 			}
@@ -213,7 +213,7 @@ namespace RedBrick2 {
 			taskpaneHost.ToggleFlameWar(Properties.Settings.Default.FlameWar);
 		}
 
-		public void GreenCheck() {
+		private void GreenCheck() {
 			taskpaneHost.Write();
 			if (Properties.Settings.Default.MakeSounds)
 				System.Media.SystemSounds.Beep.Play();
