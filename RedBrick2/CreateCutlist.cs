@@ -514,7 +514,8 @@ namespace RedBrick2 {
 			mat.ValueMember = @"MATID";
 			mat.AutoComplete = true;
 
-			using (ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cmt = new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter()) {
+			using (ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cmt =
+				new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter()) {
 				mat.DataSource = cmt.GetData();
 			}
 			mat.SortMode = DataGridViewColumnSortMode.Programmatic;
