@@ -227,6 +227,9 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// Unhook events and dump SolidWorks objects.
+		/// </summary>
 		public void DumpData() {
 			if (dd_ != null) {
 				dd_.FileSavePostNotify -= dd__FileSavePostNotify;

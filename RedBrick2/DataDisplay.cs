@@ -3,15 +3,30 @@ using System.Data;
 using System.Windows.Forms;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// A form to display a table of data. This is really for QuikTrac lookups.
+	/// </summary>
 	public partial class DataDisplay : Form {
 		private DataView dv_;
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
 		public DataDisplay() : this(new DataView()) {
 		}
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="_dv">A <see cref="DataView"/> object to display.</param>
 		public DataDisplay(DataView _dv) : this(_dv, string.Empty) {
 		}
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="_dv">A <see cref="DataView"/> object to display.</param>
+		/// <param name="_title">A <see cref="string"/> for the titlebar.</param>
 		public DataDisplay(DataView _dv, string _title) {
 			InitializeComponent();
 			toolStripStatusLabel1.Text = @"Total quantity: 0";

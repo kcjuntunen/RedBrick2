@@ -5,14 +5,19 @@ using System.Data.SqlClient;
 namespace RedBrick2 {
 	public partial class ENGINEERINGDataSet {
 		partial class CLIENT_STUFFDataTable {
+			/// <summary>
+			/// Get a list of locations for an item.
+			/// </summary>
+			/// <param name="_item">An item to look up.</param>
+			/// <returns>A <see cref="List{String}"/> object.</returns>
 			public List<string> GetLocations(string _item) {
 				List<string> l_ = new List<string>();
 				using (ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter cs_ =
 					new ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter()) {
 				double sum_ = 0.0F;
-					ENGINEERINGDataSet.CLIENT_STUFFDataTable dt_ = cs_.GetData(_item);
+					CLIENT_STUFFDataTable dt_ = cs_.GetData(_item);
 					for (int i = 0; i < dt_.Count; i++) {
-						ENGINEERINGDataSet.CLIENT_STUFFRow r_ = dt_[i];
+						CLIENT_STUFFRow r_ = dt_[i];
 						l_.Add(string.Format("{0,-10}  {1,-9:0.0} {2,-3}", r_.LOC, r_.QTY, r_.UofM));
 						sum_ += Convert.ToDouble(r_.QTY);
 					}
@@ -141,7 +146,13 @@ namespace RedBrick2 {
 				return partid_ > 0 ? partid_ : insert_part_(_pp);
 			}
 
-			private int update_general_properties_(SwProperties _pp) {
+			/// <summary>
+			/// Update only the general properties. It's public so that the
+			/// warning box can update dimensions.
+			/// </summary>
+			/// <param name="_pp">An <see cref="SwProperties"/> object.</param>
+			/// <returns>A <see cref="int"/> of affected rows.</returns>
+			public int update_general_properties_(SwProperties _pp) {
 				int affected_ = 0;
 				using (ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter ta_ =
 					new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter()) {
@@ -744,6 +755,11 @@ namespace RedBrick2 {
 		}
 
 		partial class CUT_MATERIALSDataTable {
+			/// <summary>
+			/// Look up last cost of all M2M edging matching the cutlist edging.
+			/// </summary>
+			/// <param name="edgeid">The EDGEID from the cutlist database.</param>
+			/// <returns>A <see cref="List{String}"/> of M2M edges.</returns>
 			public List<string> GetEdgePricing(int edgeid) {
 				List<string> l_ = new List<string>();
 				using (ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter ceta_ =
@@ -782,6 +798,11 @@ namespace RedBrick2 {
 				return l_;
 			}
 
+			/// <summary>
+			/// Look up the last cost of all M2M materials matching the cutlist material.
+			/// </summary>
+			/// <param name="matid">The MATID from the cutlist database.</param>
+			/// <returns>A <see cref="List{String}"/> of M2M materials.</returns>
 			public List<string> GetMaterialPricing(int matid) {
 				List<string> l_ = new List<string>();
 				bool fail_ = false;

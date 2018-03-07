@@ -29,6 +29,11 @@ namespace RedBrick2 {
 		/// Mmmm.... coookies.... Do I even use this?
 		/// </summary>
 		public int cookie;
+
+		/// <summary>
+		/// This is only public so it can be reached from Redbrick.cs.
+		/// For launching the QuikTrac lookup tool.
+		/// </summary>
 		public ModelRedbrick mrb;
 		private bool initialated = false;
 		private bool openpostnotify = false;
