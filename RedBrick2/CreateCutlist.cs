@@ -777,7 +777,8 @@ namespace RedBrick2 {
 		}
 
 		private void SetMaterialCellTooltip(DataGridViewComboBoxCell _c, string _id_field) {
-			using (DataTable dv_ = _c.DataSource as DataTable) {
+			DataTable dv_ = _c.DataSource as DataTable;
+			if (dv_ != null) {
 				string filter_ = string.Format(@"{0} = {1}", _id_field, Convert.ToString(_c.Value));
 				DataRow[] dr_ = dv_.Select(filter_);
 				_c.ToolTipText = Convert.ToString(dr_[0][@"COLOR"]);
