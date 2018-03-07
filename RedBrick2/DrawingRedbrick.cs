@@ -214,7 +214,9 @@ namespace RedBrick2 {
 						rqta_.FillByItemNum(rqdt_, lookup);
 						if (rqdt_.Rows.Count > 0) {
 							cust = rqdt_[0].CUSTID;
-							descr = rqdt_[0].FIXID.Trim();
+							if (rqdt_[0][@"FIXID"] != DBNull.Value) {
+								descr = rqdt_[0].FIXID.Trim();
+							}
 							string tt_ = string.Empty;
 							int cc_ = 0;
 							get_correct_customer_(descr, ref cc_, ref tt_);
