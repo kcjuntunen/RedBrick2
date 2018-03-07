@@ -740,7 +740,7 @@ namespace RedBrick2 {
 			upd.SortMode = DataGridViewColumnSortMode.Programmatic;
 
 			foreach (var item in new object[] { inc, dpt_col, upd,
-			  part_number, descr, part_qty, mat,
+				part_number, descr, part_qty, mat,
 				length, width, thickness, blnk_qty, overl, overw, cnc1, cnc2,
 				op1, op2, op3, op4, op5,
 				ef, eb, el, er}) {
