@@ -260,6 +260,9 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// Repopulate comboboxes. And reread data.
+		/// </summary>
 		public void ReStart() {
 			cUT_MATERIALSTableAdapter.Fill(eNGINEERINGDataSet.CUT_MATERIALS);
 			cUT_EDGESTableAdapter.Fill(eNGINEERINGDataSet.CUT_EDGES);

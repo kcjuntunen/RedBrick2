@@ -803,11 +803,20 @@ namespace RedBrick2 {
 			c.BackColor = Properties.Settings.Default.WarnForeground;
 		}
 
+		/// <summary>
+		/// Another color
+		/// </summary>
+		/// <param name="c">The <see cref="System.Windows.Forms.Control"/> you want to color.</param>
 		public static void Alert(System.Windows.Forms.Control c) {
 			c.BackColor = Properties.Settings.Default.AlertBackground;
 			c.ForeColor = Properties.Settings.Default.NormalForeground;
 		}
 
+		/// <summary>
+		/// Color only the title of a <see cref="System.Windows.Forms.GroupBox"/>.
+		/// </summary>
+		/// <param name="g">A <see cref="System.Windows.Forms.GroupBox"/> object.</param>
+		/// <param name="c">The desired forground <see cref="System.Drawing.Color"/>.</param>
 		public static void SetGroupBoxColor(System.Windows.Forms.GroupBox g, System.Drawing.Color c) {
 			g.ForeColor = c;
 			foreach (System.Windows.Forms.Control control in g.Controls) {
@@ -866,11 +875,22 @@ namespace RedBrick2 {
 			return lookup_;
 		}
 
+		/// <summary>
+		/// Check if a partnumber conforms to Amstore's usual standards.
+		/// </summary>
+		/// <param name="_part">A <see cref="String"/> to test.</param>
+		/// <returns>A <see cref="Boolean"/> indicating conformity.</returns>
 		static public bool IsConformingPartnumber(string _part) {
 			System.Text.RegularExpressions.Regex r_ =
 				new System.Text.RegularExpressions.Regex(Redbrick.BOMFilter[0]);
 			return r_.IsMatch(_part);
 		}
+
+		/// <summary>
+		/// Filter a string to make sure strings don't violate Chris' /Index Librorum Prohibitorum/.
+		/// </summary>
+		/// <param name="input">Any old <see cref="object"/> for some reason.</param>
+		/// <returns>A scantified <see cref="string"/>.</returns>
 		static public string FilterString(object input) {
 			string filtered = input.ToString();
 			char[,] chars = new char[,] {
@@ -917,6 +937,12 @@ namespace RedBrick2 {
 			return wrappedLines;
 		}
 
+		/// <summary>
+		/// Take a long <see cref="string"/>, and return it wrapped according to character count.
+		/// </summary>
+		/// <param name="_text">The <see cref="string"/> you wish to wrap.</param>
+		/// <param name="_length">A formatted string.</param>
+		/// <returns></returns>
 		public static string WrapTextReturnString(string _text, int _length) {
 			string[] originalLines = _text.Split(new string[] { " " },
 					StringSplitOptions.None);

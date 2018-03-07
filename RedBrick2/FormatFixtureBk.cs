@@ -5,12 +5,20 @@ using FormatFixtureBook;
 using SolidWorks.Interop.sldworks;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// A form to control the FormatFixtureBook library.
+	/// </summary>
 	public partial class FormatFixtureBk : Form {
 		private string initalDir = @"G:\ZALES\FIXTURE BOOK\SECTIONS";
 		private ToolTip masterXLS_tooltip = new ToolTip();
 		private ToolTip saveAs_tooltip = new ToolTip();
 		private SldWorks SwApp;
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="sldWorks">A <see cref="SldWorks"/> object. Needed if we're going
+		/// to open and close drawings.</param>
 		public FormatFixtureBk(SldWorks sldWorks) {
 			SwApp = sldWorks;
 			InitializeComponent();
@@ -210,7 +218,7 @@ namespace RedBrick2 {
 			string path_ = string.Empty;
 			try {
 				path_ = Path.GetDirectoryName(masterXLS_tb.Text);
-			} catch (System.ArgumentException ae_) {
+			} catch (System.ArgumentException) {
 				path_ = Properties.Settings.Default.FBLastPath;
 			}
 			sfd_.InitialDirectory = path_;
