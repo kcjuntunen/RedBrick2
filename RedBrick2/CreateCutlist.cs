@@ -1123,6 +1123,7 @@ namespace RedBrick2 {
 		}
 
 		private void CreateCutlist_FormClosing(object sender, FormClosingEventArgs e) {
+			dataGridView1.Dispose();
 			Properties.Settings.Default.CreateCutlistLocation = Location;
 			Properties.Settings.Default.CreateCutlistSize = Size;
 			Properties.Settings.Default.Save();
