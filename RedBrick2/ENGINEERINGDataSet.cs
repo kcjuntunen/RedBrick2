@@ -14,7 +14,7 @@ namespace RedBrick2 {
 				List<string> l_ = new List<string>();
 				using (ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter cs_ =
 					new ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter()) {
-				double sum_ = 0.0F;
+					double sum_ = 0.0F;
 					CLIENT_STUFFDataTable dt_ = cs_.GetData(_item);
 					for (int i = 0; i < dt_.Count; i++) {
 						CLIENT_STUFFRow r_ = dt_[i];
