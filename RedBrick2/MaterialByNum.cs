@@ -2,14 +2,30 @@
 using System.Windows.Forms;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// A quick popup for setting a cutlist material according to an M2M number.
+	/// </summary>
 	public partial class MaterialByNum : Form {
+		/// <summary>
+		/// The relevant table.
+		/// </summary>
 		public enum Table {
+			/// <summary>
+			/// Looking up an M2M number in the Cutlist Material tables.
+			/// </summary>
 			MATERIAL,
+			/// <summary>
+			/// Looking up an M2M number in the Cutlist Edging table.
+			/// </summary>
 			EDGING
 		}
 
-		Table _t = Table.MATERIAL;
+		private Table _t = Table.MATERIAL;
 
+		/// <summary>
+		/// A constructor.
+		/// </summary>
+		/// <param name="table">A value from the enum <see cref="Table"/>. This tells us what tables to look in.</param>
 		public MaterialByNum(Table table) {
 			_t = table;
 			InitializeComponent();
@@ -37,7 +53,16 @@ namespace RedBrick2 {
 			return res_;
 		}
 
+		/// <summary>
+		/// If we found a cutlist material, this event is triggered. The <see cref="MaterialByNumEventArgs"/>
+		/// object carries the correct MATID, or EDGEID.
+		/// </summary>
 		public event EventHandler FoundMatID;
+		/// <summary>
+		/// Invoke the registered functions.
+		/// </summary>
+		/// <param name="mbp">A <see cref="MaterialByNumEventArgs"/> object,
+		/// containing the MATID, or EDGEID we're looking for.</param>
 		protected virtual void OnFoundMatID(MaterialByNumEventArgs mbp) {
 			FoundMatID?.Invoke(this, mbp);
 		}
@@ -56,22 +81,30 @@ namespace RedBrick2 {
 		}
 	}
 
+	/// <summary>
+	/// An <see cref="EventArgs"/> object to carry our found ID.
+	/// </summary>
 	public class MaterialByNumEventArgs : EventArgs {
-	private int _id = 0;
-	public int ID
-	{
-		get
+		private int _id = 0;
+		/// <summary>
+		/// MATID or EDGEID.
+		/// </summary>
+		public int ID
 		{
-			return _id;
+			get {
+				return _id;
+			}
+			private set {
+				_id = value;
+			}
 		}
-		private set
-		{
-			_id = value;
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="mat_id">MATID or EDGEID.</param>
+		public MaterialByNumEventArgs(int mat_id) {
+			_id = mat_id;
 		}
 	}
-	public MaterialByNumEventArgs(int mat_id) {
-		_id = mat_id;
-	}
-}
 }
 
