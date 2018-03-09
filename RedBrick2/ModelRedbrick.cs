@@ -1828,16 +1828,25 @@ namespace RedBrick2 {
 		private void textBox2_TextChanged(object sender, EventArgs e) {
 			TextBox _tb = (sender as TextBox);
 			textBox_TextChanged(_tb.Text, length_label);
+			if (float.TryParse(length_label.Text, out float test_)) {
+				length = test_;
+			}
 		}
 
 		private void textBox3_TextChanged(object sender, EventArgs e) {
 			TextBox _tb = (sender as TextBox);
 			textBox_TextChanged(_tb.Text, width_label);
+			if (float.TryParse(width_label.Text, out float test_)) {
+				width = test_; 
+			}
 		}
 
 		private void textBox4_TextChanged(object sender, EventArgs e) {
 			TextBox _tb = (sender as TextBox);
 			textBox_TextChanged(_tb.Text, thickness_label);
+			if (float.TryParse(thickness_label.Text, out float test_)) {
+				thickness = test_;
+			}
 		}
 
 		private void textBox5_TextChanged(object sender, EventArgs e) {
