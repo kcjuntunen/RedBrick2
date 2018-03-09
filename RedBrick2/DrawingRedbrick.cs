@@ -191,7 +191,9 @@ namespace RedBrick2 {
 		private void get_cust_and_descr(string lookup, ref int cust, ref string descr) {
 			cust = 0;
 			descr = string.Empty;
+			string tooltip_ = string.Empty;
 			title_tooltip.RemoveAll();
+
 			void get_correct_customer_(string l_, ref int c_, ref string d_) {
 				ENGINEERINGDataSet.SCH_PROJECTSRow r =
 					(new ENGINEERINGDataSet.SCH_PROJECTSDataTable()).GetCorrectCustomer(l_);
@@ -203,27 +205,42 @@ namespace RedBrick2 {
 					d_ = string.Empty;
 				}
 			}
-			if (Redbrick.IsConformingPartnumber(lookup)) {
-				get_correct_customer_(lookup, ref cust, ref descr);
-			title_tooltip.SetToolTip(groupBox5, descr);
-			} else {
-				using (ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter rqta_ =
-					new ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter()) {
-					using (ENGINEERINGDataSet.RequestInfoDataTable rqdt_ =
-						new ENGINEERINGDataSet.RequestInfoDataTable()) {
-						rqta_.FillByItemNumFixIDNotNull(rqdt_, lookup);
-						if (rqdt_.Rows.Count > 0) {
-							cust = rqdt_[0].CUSTID;
-							if (rqdt_[0][@"FIXID"] != DBNull.Value) {
-								descr = rqdt_[0].FIXID.Trim();
-							}
-							string tt_ = string.Empty;
-							int cc_ = 0;
-							get_correct_customer_(descr, ref cc_, ref tt_);
-							title_tooltip.SetToolTip(groupBox5, tt_);
+
+			void get_item_data_(string l_, ref string d_) {
+				using (ENGINEERINGDataSetTableAdapters.CustToAmsTableAdapter cta_ =
+					new ENGINEERINGDataSetTableAdapters.CustToAmsTableAdapter()) {
+					using (ENGINEERINGDataSet.CustToAmsDataTable ctadt_ = cta_.GetDataByPart(lookup)) {
+						if (ctadt_.Rows.Count > 0) {
+							d_ = ctadt_[0].FIXCUST;
 						}
 					}
 				}
+			}
+
+			if (Redbrick.IsConformingPartnumber(lookup)) {
+				get_correct_customer_(lookup, ref cust, ref tooltip_);
+				get_item_data_(lookup, ref descr);
+				title_tooltip.SetToolTip(groupBox5, tooltip_);
+			} else {
+				using (ENGINEERINGDataSetTableAdapters.CustToAmsTableAdapter cta_ =
+					new ENGINEERINGDataSetTableAdapters.CustToAmsTableAdapter()) {
+					using (ENGINEERINGDataSet.CustToAmsDataTable ctadt_ = cta_.GetDataByItem(lookup)) {
+						if (ctadt_.Rows.Count > 0) {
+							//cust = ctadt_[0].CUSTID;
+							if (ctadt_[0][@"FIXAMS"] != DBNull.Value) {
+								descr = ctadt_[0].FIXAMS.Trim();
+								string dummy = string.Empty;
+								get_correct_customer_(lookup, ref cust, ref dummy);
+							}
+							int cc_ = 0;
+							get_correct_customer_(descr, ref cc_, ref tooltip_);
+							title_tooltip.SetToolTip(groupBox5, tooltip_);
+						}
+					}
+				}
+			}
+			if (descr == string.Empty) {
+				descr = tooltip_;
 			}
 		}
 
