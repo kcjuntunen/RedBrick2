@@ -1,7 +1,7 @@
 using SolidWorks.Interop.sldworks;
 
 namespace RedBrick2 {
-	class AuthorUIDProperty : StringProperty {
+	public class AuthorUIDProperty : StringProperty {
 		/// <summary>
 		/// Constructor.
 		/// </summary>

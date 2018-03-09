@@ -15,6 +15,7 @@ namespace RedBrick2 {
 		private StringProperty eco;
 		private StringProperty description;
 		private AuthorProperty author;
+		private AuthorUIDProperty authorUID;
 		private DateProperty date;
 		private Dictionary<string, string> ecoData = new Dictionary<string, string>();
 
@@ -40,6 +41,7 @@ namespace RedBrick2 {
 			Description = descr;
 
 			author = new AuthorProperty(string.Format(@"LIST {0}", lvl), true, SwApp, ActiveDoc);
+			authorUID = new AuthorUIDProperty(string.Format(@"LIST {0} UID", lvl), true, SwApp, ActiveDoc);
 
 			date = new DateProperty(string.Format(@"DATE {0}", lvl), true, SwApp, ActiveDoc);
 			Date = DateTime.Now;
@@ -73,6 +75,7 @@ namespace RedBrick2 {
 			Description = descr;
 
 			author = new AuthorProperty(string.Format(@"LIST {0}", idx), true, SwApp, ActiveDoc);
+			authorUID = new AuthorUIDProperty(string.Format(@"LIST {0} UID", idx), true, SwApp, ActiveDoc);
 			AuthorID = aut;
 
 			date = new DateProperty(string.Format(@"DATE {0}", idx), true, SwApp, ActiveDoc);
@@ -89,11 +92,12 @@ namespace RedBrick2 {
 		/// <param name="descr">StringProperty of a description.</param>
 		/// <param name="aut">AuthorProperty.</param>
 		/// <param name="dt">DateProperty.</param>
-		public Rev(StringProperty lvl, StringProperty ecr, StringProperty descr, AuthorProperty aut, DateProperty dt) {
+		public Rev(StringProperty lvl, StringProperty ecr, StringProperty descr, AuthorProperty aut, AuthorUIDProperty autid, DateProperty dt) {
 			level = lvl;
 			eco = ecr;
 			description = descr;
 			author = aut;
+			authorUID = autid;
 			date = dt;
 			GetECOData();
 		}
@@ -158,6 +162,7 @@ namespace RedBrick2 {
 			eco.Write();
 			description.Write();
 			author.Write();
+			authorUID.Write();
 			date.Write();
 		}
 
@@ -188,6 +193,7 @@ namespace RedBrick2 {
 			{
 				authorID_ = value;
 				author.Data = value;
+				authorUID.Data = value;
 			}
 		}
 

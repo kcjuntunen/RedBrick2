@@ -42,6 +42,7 @@ namespace RedBrick2 {
 
 				string l = string.Format("LIST {0}", i);
 				AuthorProperty lp = new AuthorProperty(l, true, SwApp, md);
+				AuthorUIDProperty lpuid = new AuthorUIDProperty(string.Format("{0} UID", l), true, SwApp, md);
 
 				string da = string.Format("DATE {0}", i);
 				DateProperty dap = new DateProperty(da, true, SwApp, md);
@@ -49,8 +50,14 @@ namespace RedBrick2 {
 				ep.Get();
 				dep.Get();
 				lp.Get();
+				lpuid.Get();
 				dap.Get();
-				Add(new Rev(lvlp, ep, dep, lp, dap));
+				if (lpuid.Value != string.Empty) {
+					lp.Data = lpuid.Data;
+				} else if (lp.Value != string.Empty) {
+					lpuid.Data = lp.Data;
+				}
+				Add(new Rev(lvlp, ep, dep, lp, lpuid, dap));
 			}
 		}
 
