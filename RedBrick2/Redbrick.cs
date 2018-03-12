@@ -866,7 +866,7 @@ namespace RedBrick2 {
 			}
 			
 			// McMaster-Carr #
-			r_ = new System.Text.RegularExpressions.Regex(@"[0-9]{4,5}[A-Z][0-9]*");
+			r_ = new System.Text.RegularExpressions.Regex(@"[0-9]{4,5}[A-Z]{1}[0-9]+");
 			m_ = r_.Match(lookup_);
 			if (m_.Groups[0].Value != string.Empty) {
 				return m_.Groups[0].Value;
