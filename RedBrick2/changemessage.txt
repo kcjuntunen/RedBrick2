@@ -1,7 +1,5 @@
 
-1) The "Create Cutlist" window now resolves lightweight components before trying to traverse the tree.
-2) Un-crisscrossed edging oversize calculation.
-3) Enter and backspace act just the way you'd expect in the Finish fields on drawings.
-4) Closed a loophole that allowed Chris' naughty characters to get in the Cutlist Database.
-5) Fixed a label that wasn't hiding when it should.
-6) [Tab] will work like [ENTER] in the "Material by M2M number" popup.
+1) Updated PDF archiver so that useful information is redacted from a certain customer's drawings and sent to the profile folder.
+2) Added UID to ECR data so we can tell JB's apart on ECRs too.
+3) Fixed regex so Redbrick doesn't over-match McMaster-Carr items.
+4) Match customer item numbers as much as possible with internal item numbers for the top groupbox in drawing view.
