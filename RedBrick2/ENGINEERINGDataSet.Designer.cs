@@ -42153,10 +42153,10 @@ SELECT LGCYID, ECRNum, DateRequested, DateStarted, DateCompleted, AffectedParts,
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT      ECR_MAIN.ECR_NUM, GEN_USERS.FIRST + ' ' + GEN_USERS.LAST AS ReqBy, ECR_MAIN.CHANGES, ECR_STATUS.STATUS, ECR_MAIN.ERR_DESC, 
+            this._commandCollection[0].CommandText = @"SELECT      ECR_MAIN.ECR_NUM, FIRST + ' ' + LAST + ' ' + ISNULL(SUFFIX, '') AS ReqBy, ECR_MAIN.CHANGES, ECR_STATUS.STATUS, ECR_MAIN.ERR_DESC, 
                         ECR_MAIN.REVISION, ECR_MAIN.DATE_CREATE
 FROM          ECR_MAIN INNER JOIN
                         GEN_USERS ON ECR_MAIN.REQ_BY = GEN_USERS.UID INNER JOIN
@@ -42172,6 +42172,17 @@ FROM          ECR_MAIN INNER JOIN
 WHERE      (ECR_MAIN.ECR_NUM = @eco)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@eco", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ECR_NUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = @"SELECT     ECR_MAIN.ECR_NUM, GEN_USERS.FIRST + ' ' + GEN_USERS.LAST AS ReqBy, ECR_MAIN.CHANGES, ECR_STATUS.STATUS, ECR_MAIN.ERR_DESC, 
+                      ECR_MAIN.REVISION, ECR_MAIN.DATE_CREATE
+FROM         ECR_MAIN INNER JOIN
+                      GEN_USERS ON ECR_MAIN.REQ_BY = GEN_USERS.UID INNER JOIN
+                      ECR_STATUS ON ECR_MAIN.STATUS = ECR_STATUS.STAT_ID INNER JOIN
+                      ECR_ITEMS ON ECR_MAIN.ECR_NUM = ECR_ITEMS.ECR_NUM
+WHERE     (ECR_ITEMS.ITEMNUMBER = @itemnum)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itemnum", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "ITEMNUMBER", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -42219,6 +42230,42 @@ WHERE      (ECR_MAIN.ECR_NUM = @eco)";
         public virtual ENGINEERINGDataSet.ECRObjLookupDataTable GetDataByECO(int eco) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(eco));
+            ENGINEERINGDataSet.ECRObjLookupDataTable dataTable = new ENGINEERINGDataSet.ECRObjLookupDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByItemNum(ENGINEERINGDataSet.ECRObjLookupDataTable dataTable, string itemnum) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((itemnum == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(itemnum));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ENGINEERINGDataSet.ECRObjLookupDataTable GetDataByItemNum(string itemnum) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((itemnum == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(itemnum));
+            }
             ENGINEERINGDataSet.ECRObjLookupDataTable dataTable = new ENGINEERINGDataSet.ECRObjLookupDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -44253,40 +44300,46 @@ SELECT ITEM_ID, ECR_NUM, ITEMNUMBER, ITEMREV, TYPE, ITEM_NOTE, IM_CHK, IM_CHANGE
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[5];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[6];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT      ECR_ITEMS.*\nFROM          ECR_ITEMS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT      ITEM_ID, ECR_NUM, ITEMNUMBER, ITEMREV, TYPE, ITEM_NOTE, IM_CHK, IM_CH" +
-                "ANGE, RTG_CHK, RTG_CHANGE\nFROM          ECR_ITEMS\nWHERE      (ECR_NUM = @ecrno) " +
-                "AND (ITEMNUMBER = @partnum) AND (ITEMREV = @rev)";
+            this._commandCollection[1].CommandText = "SELECT     ITEM_ID, ECR_NUM, ITEMNUMBER, ITEMREV, TYPE, ITEM_NOTE, IM_CHK, IM_CHA" +
+                "NGE, RTG_CHK, RTG_CHANGE\r\nFROM         ECR_ITEMS\r\nWHERE     (ECR_NUM = @ecrno)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ecrno", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ECR_NUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partnum", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "ITEMNUMBER", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rev", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "ITEMREV", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT      STATUS\nFROM          ECR_MAIN\nWHERE      (ECR_NUM = @ecr_num)";
+            this._commandCollection[2].CommandText = "SELECT      ITEM_ID, ECR_NUM, ITEMNUMBER, ITEMREV, TYPE, ITEM_NOTE, IM_CHK, IM_CH" +
+                "ANGE, RTG_CHK, RTG_CHANGE\nFROM          ECR_ITEMS\nWHERE      (ECR_NUM = @ecrno) " +
+                "AND (ITEMNUMBER = @partnum) AND (ITEMREV = @rev)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ecr_num", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ECR_NUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ecrno", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ECR_NUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partnum", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "ITEMNUMBER", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rev", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "ITEMREV", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "INSERT INTO ECR_ITEMS\n                        (ECR_NUM, ITEMNUMBER, ITEMREV, TYPE" +
-                ")\nOUTPUT     INSERTED.ITEM_ID\nVALUES      (@ecr_num,@itemnumber,@itemrev,@type)";
+            this._commandCollection[3].CommandText = "SELECT      STATUS\nFROM          ECR_MAIN\nWHERE      (ECR_NUM = @ecr_num)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ecr_num", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ECR_NUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itemnumber", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "ITEMNUMBER", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itemrev", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "ITEMREV", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@type", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "TYPE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "UPDATE      ECR_MAIN\nSET               STATUS = 2\nWHERE      (ECR_NUM = @ecr_num)" +
-                " AND (STATUS = 1); ";
+            this._commandCollection[4].CommandText = "INSERT INTO ECR_ITEMS\n                        (ECR_NUM, ITEMNUMBER, ITEMREV, TYPE" +
+                ")\nOUTPUT     INSERTED.ITEM_ID\nVALUES      (@ecr_num,@itemnumber,@itemrev,@type)";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ecr_num", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ECR_NUM", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ecr_num", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ECR_NUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itemnumber", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "ITEMNUMBER", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itemrev", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "ITEMREV", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@type", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "TYPE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[5].Connection = this.Connection;
+            this._commandCollection[5].CommandText = "UPDATE      ECR_MAIN\nSET               STATUS = 2\nWHERE      (ECR_NUM = @ecr_num)" +
+                " AND (STATUS = 1); ";
+            this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ecr_num", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ECR_NUM", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -44308,6 +44361,42 @@ SELECT ITEM_ID, ECR_NUM, ITEMNUMBER, ITEMREV, TYPE, ITEM_NOTE, IM_CHK, IM_CHANGE
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual ENGINEERINGDataSet.ECR_ITEMSDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            ENGINEERINGDataSet.ECR_ITEMSDataTable dataTable = new ENGINEERINGDataSet.ECR_ITEMSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByECRNo(ENGINEERINGDataSet.ECR_ITEMSDataTable dataTable, global::System.Nullable<int> ecrno) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((ecrno.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(ecrno.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ENGINEERINGDataSet.ECR_ITEMSDataTable GetDataByECRNo(global::System.Nullable<int> ecrno) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((ecrno.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(ecrno.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             ENGINEERINGDataSet.ECR_ITEMSDataTable dataTable = new ENGINEERINGDataSet.ECR_ITEMSDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -44663,7 +44752,7 @@ SELECT ITEM_ID, ECR_NUM, ITEMNUMBER, ITEMREV, TYPE, ITEM_NOTE, IM_CHK, IM_CHANGE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual global::System.Nullable<int> GetECRItem(global::System.Nullable<int> ecrno, string partnum, string rev) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
             if ((ecrno.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(ecrno.Value));
             }
@@ -44709,7 +44798,7 @@ SELECT ITEM_ID, ECR_NUM, ITEMNUMBER, ITEMREV, TYPE, ITEM_NOTE, IM_CHK, IM_CHANGE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual global::System.Nullable<int> GetECRStatus(int ecr_num) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
             command.Parameters[0].Value = ((int)(ecr_num));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -44739,7 +44828,7 @@ SELECT ITEM_ID, ECR_NUM, ITEMNUMBER, ITEMREV, TYPE, ITEM_NOTE, IM_CHK, IM_CHANGE
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
         public virtual int InsertECRItem(global::System.Nullable<int> ecr_num, string itemnumber, string itemrev, global::System.Nullable<int> type) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
             if ((ecr_num.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(ecr_num.Value));
             }
@@ -44786,7 +44875,7 @@ SELECT ITEM_ID, ECR_NUM, ITEMNUMBER, ITEMREV, TYPE, ITEM_NOTE, IM_CHK, IM_CHANGE
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int SetNewECRWIP(int ecr_num) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[5];
             command.Parameters[0].Value = ((int)(ecr_num));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -45402,7 +45491,7 @@ SELECT DRAW_ID, ITEM_ID, FILE_ID, DRWREV, ORIG_PATH, DRW_FILE FROM ECR_DRAWINGS 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT      DRAW_ID, ITEM_ID, FILE_ID, DRWREV, ORIG_PATH, DRW_FILE\nFROM          " +
@@ -45410,15 +45499,21 @@ SELECT DRAW_ID, ITEM_ID, FILE_ID, DRWREV, ORIG_PATH, DRW_FILE FROM ECR_DRAWINGS 
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "INSERT INTO ECR_DRAWINGS\n                        (ITEM_ID, FILE_ID, DRWREV, DRW_F" +
+            this._commandCollection[1].CommandText = "SELECT     DRAW_ID, ITEM_ID, FILE_ID, DRWREV, ORIG_PATH, DRW_FILE\r\nFROM         E" +
+                "CR_DRAWINGS\r\nWHERE     (ITEM_ID = @itemId)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itemId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ITEM_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "INSERT INTO ECR_DRAWINGS\n                        (ITEM_ID, FILE_ID, DRWREV, DRW_F" +
                 "ILE, ORIG_PATH)\nVALUES      (@item_id,@file_id,@drwrev,@drw_file,@orig_path); SE" +
                 "LECT SCOPE_IDENTITY();\n";
-            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@item_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ITEM_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@file_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "FILE_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@drwrev", global::System.Data.SqlDbType.NVarChar, 2, global::System.Data.ParameterDirection.Input, 0, 0, "DRWREV", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@drw_file", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "DRW_FILE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@orig_path", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "ORIG_PATH", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@item_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ITEM_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@file_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "FILE_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@drwrev", global::System.Data.SqlDbType.NVarChar, 2, global::System.Data.ParameterDirection.Input, 0, 0, "DRWREV", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@drw_file", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "DRW_FILE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@orig_path", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "ORIG_PATH", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -45440,6 +45535,42 @@ SELECT DRAW_ID, ITEM_ID, FILE_ID, DRWREV, ORIG_PATH, DRW_FILE FROM ECR_DRAWINGS 
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual ENGINEERINGDataSet.ECR_DRAWINGSDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            ENGINEERINGDataSet.ECR_DRAWINGSDataTable dataTable = new ENGINEERINGDataSet.ECR_DRAWINGSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByItemID(ENGINEERINGDataSet.ECR_DRAWINGSDataTable dataTable, global::System.Nullable<int> itemId) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((itemId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(itemId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ENGINEERINGDataSet.ECR_DRAWINGSDataTable GetDataByItemID(global::System.Nullable<int> itemId) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((itemId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(itemId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             ENGINEERINGDataSet.ECR_DRAWINGSDataTable dataTable = new ENGINEERINGDataSet.ECR_DRAWINGSDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -45479,7 +45610,7 @@ SELECT DRAW_ID, ITEM_ID, FILE_ID, DRWREV, ORIG_PATH, DRW_FILE FROM ECR_DRAWINGS 
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
         public virtual int InsertECRDrawing(global::System.Nullable<int> item_id, global::System.Nullable<int> file_id, string drwrev, string drw_file, string orig_path) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
             if ((item_id.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(item_id.Value));
             }

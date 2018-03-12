@@ -156,6 +156,12 @@
     <Compile Include="DrawingRedbrick.Designer.cs">
       <DependentUpon>DrawingRedbrick.cs</DependentUpon>
     </Compile>
+    <Compile Include="ECRViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ECRViewer.Designer.cs">
+      <DependentUpon>ECRViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="EdgeId.cs" />
     <Compile Include="EdgeProperty.cs" />
     <Compile Include="EditOp.cs">
@@ -268,6 +274,7 @@
       <DependentUpon>ENGINEERINGDataSet.xsd</DependentUpon>
     </None>
     <None Include="install.nsi" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -289,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DrawingRedbrick.resx">
       <DependentUpon>DrawingRedbrick.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ECRViewer.resx">
+      <DependentUpon>ECRViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditOp.resx">
       <DependentUpon>EditOp.cs</DependentUpon>
@@ -340,7 +350,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"$(SolutionDir)".\GetAssemblyInfoForNSIS\bin\Release\GetAssemblyInfoForNSIS.exe
-C:\PROGRA~2\NSIS\makensisw.exe "$(ProjectDir)\install.nsi"
+:: C:\PROGRA~2\NSIS\makensisw.exe "$(ProjectDir)\install.nsi"
 :: start net use G: \\AMSTORE-SVR-22\cad
 :: start xcopy /Y "$(ProjectDir)InstallRedbrick.exe" "G:\Solid Works\Amstore_Macros\Redbrick\"
 :: start xcopy /Y "$(ProjectDir)version.xml" "G:\Solid Works\Amstore_Macros\Redbrick\"</PostBuildEvent>

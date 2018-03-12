@@ -42,5 +42,12 @@ namespace RedBrick2 {
 			Properties.Settings.Default.ToolChestLocation = Location;
 			Properties.Settings.Default.Save();
 		}
+
+		private void button3_Click(object sender, EventArgs e) {
+			System.IO.FileInfo fi_ = new System.IO.FileInfo((swApp.ActiveDoc as ModelDoc2).GetPathName());
+			using (ECRViewer ev_ = new ECRViewer(Redbrick.FileInfoToLookup(fi_))) {
+				ev_.ShowDialog(this);
+			}
+		}
 	}
 }
