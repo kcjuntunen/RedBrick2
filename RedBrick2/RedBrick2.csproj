@@ -78,7 +78,7 @@
   <ItemGroup>
     <Reference Include="ArchivePDF, Version=2.2.0.0, Culture=neutral, PublicKeyToken=3dbf4f27f46e74d2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ArchivePDF\ArchivePDF\bin\Release\ArchivePDF.dll</HintPath>
+      <HintPath>..\..\ArchivePDF\ArchivePDF\bin\x64\Release\ArchivePDF.dll</HintPath>
     </Reference>
     <Reference Include="DrawingCompiler">
       <HintPath>..\..\DrawingCollector\DrawingCollector\DrawingCompiler\bin\x64\Debug\DrawingCompiler.dll</HintPath>
