@@ -218,6 +218,15 @@ namespace RedBrick2 {
 			signeesListView.AutoResizeColumn(2, ColumnHeaderAutoResizeStyle.HeaderSize);
 		}
 
+		private void ECRViewer_Load(object sender, EventArgs e) {
+			Location = Properties.Settings.Default.ECRViewerLocation;
+			Size = Properties.Settings.Default.ECRViewerSize;
+		}
 
+		private void ECRViewer_FormClosing(object sender, FormClosingEventArgs e) {
+			Properties.Settings.Default.ECRViewerLocation = Location;
+			Properties.Settings.Default.ECRViewerSize = Size;
+			Properties.Settings.Default.Save();
+		}
 	}
 }

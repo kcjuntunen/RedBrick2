@@ -294,5 +294,14 @@
     <Setting Name="ToolChestLocation" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">960, 540</Value>
     </Setting>
+    <Setting Name="ECRViewerSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="ECRViewerLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">100, 100</Value>
+    </Setting>
+    <Setting Name="Setting" Type="System.String" Scope="User">
+      <Value Profile="(Default)">650; 612</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
