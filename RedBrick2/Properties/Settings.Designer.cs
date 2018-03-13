@@ -1026,7 +1026,7 @@ namespace RedBrick2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("800, 600")]
         public global::System.Drawing.Size ECRViewerSize {
             get {
                 return ((global::System.Drawing.Size)(this["ECRViewerSize"]));

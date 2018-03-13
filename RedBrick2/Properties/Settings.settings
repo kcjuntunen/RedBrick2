@@ -295,7 +295,7 @@
       <Value Profile="(Default)">960, 540</Value>
     </Setting>
     <Setting Name="ECRViewerSize" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
+      <Value Profile="(Default)">800, 600</Value>
     </Setting>
     <Setting Name="ECRViewerLocation" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">100, 100</Value>
