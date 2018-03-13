@@ -75,7 +75,7 @@
 			this.groupBox2.Controls.Add(this.button3);
 			this.groupBox2.Location = new System.Drawing.Point(214, 12);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(135, 94);
+			this.groupBox2.Size = new System.Drawing.Size(131, 94);
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "ECR";
@@ -86,7 +86,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.button3.Location = new System.Drawing.Point(7, 21);
 			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(122, 23);
+			this.button3.Size = new System.Drawing.Size(118, 23);
 			this.button3.TabIndex = 0;
 			this.button3.Text = "ECR Viewer";
 			this.button3.UseVisualStyleBackColor = true;
@@ -96,14 +96,14 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(362, 123);
+			this.ClientSize = new System.Drawing.Size(357, 123);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.MaximizeBox = false;
-			this.MaximumSize = new System.Drawing.Size(800, 150);
+			this.MaximumSize = new System.Drawing.Size(365, 150);
 			this.MinimizeBox = false;
-			this.MinimumSize = new System.Drawing.Size(200, 150);
+			this.MinimumSize = new System.Drawing.Size(365, 150);
 			this.Name = "ToolChest";
 			this.ShowIcon = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;

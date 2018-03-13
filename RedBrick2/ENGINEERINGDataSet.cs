@@ -703,7 +703,7 @@ namespace RedBrick2 {
 				bool exists = false;
 				using (ENGINEERINGDataSetTableAdapters.ECR_ITEMSTableAdapter eita =
 					new ENGINEERINGDataSetTableAdapters.ECR_ITEMSTableAdapter()) {
-					int? r = eita.GetECRItem(ecrno, partnum, rev);
+					object r = eita.GetECRItem(ecrno, partnum, rev);
 					if (r != null) {
 						exists = true;
 					}

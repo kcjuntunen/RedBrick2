@@ -124,6 +124,7 @@ namespace RedBrick2 {
 			TreeViewIcons.Images.Add(System.Drawing.Image.FromFile(@"G:\Solid Works\Amstore_Macros\ICONS\freelance-icon.bmp"));
 			TreeViewIcons.Images.Add(System.Drawing.Image.FromFile(@"G:\Solid Works\Amstore_Macros\ICONS\icon_discuss.bmp"));
 			TreeViewIcons.Images.Add(System.Drawing.Image.FromFile(@"G:\Solid Works\Amstore_Macros\ICONS\21-128.png"));
+			TreeViewIcons.Images.Add(System.Drawing.Image.FromFile(@"G:\Solid Works\Amstore_Macros\ICONS\Archive-icon.bmp"));
 
 
 			try {

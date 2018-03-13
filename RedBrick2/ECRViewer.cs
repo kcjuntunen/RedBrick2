@@ -6,6 +6,7 @@ namespace RedBrick2 {
 	public partial class ECRViewer : Form {
 		private string Lookup;
 		private List<int> items = new List<int>();
+		private List<string> drawings = new List<string>();
 		private int selectedItem;
 		public ECRViewer(string lookup) {
 			Lookup = lookup;
@@ -14,51 +15,65 @@ namespace RedBrick2 {
 			ECRlistView.HideSelection = false;
 			ECRlistView.MultiSelect = false;
 			ECRlistView.View = View.Details;
+			ECRlistView.SmallImageList = Redbrick.TreeViewIcons;
 
 			affectedItemsListView.FullRowSelect = true;
 			affectedItemsListView.HideSelection = false;
 			affectedItemsListView.MultiSelect = false;
 			affectedItemsListView.View = View.Details;
+			affectedItemsListView.SmallImageList = Redbrick.TreeViewIcons;
 
 			affectedDrawingsListView.FullRowSelect = true;
 			affectedDrawingsListView.HideSelection = false;
 			affectedDrawingsListView.MultiSelect = false;
 			affectedDrawingsListView.View = View.Details;
+			affectedDrawingsListView.SmallImageList = Redbrick.TreeViewIcons;
+
+			signeesListView.FullRowSelect = true;
+			signeesListView.HideSelection = false;
+			signeesListView.MultiSelect = false;
+			signeesListView.View = View.Details;
+			signeesListView.SmallImageList = Redbrick.TreeViewIcons;
 			
+			attachedFilesListView.FullRowSelect = true;
+			attachedFilesListView.HideSelection = false;
+			attachedFilesListView.MultiSelect = false;
+			attachedFilesListView.View = View.Details;
+			attachedFilesListView.SmallImageList = Redbrick.TreeViewIcons;
+
 			ECRlistView.ItemSelectionChanged += ListView1_ItemSelectionChanged;
+			ECRlistView.ColumnClick += ColumnClick;
 			affectedItemsListView.ItemSelectionChanged += AffectedItemsListView_ItemSelectionChanged;
+			affectedItemsListView.ColumnClick += ColumnClick;
+			affectedDrawingsListView.MouseDoubleClick += AffectedDrawingsListView_MouseDoubleClick;
+			affectedDrawingsListView.ColumnClick += ColumnClick;
+			signeesListView.SelectedIndexChanged += SigneesListView_SelectedIndexChanged;
+			attachedFilesListView.MouseDoubleClick += AttachedFilesListView_MouseDoubleClick;
 			Init();
 		}
 
-		private void AffectedItemsListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e) {
-			ListView lv_ = sender as ListView;
-			if (lv_.SelectedItems.Count > 0 && lv_.SelectedItems[0] != null) {
-				int idx = lv_.Items.IndexOf(lv_.SelectedItems[0]);
-				affectedDrawingsListView.Items.Clear();
-				using (ENGINEERINGDataSet.ECR_DRAWINGSDataTable dt_ = eCR_DRAWINGSRows(items[idx])) {
-					foreach (ENGINEERINGDataSet.ECR_DRAWINGSRow row in dt_.Rows) {
-						string[] row_str_ = new string[] { row.ORIG_PATH, row.DRWREV };
-						affectedDrawingsListView.Items.Add(new ListViewItem(row_str_));
+		private void Init() {
+			using (ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter ta_ =
+				new ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter()) {
+				using (ENGINEERINGDataSet.ECRObjLookupDataTable dt_ = ta_.GetDataByItemNum(Lookup)) {
+					if (dt_.Count > 0) {
+						foreach (ENGINEERINGDataSet.ECRObjLookupRow row in dt_.Rows) {
+							string[] row_str_ = new string[] { row.ECR_NUM.ToString(),
+								row.DATE_CREATE.ToString("dd MMM yyyy"),
+								Redbrick.TitleCase(row.STATUS) };
+							ListViewItem i_ = new ListViewItem(row_str_, 1);
+							ECRlistView.Items.Add(i_);
+						}
 					}
 				}
 			}
+			ECRlistView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 		}
 
-		private void ListView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e) {
-			ListView lv_ = sender as ListView;
-			if (lv_.SelectedItems.Count > 0 && lv_.SelectedItems[0] != null) {
-				int ecrno = Convert.ToInt32(e.Item.SubItems[0].Text);
-				ENGINEERINGDataSet.ECRObjLookupRow r_ = ECRObjLookup(ecrno);
-				descriptionTextBox.Text = r_.CHANGES;
-				affectedItemsListView.Items.Clear();
-				affectedDrawingsListView.Items.Clear();
-				items.Clear();
-				foreach (ENGINEERINGDataSet.ECR_ITEMSRow row in eCR_ITEMSRows(ecrno)) {
-					string[] row_str_ = new string[] { row.ITEMNUMBER, row.ITEMREV, row.TYPE.ToString() };
-					ListViewItem l_ = new ListViewItem(row_str_);
-					items.Add(row.ITEM_ID);
-					affectedItemsListView.Items.Add(l_);
-				}
+		private ENGINEERINGDataSet.SigneesDataTable signeesRows(int ecr_) {
+			using (ENGINEERINGDataSetTableAdapters.SigneesTableAdapter ta_ =
+				new ENGINEERINGDataSetTableAdapters.SigneesTableAdapter()) {
+				return ta_.GetDataByECRNum(ecr_);
 			}
 		}
 
@@ -88,21 +103,121 @@ namespace RedBrick2 {
 			}
 		}
 
-		private void Init() {
-			using (ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter ta_ =
-				new ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter()) {
-				using (ENGINEERINGDataSet.ECRObjLookupDataTable dt_ = ta_.GetDataByItemNum(Lookup)) {
-					if (dt_.Count > 0) {
-						foreach (ENGINEERINGDataSet.ECRObjLookupRow row in dt_.Rows) {
-							string[] row_str_ = new string[] { row.ECR_NUM.ToString(),
-								row.DATE_CREATE.ToString("dd MMM yyyy"),
-								row.STATUS.ToString() };
-							ListViewItem i_ = new ListViewItem(row_str_);
-							ECRlistView.Items.Add(i_);
-						}
+		private	ENGINEERINGDataSet.FILE_MAINDataTable fILE_MAINRows(int ecr_) {
+			using (ENGINEERINGDataSetTableAdapters.FILE_MAINTableAdapter ta_ =
+				new ENGINEERINGDataSetTableAdapters.FILE_MAINTableAdapter()) {
+				return ta_.GetDataByECRNum(Convert.ToInt16(ecr_));	
+			}
+		}
+	
+		private void ColumnClick(object sender, ColumnClickEventArgs e) {
+			ListView lv_ = sender as ListView;
+			if (lv_.Columns[e.Column].ListView.Sorting == SortOrder.Ascending) {
+				lv_.Columns[0].ListView.Sorting = SortOrder.Descending;
+			} else {
+				lv_.Columns[0].ListView.Sorting = SortOrder.Ascending;
+			}
+		}
+
+		private void AffectedDrawingsListView_MouseDoubleClick(object sender, MouseEventArgs e) {
+			ListView lv_ = sender as ListView;
+			if (lv_.SelectedItems.Count > 0 && lv_.SelectedItems[0] != null) {
+				int idx = lv_.Items.IndexOf(lv_.SelectedItems[0]);
+				string path = string.Format(@"\\AMSTORE-SVR-02\shared\shared\general\Engineering Utility\ECR Drawings\{0}",
+					drawings[idx]);
+				System.Diagnostics.Process.Start(path);
+			}
+		}
+
+		private void AttachedFilesListView_MouseDoubleClick(object sender, MouseEventArgs e) {
+			ListView lv_ = sender as ListView;
+			if (lv_.SelectedItems.Count > 0 && lv_.SelectedItems[0] != null) {
+				int idx = lv_.Items.IndexOf(lv_.SelectedItems[0]);
+				string path = string.Format(@"\\AMSTORE-SVR-02\shared\shared\general\Engineering Utility\Submissions\{0}",
+					lv_.SelectedItems[0].SubItems[2].Text);
+				System.Diagnostics.Process.Start(path);
+			}
+		}
+
+		private void AffectedItemsListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e) {
+			ListView lv_ = sender as ListView;
+			if (lv_.SelectedItems.Count > 0 && lv_.SelectedItems[0] != null) {
+				int idx = lv_.Items.IndexOf(lv_.SelectedItems[0]);
+				drawings.Clear();
+				affectedDrawingsListView.Items.Clear();
+				string[] it_ = lv_.SelectedItems[0].SubItems[3].Text.Split(new string[] { @" - " }, StringSplitOptions.None);
+				affectedDrawingsListView.Items.Add(new ListViewItem(it_, 6));
+				if (lv_.SelectedItems[0].SubItems.Count > 3) {
+					string drw_itm = lv_.SelectedItems[0].SubItems[4].Text;
+					drawings.Add(drw_itm);
+				}
+			}
+			affectedDrawingsListView.AutoResizeColumn(0, ColumnHeaderAutoResizeStyle.ColumnContent);
+			affectedDrawingsListView.AutoResizeColumn(1, ColumnHeaderAutoResizeStyle.HeaderSize);
+		}
+
+		private void SigneesListView_SelectedIndexChanged(object sender, EventArgs e) {
+			ListView lv_ = sender as ListView;
+			if (lv_.SelectedItems.Count > 0 && lv_.SelectedItems[0] != null) {
+				signeesTextBox.Text = lv_.SelectedItems[0].SubItems[3].Text;
+			}
+		}
+
+		private void ListView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e) {
+			ListView lv_ = sender as ListView;
+			if (lv_.SelectedItems.Count > 0 && lv_.SelectedItems[0] != null) {
+				int ecrno = Convert.ToInt32(e.Item.SubItems[0].Text);
+				ENGINEERINGDataSet.ECRObjLookupRow r_ = ECRObjLookup(ecrno);
+				descriptionTextBox.Text = r_.CHANGES;
+				affectedItemsListView.Items.Clear();
+				affectedDrawingsListView.Items.Clear();
+				signeesListView.Items.Clear();
+				attachedFilesListView.Items.Clear();
+				items.Clear();
+				drawings.Clear();
+				foreach (ENGINEERINGDataSet.ECR_ITEMSRow row in eCR_ITEMSRows(ecrno)) {
+					string[] row_str_ = new string[] { row.ITEMNUMBER, row.ITEMREV, Redbrick.TitleCase(row.TypeName) };
+					ListViewItem l_ = new ListViewItem(row_str_, 5);
+					foreach (ENGINEERINGDataSet.ECR_DRAWINGSRow drw in eCR_DRAWINGSRows(row.ITEM_ID)) {
+						string tx_ = string.Format(@"{0} - {1}", drw.ORIG_PATH, drw.DRWREV);
+						l_.SubItems.Add(tx_);
+						l_.SubItems.Add(drw.DRW_FILE);
+					}
+					items.Add(row.ITEM_ID);
+					affectedItemsListView.Items.Add(l_);
+				}
+				foreach (ENGINEERINGDataSet.SigneesRow row in signeesRows(ecrno)) {
+					string signoff_ = string.Empty;
+					string comment_ = string.Empty;
+					if (!row.IsSIGNOFFNull()) {
+						signoff_  = row.SIGNOFF.ToString(@"dd MMM yyyy");
+					}
+					if (!row.IsCOMMENTNull()) {
+						comment_ = row.COMMENT;
+					}
+					string[] row_str_ = new string[] { Redbrick.TitleCase(row.UserName),
+						Redbrick.TitleCase(row.STATUS),
+						signoff_,
+						comment_ };
+					ListViewItem l_ = new ListViewItem(row_str_, 3);
+					signeesListView.Items.Add(l_);
+				}
+				foreach (ENGINEERINGDataSet.FILE_MAINRow row in fILE_MAINRows(ecrno)) {
+					string[] row_str_ = new string[] { row.EXT.ToUpper(), row.COMMENT, row.FileName };
+					attachedFilesListView.Items.Add(new ListViewItem(row_str_, 0));
+					if (row.EXT == string.Empty) {
+						attachedFilesListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+					} else {
+						attachedFilesListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 					}
 				}
 			}
+			affectedItemsListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+			affectedItemsListView.AutoResizeColumn(2, ColumnHeaderAutoResizeStyle.HeaderSize);
+			signeesListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+			signeesListView.AutoResizeColumn(2, ColumnHeaderAutoResizeStyle.HeaderSize);
 		}
+
+
 	}
 }
