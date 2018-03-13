@@ -2516,13 +2516,20 @@ namespace RedBrick2 {
 					eNGINEERINGDataSet.GEN_ODOMETER.IncrementOdometer(Redbrick.Functions.RemovePart);
 				}
 			}
+			ModelDoc2 tmp_ = _activeDoc;
+			DumpActiveDoc();
+			ReQuery(tmp_);
 		}
 
 		private void add_prt_btn_MouseClick(object sender, MouseEventArgs e) {
+			UpdateCutlistProperties();
 			using (AddToExistingCutlist atc_ = new AddToExistingCutlist(PropertySet)) {
 				atc_.ShowDialog(this);
 				eNGINEERINGDataSet.GEN_ODOMETER.IncrementOdometer(Redbrick.Functions.AddPart);
 			}
+			ModelDoc2 tmp_ = _activeDoc;
+			DumpActiveDoc();
+			ReQuery(tmp_);
 		}
 
 		private void groupBox2_MouseHover(object sender, EventArgs e) {
