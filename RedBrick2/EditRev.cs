@@ -124,7 +124,8 @@ namespace RedBrick2 {
 				new ENGINEERINGDataSet.ECRObjLookupDataTable()) {
 				using (ENGINEERINGDataSet.ECR_ITEMSDataTable eidt =
 					new ENGINEERINGDataSet.ECR_ITEMSDataTable()) {
-					if (int.TryParse(ThisRev.ECO, out en) &&
+					if (!RevSet.IsMetal &&
+						int.TryParse(ThisRev.ECO, out en) &&
 						!eoldt.ECRIsBogus(en) &&
 						!eidt.ECRItemExists(en, ThisRev.PartNumber, level.Value)) {
 						mbr = (DialogResult)MessageBox.Show(this, question, @"Insert ECR?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

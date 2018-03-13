@@ -12,6 +12,7 @@ namespace RedBrick2 {
 		/// The connected application.
 		/// </summary>
 		public SldWorks SwApp;
+		public bool IsMetal;
 		private List<Rev> innerList = new List<Rev>();
 
 		/// <summary>
@@ -25,7 +26,7 @@ namespace RedBrick2 {
 
 		private void Init() {
 			ModelDoc2 md = (ModelDoc2)SwApp.ActiveDoc;
-
+			IsMetal = md.GetPathName().Contains(@"METAL MANUFACTURING");
 			for (int i = 1; i <= Properties.Settings.Default.LvlLimit; i++) {
 				string lvl = string.Format("REVISION {0}", (char)(i + 64));
 				StringProperty lvlp = new StringProperty(lvl, true, SwApp, md, string.Empty);
