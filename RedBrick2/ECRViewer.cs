@@ -5,6 +5,7 @@ using System.Windows.Forms;
 namespace RedBrick2 {
 	public partial class ECRViewer : Form {
 		private string Lookup;
+		private string dateFormat = @"MMM dd, yyyy";
 		private List<int> items = new List<int>();
 		private List<string> drawings = new List<string>();
 		private int selectedItem;
@@ -59,7 +60,7 @@ namespace RedBrick2 {
 					if (dt_.Count > 0) {
 						foreach (ENGINEERINGDataSet.ECRObjLookupRow row in dt_.Rows) {
 							string[] row_str_ = new string[] { row.ECR_NUM.ToString(),
-								row.DATE_CREATE.ToString("dd MMM yyyy"),
+								row.DATE_CREATE.ToString(dateFormat),
 								Redbrick.TitleCase(row.STATUS) };
 							ListViewItem i_ = new ListViewItem(row_str_, 1);
 							ECRlistView.Items.Add(i_);
@@ -145,11 +146,16 @@ namespace RedBrick2 {
 				int idx = lv_.Items.IndexOf(lv_.SelectedItems[0]);
 				drawings.Clear();
 				affectedDrawingsListView.Items.Clear();
-				string[] it_ = lv_.SelectedItems[0].SubItems[3].Text.Split(new string[] { @" - " }, StringSplitOptions.None);
-				affectedDrawingsListView.Items.Add(new ListViewItem(it_, 6));
 				if (lv_.SelectedItems[0].SubItems.Count > 3) {
-					string drw_itm = lv_.SelectedItems[0].SubItems[4].Text;
-					drawings.Add(drw_itm);
+				string[] it_ = new string[] {
+					lv_.SelectedItems[0].SubItems[3].Text,
+					lv_.SelectedItems[0].SubItems[4].Text,
+					lv_.SelectedItems[0].SubItems[5].Text };
+				affectedDrawingsListView.Items.Add(new ListViewItem(it_, 6));
+					if (lv_.SelectedItems[0].SubItems.Count > 3) {
+						string drw_itm = lv_.SelectedItems[0].SubItems[4].Text;
+						drawings.Add(it_[2]);
+					}
 				}
 			}
 			affectedDrawingsListView.AutoResizeColumn(0, ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -179,9 +185,9 @@ namespace RedBrick2 {
 					string[] row_str_ = new string[] { row.ITEMNUMBER, row.ITEMREV, Redbrick.TitleCase(row.TypeName) };
 					ListViewItem l_ = new ListViewItem(row_str_, 5);
 					foreach (ENGINEERINGDataSet.ECR_DRAWINGSRow drw in eCR_DRAWINGSRows(row.ITEM_ID)) {
-						string tx_ = string.Format(@"{0} - {1}", drw.ORIG_PATH, drw.DRWREV);
-						l_.SubItems.Add(tx_);
-						l_.SubItems.Add(drw.DRW_FILE);
+						l_.SubItems.Add(new ListViewItem.ListViewSubItem(l_, drw.ORIG_PATH));
+						l_.SubItems.Add(new ListViewItem.ListViewSubItem(l_, drw.DRWREV));
+						l_.SubItems.Add(new ListViewItem.ListViewSubItem(l_, drw.DRW_FILE));
 					}
 					items.Add(row.ITEM_ID);
 					affectedItemsListView.Items.Add(l_);
@@ -190,7 +196,7 @@ namespace RedBrick2 {
 					string signoff_ = string.Empty;
 					string comment_ = string.Empty;
 					if (!row.IsSIGNOFFNull()) {
-						signoff_  = row.SIGNOFF.ToString(@"dd MMM yyyy");
+						signoff_  = row.SIGNOFF.ToString(dateFormat);
 					}
 					if (!row.IsCOMMENTNull()) {
 						comment_ = row.COMMENT;

@@ -82,16 +82,16 @@
 			// 
 			// columnHeader1
 			// 
-			this.columnHeader1.Text = "NUM";
+			this.columnHeader1.Text = "#";
 			// 
 			// columnHeader2
 			// 
-			this.columnHeader2.Text = "REQUESTED";
+			this.columnHeader2.Text = "Requested";
 			this.columnHeader2.Width = 120;
 			// 
 			// columnHeader3
 			// 
-			this.columnHeader3.Text = "STATUS";
+			this.columnHeader3.Text = "Status";
 			this.columnHeader3.Width = 200;
 			// 
 			// tableLayoutPanel1
@@ -306,7 +306,7 @@
 			this.signeesTextBox.Location = new System.Drawing.Point(4, 3);
 			this.signeesTextBox.Multiline = true;
 			this.signeesTextBox.Name = "signeesTextBox";
-			this.signeesTextBox.Size = new System.Drawing.Size(284, 60);
+			this.signeesTextBox.Size = new System.Drawing.Size(284, 57);
 			this.signeesTextBox.TabIndex = 1;
 			// 
 			// groupBox6
