@@ -43238,13 +43238,14 @@ WHERE      (ECR_MAIN.ECR_NUM = @eco)";
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@eco", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ECR_NUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @"SELECT     ECR_MAIN.ECR_NUM, GEN_USERS.FIRST + ' ' + GEN_USERS.LAST AS ReqBy, ECR_MAIN.CHANGES, ECR_STATUS.STATUS, ECR_MAIN.ERR_DESC, 
-                      ECR_MAIN.REVISION, ECR_MAIN.DATE_CREATE
-FROM         ECR_MAIN INNER JOIN
-                      GEN_USERS ON ECR_MAIN.REQ_BY = GEN_USERS.UID INNER JOIN
-                      ECR_STATUS ON ECR_MAIN.STATUS = ECR_STATUS.STAT_ID INNER JOIN
-                      ECR_ITEMS ON ECR_MAIN.ECR_NUM = ECR_ITEMS.ECR_NUM
-WHERE     (ECR_ITEMS.ITEMNUMBER = @itemnum)";
+            this._commandCollection[2].CommandText = @"SELECT        ECR_MAIN.ECR_NUM, GEN_USERS.FIRST + ' ' + GEN_USERS.LAST AS ReqBy, ECR_MAIN.CHANGES, ECR_STATUS.STATUS, ECR_MAIN.ERR_DESC, 
+                         ECR_MAIN.REVISION, ECR_MAIN.DATE_CREATE
+FROM            ECR_MAIN INNER JOIN
+                         GEN_USERS ON ECR_MAIN.REQ_BY = GEN_USERS.UID INNER JOIN
+                         ECR_STATUS ON ECR_MAIN.STATUS = ECR_STATUS.STAT_ID INNER JOIN
+                         ECR_ITEMS ON ECR_MAIN.ECR_NUM = ECR_ITEMS.ECR_NUM
+WHERE        (ECR_ITEMS.ITEMNUMBER = @itemnum)
+ORDER BY ECR_MAIN.ECR_NUM DESC";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itemnum", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "ITEMNUMBER", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -45308,11 +45309,12 @@ FROM         ECR_ITEMS INNER JOIN
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT     ECR_ITEMS.ITEM_ID, ECR_ITEMS.ECR_NUM, ECR_ITEMS.ITEMNUMBER, ECR_ITEMS.ITEMREV, ECR_ITEMS.TYPE, ECR_ITEMS.ITEM_NOTE, ECR_ITEMS.IM_CHK, 
-                      ECR_ITEMS.IM_CHANGE, ECR_ITEMS.RTG_CHK, ECR_ITEMS.RTG_CHANGE, ECR_ITEM_TYPES.TYPE AS TypeName
-FROM         ECR_ITEMS INNER JOIN
-                      ECR_ITEM_TYPES ON ECR_ITEMS.TYPE = ECR_ITEM_TYPES.ITEMTYPE_ID
-WHERE     (ECR_ITEMS.ECR_NUM = @ecrno)";
+            this._commandCollection[1].CommandText = @"SELECT        ECR_ITEMS.ITEM_ID, ECR_ITEMS.ECR_NUM, ECR_ITEMS.ITEMNUMBER, ECR_ITEMS.ITEMREV, ECR_ITEMS.TYPE, ECR_ITEMS.ITEM_NOTE, ECR_ITEMS.IM_CHK, 
+                         ECR_ITEMS.IM_CHANGE, ECR_ITEMS.RTG_CHK, ECR_ITEMS.RTG_CHANGE, ECR_ITEM_TYPES.TYPE AS TypeName
+FROM            ECR_ITEMS INNER JOIN
+                         ECR_ITEM_TYPES ON ECR_ITEMS.TYPE = ECR_ITEM_TYPES.ITEMTYPE_ID
+WHERE        (ECR_ITEMS.ECR_NUM = @ecrno)
+ORDER BY ECR_ITEMS.ITEMNUMBER";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ecrno", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ECR_NUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
