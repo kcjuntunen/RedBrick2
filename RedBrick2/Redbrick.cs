@@ -221,7 +221,8 @@ namespace RedBrick2 {
 		}
 
 		private void OpenToolChest() {
-			using (ToolChest t_ = new ToolChest(swApp)) {
+			string lk_ = Redbrick.FileInfoToLookup(taskpaneHost.mrb.PartFileInfo);
+			using (ToolChest t_ = new ToolChest(lk_, swApp)) {
 				t_.ShowDialog(taskpaneHost);
 			}
 		}

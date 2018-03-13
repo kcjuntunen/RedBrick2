@@ -9,6 +9,7 @@ namespace RedBrick2 {
 	/// </summary>
 	public partial class ToolChest : Form {
 		private SldWorks swApp;
+		private string lookup = string.Empty;
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -21,8 +22,9 @@ namespace RedBrick2 {
 		/// </summary>
 		/// <param name="s">Accepts a <see cref="SldWorks"/> object because some
 		/// of these tools require it.</param>
-		public ToolChest(SldWorks s) {
+		public ToolChest(string lk, SldWorks s) {
 			swApp = s;
+			lookup = lk;
 			InitializeComponent();
 			Location = Properties.Settings.Default.ToolChestLocation;
 		}
@@ -44,11 +46,9 @@ namespace RedBrick2 {
 		}
 
 		private void button3_Click(object sender, EventArgs e) {
-			if (swApp.ActiveDoc != null) {
-			System.IO.FileInfo fi_ = new System.IO.FileInfo((swApp.ActiveDoc as ModelDoc2).GetPathName());
-				using (ECRViewer ev_ = new ECRViewer(Redbrick.FileInfoToLookup(fi_))) {
-					ev_.ShowDialog(this);
-				}
+			using (ECRViewer ev_ = new ECRViewer(lookup)) {
+				ev_.Text = string.Format(@"{0} - {1}", ev_.Text, lookup);
+				ev_.ShowDialog(this);
 			}
 		}
 	}
