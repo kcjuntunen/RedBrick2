@@ -112,6 +112,7 @@ namespace RedBrick2 {
 					throw new Exception("Unsaved drawings cannot be added to an ECR.");
 				}
 			}
+			RevSet.IsMetal = fn.Contains(@"METAL MANUFACTURING");
 		}
 
 		private void AddECRItem() {
