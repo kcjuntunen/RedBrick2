@@ -27,12 +27,18 @@ namespace RedBrick2 {
 			lookup = lk;
 			InitializeComponent();
 			Location = Properties.Settings.Default.ToolChestLocation;
+			Deactivate += ToolChest_Deactivate;
+		}
+
+		private void ToolChest_Deactivate(object sender, EventArgs e) {
+			Close();
 		}
 
 		private void button1_Click(object sender, EventArgs e) {
 			using (FormatFixtureBk ffb = new FormatFixtureBk(swApp)) {
 				ffb.ShowDialog(this);
 			}
+			Close();
 		}
 
 		private void button2_Click(object sender, EventArgs e) {
@@ -50,6 +56,7 @@ namespace RedBrick2 {
 				ev_.Text = string.Format(@"{0} - {1}", ev_.Text, lookup);
 				ev_.ShowDialog(this);
 			}
+			Close();
 		}
 	}
 }
