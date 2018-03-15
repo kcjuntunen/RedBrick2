@@ -511,9 +511,9 @@ namespace RedBrick2 {
 			this.chbFlameWar.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.chbFlameWar.Location = new System.Drawing.Point(3, 42);
 			this.chbFlameWar.Name = "chbFlameWar";
-			this.chbFlameWar.Size = new System.Drawing.Size(142, 17);
+			this.chbFlameWar.Size = new System.Drawing.Size(157, 17);
 			this.chbFlameWar.TabIndex = 10;
-			this.chbFlameWar.Text = "Make text look terrible";
+			this.chbFlameWar.Text = "Right-wing religious case";
 			this.chbFlameWar.UseVisualStyleBackColor = true;
 			this.chbFlameWar.CheckedChanged += new System.EventHandler(this.chbFlameWar_CheckedChanged);
 			// 

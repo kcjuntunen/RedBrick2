@@ -1342,60 +1342,60 @@ namespace RedBrick2 {
 				DataRowView _drv = cutlistMat.SelectedItem as DataRowView;
 				PropertySet[@"CUTLIST MATERIAL"].Set((int)cutlistMat.SelectedValue, _drv[@"DESCR"].ToString());
 				PropertySet[@"MATID"].Set((int)cutlistMat.SelectedValue, cutlistMat.SelectedValue.ToString());
-				AddString(@"Material Finish", label6.Text);
+				AddString(@"MATERIAL FINISH", label6.Text);
 				double thk_ = Convert.ToDouble((cutlistMat.SelectedItem as DataRowView)[@"THICKNESS"]);
-				AddDouble(@"Material Thickness", thk_);
+				AddDouble(@"MATERIAL THICKNESS", thk_);
 			} else {
-				DeleteProp(@"Material Finish", false);
-				DeleteProp(@"Material Thickness", false);
+				DeleteProp(@"MATERIAL FINISH", false);
+				DeleteProp(@"MATERIAL THICKNESS", false);
 			}
 
 			if (edgef.SelectedItem != null) {
 				DataRowView _drv = edgef.SelectedItem as DataRowView;
 				PropertySet[@"EDGE FRONT (L)"].Set((int)edgef.SelectedValue, _drv[@"DESCR"].ToString());
 				PropertySet[@"EFID"].Set((int)edgef.SelectedValue, edgef.SelectedValue.ToString());
-				AddString(@"Edge Front Finish", label7.Text);
+				AddString(@"EDGE FRONT FINISH", label7.Text);
 				double thk_ = Convert.ToDouble((edgef.SelectedItem as DataRowView)[@"THICKNESS"]);
 				AddDouble(@"Edge Front Thickness", thk_);
 			} else {
-				DeleteProp(@"Edge Front Finish", false);
-				DeleteProp(@"Edge Front Thickness", false);
+				DeleteProp(@"EDGE FRONT FINISH", false);
+				DeleteProp(@"EDGE FRONT THICKNESS", false);
 			}
 
 			if (edgeb.SelectedItem != null) {
 				DataRowView _drv = edgeb.SelectedItem as DataRowView;
 				PropertySet[@"EDGE BACK (L)"].Set((int)edgeb.SelectedValue, _drv[@"DESCR"].ToString());
 				PropertySet[@"EBID"].Set((int)edgeb.SelectedValue, edgeb.SelectedValue.ToString());
-				AddString(@"Edge Back Finish", label8.Text);
+				AddString(@"Edge BACK FINISH", label8.Text);
 				double thk_ = Convert.ToDouble((edgeb.SelectedItem as DataRowView)[@"THICKNESS"]);
 				AddDouble(@"Edge Back Thickness", thk_);
 			} else {
-				DeleteProp(@"Edge Back Finish", false);
-				DeleteProp(@"Edge Back Thickness", false);
+				DeleteProp(@"EDGE BACK FINISH", false);
+				DeleteProp(@"EDGE BACK THICKNESS", false);
 			}
 
 			if (edgel.SelectedItem != null) {
 				DataRowView _drv = edgel.SelectedItem as DataRowView;
 				PropertySet[@"EDGE LEFT (W)"].Set((int)edgel.SelectedValue, _drv[@"DESCR"].ToString());
 				PropertySet[@"ELID"].Set((int)edgel.SelectedValue, edgel.SelectedValue.ToString());
-				AddString(@"Edge Left Finish", label9.Text);
+				AddString(@"EDGE LEFT FINISH", label9.Text);
 				double thk_ = Convert.ToDouble((edgel.SelectedItem as DataRowView)[@"THICKNESS"]);
-				AddDouble(@"Edge Left Thickness", thk_);
+				AddDouble(@"EDGE Left Thickness", thk_);
 			} else {
-				DeleteProp(@"Edge Left Finish", false);
-				DeleteProp(@"Edge Left Thickness", false);
+				DeleteProp(@"EDGE LEFT FINISH", false);
+				DeleteProp(@"EDGE LEFT THICKNESS", false);
 			}
 
 			if (edger.SelectedItem != null) {
 				DataRowView _drv = edger.SelectedItem as DataRowView;
 				PropertySet[@"EDGE RIGHT (W)"].Set((int)edger.SelectedValue, _drv[@"DESCR"].ToString());
 				PropertySet[@"ERID"].Set((int)edger.SelectedValue, edger.SelectedValue.ToString());
-				AddString(@"Edge Right Finish", label10.Text);
+				AddString(@"EDGE RIGHT FINISH", label10.Text);
 				double thk_ = Convert.ToDouble((edger.SelectedItem as DataRowView)[@"THICKNESS"]);
-				AddDouble(@"Edge Right Thickness", thk_);
+				AddDouble(@"EDGE Right Thickness", thk_);
 			} else {
-				DeleteProp(@"Edge Right Finish", false);
-				DeleteProp(@"Edge Right Thickness", false);
+				DeleteProp(@"EDGE RIGHT FINISH", false);
+				DeleteProp(@"EDGE RIGHT THICKNESS", false);
 			}
 
 			if (CutlistPartsRow != null) {
