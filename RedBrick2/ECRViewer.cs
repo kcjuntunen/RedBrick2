@@ -66,6 +66,7 @@ namespace RedBrick2 {
 							ListViewItem i_ = new ListViewItem(row_str_, 1);
 							ECRlistView.Items.Add(i_);
 						}
+						ECRlistView.Items[0].Selected = true;
 					}
 				}
 			}
@@ -86,6 +87,7 @@ namespace RedBrick2 {
 							ListViewItem i_ = new ListViewItem(row_str_, 1);
 							ECRlistView.Items.Add(i_);
 						}
+						ECRlistView.Items[0].Selected = true;
 					} else {
 						ECRTextBox.Text = originalText;
 					}
@@ -175,9 +177,10 @@ namespace RedBrick2 {
 					lv_.SelectedItems[0].SubItems[4].Text,
 					lv_.SelectedItems[0].SubItems[5].Text };
 				affectedDrawingsListView.Items.Add(new ListViewItem(it_, 6));
-					if (lv_.SelectedItems[0].SubItems.Count > 3) {
-						string drw_itm = lv_.SelectedItems[0].SubItems[4].Text;
-						drawings.Add(it_[2]);
+					string drw_itm = lv_.SelectedItems[0].SubItems[4].Text;
+					drawings.Add(it_[2]);
+					if (affectedDrawingsListView.Items.Count > 0) {
+						affectedDrawingsListView.Items[0].Selected = true;
 					}
 				}
 			}
@@ -217,6 +220,9 @@ namespace RedBrick2 {
 					items.Add(row.ITEM_ID);
 					affectedItemsListView.Items.Add(l_);
 				}
+				if (affectedItemsListView.Items.Count > 0) {
+					affectedItemsListView.Items[0].Selected = true;
+				}
 				foreach (ENGINEERINGDataSet.SigneesRow row in signeesRows(ecrno)) {
 					string signoff_ = string.Empty;
 					string comment_ = string.Empty;
@@ -233,8 +239,11 @@ namespace RedBrick2 {
 					ListViewItem l_ = new ListViewItem(row_str_, 3);
 					signeesListView.Items.Add(l_);
 				}
+				if (signeesListView.Items.Count > 0) {
+					signeesListView.Items[0].Selected = true;
+				}
 				foreach (ENGINEERINGDataSet.FILE_MAINRow row in fILE_MAINRows(ecrno)) {
-					string[] row_str_ = new string[] { row.EXT.ToUpper(), row.COMMENT, row.FileName };
+					string[] row_str_ = new string[] { row.EXT.ToUpper().Replace(@".", string.Empty), row.COMMENT, row.FileName };
 					attachedFilesListView.Items.Add(new ListViewItem(row_str_, 0));
 					if (row.EXT == string.Empty) {
 						attachedFilesListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
