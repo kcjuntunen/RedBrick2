@@ -51,6 +51,8 @@
 			this.attachedFilesListView = new System.Windows.Forms.ListView();
 			this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.label1 = new System.Windows.Forms.Label();
+			this.ECRTextBox = new System.Windows.Forms.TextBox();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -76,7 +78,7 @@
             this.columnHeader3});
 			this.ECRlistView.Location = new System.Drawing.Point(6, 21);
 			this.ECRlistView.Name = "ECRlistView";
-			this.ECRlistView.Size = new System.Drawing.Size(291, 154);
+			this.ECRlistView.Size = new System.Drawing.Size(291, 145);
 			this.ECRlistView.TabIndex = 0;
 			this.ECRlistView.UseCompatibleStateImageBehavior = false;
 			// 
@@ -108,13 +110,13 @@
 			this.tableLayoutPanel1.Controls.Add(this.groupBox4, 1, 1);
 			this.tableLayoutPanel1.Controls.Add(this.groupBox5, 1, 2);
 			this.tableLayoutPanel1.Controls.Add(this.groupBox6, 0, 2);
-			this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
+			this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 38);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			this.tableLayoutPanel1.RowCount = 3;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(618, 561);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(618, 535);
 			this.tableLayoutPanel1.TabIndex = 2;
 			// 
 			// groupBox1
@@ -123,9 +125,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox1.Controls.Add(this.descriptionTextBox);
-			this.groupBox1.Location = new System.Drawing.Point(3, 190);
+			this.groupBox1.Location = new System.Drawing.Point(3, 181);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(303, 181);
+			this.groupBox1.Size = new System.Drawing.Size(303, 172);
 			this.groupBox1.TabIndex = 2;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Description";
@@ -139,7 +141,7 @@
 			this.descriptionTextBox.Location = new System.Drawing.Point(7, 22);
 			this.descriptionTextBox.Multiline = true;
 			this.descriptionTextBox.Name = "descriptionTextBox";
-			this.descriptionTextBox.Size = new System.Drawing.Size(290, 153);
+			this.descriptionTextBox.Size = new System.Drawing.Size(290, 144);
 			this.descriptionTextBox.TabIndex = 0;
 			// 
 			// groupBox2
@@ -150,7 +152,7 @@
 			this.groupBox2.Controls.Add(this.ECRlistView);
 			this.groupBox2.Location = new System.Drawing.Point(3, 3);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(303, 181);
+			this.groupBox2.Size = new System.Drawing.Size(303, 172);
 			this.groupBox2.TabIndex = 3;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "ECR List";
@@ -163,7 +165,7 @@
 			this.groupBox3.Controls.Add(this.affectedItemsListView);
 			this.groupBox3.Location = new System.Drawing.Point(312, 3);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(303, 181);
+			this.groupBox3.Size = new System.Drawing.Size(303, 172);
 			this.groupBox3.TabIndex = 4;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Affected Items";
@@ -180,7 +182,7 @@
             this.columnHeader6});
 			this.affectedItemsListView.Location = new System.Drawing.Point(6, 21);
 			this.affectedItemsListView.Name = "affectedItemsListView";
-			this.affectedItemsListView.Size = new System.Drawing.Size(291, 154);
+			this.affectedItemsListView.Size = new System.Drawing.Size(291, 145);
 			this.affectedItemsListView.TabIndex = 0;
 			this.affectedItemsListView.UseCompatibleStateImageBehavior = false;
 			// 
@@ -204,9 +206,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox4.Controls.Add(this.affectedDrawingsListView);
-			this.groupBox4.Location = new System.Drawing.Point(312, 190);
+			this.groupBox4.Location = new System.Drawing.Point(312, 181);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(303, 181);
+			this.groupBox4.Size = new System.Drawing.Size(303, 172);
 			this.groupBox4.TabIndex = 5;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Affected Drawings";
@@ -222,7 +224,7 @@
             this.columnHeader8});
 			this.affectedDrawingsListView.Location = new System.Drawing.Point(6, 21);
 			this.affectedDrawingsListView.Name = "affectedDrawingsListView";
-			this.affectedDrawingsListView.Size = new System.Drawing.Size(291, 154);
+			this.affectedDrawingsListView.Size = new System.Drawing.Size(291, 145);
 			this.affectedDrawingsListView.TabIndex = 0;
 			this.affectedDrawingsListView.UseCompatibleStateImageBehavior = false;
 			// 
@@ -241,9 +243,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox5.Controls.Add(this.splitContainer1);
-			this.groupBox5.Location = new System.Drawing.Point(312, 377);
+			this.groupBox5.Location = new System.Drawing.Point(312, 359);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(303, 181);
+			this.groupBox5.Size = new System.Drawing.Size(303, 173);
 			this.groupBox5.TabIndex = 6;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "Signees";
@@ -264,8 +266,8 @@
 			// splitContainer1.Panel2
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.signeesTextBox);
-			this.splitContainer1.Size = new System.Drawing.Size(291, 154);
-			this.splitContainer1.SplitterDistance = 90;
+			this.splitContainer1.Size = new System.Drawing.Size(291, 146);
+			this.splitContainer1.SplitterDistance = 85;
 			this.splitContainer1.SplitterWidth = 1;
 			this.splitContainer1.TabIndex = 0;
 			// 
@@ -281,7 +283,7 @@
             this.columnHeader11});
 			this.signeesListView.Location = new System.Drawing.Point(4, 3);
 			this.signeesListView.Name = "signeesListView";
-			this.signeesListView.Size = new System.Drawing.Size(284, 84);
+			this.signeesListView.Size = new System.Drawing.Size(284, 79);
 			this.signeesListView.TabIndex = 0;
 			this.signeesListView.UseCompatibleStateImageBehavior = false;
 			// 
@@ -306,7 +308,7 @@
 			this.signeesTextBox.Location = new System.Drawing.Point(4, 3);
 			this.signeesTextBox.Multiline = true;
 			this.signeesTextBox.Name = "signeesTextBox";
-			this.signeesTextBox.Size = new System.Drawing.Size(284, 57);
+			this.signeesTextBox.Size = new System.Drawing.Size(284, 54);
 			this.signeesTextBox.TabIndex = 1;
 			// 
 			// groupBox6
@@ -315,9 +317,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox6.Controls.Add(this.attachedFilesListView);
-			this.groupBox6.Location = new System.Drawing.Point(3, 377);
+			this.groupBox6.Location = new System.Drawing.Point(3, 359);
 			this.groupBox6.Name = "groupBox6";
-			this.groupBox6.Size = new System.Drawing.Size(303, 181);
+			this.groupBox6.Size = new System.Drawing.Size(303, 173);
 			this.groupBox6.TabIndex = 7;
 			this.groupBox6.TabStop = false;
 			this.groupBox6.Text = "Attached Files";
@@ -333,7 +335,7 @@
             this.columnHeader13});
 			this.attachedFilesListView.Location = new System.Drawing.Point(6, 21);
 			this.attachedFilesListView.Name = "attachedFilesListView";
-			this.attachedFilesListView.Size = new System.Drawing.Size(291, 154);
+			this.attachedFilesListView.Size = new System.Drawing.Size(291, 146);
 			this.attachedFilesListView.TabIndex = 0;
 			this.attachedFilesListView.UseCompatibleStateImageBehavior = false;
 			// 
@@ -345,11 +347,30 @@
 			// 
 			this.columnHeader13.Text = "Comment";
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(12, 13);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(37, 13);
+			this.label1.TabIndex = 3;
+			this.label1.Text = "ECR #";
+			// 
+			// ECRTextBox
+			// 
+			this.ECRTextBox.Location = new System.Drawing.Point(55, 10);
+			this.ECRTextBox.Name = "ECRTextBox";
+			this.ECRTextBox.Size = new System.Drawing.Size(107, 22);
+			this.ECRTextBox.TabIndex = 4;
+			this.ECRTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ECRTextBox_KeyDown);
+			// 
 			// ECRViewer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(642, 585);
+			this.Controls.Add(this.ECRTextBox);
+			this.Controls.Add(this.label1);
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.MaximizeBox = false;
@@ -357,7 +378,7 @@
 			this.Name = "ECRViewer";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
-			this.Text = "ECRViewer";
+			this.Text = "ECR Viewer";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ECRViewer_FormClosing);
 			this.Load += new System.EventHandler(this.ECRViewer_Load);
 			this.tableLayoutPanel1.ResumeLayout(false);
@@ -374,6 +395,7 @@
 			this.splitContainer1.ResumeLayout(false);
 			this.groupBox6.ResumeLayout(false);
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -407,5 +429,7 @@
 		private System.Windows.Forms.ListView attachedFilesListView;
 		private System.Windows.Forms.ColumnHeader columnHeader12;
 		private System.Windows.Forms.ColumnHeader columnHeader13;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.TextBox ECRTextBox;
 	}
 }

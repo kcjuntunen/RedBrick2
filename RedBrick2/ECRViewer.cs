@@ -9,6 +9,7 @@ namespace RedBrick2 {
 		private List<int> items = new List<int>();
 		private List<string> drawings = new List<string>();
 		private int selectedItem;
+		private string originalText = string.Empty;
 		public ECRViewer(string lookup) {
 			Lookup = lookup;
 			InitializeComponent();
@@ -65,6 +66,28 @@ namespace RedBrick2 {
 							ListViewItem i_ = new ListViewItem(row_str_, 1);
 							ECRlistView.Items.Add(i_);
 						}
+					}
+				}
+			}
+			ECRlistView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+		}
+
+		private void LookUpECR(int eco) {
+			using (ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter ta_ =
+				new ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter()) {
+				using (ENGINEERINGDataSet.ECRObjLookupDataTable dt_ = ta_.GetDataByECO(eco)) {
+					if (dt_.Count > 0) {
+						ECRlistView.Items.Clear();
+						originalText = ECRTextBox.Text;
+						foreach (ENGINEERINGDataSet.ECRObjLookupRow row in dt_.Rows) {
+							string[] row_str_ = new string[] { row.ECR_NUM.ToString(),
+								row.DATE_CREATE.ToString(dateFormat),
+								Redbrick.TitleCase(row.STATUS) };
+							ListViewItem i_ = new ListViewItem(row_str_, 1);
+							ECRlistView.Items.Add(i_);
+						}
+					} else {
+						ECRTextBox.Text = originalText;
 					}
 				}
 			}
@@ -173,6 +196,8 @@ namespace RedBrick2 {
 			ListView lv_ = sender as ListView;
 			if (lv_.SelectedItems.Count > 0 && lv_.SelectedItems[0] != null) {
 				int ecrno = Convert.ToInt32(e.Item.SubItems[0].Text);
+				ECRTextBox.Text = ecrno.ToString();
+				originalText = ecrno.ToString();
 				ENGINEERINGDataSet.ECRObjLookupRow r_ = ECRObjLookup(ecrno);
 				descriptionTextBox.Text = r_.CHANGES;
 				affectedItemsListView.Items.Clear();
@@ -233,6 +258,13 @@ namespace RedBrick2 {
 			Properties.Settings.Default.ECRViewerLocation = Location;
 			Properties.Settings.Default.ECRViewerSize = Size;
 			Properties.Settings.Default.Save();
+		}
+
+		private void ECRTextBox_KeyDown(object sender, KeyEventArgs e) {
+			if (e.KeyCode == Keys.Enter &&
+				int.TryParse(ECRTextBox.Text, out int test_)) {
+				LookUpECR(test_);
+			}
 		}
 	}
 }
