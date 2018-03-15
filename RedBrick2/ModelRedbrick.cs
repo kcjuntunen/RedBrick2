@@ -858,8 +858,7 @@ namespace RedBrick2 {
 				}
 			}
 
-			double total_run_ = (((runTime + (setupTime / Properties.Settings.Default.SPQ))) * 60) *
-				Properties.Settings.Default.SPQ;
+			double total_run_ = (((runTime * Properties.Settings.Default.SPQ + (setupTime / Properties.Settings.Default.SPQ))) * 60);
 			string run_fmt_ = @"{0:0.0} min";
 			if (total_run_ > 60) {
 				total_run_ = total_run_ / 60;
@@ -884,8 +883,7 @@ namespace RedBrick2 {
 				}
 			}
 
-			double total_run_ = (((runTime + (setupTime / Properties.Settings.Default.SPQ))) * 60) *
-				Properties.Settings.Default.SPQ;
+			double total_run_ = (((runTime * Properties.Settings.Default.SPQ + (setupTime / Properties.Settings.Default.SPQ))) * 60);
 			groupBox4.Text = string.Format("Routing ({0:0.0} min/Qty: {1}/part)", total_run_,
 				Properties.Settings.Default.SPQ);
 		}
