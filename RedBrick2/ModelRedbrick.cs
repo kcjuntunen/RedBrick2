@@ -1322,30 +1322,75 @@ namespace RedBrick2 {
 				DataRowView _drv = cutlistMat.SelectedItem as DataRowView;
 				PropertySet[@"CUTLIST MATERIAL"].Set((int)cutlistMat.SelectedValue, _drv[@"DESCR"].ToString());
 				PropertySet[@"MATID"].Set((int)cutlistMat.SelectedValue, cutlistMat.SelectedValue.ToString());
+				StringProperty sp_ = new StringProperty(@"Material Finish", false, SwApp, ActiveDoc, string.Empty);
+				sp_.Configuration = configuration;
+				sp_.Data = label6.Text;
+				PropertySet.Add(sp_);
+			} else {
+				StringProperty sp_ = new StringProperty(@"Material Finish", false, SwApp, ActiveDoc, string.Empty);
+				sp_.Configuration = configuration;
+				sp_.DoNotWrite = true;
+				sp_.Delete();
 			}
 
 			if (edgef.SelectedItem != null) {
 				DataRowView _drv = edgef.SelectedItem as DataRowView;
 				PropertySet[@"EDGE FRONT (L)"].Set((int)edgef.SelectedValue, _drv[@"DESCR"].ToString());
 				PropertySet[@"EFID"].Set((int)edgef.SelectedValue, edgef.SelectedValue.ToString());
+				StringProperty sp_ = new StringProperty(@"Edge Front Color", false, SwApp, ActiveDoc, string.Empty);
+				sp_.Configuration = configuration;
+				sp_.Data = label7.Text;
+				PropertySet.Add(sp_);
+			} else {
+				StringProperty sp_ = new StringProperty(@"Edge Front Color", false, SwApp, ActiveDoc, string.Empty);
+				sp_.Configuration = configuration;
+				sp_.DoNotWrite = true;
+				sp_.Delete();
 			}
 
 			if (edgeb.SelectedItem != null) {
 				DataRowView _drv = edgeb.SelectedItem as DataRowView;
 				PropertySet[@"EDGE BACK (L)"].Set((int)edgeb.SelectedValue, _drv[@"DESCR"].ToString());
 				PropertySet[@"EBID"].Set((int)edgeb.SelectedValue, edgeb.SelectedValue.ToString());
+				StringProperty sp_ = new StringProperty(@"Edge Back Color", false, SwApp, ActiveDoc, string.Empty);
+				sp_.Configuration = configuration;
+				sp_.Data = label8.Text;
+				PropertySet.Add(sp_);
+			} else {
+				StringProperty sp_ = new StringProperty(@"Edge Back Color", false, SwApp, ActiveDoc, string.Empty);
+				sp_.Configuration = configuration;
+				sp_.DoNotWrite = true;
+				sp_.Delete();
 			}
 
 			if (edgel.SelectedItem != null) {
 				DataRowView _drv = edgel.SelectedItem as DataRowView;
 				PropertySet[@"EDGE LEFT (W)"].Set((int)edgel.SelectedValue, _drv[@"DESCR"].ToString());
 				PropertySet[@"ELID"].Set((int)edgel.SelectedValue, edgel.SelectedValue.ToString());
+				StringProperty sp_ = new StringProperty(@"Edge Left Color", false, SwApp, ActiveDoc, string.Empty);
+				sp_.Configuration = configuration;
+				sp_.Data = label9.Text;
+				PropertySet.Add(sp_);
+			} else {
+				StringProperty sp_ = new StringProperty(@"Edge Left Color", false, SwApp, ActiveDoc, string.Empty);
+				sp_.Configuration = configuration;
+				sp_.DoNotWrite = true;
+				sp_.Delete();
 			}
 
 			if (edger.SelectedItem != null) {
 				DataRowView _drv = edger.SelectedItem as DataRowView;
 				PropertySet[@"EDGE RIGHT (W)"].Set((int)edger.SelectedValue, _drv[@"DESCR"].ToString());
 				PropertySet[@"ERID"].Set((int)edger.SelectedValue, edger.SelectedValue.ToString());
+				StringProperty sp_ = new StringProperty(@"Edge Right Color", false, SwApp, ActiveDoc, string.Empty);
+				sp_.Configuration = configuration;
+				sp_.Data = label10.Text;
+				PropertySet.Add(sp_);
+			} else {
+				StringProperty sp_ = new StringProperty(@"Edge Right Color", false, SwApp, ActiveDoc, string.Empty);
+				sp_.Configuration = configuration;
+				sp_.DoNotWrite = true;
+				sp_.Delete();
 			}
 
 			if (CutlistPartsRow != null) {
