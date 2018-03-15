@@ -40,7 +40,7 @@ Section
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Redbrick" \
       "DisplayIcon" "$PROGRAMFILES64\Redbrick\redlego.ico"
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Redbrick" \
-      "EstimatedSize" 15717
+      "EstimatedSize" 15749
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Redbrick" \
       "DisplayName" "Amstore Redbrick Property Manager"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Redbrick" \

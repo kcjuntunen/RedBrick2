@@ -1,5 +1,5 @@
 
-1) Updated PDF archiver so that useful information is redacted from a certain customer's drawings and sent to the profile folder.
-2) Added UID to ECR data so we can tell JB's apart on ECRs too.
-3) Fixed regex so Redbrick doesn't over-match McMaster-Carr items.
-4) Match customer item numbers as much as possible with internal item numbers for the top groupbox in drawing view.
+1) Writing finish information from the cutlist material to the part now.
+2) Added an ECR Viewer that initially searches by the currently selected item.
+3) Messed with estimation presentation.
+4) Made new text look bad and wrong like other text.
