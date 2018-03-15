@@ -58,6 +58,7 @@ namespace RedBrick2 {
 			set {
 				if (value is double) {
 					_data = Convert.ToDouble(value);
+					Value = _data.ToString();
 				} else {
 					if (double.TryParse(value.ToString(), out double test_)) {
 						_data = test_;
