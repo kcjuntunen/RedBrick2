@@ -1317,80 +1317,85 @@ namespace RedBrick2 {
 			Row.UPDATE_CNC = updateCNCcb.Checked;
 		}
 
+		private void AddString(string field, string data) {
+			StringProperty sp_ = new StringProperty(field, false, SwApp, ActiveDoc, string.Empty);
+			sp_.Configuration = configuration;
+			sp_.Data = data;
+			PropertySet.Add(sp_);
+		}
+
+		private void AddDouble(string field, double data) {
+			DoubleProperty dp_ = new DoubleProperty(field, false, SwApp, ActiveDoc, string.Empty, string.Empty);
+			dp_.Configuration = configuration;
+			dp_.Data = data;
+			PropertySet.Add(dp_);
+		}
+
+		private void DeleteProp(string field, bool global) {
+			SwProperty s_ = new SwProperty(field, global, SwApp, ActiveDoc);
+			s_.Configuration = configuration;
+			s_.Delete();
+		}
+
 		private void UpdateCutlistProperties() {
 			if (cutlistMat.SelectedItem != null) {
 				DataRowView _drv = cutlistMat.SelectedItem as DataRowView;
 				PropertySet[@"CUTLIST MATERIAL"].Set((int)cutlistMat.SelectedValue, _drv[@"DESCR"].ToString());
 				PropertySet[@"MATID"].Set((int)cutlistMat.SelectedValue, cutlistMat.SelectedValue.ToString());
-				StringProperty sp_ = new StringProperty(@"Material Finish", false, SwApp, ActiveDoc, string.Empty);
-				sp_.Configuration = configuration;
-				sp_.Data = label6.Text;
-				PropertySet.Add(sp_);
+				AddString(@"Material Finish", label6.Text);
+				double thk_ = Convert.ToDouble((cutlistMat.SelectedItem as DataRowView)[@"THICKNESS"]);
+				AddDouble(@"Material Thickness", thk_);
 			} else {
-				StringProperty sp_ = new StringProperty(@"Material Finish", false, SwApp, ActiveDoc, string.Empty);
-				sp_.Configuration = configuration;
-				sp_.DoNotWrite = true;
-				sp_.Delete();
+				DeleteProp(@"Material Finish", false);
+				DeleteProp(@"Material Thickness", false);
 			}
 
 			if (edgef.SelectedItem != null) {
 				DataRowView _drv = edgef.SelectedItem as DataRowView;
 				PropertySet[@"EDGE FRONT (L)"].Set((int)edgef.SelectedValue, _drv[@"DESCR"].ToString());
 				PropertySet[@"EFID"].Set((int)edgef.SelectedValue, edgef.SelectedValue.ToString());
-				StringProperty sp_ = new StringProperty(@"Edge Front Color", false, SwApp, ActiveDoc, string.Empty);
-				sp_.Configuration = configuration;
-				sp_.Data = label7.Text;
-				PropertySet.Add(sp_);
+				AddString(@"Edge Front Finish", label7.Text);
+				double thk_ = Convert.ToDouble((edgef.SelectedItem as DataRowView)[@"THICKNESS"]);
+				AddDouble(@"Edge Front Thickness", thk_);
 			} else {
-				StringProperty sp_ = new StringProperty(@"Edge Front Color", false, SwApp, ActiveDoc, string.Empty);
-				sp_.Configuration = configuration;
-				sp_.DoNotWrite = true;
-				sp_.Delete();
+				DeleteProp(@"Edge Front Finish", false);
+				DeleteProp(@"Edge Front Thickness", false);
 			}
 
 			if (edgeb.SelectedItem != null) {
 				DataRowView _drv = edgeb.SelectedItem as DataRowView;
 				PropertySet[@"EDGE BACK (L)"].Set((int)edgeb.SelectedValue, _drv[@"DESCR"].ToString());
 				PropertySet[@"EBID"].Set((int)edgeb.SelectedValue, edgeb.SelectedValue.ToString());
-				StringProperty sp_ = new StringProperty(@"Edge Back Color", false, SwApp, ActiveDoc, string.Empty);
-				sp_.Configuration = configuration;
-				sp_.Data = label8.Text;
-				PropertySet.Add(sp_);
+				AddString(@"Edge Back Finish", label8.Text);
+				double thk_ = Convert.ToDouble((edgeb.SelectedItem as DataRowView)[@"THICKNESS"]);
+				AddDouble(@"Edge Back Thickness", thk_);
 			} else {
-				StringProperty sp_ = new StringProperty(@"Edge Back Color", false, SwApp, ActiveDoc, string.Empty);
-				sp_.Configuration = configuration;
-				sp_.DoNotWrite = true;
-				sp_.Delete();
+				DeleteProp(@"Edge Back Finish", false);
+				DeleteProp(@"Edge Back Thickness", false);
 			}
 
 			if (edgel.SelectedItem != null) {
 				DataRowView _drv = edgel.SelectedItem as DataRowView;
 				PropertySet[@"EDGE LEFT (W)"].Set((int)edgel.SelectedValue, _drv[@"DESCR"].ToString());
 				PropertySet[@"ELID"].Set((int)edgel.SelectedValue, edgel.SelectedValue.ToString());
-				StringProperty sp_ = new StringProperty(@"Edge Left Color", false, SwApp, ActiveDoc, string.Empty);
-				sp_.Configuration = configuration;
-				sp_.Data = label9.Text;
-				PropertySet.Add(sp_);
+				AddString(@"Edge Left Finish", label9.Text);
+				double thk_ = Convert.ToDouble((edgel.SelectedItem as DataRowView)[@"THICKNESS"]);
+				AddDouble(@"Edge Left Thickness", thk_);
 			} else {
-				StringProperty sp_ = new StringProperty(@"Edge Left Color", false, SwApp, ActiveDoc, string.Empty);
-				sp_.Configuration = configuration;
-				sp_.DoNotWrite = true;
-				sp_.Delete();
+				DeleteProp(@"Edge Left Finish", false);
+				DeleteProp(@"Edge Left Thickness", false);
 			}
 
 			if (edger.SelectedItem != null) {
 				DataRowView _drv = edger.SelectedItem as DataRowView;
 				PropertySet[@"EDGE RIGHT (W)"].Set((int)edger.SelectedValue, _drv[@"DESCR"].ToString());
 				PropertySet[@"ERID"].Set((int)edger.SelectedValue, edger.SelectedValue.ToString());
-				StringProperty sp_ = new StringProperty(@"Edge Right Color", false, SwApp, ActiveDoc, string.Empty);
-				sp_.Configuration = configuration;
-				sp_.Data = label10.Text;
-				PropertySet.Add(sp_);
+				AddString(@"Edge Right Finish", label10.Text);
+				double thk_ = Convert.ToDouble((edger.SelectedItem as DataRowView)[@"THICKNESS"]);
+				AddDouble(@"Edge Right Thickness", thk_);
 			} else {
-				StringProperty sp_ = new StringProperty(@"Edge Right Color", false, SwApp, ActiveDoc, string.Empty);
-				sp_.Configuration = configuration;
-				sp_.DoNotWrite = true;
-				sp_.Delete();
+				DeleteProp(@"Edge Right Finish", false);
+				DeleteProp(@"Edge Right Thickness", false);
 			}
 
 			if (CutlistPartsRow != null) {
