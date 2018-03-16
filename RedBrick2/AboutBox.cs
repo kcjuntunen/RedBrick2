@@ -1,13 +1,10 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
+﻿using System.Reflection;
+using System.IO;
+using System.Xml;
 using System.Windows.Forms;
 
 namespace RedBrick2 {
-	partial class AboutBox : Form {
+	public partial class AboutBox : Form {
 		public AboutBox() {
 			InitializeComponent();
 			string descr_ = AssemblyDescription;
@@ -15,11 +12,33 @@ namespace RedBrick2 {
 			this.labelProductName.Text = AssemblyProduct;
 			this.labelVersion.Text = string.Format("Version {0}", AssemblyVersion);
 			this.labelCopyright.Text = AssemblyCopyright;
-			this.labelCompanyName.Text = AssemblyCompany;
-			this.textBoxDescription.Text = descr_ + string.Format("{0}------------------------{0}" +
+			this.textBoxDescription.Text = string.Format("New in version {3}:{0}" +
+				"{2}{0}" +
+				"Get a complete history at https://github.com/kcjuntunen/RedBrick2/commits/master{0}" +
+				"{0}------------------------{0}" +
 				"Crc32.cs Copyright (c) Damien Guard.  All rights reserved.{0}" +
 				"Licensed under the Apache License, Version 2.0 (the \"License\"){0}" +
-				"You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0", System.Environment.NewLine);
+				"You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0",
+				System.Environment.NewLine,
+				descr_,
+				GetVersionInfo(@"message"),
+				AssemblyVersion);
+		}
+
+		private static string GetVersionInfo(string element) {
+			FileInfo pi = new FileInfo(Properties.Settings.Default.InstallerNetworkPath);
+			string fn_ = string.Format(@"{0}\version.xml", pi.DirectoryName);
+			string elementName = string.Empty;
+			using (XmlReader r_ = XmlReader.Create(fn_)) {
+				while (r_.Read()) {
+					if (r_.NodeType == XmlNodeType.Element) {
+						elementName = r_.Name;
+					} else if (r_.NodeType == XmlNodeType.Text && r_.HasValue && elementName == element) {
+						return r_.Value.Replace("\n", System.Environment.NewLine);
+					}
+				}
+			}
+			return string.Empty;
 		}
 
 		#region Assembly Attribute Accessors
