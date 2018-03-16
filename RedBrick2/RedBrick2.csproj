@@ -184,6 +184,12 @@
     <Compile Include="FormatFixtureBk.Designer.cs">
       <DependentUpon>FormatFixtureBk.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManageCutlistTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageCutlistTime.Designer.cs">
+      <DependentUpon>ManageCutlistTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="MaterialByNum.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -306,6 +312,9 @@
     <EmbeddedResource Include="FormatFixtureBk.resx">
       <DependentUpon>FormatFixtureBk.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ManageCutlistTime.resx">
+      <DependentUpon>ManageCutlistTime.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MaterialByNum.resx">
       <DependentUpon>MaterialByNum.cs</DependentUpon>
     </EmbeddedResource>
@@ -350,7 +359,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"$(SolutionDir)".\GetAssemblyInfoForNSIS\bin\Release\GetAssemblyInfoForNSIS.exe
-:: C:\PROGRA~2\NSIS\makensisw.exe "$(ProjectDir)\install.nsi"
+C:\PROGRA~2\NSIS\makensisw.exe "$(ProjectDir)\install.nsi"
 :: start net use G: \\AMSTORE-SVR-22\cad
 :: start xcopy /Y "$(ProjectDir)InstallRedbrick.exe" "G:\Solid Works\Amstore_Macros\Redbrick\"
 :: start xcopy /Y "$(ProjectDir)version.xml" "G:\Solid Works\Amstore_Macros\Redbrick\"</PostBuildEvent>
