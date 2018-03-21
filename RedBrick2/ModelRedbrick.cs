@@ -858,17 +858,12 @@ namespace RedBrick2 {
 				}
 			}
 
-			double total_run_ = (((runTime * Properties.Settings.Default.SPQ + (setupTime / Properties.Settings.Default.SPQ))) * 60);
-			string run_fmt_ = @"{0:0.0} min";
-			if (total_run_ > 60) {
-				total_run_ = total_run_ / 60;
-				run_fmt_ = "{0:0.0} hr";
-			}
+			string setup_fmt_ = @"{0:0.00} hr";
+			string run_fmt_ = @"{1:0.0000} hr";
 
-			string fmt_ = string.Format("Routing ({0}/Qty: {1}{2})", run_fmt_,
-			Properties.Settings.Default.SPQ, scope_);
+			string fmt_ = string.Format(@"Routing ({0}/{1}{2})", setup_fmt_, run_fmt_, scope_);
 
-			groupBox4.Text = string.Format(fmt_, total_run_);
+			groupBox4.Text = string.Format(fmt_, setupTime, runTime);
 		}
 
 		private void GetEstimationFromPart() {
@@ -883,9 +878,7 @@ namespace RedBrick2 {
 				}
 			}
 
-			double total_run_ = (((runTime * Properties.Settings.Default.SPQ + (setupTime / Properties.Settings.Default.SPQ))) * 60);
-			groupBox4.Text = string.Format("Routing ({0:0.0} min/Qty: {1}/part)", total_run_,
-				Properties.Settings.Default.SPQ);
+			groupBox4.Text = string.Format(@"Routing ({0:0.00} hr/{1:0.0000} hr/part)", setupTime, runTime);
 		}
 
 		private void GetRoutingFromPart() {
