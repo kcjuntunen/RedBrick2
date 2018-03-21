@@ -27,8 +27,9 @@
 			this.labelProductName = new System.Windows.Forms.Label();
 			this.labelVersion = new System.Windows.Forms.Label();
 			this.labelCopyright = new System.Windows.Forms.Label();
-			this.textBoxDescription = new System.Windows.Forms.TextBox();
 			this.okButton = new System.Windows.Forms.Button();
+			this.textBoxDescription = new System.Windows.Forms.TextBox();
+			this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
 			this.tableLayoutPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
 			this.SuspendLayout();
@@ -38,12 +39,12 @@
 			this.tableLayoutPanel.ColumnCount = 2;
 			this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
 			this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67F));
-			this.tableLayoutPanel.Controls.Add(this.logoPictureBox, 0, 0);
 			this.tableLayoutPanel.Controls.Add(this.labelProductName, 1, 0);
 			this.tableLayoutPanel.Controls.Add(this.labelVersion, 1, 1);
 			this.tableLayoutPanel.Controls.Add(this.labelCopyright, 1, 2);
 			this.tableLayoutPanel.Controls.Add(this.okButton, 1, 5);
 			this.tableLayoutPanel.Controls.Add(this.textBoxDescription, 1, 3);
+			this.tableLayoutPanel.Controls.Add(this.elementHost1, 0, 0);
 			this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel.Location = new System.Drawing.Point(9, 9);
 			this.tableLayoutPanel.Name = "tableLayoutPanel";
@@ -59,15 +60,14 @@
 			// 
 			// logoPictureBox
 			// 
-			this.logoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.logoPictureBox.Image = global::RedBrick2.Properties.Resources.redlego;
-			this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
+			this.logoPictureBox.Location = new System.Drawing.Point(219, 187);
 			this.logoPictureBox.Name = "logoPictureBox";
-			this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 6);
 			this.logoPictureBox.Size = new System.Drawing.Size(195, 335);
 			this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this.logoPictureBox.TabIndex = 12;
 			this.logoPictureBox.TabStop = false;
+			this.logoPictureBox.Visible = false;
 			// 
 			// labelProductName
 			// 
@@ -105,6 +105,16 @@
 			this.labelCopyright.Text = "Copyright";
 			this.labelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
+			// okButton
+			// 
+			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.okButton.Location = new System.Drawing.Point(534, 315);
+			this.okButton.Name = "okButton";
+			this.okButton.Size = new System.Drawing.Size(75, 23);
+			this.okButton.TabIndex = 24;
+			this.okButton.Text = "&OK";
+			// 
 			// textBoxDescription
 			// 
 			this.textBoxDescription.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -120,15 +130,16 @@
 			this.textBoxDescription.TabStop = false;
 			this.textBoxDescription.Text = "Description";
 			// 
-			// okButton
+			// elementHost1
 			// 
-			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.okButton.Location = new System.Drawing.Point(534, 315);
-			this.okButton.Name = "okButton";
-			this.okButton.Size = new System.Drawing.Size(75, 23);
-			this.okButton.TabIndex = 24;
-			this.okButton.Text = "&OK";
+			this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.elementHost1.Location = new System.Drawing.Point(3, 3);
+			this.elementHost1.Name = "elementHost1";
+			this.tableLayoutPanel.SetRowSpan(this.elementHost1, 6);
+			this.elementHost1.Size = new System.Drawing.Size(195, 335);
+			this.elementHost1.TabIndex = 25;
+			this.elementHost1.Text = "elementHost1";
+			this.elementHost1.Child = null;
 			// 
 			// AboutBox
 			// 
@@ -136,6 +147,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(630, 359);
+			this.Controls.Add(this.logoPictureBox);
 			this.Controls.Add(this.tableLayoutPanel);
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -163,5 +175,6 @@
     private System.Windows.Forms.Label labelCopyright;
     private System.Windows.Forms.TextBox textBoxDescription;
     private System.Windows.Forms.Button okButton;
-  }
+		private System.Windows.Forms.Integration.ElementHost elementHost1;
+	}
 }

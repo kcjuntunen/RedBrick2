@@ -5,6 +5,7 @@ using System.Windows.Forms;
 
 namespace RedBrick2 {
 	public partial class AboutBox : Form {
+		System.Windows.Controls.Canvas c = new System.Windows.Controls.Canvas();
 		public AboutBox() {
 			InitializeComponent();
 			string descr_ = AssemblyDescription;
@@ -23,6 +24,19 @@ namespace RedBrick2 {
 				descr_,
 				GetVersionInfo(@"message"),
 				AssemblyVersion);
+			c.Background = System.Windows.Media.Brushes.Black;
+			for (int i = 0; i < 33; i += 10) {
+				for (int j = 0; j < 250; j += 10) {
+					System.Windows.Point p = new System.Windows.Point(i, j);
+					System.Windows.Shapes.Ellipse e = new System.Windows.Shapes.Ellipse();
+					e.Stroke = System.Windows.Media.Brushes.Beige;
+					e.TranslatePoint(p, c);
+					e.Width = 40 * j;
+					e.Height = 40 * i;
+					c.Children.Add(e);
+				}
+			}
+			elementHost1.Child = c;
 		}
 
 		private static string GetVersionInfo(string element) {
