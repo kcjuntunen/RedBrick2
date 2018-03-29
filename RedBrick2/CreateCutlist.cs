@@ -1192,13 +1192,15 @@ namespace RedBrick2 {
 					if (cell_.Value != null) {
 						selectedPart = cell_.Value.ToString();
 						foundPDF = find_pdf(selectedPart);
-						MenuItem [] items = { new MenuItem(string.Format(@"Open Model ({0})...", selectedPart), OnClickOpenModel),
-																	new MenuItem(@"-"),
-																	new MenuItem(@"Open Drawing...", OnClickOpenDrawing),
-																	new MenuItem(@"Open PDF...", OnClickOpenPDF),
-																	new MenuItem(@"Create Drawing..."),
-																	new MenuItem(@"-"),
-																	new MenuItem(@"Machine Priority...", OnClickMachinePriority) };
+						MenuItem[] items = {new MenuItem(string.Format(@"Open Model ({0})...", selectedPart), OnClickOpenModel),
+																new MenuItem(@"-"),
+																new MenuItem(@"Open Drawing...", OnClickOpenDrawing),
+																new MenuItem(@"Open PDF...", OnClickOpenPDF),
+																new MenuItem(@"Create Drawing..."),
+																new MenuItem(@"-"),
+																new MenuItem(@"Machine Priority...", OnClickMachinePriority),
+																new MenuItem(@"QuikTrac Lookup", OnQuickTracLookup),
+																new MenuItem(@"Related ECRs", OnRelatedECRs) };
 						items[2].Enabled = DrawingExists(selectedPart);
 						items[3].Enabled = foundPDF != null ? foundPDF.Exists : false;
 						items[4].Enabled = false;
@@ -1284,6 +1286,22 @@ namespace RedBrick2 {
 			} catch (Exception ex) {
 				MessageBox.Show(this, ex.Message,
 					@"Not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
+		private void OnQuickTracLookup(object sender, EventArgs e) {
+			using (ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter ta_ =
+				new ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter()) {
+				DataView dv_ = ta_.GetData(selectedPart).DefaultView;
+				using (DataDisplay d_ = new DataDisplay(dv_, string.Format(@"{0} - QuicTrac Locations", selectedPart))) {
+					d_.ShowDialog(this);
+				}
+			}
+		}
+
+		private void OnRelatedECRs(object sender, EventArgs e) {
+			using (ECRViewer ev_ = new ECRViewer(selectedPart)) {
+				ev_.ShowDialog(this);
 			}
 		}
 
