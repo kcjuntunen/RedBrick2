@@ -804,5 +804,14 @@ namespace RedBrick2 {
 			//}
 			//req_tooltip.Show(req_info_, sender as GroupBox, 30000);
 		}
+
+		private void treeView1_DoubleClick(object sender, EventArgs e) {
+			Rev r_ = revSet[SelectedNode()];
+			if (int.TryParse(r_.ECO, out int test_)) {
+				using (ECRViewer ev_ = new ECRViewer(test_)) {
+					ev_.ShowDialog(this);
+				}
+			}
+		}
 	}
 }

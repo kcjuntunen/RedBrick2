@@ -448,6 +448,7 @@ namespace RedBrick2 {
 			this.treeView1.Size = new System.Drawing.Size(347, 262);
 			this.treeView1.TabIndex = 2;
 			this.treeView1.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.treeView1_DrawNode);
+			this.treeView1.DoubleClick += new System.EventHandler(this.treeView1_DoubleClick);
 			// 
 			// tableLayoutPanel1
 			// 

@@ -13,6 +13,20 @@ namespace RedBrick2 {
 		public ECRViewer(string lookup) {
 			Lookup = lookup;
 			InitializeComponent();
+			SetSettings();
+			ConnectEvents();
+			Init();
+		}
+
+		public ECRViewer(int ecr) {
+			Lookup = ecr.ToString();
+			InitializeComponent();
+			SetSettings();
+			ConnectEvents();
+			Init();
+		}
+
+		private void SetSettings() {
 			ECRlistView.FullRowSelect = true;
 			ECRlistView.HideSelection = false;
 			ECRlistView.MultiSelect = false;
@@ -42,7 +56,9 @@ namespace RedBrick2 {
 			attachedFilesListView.MultiSelect = false;
 			attachedFilesListView.View = View.Details;
 			attachedFilesListView.SmallImageList = Redbrick.TreeViewIcons;
+		}
 
+		private void ConnectEvents() {
 			ECRlistView.ItemSelectionChanged += ListView1_ItemSelectionChanged;
 			ECRlistView.ColumnClick += ColumnClick;
 			affectedItemsListView.ItemSelectionChanged += AffectedItemsListView_ItemSelectionChanged;
@@ -51,10 +67,13 @@ namespace RedBrick2 {
 			affectedDrawingsListView.ColumnClick += ColumnClick;
 			signeesListView.SelectedIndexChanged += SigneesListView_SelectedIndexChanged;
 			attachedFilesListView.MouseDoubleClick += AttachedFilesListView_MouseDoubleClick;
-			Init();
 		}
 
 		private void Init() {
+			if (int.TryParse(Lookup, out int test_)) {
+				LookUpECR(test_);
+				return;
+			}
 			using (ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter ta_ =
 				new ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter()) {
 				using (ENGINEERINGDataSet.ECRObjLookupDataTable dt_ = ta_.GetDataByItemNum(Lookup)) {
