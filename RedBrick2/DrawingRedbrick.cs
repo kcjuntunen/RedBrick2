@@ -552,23 +552,27 @@ namespace RedBrick2 {
 			}
 		}
 
-		private void button6_Click(object sender, EventArgs e) {
+		private void OpenEditRev() {
 			TreeNode node = treeView1.SelectedNode;
 			if (node != null) {
 				while (node.Parent != null) {
 					node = node.Parent;
 				}
-				EditRev er = new EditRev(SelectedNode(), RevSet);
-				er.Added += er_Added;
-				er.ShowDialog(this);
-				er.Dispose();
+				using (EditRev er = new EditRev(SelectedNode(), RevSet)) {
+					er.Added += er_Added;
+					er.ShowDialog(this);
+				}
 			} else if (RevSet != null && RevSet.Count > 0) {
-				EditRev er = new EditRev(0, RevSet);
-				er.Added += er_Added;
-				er.ShowDialog(this);
-				er.Dispose();
+				using (EditRev er = new EditRev(0, RevSet)) {
+					er.Added += er_Added;
+					er.ShowDialog(this);
+				}
 			}
 			BuildTree();
+		}
+
+		private void button6_Click(object sender, EventArgs e) {
+			OpenEditRev();
 		}
 
 		void er_Added(object sender, EventArgs e) {
@@ -750,12 +754,7 @@ namespace RedBrick2 {
 		}
 
 		private void treeView1_DoubleClick(object sender, EventArgs e) {
-			Rev r_ = revSet[SelectedNode()];
-			if (int.TryParse(r_.ECO, out int test_)) {
-				using (ECRViewer ev_ = new ECRViewer(test_)) {
-					ev_.ShowDialog(this);
-				}
-			}
+			OpenEditRev();
 		}
 	}
 }

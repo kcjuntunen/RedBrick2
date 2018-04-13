@@ -238,5 +238,13 @@ namespace RedBrick2 {
 			ComboBox _me = (sender as ComboBox);
 			_me.SelectionLength = 0;
 		}
+
+		private void textBox1_MouseDoubleClick(object sender, MouseEventArgs e) {
+			if (int.TryParse(textBox1.Text, out int test_)) {
+				using (ECRViewer ev_ = new ECRViewer(test_)) {
+					ev_.ShowDialog(this);
+				}
+			}
+		}
 	}
 }

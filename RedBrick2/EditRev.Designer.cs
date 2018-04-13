@@ -77,7 +77,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(192, 253);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(192, 272);
 			this.tableLayoutPanel1.TabIndex = 0;
 			// 
 			// label1
@@ -120,6 +120,7 @@ namespace RedBrick2 {
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(186, 22);
 			this.textBox1.TabIndex = 3;
+			this.textBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox1_MouseDoubleClick);
 			// 
 			// label3
 			// 
@@ -206,14 +207,14 @@ namespace RedBrick2 {
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
 			this.tableLayoutPanel2.RowCount = 1;
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(186, 44);
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(186, 63);
 			this.tableLayoutPanel2.TabIndex = 10;
 			// 
 			// button2
 			// 
 			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.button2.Location = new System.Drawing.Point(96, 18);
+			this.button2.Location = new System.Drawing.Point(96, 37);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(87, 23);
 			this.button2.TabIndex = 1;
@@ -225,7 +226,7 @@ namespace RedBrick2 {
 			// 
 			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.button1.Location = new System.Drawing.Point(3, 18);
+			this.button1.Location = new System.Drawing.Point(3, 37);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(87, 23);
 			this.button1.TabIndex = 0;
@@ -241,7 +242,7 @@ namespace RedBrick2 {
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(192, 253);
+			this.ClientSize = new System.Drawing.Size(192, 272);
 			this.ControlBox = false;
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.DoubleBuffered = true;
