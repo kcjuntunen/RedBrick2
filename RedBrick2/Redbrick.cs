@@ -189,9 +189,8 @@ namespace RedBrick2 {
 					new ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter()) {
 					System.IO.FileInfo fi_ = new System.IO.FileInfo(taskpaneHost.mrb.ActiveDoc.GetPathName());
 					string lu_ = FileInfoToLookup(fi_);
-					System.Data.DataView dv_ = ta_.GetData(lu_).DefaultView;
-					using (DataDisplay d_ = new DataDisplay(dv_, string.Format(@"{0} - QuicTrac Locations", lu_))) {
-						d_.ShowDialog(taskpaneHost);
+					using (QuickTracLookup qt_ = new QuickTracLookup(lu_)) {
+						qt_.ShowDialog(taskpaneHost);
 					}
 				}
 			}
