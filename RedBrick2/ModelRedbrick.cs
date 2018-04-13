@@ -2591,34 +2591,7 @@ namespace RedBrick2 {
 		}
 
 		private void groupBox2_MouseHover(object sender, EventArgs e) {
-			if (Properties.Settings.Default.ExtraInfo && req_info_ == string.Empty) {
-				using (ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter ri_ =
-					new ENGINEERINGDataSetTableAdapters.RequestInfoTableAdapter()) {
-					ri_.FillByFixtureID(eNGINEERINGDataSet.RequestInfo, PropertySet.PartLookup);
-				}
-				if (eNGINEERINGDataSet.RequestInfo.Count > 0) {
-					ENGINEERINGDataSet.RequestInfoRow r_ =
-						(ENGINEERINGDataSet.RequestInfoRow)eNGINEERINGDataSet.RequestInfo[0];
-					StringBuilder sb_ = new StringBuilder();
-					if (r_[@"ITEMNUM"] != DBNull.Value) {
-						sb_.AppendFormat(@"Project '{0}' is in '{1}' status.", Convert.ToString(r_.ITEMNUM), r_.RSNAME);
-					} else {
-						sb_.AppendFormat(@"Project '{0}' is in '{1}' status.", Convert.ToString(r_.FIXID), r_.RSNAME);
-					}
-					sb_.AppendLine();
-					sb_.AppendLine();
-					foreach (string line in Redbrick.WrapText(r_.DESCRIPTION, 40)) {
-						sb_.AppendLine(line);
-					}
-					sb_.AppendLine();
-					sb_.AppendFormat(@"Created by {0} on {1:M/d/yyyy}", Redbrick.TitleCase(r_.Creator), r_.CDATE);
-					sb_.AppendLine();
-					sb_.AppendFormat(@"Lead: {0}", Redbrick.TitleCase(r_.Lead));
-					sb_.AppendLine();
-					req_info_ = sb_.ToString();
-				}
-			}
-			req_tooltip.Show(req_info_, sender as GroupBox, 30000);
+
 		}
 
 		private void pull_btn_Click(object sender, EventArgs e) {
