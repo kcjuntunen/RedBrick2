@@ -1033,3 +1033,4 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 		}
 	}
 }
+

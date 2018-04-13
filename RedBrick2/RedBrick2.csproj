@@ -146,6 +146,12 @@
       <DependentUpon>CreateCutlist.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomerProperty.cs" />
+    <Compile Include="QuikTracLookup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuikTracLookup.Designer.cs">
+      <DependentUpon>QuikTracLookup.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -303,6 +309,9 @@
     <EmbeddedResource Include="CreateCutlist.resx">
       <DependentUpon>CreateCutlist.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="QuikTracLookup.resx">
+      <DependentUpon>QuikTracLookup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DataDisplay.resx">
       <DependentUpon>DataDisplay.cs</DependentUpon>
     </EmbeddedResource>
@@ -365,7 +374,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"$(SolutionDir)".\GetAssemblyInfoForNSIS\bin\Release\GetAssemblyInfoForNSIS.exe
-C:\PROGRA~2\NSIS\makensisw.exe "$(ProjectDir)\install.nsi"
+:: C:\PROGRA~2\NSIS\makensisw.exe "$(ProjectDir)\install.nsi"
 :: start net use G: \\AMSTORE-SVR-22\cad
 :: start xcopy /Y "$(ProjectDir)InstallRedbrick.exe" "G:\Solid Works\Amstore_Macros\Redbrick\"
 :: start xcopy /Y "$(ProjectDir)version.xml" "G:\Solid Works\Amstore_Macros\Redbrick\"</PostBuildEvent>

@@ -2930,11 +2930,21 @@ WHERE      (ECR_NUM = @ecr_num) AND (STATUS = 1); </CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="inmastTableAdapter" GeneratorDataComponentClassName="inmastTableAdapter" Name="inmast" UserDataComponentName="inmastTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="M2MDATA01ConnectionString (Settings)" DbObjectName="M2MDATA01.dbo.inmast" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="M2MDATA01ConnectionString (Settings)" DbObjectName="M2MDATA01.dbo.inmast" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT      *
-FROM          inmast</CommandText>
+                    <CommandText>SELECT        fpartno, frev, fcstscode, fdescript, flchgpnd, fmeasure, fsource, fleadtime, fprice, fstdcost, f2totcost, flastcost, flocate1, fbin1, f2costcode, f2displcst, f2dispmcst, 
+                         f2dispocst, f2disptcst, f2labcost, f2matlcost, f2ovhdcost, favgcost, fbulkissue, fbuyer, fcalc_lead, fcbackflsh, fcnts, fcopymemo, fcostcode, fcpurchase, fcstperinv, 
+                         fdisplcost, fdispmcost, fdispocost, fdispprice, fdisptcost, fdrawno, fdrawsize, fendqty1, fendqty10, fendqty11, fendqty12, fendqty2, fendqty3, fendqty4, fendqty5, 
+                         fendqty6, fendqty7, fendqty8, fendqty9, fgroup, finspect, flabcost, flasteoc, flct, fllotreqd, fmatlcost, fmeasure2, fnweight, fovhdcost, fprodcl, freordqty, frevdt, frolledup, 
+                         fsafety, fschecode, fuprodtime, fyield, fabccode, ftaxable, fcusrchr1, fcusrchr2, fcusrchr3, fnusrqty1, fnusrcur1, fdusrdate1, fcdncfile, fccadfile1, fccadfile2, fccadfile3, 
+                         fclotext, flexpreqd, fdlastpc, fschedtype, fldctracke, fddcrefdat, fndctax, fndcduty, fndcfreigh, fndcmisc, fcratedisc, flconstrnt, flistaxabl, fcjrdict, flaplpart, flfanpart, 
+                         fnfanaglvl, fcplnclass, fcclass, timestamp_column, identity_column, fcomment, fmusrmemo1, fstdmemo, fac, sfac, itcfixed, itcunit, fnPOnHand, fnLndToMfg, 
+                         fiPcsOnHd, fcudrev, fidims, fluseudrev, fndbrmod, flFSRtn, fnlatefact, fnsobuf, fnpurbuf, flcnstrpur, fdvenfence, flLatefact, flSOBuf, flPurBuf, flHoldStoc, fnHoldStoc, 
+                         ManualPlan, flSendSLX, fcSLXProd, SchedDate, flocbfdef, fbinbfdef, DockTime, fnifttime, flSynchOn, fonhand, fqtyinspec, fnonnetqty, fproqty, fonorder, fbook, flastiss, 
+                         flastrcpt, fmtdiss, fytdiss, fmtdrcpt, fytdrcpt, fintransit
+FROM            inmast
+ORDER BY fpartno, frev</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -4296,6 +4306,41 @@ ORDER BY CUT_PART_OPS.POPORDER</CommandText>
               <Mapping SourceColumn="OPDESCR" DataSetColumn="OPDESCR" />
             </Mappings>
             <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="inmastdisplayTableAdapter" GeneratorDataComponentClassName="inmastdisplayTableAdapter" Name="inmastdisplay" UserDataComponentName="inmastdisplayTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="M2MDATA01ConnectionString (Settings)" DbObjectName="M2MDATA01.dbo.inmast" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        fpartno, frev, fdescript, RTRIM(LTRIM(fpartno)) + ' REV ' + RTRIM(LTRIM(frev)) AS displayname
+FROM            inmast
+ORDER BY fpartno, frev</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="fpartno" DataSetColumn="fpartno" />
+              <Mapping SourceColumn="frev" DataSetColumn="frev" />
+              <Mapping SourceColumn="displayname" DataSetColumn="displayname" />
+              <Mapping SourceColumn="fdescript" DataSetColumn="fdescript" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="M2MDATA01ConnectionString (Settings)" DbObjectName="M2MDATA01.dbo.inmast" DbObjectType="View" GenerateShortCommands="true" GeneratorSourceName="GetFDescript" Modifier="Public" Name="GetFDescript" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="GetFDescript">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        fdescript
+FROM            inmast
+WHERE        (fpartno = @partno) AND (frev = @frev)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="partno" ColumnName="fpartno" DataSourceName="M2MDATA01.dbo.inmast" DataTypeServer="char(25)" DbType="AnsiString" Direction="Input" ParameterName="@partno" Precision="0" ProviderType="Char" Scale="0" Size="25" SourceColumn="fpartno" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="frev" ColumnName="frev" DataSourceName="M2MDATA01.dbo.inmast" DataTypeServer="char(3)" DbType="AnsiString" Direction="Input" ParameterName="@frev" Precision="0" ProviderType="Char" Scale="0" Size="3" SourceColumn="frev" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
         </Tables>
         <Sources />
@@ -6212,6 +6257,40 @@ ORDER BY CUT_PART_OPS.POPORDER</CommandText>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="OPDESCR" msprop:Generator_ColumnVarNameInTable="columnOPDESCR" msprop:Generator_ColumnPropNameInRow="OPDESCR" msprop:Generator_ColumnPropNameInTable="OPDESCRColumn" msprop:Generator_UserColumnName="OPDESCR" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="35" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="inmastdisplay" msprop:Generator_TableClassName="inmastdisplayDataTable" msprop:Generator_TableVarName="tableinmastdisplay" msprop:Generator_RowChangedName="inmastdisplayRowChanged" msprop:Generator_TablePropName="inmastdisplay" msprop:Generator_RowDeletingName="inmastdisplayRowDeleting" msprop:Generator_RowChangingName="inmastdisplayRowChanging" msprop:Generator_RowEvHandlerName="inmastdisplayRowChangeEventHandler" msprop:Generator_RowDeletedName="inmastdisplayRowDeleted" msprop:Generator_RowClassName="inmastdisplayRow" msprop:Generator_UserTableName="inmastdisplay" msprop:Generator_RowEvArgName="inmastdisplayRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="fpartno" msprop:Generator_ColumnVarNameInTable="columnfpartno" msprop:Generator_ColumnPropNameInRow="fpartno" msprop:Generator_ColumnPropNameInTable="fpartnoColumn" msprop:Generator_UserColumnName="fpartno">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="frev" msprop:Generator_ColumnVarNameInTable="columnfrev" msprop:Generator_ColumnPropNameInRow="frev" msprop:Generator_ColumnPropNameInTable="frevColumn" msprop:Generator_UserColumnName="frev">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="displayname" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columndisplayname" msprop:Generator_ColumnPropNameInRow="displayname" msprop:Generator_ColumnPropNameInTable="displaynameColumn" msprop:Generator_UserColumnName="displayname" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="33" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="fdescript" msprop:Generator_ColumnVarNameInTable="columnfdescript" msprop:Generator_ColumnPropNameInRow="fdescript" msprop:Generator_ColumnPropNameInTable="fdescriptColumn" msprop:Generator_UserColumnName="fdescript">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="35" />

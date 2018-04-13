@@ -58,5 +58,12 @@ namespace RedBrick2 {
 			}
 			Close();
 		}
+
+		private void button4_Click(object sender, EventArgs e) {
+			using (QuickTracLookup qt_ = new QuickTracLookup()) {
+				qt_.ShowDialog(this);
+			}
+			Close();
+		}
 	}
 }

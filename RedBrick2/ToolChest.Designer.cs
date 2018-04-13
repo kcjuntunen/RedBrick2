@@ -28,8 +28,11 @@
 			this.button1 = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.button3 = new System.Windows.Forms.Button();
+			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.button4 = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
+			this.groupBox3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -72,6 +75,8 @@
 			// 
 			// groupBox2
 			// 
+			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.groupBox2.Controls.Add(this.button3);
 			this.groupBox2.Location = new System.Drawing.Point(214, 12);
 			this.groupBox2.Name = "groupBox2";
@@ -92,18 +97,42 @@
 			this.button3.UseVisualStyleBackColor = true;
 			this.button3.Click += new System.EventHandler(this.button3_Click);
 			// 
+			// groupBox3
+			// 
+			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox3.Controls.Add(this.button4);
+			this.groupBox3.Location = new System.Drawing.Point(352, 13);
+			this.groupBox3.Name = "groupBox3";
+			this.groupBox3.Size = new System.Drawing.Size(140, 93);
+			this.groupBox3.TabIndex = 2;
+			this.groupBox3.TabStop = false;
+			this.groupBox3.Text = "Inventory";
+			// 
+			// button4
+			// 
+			this.button4.Location = new System.Drawing.Point(7, 20);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(124, 23);
+			this.button4.TabIndex = 0;
+			this.button4.Text = "QuikTrac Lookup";
+			this.button4.UseVisualStyleBackColor = true;
+			this.button4.Click += new System.EventHandler(this.button4_Click);
+			// 
 			// ToolChest
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(357, 123);
+			this.ClientSize = new System.Drawing.Size(504, 123);
+			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.MaximizeBox = false;
-			this.MaximumSize = new System.Drawing.Size(365, 150);
+			this.MaximumSize = new System.Drawing.Size(512, 150);
 			this.MinimizeBox = false;
-			this.MinimumSize = new System.Drawing.Size(365, 150);
+			this.MinimumSize = new System.Drawing.Size(512, 150);
 			this.Name = "ToolChest";
 			this.ShowIcon = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -112,6 +141,7 @@
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ToolChest_FormClosing);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox2.ResumeLayout(false);
+			this.groupBox3.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -123,5 +153,7 @@
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.GroupBox groupBox3;
+		private System.Windows.Forms.Button button4;
 	}
 }
