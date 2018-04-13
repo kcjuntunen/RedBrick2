@@ -68,6 +68,7 @@ namespace RedBrick2 {
 		private ToolTip cutlist_tooltip = new ToolTip();
 		private ToolTip edging_tooltip = new ToolTip();
 		private ToolTip descr_tooltup = new ToolTip();
+		private ToolTip gen_prop_tooltip = new ToolTip();
 		private ToolTip swap_tooltup = new ToolTip();
 		private ToolTip ppb_tooltip = new ToolTip();
 		private ToolTip partq_tooltip = new ToolTip();
@@ -131,6 +132,15 @@ namespace RedBrick2 {
 			new ToolTip().SetToolTip(update_btn, Properties.Resources.UpdateHint);
 			new ToolTip().SetToolTip(add_prt_btn, Properties.Resources.AddPartHint);
 			new ToolTip().SetToolTip(remove_btn, Properties.Resources.RemoveHint);
+		}
+
+		private void GroupBox4_MouseWheel(object sender, MouseEventArgs e) {
+			Properties.Settings.Default.SPQ = Properties.Settings.Default.SPQ + e.Delta / 120;
+			if (data_from_db) {
+				GetEstimationFromDB();
+			} else {
+				GetEstimationFromPart();
+			}
 		}
 
 		void dirtTracker_Besmirched(object sender, EventArgs e) {
@@ -401,6 +411,11 @@ namespace RedBrick2 {
 				ToggleNotInDBWarn(false);
 				GetDataFromPart();
 			}
+			int cust_ = 0;
+			string descr_ = string.Empty;
+			gen_prop_tooltip.RemoveAll();
+			Redbrick.GetCustAndDescr(partLookup, ref cust_, ref descr_, ref gen_prop_tooltip, ref groupBox2);
+			groupBox2.Text = descr_ != string.Empty ? string.Format(@"General Properties - {0}", descr_) : @"General Properties";
 			SelectLastCutlist();
 		}
 

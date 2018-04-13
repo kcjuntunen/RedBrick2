@@ -176,7 +176,7 @@ namespace RedBrick2 {
 						RevFromFile = null;
 					}
 					int cust = 0;
-					get_cust_and_descr(partLookup, ref cust, ref projectDescr);
+					Redbrick.GetCustAndDescr(partLookup, ref cust, ref projectDescr, ref title_tooltip, ref groupBox5);
 					ProjectCustomer = cust;
 					//ProjectCustomer = GetCorrectCustomer();
 					groupBox5.Text = projectDescr != string.Empty ? string.Format(@"{0} - {1}", partLookup, projectDescr) : partLookup;
@@ -185,62 +185,6 @@ namespace RedBrick2 {
 					dd_ = ActiveDoc as DrawingDoc;
 					dd_.FileSavePostNotify += dd__FileSavePostNotify;
 				}
-			}
-		}
-
-		private void get_cust_and_descr(string lookup, ref int cust, ref string descr) {
-			cust = 0;
-			descr = string.Empty;
-			string tooltip_ = string.Empty;
-			title_tooltip.RemoveAll();
-
-			void get_correct_customer_(string l_, ref int c_, ref string d_) {
-				ENGINEERINGDataSet.SCH_PROJECTSRow r =
-					(new ENGINEERINGDataSet.SCH_PROJECTSDataTable()).GetCorrectCustomer(l_);
-				if (r != null) {
-					c_ = r.CUSTID;
-					d_ = Redbrick.TitleCase(r.DESCRIPTION);
-				} else {
-					c_ = 0;
-					d_ = string.Empty;
-				}
-			}
-
-			void get_item_data_(string l_, ref string d_) {
-				using (ENGINEERINGDataSetTableAdapters.CustToAmsTableAdapter cta_ =
-					new ENGINEERINGDataSetTableAdapters.CustToAmsTableAdapter()) {
-					using (ENGINEERINGDataSet.CustToAmsDataTable ctadt_ = cta_.GetDataByPart(lookup)) {
-						if (ctadt_.Rows.Count > 0) {
-							d_ = ctadt_[0].FIXCUST;
-						}
-					}
-				}
-			}
-
-			if (Redbrick.IsConformingPartnumber(lookup)) {
-				get_correct_customer_(lookup, ref cust, ref tooltip_);
-				get_item_data_(lookup, ref descr);
-				title_tooltip.SetToolTip(groupBox5, tooltip_);
-			} else {
-				using (ENGINEERINGDataSetTableAdapters.CustToAmsTableAdapter cta_ =
-					new ENGINEERINGDataSetTableAdapters.CustToAmsTableAdapter()) {
-					using (ENGINEERINGDataSet.CustToAmsDataTable ctadt_ = cta_.GetDataByItem(lookup)) {
-						if (ctadt_.Rows.Count > 0) {
-							//cust = ctadt_[0].CUSTID;
-							if (ctadt_[0][@"FIXAMS"] != DBNull.Value) {
-								descr = ctadt_[0].FIXAMS.Trim();
-								string dummy = string.Empty;
-								get_correct_customer_(lookup, ref cust, ref dummy);
-							}
-							int cc_ = 0;
-							get_correct_customer_(descr, ref cc_, ref tooltip_);
-							title_tooltip.SetToolTip(groupBox5, tooltip_);
-						}
-					}
-				}
-			}
-			if (descr == string.Empty) {
-				descr = tooltip_;
 			}
 		}
 
