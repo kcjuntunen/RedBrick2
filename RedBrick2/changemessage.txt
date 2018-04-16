@@ -1,3 +1,7 @@
 
-1) Caught DBNull error.
-2) Changed the way cutlist time shows.
+1) Added right-click menu items on "Cutlist Create" window.
+2) Added item selection, description box on QuikTrac window.
+3) "General Properties" group box now shows customer # if it can figure it out.
+4) Doubleclick on LVL to edit.
+5) Doubleclick on ECR # in LVL editor to view a bunch of ECR data.
+6) Updated ArchivePDF.dll.
