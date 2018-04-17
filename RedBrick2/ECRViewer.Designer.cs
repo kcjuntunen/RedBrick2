@@ -353,13 +353,13 @@
 			this.label1.AutoSize = true;
 			this.label1.Location = new System.Drawing.Point(12, 13);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(37, 13);
+			this.label1.Size = new System.Drawing.Size(74, 13);
 			this.label1.TabIndex = 3;
-			this.label1.Text = "ECR #";
+			this.label1.Text = "Part or ECR #";
 			// 
 			// ECRTextBox
 			// 
-			this.ECRTextBox.Location = new System.Drawing.Point(55, 10);
+			this.ECRTextBox.Location = new System.Drawing.Point(92, 10);
 			this.ECRTextBox.Name = "ECRTextBox";
 			this.ECRTextBox.Size = new System.Drawing.Size(107, 22);
 			this.ECRTextBox.TabIndex = 4;

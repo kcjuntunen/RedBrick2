@@ -15,7 +15,7 @@ namespace RedBrick2 {
 			InitializeComponent();
 			SetSettings();
 			ConnectEvents();
-			Init();
+			LookupItem(Lookup);
 		}
 
 		public ECRViewer(int ecr) {
@@ -23,7 +23,7 @@ namespace RedBrick2 {
 			InitializeComponent();
 			SetSettings();
 			ConnectEvents();
-			Init();
+			LookupItem(Lookup);
 		}
 
 		private void SetSettings() {
@@ -56,6 +56,10 @@ namespace RedBrick2 {
 			attachedFilesListView.MultiSelect = false;
 			attachedFilesListView.View = View.Details;
 			attachedFilesListView.SmallImageList = Redbrick.TreeViewIcons;
+
+			if (Properties.Settings.Default.FlameWar) {
+				ECRTextBox.CharacterCasing = CharacterCasing.Upper;
+			}
 		}
 
 		private void ConnectEvents() {
@@ -69,13 +73,13 @@ namespace RedBrick2 {
 			attachedFilesListView.MouseDoubleClick += AttachedFilesListView_MouseDoubleClick;
 		}
 
-		private void Init() {
+		private void LookupItem(string item_) {
 			if (int.TryParse(Lookup, out int test_)) {
 				LookUpECR(test_);
 				return;
 			}
-			LookUpPart(Lookup);
-		}
+			LookUpPart(item_);
+		} 
 
 		private void LookUpPart(string _part) {
 			using (ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter ta_ =
@@ -83,6 +87,7 @@ namespace RedBrick2 {
 				using (ENGINEERINGDataSet.ECRObjLookupDataTable dt_ = ta_.GetDataByItemNum(_part)) {
 					if (dt_.Count > 0) {
 						ECRlistView.Items.Clear();
+						originalText = ECRTextBox.Text;
 						foreach (ENGINEERINGDataSet.ECRObjLookupRow row in dt_.Rows) {
 							string[] row_str_ = new string[] { row.ECR_NUM.ToString(),
 								row.DATE_CREATE.ToString(dateFormat),
@@ -91,6 +96,8 @@ namespace RedBrick2 {
 							ECRlistView.Items.Add(i_);
 						}
 						ECRlistView.Items[0].Selected = true;
+					} else {
+						ECRTextBox.Text = originalText;
 					}
 				}
 			}
@@ -294,9 +301,9 @@ namespace RedBrick2 {
 		}
 
 		private void ECRTextBox_KeyDown(object sender, KeyEventArgs e) {
-			if (e.KeyCode == Keys.Enter &&
-				int.TryParse(ECRTextBox.Text, out int test_)) {
-				LookUpECR(test_);
+			if (e.KeyCode == Keys.Enter) {
+				Lookup = ECRTextBox.Text;
+				LookupItem(Lookup);
 			}
 		}
 
