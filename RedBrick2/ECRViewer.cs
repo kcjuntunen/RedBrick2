@@ -74,10 +74,15 @@ namespace RedBrick2 {
 				LookUpECR(test_);
 				return;
 			}
+			LookUpPart(Lookup);
+		}
+
+		private void LookUpPart(string _part) {
 			using (ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter ta_ =
 				new ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter()) {
-				using (ENGINEERINGDataSet.ECRObjLookupDataTable dt_ = ta_.GetDataByItemNum(Lookup)) {
+				using (ENGINEERINGDataSet.ECRObjLookupDataTable dt_ = ta_.GetDataByItemNum(_part)) {
 					if (dt_.Count > 0) {
+						ECRlistView.Items.Clear();
 						foreach (ENGINEERINGDataSet.ECRObjLookupRow row in dt_.Rows) {
 							string[] row_str_ = new string[] { row.ECR_NUM.ToString(),
 								row.DATE_CREATE.ToString(dateFormat),
@@ -292,6 +297,15 @@ namespace RedBrick2 {
 			if (e.KeyCode == Keys.Enter &&
 				int.TryParse(ECRTextBox.Text, out int test_)) {
 				LookUpECR(test_);
+			}
+		}
+
+		private void affectedItemsListView_MouseDoubleClick(object sender, MouseEventArgs e) {
+			ListView lv_ = (sender as ListView);
+			ListViewItem item_ = lv_.GetItemAt(e.X, e.Y);
+			if (item_ != null) {
+				Lookup = item_.SubItems[0].Text;
+				LookUpPart(Lookup);
 			}
 		}
 	}

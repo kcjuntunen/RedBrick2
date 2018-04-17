@@ -185,6 +185,7 @@
 			this.affectedItemsListView.Size = new System.Drawing.Size(291, 145);
 			this.affectedItemsListView.TabIndex = 0;
 			this.affectedItemsListView.UseCompatibleStateImageBehavior = false;
+			this.affectedItemsListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.affectedItemsListView_MouseDoubleClick);
 			// 
 			// columnHeader4
 			// 
@@ -308,7 +309,7 @@
 			this.signeesTextBox.Location = new System.Drawing.Point(4, 3);
 			this.signeesTextBox.Multiline = true;
 			this.signeesTextBox.Name = "signeesTextBox";
-			this.signeesTextBox.Size = new System.Drawing.Size(284, 54);
+			this.signeesTextBox.Size = new System.Drawing.Size(284, 57);
 			this.signeesTextBox.TabIndex = 1;
 			// 
 			// groupBox6
