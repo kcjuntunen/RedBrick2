@@ -53,7 +53,16 @@ namespace RedBrick2 {
 		}
 
 		private void InitSuggestedSpecs() {
-			string url_ = @"http://10.10.76.50/doku.php?id=reference:programcolors";
+			string url_ = Properties.Settings.Default.FinishSpecURL;
+			System.Net.NetworkInformation.Ping p_ = new System.Net.NetworkInformation.Ping();
+			if (System.Net.IPAddress.TryParse(url_.Split('/')[2], out System.Net.IPAddress ip_)) {
+				System.Net.NetworkInformation.PingReply pr_ = p_.Send(ip_);
+				if (pr_.Status != System.Net.NetworkInformation.IPStatus.Success)
+				return;
+			} else {
+				return;
+			}
+
 			HtmlAgilityPack.HtmlWeb web_ = new HtmlAgilityPack.HtmlWeb();
 			HtmlAgilityPack.HtmlDocument doc_ = web_.Load(url_);
 			HtmlAgilityPack.HtmlNodeCollection nn_ = doc_.DocumentNode.SelectNodes(@"//*/div");
