@@ -332,7 +332,7 @@ namespace RedBrick2 {
 				using (ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter cc =
 					new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter()) {
 					using (ENGINEERINGDataSet.CUT_CUTLISTSDataTable dt =
-						cc.GetDataByName(partLookup, RevFromDrw.ToString())) {
+						cc.GetDataByName(partLookup, rev_cbx.Text)) {
 						if (dt.Rows.Count > 0) {
 							status_cbx.SelectedValue = dt[0].STATEID;
 							clid = dt[0].CLID;
@@ -541,12 +541,7 @@ namespace RedBrick2 {
 		}
 
 		private void comboBox14_SelectedIndexChanged(object sender, EventArgs e) {
-			bool not_err_ = RevFromFile == null || (sender as ComboBox).Text == RevFromFile;
-			if (not_err_) {
-				ToggleRevWarn(false);
-			} else if (Properties.Settings.Default.Warn) {
-				ToggleRevWarn(true);
-			}
+			check_rev_cbx(sender);
 		}
 
 		private void comboBox12_SelectedIndexChanged(object sender, EventArgs e) {
@@ -791,6 +786,22 @@ namespace RedBrick2 {
 
 		private void treeView1_DoubleClick(object sender, EventArgs e) {
 			OpenEditRev();
+		}
+
+		private void rev_cbx_TextUpdate(object sender, EventArgs e) {
+			check_rev_cbx(sender);
+		}
+
+		private void check_rev_cbx(object sender) {
+			bool not_err_ = RevFromFile == null || (sender as ComboBox).Text == RevFromFile;
+			if (not_err_) {
+				ToggleRevWarn(false);
+			} else if (Properties.Settings.Default.Warn) {
+				ToggleRevWarn(true);
+			}
+			if ((sender as ComboBox).Text.Trim() != string.Empty) {
+				FigureOutStatus();
+			}
 		}
 	}
 }

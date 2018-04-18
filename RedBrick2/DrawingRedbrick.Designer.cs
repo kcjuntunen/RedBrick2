@@ -693,6 +693,7 @@ namespace RedBrick2 {
 			this.rev_cbx.Size = new System.Drawing.Size(130, 21);
 			this.rev_cbx.TabIndex = 8;
 			this.rev_cbx.SelectedIndexChanged += new System.EventHandler(this.comboBox14_SelectedIndexChanged);
+			this.rev_cbx.TextUpdate += new System.EventHandler(this.rev_cbx_TextUpdate);
 			this.rev_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.rev_cbx.Resize += new System.EventHandler(this.comboBox_Resize);
 			// 
