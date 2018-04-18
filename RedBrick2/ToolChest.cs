@@ -53,7 +53,6 @@ namespace RedBrick2 {
 
 		private void button3_Click(object sender, EventArgs e) {
 			using (ECRViewer ev_ = new ECRViewer(lookup)) {
-				ev_.Text = string.Format(@"{0} - {1}", ev_.Text, lookup);
 				ev_.ShowDialog(this);
 			}
 			Close();
