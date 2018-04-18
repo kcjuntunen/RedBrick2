@@ -1356,12 +1356,8 @@ namespace RedBrick2 {
 		}
 
 		private void OnQuickTracLookup(object sender, EventArgs e) {
-			using (ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter ta_ =
-				new ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter()) {
-				DataView dv_ = ta_.GetData(selectedPart).DefaultView;
-				using (DataDisplay d_ = new DataDisplay(dv_, string.Format(@"{0} - QuicTrac Locations", selectedPart))) {
-					d_.ShowDialog(this);
-				}
+			using (QuickTracLookup qt_ = new QuickTracLookup(selectedPart)) {
+				qt_.ShowDialog(this);
 			}
 		}
 
