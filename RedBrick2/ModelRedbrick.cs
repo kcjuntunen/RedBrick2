@@ -811,10 +811,47 @@ namespace RedBrick2 {
 
 		private void GetRouting() {
 			if (data_from_db) {
-				GetRoutingFromDB();
+				GetRoutingFromDB2();
 			} else {
 				GetRoutingFromPart();
 			}
+		}
+
+		private void GetRoutingFromDB2() {
+			if (Row != null) {
+				type_cbx.SelectedValue = Row.TYPE;
+				FilterOps(string.Format(@"TYPEID = {0}", Row.TYPE));
+			}
+
+			foreach (ComboBox c_ in cbxes) {
+				c_.SelectedValue = -1;
+			}
+
+			using (ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter cpota =
+				new ENGINEERINGDataSetTableAdapters.CUT_PART_OPSTableAdapter()) {
+				cpota.FillByPartID(eNGINEERINGDataSet.CUT_PART_OPS, Row.PARTID);
+				for (int i = 0; i < eNGINEERINGDataSet.CUT_PART_OPS.Rows.Count; i++) {
+					ComboBox current = cbxes[i];
+					string op_ = string.Format(@"OP{0}", i + 1);
+					string opid_ = string.Format(@"OP{0}ID", i + 1);
+					if (i < cbxes.Length) {
+						ENGINEERINGDataSet.CUT_PART_OPSRow r_ =
+							(eNGINEERINGDataSet.CUT_PART_OPS.Rows[i] as ENGINEERINGDataSet.CUT_PART_OPSRow);
+						cbxes[r_.POPORDER - 1].SelectedValue = r_.POPOP;
+						if (PropertySet.ContainsKey(op_)) {
+							OpProperty prop_ = PropertySet[op_] as OpProperty;
+							prop_.OpType = Convert.ToInt32(type_cbx.SelectedValue);
+							prop_.Data = r_.POPOP;
+						}
+						if (PropertySet.ContainsKey(opid_)) {
+							OpId propid_ = PropertySet[opid_] as OpId;
+							propid_.OpType = Convert.ToInt32(type_cbx.SelectedValue);
+							propid_.Set(r_.POPOP, r_.POPOP.ToString());
+						}
+					}
+				}
+			}
+			GetEstimationFromDB();
 		}
 
 		private void GetRoutingFromDB() {
