@@ -240,7 +240,7 @@ namespace RedBrick2 {
 			config_cbx.SelectionLength = 0;
 
 			pdfDate_toolstrip.Text = @"";
-			string pdfLookup = Redbrick.FileInfoToLookup(new FileInfo((_swApp.ActiveDoc as ModelDoc2).GetPathName()));
+			string pdfLookup = Path.GetFileNameWithoutExtension((_swApp.ActiveDoc as ModelDoc2).GetPathName());
 			FileInfo pdfFile = find_pdf2(pdfLookup);
 			if (pdfFile != null && pdfFile.Exists) {
 				pdfDate_toolstrip.Text = string.Format(@"'{0}...{1}' ({2} {3})",
