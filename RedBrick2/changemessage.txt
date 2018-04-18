@@ -1,7 +1,8 @@
 
-1) Added right-click menu items on "Cutlist Create" window.
-2) Added item selection, description box on QuikTrac window.
-3) "General Properties" group box now shows customer # if it can figure it out.
-4) Doubleclick on LVL to edit.
-5) Doubleclick on ECR # in LVL editor to view a bunch of ECR data.
-6) Updated ArchivePDF.dll.
+1) Fixed issue where routings could collapse if the sequence was out of whack.
+2) ECR Viewer now allows Part# or ECR# search. Also, double-click in "Affected Parts" to find related ECRs.
+3) Added auto-suggestion for finish specs.
+   * It can be switched on or off in the configuration window.
+4) Added info to the right-click menu on Create Cutlist window.
+5) Tweaked lookup resolution in Drawing View and Create Cutlist window.
+6) In drawing view, "Status" now depends on REV combobox, rather than the REV in the drawing data.
