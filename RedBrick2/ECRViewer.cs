@@ -11,6 +11,9 @@ namespace RedBrick2 {
 		private string originalText = string.Empty;
 		public ECRViewer(string lookup) {
 			Lookup = lookup;
+			if (lookup.Contains(@"REV")) {
+				Lookup = lookup.Split(new string[] { @"REV" }, StringSplitOptions.RemoveEmptyEntries)[0].Trim();
+			}
 			InitializeComponent();
 			SetSettings();
 			ConnectEvents();
