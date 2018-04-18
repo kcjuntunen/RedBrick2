@@ -29,9 +29,13 @@ namespace RedBrick2 {
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.cust_cbx = new System.Windows.Forms.ComboBox();
+			this.gENCUSTOMERSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.eNGINEERINGDataSet = new RedBrick2.ENGINEERINGDataSet();
 			this.itm_cbx = new System.Windows.Forms.ComboBox();
+			this.cUTCUTLISTSBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.label3 = new System.Windows.Forms.Label();
 			this.rev_cbx = new System.Windows.Forms.ComboBox();
+			this.revListBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.scan = new System.Windows.Forms.Button();
 			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
 			this.label5 = new System.Windows.Forms.Label();
@@ -45,6 +49,7 @@ namespace RedBrick2 {
 			this.unselect_btn = new System.Windows.Forms.Button();
 			this.select_btn = new System.Windows.Forms.Button();
 			this.type_cbx = new System.Windows.Forms.ComboBox();
+			this.cUTPARTTYPESBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.toplvl_rdo = new System.Windows.Forms.RadioButton();
 			this.parts_rdo = new System.Windows.Forms.RadioButton();
 			this.hide_btn = new System.Windows.Forms.Button();
@@ -56,11 +61,6 @@ namespace RedBrick2 {
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.pdfDate_toolstrip = new System.Windows.Forms.ToolStripStatusLabel();
-			this.gENCUSTOMERSBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.eNGINEERINGDataSet = new RedBrick2.ENGINEERINGDataSet();
-			this.cUTCUTLISTSBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.revListBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.cUTPARTTYPESBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.gEN_CUSTOMERSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.GEN_CUSTOMERSTableAdapter();
 			this.revListTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.RevListTableAdapter();
 			this.cUT_CUTLISTSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
@@ -69,14 +69,14 @@ namespace RedBrick2 {
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.tableLayoutPanel1.SuspendLayout();
-			this.panel1.SuspendLayout();
-			this.tableLayoutPanel2.SuspendLayout();
-			this.statusStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gENCUSTOMERSBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSet)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTCUTLISTSBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.revListBindingSource)).BeginInit();
+			this.panel1.SuspendLayout();
+			this.tableLayoutPanel2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.cUTPARTTYPESBindingSource)).BeginInit();
+			this.statusStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.cutlistPartsBindingSource)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -179,6 +179,16 @@ namespace RedBrick2 {
 			this.cust_cbx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
 			this.cust_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox1_MouseClick);
 			// 
+			// gENCUSTOMERSBindingSource
+			// 
+			this.gENCUSTOMERSBindingSource.DataMember = "GEN_CUSTOMERS";
+			this.gENCUSTOMERSBindingSource.DataSource = this.eNGINEERINGDataSet;
+			// 
+			// eNGINEERINGDataSet
+			// 
+			this.eNGINEERINGDataSet.DataSetName = "ENGINEERINGDataSet";
+			this.eNGINEERINGDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+			// 
 			// itm_cbx
 			// 
 			this.itm_cbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -199,6 +209,11 @@ namespace RedBrick2 {
 			this.itm_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox2_KeyDown);
 			this.itm_cbx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
 			this.itm_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox1_MouseClick);
+			// 
+			// cUTCUTLISTSBindingSource
+			// 
+			this.cUTCUTLISTSBindingSource.DataMember = "CUT_CUTLISTS";
+			this.cUTCUTLISTSBindingSource.DataSource = this.eNGINEERINGDataSet;
 			// 
 			// label3
 			// 
@@ -229,6 +244,11 @@ namespace RedBrick2 {
 			this.rev_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.rev_cbx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
 			this.rev_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox3_MouseClick);
+			// 
+			// revListBindingSource
+			// 
+			this.revListBindingSource.DataMember = "RevList";
+			this.revListBindingSource.DataSource = this.eNGINEERINGDataSet;
 			// 
 			// scan
 			// 
@@ -407,6 +427,11 @@ namespace RedBrick2 {
 			this.type_cbx.ValueMember = "TYPEID";
 			this.type_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			// 
+			// cUTPARTTYPESBindingSource
+			// 
+			this.cUTPARTTYPESBindingSource.DataMember = "CUT_PART_TYPES";
+			this.cUTPARTTYPESBindingSource.DataSource = this.eNGINEERINGDataSet;
+			// 
 			// toplvl_rdo
 			// 
 			this.toplvl_rdo.AutoSize = true;
@@ -514,33 +539,8 @@ namespace RedBrick2 {
 			this.pdfDate_toolstrip.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
 			this.pdfDate_toolstrip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
 			this.pdfDate_toolstrip.Name = "pdfDate_toolstrip";
-			this.pdfDate_toolstrip.Size = new System.Drawing.Size(66, 17);
+			this.pdfDate_toolstrip.Size = new System.Drawing.Size(70, 17);
 			this.pdfDate_toolstrip.Text = "PDF Date: {}";
-			// 
-			// gENCUSTOMERSBindingSource
-			// 
-			this.gENCUSTOMERSBindingSource.DataMember = "GEN_CUSTOMERS";
-			this.gENCUSTOMERSBindingSource.DataSource = this.eNGINEERINGDataSet;
-			// 
-			// eNGINEERINGDataSet
-			// 
-			this.eNGINEERINGDataSet.DataSetName = "ENGINEERINGDataSet";
-			this.eNGINEERINGDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-			// 
-			// cUTCUTLISTSBindingSource
-			// 
-			this.cUTCUTLISTSBindingSource.DataMember = "CUT_CUTLISTS";
-			this.cUTCUTLISTSBindingSource.DataSource = this.eNGINEERINGDataSet;
-			// 
-			// revListBindingSource
-			// 
-			this.revListBindingSource.DataMember = "RevList";
-			this.revListBindingSource.DataSource = this.eNGINEERINGDataSet;
-			// 
-			// cUTPARTTYPESBindingSource
-			// 
-			this.cUTPARTTYPESBindingSource.DataMember = "CUT_PART_TYPES";
-			this.cUTPARTTYPESBindingSource.DataSource = this.eNGINEERINGDataSet;
 			// 
 			// gEN_CUSTOMERSTableAdapter
 			// 
@@ -588,16 +588,16 @@ namespace RedBrick2 {
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel1.PerformLayout();
-			this.panel1.ResumeLayout(false);
-			this.tableLayoutPanel2.ResumeLayout(false);
-			this.tableLayoutPanel2.PerformLayout();
-			this.statusStrip1.ResumeLayout(false);
-			this.statusStrip1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gENCUSTOMERSBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSet)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTCUTLISTSBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.revListBindingSource)).EndInit();
+			this.panel1.ResumeLayout(false);
+			this.tableLayoutPanel2.ResumeLayout(false);
+			this.tableLayoutPanel2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.cUTPARTTYPESBindingSource)).EndInit();
+			this.statusStrip1.ResumeLayout(false);
+			this.statusStrip1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.cutlistPartsBindingSource)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
