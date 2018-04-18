@@ -344,7 +344,7 @@ namespace RedBrick2 {
 			_swApp.GetUserProgressBar(out pb);
 			Cursor.Current = Cursors.WaitCursor;
 			pb.Start(0, 1, @"Enumerating parts...");
-			string name = Path.GetFileNameWithoutExtension(m.GetPathName());
+			string name = Redbrick.FileInfoToLookup(new FileInfo(m.GetPathName()));
 			SwProperties s = new SwProperties(_swApp);
 			s.Configuration = _config.Name;
 			s.GetProperties(m);
