@@ -1059,5 +1059,29 @@ namespace RedBrick2.Properties {
                 this["Setting"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://10.10.76.50/doku.php?id=reference:programcolors")]
+        public string FinishSpecURL {
+            get {
+                return ((string)(this["FinishSpecURL"]));
+            }
+            set {
+                this["FinishSpecURL"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SuggestFinishSpec {
+            get {
+                return ((bool)(this["SuggestFinishSpec"]));
+            }
+            set {
+                this["SuggestFinishSpec"] = value;
+            }
+        }
     }
 }

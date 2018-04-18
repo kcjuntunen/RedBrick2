@@ -29,6 +29,7 @@ namespace RedBrick2 {
 		private string jobs_msg = string.Empty;
 		private string req_info_ = string.Empty;
 		private DrawingDoc dd_ = null;
+		private AutoCompleteStringCollection Specs = new AutoCompleteStringCollection();
 
 		/// <summary>
 		/// Constructor.
@@ -49,6 +50,28 @@ namespace RedBrick2 {
 			label41.MouseDown += label41_MouseDown;
 			label42.MouseDown += label42_MouseDown;
 			ToggleFlameWar(Properties.Settings.Default.FlameWar);
+		}
+
+		private void InitSuggestedSpecs() {
+			string url_ = @"http://10.10.76.50/doku.php?id=reference:programcolors";
+			HtmlAgilityPack.HtmlWeb web_ = new HtmlAgilityPack.HtmlWeb();
+			HtmlAgilityPack.HtmlDocument doc_ = web_.Load(url_);
+			HtmlAgilityPack.HtmlNodeCollection nn_ = doc_.DocumentNode.SelectNodes(@"//*/div");
+			System.Text.RegularExpressions.Regex r_ = new System.Text.RegularExpressions.Regex(@"^.*\:(.*)$");
+			foreach (HtmlAgilityPack.HtmlNode node_ in nn_) {
+				if (node_.Attributes[@"class"] != null && node_.Attributes[@"class"].Value == @"li" && node_.InnerText.Contains(@":")) {
+					System.Text.RegularExpressions.MatchCollection mc_ = r_.Matches(node_.InnerText);
+					if (mc_.Count > 0 && mc_[0].Groups.Count > 1) {
+						string txt_ = HtmlAgilityPack.HtmlEntity.DeEntitize(mc_[0].Groups[1].Value).Trim();
+						Specs.Add(txt_);
+					}
+				}
+			}
+			fin1_tb.AutoCompleteCustomSource = Specs;
+			fin2_tb.AutoCompleteCustomSource = Specs;
+			fin3_tb.AutoCompleteCustomSource = Specs;
+			fin4_tb.AutoCompleteCustomSource = Specs;
+			fin5_tb.AutoCompleteCustomSource = Specs;
 		}
 
 		void dirtTracker_Besmirched(object sender, EventArgs e) {
@@ -348,6 +371,9 @@ namespace RedBrick2 {
 			cUT_STATESTableAdapter.Fill(eNGINEERINGDataSet.CUT_STATES);
 			cUT_DRAWING_MATERIALSTableAdapter.Fill(eNGINEERINGDataSet.CUT_DRAWING_MATERIALS);
 			ReLoad();
+			if (Properties.Settings.Default.SuggestFinishSpec) {
+				InitSuggestedSpecs();
+			}
 		}
 
 		/// <summary>

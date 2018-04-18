@@ -303,5 +303,11 @@
     <Setting Name="Setting" Type="System.String" Scope="User">
       <Value Profile="(Default)">650; 612</Value>
     </Setting>
+    <Setting Name="FinishSpecURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://10.10.76.50/doku.php?id=reference:programcolors</Value>
+    </Setting>
+    <Setting Name="SuggestFinishSpec" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

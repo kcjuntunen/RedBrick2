@@ -387,6 +387,8 @@ namespace RedBrick2 {
 			// 
 			this.fin1_tb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.fin1_tb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.fin1_tb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
 			this.fin1_tb.Location = new System.Drawing.Point(105, 16);
 			this.fin1_tb.Name = "fin1_tb";
 			this.fin1_tb.Size = new System.Drawing.Size(233, 22);
@@ -398,6 +400,8 @@ namespace RedBrick2 {
 			// 
 			this.fin2_tb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.fin2_tb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.fin2_tb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
 			this.fin2_tb.Location = new System.Drawing.Point(105, 57);
 			this.fin2_tb.Name = "fin2_tb";
 			this.fin2_tb.Size = new System.Drawing.Size(233, 22);
@@ -409,6 +413,8 @@ namespace RedBrick2 {
 			// 
 			this.fin3_tb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.fin3_tb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.fin3_tb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
 			this.fin3_tb.Location = new System.Drawing.Point(105, 98);
 			this.fin3_tb.Name = "fin3_tb";
 			this.fin3_tb.Size = new System.Drawing.Size(233, 22);
@@ -420,6 +426,8 @@ namespace RedBrick2 {
 			// 
 			this.fin4_tb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.fin4_tb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.fin4_tb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
 			this.fin4_tb.Location = new System.Drawing.Point(105, 139);
 			this.fin4_tb.Name = "fin4_tb";
 			this.fin4_tb.Size = new System.Drawing.Size(233, 22);
@@ -431,6 +439,8 @@ namespace RedBrick2 {
 			// 
 			this.fin5_tb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.fin5_tb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.fin5_tb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
 			this.fin5_tb.Location = new System.Drawing.Point(105, 180);
 			this.fin5_tb.Name = "fin5_tb";
 			this.fin5_tb.Size = new System.Drawing.Size(233, 22);
