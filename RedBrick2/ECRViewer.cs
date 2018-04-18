@@ -95,6 +95,7 @@ namespace RedBrick2 {
 							ListViewItem i_ = new ListViewItem(row_str_, 1);
 							ECRlistView.Items.Add(i_);
 						}
+						Text = string.Format(@"ECR Viewer - {0}", _part);
 						ECRlistView.Items[0].Selected = true;
 					} else {
 						ECRTextBox.Text = originalText;
@@ -118,6 +119,7 @@ namespace RedBrick2 {
 							ListViewItem i_ = new ListViewItem(row_str_, 1);
 							ECRlistView.Items.Add(i_);
 						}
+						Text = @"ECR Viewer";
 						ECRlistView.Items[0].Selected = true;
 					} else {
 						ECRTextBox.Text = originalText;
