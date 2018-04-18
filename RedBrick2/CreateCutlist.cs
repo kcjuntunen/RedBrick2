@@ -238,6 +238,17 @@ namespace RedBrick2 {
 
 			config_cbx.SelectionStart = 0;
 			config_cbx.SelectionLength = 0;
+
+			pdfDate_toolstrip.Text = @"";
+			string pdfLookup = Redbrick.FileInfoToLookup(new FileInfo((_swApp.ActiveDoc as ModelDoc2).GetPathName()));
+			FileInfo pdfFile = find_pdf2(pdfLookup);
+			if (pdfFile != null && pdfFile.Exists) {
+				pdfDate_toolstrip.Text = string.Format(@"'{0}...{1}' ({2} {3})",
+					pdfFile.FullName.Substring(0, 3),
+					pdfFile.Name,
+					pdfFile.LastWriteTime.ToShortDateString(),
+					pdfFile.LastWriteTime.ToLongTimeString());
+			}
 		}
 
 		private void check_ok() {
