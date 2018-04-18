@@ -24,6 +24,7 @@ namespace RedBrick2 {
 		private string selectedPart = string.Empty;
 		private string sourceComp = string.Empty;
 		private FileInfo foundPDF;
+		private FileInfo foundSLDDRW;
 		private string _revFromFile = string.Empty;
 		private string _revFromProperties = string.Empty;
 		private int clid = 0;
@@ -1191,18 +1192,51 @@ namespace RedBrick2 {
 					DataGridViewCell cell_ = (grid_[@"Part Number", current_row] as DataGridViewCell);
 					if (cell_.Value != null) {
 						selectedPart = cell_.Value.ToString();
-						foundPDF = find_pdf(selectedPart);
-						MenuItem[] items = {new MenuItem(string.Format(@"Open Model ({0})...", selectedPart), OnClickOpenModel),
+						FileInfo sp_ = new FileInfo(_partlist[selectedPart].ActiveDoc.GetPathName());
+						string sp_info_ = @"Open Model...";
+
+						if (sp_ != null && sp_.Exists) {
+							sp_info_ = string.Format(@"Open Model ('{0}' {1} {2})...",
+								sp_.FullName.Substring(0, 2).ToUpper(),
+								sp_.LastWriteTime.ToShortDateString(),
+								sp_.LastWriteTime.ToShortTimeString());
+						}
+
+						foundSLDDRW = find_drw(sp_.Name);
+						string DRWinfo_ = @"Open Drawing...";
+						bool dwg_exists_ = false;
+						if (foundSLDDRW != null && foundSLDDRW.Exists) {
+							dwg_exists_ = true;
+							DRWinfo_ = string.Format(@"Open Drawing ('{0}' {1} {2})...",
+								foundSLDDRW.FullName.Substring(0, 2).ToUpper(),
+								foundSLDDRW.LastWriteTime.ToShortDateString(),
+								foundSLDDRW.LastWriteTime.ToShortTimeString());
+						}
+
+						foundPDF = find_pdf2(selectedPart);
+						string pdfInfo = @"Open PDF...";
+						bool pdf_exists_ = false;
+						if (foundPDF != null && foundPDF.Exists) {
+							pdf_exists_ = true;
+							DateTime foundPDFDate = foundPDF.LastWriteTime;
+							pdfInfo = string.Format(@"Open PDF ('{0}' {1} {2})...",
+																	foundPDF.FullName.Substring(0, 2).ToUpper(),
+																	foundPDFDate.ToShortDateString(),
+																	foundPDFDate.ToShortTimeString());
+						}
+
+						MenuItem[] items = {new MenuItem(sp_info_, OnClickOpenModel),
 																new MenuItem(@"-"),
-																new MenuItem(@"Open Drawing...", OnClickOpenDrawing),
-																new MenuItem(@"Open PDF...", OnClickOpenPDF),
+																new MenuItem(DRWinfo_, OnClickOpenDrawing),
+																new MenuItem(pdfInfo, OnClickOpenPDF),
 																new MenuItem(@"Create Drawing..."),
 																new MenuItem(@"-"),
 																new MenuItem(@"Machine Priority...", OnClickMachinePriority),
 																new MenuItem(@"QuikTrac Lookup", OnQuickTracLookup),
 																new MenuItem(@"Related ECRs", OnRelatedECRs) };
-						items[2].Enabled = DrawingExists(selectedPart);
-						items[3].Enabled = foundPDF != null ? foundPDF.Exists : false;
+
+						items[2].Enabled = dwg_exists_;
+						items[3].Enabled = pdf_exists_;
 						items[4].Enabled = false;
 						m.MenuItems.AddRange(items);
 					}
@@ -1221,6 +1255,12 @@ namespace RedBrick2 {
 			return null;
 		}
 
+		private FileInfo find_drw(string part) {
+			FileInfo fi = find_doc(part);
+			string ext = fi.Extension;
+			return new FileInfo(fi.FullName.Replace(ext, @".SLDDRW"));
+		}
+
 		private string GetPath() {
 			return System.IO.Path.GetDirectoryName(
 				(_swApp.ActiveDoc as ModelDoc2).GetPathName());
@@ -1229,8 +1269,34 @@ namespace RedBrick2 {
 		private bool DrawingExists(string part) {
 			FileInfo fi = find_doc(part);
 			string ext = fi.Extension;
-			FileInfo dwgfi = new FileInfo(fi.FullName.Replace(ext, @".SLDDRW"));
-			return dwgfi.Exists;
+			foundSLDDRW = new FileInfo(fi.FullName.Replace(ext, @".SLDDRW"));
+			return foundSLDDRW.Exists;
+		}
+
+		private FileInfo find_pdf2(string doc) {
+			string searchterm_ = string.Format(@"{0}.PDF", doc);
+			if (mDoc.GetPathName().StartsWith(@"G")) {
+				using (ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter gdta =
+					new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter()) {
+					using (ENGINEERINGDataSet.GEN_DRAWINGSDataTable dt = gdta.GetDataByFName(searchterm_)) {
+						if (dt.Rows.Count > 0) {
+							ENGINEERINGDataSet.GEN_DRAWINGSRow r = (dt.Rows[0] as ENGINEERINGDataSet.GEN_DRAWINGSRow);
+							return new FileInfo(string.Format(@"{0}{1}", r.FPath, r.FName));
+						}
+					}
+				}
+			} else if (mDoc.GetPathName().StartsWith(@"S")) {
+				using (ENGINEERINGDataSetTableAdapters.GEN_DRAWINGS_MTLTableAdapter gdmta =
+					new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGS_MTLTableAdapter()) {
+					using (ENGINEERINGDataSet.GEN_DRAWINGS_MTLDataTable mdt = gdmta.GetDataByFName(searchterm_)) {
+						if (mdt.Rows.Count > 0) {
+							ENGINEERINGDataSet.GEN_DRAWINGS_MTLRow mr = (mdt.Rows[0] as ENGINEERINGDataSet.GEN_DRAWINGS_MTLRow);
+							return new FileInfo(string.Format(@"{0}{1}", mr.FPath, mr.FName));
+						}
+					}
+				}
+			}
+			return null;
 		}
 
 		private FileInfo find_pdf(string doc) {
