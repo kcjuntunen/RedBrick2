@@ -204,6 +204,7 @@ namespace RedBrick2 {
 						string[] revcheck = Path.GetFileNameWithoutExtension(PartFileInfo.Name).
 							Split(new string[] { @"REV" }, StringSplitOptions.RemoveEmptyEntries);
 						RevFromFile = revcheck.Length > 1 ? revcheck[revcheck.Length - 1].Trim() : null;
+						partLookup = revcheck[0].Trim();
 					} else {
 						RevFromFile = null;
 					}
