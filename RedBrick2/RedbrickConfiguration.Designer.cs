@@ -38,8 +38,11 @@ namespace RedBrick2 {
 			this.chbOnlyActive = new System.Windows.Forms.CheckBox();
 			this.chbOnlyActiveCustomers = new System.Windows.Forms.CheckBox();
 			this.extra_info_chb = new System.Windows.Forms.CheckBox();
-			this.gENDEPTSBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.chbSounds = new System.Windows.Forms.CheckBox();
+			this.fin_spec_cb = new System.Windows.Forms.CheckBox();
+			this.fin_spec_url = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.gENDEPTSBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.btnCancel = new System.Windows.Forms.Button();
 			this.btnOK = new System.Windows.Forms.Button();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -90,9 +93,6 @@ namespace RedBrick2 {
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.cUT_MATERIALSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter();
 			this.gEN_DEPTSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.GEN_DEPTSTableAdapter();
-			this.fin_spec_cb = new System.Windows.Forms.CheckBox();
-			this.fin_spec_url = new System.Windows.Forms.TextBox();
-			this.label1 = new System.Windows.Forms.Label();
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.cUTMATERIALSBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSet)).BeginInit();
@@ -271,11 +271,6 @@ namespace RedBrick2 {
 			this.extra_info_chb.UseVisualStyleBackColor = true;
 			this.extra_info_chb.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
 			// 
-			// gENDEPTSBindingSource
-			// 
-			this.gENDEPTSBindingSource.DataMember = "GEN_DEPTS";
-			this.gENDEPTSBindingSource.DataSource = this.eNGINEERINGDataSet;
-			// 
 			// chbSounds
 			// 
 			this.chbSounds.AutoSize = true;
@@ -289,6 +284,40 @@ namespace RedBrick2 {
 			this.chbSounds.UseVisualStyleBackColor = true;
 			this.chbSounds.CheckedChanged += new System.EventHandler(this.chbSounds_CheckedChanged);
 			this.chbSounds.Click += new System.EventHandler(this.chbSounds_Click);
+			// 
+			// fin_spec_cb
+			// 
+			this.fin_spec_cb.AutoSize = true;
+			this.fin_spec_cb.Location = new System.Drawing.Point(3, 241);
+			this.fin_spec_cb.Name = "fin_spec_cb";
+			this.fin_spec_cb.Size = new System.Drawing.Size(267, 17);
+			this.fin_spec_cb.TabIndex = 22;
+			this.fin_spec_cb.Text = "Suggest Finish Spec [Requires RedBrick restart]";
+			this.fin_spec_cb.UseVisualStyleBackColor = true;
+			this.fin_spec_cb.CheckedChanged += new System.EventHandler(this.fin_spec_cb_CheckedChanged);
+			// 
+			// fin_spec_url
+			// 
+			this.fin_spec_url.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.fin_spec_url.Location = new System.Drawing.Point(3, 277);
+			this.fin_spec_url.Name = "fin_spec_url";
+			this.fin_spec_url.Size = new System.Drawing.Size(520, 22);
+			this.fin_spec_url.TabIndex = 23;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(3, 261);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(91, 13);
+			this.label1.TabIndex = 24;
+			this.label1.Text = "Finish Spec URL:";
+			// 
+			// gENDEPTSBindingSource
+			// 
+			this.gENDEPTSBindingSource.DataMember = "GEN_DEPTS";
+			this.gENDEPTSBindingSource.DataSource = this.eNGINEERINGDataSet;
 			// 
 			// btnCancel
 			// 
@@ -922,35 +951,6 @@ namespace RedBrick2 {
 			// gEN_DEPTSTableAdapter
 			// 
 			this.gEN_DEPTSTableAdapter.ClearBeforeFill = true;
-			// 
-			// fin_spec_cb
-			// 
-			this.fin_spec_cb.AutoSize = true;
-			this.fin_spec_cb.Location = new System.Drawing.Point(3, 241);
-			this.fin_spec_cb.Name = "fin_spec_cb";
-			this.fin_spec_cb.Size = new System.Drawing.Size(129, 17);
-			this.fin_spec_cb.TabIndex = 22;
-			this.fin_spec_cb.Text = "Suggest Finish Spec";
-			this.fin_spec_cb.UseVisualStyleBackColor = true;
-			this.fin_spec_cb.CheckedChanged += new System.EventHandler(this.fin_spec_cb_CheckedChanged);
-			// 
-			// fin_spec_url
-			// 
-			this.fin_spec_url.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.fin_spec_url.Location = new System.Drawing.Point(3, 277);
-			this.fin_spec_url.Name = "fin_spec_url";
-			this.fin_spec_url.Size = new System.Drawing.Size(520, 22);
-			this.fin_spec_url.TabIndex = 23;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(3, 261);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(91, 13);
-			this.label1.TabIndex = 24;
-			this.label1.Text = "Finish Spec URL:";
 			// 
 			// RedbrickConfiguration
 			// 
