@@ -257,20 +257,6 @@ namespace RedBrick2 {
 		}
 
 		/// <summary>
-		/// Update user department data.
-		/// </summary>
-		/// <param name="sender">Who triggered this event?</param>
-		/// <param name="e">Any data come with it?</param>
-		private void cbDept_SelectedIndexChanged(object sender, EventArgs e) {
-			if (initialated) {
-				int tp = 0;
-				//if (cbDept.SelectedValue != null && int.TryParse(cbDept.SelectedValue.ToString(), out tp)) {
-				//	Properties.Settings.Default.UserDept = tp;
-				//}
-			}
-		}
-
-		/// <summary>
 		/// Update rev limit data
 		/// </summary>
 		/// <param name="sender">Who triggered this event?</param>

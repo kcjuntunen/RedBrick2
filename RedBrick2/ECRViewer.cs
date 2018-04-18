@@ -8,7 +8,6 @@ namespace RedBrick2 {
 		private string dateFormat = @"MMM dd, yyyy";
 		private List<int> items = new List<int>();
 		private List<string> drawings = new List<string>();
-		private int selectedItem;
 		private string originalText = string.Empty;
 		public ECRViewer(string lookup) {
 			Lookup = lookup;
