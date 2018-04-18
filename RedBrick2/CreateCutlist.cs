@@ -63,8 +63,8 @@ namespace RedBrick2 {
 			dataGridView1.UserDeletedRow += DataGridView1_UserDeletedRow;
 
 			mDoc = _swApp.ActiveDoc;
-			rev_in_filename = topName.Contains(@"REV");
 			topName = Path.GetFileNameWithoutExtension(mDoc.GetPathName());
+			rev_in_filename = topName.Contains(@"REV");
 			if (mDoc is DrawingDoc) {
 				mDoc = get_selected_views_modeldoc(mDoc);
 			} else {
@@ -287,7 +287,7 @@ namespace RedBrick2 {
 
 		private void settle_rev(string pnwe) {
 			string[] strings = pnwe.Split(new string[] { @"REV" }, StringSplitOptions.RemoveEmptyEntries);
-			topName = strings[0];
+			topName = strings[0].Trim();
 			if (rev_in_filename) {
 				_revFromFile = strings[1].Trim();
 			}
