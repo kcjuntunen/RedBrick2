@@ -188,7 +188,7 @@ namespace RedBrick2 {
 
 			cbDefaultMaterial.SelectedValue = Properties.Settings.Default.DefaultMaterial;
 			new ToolTip().SetToolTip(cbDefaultMaterial, @"If a part has no defined material, this material will be used.");
-			cbDept.SelectedValue = Properties.Settings.Default.UserDept;
+			//cbDept.SelectedValue = Properties.Settings.Default.UserDept;
 			chbDBEnabled.Checked = true;
 			chbFlameWar.Checked = Properties.Settings.Default.FlameWar;
 			new ToolTip().SetToolTip(chbFlameWar, @"Toggle all caps in most fields.");
@@ -217,7 +217,7 @@ namespace RedBrick2 {
 			textBox1.Text = Properties.Settings.Default.BOMFilter[0].ToString();
 			textBox2.Text = Properties.Settings.Default.GaugePath;
 			new ToolTip().SetToolTip(textBox2, @"XML data file with gauge size information. Double-click to change.");
-			textBox3.Text = Properties.Settings.Default.BOMTemplatePath;
+			//textBox3.Text = Properties.Settings.Default.BOMTemplatePath;
 			textBox4.Text = Properties.Settings.Default.JPGPath;
 			new ToolTip().SetToolTip(textBox4, @"Where to save JPGs. Double-click to change.");
 			textBox5.Text = Properties.Settings.Default.KPath;
@@ -239,11 +239,13 @@ namespace RedBrick2 {
 			new ToolTip().SetToolTip(checkBox8, string.Format(@"When 'Update CNC' goes from checked to unchecked,{0}" +
 																												"the priority window will open at the time the green check is clicked.",
 																												Environment.NewLine));
-			numericUpDown1.Value = Properties.Settings.Default.SPQ;
-			ToolTip tt_ = new ToolTip();
-			string nud1_ = @"Number of parts to amortize setup time over.";
-			tt_.SetToolTip(label8, nud1_);
-			tt_.SetToolTip(numericUpDown1, nud1_);
+			fin_spec_cb.Checked = Properties.Settings.Default.SuggestFinishSpec;
+			fin_spec_url.Text = Properties.Settings.Default.FinishSpecURL;
+			//numericUpDown1.Value = Properties.Settings.Default.SPQ;
+			//ToolTip tt_ = new ToolTip();
+			//string nud1_ = @"Number of parts to amortize setup time over.";
+			//tt_.SetToolTip(label8, nud1_);
+			//tt_.SetToolTip(numericUpDown1, nud1_);
 		}
 
 		/// <summary>
@@ -262,9 +264,9 @@ namespace RedBrick2 {
 		private void cbDept_SelectedIndexChanged(object sender, EventArgs e) {
 			if (initialated) {
 				int tp = 0;
-				if (cbDept.SelectedValue != null && int.TryParse(cbDept.SelectedValue.ToString(), out tp)) {
-					Properties.Settings.Default.UserDept = tp;
-				}
+				//if (cbDept.SelectedValue != null && int.TryParse(cbDept.SelectedValue.ToString(), out tp)) {
+				//	Properties.Settings.Default.UserDept = tp;
+				//}
 			}
 		}
 
@@ -304,6 +306,7 @@ namespace RedBrick2 {
 			System.Collections.Specialized.StringCollection sc = new System.Collections.Specialized.StringCollection();
 			sc.Add(textBox1.Text);
 
+			Properties.Settings.Default.FinishSpecURL = fin_spec_url.Text;
 			Properties.Settings.Default.BOMFilter = sc;
 			Properties.Settings.Default.RBConfigLocation = Location;
 			Properties.Settings.Default.RBConfigSize = Size;
@@ -519,7 +522,7 @@ namespace RedBrick2 {
 		}
 
 		private void numericUpDown1_ValueChanged(object sender, EventArgs e) {
-			Properties.Settings.Default.SPQ = (int)numericUpDown1.Value;
+			//Properties.Settings.Default.SPQ = (int)numericUpDown1.Value;
 		}
 
 		private void textBox3_MouseDoubleClick(object sender, MouseEventArgs e) {
@@ -528,7 +531,7 @@ namespace RedBrick2 {
 			ofd.FileName = System.IO.Path.GetFileName(Properties.Settings.Default.BOMTemplatePath);
 			ofd.Filter = "Table Template Files (*.sldbomtbt)|*.sldbomtbt";
 			if (ofd.ShowDialog(this) == DialogResult.OK) {
-				textBox3.Text = ofd.FileName;
+				//textBox3.Text = ofd.FileName;
 				Properties.Settings.Default.BOMTemplatePath = ofd.FileName;
 				Properties.Settings.Default.Save();
 			}
@@ -596,6 +599,10 @@ namespace RedBrick2 {
 
 		private void dimwarn_chb_CheckedChanged(object sender, EventArgs e) {
 			Properties.Settings.Default.NotifyDimensionChangeOnSave = (sender as CheckBox).Checked;
+		}
+
+		private void fin_spec_cb_CheckedChanged(object sender, EventArgs e) {
+			Properties.Settings.Default.SuggestFinishSpec = (sender as CheckBox).Checked;
 		}
 	}
 }
