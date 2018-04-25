@@ -1238,6 +1238,7 @@ namespace RedBrick2 {
 				//ad.ActiveDisplayStateChangePostNotify -= ad_ActiveDisplayStateChangePostNotify;
 				ad.ActiveViewChangeNotify -= ad_ActiveViewChangeNotify;
 				ad.ActiveConfigChangePostNotify -= ad_ActiveConfigChangePostNotify;
+				ad.ViewNewNotify2 -= ad_ViewNewNotify2;
 				//swSelMgr = null;
 			}
 			ad = null;
