@@ -25,14 +25,22 @@ namespace RedBrick2 {
 				GetVersionInfo(@"message"),
 				AssemblyVersion);
 			c.Background = System.Windows.Media.Brushes.Black;
-			for (int i = 0; i < 33; i += 10) {
-				for (int j = 0; j < 250; j += 10) {
+			System.Random r_ = new System.Random();
+			System.Windows.Media.Brush[] b = {
+				System.Windows.Media.Brushes.DeepSkyBlue,
+				System.Windows.Media.Brushes.DarkRed,
+				System.Windows.Media.Brushes.DarkSeaGreen,
+				System.Windows.Media.Brushes.DarkCyan,
+				System.Windows.Media.Brushes.Yellow
+			};
+			for (int i = 0; i < r_.Next(20, 100); i += 10) {
+				for (int j = 0; j < r_.Next(50, 300); j += 10) {
 					System.Windows.Point p = new System.Windows.Point(i, j);
 					System.Windows.Shapes.Ellipse e = new System.Windows.Shapes.Ellipse();
-					e.Stroke = System.Windows.Media.Brushes.Beige;
+					e.Stroke = b[r_.Next(b.Length)];
 					e.TranslatePoint(p, c);
-					e.Width = 40 * j;
-					e.Height = 40 * i;
+					e.Width = r_.Next(20, 70) * i;
+					e.Height = r_.Next(20, 70) * j;
 					c.Children.Add(e);
 				}
 			}
