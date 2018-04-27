@@ -1,8 +1,2 @@
 
-1) Fixed issue where routings could collapse if the sequence was out of whack.
-2) ECR Viewer now allows Part# or ECR# search. Also, double-click in "Affected Parts" to find related ECRs.
-3) Added auto-suggestion for finish specs.
-   * It can be switched on or off in the configuration window.
-4) Added info to the right-click menu on Create Cutlist window.
-5) Tweaked lookup resolution in Drawing View and Create Cutlist window.
-6) In drawing view, "Status" now depends on REV combobox, rather than the REV in the drawing data.
+1) Fixed a bug that caused a long wait when selecting text in the measure tool.
