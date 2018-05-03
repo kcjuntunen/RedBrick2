@@ -69,7 +69,7 @@ namespace RedBrick2 {
 							ENGINEERINGDataSet.GEN_CUSTOMERSRow row = dt_[0] as ENGINEERINGDataSet.GEN_CUSTOMERSRow;
 							if (row != null) {
 								string firstWord = row.CUSTOMER.Split(' ')[0];
-								string custnum = (!row.IsCUSTNUMNull() ? row.CUSTNUM.ToString() : string.Empty;
+								string custnum = !row.IsCUSTNUMNull() ? row.CUSTNUM.ToString() : string.Empty;
 								string shortCustName = string.Format(@"{0} - {1}", firstWord, custnum);
 								Value = shortCustName;
 							}
