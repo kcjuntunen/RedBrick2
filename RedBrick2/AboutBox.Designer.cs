@@ -23,13 +23,13 @@
     /// </summary>
     private void InitializeComponent() {
 			this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-			this.logoPictureBox = new System.Windows.Forms.PictureBox();
 			this.labelProductName = new System.Windows.Forms.Label();
 			this.labelVersion = new System.Windows.Forms.Label();
 			this.labelCopyright = new System.Windows.Forms.Label();
 			this.okButton = new System.Windows.Forms.Button();
 			this.textBoxDescription = new System.Windows.Forms.TextBox();
 			this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
+			this.logoPictureBox = new System.Windows.Forms.PictureBox();
 			this.tableLayoutPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
 			this.SuspendLayout();
@@ -57,17 +57,6 @@
 			this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
 			this.tableLayoutPanel.Size = new System.Drawing.Size(612, 341);
 			this.tableLayoutPanel.TabIndex = 0;
-			// 
-			// logoPictureBox
-			// 
-			this.logoPictureBox.Image = global::RedBrick2.Properties.Resources.redlego;
-			this.logoPictureBox.Location = new System.Drawing.Point(219, 187);
-			this.logoPictureBox.Name = "logoPictureBox";
-			this.logoPictureBox.Size = new System.Drawing.Size(195, 335);
-			this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-			this.logoPictureBox.TabIndex = 12;
-			this.logoPictureBox.TabStop = false;
-			this.logoPictureBox.Visible = false;
 			// 
 			// labelProductName
 			// 
@@ -140,6 +129,17 @@
 			this.elementHost1.TabIndex = 25;
 			this.elementHost1.Text = "elementHost1";
 			this.elementHost1.Child = null;
+			// 
+			// logoPictureBox
+			// 
+			this.logoPictureBox.Image = global::RedBrick2.Properties.Resources.redlego;
+			this.logoPictureBox.Location = new System.Drawing.Point(219, 187);
+			this.logoPictureBox.Name = "logoPictureBox";
+			this.logoPictureBox.Size = new System.Drawing.Size(195, 335);
+			this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+			this.logoPictureBox.TabIndex = 12;
+			this.logoPictureBox.TabStop = false;
+			this.logoPictureBox.Visible = false;
 			// 
 			// AboutBox
 			// 

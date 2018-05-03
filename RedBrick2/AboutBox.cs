@@ -33,8 +33,8 @@ namespace RedBrick2 {
 				System.Windows.Media.Brushes.DarkCyan,
 				System.Windows.Media.Brushes.Yellow
 			};
-			for (int i = 0; i < r_.Next(20, 100); i += 10) {
-				for (int j = 0; j < r_.Next(50, 300); j += 10) {
+			for (int i = 0; i < r_.Next(elementHost1.Width); i += 10) {
+				for (int j = 0; j < r_.Next(elementHost1.Height); j += 10) {
 					System.Windows.Point p = new System.Windows.Point(i, j);
 					System.Windows.Shapes.Ellipse e = new System.Windows.Shapes.Ellipse();
 					e.Stroke = b[r_.Next(b.Length)];
