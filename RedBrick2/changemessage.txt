@@ -1,2 +1,3 @@
 
-1) Fixed a bug that caused a long wait when selecting text in the measure tool.
+1) Fixed Priority Control database schema.
+2) Fixed jumping text in finish boxes when mouse was used on auto-complete.
