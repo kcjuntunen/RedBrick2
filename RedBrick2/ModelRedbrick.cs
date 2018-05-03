@@ -714,8 +714,8 @@ namespace RedBrick2 {
 				groupBox1.ForeColor = Properties.Settings.Default.NormalForeground;
 				//using (ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cpta =
 				//	new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter()) {
-					string hash_ = Row[@"HASH"] == DBNull.Value ? "\nOld part; no location information." : string.Empty;
-					if (Row[@"HASH"] != DBNull.Value) {
+					string hash_ = Row.IsHASHNull() ? "\nOld part; no location information." : string.Empty;
+					if (!Row.IsHASHNull()) {
 						hash_ = PropertySet.Hash == Row.HASH ?
 							"\nLocation is correct." : "\nThis part has been moved.";
 					}

@@ -761,7 +761,7 @@ namespace RedBrick2 {
 			if (eNGINEERINGDataSet.RequestInfo.Count > 0) {
 				ENGINEERINGDataSet.RequestInfoRow r_ = eNGINEERINGDataSet.RequestInfo[0];
 				StringBuilder sb_ = new StringBuilder();
-				if (r_[@"FIXID"] != DBNull.Value) {
+				if (!r_.IsFIXIDNull()) {
 					sb_.AppendFormat(@"Project '{0}' is in '{1}' status.", Convert.ToString(r_.FIXID), r_.RSNAME);
 				} else {
 					sb_.AppendFormat(@"Project '{0}' is in '{1}' status.", Convert.ToString(r_.ITEMNUM), r_.RSNAME);

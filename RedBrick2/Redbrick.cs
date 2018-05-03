@@ -1011,7 +1011,7 @@ namespace RedBrick2 {
 					using (ENGINEERINGDataSet.CustToAmsDataTable ctadt_ = cta_.GetDataByItem(lookup)) {
 						if (ctadt_.Rows.Count > 0) {
 							//cust = ctadt_[0].CUSTID;
-							if (ctadt_[0][@"FIXAMS"] != DBNull.Value) {
+							if (!ctadt_[0].IsFIXAMSNull()) {
 								descr = ctadt_[0].FIXAMS.Trim();
 								string dummy = string.Empty;
 								get_correct_customer_(lookup, ref cust, ref dummy);
