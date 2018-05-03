@@ -633,6 +633,17 @@ namespace RedBrick2 {
 		}
 
 		private void jump(object sender, object[] boxes, bool back) {
+			if (sender is TextBox) {
+				TextBox t_ = sender as TextBox;
+				if (t_.SelectionStart == 0 && !back) {
+					return;
+				}
+			} else if (sender is ComboBox) {
+				ComboBox c_ = sender as ComboBox;
+				if (c_.SelectionStart == 0 && !back) {
+					return;
+				}
+			}
 			string format = "{0} {1}";
 			if (back) {
 				format = "{1}{0}";
@@ -670,13 +681,17 @@ namespace RedBrick2 {
 			if (t_.SelectionStart == 0 && e.KeyCode == Keys.Back) {
 				TextBox[] tbs = { fin5_tb, fin4_tb, fin3_tb, fin2_tb, fin1_tb };
 				jump(sender, tbs, true);
+				t_.SelectionLength = 0;
 			}
 		}
 
 		private void textBox_KeyUp(object sender, KeyEventArgs e) {
+			TextBox t_ = (TextBox)sender;
 			if (e.KeyCode == Keys.Enter) {
 				TextBox[] tbs = { fin1_tb, fin2_tb, fin3_tb, fin4_tb, fin5_tb };
 				jump(sender, tbs, false);
+				t_.SelectionLength = 0;
+				t_.SelectionStart = t_.Text.Length;
 			}
 		}
 
@@ -685,9 +700,11 @@ namespace RedBrick2 {
 			if (c_.SelectionStart == 0 && e.KeyCode == Keys.Back) {
 				ComboBox[] cbs = { mat5_cbx, mat4_cbx, mat3_cbx, mat2_cbx, mat1_cbx };
 				jump((sender as ComboBox), cbs, true);
+				c_.SelectionLength = 0;
 			} else if (e.KeyCode == Keys.Enter) {
 				ComboBox[] cbs = { mat1_cbx, mat2_cbx, mat3_cbx, mat4_cbx, mat5_cbx };
 				jump((sender as ComboBox), cbs, false);
+				c_.SelectionLength = 0;
 			}
 		}
 
