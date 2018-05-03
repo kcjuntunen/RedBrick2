@@ -2240,11 +2240,11 @@ namespace RedBrick2 {
 
 		private void Set_Specific(ENGINEERINGDataSet.CUT_CUTLIST_PARTSRow _row) {
 			EnableCutlistSpec(true);
-			cutlistMat.SelectedValue = _row.MATID;
-			edgef.SelectedValue = _row.EDGEID_LF;
-			edgeb.SelectedValue = _row.EDGEID_LB;
-			edger.SelectedValue = _row.EDGEID_WR;
-			edgel.SelectedValue = _row.EDGEID_WL;
+			cutlistMat.SelectedValue = Convert.ToInt32(_row.MATID);
+			edgef.SelectedValue = Convert.ToInt32(_row.EDGEID_LF);
+			edgeb.SelectedValue = Convert.ToInt32(_row.EDGEID_LB);
+			edger.SelectedValue = Convert.ToInt32(_row.EDGEID_WR);
+			edgel.SelectedValue = Convert.ToInt32(_row.EDGEID_WL);
 			partq.Value = Convert.ToInt32(_row.QTY);
 			PropertySet.CutlistID = _row.CLID;
 			PropertySet.CutlistQty = _row.QTY;
