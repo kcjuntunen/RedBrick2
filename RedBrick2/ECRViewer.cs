@@ -252,6 +252,9 @@ namespace RedBrick2 {
 						l_.SubItems.Add(new ListViewItem.ListViewSubItem(l_, drw.DRWREV));
 						l_.SubItems.Add(new ListViewItem.ListViewSubItem(l_, drw.DRW_FILE));
 					}
+					if (row.ITEMNUMBER == Lookup) {
+						l_.BackColor = System.Drawing.Color.Yellow;
+					}
 					items.Add(row.ITEM_ID);
 					affectedItemsListView.Items.Add(l_);
 				}
