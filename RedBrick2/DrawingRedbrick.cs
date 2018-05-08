@@ -72,7 +72,9 @@ namespace RedBrick2 {
 					System.Text.RegularExpressions.MatchCollection mc_ = r_.Matches(node_.InnerText);
 					if (mc_.Count > 0 && mc_[0].Groups.Count > 1) {
 						string txt_ = HtmlAgilityPack.HtmlEntity.DeEntitize(mc_[0].Groups[1].Value).Trim();
-						Specs.Add(txt_);
+						if (!Specs.Contains(txt_)) {
+							Specs.Add(txt_);
+						}
 					}
 				}
 			}
