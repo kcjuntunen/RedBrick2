@@ -150,6 +150,14 @@
       <DependentUpon>CreateCutlist.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomerProperty.cs" />
+    <Compile Include="ManageCutlistTimeDataSet.cs">
+      <DependentUpon>ManageCutlistTimeDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ManageCutlistTimeDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ManageCutlistTimeDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="QuikTracLookup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -262,6 +270,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SwProperties.cs" />
     <Compile Include="SwProperty.cs" />
+    <Compile Include="SwTableType.cs" />
     <Compile Include="SWTaskpaneHost.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -296,6 +305,17 @@
       <DependentUpon>ENGINEERINGDataSet.xsd</DependentUpon>
     </None>
     <None Include="install.nsi" />
+    <None Include="ManageCutlistTimeDataSet.xsc">
+      <DependentUpon>ManageCutlistTimeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ManageCutlistTimeDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ManageCutlistTimeDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ManageCutlistTimeDataSet.xss">
+      <DependentUpon>ManageCutlistTimeDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -377,8 +397,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"$(SolutionDir)".\GetAssemblyInfoForNSIS\bin\Release\GetAssemblyInfoForNSIS.exe
-C:\PROGRA~2\NSIS\makensisw.exe "$(ProjectDir)\install.nsi"
+    <PostBuildEvent>:: "$(SolutionDir)".\GetAssemblyInfoForNSIS\bin\Release\GetAssemblyInfoForNSIS.exe
+:: C:\PROGRA~2\NSIS\makensisw.exe "$(ProjectDir)\install.nsi"
 :: start net use G: \\AMSTORE-SVR-22\cad
 :: start xcopy /Y "$(ProjectDir)InstallRedbrick.exe" "G:\Solid Works\Amstore_Macros\Redbrick\"
 :: start xcopy /Y "$(ProjectDir)version.xml" "G:\Solid Works\Amstore_Macros\Redbrick\"</PostBuildEvent>
