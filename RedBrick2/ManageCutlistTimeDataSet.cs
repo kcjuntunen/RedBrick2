@@ -1,11 +1,25 @@
 ﻿using System;
 using System.Text;
 using System.Data.SqlClient;
+using System.Collections.Generic;
 
 namespace RedBrick2 {
-
-
 	partial class ManageCutlistTimeDataSet {
+		public List<string[]> QueryCutlistTime(int clid) {
+			using (ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter ta_ =
+				new ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter()) {
+				List<string[]> list_ = new List<string[]>();
+				foreach (CUT_CUTLISTS_TIMERow row_ in ta_.GetDataByCLID(clid)) {
+					string type_ = !row_.IsOPNAMENull() ? row_.OPNAME : row_.CTNOTE;
+					string op_ = row_.CTISOP ? "Y" : "N";
+					string setupTime_ = row_.CTSETUP.ToString(@"0.00");
+					string runTime_ = row_.CTRUN.ToString(@"0.000000");
+					string[] d_ = new string[] { type_, op_, setupTime_, runTime_, row_.CTID.ToString() };
+						list_.Add(d_);
+				}
+				return list_;
+			}
+		}
 	}
 }
 

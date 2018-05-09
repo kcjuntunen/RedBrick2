@@ -8,6 +8,7 @@ namespace RedBrick2 {
 		Dictionary<string, string[]> partdict_ = new Dictionary<string, string[]>();
 		List<int> types_ = new List<int>();
 		List<int> clids_ = new List<int>();
+		List<string[]> cutlisttimes_ = new List<string[]>();
 		Dictionary<string, int> type_table_ = new Dictionary<string, int>();
 		string lookup_ = string.Empty;
 		int clid_ = 1;
@@ -194,16 +195,11 @@ namespace RedBrick2 {
 		}
 
 		private void query_cutlist_time(int clid) {
-			using (ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter ta_ =
-				new ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter()) {
-				foreach (ManageCutlistTimeDataSet.CUT_CUTLISTS_TIMERow row_ in ta_.GetDataByCLID(clid)) {
-					string type_ = !row_.IsOPNAMENull() ? row_.OPNAME : row_.CTNOTE;
-					string op_ = row_.CTISOP ? "Y" : "N";
-					string setupTime_ = row_.CTSETUP.ToString(@"0.00");
-					string runTime_ = row_.CTRUN.ToString(@"0.000000");
-					string[] d_ = new string[] { type_, op_, setupTime_, runTime_, row_.CTID.ToString() };
-					cutlistTimeListView.Items.Add(new ListViewItem(d_));
-				}
+			cutlisttimes_.Clear();
+			List<string[]> list_ = manageCutlistTimeDataSet.QueryCutlistTime(clid);
+			cutlisttimes_ = list_;
+			foreach (string[] item_ in list_) {
+				cutlistTimeListView.Items.Add(new ListViewItem(item_));
 			}
 		}
 
