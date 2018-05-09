@@ -601,6 +601,7 @@ namespace RedBrick2 {
 			this.label45.TabIndex = 4;
 			this.label45.Text = "Status";
 			this.label45.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.label45.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.label45_MouseDoubleClick);
 			this.label45.MouseHover += new System.EventHandler(this.label45_MouseHover);
 			// 
 			// label44

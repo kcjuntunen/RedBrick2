@@ -822,5 +822,17 @@ namespace RedBrick2 {
 				FigureOutStatus();
 			}
 		}
+
+		private void label45_MouseDoubleClick(object sender, MouseEventArgs e) {
+			if (clid > 0) {
+				using (ManageCutlistTime mct_ = new ManageCutlistTime(clid)) {
+					mct_.ShowDialog(this);
+				}
+			} else {
+				using (ManageCutlistTime mct_ = new ManageCutlistTime(partLookup)) {
+					mct_.ShowDialog(this);
+				}
+			}
+		}
 	}
 }

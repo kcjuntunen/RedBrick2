@@ -2864,5 +2864,19 @@ namespace RedBrick2 {
 				edger.SelectedValue = mbp_.ID;
 			}
 		}
+
+		private void cutlistTimeBtn_MouseClick(object sender, MouseEventArgs e) {
+			ComboBox cb_ = cutlistctl;
+			if (cutlistctl.SelectedItem != null) {
+				using (ManageCutlistTime mct_ = new ManageCutlistTime(partLookup, Convert.ToInt32(cutlistctl.SelectedValue))) {
+					mct_.Text = string.Format(@"{0} - Cutlist: {1}, Part: {2}", mct_.Text, cutlistctl.Text, partLookup);
+					mct_.ShowDialog(this);
+				}
+			} else {
+				using (ManageCutlistTime mct_ = new ManageCutlistTime(partLookup)) {
+					mct_.ShowDialog(this);
+				}
+			}
+		}
 	}
 }
