@@ -2057,7 +2057,10 @@ namespace RedBrick2 {
 		}
 
 		private void label11_Click(object sender, EventArgs e) {
-			Redbrick.Clip(cutlistctl.Text.Split(new string[] { @"REV" }, StringSplitOptions.RemoveEmptyEntries)[0].Trim());
+			string[] text_ = cutlistctl.Text.Split(new string[] { @"REV" }, StringSplitOptions.RemoveEmptyEntries);
+			if (text_.Length > 0) {
+				Redbrick.Clip(text_[0].Trim());
+			}
 		}
 
 		private void label12_Click(object sender, EventArgs e) {
