@@ -29,7 +29,7 @@ namespace RedBrick2 {
 		}
 
 		partial class CUT_PART_OPSDataTable {
-			public double GetCutlistRuntime(int clID, int[] types) {
+			public double GetCutlistRunTime(int clID, int[] types) {
 				double total = 0.0f;
 				using (ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter ta_ =
 					new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter()) {
@@ -48,13 +48,16 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 					}
 					sb_.Append(@")));");
 					cmd_.CommandText = sb_.ToString();
+					//System.Windows.Forms.MessageBox.Show(sb_.ToString());
 					if (ta_.Connection.State == System.Data.ConnectionState.Closed) {
 						ta_.Connection.Open();
 					}
 					try {
 						using (SqlDataReader rdr_ = cmd_.ExecuteReader()) {
 							while (rdr_.Read()) {
-								total += rdr_.GetDouble(0);
+								if (!rdr_.IsDBNull(0)) {
+									total += rdr_.GetDouble(0);
+								}
 							}
 						}
 					} catch (Exception) {
@@ -68,7 +71,7 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 				return total;
 			}
 
-			public double GetCutlistSetuptime(int clID, int[] types) {
+			public double GetCutlistSetupTime(int clID, int[] types) {
 				double total = 0.0f;
 				using (ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter ta_ =
 					new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter()) {
@@ -86,6 +89,7 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 						cmd_.Parameters.AddWithValue(par_, types[i]);
 					}
 					sb_.Append(@")));");
+					//System.Windows.Forms.MessageBox.Show(sb_.ToString());
 					cmd_.CommandText = sb_.ToString();
 					if (ta_.Connection.State == System.Data.ConnectionState.Closed) {
 						ta_.Connection.Open();
@@ -93,7 +97,9 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 					try {
 						using (SqlDataReader rdr_ = cmd_.ExecuteReader()) {
 							while (rdr_.Read()) {
-								total += rdr_.GetDouble(0);
+								if (!rdr_.IsDBNull(0)) {
+									total += rdr_.GetDouble(0);
+								}
 							}
 						}
 					} catch (Exception) {

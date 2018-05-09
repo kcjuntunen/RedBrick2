@@ -29,8 +29,6 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.cutlistComboBox = new System.Windows.Forms.ComboBox();
-			this.cutlistsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.eNGINEERINGDataSet = new RedBrick2.ENGINEERINGDataSet();
 			this.revTextBox = new System.Windows.Forms.TextBox();
 			this.descrTextBox = new System.Windows.Forms.TextBox();
 			this.panel2 = new System.Windows.Forms.Panel();
@@ -46,6 +44,11 @@
 			this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.label3 = new System.Windows.Forms.Label();
 			this.panel3 = new System.Windows.Forms.Panel();
+			this.button3 = new System.Windows.Forms.Button();
+			this.button2 = new System.Windows.Forms.Button();
+			this.button1 = new System.Windows.Forms.Button();
+			this.includeListBox = new System.Windows.Forms.ListBox();
+			this.label11 = new System.Windows.Forms.Label();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.manageButton = new System.Windows.Forms.Button();
 			this.allButton = new System.Windows.Forms.Button();
@@ -56,7 +59,6 @@
 			this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.label5 = new System.Windows.Forms.Label();
-			this.cutlistsTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CutlistsTableAdapter();
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.label6 = new System.Windows.Forms.Label();
 			this.setupTextBox = new System.Windows.Forms.TextBox();
@@ -65,20 +67,18 @@
 			this.label8 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
-			this.label11 = new System.Windows.Forms.Label();
-			this.includeListBox = new System.Windows.Forms.ListBox();
-			this.button1 = new System.Windows.Forms.Button();
-			this.button2 = new System.Windows.Forms.Button();
-			this.button3 = new System.Windows.Forms.Button();
+			this.cutlistsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.manageCutlistTimeDataSet = new RedBrick2.ManageCutlistTimeDataSet();
+			this.cutlistsTableAdapter = new RedBrick2.ManageCutlistTimeDataSetTableAdapters.CutlistsTableAdapter();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.cutlistsBindingSource)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSet)).BeginInit();
 			this.panel2.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.panel3.SuspendLayout();
 			this.panel4.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cutlistsBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.manageCutlistTimeDataSet)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tableLayoutPanel1
@@ -158,28 +158,22 @@
 			this.cutlistComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.cutlistComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.cutlistComboBox.DataSource = this.cutlistsBindingSource;
-			this.cutlistComboBox.DisplayMember = "CutlistDisplayName";
+			this.cutlistComboBox.DisplayMember = "PARTNUM";
 			this.cutlistComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.cutlistComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.cutlistComboBox.FormattingEnabled = true;
 			this.cutlistComboBox.Location = new System.Drawing.Point(3, 23);
 			this.cutlistComboBox.Name = "cutlistComboBox";
 			this.cutlistComboBox.Size = new System.Drawing.Size(164, 21);
 			this.cutlistComboBox.TabIndex = 2;
 			this.cutlistComboBox.ValueMember = "CLID";
+			this.cutlistComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cutlistComboBox_DrawItem);
 			this.cutlistComboBox.SelectedValueChanged += new System.EventHandler(this.cutlistComboBox_SelectedValueChanged);
-			// 
-			// cutlistsBindingSource
-			// 
-			this.cutlistsBindingSource.DataMember = "Cutlists";
-			this.cutlistsBindingSource.DataSource = this.eNGINEERINGDataSet;
-			// 
-			// eNGINEERINGDataSet
-			// 
-			this.eNGINEERINGDataSet.DataSetName = "ENGINEERINGDataSet";
-			this.eNGINEERINGDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
 			// revTextBox
 			// 
+			this.revTextBox.BackColor = System.Drawing.SystemColors.Control;
+			this.revTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.revTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cutlistsBindingSource, "REV", true));
 			this.revTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.revTextBox.Location = new System.Drawing.Point(173, 23);
@@ -189,6 +183,8 @@
 			// 
 			// descrTextBox
 			// 
+			this.descrTextBox.BackColor = System.Drawing.SystemColors.Control;
+			this.descrTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tableLayoutPanel2.SetColumnSpan(this.descrTextBox, 2);
 			this.descrTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cutlistsBindingSource, "DESCR", true));
 			this.descrTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -319,6 +315,61 @@
 			this.panel3.Size = new System.Drawing.Size(256, 114);
 			this.panel3.TabIndex = 3;
 			// 
+			// button3
+			// 
+			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button3.Location = new System.Drawing.Point(197, 76);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(55, 23);
+			this.button3.TabIndex = 4;
+			this.button3.Text = "Filter";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.button3_Click);
+			// 
+			// button2
+			// 
+			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button2.Location = new System.Drawing.Point(197, 47);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(55, 23);
+			this.button2.TabIndex = 3;
+			this.button2.Text = "None";
+			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.button2_Click);
+			// 
+			// button1
+			// 
+			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.button1.Location = new System.Drawing.Point(197, 18);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(55, 23);
+			this.button1.TabIndex = 2;
+			this.button1.Text = "All";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
+			// includeListBox
+			// 
+			this.includeListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.includeListBox.FormattingEnabled = true;
+			this.includeListBox.Location = new System.Drawing.Point(3, 17);
+			this.includeListBox.Name = "includeListBox";
+			this.includeListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+			this.includeListBox.Size = new System.Drawing.Size(188, 82);
+			this.includeListBox.TabIndex = 1;
+			this.includeListBox.SelectedIndexChanged += new System.EventHandler(this.includeListBox_SelectedIndexChanged);
+			// 
+			// label11
+			// 
+			this.label11.AutoSize = true;
+			this.label11.Location = new System.Drawing.Point(3, 0);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(109, 13);
+			this.label11.TabIndex = 0;
+			this.label11.Text = "Materials to include";
+			// 
 			// panel4
 			// 
 			this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -354,6 +405,7 @@
 			this.allButton.TabIndex = 3;
 			this.allButton.Text = "All";
 			this.allButton.UseVisualStyleBackColor = true;
+			this.allButton.Click += new System.EventHandler(this.allButton_Click);
 			// 
 			// noneButton
 			// 
@@ -364,6 +416,7 @@
 			this.noneButton.TabIndex = 2;
 			this.noneButton.Text = "None";
 			this.noneButton.UseVisualStyleBackColor = true;
+			this.noneButton.Click += new System.EventHandler(this.noneButton_Click);
 			// 
 			// cutlistTimeListView
 			// 
@@ -385,7 +438,7 @@
 			// columnHeader3
 			// 
 			this.columnHeader3.Text = "Type";
-			this.columnHeader3.Width = 200;
+			this.columnHeader3.Width = 100;
 			// 
 			// columnHeader4
 			// 
@@ -410,10 +463,6 @@
 			this.label5.Size = new System.Drawing.Size(66, 13);
 			this.label5.TabIndex = 0;
 			this.label5.Text = "Cutlist Time";
-			// 
-			// cutlistsTableAdapter
-			// 
-			this.cutlistsTableAdapter.ClearBeforeFill = true;
 			// 
 			// tableLayoutPanel3
 			// 
@@ -514,57 +563,19 @@
 			this.label10.Text = "Run";
 			this.label10.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
 			// 
-			// label11
+			// cutlistsBindingSource
 			// 
-			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(3, 0);
-			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(109, 13);
-			this.label11.TabIndex = 0;
-			this.label11.Text = "Materials to include";
+			this.cutlistsBindingSource.DataMember = "Cutlists";
+			this.cutlistsBindingSource.DataSource = this.manageCutlistTimeDataSet;
 			// 
-			// includeListBox
+			// manageCutlistTimeDataSet
 			// 
-			this.includeListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.includeListBox.FormattingEnabled = true;
-			this.includeListBox.Location = new System.Drawing.Point(3, 17);
-			this.includeListBox.Name = "includeListBox";
-			this.includeListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-			this.includeListBox.Size = new System.Drawing.Size(188, 82);
-			this.includeListBox.TabIndex = 1;
-			this.includeListBox.SelectedIndexChanged += new System.EventHandler(this.includeListBox_SelectedIndexChanged);
+			this.manageCutlistTimeDataSet.DataSetName = "ManageCutlistTimeDataSet";
+			this.manageCutlistTimeDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
-			// button1
+			// cutlistsTableAdapter
 			// 
-			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button1.Location = new System.Drawing.Point(197, 18);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(55, 23);
-			this.button1.TabIndex = 2;
-			this.button1.Text = "All";
-			this.button1.UseVisualStyleBackColor = true;
-			// 
-			// button2
-			// 
-			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button2.Location = new System.Drawing.Point(197, 47);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(55, 23);
-			this.button2.TabIndex = 3;
-			this.button2.Text = "None";
-			this.button2.UseVisualStyleBackColor = true;
-			// 
-			// button3
-			// 
-			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.button3.Location = new System.Drawing.Point(197, 76);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(55, 23);
-			this.button3.TabIndex = 4;
-			this.button3.Text = "Filter";
-			this.button3.UseVisualStyleBackColor = true;
+			this.cutlistsTableAdapter.ClearBeforeFill = true;
 			// 
 			// ManageCutlistTime
 			// 
@@ -573,14 +584,16 @@
 			this.ClientSize = new System.Drawing.Size(682, 526);
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "ManageCutlistTime";
+			this.ShowIcon = false;
 			this.Text = "Manage Cutlist Time";
 			this.Load += new System.EventHandler(this.ManageCutlistTime_Load);
+			this.Shown += new System.EventHandler(this.ManageCutlistTime_Shown);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel2.ResumeLayout(false);
 			this.tableLayoutPanel2.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.cutlistsBindingSource)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSet)).EndInit();
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
 			this.panel1.ResumeLayout(false);
@@ -591,6 +604,8 @@
 			this.panel4.PerformLayout();
 			this.tableLayoutPanel3.ResumeLayout(false);
 			this.tableLayoutPanel3.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cutlistsBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.manageCutlistTimeDataSet)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -617,9 +632,6 @@
 		private System.Windows.Forms.Button noneButton;
 		private System.Windows.Forms.ListView cutlistTimeListView;
 		private System.Windows.Forms.Label label5;
-		private ENGINEERINGDataSet eNGINEERINGDataSet;
-		private System.Windows.Forms.BindingSource cutlistsBindingSource;
-		private ENGINEERINGDataSetTableAdapters.CutlistsTableAdapter cutlistsTableAdapter;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
 		private System.Windows.Forms.ColumnHeader columnHeader2;
 		private System.Windows.Forms.ColumnHeader columnHeader7;
@@ -643,5 +655,8 @@
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.ListBox includeListBox;
 		private System.Windows.Forms.Label label11;
+		private ManageCutlistTimeDataSet manageCutlistTimeDataSet;
+		private System.Windows.Forms.BindingSource cutlistsBindingSource;
+		private ManageCutlistTimeDataSetTableAdapters.CutlistsTableAdapter cutlistsTableAdapter;
 	}
 }
