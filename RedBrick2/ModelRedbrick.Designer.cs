@@ -143,6 +143,7 @@
 			this.cUT_PARTSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
 			this.friendlyCutOpsTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
+			this.cutlistTimeBtn = new System.Windows.Forms.Button();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
@@ -1282,6 +1283,7 @@
 			this.tableLayoutPanel6.Controls.Add(this.button5, 2, 3);
 			this.tableLayoutPanel6.Controls.Add(this.button6, 2, 4);
 			this.tableLayoutPanel6.Controls.Add(this.button7, 2, 5);
+			this.tableLayoutPanel6.Controls.Add(this.cutlistTimeBtn, 2, 0);
 			this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 3);
 			this.tableLayoutPanel6.Name = "tableLayoutPanel6";
 			this.tableLayoutPanel6.RowCount = 7;
@@ -1304,7 +1306,7 @@
 			this.op5_cbx.DataSource = this.friendlyCutOpsBindingSource4;
 			this.op5_cbx.DisplayMember = "FRIENDLYNAME";
 			this.op5_cbx.FormattingEnabled = true;
-			this.op5_cbx.Location = new System.Drawing.Point(40, 146);
+			this.op5_cbx.Location = new System.Drawing.Point(40, 148);
 			this.op5_cbx.Name = "op5_cbx";
 			this.op5_cbx.Size = new System.Drawing.Size(184, 21);
 			this.op5_cbx.TabIndex = 26;
@@ -1323,7 +1325,7 @@
 			this.label36.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.label36.AutoSize = true;
-			this.label36.Location = new System.Drawing.Point(3, 143);
+			this.label36.Location = new System.Drawing.Point(3, 145);
 			this.label36.Name = "label36";
 			this.label36.Size = new System.Drawing.Size(31, 29);
 			this.label36.TabIndex = 0;
@@ -1335,7 +1337,7 @@
 			this.label35.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.label35.AutoSize = true;
-			this.label35.Location = new System.Drawing.Point(3, 114);
+			this.label35.Location = new System.Drawing.Point(3, 116);
 			this.label35.Name = "label35";
 			this.label35.Size = new System.Drawing.Size(31, 29);
 			this.label35.TabIndex = 0;
@@ -1347,7 +1349,7 @@
 			this.label34.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.label34.AutoSize = true;
-			this.label34.Location = new System.Drawing.Point(3, 85);
+			this.label34.Location = new System.Drawing.Point(3, 87);
 			this.label34.Name = "label34";
 			this.label34.Size = new System.Drawing.Size(31, 29);
 			this.label34.TabIndex = 0;
@@ -1359,7 +1361,7 @@
 			this.label33.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.label33.AutoSize = true;
-			this.label33.Location = new System.Drawing.Point(3, 56);
+			this.label33.Location = new System.Drawing.Point(3, 58);
 			this.label33.Name = "label33";
 			this.label33.Size = new System.Drawing.Size(31, 29);
 			this.label33.TabIndex = 0;
@@ -1371,7 +1373,7 @@
 			this.label32.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.label32.AutoSize = true;
-			this.label32.Location = new System.Drawing.Point(3, 27);
+			this.label32.Location = new System.Drawing.Point(3, 29);
 			this.label32.Name = "label32";
 			this.label32.Size = new System.Drawing.Size(31, 29);
 			this.label32.TabIndex = 0;
@@ -1387,7 +1389,7 @@
 			this.op4_cbx.DataSource = this.friendlyCutOpsBindingSource3;
 			this.op4_cbx.DisplayMember = "FRIENDLYNAME";
 			this.op4_cbx.FormattingEnabled = true;
-			this.op4_cbx.Location = new System.Drawing.Point(40, 117);
+			this.op4_cbx.Location = new System.Drawing.Point(40, 119);
 			this.op4_cbx.Name = "op4_cbx";
 			this.op4_cbx.Size = new System.Drawing.Size(184, 21);
 			this.op4_cbx.TabIndex = 25;
@@ -1411,7 +1413,7 @@
 			this.op3_cbx.DataSource = this.friendlyCutOpsBindingSource2;
 			this.op3_cbx.DisplayMember = "FRIENDLYNAME";
 			this.op3_cbx.FormattingEnabled = true;
-			this.op3_cbx.Location = new System.Drawing.Point(40, 88);
+			this.op3_cbx.Location = new System.Drawing.Point(40, 90);
 			this.op3_cbx.Name = "op3_cbx";
 			this.op3_cbx.Size = new System.Drawing.Size(184, 21);
 			this.op3_cbx.TabIndex = 24;
@@ -1435,7 +1437,7 @@
 			this.op2_cbx.DataSource = this.friendlyCutOpsBindingSource1;
 			this.op2_cbx.DisplayMember = "FRIENDLYNAME";
 			this.op2_cbx.FormattingEnabled = true;
-			this.op2_cbx.Location = new System.Drawing.Point(40, 59);
+			this.op2_cbx.Location = new System.Drawing.Point(40, 61);
 			this.op2_cbx.Name = "op2_cbx";
 			this.op2_cbx.Size = new System.Drawing.Size(184, 21);
 			this.op2_cbx.TabIndex = 23;
@@ -1459,7 +1461,7 @@
 			this.op1_cbx.DataSource = this.friendlyCutOpsBindingSource;
 			this.op1_cbx.DisplayMember = "FRIENDLYNAME";
 			this.op1_cbx.FormattingEnabled = true;
-			this.op1_cbx.Location = new System.Drawing.Point(40, 30);
+			this.op1_cbx.Location = new System.Drawing.Point(40, 32);
 			this.op1_cbx.Name = "op1_cbx";
 			this.op1_cbx.Size = new System.Drawing.Size(184, 21);
 			this.op1_cbx.TabIndex = 22;
@@ -1498,7 +1500,7 @@
 			// button3
 			// 
 			this.button3.Image = global::RedBrick2.Properties.Resources.stopwatch;
-			this.button3.Location = new System.Drawing.Point(230, 30);
+			this.button3.Location = new System.Drawing.Point(230, 32);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(28, 23);
 			this.button3.TabIndex = 27;
@@ -1508,7 +1510,7 @@
 			// button4
 			// 
 			this.button4.Image = global::RedBrick2.Properties.Resources.stopwatch;
-			this.button4.Location = new System.Drawing.Point(230, 59);
+			this.button4.Location = new System.Drawing.Point(230, 61);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(28, 23);
 			this.button4.TabIndex = 28;
@@ -1518,7 +1520,7 @@
 			// button5
 			// 
 			this.button5.Image = global::RedBrick2.Properties.Resources.stopwatch;
-			this.button5.Location = new System.Drawing.Point(230, 88);
+			this.button5.Location = new System.Drawing.Point(230, 90);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(28, 23);
 			this.button5.TabIndex = 29;
@@ -1528,7 +1530,7 @@
 			// button6
 			// 
 			this.button6.Image = global::RedBrick2.Properties.Resources.stopwatch;
-			this.button6.Location = new System.Drawing.Point(230, 117);
+			this.button6.Location = new System.Drawing.Point(230, 119);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(28, 23);
 			this.button6.TabIndex = 30;
@@ -1538,7 +1540,7 @@
 			// button7
 			// 
 			this.button7.Image = global::RedBrick2.Properties.Resources.stopwatch;
-			this.button7.Location = new System.Drawing.Point(230, 146);
+			this.button7.Location = new System.Drawing.Point(230, 148);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(28, 23);
 			this.button7.TabIndex = 31;
@@ -1633,6 +1635,17 @@
 			// cUT_PART_TYPESTableAdapter
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
+			// 
+			// cutlistTimeBtn
+			// 
+			this.cutlistTimeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.cutlistTimeBtn.Location = new System.Drawing.Point(230, 3);
+			this.cutlistTimeBtn.Name = "cutlistTimeBtn";
+			this.cutlistTimeBtn.Size = new System.Drawing.Size(28, 23);
+			this.cutlistTimeBtn.TabIndex = 32;
+			this.cutlistTimeBtn.Text = "_";
+			this.cutlistTimeBtn.UseVisualStyleBackColor = true;
+			this.cutlistTimeBtn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cutlistTimeBtn_MouseClick);
 			// 
 			// ModelRedbrick
 			// 
@@ -1805,5 +1818,6 @@
 		private System.Windows.Forms.Button remove_btn;
 		private System.Windows.Forms.Button add_prt_btn;
 		private System.Windows.Forms.Button pull_btn;
+		private System.Windows.Forms.Button cutlistTimeBtn;
 	}
 }
