@@ -637,6 +637,10 @@ namespace RedBrick2 {
 		private void jump(object sender, object[] boxes, bool back) {
 			if (sender is TextBox) {
 				TextBox t_ = sender as TextBox;
+				if (back && t_.SelectionLength > 0) {
+					t_.Text = t_.Text.Replace(t_.SelectedText, string.Empty);
+					return;
+				}
 				if (t_.SelectionStart == 0 && !back) {
 					return;
 				}
