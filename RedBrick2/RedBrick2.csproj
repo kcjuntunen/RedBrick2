@@ -158,6 +158,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ManageCutlistTimeDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ManageCutlistTimeEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageCutlistTimeEdit.Designer.cs">
+      <DependentUpon>ManageCutlistTimeEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="QuikTracLookup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -332,6 +338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreateCutlist.resx">
       <DependentUpon>CreateCutlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageCutlistTimeEdit.resx">
+      <DependentUpon>ManageCutlistTimeEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuikTracLookup.resx">
       <DependentUpon>QuikTracLookup.cs</DependentUpon>

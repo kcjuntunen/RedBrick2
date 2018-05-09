@@ -29,6 +29,8 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.cutlistComboBox = new System.Windows.Forms.ComboBox();
+			this.cutlistsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.manageCutlistTimeDataSet = new RedBrick2.ManageCutlistTimeDataSet();
 			this.revTextBox = new System.Windows.Forms.TextBox();
 			this.descrTextBox = new System.Windows.Forms.TextBox();
 			this.panel2 = new System.Windows.Forms.Panel();
@@ -67,18 +69,16 @@
 			this.label8 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
 			this.label10 = new System.Windows.Forms.Label();
-			this.cutlistsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.manageCutlistTimeDataSet = new RedBrick2.ManageCutlistTimeDataSet();
 			this.cutlistsTableAdapter = new RedBrick2.ManageCutlistTimeDataSetTableAdapters.CutlistsTableAdapter();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cutlistsBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.manageCutlistTimeDataSet)).BeginInit();
 			this.panel2.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.panel3.SuspendLayout();
 			this.panel4.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.cutlistsBindingSource)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.manageCutlistTimeDataSet)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tableLayoutPanel1
@@ -169,6 +169,16 @@
 			this.cutlistComboBox.ValueMember = "CLID";
 			this.cutlistComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cutlistComboBox_DrawItem);
 			this.cutlistComboBox.SelectedValueChanged += new System.EventHandler(this.cutlistComboBox_SelectedValueChanged);
+			// 
+			// cutlistsBindingSource
+			// 
+			this.cutlistsBindingSource.DataMember = "Cutlists";
+			this.cutlistsBindingSource.DataSource = this.manageCutlistTimeDataSet;
+			// 
+			// manageCutlistTimeDataSet
+			// 
+			this.manageCutlistTimeDataSet.DataSetName = "ManageCutlistTimeDataSet";
+			this.manageCutlistTimeDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
 			// revTextBox
 			// 
@@ -395,6 +405,7 @@
 			this.manageButton.TabIndex = 4;
 			this.manageButton.Text = "Manage";
 			this.manageButton.UseVisualStyleBackColor = true;
+			this.manageButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.manageButton_MouseClick);
 			// 
 			// allButton
 			// 
@@ -563,16 +574,6 @@
 			this.label10.Text = "Run";
 			this.label10.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
 			// 
-			// cutlistsBindingSource
-			// 
-			this.cutlistsBindingSource.DataMember = "Cutlists";
-			this.cutlistsBindingSource.DataSource = this.manageCutlistTimeDataSet;
-			// 
-			// manageCutlistTimeDataSet
-			// 
-			this.manageCutlistTimeDataSet.DataSetName = "ManageCutlistTimeDataSet";
-			this.manageCutlistTimeDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-			// 
 			// cutlistsTableAdapter
 			// 
 			this.cutlistsTableAdapter.ClearBeforeFill = true;
@@ -594,6 +595,8 @@
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel2.ResumeLayout(false);
 			this.tableLayoutPanel2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.cutlistsBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.manageCutlistTimeDataSet)).EndInit();
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
 			this.panel1.ResumeLayout(false);
@@ -604,8 +607,6 @@
 			this.panel4.PerformLayout();
 			this.tableLayoutPanel3.ResumeLayout(false);
 			this.tableLayoutPanel3.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.cutlistsBindingSource)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.manageCutlistTimeDataSet)).EndInit();
 			this.ResumeLayout(false);
 
 		}

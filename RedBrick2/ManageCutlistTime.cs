@@ -303,13 +303,19 @@ namespace RedBrick2 {
 			if (clids_.Contains(index)) {
 				Brush brush = ((e.State & DrawItemState.Selected) > 0) ? Brushes.Green : Brushes.Yellow;
 				e.Graphics.FillRectangle(brush, e.Bounds);
-				e.Graphics.DrawString(drv_[@"PARTNUM"].ToString(), e.Font, SystemBrushes.ControlText,
+				e.Graphics.DrawString(drv_[@"CutlistDisplayName"].ToString(), e.Font, SystemBrushes.ControlText,
 					e.Bounds, StringFormat.GenericDefault);
 			} else {
 				e.DrawBackground();
-				e.Graphics.DrawString(drv_[@"PARTNUM"].ToString(), e.Font, SystemBrushes.ControlText,
+				e.Graphics.DrawString(drv_[@"CutlistDisplayName"].ToString(), e.Font, SystemBrushes.ControlText,
 					e.Bounds, StringFormat.GenericDefault);
 				e.DrawFocusRectangle();
+			}
+		}
+
+		private void manageButton_MouseClick(object sender, MouseEventArgs e) {
+			using (ManageCutlistTimeEdit mcte_ = new ManageCutlistTimeEdit(clid_, cutlisttimes_)) {
+				mcte_.ShowDialog(this);
 			}
 		}
 	}
