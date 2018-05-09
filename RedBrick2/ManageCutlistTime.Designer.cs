@@ -225,7 +225,7 @@
 			// columnHeader1
 			// 
 			this.columnHeader1.Text = "Part";
-			this.columnHeader1.Width = 200;
+			this.columnHeader1.Width = 100;
 			// 
 			// columnHeader2
 			// 

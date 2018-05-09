@@ -11,7 +11,8 @@ namespace RedBrick2 {
 		Dictionary<string, int> type_table_ = new Dictionary<string, int>();
 		string lookup_ = string.Empty;
 		int clid_ = 1;
-		int starting_clid_ = 1;
+		int starting_clid_ = 0;
+		int guessed_clid_ = 0;
 		bool allow_refresh_ = false;
 		bool initialized = false;
 
@@ -19,12 +20,6 @@ namespace RedBrick2 {
 			InitializeComponent();
 			starting_clid_ = clid;
 			cutlistsTableAdapter.Fill(manageCutlistTimeDataSet.Cutlists);
-			ManageCutlistTimeDataSet.CutlistsRow r_ = manageCutlistTimeDataSet.Cutlists.FindByCLID(clid);
-			if (r_ != null) {
-				clids_.Add(cutlistComboBox.FindStringExact(r_.PARTNUM));
-				string rev_ = r_.IsREVNull() ? @"N/A" : r_.REV;
-				Text = string.Format(@"Manage Cutlist Time - Found cutlist: {0} REV {1}", r_.PARTNUM, r_.REV);
-			}
 			setup_listviews();
 			setup_types();
 			initialized = true;
@@ -33,7 +28,7 @@ namespace RedBrick2 {
 		public ManageCutlistTime(string lookup) : base() {
 			lookup_ = lookup.ToUpper();
 			InitializeComponent();
-			int clid = 1;
+			int clid = 0;
 			cutlistsTableAdapter.Fill(manageCutlistTimeDataSet.Cutlists);
 			using (ManageCutlistTimeDataSetTableAdapters.CutlistPartsTableAdapter cpta_ =
 				new ManageCutlistTimeDataSetTableAdapters.CutlistPartsTableAdapter()) {
@@ -45,15 +40,12 @@ namespace RedBrick2 {
 						}
 						ManageCutlistTimeDataSet.CutlistPartsRow r_ = cpdt_[0];
 						clid = r_.CLID;
-						string rev_ = r_.IsREVNull() ? @"N/A" : r_.REV;
-						Text = string.Format(@"Manage Cutlist Time - Cutlist: {0} REV {1}, Part: {2}", r_.PARTNUM, r_.REV, lookup);
-					} else {
-						clid = 1;
+						string rev_ = r_.IsCutlistDisplayNameNull() ? @"N/A" : r_.CutlistDisplayName;
 					}
 				}
 			}
 			clids_.Add(cutlistComboBox.FindStringExact(lookup));
-			starting_clid_ = clid;
+			guessed_clid_ = clid;
 			setup_listviews();
 			setup_types();
 			initialized = true;
@@ -72,9 +64,8 @@ namespace RedBrick2 {
 						foreach (ManageCutlistTimeDataSet.CutlistPartsRow row_ in cpdt_) {
 							clids_.Add(cutlistComboBox.FindString(row_.CUTLIST));
 						}
-						clid = cpdt_[0].CLID;
-					} else {
-						clid = 1;
+						ManageCutlistTimeDataSet.CutlistPartsRow r_ = cpdt_[0];
+						clid = r_.CLID;
 					}
 				}
 			}
@@ -125,15 +116,41 @@ namespace RedBrick2 {
 		}
 
 		private void ManageCutlistTime_Load(object sender, EventArgs e) {
+			GenerateTitle();
+		}
 
+		private void GenerateTitle() {
+			if (starting_clid_ > 0) {
+				ManageCutlistTimeDataSet.CutlistsRow r_ = manageCutlistTimeDataSet.Cutlists.FindByCLID(starting_clid_);
+				if (r_ != null) {
+					clids_.Add(cutlistComboBox.FindStringExact(r_.PARTNUM));
+					string rev_ = r_.IsREVNull() ? @"N/A" : r_.REV;
+					string lookup_note = lookup_ != string.Empty ? string.Format(@" Part: {0}", lookup_) : string.Empty;
+					Text = string.Format(@"Manage Cutlist Time - Cutlist: {0} REV {1}{2}", r_.PARTNUM, r_.REV, lookup_note);
+				}
+			} else if (guessed_clid_ > 0) {
+				ManageCutlistTimeDataSet.CutlistsRow r_ = manageCutlistTimeDataSet.Cutlists.FindByCLID(guessed_clid_);
+				if (r_ != null) {
+					clids_.Add(cutlistComboBox.FindStringExact(r_.PARTNUM));
+					string rev_ = r_.IsREVNull() ? @"N/A" : r_.REV;
+					string lookup_note = lookup_ != string.Empty ? string.Format(@" Part: {0}", lookup_) : string.Empty;
+					Text = string.Format(@"Manage Cutlist Time - Guessed cutlist: {0} REV {1}{2}", r_.PARTNUM, r_.REV, lookup_note);
+				}
+			} else {
+				if (lookup_ != string.Empty) {
+					Text = string.Format(@"Manage Cutlist Time - Part: {0} (Undefined Cutlist)", lookup_);
+				}
+			}
 		}
 
 		private void ManageCutlistTime_Shown(object sender, EventArgs e) {
-			if (starting_clid_ > 1) {
-			  cutlistComboBox.SelectedValue = starting_clid_;
+			if (starting_clid_ > 0) {
+				cutlistComboBox.SelectedValue = starting_clid_;
+			} else if (guessed_clid_ > 0) {
+				cutlistComboBox.SelectedValue = guessed_clid_;
 			} else {
 				int idx = cutlistComboBox.FindStringExact(lookup_);
-				cutlistComboBox.SelectedIndex = idx > 1 ? idx : 1; 
+				cutlistComboBox.SelectedIndex = idx > 1 ? idx : 1;
 			}
 		}
 
