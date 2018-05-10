@@ -139,6 +139,13 @@ namespace RedBrick2 {
 			Value = val;
 		}
 
+		public void Dispose() {
+			System.Runtime.InteropServices.Marshal.ReleaseComObject(ActiveDoc);
+			System.Runtime.InteropServices.Marshal.ReleaseComObject(Config);
+			System.Runtime.InteropServices.Marshal.ReleaseComObject(PropertyManager);
+			System.Runtime.InteropServices.Marshal.ReleaseComObject(SwApp);
+		}
+
 		/// <summary>
 		/// Write the property data to SolidWorks.
 		/// </summary>

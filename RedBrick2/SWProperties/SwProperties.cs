@@ -255,6 +255,14 @@ namespace RedBrick2 {
 			}
 		}
 
+		public void Dispose() {
+			foreach (KeyValuePair<string, SwProperty> item in _innerDict) {
+				item.Value.Dispose();
+			}
+			System.Runtime.InteropServices.Marshal.ReleaseComObject(ActiveDoc);
+			System.Runtime.InteropServices.Marshal.ReleaseComObject(SwApp);
+		}
+
 		#region inherited
 		/// <summary>
 		/// Add a new property to a set of properties.

@@ -139,9 +139,9 @@
     <Compile Include="AddToExistingCutlist.Designer.cs">
       <DependentUpon>AddToExistingCutlist.cs</DependentUpon>
     </Compile>
-    <Compile Include="AuthorUIDProperty.cs" />
-    <Compile Include="AuthorProperty.cs" />
-    <Compile Include="BooleanProperty.cs" />
+    <Compile Include="SWProperties\AuthorUIDProperty.cs" />
+    <Compile Include="SWProperties\AuthorProperty.cs" />
+    <Compile Include="SWProperties\BooleanProperty.cs" />
     <Compile Include="Crc32.cs" />
     <Compile Include="CreateCutlist.cs">
       <SubType>Form</SubType>
@@ -149,7 +149,7 @@
     <Compile Include="CreateCutlist.Designer.cs">
       <DependentUpon>CreateCutlist.cs</DependentUpon>
     </Compile>
-    <Compile Include="CustomerProperty.cs" />
+    <Compile Include="SWProperties\CustomerProperty.cs" />
     <Compile Include="ManageCutlistTimeDataSet.cs">
       <DependentUpon>ManageCutlistTimeDataSet.xsd</DependentUpon>
     </Compile>
@@ -176,9 +176,9 @@
     <Compile Include="DataDisplay.Designer.cs">
       <DependentUpon>DataDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="DateProperty.cs" />
-    <Compile Include="DepartmentProperty.cs" />
-    <Compile Include="DeptId.cs" />
+    <Compile Include="SWProperties\DateProperty.cs" />
+    <Compile Include="SWProperties\DepartmentProperty.cs" />
+    <Compile Include="SWProperties\DeptId.cs" />
     <Compile Include="DirtTracker.cs" />
     <Compile Include="DrawingRedbrick.cs">
       <SubType>UserControl</SubType>
@@ -192,8 +192,8 @@
     <Compile Include="ECRViewer.Designer.cs">
       <DependentUpon>ECRViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="EdgeId.cs" />
-    <Compile Include="EdgeProperty.cs" />
+    <Compile Include="SWProperties\EdgeId.cs" />
+    <Compile Include="SWProperties\EdgeProperty.cs" />
     <Compile Include="EditOp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,10 +226,10 @@
     <Compile Include="MaterialByNum.Designer.cs">
       <DependentUpon>MaterialByNum.cs</DependentUpon>
     </Compile>
-    <Compile Include="MaterialProperty.cs" />
-    <Compile Include="DoubleProperty.cs" />
-    <Compile Include="IntProperty.cs" />
-    <Compile Include="MatId.cs" />
+    <Compile Include="SWProperties\MaterialProperty.cs" />
+    <Compile Include="SWProperties\DoubleProperty.cs" />
+    <Compile Include="SWProperties\IntProperty.cs" />
+    <Compile Include="SWProperties\MatId.cs" />
     <Compile Include="ModelRedbrick.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -248,20 +248,20 @@
     <Compile Include="OpControl.Designer.cs">
       <DependentUpon>OpControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="OpId.cs" />
-    <Compile Include="OpProperty.cs" />
-    <Compile Include="OpSet.cs" />
-    <Compile Include="OpSets.cs" />
+    <Compile Include="SWProperties\OpId.cs" />
+    <Compile Include="SWProperties\OpProperty.cs" />
+    <Compile Include="SWProperties\OpSet.cs" />
+    <Compile Include="SWProperties\OpSets.cs" />
     <Compile Include="RedbrickConfiguration.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RedbrickConfiguration.Designer.cs">
       <DependentUpon>RedbrickConfiguration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Rev.cs" />
-    <Compile Include="Revs.cs" />
-    <Compile Include="StringProperty.cs" />
-    <Compile Include="DimensionProperty.cs" />
+    <Compile Include="SWProperties\Rev.cs" />
+    <Compile Include="SWProperties\Revs.cs" />
+    <Compile Include="SWProperties\StringProperty.cs" />
+    <Compile Include="SWProperties\DimensionProperty.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -274,8 +274,8 @@
     </Compile>
     <Compile Include="Redbrick.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SwProperties.cs" />
-    <Compile Include="SwProperty.cs" />
+    <Compile Include="SWProperties\SwProperties.cs" />
+    <Compile Include="SWProperties\SwProperty.cs" />
     <Compile Include="SwTableType.cs" />
     <Compile Include="SWTaskpaneHost.cs">
       <SubType>UserControl</SubType>
