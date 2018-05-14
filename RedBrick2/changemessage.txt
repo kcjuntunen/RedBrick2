@@ -1,3 +1,6 @@
 
-1) Fixed Priority Control database schema.
-2) Fixed jumping text in finish boxes when mouse was used on auto-complete.
+1) Added highlighting to the ECR Viewer.
+2) Added support for Legacy ECRs to the ECR Viewer.
+3) Added "Related ECRs" button to Drawing Property window.
+4) Fixed PDF lookup sometimes failing in Create Cutlist window.
+5) Began to add a Cutlist Time editing window.
