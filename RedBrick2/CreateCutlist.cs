@@ -1286,7 +1286,7 @@ namespace RedBrick2 {
 
 		private FileInfo find_pdf2(string doc) {
 			string searchterm_ = string.Format(@"{0}.PDF", doc);
-			if (mDoc.GetPathName().StartsWith(@"G")) {
+			if (mDoc.GetPathName().ToUpper().StartsWith(@"G")) {
 				using (ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter gdta =
 					new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter()) {
 					using (ENGINEERINGDataSet.GEN_DRAWINGSDataTable dt = gdta.GetDataByFName(searchterm_)) {
@@ -1296,7 +1296,7 @@ namespace RedBrick2 {
 						}
 					}
 				}
-			} else if (mDoc.GetPathName().StartsWith(@"S")) {
+			} else if (mDoc.GetPathName().ToUpper().StartsWith(@"S")) {
 				using (ENGINEERINGDataSetTableAdapters.GEN_DRAWINGS_MTLTableAdapter gdmta =
 					new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGS_MTLTableAdapter()) {
 					using (ENGINEERINGDataSet.GEN_DRAWINGS_MTLDataTable mdt = gdmta.GetDataByFName(searchterm_)) {
