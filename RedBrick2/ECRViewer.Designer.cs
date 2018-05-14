@@ -309,7 +309,7 @@
 			this.signeesTextBox.Location = new System.Drawing.Point(4, 3);
 			this.signeesTextBox.Multiline = true;
 			this.signeesTextBox.Name = "signeesTextBox";
-			this.signeesTextBox.Size = new System.Drawing.Size(284, 57);
+			this.signeesTextBox.Size = new System.Drawing.Size(284, 54);
 			this.signeesTextBox.TabIndex = 1;
 			// 
 			// groupBox6

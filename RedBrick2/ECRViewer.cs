@@ -104,27 +104,67 @@ namespace RedBrick2 {
 					}
 				}
 			}
+
+			using (ENGINEERINGDataSetTableAdapters.ECR_LEGACYTableAdapter ta_ =
+				new ENGINEERINGDataSetTableAdapters.ECR_LEGACYTableAdapter()) {
+				using (ENGINEERINGDataSet.ECR_LEGACYDataTable dt_ = ta_.GetDataByItemNum(_part)) {
+					if (dt_.Count > 0) {
+						foreach (ENGINEERINGDataSet.ECR_LEGACYRow row_ in dt_.Rows) {
+							string holder_ = row_.IsHolderNull() ? "??" : Redbrick.TitleCase(row_.Holder);
+							string[] row_str_ = new string[] { string.Format(@"{0} (Legacy)", row_.ECRNum),
+								row_.DateRequested.ToString(dateFormat), holder_ };
+							ListViewItem i_ = new ListViewItem(row_str_, 1);
+							ECRlistView.Items.Add(i_);
+						}
+					}
+				}
+			}
+
 			ECRlistView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 		}
 
 		private void LookUpECR(int eco) {
-			using (ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter ta_ =
-				new ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter()) {
-				using (ENGINEERINGDataSet.ECRObjLookupDataTable dt_ = ta_.GetDataByECO(eco)) {
-					if (dt_.Count > 0) {
-						ECRlistView.Items.Clear();
-						originalText = ECRTextBox.Text;
-						foreach (ENGINEERINGDataSet.ECRObjLookupRow row in dt_.Rows) {
-							string[] row_str_ = new string[] { row.ECR_NUM.ToString(),
+			if (eco > Redbrick.LastLegacyECR) {
+				using (ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter ta_ =
+					new ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter()) {
+					using (ENGINEERINGDataSet.ECRObjLookupDataTable dt_ = ta_.GetDataByECO(eco)) {
+						if (dt_.Count > 0) {
+							ECRlistView.Items.Clear();
+							originalText = ECRTextBox.Text;
+							foreach (ENGINEERINGDataSet.ECRObjLookupRow row in dt_.Rows) {
+								string[] row_str_ = new string[] { row.ECR_NUM.ToString(),
 								row.DATE_CREATE.ToString(dateFormat),
 								Redbrick.TitleCase(row.STATUS) };
-							ListViewItem i_ = new ListViewItem(row_str_, 1);
-							ECRlistView.Items.Add(i_);
+								ListViewItem i_ = new ListViewItem(row_str_, 1);
+								ECRlistView.Items.Add(i_);
+							}
+							Text = @"ECR Viewer";
+							ECRlistView.Items[0].Selected = true;
+						} else {
+							ECRTextBox.Text = originalText;
 						}
-						Text = @"ECR Viewer";
-						ECRlistView.Items[0].Selected = true;
-					} else {
-						ECRTextBox.Text = originalText;
+					}
+				}
+			} else {
+				using (ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter ta_ =
+					new ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter()) {
+					using (ENGINEERINGDataSet.LegacyECRObjLookupDataTable dt_ = ta_.GetDataByECO(eco.ToString())) {
+						if (dt_.Count > 0) {
+							ECRlistView.Items.Clear();
+							originalText = ECRTextBox.Text;
+							foreach (ENGINEERINGDataSet.LegacyECRObjLookupRow r_ in dt_.Rows) {
+								string holder_ = !r_.IsHolderNull() ? Redbrick.TitleCase(r_.Holder) : @"??";
+								string req_ = !r_.IsDateRequestedNull() ? r_.DateRequested.ToString(dateFormat) : @"??";
+								string[] row_str_ = new string[] { string.Format(@"{0} (Legacy)", eco),
+									req_, holder_ };
+								ListViewItem i_ = new ListViewItem(row_str_, 1);
+								ECRlistView.Items.Add(i_);
+							}
+							Text = @"ECR Viewer";
+							ECRlistView.Items[0].Selected = true;
+						} else {
+							ECRTextBox.Text = originalText;
+						}
 					}
 				}
 			}
@@ -142,6 +182,18 @@ namespace RedBrick2 {
 			using (ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter ta_ =
 				new ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter()) {
 				using (ENGINEERINGDataSet.ECRObjLookupDataTable dt_ = ta_.GetDataByECO(ecr_)) {
+					if (dt_.Count > 0) {
+						return dt_[0];
+					}
+				}
+			}
+			return null;
+		}
+
+		private ENGINEERINGDataSet.ECR_LEGACYRow LegacyECRObjLookup(int ecr_) {
+			using (ENGINEERINGDataSetTableAdapters.ECR_LEGACYTableAdapter ta_ =
+				new ENGINEERINGDataSetTableAdapters.ECR_LEGACYTableAdapter()) {
+				using (ENGINEERINGDataSet.ECR_LEGACYDataTable dt_ = ta_.GetDataByECO(ecr_.ToString())) {
 					if (dt_.Count > 0) {
 						return dt_[0];
 					}
@@ -186,7 +238,7 @@ namespace RedBrick2 {
 				int idx = lv_.Items.IndexOf(lv_.SelectedItems[0]);
 				string path = string.Format(@"\\AMSTORE-SVR-02\shared\shared\general\Engineering Utility\ECR Drawings\{0}",
 					drawings[idx]);
-				System.Diagnostics.Process.Start(path);
+				System.Diagnostics.Process.Start(drawings[idx]);
 			}
 		}
 
@@ -207,15 +259,31 @@ namespace RedBrick2 {
 				drawings.Clear();
 				affectedDrawingsListView.Items.Clear();
 				if (lv_.SelectedItems[0].SubItems.Count > 3) {
-				string[] it_ = new string[] {
+					string[] it_ = new string[] {
 					lv_.SelectedItems[0].SubItems[3].Text,
 					lv_.SelectedItems[0].SubItems[4].Text,
 					lv_.SelectedItems[0].SubItems[5].Text };
-				affectedDrawingsListView.Items.Add(new ListViewItem(it_, 6));
-					string drw_itm = lv_.SelectedItems[0].SubItems[4].Text;
-					drawings.Add(it_[2]);
+					affectedDrawingsListView.Items.Add(new ListViewItem(it_, 6));
+					drawings.Add(string.Format(@"\\AMSTORE-SVR-02\shared\shared\general\Engineering Utility\ECR Drawings\{0}", it_[2]));
 					if (affectedDrawingsListView.Items.Count > 0) {
 						affectedDrawingsListView.Items[0].Selected = true;
+					}
+				} else {
+					using (ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter ta_ =
+						new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter()) {
+						using (ENGINEERINGDataSet.GEN_DRAWINGSDataTable dt_ =
+							ta_.GetAnyDrawingByItemSearch(string.Format(@"{0}.PDF", lv_.SelectedItems[0].SubItems[0].Text))) {
+							foreach (ENGINEERINGDataSet.GEN_DRAWINGSRow row_ in dt_.Rows) {
+								string p_ = string.Format(@"{0}{1}", row_.FPath, row_.FName);
+								int strt_ = p_.LastIndexOf("\\");
+								string[] it_ = new string[] {
+									string.Format(@"{0}...{1}", p_.Substring(0, 3), p_.Substring(strt_, p_.Length - strt_)),
+									row_.DateCreated.ToString(dateFormat)
+								};
+								affectedDrawingsListView.Items.Add(new ListViewItem(it_, 6));
+								drawings.Add(p_);
+							}
+						}
 					}
 				}
 			}
@@ -230,20 +298,22 @@ namespace RedBrick2 {
 			}
 		}
 
-		private void ListView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e) {
-			ListView lv_ = sender as ListView;
-			if (lv_.SelectedItems.Count > 0 && lv_.SelectedItems[0] != null) {
-				int ecrno = Convert.ToInt32(e.Item.SubItems[0].Text);
-				ECRTextBox.Text = ecrno.ToString();
-				originalText = ecrno.ToString();
+		private void GetDescription(int ecrno) {
+			if (ecrno > Redbrick.LastLegacyECR) {
 				ENGINEERINGDataSet.ECRObjLookupRow r_ = ECRObjLookup(ecrno);
-				descriptionTextBox.Text = r_.CHANGES;
-				affectedItemsListView.Items.Clear();
-				affectedDrawingsListView.Items.Clear();
-				signeesListView.Items.Clear();
-				attachedFilesListView.Items.Clear();
-				items.Clear();
-				drawings.Clear();
+				if (r_ != null) {
+					descriptionTextBox.Text = r_.CHANGES;
+				}
+			} else {
+				ENGINEERINGDataSet.ECR_LEGACYRow r_ = LegacyECRObjLookup(ecrno);
+				if (r_ != null) {
+					descriptionTextBox.Text = r_.Change;
+				}
+			}
+		}
+
+		private void GetECRItems(int ecrno) {
+			if (ecrno > Redbrick.LastLegacyECR) {
 				foreach (ENGINEERINGDataSet.ECR_ITEMSRow row in eCR_ITEMSRows(ecrno)) {
 					string[] row_str_ = new string[] { row.ITEMNUMBER, row.ITEMREV, Redbrick.TitleCase(row.TypeName) };
 					ListViewItem l_ = new ListViewItem(row_str_, 5);
@@ -258,14 +328,48 @@ namespace RedBrick2 {
 					items.Add(row.ITEM_ID);
 					affectedItemsListView.Items.Add(l_);
 				}
-				if (affectedItemsListView.Items.Count > 0) {
-					affectedItemsListView.Items[0].Selected = true;
+			} else {
+				ENGINEERINGDataSet.ECR_LEGACYRow r_ = LegacyECRObjLookup(ecrno);
+				if (r_ != null) {
+					foreach (string prt_ in r_.AffectedParts.Split(new string[] { @",", @"/" }, StringSplitOptions.RemoveEmptyEntries)) {
+						if (prt_.Trim() != string.Empty) {
+							string[] row_str_ = new string[] { prt_.Trim(), @"???", @"Unknown" };
+							ListViewItem l_ = new ListViewItem(row_str_, 5);
+							affectedItemsListView.Items.Add(l_);
+						}
+					}
+					string name_ = !r_.IsEngineerNull() ? Redbrick.TitleCase(r_.Engineer): "??";
+					string status_ = !r_.IsHolderNull() ? Redbrick.TitleCase(r_.Holder) : "??";
+					string started = !r_.IsDateStartedNull() ? r_.DateStarted.ToString(dateFormat) : "??";
+					string req_ = !r_.IsDateRequestedNull() ? r_.DateRequested.ToString(dateFormat) : "??";
+					string date_ = !r_.IsDateCompletedNull() ? r_.DateCompleted.ToString(dateFormat) : "??";
+					string comment_ = string.Format("Requested: {0}.{4}Started: {1}{4}Finished on {2} by {3}",
+						req_, started, date_, name_, Environment.NewLine);
+					string[] signee_row_ = new string[] { name_, status_, date_, comment_ };
+					signeesListView.Items.Add(new ListViewItem(signee_row_, 3));
 				}
+			}
+		}
+
+		private void ToggleControls(bool on) {
+			//groupBox5.Enabled = on;
+			groupBox6.Enabled = on;
+			attachedFilesListView.Enabled = on;
+			//splitContainer1.Enabled = on;
+			//signeesListView.Enabled = on;
+			//signeesTextBox.Enabled = on;
+			affectedDrawingsListView.Columns[1].Text = on ? @"LVL" : @"Created";
+			signeesListView.Columns[1].Text = on ? @"Status" : @"Holder";
+			groupBox5.Text = on ? @"Signees" : @"Engineering";
+		}
+
+		private void GetSignees(int ecrno) {
+			if (ecrno > Redbrick.LastLegacyECR) {
 				foreach (ENGINEERINGDataSet.SigneesRow row in signeesRows(ecrno)) {
 					string signoff_ = string.Empty;
 					string comment_ = string.Empty;
 					if (!row.IsSIGNOFFNull()) {
-						signoff_  = row.SIGNOFF.ToString(dateFormat);
+						signoff_ = row.SIGNOFF.ToString(dateFormat);
 					}
 					if (!row.IsCOMMENTNull()) {
 						comment_ = row.COMMENT;
@@ -277,9 +381,39 @@ namespace RedBrick2 {
 					ListViewItem l_ = new ListViewItem(row_str_, 3);
 					signeesListView.Items.Add(l_);
 				}
-				if (signeesListView.Items.Count > 0) {
-					signeesListView.Items[0].Selected = true;
+			}
+
+			if (signeesListView.Items.Count > 0) {
+				signeesListView.Items[0].Selected = true;
+			}
+		}
+
+		private void ListView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e) {
+			ListView lv_ = sender as ListView;
+			if (lv_.SelectedItems.Count > 0 && lv_.SelectedItems[0] != null) {
+				int ecrno = Convert.ToInt32(e.Item.SubItems[0].Text.Split(' ')[0]);
+				ToggleControls(!e.Item.SubItems[0].Text.Contains(@"Legacy"));
+				ECRTextBox.Text = ecrno.ToString();
+				originalText = ecrno.ToString();
+
+				GetDescription(ecrno);
+
+				affectedItemsListView.Items.Clear();
+				affectedDrawingsListView.Items.Clear();
+				signeesListView.Items.Clear();
+				attachedFilesListView.Items.Clear();
+				items.Clear();
+				drawings.Clear();
+				signeesTextBox.Clear();
+
+				GetECRItems(ecrno);
+
+				if (affectedItemsListView.Items.Count > 0) {
+					affectedItemsListView.Items[0].Selected = true;
 				}
+
+				GetSignees(ecrno);
+
 				foreach (ENGINEERINGDataSet.FILE_MAINRow row in fILE_MAINRows(ecrno)) {
 					string[] row_str_ = new string[] { row.EXT.ToUpper().Replace(@".", string.Empty), row.COMMENT, row.FileName };
 					attachedFilesListView.Items.Add(new ListViewItem(row_str_, 0));
