@@ -1040,3 +1040,19 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 	}
 }
 
+
+namespace RedBrick2.ENGINEERINGDataSetTableAdapters {
+	partial class ECR_LEGACYTableAdapter {
+		public ENGINEERINGDataSet.ECR_LEGACYDataTable GetDataByItemNum(string itemNum) {
+			ENGINEERINGDataSet.ECR_LEGACYDataTable dt_ = new ENGINEERINGDataSet.ECR_LEGACYDataTable();
+			string SQL = @"SELECT * FROM ECR_LEGACY WHERE AffectedParts LIKE @part ORDER BY ECRNum DESC";
+			using (SqlCommand comm_ = new SqlCommand(SQL, Connection)) {
+				comm_.Parameters.AddWithValue(@"@part", string.Format(@"%{0}%", itemNum));
+				using (SqlDataAdapter da_ = new SqlDataAdapter(comm_)) {
+					da_.Fill(dt_);
+				}
+			}
+			return dt_;
+		}
+	}
+}

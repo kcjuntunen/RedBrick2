@@ -43975,11 +43975,11 @@ SELECT LGCYID, ECRNum, DateRequested, DateStarted, DateCompleted, AffectedParts,
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT      LGCYID, ECRNum, DateRequested, DateStarted, DateCompleted, AffectedPa" +
-                "rts, Change, Engineer, Holder\nFROM          ECR_LEGACY\nWHERE      (LGCYID = @eco" +
-                ")";
+            this._commandCollection[1].CommandText = "SELECT        LGCYID, ECRNum, DateRequested, DateStarted, DateCompleted, Affected" +
+                "Parts, Change, Engineer, Holder\r\nFROM            ECR_LEGACY\r\nWHERE        (ECRNu" +
+                "m = @eco)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@eco", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "LGCYID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@eco", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "ECRNum", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
             this._commandCollection[2].CommandText = "SELECT      MAX(ECRNum) AS LastNum\nFROM          ECR_LEGACY";
@@ -44014,9 +44014,14 @@ SELECT LGCYID, ECRNum, DateRequested, DateStarted, DateCompleted, AffectedParts,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByECO(ENGINEERINGDataSet.ECR_LEGACYDataTable dataTable, int eco) {
+        public virtual int FillByECO(ENGINEERINGDataSet.ECR_LEGACYDataTable dataTable, string eco) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(eco));
+            if ((eco == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(eco));
+            }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -44028,9 +44033,14 @@ SELECT LGCYID, ECRNum, DateRequested, DateStarted, DateCompleted, AffectedParts,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual ENGINEERINGDataSet.ECR_LEGACYDataTable GetDataByECO(int eco) {
+        public virtual ENGINEERINGDataSet.ECR_LEGACYDataTable GetDataByECO(string eco) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(eco));
+            if ((eco == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(eco));
+            }
             ENGINEERINGDataSet.ECR_LEGACYDataTable dataTable = new ENGINEERINGDataSet.ECR_LEGACYDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -47879,20 +47889,32 @@ SELECT FileID, FName, FPath, DateCreated FROM GEN_DRAWINGS WHERE (FileID = @File
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT      GEN_DRAWINGS.*\nFROM          GEN_DRAWINGS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT      FileID, FName, FPath, DateCreated\nFROM          GEN_DRAWINGS\nWHERE   " +
-                "   (FName LIKE @fname)";
+            this._commandCollection[1].CommandText = @"SELECT        FileID, FName, FPath, DateCreated
+FROM            GEN_DRAWINGS
+WHERE        (FName LIKE @part)
+UNION
+SELECT        FileID, FName, FPath, DateCreated
+FROM            GEN_DRAWINGS_MTL
+WHERE        (FName LIKE @part)
+ORDER BY FPath, FName";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fname", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "FName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@part", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "FName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @"SELECT      FileID, FName, FPath, DateCreated
+            this._commandCollection[2].CommandText = "SELECT      FileID, FName, FPath, DateCreated\nFROM          GEN_DRAWINGS\nWHERE   " +
+                "   (FName LIKE @fname)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fname", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "FName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = @"SELECT      FileID, FName, FPath, DateCreated
 FROM          (SELECT      FileID, FName, FPath, DateCreated
                         FROM           GEN_DRAWINGS_MTL
                         WHERE       (FName LIKE @fname1)
@@ -47902,9 +47924,9 @@ FROM          (SELECT      FileID, FName, FPath, DateCreated
                         WHERE      (FName LIKE @fname2)) AS derivedtbl_1
 ORDER BY LEN(FName);   
 ";
-            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fname1", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "FName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fname2", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "FName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fname1", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "FName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fname2", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "FName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -47935,8 +47957,44 @@ ORDER BY LEN(FName);
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByFName(ENGINEERINGDataSet.GEN_DRAWINGSDataTable dataTable, string fname) {
+        public virtual int FillAnyDrawingByItemSearch(ENGINEERINGDataSet.GEN_DRAWINGSDataTable dataTable, string part) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((part == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(part));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ENGINEERINGDataSet.GEN_DRAWINGSDataTable GetAnyDrawingByItemSearch(string part) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((part == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(part));
+            }
+            ENGINEERINGDataSet.GEN_DRAWINGSDataTable dataTable = new ENGINEERINGDataSet.GEN_DRAWINGSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByFName(ENGINEERINGDataSet.GEN_DRAWINGSDataTable dataTable, string fname) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             if ((fname == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -47955,7 +48013,7 @@ ORDER BY LEN(FName);
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual ENGINEERINGDataSet.GEN_DRAWINGSDataTable GetDataByFName(string fname) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             if ((fname == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -47972,7 +48030,7 @@ ORDER BY LEN(FName);
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int FillDrwgByFName(ENGINEERINGDataSet.GEN_DRAWINGSDataTable dataTable, string fname1, string fname2) {
-            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand = this.CommandCollection[3];
             if ((fname1 == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -47997,7 +48055,7 @@ ORDER BY LEN(FName);
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual ENGINEERINGDataSet.GEN_DRAWINGSDataTable GetDrwgDataByFName(string fname1, string fname2) {
-            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand = this.CommandCollection[3];
             if ((fname1 == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
