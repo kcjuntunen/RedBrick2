@@ -706,9 +706,9 @@ namespace RedBrick2 {
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(131, 23);
 			this.button4.TabIndex = 12;
-			this.button4.Text = "Examine BOM";
+			this.button4.Text = "Related ECRs";
 			this.button4.UseVisualStyleBackColor = true;
-			this.button4.Visible = false;
+			this.button4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button4_MouseClick);
 			// 
 			// button5
 			// 
