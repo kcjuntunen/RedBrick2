@@ -121,6 +121,7 @@
 			// 
 			// elementHost1
 			// 
+			this.elementHost1.Cursor = System.Windows.Forms.Cursors.Cross;
 			this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.elementHost1.Location = new System.Drawing.Point(3, 3);
 			this.elementHost1.Name = "elementHost1";
