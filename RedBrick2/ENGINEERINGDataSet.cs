@@ -286,7 +286,12 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 						comm.Parameters.AddWithValue("@thk", Convert.ToDouble(_pp[@"THICKNESS"].Data));
 						comm.Parameters.AddWithValue("@cnc1", Convert.ToString(_pp[@"CNC1"].Data));
 						comm.Parameters.AddWithValue("@cnc2", Convert.ToString(_pp[@"CNC2"].Data));
-						comm.Parameters.AddWithValue("@blnkqty", Convert.ToInt32(_pp[@"BLANK QTY"].Data));
+						int blnk_qty_ = 1;
+						if (_pp[@"BLANK QTY"].Data != null) {
+							int tmp_ = Convert.ToInt32(_pp[@"BLANK QTY"].Data);
+							blnk_qty_ = tmp_ > 1 ? tmp_ : 1;
+						}
+						comm.Parameters.AddWithValue("@blnkqty", blnk_qty_);
 						comm.Parameters.AddWithValue("@ovrl", Convert.ToDouble(_pp[@"OVERL"].Data));
 						comm.Parameters.AddWithValue("@ovrw", Convert.ToDouble(_pp[@"OVERW"].Data));
 
