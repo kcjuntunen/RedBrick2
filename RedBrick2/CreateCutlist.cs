@@ -393,10 +393,10 @@ namespace RedBrick2 {
 				if (md != null && md.GetType() == (int)swDocumentTypes_e.swDocPART) {
 					fi_ = new FileInfo(md.GetPathName());
 					name = Redbrick.FileInfoToLookup(fi_);
-					pb.UpdateTitle(name);
+					pb.UpdateTitle(fi_.Name);
 					SwProperties s = new SwProperties(_swApp, md);
-					s.Configuration = swChildComp.ReferencedConfiguration;
-					ConfigurationManager cm_ = md.ConfigurationManager;
+					s.Configuration = config_cbx.Text;
+					//ConfigurationManager cm_ = md.ConfigurationManager;
 					s.GetProperties(md);
 					if (!_dict.ContainsKey(name)) {
 						_dict.Add(name, 1);
