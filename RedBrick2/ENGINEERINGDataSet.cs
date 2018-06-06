@@ -241,7 +241,10 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 				int affected_ = 0;
 				using (ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter ta_ =
 					new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter()) {
-					string sql_ = @"UPDATE CUT_PARTS SET FIN_L = @finl, FIN_W = @finw, THICKNESS = @thk, " +
+					string sql_ = @"UPDATE CUT_PARTS SET " +
+						@"FIN_L = (CASE WHEN @finl > 0 THEN @finl ELSE FIN_L END), " +
+						@"FIN_W = (CASE WHEN @finw > 0 THEN @finw ELSE FIN_W END), " +
+						@"THICKNESS = (CASE WHEN @thk > 0 THEN @thk ELSE THICKNESS END), " +
 						@"HASH = @hash WHERE PARTNUM=@prtNo";
 					using (SqlCommand comm = new SqlCommand(sql_, ta_.Connection)) {
 						comm.Parameters.AddWithValue(@"@prtNo", _pp.PartLookup);
