@@ -296,10 +296,18 @@ namespace RedBrick2 {
 			flowLayoutPanel1.Controls.Clear();
 			if (ActiveDoc != null && PropertySet.Count > 0) {
 				Enabled = true;
-				lengthtb.Text = PropertySet[@"LENGTH"].Value.Replace("\"", string.Empty);
-				widthtb.Text = PropertySet[@"WIDTH"].Value.Replace("\"", string.Empty);
-				thicknesstb.Text = PropertySet[@"THICKNESS"].Value.Replace("\"", string.Empty);
-				wallthicknesstb.Text = PropertySet[@"WALL THICKNESS"].Value.Replace("\"", string.Empty);
+				if (PropertySet[@"LENGTH"].Value != null) {
+					lengthtb.Text = Convert.ToString(PropertySet[@"LENGTH"].Value).Replace("\"", string.Empty);
+				}
+				if (PropertySet[@"WIDTH"].Value != null) {
+					widthtb.Text = Convert.ToString(PropertySet[@"WIDTH"].Value).Replace("\"", string.Empty);
+				}
+				if (PropertySet[@"THICKNESS"].Value != null) {
+					thicknesstb.Text = Convert.ToString(PropertySet[@"THICKNESS"].Value).Replace("\"", string.Empty);
+				}
+				if (PropertySet[@"WALL THICKNESS"].Value != null) {
+					wallthicknesstb.Text = Convert.ToString(PropertySet[@"WALL THICKNESS"].Value).Replace("\"", string.Empty);
+				}
 
 				GetRouting();
 
@@ -693,6 +701,9 @@ namespace RedBrick2 {
 
 		private bool BoolTryProp(string propname) {
 			if (PropertySet.ContainsKey(propname)) {
+				if (PropertySet[propname].Value == null) {
+					return false;
+				}
 				return PropertySet[propname].Value.ToUpper().Contains("YES");
 			}
 			return false;
@@ -700,7 +711,7 @@ namespace RedBrick2 {
 
 		private float DimTryProp(string propname) {
 			float _out = 0;
-			if (PropertySet.ContainsKey(propname)) {
+			if (PropertySet.ContainsKey(propname) && PropertySet[propname].ResolvedValue != null) {
 				if (float.TryParse(PropertySet[propname].ResolvedValue.Replace("\"", string.Empty), out _out)) {
 					return _out;
 				}
@@ -767,7 +778,7 @@ namespace RedBrick2 {
 					new ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter()) {
 					string dept = StrTryProp(@"DEPARTMENT");
 					if (dept != string.Empty) {
-						type = (int)pta.GetIDByDescr(StrTryProp(@"DEPARTMENT"));
+						type = Convert.ToInt32(pta.GetIDByDescr(StrTryProp(@"DEPARTMENT")));
 					}
 				}
 				type_cbx.SelectedValue = type;
