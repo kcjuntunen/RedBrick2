@@ -28,6 +28,11 @@ namespace RedBrick2 {
 		/// <returns>This.</returns>
 		public override SwProperty Get() {
 			InnerGet();
+			if (ResolvedValue == null) {
+				Value = string.Empty;
+				ResolvedValue = string.Empty;
+				return this;
+			}
 			string searchTerm = ResolvedValue.Split('-')[0].Trim();
 
 			ENGINEERINGDataSet.GEN_CUSTOMERSRow row = null;

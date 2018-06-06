@@ -20,7 +20,7 @@ namespace RedBrick2 {
 		/// <returns>This.</returns>
 		public override SwProperty Get() {
 			InnerGet();
-			if (Value.Length > 0) {
+			if (Value != null && Value.Length > 0) {
 				using (ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu =
 					new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
 					ENGINEERINGDataSet.GEN_USERSDataTable dt = gu.GetDataByUsername(Value);
