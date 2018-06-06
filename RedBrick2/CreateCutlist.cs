@@ -1521,6 +1521,7 @@ namespace RedBrick2 {
 						dateTimePicker1.Value, Properties.Settings.Default.DefaultState, Convert.ToInt32(uid), parts_);
 					(sender as Control).Enabled = false;
 					cancel_btn.Text = @"Close";
+					cancel_btn.BackColor = Color.Green;
 				}
 				Cursor = Cursors.Arrow;
 			}

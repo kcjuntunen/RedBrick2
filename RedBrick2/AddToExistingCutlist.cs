@@ -50,6 +50,7 @@ namespace RedBrick2 {
 				eNGINEERINGDataSet.CUT_CUTLIST_PARTS.UpdateCutlistPart(props_);
 				add_btn.Enabled = false;
 				cancel_btn.Text = @"Close";
+				cancel_btn.BackColor = System.Drawing.Color.Green;
 			}
 		}
 
