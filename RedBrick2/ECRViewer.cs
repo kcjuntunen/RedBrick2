@@ -29,6 +29,9 @@ namespace RedBrick2 {
 		}
 
 		private void SetSettings() {
+#if DEBUG
+			Redbrick.LastLegacyECR = 8995;
+#endif
 			ECRlistView.FullRowSelect = true;
 			ECRlistView.HideSelection = false;
 			ECRlistView.MultiSelect = false;
@@ -84,11 +87,13 @@ namespace RedBrick2 {
 		} 
 
 		private void LookUpPart(string _part) {
+			bool cleared_ = false;
 			using (ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter ta_ =
 				new ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter()) {
 				using (ENGINEERINGDataSet.ECRObjLookupDataTable dt_ = ta_.GetDataByItemNum(_part)) {
 					if (dt_.Count > 0) {
 						ECRlistView.Items.Clear();
+						cleared_ = true;
 						originalText = ECRTextBox.Text;
 						foreach (ENGINEERINGDataSet.ECRObjLookupRow row in dt_.Rows) {
 							string[] row_str_ = new string[] { row.ECR_NUM.ToString(),
@@ -109,6 +114,9 @@ namespace RedBrick2 {
 				new ENGINEERINGDataSetTableAdapters.ECR_LEGACYTableAdapter()) {
 				using (ENGINEERINGDataSet.ECR_LEGACYDataTable dt_ = ta_.GetDataByItemNum(_part)) {
 					if (dt_.Count > 0) {
+						if (!cleared_) {
+							ECRlistView.Items.Clear();
+						}
 						foreach (ENGINEERINGDataSet.ECR_LEGACYRow row_ in dt_.Rows) {
 							string holder_ = row_.IsHolderNull() ? "??" : Redbrick.TitleCase(row_.Holder);
 							string[] row_str_ = new string[] { string.Format(@"{0} (Legacy)", row_.ECRNum),
