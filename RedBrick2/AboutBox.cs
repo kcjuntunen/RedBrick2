@@ -6,19 +6,14 @@ using System.Windows.Forms;
 namespace RedBrick2 {
 	public partial class AboutBox : Form {
 		System.Windows.Controls.Canvas c = new System.Windows.Controls.Canvas();
-		System.Windows.Media.Brush[] b = {
-				System.Windows.Media.Brushes.DeepSkyBlue,
-				System.Windows.Media.Brushes.DarkRed,
-				System.Windows.Media.Brushes.DarkSeaGreen,
-				System.Windows.Media.Brushes.DarkCyan,
-				System.Windows.Media.Brushes.Yellow
-			};
+		PropertyInfo[] br_; 
 		System.Windows.Point lastPoint = new System.Windows.Point(0, 0);
 		bool cleared = false;
 		System.Random r_ = new System.Random();
 		System.Windows.Media.Brush b_ = System.Windows.Media.Brushes.Red;
 		public AboutBox() {
 			InitializeComponent();
+			br_ = typeof(System.Windows.Media.Brushes).GetProperties();
 			string descr_ = AssemblyDescription;
 			this.Text = string.Format("About {0}", AssemblyTitle);
 			this.labelProductName.Text = AssemblyProduct;
@@ -41,7 +36,7 @@ namespace RedBrick2 {
 				for (int j = 0; j < r_.Next(elementHost1.Height); j += 10) {
 					System.Windows.Point p = new System.Windows.Point(i, j);
 					System.Windows.Shapes.Ellipse e = new System.Windows.Shapes.Ellipse();
-					e.Stroke = b[r_.Next(b.Length)];
+					e.Stroke = randomBrush();
 					e.TranslatePoint(p, c);
 					e.Width = r_.Next(20, 70) * i;
 					e.Height = r_.Next(20, 70) * j;
@@ -50,6 +45,15 @@ namespace RedBrick2 {
 			}
 			elementHost1.Child = c;
 			c.MouseMove += C_MouseMove;
+			c.MouseRightButtonDown += C_MouseRightButtonDown;
+		}
+
+		private System.Windows.Media.Brush randomBrush() {
+			return (System.Windows.Media.Brush)br_[r_.Next(br_.Length)].GetValue(br_);
+		}
+
+		private void C_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
+			c.Background = randomBrush();
 		}
 
 		private void C_MouseMove(object sender, System.Windows.Input.MouseEventArgs e) {
@@ -73,7 +77,7 @@ namespace RedBrick2 {
 				lastPoint = p_;
 				c.Children.Add(l_);
 			} else {
-				b_ = b[r_.Next(b.Length)];
+				b_ = randomBrush();
 				lastPoint = new System.Windows.Point();
 			}
 		}
