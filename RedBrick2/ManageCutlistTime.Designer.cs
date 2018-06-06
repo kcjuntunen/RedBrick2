@@ -235,12 +235,12 @@
 			// columnHeader1
 			// 
 			this.columnHeader1.Text = "Part";
-			this.columnHeader1.Width = 100;
+			this.columnHeader1.Width = 150;
 			// 
 			// columnHeader2
 			// 
 			this.columnHeader2.Text = "Qty";
-			this.columnHeader2.Width = 100;
+			this.columnHeader2.Width = 50;
 			// 
 			// label4
 			// 
