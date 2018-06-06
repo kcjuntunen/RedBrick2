@@ -111,7 +111,11 @@ namespace RedBrick2 {
 				} else {
 					GetResult = (swCustomInfoGetResult_e)globlProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
 					if (v == string.Empty) {
-						GetResult = (swCustomInfoGetResult_e)localProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
+						if (localProperty != null) {
+							GetResult = (swCustomInfoGetResult_e)localProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
+						} else {
+							GetResult = (swCustomInfoGetResult_e)PropertyManager.Get5(Name, false, out v, out resolvedV, out wasResolved);
+						}
 					}
 				}
 			}
