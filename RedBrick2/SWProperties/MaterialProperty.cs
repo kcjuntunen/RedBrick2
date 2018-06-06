@@ -76,7 +76,7 @@ namespace RedBrick2 {
 		/// </summary>
 		public override object Data {
 			get {
-				if (_data == 0) {
+				if (_data == 0 && Value != null) {
 					using (ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cmta =
 						new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter()) {
 						using (ENGINEERINGDataSet.CUT_MATERIALSDataTable cmdt = cmta.GetDataByDescr(Value)) {
