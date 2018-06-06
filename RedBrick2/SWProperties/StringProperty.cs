@@ -38,7 +38,7 @@ namespace RedBrick2 {
 		/// Data formatted for entry into the db.
 		/// </summary>
 		public override object Data {
-			get { return _data; }
+			get { return _data != null ? _data : string.Empty; }
 			set {
 				Value = value.ToString();
 				_data = Redbrick.FilterString(value);

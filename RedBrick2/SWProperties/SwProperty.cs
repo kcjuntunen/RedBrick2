@@ -107,18 +107,42 @@ namespace RedBrick2 {
 			}
 			if (PropertyManager != null) {
 				if (ActiveDoc is DrawingDoc) {
-					GetResult = (swCustomInfoGetResult_e)globlProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
+					string[] props_ = globlProperty.GetNames();
+					if (arrayContains(props_, Name)) {
+						GetResult = (swCustomInfoGetResult_e)globlProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
+					}
 				} else {
-					GetResult = (swCustomInfoGetResult_e)globlProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
-					if (v == string.Empty) {
+					string[] globprops_ = globlProperty.GetNames();
+					if (arrayContains(globprops_, Name)) {
+						GetResult = (swCustomInfoGetResult_e)globlProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
+					}
+					if (v == null || v == string.Empty) {
 						if (localProperty != null) {
-							GetResult = (swCustomInfoGetResult_e)localProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
+							string[] locprops_ = localProperty.GetNames();
+							if (arrayContains(locprops_, Name)) {
+								GetResult = (swCustomInfoGetResult_e)localProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
+							}
 						} else {
-							GetResult = (swCustomInfoGetResult_e)PropertyManager.Get5(Name, false, out v, out resolvedV, out wasResolved);
+							//string[] locprops_ = PropertyManager.GetNames();
+							//if (arrayContains(locprops_, Name)) {
+							//	GetResult = (swCustomInfoGetResult_e)PropertyManager.Get5(Name, false, out v, out resolvedV, out wasResolved);
+							//}
 						}
 					}
 				}
 			}
+		}
+
+		static bool arrayContains(string[] arr, string st) {
+			if (arr == null) {
+				return false;
+			}
+			for (int i = 0; i < arr.Length; i++) {
+				if (arr[i] == st) {
+					return true;
+				}
+			}
+			return false;
 		}
 
 		/// <summary>

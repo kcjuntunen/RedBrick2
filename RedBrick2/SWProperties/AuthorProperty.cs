@@ -25,7 +25,7 @@ namespace RedBrick2 {
 		/// <returns>This.</returns>
 		public override SwProperty Get() {
 			InnerGet();
-			if (Value.Length > 0) {
+			if (Value != null && Value.Length > 0) {
 				using (ENGINEERINGDataSet.GEN_USERSDataTable dt =
 					new ENGINEERINGDataSet.GEN_USERSDataTable()) {
 					ENGINEERINGDataSet.GEN_USERSRow row = null;
