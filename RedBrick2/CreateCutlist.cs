@@ -975,7 +975,7 @@ namespace RedBrick2 {
 			}
 		}
 
-		
+
 
 		private void comboBox2_SelectedIndexChanged(object sender, EventArgs e) {
 			ComboBox c = sender as ComboBox;
