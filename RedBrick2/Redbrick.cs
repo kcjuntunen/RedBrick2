@@ -625,6 +625,9 @@ namespace RedBrick2 {
 		/// <param name="input">A string of a number.</param>
 		/// <returns>An appropriately styled number.</returns>
 		static public string enforce_number_format(string input) {
+			if (input == null) {
+				return Properties.Settings.Default.ValErr;
+			}
 			double _val = 0.0F;
 			input = input.Replace("\"", string.Empty);
 			if (double.TryParse(input, out _val)) {
