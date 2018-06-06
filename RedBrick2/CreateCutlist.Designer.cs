@@ -67,6 +67,9 @@ namespace RedBrick2 {
 			this.cutlistPartsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.cutlistPartsTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CutlistPartsTableAdapter();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
+			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+			this.update_prts_btn = new System.Windows.Forms.Button();
+			this.button1 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gENCUSTOMERSBindingSource)).BeginInit();
@@ -78,6 +81,7 @@ namespace RedBrick2 {
 			((System.ComponentModel.ISupportInitialize)(this.cUTPARTTYPESBindingSource)).BeginInit();
 			this.statusStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.cutlistPartsBindingSource)).BeginInit();
+			this.tableLayoutPanel3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// dataGridView1
@@ -124,9 +128,9 @@ namespace RedBrick2 {
 			this.tableLayoutPanel1.Controls.Add(this.cancel_btn, 4, 5);
 			this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 4);
 			this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 3);
-			this.tableLayoutPanel1.Controls.Add(this.upload_btn, 1, 5);
 			this.tableLayoutPanel1.Controls.Add(this.config_cbx, 4, 2);
 			this.tableLayoutPanel1.Controls.Add(this.label7, 3, 2);
+			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 5);
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(13, 13);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			this.tableLayoutPanel1.RowCount = 6;
@@ -252,9 +256,11 @@ namespace RedBrick2 {
 			// 
 			// scan
 			// 
+			this.scan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.scan.Location = new System.Drawing.Point(3, 318);
 			this.scan.Name = "scan";
-			this.scan.Size = new System.Drawing.Size(105, 23);
+			this.scan.Size = new System.Drawing.Size(159, 23);
 			this.scan.TabIndex = 20;
 			this.scan.Text = "Scan Tree";
 			this.scan.UseVisualStyleBackColor = true;
@@ -476,9 +482,11 @@ namespace RedBrick2 {
 			// 
 			// upload_btn
 			// 
-			this.upload_btn.Location = new System.Drawing.Point(168, 318);
+			this.upload_btn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.upload_btn.Location = new System.Drawing.Point(3, 3);
 			this.upload_btn.Name = "upload_btn";
-			this.upload_btn.Size = new System.Drawing.Size(105, 23);
+			this.upload_btn.Size = new System.Drawing.Size(197, 18);
 			this.upload_btn.TabIndex = 16;
 			this.upload_btn.Text = "Upload";
 			this.upload_btn.UseVisualStyleBackColor = true;
@@ -567,6 +575,48 @@ namespace RedBrick2 {
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
 			// 
+			// tableLayoutPanel3
+			// 
+			this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.tableLayoutPanel3.ColumnCount = 3;
+			this.tableLayoutPanel1.SetColumnSpan(this.tableLayoutPanel3, 3);
+			this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+			this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+			this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+			this.tableLayoutPanel3.Controls.Add(this.upload_btn, 0, 0);
+			this.tableLayoutPanel3.Controls.Add(this.update_prts_btn, 1, 0);
+			this.tableLayoutPanel3.Controls.Add(this.button1, 2, 0);
+			this.tableLayoutPanel3.Location = new System.Drawing.Point(168, 318);
+			this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+			this.tableLayoutPanel3.RowCount = 1;
+			this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel3.Size = new System.Drawing.Size(611, 24);
+			this.tableLayoutPanel3.TabIndex = 23;
+			// 
+			// update_prts_btn
+			// 
+			this.update_prts_btn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.update_prts_btn.Location = new System.Drawing.Point(206, 3);
+			this.update_prts_btn.Name = "update_prts_btn";
+			this.update_prts_btn.Size = new System.Drawing.Size(197, 18);
+			this.update_prts_btn.TabIndex = 17;
+			this.update_prts_btn.Text = "Only Update Parts";
+			this.update_prts_btn.UseVisualStyleBackColor = true;
+			this.update_prts_btn.Click += new System.EventHandler(this.update_prts_btn_Click);
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(409, 3);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(199, 18);
+			this.button1.TabIndex = 18;
+			this.button1.Text = "button1";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click_1);
+			// 
 			// CreateCutlist
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -599,6 +649,7 @@ namespace RedBrick2 {
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.cutlistPartsBindingSource)).EndInit();
+			this.tableLayoutPanel3.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -649,5 +700,8 @@ namespace RedBrick2 {
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Button sltnunslct_btn;
 		private System.Windows.Forms.ToolStripStatusLabel pdfDate_toolstrip;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+		private System.Windows.Forms.Button update_prts_btn;
+		private System.Windows.Forms.Button button1;
 	}
 }
