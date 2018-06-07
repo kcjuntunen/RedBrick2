@@ -31,7 +31,7 @@ namespace RedBrick2 {
 				string lvl = string.Format("REVISION {0}", (char)(i + 64));
 				StringProperty lvlp = new StringProperty(lvl, true, SwApp, md, string.Empty);
 				lvlp.Get();
-				if (lvlp.Value == null) {
+				if (lvlp.Value == null || lvlp.Value == string.Empty) {
 					break;
 				}
 

@@ -265,14 +265,14 @@ namespace RedBrick2 {
 			SwProperty afip_ = new AuthorUIDProperty(@"AuthorUID", true, SwApp, ActiveDoc);
 			PropertySet.Add(ap_.Get());
 			PropertySet.Add(afip_.Get());
-			if (afip_.Value != string.Empty) {
+			if (afip_.Value != null && afip_.Value != string.Empty) {
 				if (Properties.Settings.Default.OnlyActiveAuthors) {
 					gENUSERSBindingSource.Filter = string.Format(@"(ACTIVE = True AND DEPT = 6) OR UID = {0}", afip_.Data);
 				} else {
 					gENUSERSBindingSource.Filter = @"DEPT = 6";
 				}
 				auth_cpx.SelectedValue = (int)afip_.Data;
-			} else if (ap_.Value != string.Empty) {
+			} else if (ap_.Value != null && ap_.Value != string.Empty) {
 				if (Properties.Settings.Default.OnlyActiveAuthors) {
 					gENUSERSBindingSource.Filter = string.Format(@"(ACTIVE = True AND DEPT = 6) OR UID = {0}", ap_.Data);
 				} else {
