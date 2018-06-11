@@ -93,6 +93,9 @@ namespace RedBrick2 {
 		public ModelRedbrick(SldWorks sw, ModelDoc2 md) {
 			SwApp = sw;
 			InitializeComponent();
+#if DEBUG
+			cutlistTimeBtn.Visible = true;
+#endif
 			new ToolTip().SetToolTip(pull_btn, @"Pull material properties from part.");
 			dirtTracker = new DirtTracker(this);
 			cbxes = new ComboBox[] { op1_cbx, op2_cbx, op3_cbx, op4_cbx, op5_cbx };
