@@ -1545,12 +1545,34 @@ namespace RedBrick2 {
 					dgvr_.Cells[@"CNC 2"].Style.BackColor = Color.LightGreen;
 					if (write_to_parts_) {
 						_partlist[partnum_].Write();
+						if (data_from_db_) {
+							write_ops();
+						}
 						_partlist[partnum_].Save();
 					}
 					parts_.Add(_partlist[partnum_]);
 				}
 			}
 			return parts_;
+		}
+
+		private void write_ops() {
+			for (int i = 0; i < dataGridView1.Rows.Count; i++) {
+				DataGridViewRow dgvr_ = dataGridView1.Rows[i];
+				string partnum_ = Convert.ToString(dgvr_.Cells[@"Part Number"].Value);
+				bool inc_ = Convert.ToBoolean(dgvr_.Cells[@"Include"].FormattedValue);
+				if (inc_ && partnum_ != string.Empty) {
+					for (int j = 1; j < Properties.Settings.Default.OpCount + 1; j++) {
+						string op_ = string.Format(@"OP{0}", j);
+						string opid_ = string.Format(@"OP{0}ID", j);
+						string col_ = string.Format(@"Op {0}", j);
+						_partlist[partnum_][op_].Data = dgvr_.Cells[col_].Value;
+						_partlist[partnum_][opid_].Data = dgvr_.Cells[col_].Value;
+						dgvr_.Cells[col_].Style.BackColor = Color.LightGreen;
+						_partlist[partnum_].Write();
+					}
+				}
+			}
 		}
 
 		private void upload_btn_Click(object sender, EventArgs e) {
