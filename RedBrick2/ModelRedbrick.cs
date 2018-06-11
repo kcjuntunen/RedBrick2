@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -2620,7 +2620,7 @@ namespace RedBrick2 {
 				DataRowView rv_ = cutlistctl.SelectedItem as DataRowView;
 				string cutlist_name_ = Convert.ToString(rv_[@"CutlistDisplayName"]);
 				string q_ = string.Format(@"Do you really want to remove '{0}' from '{1}'?", PropertySet.PartLookup, cutlist_name_);
-				DialogResult dr_ = MessageBox.Show(this, q_, @"RLY?",
+				DialogResult dr_ = MessageBox.Show(this, q_, @"﴾͡๏̯͡๏﴿ RLY?",
 					MessageBoxButtons.YesNo,
 					MessageBoxIcon.Question,
 					MessageBoxDefaultButton.Button2);
