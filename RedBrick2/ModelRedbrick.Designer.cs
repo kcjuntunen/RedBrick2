@@ -129,6 +129,7 @@
 			this.button5 = new System.Windows.Forms.Button();
 			this.button6 = new System.Windows.Forms.Button();
 			this.button7 = new System.Windows.Forms.Button();
+			this.cutlistTimeBtn = new System.Windows.Forms.Button();
 			this.ppbtb = new System.Windows.Forms.TextBox();
 			this.gEN_USERSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -143,7 +144,6 @@
 			this.cUT_PARTSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
 			this.friendlyCutOpsTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
-			this.cutlistTimeBtn = new System.Windows.Forms.Button();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
@@ -1547,6 +1547,18 @@
 			this.button7.UseVisualStyleBackColor = true;
 			this.button7.Click += new System.EventHandler(this.button7_Click);
 			// 
+			// cutlistTimeBtn
+			// 
+			this.cutlistTimeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.cutlistTimeBtn.Location = new System.Drawing.Point(230, 3);
+			this.cutlistTimeBtn.Name = "cutlistTimeBtn";
+			this.cutlistTimeBtn.Size = new System.Drawing.Size(28, 23);
+			this.cutlistTimeBtn.TabIndex = 32;
+			this.cutlistTimeBtn.Text = "_";
+			this.cutlistTimeBtn.UseVisualStyleBackColor = true;
+			this.cutlistTimeBtn.Visible = false;
+			this.cutlistTimeBtn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cutlistTimeBtn_MouseClick);
+			// 
 			// ppbtb
 			// 
 			this.ppbtb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -1635,17 +1647,6 @@
 			// cUT_PART_TYPESTableAdapter
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
-			// 
-			// cutlistTimeBtn
-			// 
-			this.cutlistTimeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.cutlistTimeBtn.Location = new System.Drawing.Point(230, 3);
-			this.cutlistTimeBtn.Name = "cutlistTimeBtn";
-			this.cutlistTimeBtn.Size = new System.Drawing.Size(28, 23);
-			this.cutlistTimeBtn.TabIndex = 32;
-			this.cutlistTimeBtn.Text = "_";
-			this.cutlistTimeBtn.UseVisualStyleBackColor = true;
-			this.cutlistTimeBtn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cutlistTimeBtn_MouseClick);
 			// 
 			// ModelRedbrick
 			// 
