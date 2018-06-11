@@ -827,8 +827,11 @@ namespace RedBrick2 {
 				}
 
 				row.Cells[@"L"].Value = Redbrick.enforce_number_format((double)val[@"LENGTH"].Data);
+				row.Cells[@"L"].ToolTipText = val[@"LENGTH"].Value;
 				row.Cells[@"W"].Value = Redbrick.enforce_number_format((double)val[@"WIDTH"].Data);
+				row.Cells[@"W"].ToolTipText = val[@"WIDTH"].Value;
 				row.Cells[@"T"].Value = Redbrick.enforce_number_format((double)val[@"THICKNESS"].Data);
+				row.Cells[@"T"].ToolTipText = val[@"THICKNESS"].Value;
 				row.Cells[@"Blank Qty"].Value = (int)val[@"BLANK QTY"].Data;
 
 				row.Cells[@"Over L"].Value = Redbrick.enforce_number_format((double)val[@"OVERL"].Data);
