@@ -295,7 +295,11 @@ namespace RedBrick2 {
 			SwProperty _s = new SwProperty(@"REVISION LEVEL", true, _swApp, _swApp.ActiveDoc);
 			_s.Get();
 			_revFromProperties = _s.Value;
-			rev = _revFromProperties;
+			if (_revFromProperties != null && _revFromProperties != string.Empty) {
+				rev = _revFromProperties;
+			} else if (_revFromFile != null && _revFromFile != string.Empty) {
+				rev = _revFromFile;
+			}
 
 			if (_revFromFile != string.Empty && _revFromFile != _revFromProperties) {
 				Redbrick.Err(rev_cbx);
