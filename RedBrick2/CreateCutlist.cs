@@ -1489,7 +1489,7 @@ namespace RedBrick2 {
 			}
 		}
 
-		private List<SwProperties> WriteToPart() {
+		private List<SwProperties> GetPartList(bool write_to_parts_) {
 			List<SwProperties> parts_ = new List<SwProperties>();
 			for (int i = 0; i < dataGridView1.Rows.Count; i++) {
 				DataGridViewRow dgvr_ = dataGridView1.Rows[i];
@@ -1537,10 +1537,11 @@ namespace RedBrick2 {
 		}
 
 		private void upload_btn_Click(object sender, EventArgs e) {
+			ReadGlobalFromDb();
 			if (cust_cbx.SelectedItem != null && uid != null) {
 				Cursor = Cursors.WaitCursor;
 
-				List<SwProperties> parts_ = WriteToPart();
+				List<SwProperties> parts_ = GetPartList(true);
 
 				using (ENGINEERINGDataSet.CUT_CUTLISTSDataTable dt_cc = new ENGINEERINGDataSet.CUT_CUTLISTSDataTable()) {
 					int custid_ = Convert.ToInt32(cust_cbx.SelectedValue);
@@ -1638,11 +1639,15 @@ namespace RedBrick2 {
 		}
 
 		private void update_prts_btn_Click(object sender, EventArgs e) {
-			WriteToPart();
+			if (MessageBox.Show(@"Write this data to parts?", @"﴾͡๏̯͡๏﴿ RLY?", MessageBoxButtons.YesNo) == DialogResult.Yes) {
+				GetPartList(true);
+			}
 		}
 
-		private void button1_Click_1(object sender, EventArgs e) {
-			ReadGlobalFromDb();
+		private void getdatafromDBbtn_Click_1(object sender, EventArgs e) {
+			if (MessageBox.Show(@"Overwrite part data with cutlist data?", @"﴾͡๏̯͡๏﴿ RLY?", MessageBoxButtons.YesNo) == DialogResult.Yes) {
+				ReadGlobalFromDb();
+			}
 		}
 	}
 }
