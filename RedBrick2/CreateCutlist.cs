@@ -96,6 +96,8 @@ namespace RedBrick2 {
 				cust_cbx.SelectedValue = r.CUSTID;
 			}
 			upload_btn.Enabled = false;
+			update_prts_btn.Enabled = false;
+			getdatafromDBbtn.Enabled = false;
 		}
 
 		private ModelDoc2 get_selected_views_modeldoc(ModelDoc2 _m) {
@@ -231,6 +233,8 @@ namespace RedBrick2 {
 			}
 			dateTimePicker1.Value = DateTime.Now;
 			upload_btn.Enabled = false;
+			update_prts_btn.Enabled = false;
+			getdatafromDBbtn.Enabled = false;
 			settle_rev(topName);
 
 			//guess_customer();
@@ -258,6 +262,8 @@ namespace RedBrick2 {
 						cust_cbx.SelectedItem != null &&
 						uid != null);
 			upload_btn.Enabled = ok;
+			update_prts_btn.Enabled = ok;
+			getdatafromDBbtn.Enabled = ok;
 		}
 
 		private void get_names() {
