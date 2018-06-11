@@ -1412,38 +1412,50 @@ namespace RedBrick2 {
 				for (int i = 0; i < dataGridView1.Rows.Count; i++) {
 					DataGridViewRow dgvr_ = dataGridView1.Rows[i];
 					string partnum_ = Convert.ToString(dgvr_.Cells[@"Part Number"].Value);
+					bool inc_ = Convert.ToBoolean(dgvr_.Cells[@"Include"].Value);
 					using (ENGINEERINGDataSet.CUT_PARTSDataTable cpdt_ = cpta_.GetDataByPartnum(partnum_)) {
-						if (cpdt_.Rows.Count > 0) {
+						if (inc_ && cpdt_.Rows.Count > 0) {
 							ENGINEERINGDataSet.CUT_PARTSRow r_ = cpdt_[0];
 							_partlist[partnum_].PartID = r_.PARTID;
 							_partlist[partnum_][@"DEPARTMENT"].Data = r_.TYPE;
 							dgvr_.Cells[@"Department"].Value = r_.TYPE;
+							dgvr_.Cells[@"Department"].Style.BackColor = Color.LightBlue;
 
 							_partlist[partnum_][@"Description"].Data = r_.DESCR;
 							dgvr_.Cells[@"Description"].Value = r_.DESCR;
+							dgvr_.Cells[@"Description"].Style.BackColor = Color.LightBlue;
 							_partlist[partnum_][@"COMMENT"].Data = !r_.IsCOMMENTNull() ? r_.COMMENT : string.Empty;
 
-							_partlist[partnum_][@"LENGTH"].Data = r_.FIN_L;
+							_partlist[partnum_][@"LENGTH"].Data = Redbrick.enforce_number_format(r_.FIN_L);
 							dgvr_.Cells[@"L"].Value = r_.FIN_L;
-							_partlist[partnum_][@"WIDTH"].Data = r_.FIN_W;
+							dgvr_.Cells[@"L"].Style.BackColor = Color.LightBlue;
+							_partlist[partnum_][@"WIDTH"].Data = Redbrick.enforce_number_format(r_.FIN_W);
 							dgvr_.Cells[@"W"].Value = r_.FIN_W;
-							_partlist[partnum_][@"THICKNESS"].Data = r_.THICKNESS;
+							dgvr_.Cells[@"W"].Style.BackColor = Color.LightBlue;
+							_partlist[partnum_][@"THICKNESS"].Data = Redbrick.enforce_number_format(r_.THICKNESS);
 							dgvr_.Cells[@"T"].Value = r_.THICKNESS;
+							dgvr_.Cells[@"T"].Style.BackColor = Color.LightBlue;
 							_partlist[partnum_][@"BLANK QTY"].Data = r_.BLANKQTY;
 							dgvr_.Cells[@"Blank Qty"].Value = r_.BLANKQTY;
+							dgvr_.Cells[@"Blank Qty"].Style.BackColor = Color.LightBlue;
 
 							_partlist[partnum_][@"OVERL"].Data = r_.OVER_L;
 							dgvr_.Cells[@"Over L"].Value = r_.OVER_L;
+							dgvr_.Cells[@"Over L"].Style.BackColor = Color.LightBlue;
 							_partlist[partnum_][@"OVERW"].Data = r_.OVER_W;
 							dgvr_.Cells[@"Over W"].Value = r_.OVER_W;
+							dgvr_.Cells[@"Over W"].Style.BackColor = Color.LightBlue;
 
 							_partlist[partnum_][@"CNC1"].Data = r_.CNC1;
 							dgvr_.Cells[@"CNC 1"].Value = r_.CNC1;
+							dgvr_.Cells[@"CNC 1"].Style.BackColor = Color.LightBlue;
 							_partlist[partnum_][@"CNC2"].Data = r_.CNC1;
 							dgvr_.Cells[@"CNC 2"].Value = r_.CNC1;
+							dgvr_.Cells[@"CNC 2"].Style.BackColor = Color.LightBlue;
 
 							_partlist[partnum_][@"UPDATE CNC"].Data = r_.UPDATE_CNC;
 							dgvr_.Cells[@"upd"].Value = r_.UPDATE_CNC;
+							dgvr_.Cells[@"upd"].Style.BackColor = Color.LightBlue;
 						}
 					}
 				}
@@ -1466,6 +1478,7 @@ namespace RedBrick2 {
 									string opid_ = string.Format(@"OP{0}ID", r_.POPORDER);
 									string col_ = string.Format(@"Op {0}", r_.POPORDER);
 									dgvr_.Cells[col_].Value = r_.POPOP;
+									dgvr_.Cells[col_].Style.BackColor = Color.LightBlue;
 									_partlist[partnum_][op_].Data = r_.POPOP;
 									_partlist[partnum_][opid_].Data = r_.POPOP;
 								}
@@ -1484,17 +1497,39 @@ namespace RedBrick2 {
 				if (inc_) {
 					string partnum_ = Convert.ToString(dgvr_.Cells[@"Part Number"].Value);
 					_partlist[partnum_][@"DEPARTMENT"].Data = Convert.ToInt32(dgvr_.Cells[@"Department"].Value);
+					dgvr_.Cells[@"Department"].Style.BackColor = Color.LightGreen;
 					_partlist[partnum_][@"Description"].Data = Convert.ToString(dgvr_.Cells[@"Description"].Value.ToString().Trim());
+					dgvr_.Cells[@"Description"].Style.BackColor = Color.LightGreen;
 					_partlist[partnum_].CutlistQty = Convert.ToInt32(dgvr_.Cells[@"Part Qty"].Value);
+					dgvr_.Cells[@"Part Qty"].Style.BackColor = Color.LightGreen;
 					_partlist[partnum_][@"BLANK QTY"].Data = Convert.ToInt32(dgvr_.Cells[@"Blank Qty"].Value);
+					dgvr_.Cells[@"Blank Qty"].Style.BackColor = Color.LightGreen;
 					_partlist[partnum_][@"CUTLIST MATERIAL"].Data = Convert.ToInt32(dgvr_.Cells[@"Material"].Value);
+					dgvr_.Cells[@"Material"].Style.BackColor = Color.LightGreen;
 					_partlist[partnum_][@"EDGE FRONT (L)"].Data = Convert.ToInt32(dgvr_.Cells[@"ef"].Value);
+					dgvr_.Cells[@"ef"].Style.BackColor = Color.LightGreen;
 					_partlist[partnum_][@"EDGE BACK (L)"].Data = Convert.ToInt32(dgvr_.Cells[@"eb"].Value);
+					dgvr_.Cells[@"eb"].Style.BackColor = Color.LightGreen;
 					_partlist[partnum_][@"EDGE LEFT (W)"].Data = Convert.ToInt32(dgvr_.Cells[@"el"].Value);
+					dgvr_.Cells[@"el"].Style.BackColor = Color.LightGreen;
 					_partlist[partnum_][@"EDGE RIGHT (W)"].Data = Convert.ToInt32(dgvr_.Cells[@"er"].Value);
+					dgvr_.Cells[@"er"].Style.BackColor = Color.LightGreen;
 					_partlist[partnum_][@"UPDATE CNC"].Data = Convert.ToBoolean(dgvr_.Cells[@"upd"].FormattedValue);
+					dgvr_.Cells[@"upd"].Style.BackColor = Color.LightGreen;
 					_partlist[partnum_].Write();
-					_partlist[partnum_].Save();
+
+					dgvr_.Cells[@"L"].Style.BackColor = Color.LightGreen;
+					dgvr_.Cells[@"W"].Style.BackColor = Color.LightGreen;
+					dgvr_.Cells[@"T"].Style.BackColor = Color.LightGreen;
+					dgvr_.Cells[@"Blank Qty"].Style.BackColor = Color.LightGreen;
+					dgvr_.Cells[@"Over L"].Style.BackColor = Color.LightGreen;
+					dgvr_.Cells[@"Over W"].Style.BackColor = Color.LightGreen;
+					dgvr_.Cells[@"CNC 1"].Style.BackColor = Color.LightGreen;
+					dgvr_.Cells[@"CNC 2"].Style.BackColor = Color.LightGreen;
+					if (write_to_parts_) {
+						_partlist[partnum_].Write();
+						_partlist[partnum_].Save();
+					}
 					parts_.Add(_partlist[partnum_]);
 				}
 			}
