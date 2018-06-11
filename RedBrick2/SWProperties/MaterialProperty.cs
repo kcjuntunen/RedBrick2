@@ -94,7 +94,7 @@ namespace RedBrick2 {
 					new ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter()) {
 					try {
 						int res;
-						if (int.TryParse(value.ToString(), out res)) {
+						if (int.TryParse(value.ToString(), out res) && res != 0) {
 							_data = res;
 							Value = cmta.GetDataByMatID(res)[0].DESCR;
 						} else {
