@@ -1595,7 +1595,7 @@ namespace RedBrick2 {
 					dt_cc.UpdateCutlist(item_no_, ref_cbx.Text.Trim(), rev_cbx.Text.Trim(), descr_, custid_,
 						dateTimePicker1.Value, Properties.Settings.Default.DefaultState, Convert.ToInt32(uid), parts_);
 					(sender as Control).Enabled = false;
-					cancel_btn.Text = @"Close";
+					cancel_btn.Text = @"(づ｡◕‿‿◕｡)づ Close";
 					cancel_btn.BackColor = Color.Green;
 				}
 				Cursor = Cursors.Arrow;
