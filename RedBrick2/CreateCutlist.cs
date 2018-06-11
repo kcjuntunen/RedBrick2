@@ -41,6 +41,7 @@ namespace RedBrick2 {
 																			 false, false, false, false, false, false,
 																			 false, false, false, false, false, false };
 		private bool ok = false;
+		private bool data_from_db_ = false;
 		private string itm = string.Empty;
 		private string descr = string.Empty;
 		private string refr = string.Empty;
@@ -1029,6 +1030,9 @@ namespace RedBrick2 {
 				DataGridViewComboBoxCell er_ = grid_.Rows[e.RowIndex].Cells[@"er"] as DataGridViewComboBoxCell;
 				DataGridViewComboBoxCell el_ = grid_.Rows[e.RowIndex].Cells[@"el"] as DataGridViewComboBoxCell;
 
+				if (grid_.Columns[e.ColumnIndex].Name.StartsWith(@"Op")) {
+					data_from_db_ = false;
+				}
 				//object ds_ = (grid_.Rows[e.RowIndex].Cells[@"Op 1"] as DataGridViewComboBoxCell).DataSource;
 				//if (ds_ is DataTable && dpt_cell_.Value != null) {
 				//	object ds_filtered_ = (ds_ as DataTable).Select(string.Format(@"TYPEID = {0}", dpt_cell_.Value));
@@ -1622,12 +1626,15 @@ namespace RedBrick2 {
 		}
 
 		private void scan_Click(object sender, EventArgs e) {
+			data_from_db_ = false;
 			if (parts_rdo.Checked && mDoc is AssemblyDoc) {
 				GetAssembly(mDoc);
 			} else if (toplvl_rdo.Checked) {
 				GetPart(mDoc);
 			}
 			upload_btn.Enabled = true;
+			getdatafromDBbtn.Enabled = true;
+			update_prts_btn.Enabled = true;
 		}
 
 		private void config_cbx_SelectedIndexChanged(object sender, EventArgs e) {
