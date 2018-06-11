@@ -1681,13 +1681,14 @@ namespace RedBrick2 {
 		}
 
 		private void update_prts_btn_Click(object sender, EventArgs e) {
-			if (MessageBox.Show(@"Write this data to parts?", @"﴾͡๏̯͡๏﴿ RLY?", MessageBoxButtons.YesNo) == DialogResult.Yes) {
+			if (MessageBox.Show(@"Overwrite data stored in parts?", @"﴾͡๏̯͡๏﴿ RLY?", MessageBoxButtons.YesNo) == DialogResult.Yes) {
 				GetPartList(true);
 			}
 		}
 
 		private void getdatafromDBbtn_Click_1(object sender, EventArgs e) {
-			if (MessageBox.Show(@"Overwrite part data with cutlist data?", @"﴾͡๏̯͡๏﴿ RLY?", MessageBoxButtons.YesNo) == DialogResult.Yes) {
+			if (MessageBox.Show(@"Read part data from DB?", @"﴾͡๏̯͡๏﴿ RLY?", MessageBoxButtons.YesNo) == DialogResult.Yes) {
+				data_from_db_ = true;
 				ReadGlobalFromDb();
 			}
 		}
