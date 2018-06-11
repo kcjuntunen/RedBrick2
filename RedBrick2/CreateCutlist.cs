@@ -1439,14 +1439,14 @@ namespace RedBrick2 {
 							dgvr_.Cells[@"Description"].Style.BackColor = Color.LightBlue;
 							_partlist[partnum_][@"COMMENT"].Data = !r_.IsCOMMENTNull() ? r_.COMMENT : string.Empty;
 
-							_partlist[partnum_][@"LENGTH"].Data = Redbrick.enforce_number_format(r_.FIN_L);
-							dgvr_.Cells[@"L"].Value = r_.FIN_L;
+							_partlist[partnum_][@"LENGTH"].Data = r_.FIN_L;
+							dgvr_.Cells[@"L"].Value = Redbrick.enforce_number_format(r_.FIN_L);
 							dgvr_.Cells[@"L"].Style.BackColor = Color.LightBlue;
-							_partlist[partnum_][@"WIDTH"].Data = Redbrick.enforce_number_format(r_.FIN_W);
-							dgvr_.Cells[@"W"].Value = r_.FIN_W;
+							_partlist[partnum_][@"WIDTH"].Data = r_.FIN_W;
+							dgvr_.Cells[@"W"].Value = Redbrick.enforce_number_format(r_.FIN_W);
 							dgvr_.Cells[@"W"].Style.BackColor = Color.LightBlue;
-							_partlist[partnum_][@"THICKNESS"].Data = Redbrick.enforce_number_format(r_.THICKNESS);
-							dgvr_.Cells[@"T"].Value = r_.THICKNESS;
+							_partlist[partnum_][@"THICKNESS"].Data = r_.THICKNESS;
+							dgvr_.Cells[@"T"].Value = Redbrick.enforce_number_format(r_.THICKNESS);
 							dgvr_.Cells[@"T"].Style.BackColor = Color.LightBlue;
 							_partlist[partnum_][@"BLANK QTY"].Data = r_.BLANKQTY;
 							dgvr_.Cells[@"Blank Qty"].Value = r_.BLANKQTY;
