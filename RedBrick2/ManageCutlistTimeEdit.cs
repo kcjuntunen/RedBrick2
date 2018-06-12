@@ -25,13 +25,16 @@ namespace RedBrick2 {
 		private void SetupListViews() {
 			cutlistTimeListView.FullRowSelect = true;
 			cutlistTimeListView.HideSelection = false;
-			cutlistTimeListView.MultiSelect = false;
+			cutlistTimeListView.MultiSelect = true;
 			cutlistTimeListView.View = View.Details;
 			cutlistTimeListView.SmallImageList = Redbrick.TreeViewIcons;
 			cutlistComboBox.DrawMode = DrawMode.OwnerDrawFixed;
+			op_sel_cb.DrawMode = DrawMode.OwnerDrawFixed;
 		}
 
 		private void ManageCutlistTimeEdit_Load(object sender, EventArgs e) {
+			// TODO: This line of code loads data into the 'manageCutlistTimeDataSet.FriendlyCutOps' table. You can move, or remove it, as needed.
+			this.friendlyCutOpsTableAdapter.Fill(this.manageCutlistTimeDataSet.FriendlyCutOps);
 			// TODO: This line of code loads data into the 'manageCutlistTimeDataSet.Cutlists' table. You can move, or remove it, as needed.
 			this.cutlistsTableAdapter.Fill(this.manageCutlistTimeDataSet.Cutlists);
 			ManageCutlistTimeDataSet.CutlistsRow r_ = manageCutlistTimeDataSet.Cutlists.FindByCLID(starting_clid);
@@ -72,6 +75,14 @@ namespace RedBrick2 {
 			}
 		}
 
+		private void op_sel_cb_DrawItem(object sender, DrawItemEventArgs e) {
+			ComboBox cb_ = sender as ComboBox;
+			int index = e.Index >= 0 ? e.Index : 0;
+			System.Data.DataRowView drv_ = cb_.Items[index] as System.Data.DataRowView;
+			e.Graphics.DrawString(drv_[@"FRIENDLYNAME"].ToString(), e.Font, SystemBrushes.ControlText,
+				e.Bounds, StringFormat.GenericDefault);
+		}
+
 		private void cutlistComboBox_SelectedIndexChanged(object sender, EventArgs e) {
 			if (allow_refresh) {
 				ComboBox cb_ = sender as ComboBox;
@@ -79,6 +90,20 @@ namespace RedBrick2 {
 					cutlistTimeListView.Items.Clear();
 					query_cutlist_times(Convert.ToInt32(cb_.SelectedValue));
 				}
+			}
+		}
+
+		private void cutlistTimeListView_SelectedIndexChanged(object sender, EventArgs e) {
+			ListView l_ = sender as ListView;
+			if (l_.SelectedItems.Count > 0 && l_.SelectedItems[0] != null) {
+				ListViewItem lvi_ = l_.SelectedItems[0] as ListViewItem;
+				setup_tb.Text = lvi_.SubItems[2].Text;
+				run_tb.Text = lvi_.SubItems[3].Text;
+				op_chb.Checked = lvi_.SubItems[1].Text.Contains(@"Y");
+				if (int.TryParse(lvi_.SubItems[6].Text, out int test_) && test_ > 0) {
+					op_sel_cb.SelectedValue = test_;
+				}
+				note_tb.Text = lvi_.SubItems[5].Text;
 			}
 		}
 	}
