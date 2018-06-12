@@ -34,7 +34,6 @@ namespace RedBrick2 {
 			this.label3 = new System.Windows.Forms.Label();
 			this.add_btn = new System.Windows.Forms.Button();
 			this.cancel_btn = new System.Windows.Forms.Button();
-			this.rev_cbx = new System.Windows.Forms.ComboBox();
 			this.revListBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.revListTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.RevListTableAdapter();
 			this.cutlistsTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CutlistsTableAdapter();
@@ -60,8 +59,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel1.Controls.Add(this.partq_nud, 2, 1);
 			this.tableLayoutPanel1.Controls.Add(this.label3, 2, 0);
 			this.tableLayoutPanel1.Controls.Add(this.add_btn, 0, 2);
-			this.tableLayoutPanel1.Controls.Add(this.cancel_btn, 2, 2);
-			this.tableLayoutPanel1.Controls.Add(this.rev_cbx, 1, 2);
+			this.tableLayoutPanel1.Controls.Add(this.cancel_btn, 1, 2);
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			this.tableLayoutPanel1.RowCount = 3;
@@ -155,28 +153,14 @@ namespace RedBrick2 {
 			// cancel_btn
 			// 
 			this.cancel_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.cancel_btn.Location = new System.Drawing.Point(260, 62);
+			this.tableLayoutPanel1.SetColumnSpan(this.cancel_btn, 2);
+			this.cancel_btn.Location = new System.Drawing.Point(175, 62);
 			this.cancel_btn.Name = "cancel_btn";
-			this.cancel_btn.Size = new System.Drawing.Size(75, 23);
+			this.cancel_btn.Size = new System.Drawing.Size(160, 23);
 			this.cancel_btn.TabIndex = 2;
 			this.cancel_btn.Text = "Cancel";
 			this.cancel_btn.UseVisualStyleBackColor = true;
 			this.cancel_btn.Click += new System.EventHandler(this.cancel_btn_Click);
-			// 
-			// rev_cbx
-			// 
-			this.rev_cbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.rev_cbx.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cutlistsBindingSource, "REV", true));
-			this.rev_cbx.DataSource = this.revListBindingSource;
-			this.rev_cbx.DisplayMember = "REV";
-			this.rev_cbx.FormattingEnabled = true;
-			this.rev_cbx.Location = new System.Drawing.Point(172, 44);
-			this.rev_cbx.Name = "rev_cbx";
-			this.rev_cbx.Size = new System.Drawing.Size(78, 21);
-			this.rev_cbx.TabIndex = 4;
-			this.rev_cbx.ValueMember = "REV";
-			this.rev_cbx.Visible = false;
 			// 
 			// revListBindingSource
 			// 
@@ -224,7 +208,6 @@ namespace RedBrick2 {
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.NumericUpDown partq_nud;
-		private System.Windows.Forms.ComboBox rev_cbx;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Button add_btn;
 		private System.Windows.Forms.Button cancel_btn;
