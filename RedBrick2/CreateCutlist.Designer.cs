@@ -36,7 +36,6 @@ namespace RedBrick2 {
 			this.label3 = new System.Windows.Forms.Label();
 			this.rev_cbx = new System.Windows.Forms.ComboBox();
 			this.revListBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.scan = new System.Windows.Forms.Button();
 			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
@@ -57,9 +56,10 @@ namespace RedBrick2 {
 			this.config_cbx = new System.Windows.Forms.ComboBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-			this.upload_btn = new System.Windows.Forms.Button();
-			this.update_prts_btn = new System.Windows.Forms.Button();
 			this.getdatafromDBbtn = new System.Windows.Forms.Button();
+			this.update_prts_btn = new System.Windows.Forms.Button();
+			this.upload_btn = new System.Windows.Forms.Button();
+			this.scan = new System.Windows.Forms.Button();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -252,18 +252,6 @@ namespace RedBrick2 {
 			// 
 			this.revListBindingSource.DataMember = "RevList";
 			this.revListBindingSource.DataSource = this.eNGINEERINGDataSet;
-			// 
-			// scan
-			// 
-			this.scan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.scan.Location = new System.Drawing.Point(3, 3);
-			this.scan.Name = "scan";
-			this.scan.Size = new System.Drawing.Size(188, 28);
-			this.scan.TabIndex = 20;
-			this.scan.Text = "Scan Tree";
-			this.scan.UseVisualStyleBackColor = true;
-			this.scan.Click += new System.EventHandler(this.scan_Click);
 			// 
 			// dateTimePicker1
 			// 
@@ -526,17 +514,15 @@ namespace RedBrick2 {
 			this.tableLayoutPanel3.Size = new System.Drawing.Size(776, 34);
 			this.tableLayoutPanel3.TabIndex = 23;
 			// 
-			// upload_btn
+			// getdatafromDBbtn
 			// 
-			this.upload_btn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.upload_btn.Location = new System.Drawing.Point(197, 3);
-			this.upload_btn.Name = "upload_btn";
-			this.upload_btn.Size = new System.Drawing.Size(188, 28);
-			this.upload_btn.TabIndex = 16;
-			this.upload_btn.Text = "Upload";
-			this.upload_btn.UseVisualStyleBackColor = true;
-			this.upload_btn.Click += new System.EventHandler(this.upload_btn_Click);
+			this.getdatafromDBbtn.Location = new System.Drawing.Point(585, 3);
+			this.getdatafromDBbtn.Name = "getdatafromDBbtn";
+			this.getdatafromDBbtn.Size = new System.Drawing.Size(188, 28);
+			this.getdatafromDBbtn.TabIndex = 18;
+			this.getdatafromDBbtn.Text = "Get Global Part Data From DB";
+			this.getdatafromDBbtn.UseVisualStyleBackColor = true;
+			this.getdatafromDBbtn.Click += new System.EventHandler(this.getdatafromDBbtn_Click_1);
 			// 
 			// update_prts_btn
 			// 
@@ -550,15 +536,29 @@ namespace RedBrick2 {
 			this.update_prts_btn.UseVisualStyleBackColor = true;
 			this.update_prts_btn.Click += new System.EventHandler(this.update_prts_btn_Click);
 			// 
-			// getdatafromDBbtn
+			// upload_btn
 			// 
-			this.getdatafromDBbtn.Location = new System.Drawing.Point(585, 3);
-			this.getdatafromDBbtn.Name = "getdatafromDBbtn";
-			this.getdatafromDBbtn.Size = new System.Drawing.Size(188, 28);
-			this.getdatafromDBbtn.TabIndex = 18;
-			this.getdatafromDBbtn.Text = "Get Global Part Data From DB";
-			this.getdatafromDBbtn.UseVisualStyleBackColor = true;
-			this.getdatafromDBbtn.Click += new System.EventHandler(this.getdatafromDBbtn_Click_1);
+			this.upload_btn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.upload_btn.Location = new System.Drawing.Point(197, 3);
+			this.upload_btn.Name = "upload_btn";
+			this.upload_btn.Size = new System.Drawing.Size(188, 28);
+			this.upload_btn.TabIndex = 16;
+			this.upload_btn.Text = "Upload";
+			this.upload_btn.UseVisualStyleBackColor = true;
+			this.upload_btn.Click += new System.EventHandler(this.upload_btn_Click);
+			// 
+			// scan
+			// 
+			this.scan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.scan.Location = new System.Drawing.Point(3, 3);
+			this.scan.Name = "scan";
+			this.scan.Size = new System.Drawing.Size(188, 28);
+			this.scan.TabIndex = 20;
+			this.scan.Text = "Scan Tree";
+			this.scan.UseVisualStyleBackColor = true;
+			this.scan.Click += new System.EventHandler(this.scan_Click);
 			// 
 			// statusStrip1
 			// 
