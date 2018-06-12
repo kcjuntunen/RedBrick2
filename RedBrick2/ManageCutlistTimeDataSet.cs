@@ -14,7 +14,9 @@ namespace RedBrick2 {
 					string op_ = row_.CTISOP ? "Y" : "N";
 					string setupTime_ = row_.CTSETUP.ToString(@"0.00");
 					string runTime_ = row_.CTRUN.ToString(@"0.000000");
-					string[] d_ = new string[] { type_, op_, setupTime_, runTime_, row_.CTID.ToString() };
+					string ctnote_ = row_.IsCTNOTENull() ? string.Empty : row_.CTNOTE;
+					string ctop_ = row_.CTOP.ToString();
+					string[] d_ = new string[] { type_, op_, setupTime_, runTime_, row_.CTID.ToString(), ctnote_, ctop_ };
 						list_.Add(d_);
 				}
 				return list_;
