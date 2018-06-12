@@ -110,7 +110,7 @@ namespace RedBrick2 {
 
 			cutlistTimeListView.FullRowSelect = true;
 			cutlistTimeListView.HideSelection = false;
-			cutlistTimeListView.MultiSelect = false;
+			cutlistTimeListView.MultiSelect = true;
 			cutlistTimeListView.View = View.Details;
 			cutlistTimeListView.SmallImageList = Redbrick.TreeViewIcons;
 			cutlistComboBox.DrawMode = DrawMode.OwnerDrawFixed;

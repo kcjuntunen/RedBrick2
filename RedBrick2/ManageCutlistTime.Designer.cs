@@ -226,6 +226,7 @@
             this.columnHeader1,
             this.columnHeader2});
 			this.partsListView.Location = new System.Drawing.Point(3, 21);
+			this.partsListView.MultiSelect = false;
 			this.partsListView.Name = "partsListView";
 			this.partsListView.Size = new System.Drawing.Size(250, 224);
 			this.partsListView.TabIndex = 1;
@@ -275,6 +276,7 @@
             this.columnHeader9,
             this.columnHeader10});
 			this.partOpsListView.Location = new System.Drawing.Point(4, 17);
+			this.partOpsListView.MultiSelect = false;
 			this.partOpsListView.Name = "partOpsListView";
 			this.partOpsListView.Size = new System.Drawing.Size(382, 168);
 			this.partOpsListView.TabIndex = 1;
