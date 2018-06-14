@@ -5,6 +5,36 @@ using System.Collections.Generic;
 
 namespace RedBrick2 {
 	partial class ManageCutlistTimeDataSet {
+		public void UpdCLTimeByID(int ctid, int clid, int op, int op_method, double op_setup) {
+			using (ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter ta_ =
+				new ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter()) {
+				using (CUT_CUTLISTS_TIMEDataTable dt_ = ta_.GetDataByCLID(clid)) {
+					using (ManageCutlistTimeDataSetTableAdapters.CutlistPartsTableAdapter cpta_ =
+						new ManageCutlistTimeDataSetTableAdapters.CutlistPartsTableAdapter()) {
+						foreach (CUT_CUTLISTS_TIMERow item in dt_.Rows) {
+							switch (op_method) {
+								case 2: // per cl
+									break;
+								case 3: // flat
+									op_setup = op_setup * Convert.ToInt32(cpta_.CountFlat(op, clid));
+									break;
+								case 4: // edge
+									op_setup = op_setup * cpta_.CountEdges(clid, op);
+									break;
+								default:
+									break;
+							}
+							if (op_setup == 0) {
+								ta_.DeleteByCTID(ctid);	
+							} else {
+								ta_.UpdateGDSetupByCTID(op_setup, ctid);
+							}
+						}
+					}
+				}
+			}
+		}
+
 		public List<string[]> QueryCutlistTime(int clid) {
 			using (ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter ta_ =
 				new ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter()) {
@@ -16,8 +46,8 @@ namespace RedBrick2 {
 					string runTime_ = row_.CTRUN.ToString(@"0.000000");
 					string ctnote_ = row_.IsCTNOTENull() ? string.Empty : row_.CTNOTE;
 					string ctop_ = row_.CTOP.ToString();
-					string[] d_ = new string[] { type_, op_, setupTime_, runTime_, row_.CTID.ToString(), ctnote_, ctop_ };
-						list_.Add(d_);
+					string[] d_ = new string[] { type_, op_, setupTime_, runTime_, row_.CTID.ToString(), ctnote_, ctop_, row_.CTID.ToString() };
+					list_.Add(d_);
 				}
 				return list_;
 			}
