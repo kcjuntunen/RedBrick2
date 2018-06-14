@@ -122,11 +122,11 @@ namespace RedBrick2 {
 							if (arrayContains(locprops_, Name)) {
 								GetResult = (swCustomInfoGetResult_e)localProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
 							}
-						} else {
-							//string[] locprops_ = PropertyManager.GetNames();
-							//if (arrayContains(locprops_, Name)) {
-							//	GetResult = (swCustomInfoGetResult_e)PropertyManager.Get5(Name, false, out v, out resolvedV, out wasResolved);
-							//}
+						}
+					}
+					if (v == null || v == string.Empty) {
+						if (arrayContains(globprops_, Name)) {
+							GetResult = (swCustomInfoGetResult_e)globlProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
 						}
 					}
 				}
