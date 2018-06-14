@@ -26,11 +26,48 @@ namespace RedBrick2 {
 }
 
 namespace RedBrick2.ManageCutlistTimeDataSetTableAdapters {
+	partial class CutlistPartsTableAdapter {
+		public int CountEdges(int clid, int op) {
+			HashSet<int> hs_ = new HashSet<int>();
+			foreach (string edge in new string[] { @"EDGEID_LF", @"EDGEID_LB", @"EDGEID_WR", @"EDGEID_WL" }) {
+				foreach (int item in CountEdge(clid, op, edge)) {
+					hs_.Add(item);
+				}
+			}
+			return hs_.Count;
+		}
+
+		private HashSet<int> CountEdge(int clid, int op, string edge) {
+			HashSet<int> hs_ = new HashSet<int>();
+			string sql_ = string.Format(@"SELECT CUT_CUTLIST_PARTS.{0} FROM CUT_PART_OPS INNER JOIN CUT_CUTLIST_PARTS ON CUT_PART_OPS.POPPART = 
+CUT_CUTLIST_PARTS.PARTID 
+GROUP BY CUT_CUTLIST_PARTS.{0}, CUT_CUTLIST_PARTS.CLID, CUT_PART_OPS.POPOP 
+HAVING (((CUT_CUTLIST_PARTS.CLID)=@clid) AND ((CUT_PART_OPS.POPOP)=@glop));", edge);
+			using (CUT_CUTLISTS_TIMETableAdapter cctta_ = new CUT_CUTLISTS_TIMETableAdapter()) {
+				using (SqlCommand cmd_ = new SqlCommand(sql_, cctta_.Connection)) {
+					cmd_.Parameters.AddWithValue(@"@clid", clid);
+					cmd_.Parameters.AddWithValue(@"@glop", op);
+					if (cctta_.Connection.State != System.Data.ConnectionState.Open) {
+						cctta_.Connection.Open();
+					}
+					using (SqlDataReader dr_ = cmd_.ExecuteReader()) {
+						while (dr_.Read()) {
+							if (dr_[0] != null && dr_.GetInt32(0) != 0) {
+								hs_.Add(dr_.GetInt32(0));
+							}
+						}
+					}
+				}
+			}
+			return hs_;
+		}
+	}
+
 	public partial class CUT_CUTLISTS_TIMETableAdapter {
 		public double GetCutlistRunTime(int clID, int[] types) {
 			double total = 0.0f;
-			using (ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter ta_ =
-				new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter()) {
+			using (CUT_PARTSTableAdapter ta_ =
+				new CUT_PARTSTableAdapter()) {
 				StringBuilder sb_ = new StringBuilder(@"SELECT Sum([POPRUN]*[QTY]) AS TotalRun
 FROM(CUT_OPS RIGHT JOIN(CUT_PART_OPS RIGHT JOIN CUT_CUTLIST_PARTS ON CUT_PART_OPS.POPPART = CUT_CUTLIST_PARTS.PARTID) ON CUT_OPS.OPID = CUT_PART_OPS.POPOP) INNER JOIN CUT_PARTS ON CUT_CUTLIST_PARTS.PARTID = CUT_PARTS.PARTID
 WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
