@@ -38,12 +38,14 @@ namespace RedBrick2 {
 		public override SwProperty Get() {
 			InnerGet();
 			int intval = 0;
-			int tp = 0;
-			using (ENGINEERINGDataSet.CUT_PARTSDataTable cpdt = cpta.GetDataByPartID(PartID)) {
-				if (cpdt.Rows.Count > 0) {
-					tp = (int)cpdt.Rows[0][@"TYPE"];
-				}
-			}
+			//int tp = 0;
+			//if (PartID > 0) {
+			//	using (ENGINEERINGDataSet.CUT_PARTSDataTable cpdt = cpta.GetDataByPartID(PartID)) {
+			//		if (cpdt.Rows.Count > 0) {
+			//			tp = (int)cpdt.Rows[0][@"TYPE"];
+			//		}
+			//	}
+			//}
 
 			if (int.TryParse(Value, out intval)) {
 				using (ENGINEERINGDataSetTableAdapters.CUT_MATERIALSTableAdapter cmta =
