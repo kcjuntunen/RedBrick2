@@ -405,11 +405,11 @@ namespace RedBrick2 {
 					fi_ = new FileInfo(md.GetPathName());
 					name = Redbrick.FileInfoToLookup(fi_);
 					pb.UpdateTitle(fi_.Name);
-					SwProperties s = new SwProperties(_swApp, md);
-					s.Configuration = config_cbx.Text;
-					//ConfigurationManager cm_ = md.ConfigurationManager;
-					s.GetProperties(md);
 					if (!_dict.ContainsKey(name)) {
+						SwProperties s = new SwProperties(_swApp, md);
+						s.Configuration = swChildComp.ReferencedConfiguration;
+						//ConfigurationManager cm_ = md.ConfigurationManager;
+						s.GetProperties(md);
 						_dict.Add(name, 1);
 						s.PartFileInfo = new FileInfo(md.GetPathName());
 						_partlist.Add(name, s);
