@@ -1071,19 +1071,25 @@ namespace RedBrick2 {
 		private void UpdateDims(object displayDim) {
 			DisplayDimension d_ = (DisplayDimension)displayDim;
 			Dimension dim_ = d_.GetDimension2(0);
-			if (dim_.FullName.Contains(PropertySet[@"LENGTH"].Value.Replace("\"", string.Empty))) {
-				PropertySet[@"LENGTH"].Data = dim_.Value;
-				length = (float)dim_.Value;
+			if (PropertySet[@"LENGTH"].Value != null) {
+				if (dim_.FullName.Contains(PropertySet[@"LENGTH"].Value.Replace("\"", string.Empty))) {
+					PropertySet[@"LENGTH"].Data = dim_.Value;
+					length = (float)dim_.Value;
+				}
 			}
 
-			if (dim_.FullName.Contains(PropertySet[@"WIDTH"].Value.Replace("\"", string.Empty))) {
-				PropertySet[@"WIDTH"].Data = dim_.Value;
-				width = (float)dim_.Value;
+			if (PropertySet[@"WIDTH"].Value != null) {
+				if (dim_.FullName.Contains(PropertySet[@"WIDTH"].Value.Replace("\"", string.Empty))) {
+					PropertySet[@"WIDTH"].Data = dim_.Value;
+					width = (float)dim_.Value;
+				}
 			}
 
-			if (dim_.FullName.Contains(PropertySet[@"THICKNESS"].Value.Replace("\"", string.Empty))) {
-				PropertySet[@"THICKNESS"].Data = dim_.Value;
-				thickness = (float)dim_.Value;
+			if (PropertySet[@"THICKNESS"].Value != null) {
+				if (dim_.FullName.Contains(PropertySet[@"THICKNESS"].Value.Replace("\"", string.Empty))) {
+					PropertySet[@"THICKNESS"].Data = dim_.Value;
+					thickness = (float)dim_.Value;
+				}
 			}
 			ReReadDims();
 			if (data_from_db) {
