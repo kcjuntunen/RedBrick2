@@ -37,7 +37,6 @@
 			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.cutlistsTableAdapter = new RedBrick2.ManageCutlistTimeDataSetTableAdapters.CutlistsTableAdapter();
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.update_btn = new System.Windows.Forms.Button();
 			this.update_all_btn = new System.Windows.Forms.Button();
@@ -53,11 +52,12 @@
 			this.label7 = new System.Windows.Forms.Label();
 			this.op_chb = new System.Windows.Forms.CheckBox();
 			this.op_sel_cb = new System.Windows.Forms.ComboBox();
+			this.friendlyCutOpsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
 			this.button1 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
-			this.friendlyCutOpsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.cutlistsTableAdapter = new RedBrick2.ManageCutlistTimeDataSetTableAdapters.CutlistsTableAdapter();
 			this.friendlyCutOpsTableAdapter = new RedBrick2.ManageCutlistTimeDataSetTableAdapters.FriendlyCutOpsTableAdapter();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
@@ -65,8 +65,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.manageCutlistTimeDataSet)).BeginInit();
 			this.tableLayoutPanel3.SuspendLayout();
 			this.tableLayoutPanel4.SuspendLayout();
-			this.tableLayoutPanel5.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.friendlyCutOpsBindingSource)).BeginInit();
+			this.tableLayoutPanel5.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tableLayoutPanel1
@@ -204,10 +204,6 @@
 			this.columnHeader4.Text = "Run";
 			this.columnHeader4.Width = 100;
 			// 
-			// cutlistsTableAdapter
-			// 
-			this.cutlistsTableAdapter.ClearBeforeFill = true;
-			// 
 			// tableLayoutPanel3
 			// 
 			this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -238,6 +234,7 @@
 			this.update_btn.TabIndex = 0;
 			this.update_btn.Text = "Update";
 			this.update_btn.UseVisualStyleBackColor = true;
+			this.update_btn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.update_btn_MouseClick);
 			// 
 			// update_all_btn
 			// 
@@ -403,6 +400,11 @@
 			this.op_sel_cb.ValueMember = "OPID";
 			this.op_sel_cb.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.op_sel_cb_DrawItem);
 			// 
+			// friendlyCutOpsBindingSource
+			// 
+			this.friendlyCutOpsBindingSource.DataMember = "FriendlyCutOps";
+			this.friendlyCutOpsBindingSource.DataSource = this.manageCutlistTimeDataSet;
+			// 
 			// tableLayoutPanel5
 			// 
 			this.tableLayoutPanel5.ColumnCount = 3;
@@ -456,10 +458,9 @@
 			this.button3.Text = "Save";
 			this.button3.UseVisualStyleBackColor = true;
 			// 
-			// friendlyCutOpsBindingSource
+			// cutlistsTableAdapter
 			// 
-			this.friendlyCutOpsBindingSource.DataMember = "FriendlyCutOps";
-			this.friendlyCutOpsBindingSource.DataSource = this.manageCutlistTimeDataSet;
+			this.cutlistsTableAdapter.ClearBeforeFill = true;
 			// 
 			// friendlyCutOpsTableAdapter
 			// 
@@ -483,8 +484,8 @@
 			this.tableLayoutPanel3.ResumeLayout(false);
 			this.tableLayoutPanel4.ResumeLayout(false);
 			this.tableLayoutPanel4.PerformLayout();
-			this.tableLayoutPanel5.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.friendlyCutOpsBindingSource)).EndInit();
+			this.tableLayoutPanel5.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
