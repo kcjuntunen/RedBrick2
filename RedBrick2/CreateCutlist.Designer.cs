@@ -516,6 +516,7 @@ namespace RedBrick2 {
 			// 
 			// getdatafromDBbtn
 			// 
+			this.getdatafromDBbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.getdatafromDBbtn.Location = new System.Drawing.Point(585, 3);
 			this.getdatafromDBbtn.Name = "getdatafromDBbtn";
 			this.getdatafromDBbtn.Size = new System.Drawing.Size(188, 28);
@@ -528,6 +529,7 @@ namespace RedBrick2 {
 			// 
 			this.update_prts_btn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.update_prts_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.update_prts_btn.Location = new System.Drawing.Point(391, 3);
 			this.update_prts_btn.Name = "update_prts_btn";
 			this.update_prts_btn.Size = new System.Drawing.Size(188, 28);
