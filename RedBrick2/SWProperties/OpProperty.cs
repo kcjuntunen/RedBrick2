@@ -101,16 +101,19 @@ namespace RedBrick2 {
 				return _data;
 			}
 
-			set {
-				int res_ = 0;
-				using (ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter cota =
-					new ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter()) {
-					if (int.TryParse(value.ToString(), out res_)) {
-						_data = res_;
-						Value = Convert.ToString(cota.GetOpNameByID(_data));
-					} else {
-						_data = Convert.ToInt32(cota.GetOpIDByName(value.ToString(), OpType));
-						Value = value.ToString();
+			set
+			{
+				if (value != null) {
+					int res_ = 0;
+					using (ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter cota =
+						new ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter()) {
+						if (int.TryParse(value.ToString(), out res_)) {
+							_data = res_;
+							Value = Convert.ToString(cota.GetOpNameByID(_data));
+						} else {
+							_data = Convert.ToInt32(cota.GetOpIDByName(value.ToString(), OpType));
+							Value = value.ToString();
+						}
 					}
 				}
 			}
