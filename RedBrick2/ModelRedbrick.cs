@@ -2263,14 +2263,14 @@ namespace RedBrick2 {
 
 		private void Set_Specific(ENGINEERINGDataSet.CUT_CUTLIST_PARTSRow _row) {
 			EnableCutlistSpec(true);
-			cutlistMat.SelectedValue = Convert.ToInt32(_row.MATID);
-			edgef.SelectedValue = Convert.ToInt32(_row.EDGEID_LF);
-			edgeb.SelectedValue = Convert.ToInt32(_row.EDGEID_LB);
-			edger.SelectedValue = Convert.ToInt32(_row.EDGEID_WR);
-			edgel.SelectedValue = Convert.ToInt32(_row.EDGEID_WL);
-			partq.Value = Convert.ToInt32(_row.QTY);
-			PropertySet.CutlistID = _row.CLID;
-			PropertySet.CutlistQty = _row.QTY;
+			cutlistMat.SelectedValue = _row.IsMATIDNull() ? 0 : Convert.ToInt32(_row.MATID);
+			edgef.SelectedValue = _row.IsEDGEID_LFNull() ? 0 : Convert.ToInt32(_row.EDGEID_LF);
+			edgeb.SelectedValue = _row.IsEDGEID_LBNull() ? 0 : Convert.ToInt32(_row.EDGEID_LB);
+			edger.SelectedValue = _row.IsEDGEID_WRNull() ? 0 : Convert.ToInt32(_row.EDGEID_WR);
+			edgel.SelectedValue = _row.IsEDGEID_WLNull() ? 0 : Convert.ToInt32(_row.EDGEID_WL);
+			partq.Value = _row.IsQTYNull() ? 0 : Convert.ToInt32(_row.QTY);
+			PropertySet.CutlistID = _row.IsCLIDNull() ? 0 : _row.CLID;
+			PropertySet.CutlistQty = _row.IsQTYNull() ? 0 : Convert.ToInt32(_row.QTY);
 			GetEstimationFromDB();
 		}
 
