@@ -133,27 +133,14 @@ namespace RedBrick2 {
 							int f = 0;
 							int mf = 0;
 
-							try {
-								f = (int)gota.GetOdometerTotalValue((int)item);
-							} catch (Exception) {
-								//
-							}
-
-							try {
-								mf = (int)gota.GetOdometerValue((int)item, guta.GetUID(Environment.UserName));
-							} catch (Exception) {
-								//
-							}
+							f = Convert.ToInt32(gota.GetOdometerTotalValue((int)item));
+							mf = Convert.ToInt32(gota.GetOdometerValue((int)item, guta.GetUID(Environment.UserName)));
 
 							double y = f / workDays;
 							double my = mf / workDays;
 							double σ = 0;
 
-							try {
-								σ = (double)gota.GetOdometerStdDev((int)item);
-							} catch (Exception) {
-								//
-							}
+							σ = Convert.ToDouble(gota.GetOdometerStdDev((int)item));
 
 							if (y > 0) {
 								DataRow dr = dt.NewRow();
