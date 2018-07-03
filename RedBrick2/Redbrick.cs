@@ -205,12 +205,23 @@ namespace RedBrick2 {
 			}
 		}
 
+		private bool changed = false;
 		private void ConfigureRedbrick() {
+
 			using (RedbrickConfiguration rbc = new RedbrickConfiguration()) {
+				rbc.ChangedStuff += Rbc_ChangedStuff;
 				rbc.ShowDialog(taskpaneHost);
 			}
-			taskpaneHost.ConnectSelection(true);
-			taskpaneHost.ToggleFlameWar(Properties.Settings.Default.FlameWar);
+
+			if (changed) {
+				taskpaneHost.ConnectSelection(true);
+				taskpaneHost.ToggleFlameWar(Properties.Settings.Default.FlameWar);
+			}
+			changed = false;
+		}
+
+		private void Rbc_ChangedStuff(object sender, EventArgs e) {
+			changed = true;
 		}
 
 		private void GreenCheck() {

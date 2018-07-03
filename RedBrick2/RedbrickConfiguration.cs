@@ -13,6 +13,7 @@ namespace RedBrick2 {
 		private bool sound_clicked = false;
 		private DateTime odometerStart;
 		private double workDays;
+		private bool changed = false;
 
 		/// <summary>
 		/// Constructor.
@@ -248,6 +249,12 @@ namespace RedBrick2 {
 			//tt_.SetToolTip(numericUpDown1, nud1_);
 		}
 
+		public event EventHandler ChangedStuff;
+
+		protected virtual void OnChangedStuff() {
+			ChangedStuff?.Invoke(this, new EventArgs());
+		}
+
 		/// <summary>
 		/// I was saving data here, but it didn't seem to keep.
 		/// </summary>
@@ -297,6 +304,11 @@ namespace RedBrick2 {
 			Properties.Settings.Default.RBConfigLocation = Location;
 			Properties.Settings.Default.RBConfigSize = Size;
 			Properties.Settings.Default.Save();
+
+			if (changed) {
+				OnChangedStuff();
+			}
+
 			Close();
 		}
 
@@ -320,6 +332,7 @@ namespace RedBrick2 {
 				&& cbDefaultMaterial.SelectedValue != null
 				&& int.TryParse(cbDefaultMaterial.SelectedValue.ToString(), out tp)) {
 				Properties.Settings.Default.DefaultMaterial = tp;
+				changed = true;
 			}
 		}
 
@@ -330,6 +343,7 @@ namespace RedBrick2 {
 		/// <param name="e">Any data come with it?</param>
 		private void chbFlameWar_CheckedChanged(object sender, EventArgs e) {
 			Properties.Settings.Default.FlameWar = chbFlameWar.Checked;
+			changed = true;
 		}
 
 		/// <summary>
@@ -345,6 +359,7 @@ namespace RedBrick2 {
 				dimwarn_chb.Checked = false;
 			}
 			tableLayoutPanel5.Enabled = chbWarnings.Checked;
+			changed = true;
 		}
 
 		/// <summary>
@@ -363,6 +378,7 @@ namespace RedBrick2 {
 					Properties.Settings.Default.ClipboardSound = ofd.FileName;
 					FileInfo fi_ = new FileInfo(ofd.FileName);
 					chbSounds.Text = string.Format(@"Sounds ( {0} )", fi_.Name);
+					changed = true;
 				} else {
 					chbSounds.Checked = false;
 				}
@@ -386,6 +402,7 @@ namespace RedBrick2 {
 		/// <param name="e">Any data come with it?</param>
 		private void chbIdiotLight_CheckedChanged(object sender, EventArgs e) {
 			Properties.Settings.Default.IdiotLight = chbIdiotLight.Checked;
+			changed = true;
 		}
 
 		/// <summary>
@@ -395,6 +412,7 @@ namespace RedBrick2 {
 		/// <param name="e">Any data come with it?</param>
 		private void chbOnlyActive_CheckedChanged(object sender, EventArgs e) {
 			Properties.Settings.Default.OnlyActiveAuthors = chbOnlyActive.Checked;
+			changed = true;
 		}
 
 		/// <summary>
@@ -404,6 +422,7 @@ namespace RedBrick2 {
 		/// <param name="e">Any data come with it?</param>
 		private void chbOnlyActiveCustomers_CheckedChanged(object sender, EventArgs e) {
 			Properties.Settings.Default.OnlyCurrentCustomers = chbOnlyActiveCustomers.Checked;
+			changed = true;
 		}
 
 		/// <summary>
@@ -413,6 +432,7 @@ namespace RedBrick2 {
 		/// <param name="e">Any data come with it?</param>
 		private void chbCustomerWarn_CheckedChanged(object sender, EventArgs e) {
 			Properties.Settings.Default.RememberLastCustomer = chbRememberCustomer.Checked;
+			changed = true;
 		}
 		
 		/// <summary>
@@ -422,6 +442,7 @@ namespace RedBrick2 {
 		/// <param name="e">Any data come with it?</param>
 		private void checkBox1_CheckedChanged(object sender, EventArgs e) {
 			Properties.Settings.Default.WarnExcludeAssy = dimwarn_chb.Checked;
+			changed = true;
 		}
 
 		/// <summary>
@@ -439,6 +460,7 @@ namespace RedBrick2 {
 		/// <param name="e">Any data come with it?</param>
 		private void checkBox2_CheckedChanged(object sender, EventArgs e) {
 			Properties.Settings.Default.ExtraInfo = extra_info_chb.Checked;
+			changed = true;
 		}
 
 		/// <summary>
@@ -454,7 +476,7 @@ namespace RedBrick2 {
 			if (ofd.ShowDialog() == DialogResult.OK) {
 				textBox2.Text = ofd.FileName;
 				Properties.Settings.Default.GaugePath = ofd.FileName;
-				Properties.Settings.Default.Save();
+				changed = true;
 			} else {
 
 			}
@@ -462,40 +484,49 @@ namespace RedBrick2 {
 
 		private void checkBox3_CheckedChanged(object sender, EventArgs e) {
 			Properties.Settings.Default.SaveFirst = checkBox3.Checked;
+			changed = true;
 		}
 
 		private void checkBox4_CheckedChanged(object sender, EventArgs e) {
 			Properties.Settings.Default.SilenceGaugeErrors = checkBox4.Checked;
+			changed = true;
 		}
 
 		private void checkBox5_CheckedChanged(object sender, EventArgs e) {
 			Properties.Settings.Default.ExportEDrw = checkBox5.Checked;
+			changed = true;
 		}
 
 		private void checkBox6_CheckedChanged(object sender, EventArgs e) {
 			Properties.Settings.Default.ExportImg = checkBox6.Checked;
+			changed = true;
 		}
 
 		private void readonly_warn_cb_CheckedChanged(object sender, EventArgs e) {
 			Properties.Settings.Default.ReadOnlyWarn = readonly_warn_cb.Checked;
+			changed = true;
 		}
 
 		private void checkBox1_CheckedChanged_1(object sender, EventArgs e) {
 			Properties.Settings.Default.WarnExcludeAssy = dimwarn_chb.Checked;
+			changed = true;
 		}
 
 		private void combobox_KeyDown(object sender, KeyEventArgs e) {
 			if (sender is ComboBox)
 				(sender as ComboBox).DroppedDown = false;
+			changed = true;
 		}
 
 		private void comboBox_Resize(object sender, EventArgs e) {
 			ComboBox _me = (sender as ComboBox);
 			_me.SelectionLength = 0;
+			changed = true;
 		}
 
 		private void checkBox8_CheckedChanged(object sender, EventArgs e) {
 			Properties.Settings.Default.AutoOpenPriority = checkBox8.Checked;
+			changed = true;
 		}
 
 		private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e) {
@@ -519,7 +550,7 @@ namespace RedBrick2 {
 			if (ofd.ShowDialog(this) == DialogResult.OK) {
 				//textBox3.Text = ofd.FileName;
 				Properties.Settings.Default.BOMTemplatePath = ofd.FileName;
-				Properties.Settings.Default.Save();
+				changed = true;
 			}
 		}
 
@@ -532,7 +563,7 @@ namespace RedBrick2 {
 			if (fbd.ShowDialog(this) == System.Windows.Forms.DialogResult.OK) {
 				tb.Text = fbd.SelectedPath;
 				Properties.Settings.Default.JPGPath = fbd.SelectedPath;
-				Properties.Settings.Default.Save();
+				changed = true;
 			}
 		}
 
@@ -545,7 +576,7 @@ namespace RedBrick2 {
 			if (fbd.ShowDialog(this) == System.Windows.Forms.DialogResult.OK) {
 				tb.Text = fbd.SelectedPath;
 				Properties.Settings.Default.KPath = fbd.SelectedPath;
-				Properties.Settings.Default.Save();
+				changed = true;
 			}
 		}
 
@@ -558,7 +589,7 @@ namespace RedBrick2 {
 			if (fbd.ShowDialog(this) == System.Windows.Forms.DialogResult.OK) {
 				tb.Text = fbd.SelectedPath;
 				Properties.Settings.Default.GPath = fbd.SelectedPath;
-				Properties.Settings.Default.Save();
+				changed = true;
 			}
 		}
 
@@ -571,24 +602,28 @@ namespace RedBrick2 {
 			if (fbd.ShowDialog(this) == System.Windows.Forms.DialogResult.OK) {
 				tb.Text = fbd.SelectedPath;
 				Properties.Settings.Default.MetalPath = fbd.SelectedPath;
-				Properties.Settings.Default.Save();
+				changed = true;
 			}
 		}
 
 		private void textBox8_TextChanged(object sender, EventArgs e) {
 			Properties.Settings.Default.GaugeRegex = textBox8.Text;
+			changed = true;
 		}
 
 		private void chbOpWarnings_CheckedChanged_1(object sender, EventArgs e) {
 			Properties.Settings.Default.OpWarn = (sender as CheckBox).Checked;
+			changed = true;
 		}
 
 		private void dimwarn_chb_CheckedChanged(object sender, EventArgs e) {
 			Properties.Settings.Default.NotifyDimensionChangeOnSave = (sender as CheckBox).Checked;
+			changed = true;
 		}
 
 		private void fin_spec_cb_CheckedChanged(object sender, EventArgs e) {
 			Properties.Settings.Default.SuggestFinishSpec = (sender as CheckBox).Checked;
+			changed = true;
 		}
 	}
 }
