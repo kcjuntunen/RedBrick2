@@ -46,7 +46,7 @@ namespace RedBrick2 {
 					}
 				}
 			}
-			
+
 			if (int.TryParse(Value, out intval)) {
 				using (ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter cota =
 					new ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter()) {
@@ -72,7 +72,8 @@ namespace RedBrick2 {
 		/// <summary>
 		/// The part type is necessary to find the right rows in CUT_PART_OPS.
 		/// </summary>
-		public int OpType {
+		public int OpType
+		{
 			get { return _type; }
 			set { _type = value; }
 		}
@@ -90,8 +91,10 @@ namespace RedBrick2 {
 		/// <summary>
 		/// An value appropriately formatted for the db.
 		/// </summary>
-		public override object Data {
-			get {
+		public override object Data
+		{
+			get
+			{
 				if (_data == 0) {
 					using (ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter fcota =
 						new ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter()) {
