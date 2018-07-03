@@ -1549,14 +1549,12 @@ namespace RedBrick2 {
 					dgvr_.Cells[@"CNC 2"].Style.BackColor = Color.LightGreen;
 					if (write_to_parts_) {
 						_partlist[partnum_].Write();
-						if (data_from_db_) {
-							write_ops();
-						}
 						_partlist[partnum_].Save();
 					}
 					parts_.Add(_partlist[partnum_]);
 				}
 			}
+			write_ops();
 			return parts_;
 		}
 
