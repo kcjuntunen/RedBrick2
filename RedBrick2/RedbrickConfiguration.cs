@@ -46,7 +46,6 @@ namespace RedBrick2 {
 			tt.SetToolTip(label13, Properties.Resources.RegexHint);
 			init_gauges();
 			init_stats();
-			initialated = true;
 		}
 
 		private void init_gauges() {
@@ -247,6 +246,7 @@ namespace RedBrick2 {
 			//string nud1_ = @"Number of parts to amortize setup time over.";
 			//tt_.SetToolTip(label8, nud1_);
 			//tt_.SetToolTip(numericUpDown1, nud1_);
+			initialated = true;
 		}
 
 		public event EventHandler ChangedStuff;
@@ -269,7 +269,9 @@ namespace RedBrick2 {
 		/// <param name="sender">Who triggered this event?</param>
 		/// <param name="e">Any data come with it?</param>
 		private void cbRevLimit_SelectedIndexChanged(object sender, EventArgs e) {
-			Properties.Settings.Default.LvlLimit = (int)cbRevLimit.SelectedIndex + 1;
+			if (initialated) {
+				Properties.Settings.Default.LvlLimit = (int)cbRevLimit.SelectedIndex + 1;
+			}
 		}
 
 		/// <summary>
@@ -342,8 +344,10 @@ namespace RedBrick2 {
 		/// <param name="sender">Who triggered this event?</param>
 		/// <param name="e">Any data come with it?</param>
 		private void chbFlameWar_CheckedChanged(object sender, EventArgs e) {
-			Properties.Settings.Default.FlameWar = chbFlameWar.Checked;
-			changed = true;
+			if (initialated) {
+				Properties.Settings.Default.FlameWar = chbFlameWar.Checked;
+				changed = true;
+			}
 		}
 
 		/// <summary>
@@ -352,14 +356,16 @@ namespace RedBrick2 {
 		/// <param name="sender">Who triggered this event?</param>
 		/// <param name="e">Any data come with it?</param>
 		private void chbWarnings_CheckedChanged(object sender, EventArgs e) {
-			Properties.Settings.Default.Warn = chbWarnings.Checked;
-			if (!chbWarnings.Checked) {
-				chbOpWarnings.Checked = false;
-				readonly_warn_cb.Checked = false;
-				dimwarn_chb.Checked = false;
+			if (initialated) {
+				Properties.Settings.Default.Warn = chbWarnings.Checked;
+				if (!chbWarnings.Checked) {
+					chbOpWarnings.Checked = false;
+					readonly_warn_cb.Checked = false;
+					dimwarn_chb.Checked = false;
+				}
+				tableLayoutPanel5.Enabled = chbWarnings.Checked;
+				changed = true;
 			}
-			tableLayoutPanel5.Enabled = chbWarnings.Checked;
-			changed = true;
 		}
 
 		/// <summary>
@@ -401,8 +407,10 @@ namespace RedBrick2 {
 		/// <param name="sender">Who triggered this event?</param>
 		/// <param name="e">Any data come with it?</param>
 		private void chbIdiotLight_CheckedChanged(object sender, EventArgs e) {
-			Properties.Settings.Default.IdiotLight = chbIdiotLight.Checked;
-			changed = true;
+			if (initialated) {
+				Properties.Settings.Default.IdiotLight = chbIdiotLight.Checked;
+				changed = true;
+			}
 		}
 
 		/// <summary>
@@ -411,8 +419,10 @@ namespace RedBrick2 {
 		/// <param name="sender">Who triggered this event?</param>
 		/// <param name="e">Any data come with it?</param>
 		private void chbOnlyActive_CheckedChanged(object sender, EventArgs e) {
-			Properties.Settings.Default.OnlyActiveAuthors = chbOnlyActive.Checked;
-			changed = true;
+			if (initialated) {
+				Properties.Settings.Default.OnlyActiveAuthors = chbOnlyActive.Checked;
+				changed = true;
+			}
 		}
 
 		/// <summary>
@@ -421,8 +431,10 @@ namespace RedBrick2 {
 		/// <param name="sender">Who triggered this event?</param>
 		/// <param name="e">Any data come with it?</param>
 		private void chbOnlyActiveCustomers_CheckedChanged(object sender, EventArgs e) {
-			Properties.Settings.Default.OnlyCurrentCustomers = chbOnlyActiveCustomers.Checked;
-			changed = true;
+			if (initialated) {
+				Properties.Settings.Default.OnlyCurrentCustomers = chbOnlyActiveCustomers.Checked;
+				changed = true;
+			}
 		}
 
 		/// <summary>
@@ -431,8 +443,10 @@ namespace RedBrick2 {
 		/// <param name="sender">Who triggered this event?</param>
 		/// <param name="e">Any data come with it?</param>
 		private void chbCustomerWarn_CheckedChanged(object sender, EventArgs e) {
-			Properties.Settings.Default.RememberLastCustomer = chbRememberCustomer.Checked;
-			changed = true;
+			if (initialated) {
+				Properties.Settings.Default.RememberLastCustomer = chbRememberCustomer.Checked;
+				changed = true;
+			}
 		}
 		
 		/// <summary>
@@ -441,8 +455,10 @@ namespace RedBrick2 {
 		/// <param name="sender">Who triggered this event?</param>
 		/// <param name="e">Any data come with it?</param>
 		private void checkBox1_CheckedChanged(object sender, EventArgs e) {
-			Properties.Settings.Default.WarnExcludeAssy = dimwarn_chb.Checked;
-			changed = true;
+			if (initialated) {
+				Properties.Settings.Default.WarnExcludeAssy = dimwarn_chb.Checked;
+				changed = true;
+			}
 		}
 
 		/// <summary>
@@ -459,8 +475,10 @@ namespace RedBrick2 {
 		/// <param name="sender">Who triggered this event?</param>
 		/// <param name="e">Any data come with it?</param>
 		private void checkBox2_CheckedChanged(object sender, EventArgs e) {
-			Properties.Settings.Default.ExtraInfo = extra_info_chb.Checked;
-			changed = true;
+			if (initialated) {
+				Properties.Settings.Default.ExtraInfo = extra_info_chb.Checked;
+				changed = true;
+			}
 		}
 
 		/// <summary>
@@ -483,33 +501,45 @@ namespace RedBrick2 {
 		}
 
 		private void checkBox3_CheckedChanged(object sender, EventArgs e) {
-			Properties.Settings.Default.SaveFirst = checkBox3.Checked;
-			changed = true;
+			if (initialated) {
+				Properties.Settings.Default.SaveFirst = checkBox3.Checked;
+				changed = true;
+			}
 		}
 
 		private void checkBox4_CheckedChanged(object sender, EventArgs e) {
-			Properties.Settings.Default.SilenceGaugeErrors = checkBox4.Checked;
-			changed = true;
+			if (initialated) {
+				Properties.Settings.Default.SilenceGaugeErrors = checkBox4.Checked;
+				changed = true;
+			}
 		}
 
 		private void checkBox5_CheckedChanged(object sender, EventArgs e) {
-			Properties.Settings.Default.ExportEDrw = checkBox5.Checked;
-			changed = true;
+			if (initialated) {
+				Properties.Settings.Default.ExportEDrw = checkBox5.Checked;
+				changed = true;
+			}
 		}
 
 		private void checkBox6_CheckedChanged(object sender, EventArgs e) {
-			Properties.Settings.Default.ExportImg = checkBox6.Checked;
-			changed = true;
+			if (initialated) {
+				Properties.Settings.Default.ExportImg = checkBox6.Checked;
+				changed = true;
+			}
 		}
 
 		private void readonly_warn_cb_CheckedChanged(object sender, EventArgs e) {
-			Properties.Settings.Default.ReadOnlyWarn = readonly_warn_cb.Checked;
-			changed = true;
+			if (initialated) {
+				Properties.Settings.Default.ReadOnlyWarn = readonly_warn_cb.Checked;
+				changed = true;
+			}
 		}
 
 		private void checkBox1_CheckedChanged_1(object sender, EventArgs e) {
-			Properties.Settings.Default.WarnExcludeAssy = dimwarn_chb.Checked;
-			changed = true;
+			if (initialated) {
+				Properties.Settings.Default.WarnExcludeAssy = dimwarn_chb.Checked;
+				changed = true;
+			}
 		}
 
 		private void combobox_KeyDown(object sender, KeyEventArgs e) {
@@ -525,8 +555,10 @@ namespace RedBrick2 {
 		}
 
 		private void checkBox8_CheckedChanged(object sender, EventArgs e) {
-			Properties.Settings.Default.AutoOpenPriority = checkBox8.Checked;
-			changed = true;
+			if (initialated) {
+				Properties.Settings.Default.AutoOpenPriority = checkBox8.Checked;
+				changed = true;
+			}
 		}
 
 		private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e) {
@@ -607,23 +639,31 @@ namespace RedBrick2 {
 		}
 
 		private void textBox8_TextChanged(object sender, EventArgs e) {
-			Properties.Settings.Default.GaugeRegex = textBox8.Text;
-			changed = true;
+			if (initialated) {
+				Properties.Settings.Default.GaugeRegex = textBox8.Text;
+				changed = true;
+			}
 		}
 
 		private void chbOpWarnings_CheckedChanged_1(object sender, EventArgs e) {
-			Properties.Settings.Default.OpWarn = (sender as CheckBox).Checked;
-			changed = true;
+			if (initialated) {
+				Properties.Settings.Default.OpWarn = (sender as CheckBox).Checked;
+				changed = true;
+			}
 		}
 
 		private void dimwarn_chb_CheckedChanged(object sender, EventArgs e) {
-			Properties.Settings.Default.NotifyDimensionChangeOnSave = (sender as CheckBox).Checked;
-			changed = true;
+			if (initialated) {
+				Properties.Settings.Default.NotifyDimensionChangeOnSave = (sender as CheckBox).Checked;
+				changed = true;
+			}
 		}
 
 		private void fin_spec_cb_CheckedChanged(object sender, EventArgs e) {
-			Properties.Settings.Default.SuggestFinishSpec = (sender as CheckBox).Checked;
-			changed = true;
+			if (initialated) {
+				Properties.Settings.Default.SuggestFinishSpec = (sender as CheckBox).Checked;
+				changed = true;
+			}
 		}
 	}
 }
