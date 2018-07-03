@@ -65,11 +65,9 @@ namespace RedBrick2 {
 						_data = (int)cota.GetOpIDByName(value.ToString(), OpType);
 					}
 				} else {
-					try {
+					if (value != null) {
 						_data = int.Parse(value.ToString());
 						Value = value.ToString();
-					} catch (Exception) {
-
 					}
 				}
 			}
