@@ -234,7 +234,6 @@
 			this.update_btn.TabIndex = 0;
 			this.update_btn.Text = "Update";
 			this.update_btn.UseVisualStyleBackColor = true;
-			this.update_btn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.update_btn_MouseClick);
 			// 
 			// update_all_btn
 			// 
