@@ -224,9 +224,15 @@ namespace RedBrick2 {
 				fileDateLabel.Text = string.Format(@"SLDDRW last saved: {0}", PartFileInfo.LastWriteTime.ToShortDateString());
 				PDFFileInfo = find_pdf(Path.GetFileNameWithoutExtension(PartFileInfo.Name));
 				if (PDFFileInfo != null && PDFFileInfo.Exists) {
-					pdfDateLabel.Text = string.Format(@"PDF last saved: {0}", PDFFileInfo.LastWriteTime.ToShortDateString());
-					linkLabel_tooltip.SetToolTip(pdfDateLabel, PDFFileInfo.FullName);
-					pdfDateLabel.LinkVisited = false;
+					if (PDFFileInfo.DirectoryName.ToUpper().Contains(@"DEVELOPMENT")) {
+						pdfDateLabel.Text = string.Format(@"Dev. PDF last saved: {0}", PDFFileInfo.LastWriteTime.ToShortDateString());
+						linkLabel_tooltip.SetToolTip(pdfDateLabel, PDFFileInfo.FullName);
+						pdfDateLabel.LinkVisited = false;
+					} else {
+						pdfDateLabel.Text = string.Format(@"PDF last saved: {0}", PDFFileInfo.LastWriteTime.ToShortDateString());
+						linkLabel_tooltip.SetToolTip(pdfDateLabel, PDFFileInfo.FullName);
+						pdfDateLabel.LinkVisited = false;
+					}
 				} else {
 					pdfDateLabel.Text = string.Format(@"No PDF");
 					linkLabel_tooltip.RemoveAll();
@@ -264,6 +270,11 @@ namespace RedBrick2 {
 						}
 					}
 				}
+			}
+			string p_ = PartFileInfo.DirectoryName;
+			string[] files_ = Directory.GetFiles(p_, searchterm_, SearchOption.TopDirectoryOnly);
+			if (files_.Length > 0) {
+				return new FileInfo(files_[0]);
 			}
 			return null;
 		}
