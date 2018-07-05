@@ -36,13 +36,13 @@ namespace RedBrick2 {
 			string searchTerm = ResolvedValue.Split('-')[0].Trim();
 
 			ENGINEERINGDataSet.GEN_CUSTOMERSRow row = null;
-			try {
-				using (ENGINEERINGDataSetTableAdapters.GEN_CUSTOMERSTableAdapter gc =
-					new ENGINEERINGDataSetTableAdapters.GEN_CUSTOMERSTableAdapter()) {
-					row = gc.GetDataBySearchTerm(searchTerm + '%')[0];
+			using (ENGINEERINGDataSetTableAdapters.GEN_CUSTOMERSTableAdapter gc =
+				new ENGINEERINGDataSetTableAdapters.GEN_CUSTOMERSTableAdapter()) {
+				using (ENGINEERINGDataSet.GEN_CUSTOMERSDataTable gcdt = gc.GetDataBySearchTerm(searchTerm + '%')) {
+					if (gcdt.Count > 0) {
+						row = gcdt[0];
+					}
 				}
-			} catch (Exception) {
-				//
 			}
 
 			if (row != null) {
