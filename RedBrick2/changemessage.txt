@@ -1,6 +1,10 @@
 
-1) Added highlighting to the ECR Viewer.
-2) Added support for Legacy ECRs to the ECR Viewer.
-3) Added "Related ECRs" button to Drawing Property window.
-4) Fixed PDF lookup sometimes failing in Create Cutlist window.
-5) Began to add a Cutlist Time editing window.
+1) Added a little feedback to Add Part window.
+2) ArchivePDF only sends an alert to metal if there's already a metal drawing.
+3) Create Cutlist changes
+	 - Runs more efficiently.
+	 - Added some experimental buttons.
+	 - A little feedback in the form of coloring cells.
+4) If you hit cancel on the configuration window, it will no longer reload property data on close.
+5) Removed try/catch blocks in favor of ifs where possible.
+6) Dabbled with property getter internals.
