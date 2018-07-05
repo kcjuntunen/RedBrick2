@@ -22,6 +22,7 @@ namespace RedBrick2 {
 		private ToolTip rev_tooltip = new ToolTip();
 		private ToolTip status_tooltip = new ToolTip();
 		private ToolTip req_tooltip = new ToolTip();
+		private ToolTip linkLabel_tooltip = new ToolTip();
 		private int clid = 0;
 		private bool user_editing = false;
 		private bool jobs = false;
@@ -224,9 +225,11 @@ namespace RedBrick2 {
 				PDFFileInfo = find_pdf(Path.GetFileNameWithoutExtension(PartFileInfo.Name));
 				if (PDFFileInfo != null && PDFFileInfo.Exists) {
 					pdfDateLabel.Text = string.Format(@"PDF last saved: {0}", PDFFileInfo.LastWriteTime.ToShortDateString());
+					linkLabel_tooltip.SetToolTip(pdfDateLabel, PDFFileInfo.FullName);
 					pdfDateLabel.LinkVisited = false;
 				} else {
 					pdfDateLabel.Text = string.Format(@"No PDF");
+					linkLabel_tooltip.RemoveAll();
 					pdfDateLabel.LinkVisited = true;
 				}
 			}
