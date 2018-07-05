@@ -53,7 +53,7 @@ namespace RedBrick2 {
 				lp.Get();
 				lpuid.Get();
 				dap.Get();
-				if (lpuid.Value != string.Empty) {
+				if (lpuid.Value != null && lpuid.Value != string.Empty) {
 					lp.Data = lpuid.Data;
 				} else if (lp.Value != string.Empty) {
 					lpuid.Data = lp.Data;
