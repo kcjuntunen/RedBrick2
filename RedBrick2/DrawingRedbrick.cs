@@ -220,7 +220,49 @@ namespace RedBrick2 {
 					dd_ = ActiveDoc as DrawingDoc;
 					dd_.FileSavePostNotify += dd__FileSavePostNotify;
 				}
+				fileDateLabel.Text = string.Format(@"SLDDRW last saved: {0}", PartFileInfo.LastWriteTime.ToShortDateString());
+				PDFFileInfo = find_pdf(Path.GetFileNameWithoutExtension(PartFileInfo.Name));
+				if (PDFFileInfo != null && PDFFileInfo.Exists) {
+					pdfDateLabel.Text = string.Format(@"PDF last saved: {0}", PDFFileInfo.LastWriteTime.ToShortDateString());
+					pdfDateLabel.LinkVisited = false;
+				} else {
+					pdfDateLabel.Text = string.Format(@"No PDF");
+					pdfDateLabel.LinkVisited = true;
+				}
 			}
+		}
+
+		private void PdfDateLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+			if (PDFFileInfo != null && PDFFileInfo.Exists) {
+				(sender as LinkLabel).LinkVisited = true;
+				System.Diagnostics.Process.Start(PDFFileInfo.FullName);
+			}
+		}
+
+		private FileInfo find_pdf(string doc) {
+			string searchterm_ = string.Format(@"{0}.PDF", doc);
+			if (ActiveDoc.GetPathName().ToUpper().StartsWith(@"G")) {
+				using (ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter gdta =
+					new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter()) {
+					using (ENGINEERINGDataSet.GEN_DRAWINGSDataTable dt = gdta.GetDataByFName(searchterm_)) {
+						if (dt.Rows.Count > 0) {
+							ENGINEERINGDataSet.GEN_DRAWINGSRow r = (dt.Rows[0] as ENGINEERINGDataSet.GEN_DRAWINGSRow);
+							return new FileInfo(string.Format(@"{0}{1}", r.FPath, r.FName));
+						}
+					}
+				}
+			} else if (ActiveDoc.GetPathName().ToUpper().StartsWith(@"S")) {
+				using (ENGINEERINGDataSetTableAdapters.GEN_DRAWINGS_MTLTableAdapter gdmta =
+					new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGS_MTLTableAdapter()) {
+					using (ENGINEERINGDataSet.GEN_DRAWINGS_MTLDataTable mdt = gdmta.GetDataByFName(searchterm_)) {
+						if (mdt.Rows.Count > 0) {
+							ENGINEERINGDataSet.GEN_DRAWINGS_MTLRow mr = (mdt.Rows[0] as ENGINEERINGDataSet.GEN_DRAWINGS_MTLRow);
+							return new FileInfo(string.Format(@"{0}{1}", mr.FPath, mr.FName));
+						}
+					}
+				}
+			}
+			return null;
 		}
 
 		/// <summary>
@@ -476,6 +518,8 @@ namespace RedBrick2 {
 		/// A FileInfo object of this drawing's file.
 		/// </summary>
 		public FileInfo PartFileInfo { get; set; }
+
+		public FileInfo PDFFileInfo { get; set; }
 
 		/// <summary>
 		/// The current ModelDoc2.

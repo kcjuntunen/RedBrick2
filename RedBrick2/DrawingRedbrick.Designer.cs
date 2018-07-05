@@ -81,6 +81,9 @@ namespace RedBrick2 {
 			this.gEN_USERSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
 			this.cUT_STATESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_STATESTableAdapter();
 			this.cUT_DRAWING_MATERIALSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_DRAWING_MATERIALSTableAdapter();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.fileDateLabel = new System.Windows.Forms.Label();
+			this.pdfDateLabel = new System.Windows.Forms.LinkLabel();
 			this.tableLayoutPanel5.SuspendLayout();
 			this.groupBox6.SuspendLayout();
 			this.tableLayoutPanel6.SuspendLayout();
@@ -96,6 +99,7 @@ namespace RedBrick2 {
 			((System.ComponentModel.ISupportInitialize)(this.gENCUSTOMERSBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gENUSERSBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTSTATESBindingSource)).BeginInit();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tableLayoutPanel5
@@ -103,36 +107,40 @@ namespace RedBrick2 {
 			this.tableLayoutPanel5.ColumnCount = 1;
 			this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel5.Controls.Add(this.groupBox6, 0, 1);
-			this.tableLayoutPanel5.Controls.Add(this.treeView1, 0, 2);
-			this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel1, 0, 3);
 			this.tableLayoutPanel5.Controls.Add(this.groupBox5, 0, 0);
+			this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel1, 0, 4);
+			this.tableLayoutPanel5.Controls.Add(this.treeView1, 0, 3);
+			this.tableLayoutPanel5.Controls.Add(this.panel1, 0, 2);
 			this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-			this.tableLayoutPanel5.RowCount = 4;
-			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.78177F));
-			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40.35083F));
-			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35.8674F));
+			this.tableLayoutPanel5.RowCount = 5;
+			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.44099F));
+			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 37.11712F));
+			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 37.44189F));
 			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
 			this.tableLayoutPanel5.Size = new System.Drawing.Size(353, 789);
 			this.tableLayoutPanel5.TabIndex = 1;
 			// 
 			// groupBox6
 			// 
-			this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox6.Controls.Add(this.tableLayoutPanel6);
 			this.groupBox6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.groupBox6.Location = new System.Drawing.Point(3, 181);
+			this.groupBox6.Location = new System.Drawing.Point(3, 182);
 			this.groupBox6.Name = "groupBox6";
-			this.groupBox6.Size = new System.Drawing.Size(347, 271);
+			this.groupBox6.Size = new System.Drawing.Size(347, 255);
 			this.groupBox6.TabIndex = 1;
 			this.groupBox6.TabStop = false;
 			this.groupBox6.Text = "Materials";
 			// 
 			// tableLayoutPanel6
 			// 
-			this.tableLayoutPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.tableLayoutPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tableLayoutPanel6.ColumnCount = 2;
 			this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
@@ -158,6 +166,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel6.Controls.Add(this.fin4_tb, 1, 7);
 			this.tableLayoutPanel6.Controls.Add(this.fin5_tb, 1, 9);
 			this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 16);
+			this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(1);
 			this.tableLayoutPanel6.Name = "tableLayoutPanel6";
 			this.tableLayoutPanel6.RowCount = 10;
 			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -170,7 +179,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel6.Size = new System.Drawing.Size(341, 238);
+			this.tableLayoutPanel6.Size = new System.Drawing.Size(341, 233);
 			this.tableLayoutPanel6.TabIndex = 0;
 			// 
 			// label31
@@ -453,9 +462,9 @@ namespace RedBrick2 {
 			this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.treeView1.Location = new System.Drawing.Point(3, 483);
+			this.treeView1.Location = new System.Drawing.Point(3, 487);
 			this.treeView1.Name = "treeView1";
-			this.treeView1.Size = new System.Drawing.Size(347, 262);
+			this.treeView1.Size = new System.Drawing.Size(347, 257);
 			this.treeView1.TabIndex = 2;
 			this.treeView1.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.treeView1_DrawNode);
 			this.treeView1.DoubleClick += new System.EventHandler(this.treeView1_DoubleClick);
@@ -471,7 +480,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel1.Controls.Add(this.button1, 0, 0);
 			this.tableLayoutPanel1.Controls.Add(this.button6, 1, 0);
 			this.tableLayoutPanel1.Controls.Add(this.button7, 2, 0);
-			this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 751);
+			this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 750);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			this.tableLayoutPanel1.RowCount = 1;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -526,7 +535,7 @@ namespace RedBrick2 {
 			this.groupBox5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.groupBox5.Location = new System.Drawing.Point(3, 3);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(347, 172);
+			this.groupBox5.Size = new System.Drawing.Size(347, 173);
 			this.groupBox5.TabIndex = 0;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "groupBox5";
@@ -565,7 +574,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel7.Size = new System.Drawing.Size(341, 150);
+			this.tableLayoutPanel7.Size = new System.Drawing.Size(341, 151);
 			this.tableLayoutPanel7.TabIndex = 0;
 			// 
 			// label41
@@ -789,6 +798,38 @@ namespace RedBrick2 {
 			// 
 			this.cUT_DRAWING_MATERIALSTableAdapter.ClearBeforeFill = true;
 			// 
+			// panel1
+			// 
+			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.panel1.Controls.Add(this.pdfDateLabel);
+			this.panel1.Controls.Add(this.fileDateLabel);
+			this.panel1.Location = new System.Drawing.Point(3, 443);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(347, 38);
+			this.panel1.TabIndex = 4;
+			// 
+			// fileDateLabel
+			// 
+			this.fileDateLabel.AutoSize = true;
+			this.fileDateLabel.Location = new System.Drawing.Point(9, 4);
+			this.fileDateLabel.Name = "fileDateLabel";
+			this.fileDateLabel.Size = new System.Drawing.Size(38, 13);
+			this.fileDateLabel.TabIndex = 0;
+			this.fileDateLabel.Text = "label1";
+			// 
+			// pdfDateLabel
+			// 
+			this.pdfDateLabel.AutoSize = true;
+			this.pdfDateLabel.Location = new System.Drawing.Point(9, 20);
+			this.pdfDateLabel.Name = "pdfDateLabel";
+			this.pdfDateLabel.Size = new System.Drawing.Size(59, 13);
+			this.pdfDateLabel.TabIndex = 1;
+			this.pdfDateLabel.TabStop = true;
+			this.pdfDateLabel.Text = "linkLabel1";
+			this.pdfDateLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.PdfDateLabel_LinkClicked);
+			// 
 			// DrawingRedbrick
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -815,6 +856,8 @@ namespace RedBrick2 {
 			((System.ComponentModel.ISupportInitialize)(this.gENCUSTOMERSBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gENUSERSBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTSTATESBindingSource)).EndInit();
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
 			this.ResumeLayout(false);
 
     }
@@ -878,5 +921,8 @@ namespace RedBrick2 {
     private System.Windows.Forms.Button button1;
     private System.Windows.Forms.Button button6;
     private System.Windows.Forms.Button button7;
-  }
+		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.LinkLabel pdfDateLabel;
+		private System.Windows.Forms.Label fileDateLabel;
+	}
 }
