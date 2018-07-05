@@ -60,7 +60,7 @@ namespace RedBrick2 {
 			_swApp = s;
 			InitializeComponent();
 
-			new ToolTip().SetToolTip(update_prts_btn, @"Experimental. Try it, have fun!");
+			new ToolTip().SetToolTip(update_prts_btn, @"Experimental. This is supposed to write whatever you see in this table to the parts.");
 			new ToolTip().SetToolTip(getdatafromDBbtn, @"Experimental. Try and get part info from DB instead of parts.");
 			dataGridView1.DataError += dataGridView1_DataError;
 			dataGridView1.UserDeletedRow += DataGridView1_UserDeletedRow;
