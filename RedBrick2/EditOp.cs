@@ -146,12 +146,13 @@ namespace RedBrick2 {
 			if (user_edit) {
 				ComboBox cbx = sender as ComboBox;
 				DataRowView drv = cbx.SelectedItem as DataRowView;
-				float tmp = 0.0F;
-				if (float.TryParse(drv[4].ToString(), out tmp)) {
-					textBox1.Text = string.Format(Properties.Settings.Default.NumberFormat, tmp * 60);
-				}
-				if (float.TryParse(drv[5].ToString(), out tmp)) {
-					textBox2.Text = string.Format(Properties.Settings.Default.NumberFormat, tmp * 60);
+				if (drv != null) {
+					if (float.TryParse(drv[4].ToString(), out float tmp)) {
+						textBox1.Text = string.Format(Properties.Settings.Default.NumberFormat, tmp * 60);
+					}
+					if (float.TryParse(drv[5].ToString(), out tmp)) {
+						textBox2.Text = string.Format(Properties.Settings.Default.NumberFormat, tmp * 60);
+					}
 				}
 				user_edit = false;
 			}
