@@ -221,23 +221,33 @@ namespace RedBrick2 {
 					dd_ = ActiveDoc as DrawingDoc;
 					dd_.FileSavePostNotify += dd__FileSavePostNotify;
 				}
-				fileDateLabel.Text = string.Format(@"SLDDRW last saved: {0}", PartFileInfo.LastWriteTime.ToShortDateString());
-				PDFFileInfo = find_pdf(Path.GetFileNameWithoutExtension(PartFileInfo.Name));
-				if (PDFFileInfo != null && PDFFileInfo.Exists) {
-					if (PDFFileInfo.DirectoryName.ToUpper().Contains(@"DEVELOPMENT")) {
-						pdfDateLabel.Text = string.Format(@"Dev. PDF last saved: {0}", PDFFileInfo.LastWriteTime.ToShortDateString());
-						linkLabel_tooltip.SetToolTip(pdfDateLabel, PDFFileInfo.FullName);
-						pdfDateLabel.LinkVisited = false;
-					} else {
-						pdfDateLabel.Text = string.Format(@"PDF last saved: {0}", PDFFileInfo.LastWriteTime.ToShortDateString());
-						linkLabel_tooltip.SetToolTip(pdfDateLabel, PDFFileInfo.FullName);
-						pdfDateLabel.LinkVisited = false;
-					}
+				GetFileDates();
+			}
+		}
+
+		private void GetFileDates() {
+			fileDateLabel.Text = string.Format(@"SLDDRW last saved: {0} {1}",
+				PartFileInfo.LastWriteTime.ToShortDateString(),
+				PartFileInfo.LastWriteTime.ToShortTimeString());
+			PDFFileInfo = find_pdf(Path.GetFileNameWithoutExtension(PartFileInfo.Name));
+			if (PDFFileInfo != null && PDFFileInfo.Exists) {
+				if (PDFFileInfo.DirectoryName.ToUpper().Contains(@"DEVELOPMENT")) {
+					pdfDateLabel.Text = string.Format(@"Dev. PDF last saved: {0} {1}",
+						PDFFileInfo.LastWriteTime.ToShortDateString(),
+						PDFFileInfo.LastWriteTime.ToShortTimeString());
+					linkLabel_tooltip.SetToolTip(pdfDateLabel, PDFFileInfo.FullName);
+					pdfDateLabel.LinkVisited = false;
 				} else {
-					pdfDateLabel.Text = string.Format(@"No PDF");
-					linkLabel_tooltip.RemoveAll();
-					pdfDateLabel.LinkVisited = true;
+					pdfDateLabel.Text = string.Format(@"PDF last saved: {0} {1}",
+						PDFFileInfo.LastWriteTime.ToShortDateString(),
+						PDFFileInfo.LastWriteTime.ToShortTimeString());
+					linkLabel_tooltip.SetToolTip(pdfDateLabel, PDFFileInfo.FullName);
+					pdfDateLabel.LinkVisited = false;
 				}
+			} else {
+				pdfDateLabel.Text = string.Format(@"No PDF");
+				linkLabel_tooltip.RemoveAll();
+				pdfDateLabel.LinkVisited = true;
 			}
 		}
 
