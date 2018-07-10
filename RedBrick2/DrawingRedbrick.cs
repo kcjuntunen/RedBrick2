@@ -229,9 +229,10 @@ namespace RedBrick2 {
 			fileDateLabel.Text = string.Format(@"SLDDRW last saved: {0} {1}",
 				PartFileInfo.LastWriteTime.ToShortDateString(),
 				PartFileInfo.LastWriteTime.ToShortTimeString());
-			PDFFileInfo = find_pdf(Path.GetFileNameWithoutExtension(PartFileInfo.Name));
+			bool dev = false;
+			PDFFileInfo = find_pdf(Path.GetFileNameWithoutExtension(PartFileInfo.Name), ref dev);
 			if (PDFFileInfo != null && PDFFileInfo.Exists) {
-				if (PDFFileInfo.DirectoryName.ToUpper().Contains(@"DEVELOPMENT")) {
+				if (dev) {
 					pdfDateLabel.Text = string.Format(@"Dev. PDF last saved: {0} {1}",
 						PDFFileInfo.LastWriteTime.ToShortDateString(),
 						PDFFileInfo.LastWriteTime.ToShortTimeString());
@@ -258,8 +259,9 @@ namespace RedBrick2 {
 			}
 		}
 
-		private FileInfo find_pdf(string doc) {
+		private FileInfo find_pdf(string doc, ref bool dev) {
 			string searchterm_ = string.Format(@"{0}.PDF", doc);
+			dev = false;
 			if (ActiveDoc.GetPathName().ToUpper().StartsWith(@"G")) {
 				using (ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter gdta =
 					new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter()) {
@@ -284,6 +286,7 @@ namespace RedBrick2 {
 			string p_ = PartFileInfo.DirectoryName;
 			string[] files_ = Directory.GetFiles(p_, searchterm_, SearchOption.TopDirectoryOnly);
 			if (files_.Length > 0) {
+				dev = true;
 				return new FileInfo(files_[0]);
 			}
 			return null;
