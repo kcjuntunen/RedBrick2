@@ -53,11 +53,6 @@ namespace RedBrick2 {
 			this.fin3_tb = new System.Windows.Forms.TextBox();
 			this.fin4_tb = new System.Windows.Forms.TextBox();
 			this.fin5_tb = new System.Windows.Forms.TextBox();
-			this.treeView1 = new System.Windows.Forms.TreeView();
-			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-			this.button1 = new System.Windows.Forms.Button();
-			this.button6 = new System.Windows.Forms.Button();
-			this.button7 = new System.Windows.Forms.Button();
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
 			this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
 			this.label41 = new System.Windows.Forms.Label();
@@ -77,13 +72,18 @@ namespace RedBrick2 {
 			this.status_cbx = new System.Windows.Forms.ComboBox();
 			this.cUTSTATESBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.button2 = new System.Windows.Forms.Button();
+			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+			this.button1 = new System.Windows.Forms.Button();
+			this.button6 = new System.Windows.Forms.Button();
+			this.button7 = new System.Windows.Forms.Button();
+			this.treeView1 = new System.Windows.Forms.TreeView();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.pdfDateLabel = new System.Windows.Forms.LinkLabel();
+			this.fileDateLabel = new System.Windows.Forms.Label();
 			this.gEN_CUSTOMERSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.GEN_CUSTOMERSTableAdapter();
 			this.gEN_USERSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter();
 			this.cUT_STATESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_STATESTableAdapter();
 			this.cUT_DRAWING_MATERIALSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_DRAWING_MATERIALSTableAdapter();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.fileDateLabel = new System.Windows.Forms.Label();
-			this.pdfDateLabel = new System.Windows.Forms.LinkLabel();
 			this.tableLayoutPanel5.SuspendLayout();
 			this.groupBox6.SuspendLayout();
 			this.tableLayoutPanel6.SuspendLayout();
@@ -93,12 +93,12 @@ namespace RedBrick2 {
 			((System.ComponentModel.ISupportInitialize)(this.cUTDRAWINGMATERIALSBindingSource2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTDRAWINGMATERIALSBindingSource3)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTDRAWINGMATERIALSBindingSource4)).BeginInit();
-			this.tableLayoutPanel1.SuspendLayout();
 			this.groupBox5.SuspendLayout();
 			this.tableLayoutPanel7.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gENCUSTOMERSBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gENUSERSBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTSTATESBindingSource)).BeginInit();
+			this.tableLayoutPanel1.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -457,75 +457,6 @@ namespace RedBrick2 {
 			this.fin5_tb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
 			this.fin5_tb.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyUp);
 			// 
-			// treeView1
-			// 
-			this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.treeView1.Location = new System.Drawing.Point(3, 487);
-			this.treeView1.Name = "treeView1";
-			this.treeView1.Size = new System.Drawing.Size(347, 257);
-			this.treeView1.TabIndex = 2;
-			this.treeView1.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.treeView1_DrawNode);
-			this.treeView1.DoubleClick += new System.EventHandler(this.treeView1_DoubleClick);
-			// 
-			// tableLayoutPanel1
-			// 
-			this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.tableLayoutPanel1.ColumnCount = 3;
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-			this.tableLayoutPanel1.Controls.Add(this.button1, 0, 0);
-			this.tableLayoutPanel1.Controls.Add(this.button6, 1, 0);
-			this.tableLayoutPanel1.Controls.Add(this.button7, 2, 0);
-			this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 750);
-			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-			this.tableLayoutPanel1.RowCount = 1;
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(347, 35);
-			this.tableLayoutPanel1.TabIndex = 3;
-			// 
-			// button1
-			// 
-			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.button1.Location = new System.Drawing.Point(3, 3);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(109, 29);
-			this.button1.TabIndex = 0;
-			this.button1.Text = "New...";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
-			// 
-			// button6
-			// 
-			this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.button6.Location = new System.Drawing.Point(118, 3);
-			this.button6.Name = "button6";
-			this.button6.Size = new System.Drawing.Size(109, 29);
-			this.button6.TabIndex = 1;
-			this.button6.Text = "Edit...";
-			this.button6.UseVisualStyleBackColor = true;
-			this.button6.Click += new System.EventHandler(this.button6_Click);
-			// 
-			// button7
-			// 
-			this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.button7.Location = new System.Drawing.Point(233, 3);
-			this.button7.Name = "button7";
-			this.button7.Size = new System.Drawing.Size(111, 29);
-			this.button7.TabIndex = 2;
-			this.button7.Text = "Delete...";
-			this.button7.UseVisualStyleBackColor = true;
-			this.button7.Click += new System.EventHandler(this.button7_Click);
-			// 
 			// groupBox5
 			// 
 			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -782,6 +713,108 @@ namespace RedBrick2 {
 			this.button2.UseVisualStyleBackColor = true;
 			this.button2.Click += new System.EventHandler(this.button2_Click);
 			// 
+			// tableLayoutPanel1
+			// 
+			this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.tableLayoutPanel1.ColumnCount = 3;
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+			this.tableLayoutPanel1.Controls.Add(this.button1, 0, 0);
+			this.tableLayoutPanel1.Controls.Add(this.button6, 1, 0);
+			this.tableLayoutPanel1.Controls.Add(this.button7, 2, 0);
+			this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 750);
+			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+			this.tableLayoutPanel1.RowCount = 1;
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(347, 35);
+			this.tableLayoutPanel1.TabIndex = 3;
+			// 
+			// button1
+			// 
+			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.button1.Location = new System.Drawing.Point(3, 3);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(109, 29);
+			this.button1.TabIndex = 0;
+			this.button1.Text = "New...";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
+			// button6
+			// 
+			this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.button6.Location = new System.Drawing.Point(118, 3);
+			this.button6.Name = "button6";
+			this.button6.Size = new System.Drawing.Size(109, 29);
+			this.button6.TabIndex = 1;
+			this.button6.Text = "Edit...";
+			this.button6.UseVisualStyleBackColor = true;
+			this.button6.Click += new System.EventHandler(this.button6_Click);
+			// 
+			// button7
+			// 
+			this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.button7.Location = new System.Drawing.Point(233, 3);
+			this.button7.Name = "button7";
+			this.button7.Size = new System.Drawing.Size(111, 29);
+			this.button7.TabIndex = 2;
+			this.button7.Text = "Delete...";
+			this.button7.UseVisualStyleBackColor = true;
+			this.button7.Click += new System.EventHandler(this.button7_Click);
+			// 
+			// treeView1
+			// 
+			this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.treeView1.Location = new System.Drawing.Point(3, 487);
+			this.treeView1.Name = "treeView1";
+			this.treeView1.Size = new System.Drawing.Size(347, 257);
+			this.treeView1.TabIndex = 2;
+			this.treeView1.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.treeView1_DrawNode);
+			this.treeView1.DoubleClick += new System.EventHandler(this.treeView1_DoubleClick);
+			// 
+			// panel1
+			// 
+			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.panel1.Controls.Add(this.pdfDateLabel);
+			this.panel1.Controls.Add(this.fileDateLabel);
+			this.panel1.Location = new System.Drawing.Point(3, 443);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(347, 38);
+			this.panel1.TabIndex = 4;
+			// 
+			// pdfDateLabel
+			// 
+			this.pdfDateLabel.AutoSize = true;
+			this.pdfDateLabel.LinkVisited = true;
+			this.pdfDateLabel.Location = new System.Drawing.Point(9, 20);
+			this.pdfDateLabel.Name = "pdfDateLabel";
+			this.pdfDateLabel.Size = new System.Drawing.Size(45, 13);
+			this.pdfDateLabel.TabIndex = 1;
+			this.pdfDateLabel.TabStop = true;
+			this.pdfDateLabel.Text = "No PDF";
+			this.pdfDateLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.PdfDateLabel_LinkClicked);
+			// 
+			// fileDateLabel
+			// 
+			this.fileDateLabel.AutoSize = true;
+			this.fileDateLabel.Location = new System.Drawing.Point(9, 4);
+			this.fileDateLabel.Name = "fileDateLabel";
+			this.fileDateLabel.Size = new System.Drawing.Size(58, 13);
+			this.fileDateLabel.TabIndex = 0;
+			this.fileDateLabel.Text = "Not saved";
+			// 
 			// gEN_CUSTOMERSTableAdapter
 			// 
 			this.gEN_CUSTOMERSTableAdapter.ClearBeforeFill = true;
@@ -797,38 +830,6 @@ namespace RedBrick2 {
 			// cUT_DRAWING_MATERIALSTableAdapter
 			// 
 			this.cUT_DRAWING_MATERIALSTableAdapter.ClearBeforeFill = true;
-			// 
-			// panel1
-			// 
-			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.panel1.Controls.Add(this.pdfDateLabel);
-			this.panel1.Controls.Add(this.fileDateLabel);
-			this.panel1.Location = new System.Drawing.Point(3, 443);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(347, 38);
-			this.panel1.TabIndex = 4;
-			// 
-			// fileDateLabel
-			// 
-			this.fileDateLabel.AutoSize = true;
-			this.fileDateLabel.Location = new System.Drawing.Point(9, 4);
-			this.fileDateLabel.Name = "fileDateLabel";
-			this.fileDateLabel.Size = new System.Drawing.Size(38, 13);
-			this.fileDateLabel.TabIndex = 0;
-			this.fileDateLabel.Text = "label1";
-			// 
-			// pdfDateLabel
-			// 
-			this.pdfDateLabel.AutoSize = true;
-			this.pdfDateLabel.Location = new System.Drawing.Point(9, 20);
-			this.pdfDateLabel.Name = "pdfDateLabel";
-			this.pdfDateLabel.Size = new System.Drawing.Size(59, 13);
-			this.pdfDateLabel.TabIndex = 1;
-			this.pdfDateLabel.TabStop = true;
-			this.pdfDateLabel.Text = "linkLabel1";
-			this.pdfDateLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.PdfDateLabel_LinkClicked);
 			// 
 			// DrawingRedbrick
 			// 
@@ -849,13 +850,13 @@ namespace RedBrick2 {
 			((System.ComponentModel.ISupportInitialize)(this.cUTDRAWINGMATERIALSBindingSource2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTDRAWINGMATERIALSBindingSource3)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTDRAWINGMATERIALSBindingSource4)).EndInit();
-			this.tableLayoutPanel1.ResumeLayout(false);
 			this.groupBox5.ResumeLayout(false);
 			this.tableLayoutPanel7.ResumeLayout(false);
 			this.tableLayoutPanel7.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gENCUSTOMERSBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gENUSERSBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTSTATESBindingSource)).EndInit();
+			this.tableLayoutPanel1.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.ResumeLayout(false);

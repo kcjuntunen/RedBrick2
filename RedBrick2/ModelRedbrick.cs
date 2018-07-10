@@ -394,10 +394,21 @@ namespace RedBrick2 {
 					Row = null;
 					CutlistPartsRow = null;
 				}
-
-				cutlistPartsTableAdapter.FillByPartNum(eNGINEERINGDataSet.CutlistParts, partLookup);
-				cutlistPartsBindingSource.DataSource = cutlistPartsTableAdapter.GetDataByPartNum(partLookup);
-				cUTPARTSBindingSource.DataSource = cUT_PARTSTableAdapter.GetDataByPartnum(partLookup);
+				try {
+					cutlistPartsTableAdapter.FillByPartNum(eNGINEERINGDataSet.CutlistParts, partLookup);
+				} catch (ArgumentOutOfRangeException ex) {
+					System.Diagnostics.Debug.WriteLine(string.Format(@"[{0}] {1} - {2}", ex.HResult, ex.Source, ex.Message));
+				}
+				try {
+					cutlistPartsBindingSource.DataSource = cutlistPartsTableAdapter.GetDataByPartNum(partLookup);
+				} catch (ArgumentOutOfRangeException ex) {
+					System.Diagnostics.Debug.WriteLine(string.Format(@"[{0}] {1} - {2}", ex.HResult, ex.Source, ex.Message));
+				}
+				try {
+					cUTPARTSBindingSource.DataSource = cUT_PARTSTableAdapter.GetDataByPartnum(partLookup);
+				} catch (ArgumentOutOfRangeException ex) {
+					System.Diagnostics.Debug.WriteLine(string.Format(@"[{0}] {1} - {2}", ex.HResult, ex.Source, ex.Message));
+				}
 				overLtb.Text = Redbrick.enforce_number_format(overLtb.Text);
 				overWtb.Text = Redbrick.enforce_number_format(overWtb.Text);
 				blnkszLtb.Text = Redbrick.enforce_number_format(blnkszLtb.Text);
@@ -985,7 +996,11 @@ namespace RedBrick2 {
 															friendlyCutOpsBindingSource2, friendlyCutOpsBindingSource3,
 															friendlyCutOpsBindingSource4 };
 			foreach (BindingSource b_ in bs_) {
-				b_.Filter = filter;
+				try {
+					b_.Filter = filter;
+				} catch (ArgumentOutOfRangeException ex) {
+					System.Diagnostics.Debug.WriteLine(string.Format(@"[{0}] {1} - {2}", ex.HResult, ex.Source, ex.Message));
+				}
 			}
 		}
 
@@ -1239,7 +1254,7 @@ namespace RedBrick2 {
 					groupBox1.Text = string.Format(@"{0} - {1}",
 						partLookup, PropertySet.Configuration);
 					ReQuery(SwApp.ActiveDoc);
-				} catch (Exception ex) {
+				} catch (System.Runtime.InteropServices.COMException ex) {
 					System.Diagnostics.Debug.WriteLine(ex.Message + " from " + ex.Source + "\n" + ex.StackTrace);
 				} finally {
 				}
@@ -1886,6 +1901,37 @@ namespace RedBrick2 {
 			//GetCutlistData();
 			//SelectTab();
 			initialated = true;
+			AttachComboBoxEvents();
+		}
+
+		private void DetachComboboxEvents() {
+			cutlistMat.SelectedIndexChanged -= new EventHandler(comboBox_SelectedIndexChanged);
+			edgef.SelectedIndexChanged -= new EventHandler(comboBox2_SelectedIndexChanged);
+			edgeb.SelectedIndexChanged -= new EventHandler(comboBox3_SelectedIndexChanged);
+			edgel.SelectedIndexChanged -= new EventHandler(comboBox4_SelectedIndexChanged);
+			edger.SelectedIndexChanged -= new EventHandler(comboBox5_SelectedIndexChanged);
+			cutlistctl.SelectedIndexChanged -= new EventHandler(comboBox6_SelectedIndexChanged);
+			stat_cbx.SelectedIndexChanged -= new EventHandler(stat_cbx_SelectedIndexChanged);
+			op4_cbx.SelectedIndexChanged -= new EventHandler(op_cbx_SelectedIndexChanged);
+			op3_cbx.SelectedIndexChanged -= new EventHandler(op_cbx_SelectedIndexChanged);
+			op2_cbx.SelectedIndexChanged -= new EventHandler(op_cbx_SelectedIndexChanged);
+			op1_cbx.SelectedIndexChanged -= new EventHandler(op_cbx_SelectedIndexChanged);
+			type_cbx.SelectedIndexChanged -= new EventHandler(comboBox12_SelectedIndexChanged);
+		}
+
+		private void AttachComboBoxEvents() {
+			cutlistMat.SelectedIndexChanged += new EventHandler(comboBox_SelectedIndexChanged);
+			edgef.SelectedIndexChanged += new EventHandler(comboBox2_SelectedIndexChanged);
+			edgeb.SelectedIndexChanged += new EventHandler(comboBox3_SelectedIndexChanged);
+			edgel.SelectedIndexChanged += new EventHandler(comboBox4_SelectedIndexChanged);
+			edger.SelectedIndexChanged += new EventHandler(comboBox5_SelectedIndexChanged);
+			cutlistctl.SelectedIndexChanged += new EventHandler(comboBox6_SelectedIndexChanged);
+			stat_cbx.SelectedIndexChanged += new EventHandler(stat_cbx_SelectedIndexChanged);
+			op4_cbx.SelectedIndexChanged += new EventHandler(op_cbx_SelectedIndexChanged);
+			op3_cbx.SelectedIndexChanged += new EventHandler(op_cbx_SelectedIndexChanged);
+			op2_cbx.SelectedIndexChanged += new EventHandler(op_cbx_SelectedIndexChanged);
+			op1_cbx.SelectedIndexChanged += new EventHandler(op_cbx_SelectedIndexChanged);
+			type_cbx.SelectedIndexChanged += new EventHandler(comboBox12_SelectedIndexChanged);
 		}
 
 		private void comboBox_KeyDown(object sender, KeyEventArgs e) {
