@@ -22,6 +22,7 @@ namespace RedBrick2 {
 		private ToolTip rev_tooltip = new ToolTip();
 		private ToolTip status_tooltip = new ToolTip();
 		private ToolTip req_tooltip = new ToolTip();
+		private ToolTip slddrw_tooltip = new ToolTip();
 		private ToolTip linkLabel_tooltip = new ToolTip();
 		private int clid = 0;
 		private bool user_editing = false;
@@ -229,6 +230,7 @@ namespace RedBrick2 {
 			fileDateLabel.Text = string.Format(@"SLDDRW last saved: {0} {1}",
 				PartFileInfo.LastWriteTime.ToShortDateString(),
 				PartFileInfo.LastWriteTime.ToShortTimeString());
+			slddrw_tooltip.SetToolTip(fileDateLabel, PartFileInfo.FullName);
 			bool dev = false;
 			PDFFileInfo = find_pdf(Path.GetFileNameWithoutExtension(PartFileInfo.Name), ref dev);
 			if (PDFFileInfo != null && PDFFileInfo.Exists) {
@@ -916,6 +918,18 @@ namespace RedBrick2 {
 		private void button4_MouseClick(object sender, MouseEventArgs e) {
 			using (ECRViewer ecr_ = new ECRViewer(partLookup)) {
 				ecr_.ShowDialog(this);
+			}
+		}
+
+		private void fileDateLabel_MouseClick(object sender, MouseEventArgs e) {
+			if (PartFileInfo != null) {
+				Redbrick.Clip(PartFileInfo.FullName);
+			}
+		}
+
+		private void pdfDateLabel_MouseDoubleClick(object sender, MouseEventArgs e) {
+			if (PDFFileInfo != null) {
+				Redbrick.Clip(PDFFileInfo.FullName);
 			}
 		}
 	}

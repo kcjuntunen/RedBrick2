@@ -805,6 +805,7 @@ namespace RedBrick2 {
 			this.pdfDateLabel.TabStop = true;
 			this.pdfDateLabel.Text = "No PDF";
 			this.pdfDateLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.PdfDateLabel_LinkClicked);
+			this.pdfDateLabel.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pdfDateLabel_MouseDoubleClick);
 			// 
 			// fileDateLabel
 			// 
@@ -814,6 +815,7 @@ namespace RedBrick2 {
 			this.fileDateLabel.Size = new System.Drawing.Size(58, 13);
 			this.fileDateLabel.TabIndex = 0;
 			this.fileDateLabel.Text = "Not saved";
+			this.fileDateLabel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.fileDateLabel_MouseClick);
 			// 
 			// gEN_CUSTOMERSTableAdapter
 			// 
