@@ -25,11 +25,7 @@ namespace RedBrick2 {
 		/// </summary>
 		public int cookie;
 
-		/// <summary>
-		/// This is only public so it can be reached from Redbrick.cs.
-		/// For launching the QuikTrac lookup tool.
-		/// </summary>
-		public ModelRedbrick mrb;
+		private ModelRedbrick mrb;
 		private bool initialated = false;
 		private bool openpostnotify = false;
 
@@ -199,6 +195,26 @@ namespace RedBrick2 {
 		public SwProperties PropertySet {
 			get { return _propertySet; }
 			set { _propertySet = value; }
+		}
+
+		public bool ModelRedbrickIsNotNull {
+			get { return mrb != null; }
+			private set {; }
+		}
+
+		public bool ActiveDocIsNotNull {
+			get { return mrb.ActiveDoc != null; }
+			private set {; }
+		}
+
+		public string ActiveDocPathName {
+			get { return mrb.ActiveDoc.GetPathName(); }
+			private set {; }
+		}
+
+		public System.IO.FileInfo PartFileInfo {
+			get { return mrb.PartFileInfo; }
+			private set {; }
 		}
 
 		/// <summary>

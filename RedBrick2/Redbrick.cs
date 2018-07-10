@@ -184,10 +184,10 @@ namespace RedBrick2 {
 		}
 
 		private void QuikTracLookup() {
-			if (taskpaneHost.mrb != null && taskpaneHost.mrb.ActiveDoc != null) {
+			if (taskpaneHost.ModelRedbrickIsNotNull && taskpaneHost.ActiveDocIsNotNull) {
 				using (ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter ta_ =
 					new ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter()) {
-					System.IO.FileInfo fi_ = new System.IO.FileInfo(taskpaneHost.mrb.ActiveDoc.GetPathName());
+					System.IO.FileInfo fi_ = new System.IO.FileInfo(taskpaneHost.ActiveDocPathName);
 					string lu_ = FileInfoToLookup(fi_);
 					using (QuickTracLookup qt_ = new QuickTracLookup(lu_)) {
 						qt_.ShowDialog(taskpaneHost);
@@ -238,7 +238,7 @@ namespace RedBrick2 {
 		}
 
 		private void OpenToolChest() {
-			string lk_ = Redbrick.FileInfoToLookup(taskpaneHost.mrb.PartFileInfo);
+			string lk_ = Redbrick.FileInfoToLookup(taskpaneHost.PartFileInfo);
 			using (ToolChest t_ = new ToolChest(lk_, swApp)) {
 				t_.ShowDialog(taskpaneHost);
 			}
