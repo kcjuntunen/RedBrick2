@@ -221,6 +221,11 @@ namespace RedBrick2 {
 			private set {; }
 		}
 
+		internal ModelDoc2 ModelRedbrickActiveDoc {
+			get { return mrb.ActiveDoc; }
+			private set {; }
+		}
+
 		/// <summary>
 		/// Internal value for an history of ModelDoc2s.
 		/// </summary>
@@ -243,8 +248,8 @@ namespace RedBrick2 {
 		/// A current ModelDoc2.
 		/// </summary>
 		public ModelDoc2 ActiveDoc {
-			get { return _activeDoc; }
-			set { _activeDoc = value; }
+			get { return _activeDoc;  }
+			private set { _activeDoc = value; }
 		}
 
 		/// <summary>

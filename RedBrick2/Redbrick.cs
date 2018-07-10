@@ -197,13 +197,15 @@ namespace RedBrick2 {
 		}
 
 		private void ArchivePDF() {
-			using (ENGINEERINGDataSet.GEN_ODOMETERDataTable gota =
-				new ENGINEERINGDataSet.GEN_ODOMETERDataTable()) {
-				gota.IncrementOdometer(Functions.ArchivePDF);
-				ArchivePDF.csproj.ArchivePDFWrapper apw = new ArchivePDF.csproj.ArchivePDFWrapper(swApp, GeneratePathSet());
-				apw.Archive();
+			if (taskpaneHost.ModelRedbrickActiveDoc.GetType() == (int)swDocumentTypes_e.swDocDRAWING) {
+				using (ENGINEERINGDataSet.GEN_ODOMETERDataTable gota =
+					new ENGINEERINGDataSet.GEN_ODOMETERDataTable()) {
+					gota.IncrementOdometer(Functions.ArchivePDF);
+					ArchivePDF.csproj.ArchivePDFWrapper apw = new ArchivePDF.csproj.ArchivePDFWrapper(swApp, GeneratePathSet());
+					apw.Archive();
+				}
+				taskpaneHost.GetFileDates();
 			}
-			taskpaneHost.GetFileDates();
 		}
 
 		private bool changed = false;
