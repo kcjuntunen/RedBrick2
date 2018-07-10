@@ -155,6 +155,10 @@ namespace RedBrick2 {
 			}
 		}
 
+		internal void GetFileDates() {
+			mrb.GetFileDates();
+		}
+
 		/// <summary>
 		/// Get SwApp.
 		/// </summary>

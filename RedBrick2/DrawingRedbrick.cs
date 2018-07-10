@@ -213,6 +213,7 @@ namespace RedBrick2 {
 					}
 					int cust = 0;
 					Redbrick.GetCustAndDescr(partLookup, ref cust, ref projectDescr, ref title_tooltip, ref groupBox5);
+					GetFileDates();
 					ProjectCustomer = cust;
 					//ProjectCustomer = GetCorrectCustomer();
 					groupBox5.Text = projectDescr != string.Empty ? string.Format(@"{0} - {1}", partLookup, projectDescr) : partLookup;
@@ -221,11 +222,10 @@ namespace RedBrick2 {
 					dd_ = ActiveDoc as DrawingDoc;
 					dd_.FileSavePostNotify += dd__FileSavePostNotify;
 				}
-				GetFileDates();
 			}
 		}
 
-		private void GetFileDates() {
+		public void GetFileDates() {
 			fileDateLabel.Text = string.Format(@"SLDDRW last saved: {0} {1}",
 				PartFileInfo.LastWriteTime.ToShortDateString(),
 				PartFileInfo.LastWriteTime.ToShortTimeString());

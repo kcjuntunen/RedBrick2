@@ -203,6 +203,7 @@ namespace RedBrick2 {
 				ArchivePDF.csproj.ArchivePDFWrapper apw = new ArchivePDF.csproj.ArchivePDFWrapper(swApp, GeneratePathSet());
 				apw.Archive();
 			}
+			taskpaneHost.GetFileDates();
 		}
 
 		private bool changed = false;

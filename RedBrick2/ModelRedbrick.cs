@@ -1743,6 +1743,10 @@ namespace RedBrick2 {
 			}
 		}
 
+		public void GetFileDates() {
+			drawingRedbrick.GetFileDates();
+		}
+
 		private ModelDoc2 _activeDoc;
 
 		/// <summary>
