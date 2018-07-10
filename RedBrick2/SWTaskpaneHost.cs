@@ -201,22 +201,22 @@ namespace RedBrick2 {
 			set { _propertySet = value; }
 		}
 
-		public bool ModelRedbrickIsNotNull {
+		internal bool ModelRedbrickIsNotNull {
 			get { return mrb != null; }
 			private set {; }
 		}
 
-		public bool ActiveDocIsNotNull {
+		internal bool ActiveDocIsNotNull {
 			get { return mrb.ActiveDoc != null; }
 			private set {; }
 		}
 
-		public string ActiveDocPathName {
+		internal string ActiveDocPathName {
 			get { return mrb.ActiveDoc.GetPathName(); }
 			private set {; }
 		}
 
-		public System.IO.FileInfo PartFileInfo {
+		internal System.IO.FileInfo PartFileInfo {
 			get { return mrb.PartFileInfo; }
 			private set {; }
 		}
