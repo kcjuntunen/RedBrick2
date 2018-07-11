@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Text.RegularExpressions;
 
 namespace RedBrick2 {
@@ -14,10 +13,16 @@ namespace RedBrick2 {
 				Regex time_r_ = new Regex(@"TOTAL TIME\ *:\ *([0-9.]*) minutes\ *([0-9.]*)");
 				Match qty_match_ = qty_r_.Match(content_);
 				Match time_match_ = time_r_.Match(content_);
-				uint qty_ = Convert.ToUInt32(qty_match_.Groups[1].Value);
+				if (!uint.TryParse(qty_match_.Groups[1].Value, out uint qty_)) {
+					qty_ = 1;
+				}
 				if (qty_ != 0) {
-					double minutes_ = Convert.ToDouble(time_match_.Groups[1].Value);
-					double seconds_ = Convert.ToDouble(time_match_.Groups[2].Value);
+					if (!double.TryParse(time_match_.Groups[1].Value, out double minutes_)) {
+						minutes_ = 0.0f;
+					}
+					if (!double.TryParse(time_match_.Groups[2].Value, out double seconds_)) {
+						seconds_ = 0.0f;
+					}
 					per_part_time_ = (minutes_ + (seconds_ / 60)) / qty_;
 				}
 			}
