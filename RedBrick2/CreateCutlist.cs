@@ -1515,7 +1515,7 @@ namespace RedBrick2 {
 					string partnum_ = Convert.ToString(dgvr_.Cells[@"Part Number"].Value);
 					_partlist[partnum_][@"DEPARTMENT"].Data = Convert.ToInt32(dgvr_.Cells[@"Department"].Value);
 					dgvr_.Cells[@"Department"].Style.BackColor = Color.LightGreen;
-					_partlist[partnum_][@"Description"].Data = Convert.ToString(dgvr_.Cells[@"Description"].Value.ToString().Trim());
+					_partlist[partnum_][@"Description"].Data = Convert.ToString(dgvr_.Cells[@"Description"].Value).Trim();
 					dgvr_.Cells[@"Description"].Style.BackColor = Color.LightGreen;
 					_partlist[partnum_].CutlistQty = Convert.ToInt32(dgvr_.Cells[@"Part Qty"].Value);
 					dgvr_.Cells[@"Part Qty"].Style.BackColor = Color.LightGreen;
