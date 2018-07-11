@@ -10,6 +10,9 @@ namespace RedBrick2 {
 		private ENGINEERINGDataSet.CutPartOpsRow currentRow;
 		private SwProperties PropertySet;
 		private int PartID;
+		private string PartLookup;
+		private string CNC1;
+		private string CNC2;
 		private bool NewOp = false;
 		private bool user_edit = false;
 
@@ -21,6 +24,9 @@ namespace RedBrick2 {
 			InitializeComponent();
 			PropertySet = props;
 			PartID = PropertySet[@"DEPARTMENT"].PartID;
+			CNC1 = PropertySet[@"CNC1"].Data.ToString();
+			CNC2 = PropertySet[@"CNC2"].Data.ToString();
+			PartLookup = PropertySet.PartLookup;
 			NewOp = true;
 
 			using (ENGINEERINGDataSet.CutPartOpsDataTable dt = new ENGINEERINGDataSet.CutPartOpsDataTable()) {
@@ -49,10 +55,14 @@ namespace RedBrick2 {
 		/// <summary>
 		/// Constructor.
 		/// </summary>
+		/// <param name="props">The property set from a given part.</param>
 		/// <param name="row">A row of routing data.</param>
-		public EditOp(ENGINEERINGDataSet.CutPartOpsRow row) {
+		public EditOp(SwProperties props, ENGINEERINGDataSet.CutPartOpsRow row) {
 			InitializeComponent();
 			currentRow = row;
+			PartLookup = currentRow.PARTNUM;
+			CNC1 = props[@"CNC1"].Data.ToString();
+			CNC2 = props[@"CNC2"].Data.ToString();
 			PartID = currentRow.POPPART;
 		}
 
@@ -164,6 +174,22 @@ namespace RedBrick2 {
 
 		private void user_editing(object sender, KeyEventArgs e) {
 			user_edit = true;
+		}
+
+		private void textBox2_KeyDown(object sender, KeyEventArgs e) {
+			if (comboBox2.Text.Contains(@"LAC") && e.Control && e.KeyCode == Keys.G) {
+				TextBox tb_ = sender as TextBox;
+				tb_.Clear();
+				if (CNC1 == null || CNC1 == string.Empty) {
+					tb_.Text = Estimation.GetLaserPartRuntime(PartLookup).ToString();
+				} else {
+					double res_ = Estimation.GetLaserPartRuntime(CNC1);
+					if (CNC1 != CNC2) {
+						res_ += Estimation.GetLaserPartRuntime(CNC2);
+					}
+					tb_.Text = res_.ToString();
+				}
+			}
 		}
 	}
 }

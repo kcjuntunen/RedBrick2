@@ -139,6 +139,7 @@
     <Compile Include="AddToExistingCutlist.Designer.cs">
       <DependentUpon>AddToExistingCutlist.cs</DependentUpon>
     </Compile>
+    <Compile Include="Estimation.cs" />
     <Compile Include="SWProperties\AuthorUIDProperty.cs" />
     <Compile Include="SWProperties\AuthorProperty.cs" />
     <Compile Include="SWProperties\BooleanProperty.cs" />
