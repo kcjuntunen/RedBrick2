@@ -214,7 +214,6 @@ namespace RedBrick2 {
 					}
 					int cust = 0;
 					Redbrick.GetCustAndDescr(partLookup, ref cust, ref projectDescr, ref title_tooltip, ref groupBox5);
-					GetFileDates();
 					ProjectCustomer = cust;
 					//ProjectCustomer = GetCorrectCustomer();
 					groupBox5.Text = projectDescr != string.Empty ? string.Format(@"{0} - {1}", partLookup, projectDescr) : partLookup;
@@ -224,33 +223,36 @@ namespace RedBrick2 {
 					dd_.FileSavePostNotify += dd__FileSavePostNotify;
 				}
 			}
+			GetFileDates();
 		}
 
 		public void GetFileDates() {
+			bool dev = false;
+			PDFFileInfo = find_pdf(Path.GetFileNameWithoutExtension(PartFileInfo.Name), ref dev);
+			if (ActiveDoc.GetPathName() == null || PDFFileInfo == null || !PDFFileInfo.Exists) {
+				fileDateLabel.Text = @"New Document";
+				pdfDateLabel.Text = @"No PDF";
+				slddrw_tooltip.RemoveAll();
+				linkLabel_tooltip.RemoveAll();
+				pdfDateLabel.LinkVisited = true;
+				return;
+			}
 			fileDateLabel.Text = string.Format(@"SLDDRW last saved: {0} {1}",
 				PartFileInfo.LastWriteTime.ToShortDateString(),
 				PartFileInfo.LastWriteTime.ToShortTimeString());
 			slddrw_tooltip.SetToolTip(fileDateLabel, PartFileInfo.FullName);
-			bool dev = false;
-			PDFFileInfo = find_pdf(Path.GetFileNameWithoutExtension(PartFileInfo.Name), ref dev);
-			if (PDFFileInfo != null && PDFFileInfo.Exists) {
-				if (dev) {
-					pdfDateLabel.Text = string.Format(@"Dev. PDF last saved: {0} {1}",
-						PDFFileInfo.LastWriteTime.ToShortDateString(),
-						PDFFileInfo.LastWriteTime.ToShortTimeString());
-					linkLabel_tooltip.SetToolTip(pdfDateLabel, PDFFileInfo.FullName);
-					pdfDateLabel.LinkVisited = false;
-				} else {
-					pdfDateLabel.Text = string.Format(@"PDF last saved: {0} {1}",
-						PDFFileInfo.LastWriteTime.ToShortDateString(),
-						PDFFileInfo.LastWriteTime.ToShortTimeString());
-					linkLabel_tooltip.SetToolTip(pdfDateLabel, PDFFileInfo.FullName);
-					pdfDateLabel.LinkVisited = false;
-				}
+			if (dev) {
+				pdfDateLabel.Text = string.Format(@"Dev. PDF last saved: {0} {1}",
+					PDFFileInfo.LastWriteTime.ToShortDateString(),
+					PDFFileInfo.LastWriteTime.ToShortTimeString());
+				linkLabel_tooltip.SetToolTip(pdfDateLabel, PDFFileInfo.FullName);
+				pdfDateLabel.LinkVisited = false;
 			} else {
-				pdfDateLabel.Text = string.Format(@"No PDF");
-				linkLabel_tooltip.RemoveAll();
-				pdfDateLabel.LinkVisited = true;
+				pdfDateLabel.Text = string.Format(@"PDF last saved: {0} {1}",
+					PDFFileInfo.LastWriteTime.ToShortDateString(),
+					PDFFileInfo.LastWriteTime.ToShortTimeString());
+				linkLabel_tooltip.SetToolTip(pdfDateLabel, PDFFileInfo.FullName);
+				pdfDateLabel.LinkVisited = false;
 			}
 		}
 
@@ -310,6 +312,7 @@ namespace RedBrick2 {
 		private int dd__FileSavePostNotify(int saveType, string FileName) {
 			if (reload && FileName.ToUpper().EndsWith(@"SLDDRW")) {
 				ReLoad(SwApp.ActiveDoc);
+				GetFileDates();
 			}
 			reload = true;
 			return 0;
