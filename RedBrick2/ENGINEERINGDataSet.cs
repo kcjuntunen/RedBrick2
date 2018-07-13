@@ -558,6 +558,29 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 					}
 				}
 			}
+
+			public int Rename(int _clid, string _itemnum, string _rev) {
+				int affected_ = 0;
+				using (ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter ta_ =
+									new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter()) {
+					string sql_ = @"UPDATE CUT_CUTLISTS SET PARTNUM = @partnum, REV = @rev WHERE CLID=@clid";
+					using (SqlCommand comm = new SqlCommand(sql_, ta_.Connection)) {
+						comm.Parameters.AddWithValue(@"@partnum", _itemnum);
+						comm.Parameters.AddWithValue(@"@rev", _rev);
+						comm.Parameters.AddWithValue(@"@clid", _clid);
+						if (ta_.Connection.State == System.Data.ConnectionState.Closed) {
+							ta_.Connection.Open();
+						}
+						try {
+							affected_ = comm.ExecuteNonQuery();
+						} finally {
+							ta_.Connection.Close();
+						}
+					}
+					return affected_;
+				}
+
+			}
 		}
 
 		partial class CUT_CUTLIST_PARTSDataTable {

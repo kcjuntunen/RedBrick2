@@ -71,5 +71,12 @@ namespace RedBrick2 {
 			}
 			Close();
 		}
+
+		private void button6_Click(object sender, EventArgs e) {
+			using (RenameCutlist rc_ = new RenameCutlist()) {
+				rc_.ShowDialog(this);
+			}
+			Close();
+		}
 	}
 }

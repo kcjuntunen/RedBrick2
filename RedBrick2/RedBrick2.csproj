@@ -140,6 +140,12 @@
       <DependentUpon>AddToExistingCutlist.cs</DependentUpon>
     </Compile>
     <Compile Include="Estimation.cs" />
+    <Compile Include="RenameCutlist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RenameCutlist.Designer.cs">
+      <DependentUpon>RenameCutlist.cs</DependentUpon>
+    </Compile>
     <Compile Include="SWProperties\AuthorUIDProperty.cs" />
     <Compile Include="SWProperties\AuthorProperty.cs" />
     <Compile Include="SWProperties\BooleanProperty.cs" />
@@ -383,6 +389,9 @@
     <EmbeddedResource Include="RedbrickConfiguration.resx">
       <DependentUpon>RedbrickConfiguration.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RenameCutlist.resx">
+      <DependentUpon>RenameCutlist.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SWTaskpaneHost.resx">
       <DependentUpon>SWTaskpaneHost.cs</DependentUpon>
     </EmbeddedResource>
@@ -408,7 +417,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"$(SolutionDir)".\GetAssemblyInfoForNSIS\bin\Release\GetAssemblyInfoForNSIS.exe
-C:\PROGRA~2\NSIS\makensisw.exe "$(ProjectDir)\install.nsi"
+:: C:\PROGRA~2\NSIS\makensisw.exe "$(ProjectDir)\install.nsi"
 :: start net use G: \\AMSTORE-SVR-22\cad
 :: start xcopy /Y "$(ProjectDir)InstallRedbrick.exe" "G:\Solid Works\Amstore_Macros\Redbrick\"
 :: start xcopy /Y "$(ProjectDir)version.xml" "G:\Solid Works\Amstore_Macros\Redbrick\"</PostBuildEvent>
