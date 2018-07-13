@@ -50,6 +50,9 @@ namespace RedBrick2 {
 		private ToolTip item_tooltip = new ToolTip();
 		private ToolTip drw_tooltip = new ToolTip();
 
+		private string foundCutlist = string.Empty;
+		private string foundRev = string.Empty;
+
 		private UserProgressBar pb;
 
 		/// <summary>
@@ -280,7 +283,6 @@ namespace RedBrick2 {
 				ref_cbx.Text = topName;
 			}
 
-
 			StringProperty stpr = null;
 			if (_swApp.ActiveDoc is DrawingDoc) {
 				SolidWorks.Interop.sldworks.View _v = Redbrick.GetFirstView(_swApp);
@@ -292,6 +294,48 @@ namespace RedBrick2 {
 			}
 			stpr.Get();
 			descr_cbx.Text = stpr.Value;
+
+			CheckCutlist();
+		}
+
+		private void CheckCutlist() {
+			string msg_ = string.Empty;
+			string name_from_mdl_ = itm_cbx.Text;
+
+			if ((_swApp.ActiveDoc as ModelDoc2).GetType() == (int)swDocumentTypes_e.swDocDRAWING) {
+				string item_num_from_view_ = Redbrick.GetModelNameFromDrawing(_swApp);
+				if (name_from_mdl_ == item_num_from_view_) {
+					using (ENGINEERINGDataSetTableAdapters.CustToAmsTableAdapter cta_ =
+						new ENGINEERINGDataSetTableAdapters.CustToAmsTableAdapter()) {
+						using (ENGINEERINGDataSet.CustToAmsDataTable ctadt_ = cta_.GetDataByPart(name_from_mdl_)) {
+							if (ctadt_.Rows.Count > 0) {
+								name_from_mdl_ = ctadt_[0].FIXCUST;
+							}
+						}
+					}
+				}
+				using (ENGINEERINGDataSet.CUT_CUTLISTSDataTable cdt_ =
+					cUT_CUTLISTSTableAdapter.GetDataByName(item_num_from_view_, rev)) {
+					if (cdt_.Count > 0) {
+						msg_ += string.Format(@"A cutlist exists under {0} REV {1}.", item_num_from_view_, rev);
+						foundCutlist = item_num_from_view_;
+						foundRev = rev;
+					}
+				}
+			}
+
+			using (ENGINEERINGDataSet.CUT_CUTLISTSDataTable cdt_ =
+			cUT_CUTLISTSTableAdapter.GetDataByName(name_from_mdl_, rev)) {
+				if (cdt_.Count > 0) {
+					msg_ += msg_ != string.Empty ? "\n" : string.Empty;
+					msg_ = string.Format(@"A cutlist exists under {0} REV {1}.", name_from_mdl_, rev);
+					foundCutlist = name_from_mdl_;
+					foundRev = rev;
+				}
+			}
+			cutlist_warn_label.Text = msg_;
+			cutlist_warn_label.Visible = msg_ != string.Empty;
+			rename_button.Visible = msg_ != string.Empty;
 		}
 
 		private void settle_rev(string pnwe) {
@@ -1574,6 +1618,9 @@ namespace RedBrick2 {
 		}
 
 		private void upload_btn_Click(object sender, EventArgs e) {
+			if (itm_cbx.Text.Trim() == string.Empty) {
+				return;
+			}
 			ReadGlobalFromDb();
 			if (cust_cbx.SelectedItem != null && uid != null) {
 				Cursor = Cursors.WaitCursor;
@@ -1687,6 +1734,15 @@ namespace RedBrick2 {
 			if (MessageBox.Show(@"Read part data from DB?", @"﴾͡๏̯͡๏﴿ RLY?", MessageBoxButtons.YesNo) == DialogResult.Yes) {
 				ReadGlobalFromDb();
 			}
+		}
+
+		private void itm_cbx_Leave(object sender, EventArgs e) {
+			CheckCutlist();
+		}
+
+		private void rename_button_Click(object sender, EventArgs e) {
+			string query_ = string.Format(@"Rename `{0} REV {1}' to `{2} REV {3}'?", foundCutlist, foundRev, itm_cbx.Text, rev_cbx.Text);
+			MessageBox.Show(query_, "Hmm?", MessageBoxButtons.YesNo);
 		}
 	}
 }

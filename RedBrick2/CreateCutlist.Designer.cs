@@ -42,7 +42,6 @@ namespace RedBrick2 {
 			this.ref_cbx = new System.Windows.Forms.ComboBox();
 			this.descr_cbx = new System.Windows.Forms.ComboBox();
 			this.label6 = new System.Windows.Forms.Label();
-			this.cancel_btn = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.unselect_btn = new System.Windows.Forms.Button();
@@ -60,6 +59,9 @@ namespace RedBrick2 {
 			this.update_prts_btn = new System.Windows.Forms.Button();
 			this.upload_btn = new System.Windows.Forms.Button();
 			this.scan = new System.Windows.Forms.Button();
+			this.cancel_btn = new System.Windows.Forms.Button();
+			this.cutlist_warn_label = new System.Windows.Forms.Label();
+			this.rename_button = new System.Windows.Forms.Button();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -86,14 +88,12 @@ namespace RedBrick2 {
 			// 
 			// dataGridView1
 			// 
-			this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.tableLayoutPanel1.SetColumnSpan(this.dataGridView1, 5);
-			this.dataGridView1.Location = new System.Drawing.Point(3, 133);
+			this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dataGridView1.Location = new System.Drawing.Point(3, 183);
 			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.Size = new System.Drawing.Size(1098, 169);
+			this.dataGridView1.Size = new System.Drawing.Size(1098, 118);
 			this.dataGridView1.TabIndex = 0;
 			this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
 			this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
@@ -124,21 +124,25 @@ namespace RedBrick2 {
 			this.tableLayoutPanel1.Controls.Add(this.ref_cbx, 4, 0);
 			this.tableLayoutPanel1.Controls.Add(this.descr_cbx, 1, 2);
 			this.tableLayoutPanel1.Controls.Add(this.label6, 2, 0);
-			this.tableLayoutPanel1.Controls.Add(this.cancel_btn, 4, 5);
-			this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 4);
-			this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 3);
+			this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 4);
 			this.tableLayoutPanel1.Controls.Add(this.config_cbx, 4, 2);
 			this.tableLayoutPanel1.Controls.Add(this.label7, 3, 2);
-			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 5);
+			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 6);
+			this.tableLayoutPanel1.Controls.Add(this.cancel_btn, 4, 6);
+			this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 1, 4);
+			this.tableLayoutPanel1.Controls.Add(this.cutlist_warn_label, 1, 3);
+			this.tableLayoutPanel1.Controls.Add(this.rename_button, 2, 3);
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(13, 13);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-			this.tableLayoutPanel1.RowCount = 6;
+			this.tableLayoutPanel1.RowCount = 7;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanel1.Size = new System.Drawing.Size(1104, 345);
 			this.tableLayoutPanel1.TabIndex = 1;
 			// 
@@ -333,17 +337,6 @@ namespace RedBrick2 {
 			this.label6.Text = "REV";
 			this.label6.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
 			// 
-			// cancel_btn
-			// 
-			this.cancel_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.cancel_btn.Location = new System.Drawing.Point(984, 308);
-			this.cancel_btn.Name = "cancel_btn";
-			this.cancel_btn.Size = new System.Drawing.Size(117, 34);
-			this.cancel_btn.TabIndex = 13;
-			this.cancel_btn.Text = "Cancel";
-			this.cancel_btn.UseVisualStyleBackColor = true;
-			this.cancel_btn.Click += new System.EventHandler(this.button1_Click);
-			// 
 			// panel1
 			// 
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -352,7 +345,7 @@ namespace RedBrick2 {
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tableLayoutPanel1.SetColumnSpan(this.panel1, 5);
 			this.panel1.Controls.Add(this.tableLayoutPanel2);
-			this.panel1.Location = new System.Drawing.Point(3, 93);
+			this.panel1.Location = new System.Drawing.Point(3, 143);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(1098, 34);
 			this.panel1.TabIndex = 15;
@@ -507,11 +500,11 @@ namespace RedBrick2 {
 			this.tableLayoutPanel3.Controls.Add(this.update_prts_btn, 2, 0);
 			this.tableLayoutPanel3.Controls.Add(this.upload_btn, 1, 0);
 			this.tableLayoutPanel3.Controls.Add(this.scan, 0, 0);
-			this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 308);
+			this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 307);
 			this.tableLayoutPanel3.Name = "tableLayoutPanel3";
 			this.tableLayoutPanel3.RowCount = 1;
 			this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel3.Size = new System.Drawing.Size(776, 34);
+			this.tableLayoutPanel3.Size = new System.Drawing.Size(776, 35);
 			this.tableLayoutPanel3.TabIndex = 23;
 			// 
 			// getdatafromDBbtn
@@ -562,28 +555,60 @@ namespace RedBrick2 {
 			this.scan.UseVisualStyleBackColor = true;
 			this.scan.Click += new System.EventHandler(this.scan_Click);
 			// 
+			// cancel_btn
+			// 
+			this.cancel_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancel_btn.Location = new System.Drawing.Point(984, 308);
+			this.cancel_btn.Name = "cancel_btn";
+			this.cancel_btn.Size = new System.Drawing.Size(117, 34);
+			this.cancel_btn.TabIndex = 13;
+			this.cancel_btn.Text = "Cancel";
+			this.cancel_btn.UseVisualStyleBackColor = true;
+			this.cancel_btn.Click += new System.EventHandler(this.button1_Click);
+			// 
+			// cutlist_warn_label
+			// 
+			this.cutlist_warn_label.AutoSize = true;
+			this.cutlist_warn_label.ForeColor = System.Drawing.Color.Red;
+			this.cutlist_warn_label.Location = new System.Drawing.Point(168, 90);
+			this.cutlist_warn_label.Name = "cutlist_warn_label";
+			this.cutlist_warn_label.Size = new System.Drawing.Size(99, 13);
+			this.cutlist_warn_label.TabIndex = 24;
+			this.cutlist_warn_label.Text = "cutlist_warn_label";
+			this.cutlist_warn_label.Visible = false;
+			// 
+			// rename_button
+			// 
+			this.rename_button.Location = new System.Drawing.Point(477, 93);
+			this.rename_button.Name = "rename_button";
+			this.rename_button.Size = new System.Drawing.Size(71, 23);
+			this.rename_button.TabIndex = 25;
+			this.rename_button.Text = "Rename";
+			this.rename_button.UseVisualStyleBackColor = true;
+			this.rename_button.Click += new System.EventHandler(this.rename_button_Click);
+			// 
 			// statusStrip1
 			// 
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2,
             this.pdfDate_toolstrip});
-			this.statusStrip1.Location = new System.Drawing.Point(0, 361);
+			this.statusStrip1.Location = new System.Drawing.Point(0, 359);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(1129, 22);
+			this.statusStrip1.Size = new System.Drawing.Size(1129, 24);
 			this.statusStrip1.TabIndex = 2;
 			this.statusStrip1.Text = "statusStrip1";
 			// 
 			// toolStripStatusLabel1
 			// 
 			this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-			this.toolStripStatusLabel1.Size = new System.Drawing.Size(113, 17);
+			this.toolStripStatusLabel1.Size = new System.Drawing.Size(116, 19);
 			this.toolStripStatusLabel1.Text = "Total Unique Parts: 0";
 			// 
 			// toolStripStatusLabel2
 			// 
 			this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-			this.toolStripStatusLabel2.Size = new System.Drawing.Size(92, 17);
+			this.toolStripStatusLabel2.Size = new System.Drawing.Size(94, 19);
 			this.toolStripStatusLabel2.Text = "Included Parts: 0";
 			// 
 			// pdfDate_toolstrip
@@ -592,7 +617,7 @@ namespace RedBrick2 {
 			this.pdfDate_toolstrip.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
 			this.pdfDate_toolstrip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
 			this.pdfDate_toolstrip.Name = "pdfDate_toolstrip";
-			this.pdfDate_toolstrip.Size = new System.Drawing.Size(70, 17);
+			this.pdfDate_toolstrip.Size = new System.Drawing.Size(73, 19);
 			this.pdfDate_toolstrip.Text = "PDF Date: {}";
 			// 
 			// gEN_CUSTOMERSTableAdapter
@@ -706,5 +731,7 @@ namespace RedBrick2 {
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
 		private System.Windows.Forms.Button update_prts_btn;
 		private System.Windows.Forms.Button getdatafromDBbtn;
+		private System.Windows.Forms.Label cutlist_warn_label;
+		private System.Windows.Forms.Button rename_button;
 	}
 }

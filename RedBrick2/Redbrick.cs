@@ -770,6 +770,12 @@ namespace RedBrick2 {
 			return v;
 		}
 
+		public static string GetModelNameFromDrawing(SldWorks sw) {
+			View v_ = GetFirstView(sw);
+			string lu_ = FileInfoToLookup(new System.IO.FileInfo(v_.ReferencedDocument.GetPathName()));
+			return lu_;
+		}
+
 		/// <summary>
 		/// Attempt to resolve SolidWorks' strange dimension varables.
 		/// </summary>
