@@ -309,5 +309,11 @@
     <Setting Name="SuggestFinishSpec" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="RenameLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">100, 100</Value>
+    </Setting>
+    <Setting Name="RenameSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">350, 140</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
