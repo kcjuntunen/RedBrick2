@@ -73,7 +73,7 @@ namespace RedBrick2 {
 		}
 
 		private void button6_Click(object sender, EventArgs e) {
-			using (RenameCutlist rc_ = new RenameCutlist()) {
+			using (RenameCutlist rc_ = new RenameCutlist(Properties.Settings.Default.LastCutlist)) {
 				rc_.ShowDialog(this);
 			}
 			Close();
