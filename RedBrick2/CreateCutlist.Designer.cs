@@ -215,6 +215,7 @@ namespace RedBrick2 {
 			this.itm_cbx.TextUpdate += new System.EventHandler(this.itm_cbx_TextUpdate);
 			this.itm_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox2_KeyDown);
 			this.itm_cbx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBox_KeyPress);
+			this.itm_cbx.Leave += new System.EventHandler(this.itm_cbx_Leave);
 			this.itm_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox1_MouseClick);
 			// 
 			// cUTCUTLISTSBindingSource

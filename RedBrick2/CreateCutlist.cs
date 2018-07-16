@@ -50,6 +50,7 @@ namespace RedBrick2 {
 		private ToolTip item_tooltip = new ToolTip();
 		private ToolTip drw_tooltip = new ToolTip();
 
+		private int foundCLID = 0;
 		private string foundCutlist = string.Empty;
 		private string foundRev = string.Empty;
 
@@ -276,7 +277,7 @@ namespace RedBrick2 {
 			if (descr_cbx.Text == string.Empty) {
 				ToggleDescrWarn(true);
 			}
-			itm_cbx.Text = topName;
+			itm_cbx.Text = partLookup;
 			if (rev_in_filename) {
 				ref_cbx.Text = string.Format(@"{0} REV {1}", topName, rev);
 			} else {
@@ -300,39 +301,43 @@ namespace RedBrick2 {
 
 		private void CheckCutlist() {
 			string msg_ = string.Empty;
-			string name_from_mdl_ = itm_cbx.Text;
-
+			HashSet<string> names_ = new HashSet<string>();
+			names_.Add(itm_cbx.Text);
 			if ((_swApp.ActiveDoc as ModelDoc2).GetType() == (int)swDocumentTypes_e.swDocDRAWING) {
-				string item_num_from_view_ = Redbrick.GetModelNameFromDrawing(_swApp);
-				if (name_from_mdl_ == item_num_from_view_) {
+				names_.Add(partLookup);
+				names_.Add(Redbrick.GetModelNameFromDrawing(_swApp));
+			} else {
+				names_.Add(partLookup);
+			}
+
+			string[] tmp_names_ = new string[names_.Count];
+			names_.CopyTo(tmp_names_);
+			foreach (string name_ in tmp_names_) {
+				if (Redbrick.IsConformingPartnumber(name_)) {
 					using (ENGINEERINGDataSetTableAdapters.CustToAmsTableAdapter cta_ =
 						new ENGINEERINGDataSetTableAdapters.CustToAmsTableAdapter()) {
-						using (ENGINEERINGDataSet.CustToAmsDataTable ctadt_ = cta_.GetDataByPart(name_from_mdl_)) {
+						using (ENGINEERINGDataSet.CustToAmsDataTable ctadt_ = cta_.GetDataByPart(name_)) {
 							if (ctadt_.Rows.Count > 0) {
-								name_from_mdl_ = ctadt_[0].FIXCUST;
+								names_.Add(ctadt_[0].FIXCUST);
 							}
 						}
 					}
 				}
+			}
+
+			foreach (string name_ in names_) {
 				using (ENGINEERINGDataSet.CUT_CUTLISTSDataTable cdt_ =
-					cUT_CUTLISTSTableAdapter.GetDataByName(item_num_from_view_, rev)) {
-					if (cdt_.Count > 0) {
-						msg_ += string.Format(@"A cutlist exists under {0} REV {1}.", item_num_from_view_, rev);
-						foundCutlist = item_num_from_view_;
-						foundRev = rev;
+				cUT_CUTLISTSTableAdapter.GetDataByName(name_, rev_cbx.Text)) {
+					foreach (ENGINEERINGDataSet.CUT_CUTLISTSRow row_ in cdt_.Rows) {
+						msg_ += msg_ != string.Empty ? "\n" : string.Empty;
+						msg_ = string.Format(@"A cutlist exists under {0} REV {1}.", row_.PARTNUM, row_.REV);
+						foundCLID = row_.CLID;
+						foundCutlist = row_.PARTNUM;
+						foundRev = row_.REV;
 					}
 				}
 			}
 
-			using (ENGINEERINGDataSet.CUT_CUTLISTSDataTable cdt_ =
-			cUT_CUTLISTSTableAdapter.GetDataByName(name_from_mdl_, rev)) {
-				if (cdt_.Count > 0) {
-					msg_ += msg_ != string.Empty ? "\n" : string.Empty;
-					msg_ = string.Format(@"A cutlist exists under {0} REV {1}.", name_from_mdl_, rev);
-					foundCutlist = name_from_mdl_;
-					foundRev = rev;
-				}
-			}
 			cutlist_warn_label.Text = msg_;
 			cutlist_warn_label.Visible = msg_ != string.Empty;
 			rename_button.Visible = msg_ != string.Empty;
@@ -1148,6 +1153,7 @@ namespace RedBrick2 {
 				if (rev_in_filename) {
 					ref_cbx.Text = string.Format(@"{0} REV {1}", topName, rev);
 				}
+				CheckCutlist();
 				rev_changed_by_user = false;
 			}
 		}
@@ -1741,8 +1747,9 @@ namespace RedBrick2 {
 		}
 
 		private void rename_button_Click(object sender, EventArgs e) {
-			string query_ = string.Format(@"Rename `{0} REV {1}' to `{2} REV {3}'?", foundCutlist, foundRev, itm_cbx.Text, rev_cbx.Text);
-			MessageBox.Show(query_, "Hmm?", MessageBoxButtons.YesNo);
+			using (RenameCutlist rc_ = new RenameCutlist(foundCLID)) {
+				rc_.ShowDialog(this);
+			}
 		}
 	}
 }
