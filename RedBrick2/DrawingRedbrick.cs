@@ -221,15 +221,20 @@ namespace RedBrick2 {
 					groupBox5.Text = @"New Drawing";
 					dd_ = ActiveDoc as DrawingDoc;
 					dd_.FileSavePostNotify += dd__FileSavePostNotify;
+					dd_.FileSaveAsNotify2 += Dd__FileSaveAsNotify2;
 				}
 			}
 			GetFileDates();
 		}
 
+		private int Dd__FileSaveAsNotify2(string FileName) {
+			GetFileDates();
+			return 0;
+		}
+
 		public void GetFileDates() {
 			bool dev = false;
-			PDFFileInfo = find_pdf(Path.GetFileNameWithoutExtension(PartFileInfo.Name), ref dev);
-			if (ActiveDoc.GetPathName() == null || PDFFileInfo == null || !PDFFileInfo.Exists) {
+			if (PartFileInfo == null) {
 				fileDateLabel.Text = @"New Document";
 				pdfDateLabel.Text = @"No PDF";
 				slddrw_tooltip.RemoveAll();
@@ -237,10 +242,19 @@ namespace RedBrick2 {
 				pdfDateLabel.LinkVisited = true;
 				return;
 			}
+
 			fileDateLabel.Text = string.Format(@"SLDDRW last saved: {0} {1}",
 				PartFileInfo.LastWriteTime.ToShortDateString(),
 				PartFileInfo.LastWriteTime.ToShortTimeString());
 			slddrw_tooltip.SetToolTip(fileDateLabel, PartFileInfo.FullName);
+			PDFFileInfo = find_pdf(Path.GetFileNameWithoutExtension(PartFileInfo.Name), ref dev);
+
+			if (ActiveDoc.GetPathName() == null || PDFFileInfo == null || !PDFFileInfo.Exists) {
+				pdfDateLabel.Text = @"No PDF";
+				linkLabel_tooltip.RemoveAll();
+				pdfDateLabel.LinkVisited = true;
+				return;
+			}
 			if (dev) {
 				pdfDateLabel.Text = string.Format(@"Dev. PDF last saved: {0} {1}",
 					PDFFileInfo.LastWriteTime.ToShortDateString(),
@@ -302,6 +316,7 @@ namespace RedBrick2 {
 		public void DumpData() {
 			if (dd_ != null) {
 				dd_.FileSavePostNotify -= dd__FileSavePostNotify;
+				dd_.FileSaveAsNotify2 -= Dd__FileSaveAsNotify2;
 				dd_ = null;
 			}
 			ActiveDoc = null;
@@ -312,8 +327,8 @@ namespace RedBrick2 {
 		private int dd__FileSavePostNotify(int saveType, string FileName) {
 			if (reload && FileName.ToUpper().EndsWith(@"SLDDRW")) {
 				ReLoad(SwApp.ActiveDoc);
-				GetFileDates();
 			}
+			GetFileDates();
 			reload = true;
 			return 0;
 		}
