@@ -873,9 +873,7 @@ namespace RedBrick2 {
 		/// <returns>A string for DB searches.</returns>
 		static public string FileInfoToLookup(System.IO.FileInfo _fi) {
 			string lookup_ =  System.IO.Path.GetFileNameWithoutExtension(_fi.FullName);
-			if (lookup_.Contains(@"^")) {
-				lookup_ = lookup_.Split('^')[0];
-			}
+			lookup_ = lookup_.Split(new char[] { ' ', '^' }, StringSplitOptions.RemoveEmptyEntries)[0];
 
 			if (IsConformingPartnumber(lookup_) && !lookup_.StartsWith(@"Z")) {
 				return lookup_.Trim();
