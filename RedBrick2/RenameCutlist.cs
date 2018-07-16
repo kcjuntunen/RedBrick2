@@ -20,18 +20,9 @@ namespace RedBrick2 {
 
 		public void Init() {
 			InitializeComponent();
-			Location = Properties.Settings.Default.RenameLocation;
-			Size = Properties.Settings.Default.RenameSize;
 			rename_button.Enabled = names_OK;
 			from_cbx.DrawMode = DrawMode.OwnerDrawFixed;
 		} 
-
-		private void save_and_close() {
-			Properties.Settings.Default.RenameLocation = Location;
-			Properties.Settings.Default.RenameSize = Size;
-			Properties.Settings.Default.Save();
-			Close();
-		}
 
 		private bool CheckCutlistExists(string cl_, string rev_) {
 			using (ENGINEERINGDataSet.CUT_CUTLISTSDataTable cdt_ =
@@ -50,6 +41,8 @@ namespace RedBrick2 {
 		}
 
 		private void RenameCutlist_Load(object sender, EventArgs e) {
+			Location = Properties.Settings.Default.RenameLocation;
+			Size = Properties.Settings.Default.RenameSize;
 			cUT_CUTLISTSTableAdapter.Fill(eNGINEERINGDataSet.CUT_CUTLISTS);
 			revListTableAdapter.Fill(eNGINEERINGDataSet.RevList);
 			if (pre_selected_clid > 0) {
@@ -64,7 +57,7 @@ namespace RedBrick2 {
 		}
 
 		private void close_btn_Click(object sender, EventArgs e) {
-			save_and_close();
+			Close();
 		}
 
 		private void to_tbx_TextChanged(object sender, EventArgs e) {
@@ -147,6 +140,12 @@ namespace RedBrick2 {
 
 		private void from_cbx_KeyDown(object sender, KeyEventArgs e) {
 			(sender as ComboBox).DroppedDown = false;
+		}
+
+		private void RenameCutlist_FormClosing(object sender, FormClosingEventArgs e) {
+			Properties.Settings.Default.RenameLocation = Location;
+			Properties.Settings.Default.RenameSize = Size;
+			Properties.Settings.Default.Save();
 		}
 	}
 }

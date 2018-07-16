@@ -203,6 +203,7 @@
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.Text = "Rename Cutlist";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RenameCutlist_FormClosing);
 			this.Load += new System.EventHandler(this.RenameCutlist_Load);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel1.PerformLayout();
