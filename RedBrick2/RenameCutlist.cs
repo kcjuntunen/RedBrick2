@@ -18,7 +18,7 @@ namespace RedBrick2 {
 			Init();
 		}
 
-		public void Init() {
+		private void Init() {
 			InitializeComponent();
 			rename_button.Enabled = names_OK;
 			from_cbx.DrawMode = DrawMode.OwnerDrawFixed;
@@ -95,9 +95,9 @@ namespace RedBrick2 {
 			close_btn.BackColor = Color.Green;
 		}
 
-		public bool names_OK {
+		private bool names_OK {
 			get { return (to_tbx.Text.Trim() != string.Empty) && (rev_cbx.Text.Trim() != string.Empty); }
-			private set {; }
+			set {; }
 		}
 
 		private void rev_cbx_TextChanged(object sender, EventArgs e) {
