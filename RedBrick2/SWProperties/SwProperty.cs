@@ -29,11 +29,12 @@ namespace RedBrick2 {
 			Global = global;
 			SwApp = sw;
 			ActiveDoc = md;
-			if (ActiveDoc != null) {
-				GetPropertyManager();
-				//GetFileInfo();
-				SetDefaults();
+			if (ActiveDoc == null) {
+				return;
 			}
+			GetPropertyManager();
+			//GetFileInfo();
+			SetDefaults();
 		}
 
 		/// <summary>
@@ -49,11 +50,12 @@ namespace RedBrick2 {
 			Global = global;
 			SwApp = sw;
 			ActiveDoc = comp.GetModelDoc2();
-			if (ActiveDoc != null) {
-				GetPropertyManager();
-				//GetFileInfo();
-				SetDefaults();
+			if (ActiveDoc == null) {
+				return;
 			}
+			GetPropertyManager();
+			//GetFileInfo();
+			SetDefaults();
 		}
 
 		private void SetDefaults() {
@@ -63,19 +65,23 @@ namespace RedBrick2 {
 
 		private void GetFileInfo() {
 			string path_ = ActiveDoc.GetPathName();
-			if (path_ != string.Empty) {
-				PartFileInfo = new FileInfo(ActiveDoc.GetPathName());
-				object _prtID = cpta.GetPartIDByPartnum(Redbrick.FileInfoToLookup(PartFileInfo));
-				if (_prtID != null) {
-					PartID = (int)_prtID;
-				} else {
-					PartID = 0;
-				}
-				Hash = Redbrick.GetHash(PartFileInfo);
+			PartID = 0;
+			if (path_ == string.Empty) {
+				return;
 			}
+
+			PartFileInfo = new FileInfo(ActiveDoc.GetPathName());
+			Hash = Redbrick.GetHash(PartFileInfo);
+			object _prtID = cpta.GetPartIDByPartnum(Redbrick.FileInfoToLookup(PartFileInfo));
+
+			if (_prtID == null) {
+				return;
+			}
+
+			PartID = (int)_prtID;
 		}
 
-		private void GetPropertyManager() {
+		private void GetPropertyManager2() {
 			ModelDocExtension ext = null;
 			if (ActiveDoc != null) {
 				while (ext == null) {
@@ -97,11 +103,38 @@ namespace RedBrick2 {
 				}
 			}
 		}
+
+		private void GetPropertyManager() {
+			if (ActiveDoc == null) {
+				return;
+			}
+
+			ModelDocExtension ext = null;
+			ext = ActiveDoc.Extension;
+
+			if (ext == null) {
+				return;
+			}
+
+			globlProperty = ext.get_CustomPropertyManager(string.Empty);
+
+			if (ActiveDoc is DrawingDoc) {
+				PropertyManager = globlProperty;
+			} else {
+				localProperty = ext.get_CustomPropertyManager(Configuration);
+			}
+			if (Global || (ActiveDoc is DrawingDoc)) {
+				PropertyManager = globlProperty;
+			} else {
+				PropertyManager = localProperty;
+			}
+
+		}
 		
 		/// <summary>
 		/// Do the actual reading from SolidWorks.
 		/// </summary>
-		protected void InnerGet() {
+		protected void InnerGet2() {
 			if (PropertyManager == null) {
 				GetPropertyManager();
 			}
@@ -128,6 +161,44 @@ namespace RedBrick2 {
 						if (arrayContains(globprops_, Name)) {
 							GetResult = (swCustomInfoGetResult_e)globlProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
 						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Do the actual reading from SolidWorks.
+		/// </summary>
+		protected void InnerGet() {
+			if (PropertyManager == null) {
+				GetPropertyManager();
+			}
+
+			if (PropertyManager == null) {
+				return;
+			}
+
+			if (ActiveDoc is DrawingDoc) {
+				string[] props_ = globlProperty.GetNames();
+				if (arrayContains(props_, Name)) {
+					GetResult = (swCustomInfoGetResult_e)globlProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
+				}
+			} else {
+				string[] globprops_ = globlProperty.GetNames();
+				if (arrayContains(globprops_, Name)) {
+					GetResult = (swCustomInfoGetResult_e)globlProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
+				}
+				if (v == null || v == string.Empty) {
+					if (localProperty != null) {
+						string[] locprops_ = localProperty.GetNames();
+						if (arrayContains(locprops_, Name)) {
+							GetResult = (swCustomInfoGetResult_e)localProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
+						}
+					}
+				}
+				if (v == null || v == string.Empty) {
+					if (arrayContains(globprops_, Name)) {
+						GetResult = (swCustomInfoGetResult_e)globlProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
 					}
 				}
 			}
