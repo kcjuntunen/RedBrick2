@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// A Form for viewing ECR data.
+	/// </summary>
 	public partial class ECRViewer : Form {
 		private string Lookup;
 		private string dateFormat = @"MMM dd, yyyy";
 		private List<int> items = new List<int>();
 		private List<string> drawings = new List<string>();
 		private string originalText = string.Empty;
+
+		/// <summary>
+		/// Instantiate an ECRViewer and look up related ECRs.
+		/// </summary>
+		/// <param name="lookup">A lookup <see cref="string"/>.</param>
 		public ECRViewer(string lookup) {
 			Lookup = lookup;
 			if (lookup.Contains(@"REV")) {
@@ -20,6 +28,10 @@ namespace RedBrick2 {
 			LookupItem(Lookup);
 		}
 
+		/// <summary>
+		/// Instantiate an ECRViewer with an ECR preselected.
+		/// </summary>
+		/// <param name="ecr">An ECR #.</param>
 		public ECRViewer(int ecr) {
 			Lookup = ecr.ToString();
 			InitializeComponent();

@@ -236,8 +236,14 @@ namespace RedBrick2 {
 			initialated = true;
 		}
 
+		/// <summary>
+		/// An event to throw if something changes."
+		/// </summary>
 		public event EventHandler ChangedStuff;
 
+		/// <summary>
+		/// Throw ChangedStuff event.
+		/// </summary>
 		protected virtual void OnChangedStuff() {
 			ChangedStuff?.Invoke(this, new EventArgs());
 		}

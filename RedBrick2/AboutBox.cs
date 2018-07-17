@@ -4,6 +4,9 @@ using System.Xml;
 using System.Windows.Forms;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// About the Redbrick.
+	/// </summary>
 	public partial class AboutBox : Form {
 		System.Windows.Controls.Canvas c = new System.Windows.Controls.Canvas();
 		PropertyInfo[] br_; 
@@ -11,6 +14,10 @@ namespace RedBrick2 {
 		bool cleared = false;
 		System.Random r_ = new System.Random();
 		System.Windows.Media.Brush b_ = System.Windows.Media.Brushes.Red;
+
+		/// <summary>
+		/// Constructor
+		/// </summary>
 		public AboutBox() {
 			InitializeComponent();
 			br_ = typeof(System.Windows.Media.Brushes).GetProperties();

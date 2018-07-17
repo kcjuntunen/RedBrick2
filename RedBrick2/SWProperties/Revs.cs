@@ -12,6 +12,10 @@ namespace RedBrick2 {
 		/// The connected application.
 		/// </summary>
 		public SldWorks SwApp;
+
+		/// <summary>
+		/// Is this a metal drawing?
+		/// </summary>
 		public bool IsMetal;
 		private List<Rev> innerList = new List<Rev>();
 

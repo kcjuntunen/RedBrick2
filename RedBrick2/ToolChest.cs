@@ -20,6 +20,7 @@ namespace RedBrick2 {
 		/// <summary>
 		/// Constructor.
 		/// </summary>
+		/// <param name="lk">A part lookup string.</param>
 		/// <param name="s">Accepts a <see cref="SldWorks"/> object because some
 		/// of these tools require it.</param>
 		public ToolChest(string lk, SldWorks s) {

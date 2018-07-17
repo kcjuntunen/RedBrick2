@@ -91,6 +91,7 @@ namespace RedBrick2 {
 		/// <param name="ecr">StringProperty of ECR value.</param>
 		/// <param name="descr">StringProperty of a description.</param>
 		/// <param name="aut">AuthorProperty.</param>
+		/// <param name="autid">AuthorUIDProperty.</param>
 		/// <param name="dt">DateProperty.</param>
 		public Rev(StringProperty lvl, StringProperty ecr, StringProperty descr, AuthorProperty aut, AuthorUIDProperty autid, DateProperty dt) {
 			level = lvl;

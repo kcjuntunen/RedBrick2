@@ -1758,6 +1758,9 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// Force the last saved labels to update.
+		/// </summary>
 		public void GetFileDates() {
 			drawingRedbrick.GetFileDates();
 		}

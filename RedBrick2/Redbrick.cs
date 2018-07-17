@@ -770,6 +770,11 @@ namespace RedBrick2 {
 			return v;
 		}
 
+		/// <summary>
+		/// Get a lookup value from the drawing we're looking at.
+		/// </summary>
+		/// <param name="sw">A reference to a live <see cref="SldWorks"/>.</param>
+		/// <returns>A lookup <see cref="string"/>.</returns>
 		public static string GetModelNameFromDrawing(SldWorks sw) {
 			View v_ = GetFirstView(sw);
 			string lu_ = FileInfoToLookup(new System.IO.FileInfo(v_.ReferencedDocument.GetPathName()));
@@ -999,6 +1004,14 @@ namespace RedBrick2 {
 			return str_;
 		}
 
+		/// <summary>
+		/// Figure out related names, fill out a Groupbox title, and tooltip.
+		/// </summary>
+		/// <param name="lookup">A Lookup <see cref="string"/></param>
+		/// <param name="cust">An <see cref="int"/> to be populated with a customer id.</param>
+		/// <param name="descr">A <see cref="string"/> to be populated with a description from the db.</param>
+		/// <param name="tooltip">A <see cref="System.Windows.Forms.ToolTip"/> to be populated.</param>
+		/// <param name="control">A <see cref="System.Windows.Forms.GroupBox"/> whose title will be updated.</param>
 		static public void GetCustAndDescr(string lookup, ref int cust, ref string descr,
 			ref System.Windows.Forms.ToolTip tooltip, ref System.Windows.Forms.GroupBox control) {
 			cust = 0;

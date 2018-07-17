@@ -4,6 +4,9 @@ using System.Drawing;
 using System.Windows.Forms;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// A form to manage cutlist time.
+	/// </summary>
 	public partial class ManageCutlistTime : Form {
 		Dictionary<string, string[]> partdict_ = new Dictionary<string, string[]>();
 		List<int> types_ = new List<int>();
@@ -17,6 +20,10 @@ namespace RedBrick2 {
 		bool allow_refresh_ = false;
 		bool initialized = false;
 
+		/// <summary>
+		/// Constructor. Preselect a cutlist.
+		/// </summary>
+		/// <param name="clid">A <see cref="int"/> of Cutlist ID to preselect.</param>
 		public ManageCutlistTime(int clid) : base() {
 			InitializeComponent();
 			starting_clid_ = clid;
@@ -26,6 +33,10 @@ namespace RedBrick2 {
 			initialized = true;
 		}
 
+		/// <summary>
+		/// Constructor. Instantiate and try to guess at the cutlist.
+		/// </summary>
+		/// <param name="lookup">A <see cref="string"/> lookup value from <see cref="Redbrick.FileInfoToLookup(System.IO.FileInfo)"/>.</param>
 		public ManageCutlistTime(string lookup) : base() {
 			lookup_ = lookup.ToUpper();
 			InitializeComponent();
@@ -52,6 +63,11 @@ namespace RedBrick2 {
 			initialized = true;
 		}
 
+		/// <summary>
+		/// Constructor. Preselect a cutlist.
+		/// </summary>
+		/// <param name="lookup">A <see cref="string"/> lookup value from <see cref="Redbrick.FileInfoToLookup(System.IO.FileInfo)"/>.</param>
+		/// <param name="clid">A <see cref="int"/> of Cutlist ID to preselect.</param>
 		public ManageCutlistTime(string lookup, int clid) : base() {
 			lookup_ = lookup.ToUpper();
 			starting_clid_ = clid;
@@ -75,6 +91,9 @@ namespace RedBrick2 {
 			initialized = true;
 		}
 
+		/// <summary>
+		/// Constructor. Instantiate without preselection.
+		/// </summary>
 		public ManageCutlistTime() {
 			if (!initialized) {
 				InitializeComponent();

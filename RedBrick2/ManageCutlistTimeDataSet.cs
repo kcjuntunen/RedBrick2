@@ -5,6 +5,14 @@ using System.Collections.Generic;
 
 namespace RedBrick2 {
 	partial class ManageCutlistTimeDataSet {
+		/// <summary>
+		/// Update cutlist time by cutlist time ID.
+		/// </summary>
+		/// <param name="ctid">Cutlist time ID.</param>
+		/// <param name="clid">Cutlist ID.</param>
+		/// <param name="op">Op ID.</param>
+		/// <param name="op_method">Op method ID.</param>
+		/// <param name="op_setup">Setup time.</param>
 		public void UpdCLTimeByID(int ctid, int clid, int op, int op_method, double op_setup) {
 			using (ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter ta_ =
 				new ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter()) {
@@ -35,6 +43,11 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// Get a structure ready to insert into a <see cref="System.Windows.Forms.ListView"/>.
+		/// </summary>
+		/// <param name="clid">A <see cref="int"/> of a cutlist ID.</param>
+		/// <returns>A <see cref="List{String}"/> of arrays of <see cref="string"/>s.</returns>
 		public List<string[]> QueryCutlistTime(int clid) {
 			using (ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter ta_ =
 				new ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter()) {
@@ -57,6 +70,12 @@ namespace RedBrick2 {
 
 namespace RedBrick2.ManageCutlistTimeDataSetTableAdapters {
 	partial class CutlistPartsTableAdapter {
+		/// <summary>
+		/// Return the unique edges on a part.
+		/// </summary>
+		/// <param name="clid">An <see cref="int"/> of a cutlist ID.</param>
+		/// <param name="op">A POPOP <see cref="int"/></param>
+		/// <returns></returns>
 		public int CountEdges(int clid, int op) {
 			HashSet<int> hs_ = new HashSet<int>();
 			foreach (string edge in new string[] { @"EDGEID_LF", @"EDGEID_LB", @"EDGEID_WR", @"EDGEID_WL" }) {
@@ -94,6 +113,12 @@ HAVING (((CUT_CUTLIST_PARTS.CLID)=@clid) AND ((CUT_PART_OPS.POPOP)=@glop));", ed
 	}
 
 	public partial class CUT_CUTLISTS_TIMETableAdapter {
+		/// <summary>
+		/// Get the total run time of a cutlist with types selected.
+		/// </summary>
+		/// <param name="clID">The cutlist ID. An <see cref="int"/>.</param>
+		/// <param name="types">The part types to sum up. An array of <see cref="int"/></param>
+		/// <returns>A <see cref="double"/> of hours.</returns>
 		public double GetCutlistRunTime(int clID, int[] types) {
 			double total = 0.0f;
 			using (CUT_PARTSTableAdapter ta_ =
@@ -136,6 +161,12 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 			return total;
 		}
 
+		/// <summary>
+		/// Get the total setup time of a cutlist with types selected.
+		/// </summary>
+		/// <param name="clID">The cutlist ID. An <see cref="int"/>.</param>
+		/// <param name="types">The part types to sum up. An array of <see cref="int"/></param>
+		/// <returns>A <see cref="double"/> of hours.</returns>
 		public double GetCutlistSetupTime(int clID, int[] types) {
 			double total = 0.0f;
 			using (ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter ta_ =

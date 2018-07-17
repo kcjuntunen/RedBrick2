@@ -29,6 +29,12 @@ namespace RedBrick2 {
 		}
 
 		partial class CUT_PART_OPSDataTable {
+			/// <summary>
+			/// Get the run time from a cutlist.
+			/// </summary>
+			/// <param name="clID">A cutlist ID.</param>
+			/// <param name="types">An array of <see cref="int"/> of part types.</param>
+			/// <returns>Total time in hours. A <see cref="double"/></returns>
 			public double GetCutlistRunTime(int clID, int[] types) {
 				double total = 0.0f;
 				using (ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter ta_ =
@@ -71,6 +77,12 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 				return total;
 			}
 
+			/// <summary>
+			/// Get the setup time from a cutlist.
+			/// </summary>
+			/// <param name="clID">A cutlist ID.</param>
+			/// <param name="types">An array of <see cref="int"/> of part types.</param>
+			/// <returns>Total time in hours. A <see cref="double"/></returns>
 			public double GetCutlistSetupTime(int clID, int[] types) {
 				double total = 0.0f;
 				using (ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter ta_ =
@@ -559,6 +571,13 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 				}
 			}
 
+			/// <summary>
+			/// Rename a cutlist.
+			/// </summary>
+			/// <param name="_clid">The cutlist ID to rename. A <see cref="int"/>.</param>
+			/// <param name="_itemnum">The new name.</param>
+			/// <param name="_rev">The new REV.</param>
+			/// <returns></returns>
 			public int Rename(int _clid, string _itemnum, string _rev) {
 				int affected_ = 0;
 				using (ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter ta_ =
@@ -1074,6 +1093,11 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 
 namespace RedBrick2.ENGINEERINGDataSetTableAdapters {
 	partial class ECR_LEGACYTableAdapter {
+		/// <summary>
+		/// Get legacy ECR numbers based on a lookup.
+		/// </summary>
+		/// <param name="itemNum">A <see cref="string"/> to lookup.</param>
+		/// <returns>A <see cref="ENGINEERINGDataSet.ECR_LEGACYDataTable"/> filled with related legacy ECR numbers.</returns>
 		public ENGINEERINGDataSet.ECR_LEGACYDataTable GetDataByItemNum(string itemNum) {
 			ENGINEERINGDataSet.ECR_LEGACYDataTable dt_ = new ENGINEERINGDataSet.ECR_LEGACYDataTable();
 			string SQL = @"SELECT * FROM ECR_LEGACY WHERE AffectedParts LIKE @part ORDER BY ECRNum DESC";

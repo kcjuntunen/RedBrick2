@@ -4,6 +4,9 @@ using System.IO;
 using SolidWorks.Interop.sldworks;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// A SolidWorks BOM parser.
+	/// </summary>
 	public class SwTableType {
 		private ModelDoc2 part;
 		private SelectionMgr swSelMgr;
@@ -11,8 +14,18 @@ namespace RedBrick2 {
 		private System.Collections.Specialized.StringCollection _masterHashes;
 		private bool initialated = false;
 		private Dictionary<string, FileInfo> path_dict = new Dictionary<string, FileInfo>();
+
+		/// <summary>
+		/// The BOM we found.
+		/// </summary>
 		public IBomFeature found_bom = null;
 
+
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="md">A <see cref="ModelDoc2"/> from SolidWorks.</param>
+		/// <param name="tablehash">The hash of the BOM we want.</param>
 		public SwTableType(ModelDoc2 md, string tablehash) {
 			MasterHash = tablehash;
 			_masterHashes[0] = MasterHash;
@@ -34,6 +47,11 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="md">A <see cref="ModelDoc2"/> from SolidWorks.</param>
+		/// <param name="sc">A <see cref="System.Collections.Specialized.StringCollection"/> of hashes for approved BOMs.</param>
 		public SwTableType(ModelDoc2 md, System.Collections.Specialized.StringCollection sc) {
 			_masterHashes = sc;
 			part = md;
@@ -53,6 +71,12 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="md">A <see cref="ModelDoc2"/> from SolidWorks.</param>
+		/// <param name="sc">A <see cref="System.Collections.Specialized.StringCollection"/> of hashes for approved BOMs.</param>
+		/// <param name="part_column">A <see cref="string"/> of the name of the part column.</param>
 		public SwTableType(ModelDoc2 md, System.Collections.Specialized.StringCollection sc, string part_column)
 			: this(md, sc) {
 			PartColumn = part_column;
@@ -91,6 +115,11 @@ namespace RedBrick2 {
 			initialated = true;
 		}
 
+		/// <summary>
+		/// Get the path of a part.
+		/// </summary>
+		/// <param name="doc">A partname.</param>
+		/// <returns>A <see cref="FileInfo"/> location of a part.</returns>
 		public FileInfo get_path(string doc) {
 			if (PathList != null) {
 				foreach (FileInfo fi in PathList) {
@@ -102,6 +131,11 @@ namespace RedBrick2 {
 			return null;
 		}
 
+		/// <summary>
+		/// Get the path of a part.
+		/// </summary>
+		/// <param name="doc">A partname.</param>
+		/// <returns>A <see cref="FileInfo"/> location of a part.</returns>
 		public FileInfo get_path2(string doc) {
 			string key_ = doc.ToUpper();
 			if (path_dict != null && path_dict.ContainsKey(key_)) {
@@ -215,24 +249,59 @@ namespace RedBrick2 {
 			return ba;
 		}
 
+		/// <summary>
+		/// Get a property by a part name.
+		/// </summary>
+		/// <param name="part">Part number. A <see cref="string" />.</param>
+		/// <param name="prop">The name of the property we're looking for.</param>
+		/// <returns>A <see cref="string" /> value.</returns>
 		public string GetProperty(string part, string prop) {
 			return get_property_by_part(part, prop, PartColumn);
 		}
 
+		/// <summary>
+		/// Get a property by a part's row number.
+		/// </summary>
+		/// <param name="row">Row number. An <see cref="int" />.</param>
+		/// <param name="prop">The name of the property we're looking for.</param>
+		/// <returns>A <see cref="string" /> value.</returns>
 		public string GetProperty(int row, string prop) {
 			return get_property_by_part(row, prop, PartColumn);
 		}
 
+		/// <summary>
+		/// Which column has part numbers.
+		/// </summary>
 		public string PartColumn { get; set; } = "PART NUMBER";
 
+		/// <summary>
+		/// The number of columns in the BOM.
+		/// </summary>
 		public int ColumnCount { get; set; } = 0;
 
+		/// <summary>
+		/// The number of rows in the BOM.
+		/// </summary>
 		public int RowCount { get; set; } = 0;
+
+		/// <summary>
+		/// File paths to parts found.
+		/// </summary>
 		public List<FileInfo> PathList { get; set; } = new List<FileInfo>();
 
+		/// <summary>
+		/// Columns of the BOM.
+		/// </summary>
 		public List<string> Columns { get; set; } = new List<string>();
 
+		/// <summary>
+		/// Parts we found.
+		/// </summary>
 		public List<string> Parts { get; set; } = new List<string>();
+
+		/// <summary>
+		/// A hash BOM headings.
+		/// </summary>
 		public string MasterHash { get; set; } = "00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00";
 	}
 }

@@ -3,16 +3,25 @@ using System.Drawing;
 using System.Windows.Forms;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// A form for renaming cutlists.
+	/// </summary>
 	public partial class RenameCutlist : Form {
 		int pre_selected_clid = 0;
 		string selected_rev = string.Empty;
 
 		ToolTip descr_tt = new ToolTip();
 
+		/// <summary>
+		/// Constructor. Instantiate the RenameCutlist form.
+		/// </summary>
 		public RenameCutlist() {
 			Init();
 		}
 
+		/// <summary>
+		/// Constructor. Instantiate the RenameCutlist form with <see cref="int"/> selected.
+		/// </summary>
 		public RenameCutlist(int clid) {
 			pre_selected_clid = clid;
 			Init();

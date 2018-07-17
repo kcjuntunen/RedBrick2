@@ -4,17 +4,28 @@ using System.Drawing;
 using System.Windows.Forms;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// A form to manage cutlist time.
+	/// </summary>
 	public partial class ManageCutlistTimeEdit : Form {
 		int starting_clid = 0;
 		List<string[]> list = new List<string[]>();
 		int idx = 0;
 		bool allow_refresh = false;
 
+		/// <summary>
+		/// Instantiate <see cref="ManageCutlistTime"/> with nothing preselected.
+		/// </summary>
 		public ManageCutlistTimeEdit() {
 			InitializeComponent();
 			SetupListViews();
 		}
 
+		/// <summary>
+		/// Instantiate <see cref="ManageCutlistTime"/> with stuff preselected.
+		/// </summary>
+		/// <param name="clid_">Preselect <see cref="int"/> Cutlist ID.</param>
+		/// <param name="list_">Highlight any of the items that appear in <see cref="string"/>.</param>
 		public ManageCutlistTimeEdit(int clid_, List<string[]> list_) {
 			starting_clid = clid_;
 			list = list_;

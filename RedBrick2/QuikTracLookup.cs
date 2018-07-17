@@ -9,6 +9,10 @@ namespace RedBrick2 {
 	public partial class QuickTracLookup : Form {
 		private DataView dv_;
 
+		/// <summary>
+		/// Constructor. Instantiate it with a preselected item.
+		/// </summary>
+		/// <param name="lookup">A <see cref="string"/> obtained from <see cref="Redbrick.FileInfoToLookup(System.IO.FileInfo)"/>.</param>
 		public QuickTracLookup(string lookup) {
 			InitializeComponent();
 			toolStripStatusLabel1.Text = @"Total quantity: 0";

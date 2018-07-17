@@ -1,6 +1,9 @@
 using SolidWorks.Interop.sldworks;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// A property handler for AuthorUIDs.
+	/// </summary>
 	public class AuthorUIDProperty : StringProperty {
 		/// <summary>
 		/// Constructor.

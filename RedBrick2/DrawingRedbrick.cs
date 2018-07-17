@@ -566,6 +566,9 @@ namespace RedBrick2 {
 		/// </summary>
 		public FileInfo PartFileInfo { get; set; }
 
+		/// <summary>
+		/// A <see cref="FileInfo"/> of a PDF if we found one.
+		/// </summary>
 		public FileInfo PDFFileInfo { get; set; }
 
 		/// <summary>

@@ -2,8 +2,17 @@
 using System.Text.RegularExpressions;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// A class to hold estimation procedures.
+	/// </summary>
 	public class Estimation {
 		static string metalSTPPath = @"\\Amstore-svr-22\cad\STRIKER LASER PROGRAMS\STP";
+
+		/// <summary>
+		/// Read the STP files, and work out the time per part in minutes.
+		/// </summary>
+		/// <param name="part">A value that'll match the filename of a .STP file.</param>
+		/// <returns>A <see cref="double"/> of minutes.</returns>
 		public static double GetLaserPartRuntime(string part) {
 			double per_part_time_ = 0.0F;
 			FileInfo f_ = new FileInfo(string.Format(@"{0}\{1}.txt", metalSTPPath, part));
