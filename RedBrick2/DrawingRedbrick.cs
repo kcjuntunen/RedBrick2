@@ -232,7 +232,7 @@ namespace RedBrick2 {
 			return 0;
 		}
 
-		public void GetFileDates() {
+		internal void GetFileDates() {
 			bool dev = false;
 			if (PartFileInfo == null) {
 				fileDateLabel.Text = @"New Document";

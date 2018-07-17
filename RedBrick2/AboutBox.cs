@@ -107,7 +107,7 @@ namespace RedBrick2 {
 
 		#region Assembly Attribute Accessors
 
-		public string AssemblyTitle {
+		internal string AssemblyTitle {
 			get {
 				object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
 				if (attributes.Length > 0) {
@@ -120,13 +120,13 @@ namespace RedBrick2 {
 			}
 		}
 
-		public string AssemblyVersion {
+		internal string AssemblyVersion {
 			get {
 				return Assembly.GetExecutingAssembly().GetName().Version.ToString();
 			}
 		}
 
-		public string AssemblyDescription {
+		internal string AssemblyDescription {
 			get {
 				object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false);
 				if (attributes.Length == 0) {
@@ -136,7 +136,7 @@ namespace RedBrick2 {
 			}
 		}
 
-		public string AssemblyProduct {
+		internal string AssemblyProduct {
 			get {
 				object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyProductAttribute), false);
 				if (attributes.Length == 0) {
@@ -146,7 +146,7 @@ namespace RedBrick2 {
 			}
 		}
 
-		public string AssemblyCopyright {
+		internal string AssemblyCopyright {
 			get {
 				object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
 				if (attributes.Length == 0) {
@@ -156,7 +156,7 @@ namespace RedBrick2 {
 			}
 		}
 
-		public string AssemblyCompany {
+		internal string AssemblyCompany {
 			get {
 				object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
 				if (attributes.Length == 0) {
