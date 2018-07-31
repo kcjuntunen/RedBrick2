@@ -243,6 +243,9 @@ namespace RedBrick2 {
 		/// </summary>
 		public virtual void Write() {
 			if (!DoNotWrite) {
+				if (Global && localProperty != null) {
+					localProperty.Delete2(Name);
+				}
 				WriteResult =
 					(swCustomInfoAddResult_e)PropertyManager.Add3(Name,
 					(int)SWType,
