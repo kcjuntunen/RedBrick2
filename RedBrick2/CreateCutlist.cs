@@ -67,7 +67,7 @@ namespace RedBrick2 {
 
 			new ToolTip().SetToolTip(update_prts_btn, @"Experimental. This is supposed to write whatever you see in this table to the parts.");
 			new ToolTip().SetToolTip(getdatafromDBbtn, @"Experimental. Try and get part info from DB instead of parts.");
-			new ToolTip().SetToolTip(rel_cutlist_btn, @"Look up cutlists related to this model.");
+			new ToolTip().SetToolTip(rel_cutlist_btn, @"List every item in this model that has its own cutlist.");
 			dataGridView1.DataError += dataGridView1_DataError;
 			dataGridView1.UserDeletedRow += DataGridView1_UserDeletedRow;
 
