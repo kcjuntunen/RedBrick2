@@ -28,6 +28,7 @@ namespace RedBrick2 {
 			lookup = lk;
 			InitializeComponent();
 			Location = Properties.Settings.Default.ToolChestLocation;
+			button7.Enabled = swApp.ActiveDoc is PartDoc;
 			Deactivate += ToolChest_Deactivate;
 		}
 
@@ -77,6 +78,15 @@ namespace RedBrick2 {
 			using (RenameCutlist rc_ = new RenameCutlist(Properties.Settings.Default.LastCutlist)) {
 				rc_.ShowDialog(this);
 			}
+			Close();
+		}
+
+		private void button7_Click(object sender, EventArgs e) {
+			if (!(swApp.ActiveDoc is PartDoc)) {
+				return;
+			}
+			(swApp.ActiveDoc as PartDoc).ExportFlatPatternView(@"C:\Optimize\Import\flat\temp.dxf",
+				(int)SolidWorks.Interop.swconst.swExportFlatPatternViewOptions_e.swExportFlatPatternOption_None);
 			Close();
 		}
 	}

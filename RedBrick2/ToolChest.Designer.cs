@@ -31,12 +31,15 @@
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.button4 = new System.Windows.Forms.Button();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
-			this.button5 = new System.Windows.Forms.Button();
 			this.button6 = new System.Windows.Forms.Button();
+			this.button5 = new System.Windows.Forms.Button();
+			this.groupBox5 = new System.Windows.Forms.GroupBox();
+			this.button7 = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.groupBox4.SuspendLayout();
+			this.groupBox5.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -128,16 +131,6 @@
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Cutlist";
 			// 
-			// button5
-			// 
-			this.button5.Location = new System.Drawing.Point(7, 22);
-			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(179, 23);
-			this.button5.TabIndex = 0;
-			this.button5.Text = "Cutlist Time...";
-			this.button5.UseVisualStyleBackColor = true;
-			this.button5.Click += new System.EventHandler(this.button5_Click);
-			// 
 			// button6
 			// 
 			this.button6.Location = new System.Drawing.Point(7, 52);
@@ -148,11 +141,42 @@
 			this.button6.UseVisualStyleBackColor = true;
 			this.button6.Click += new System.EventHandler(this.button6_Click);
 			// 
+			// button5
+			// 
+			this.button5.Location = new System.Drawing.Point(7, 22);
+			this.button5.Name = "button5";
+			this.button5.Size = new System.Drawing.Size(179, 23);
+			this.button5.TabIndex = 0;
+			this.button5.Text = "Cutlist Time...";
+			this.button5.UseVisualStyleBackColor = true;
+			this.button5.Click += new System.EventHandler(this.button5_Click);
+			// 
+			// groupBox5
+			// 
+			this.groupBox5.Controls.Add(this.button7);
+			this.groupBox5.Location = new System.Drawing.Point(352, 109);
+			this.groupBox5.Name = "groupBox5";
+			this.groupBox5.Size = new System.Drawing.Size(140, 100);
+			this.groupBox5.TabIndex = 4;
+			this.groupBox5.TabStop = false;
+			this.groupBox5.Text = "Metal";
+			// 
+			// button7
+			// 
+			this.button7.Location = new System.Drawing.Point(7, 22);
+			this.button7.Name = "button7";
+			this.button7.Size = new System.Drawing.Size(124, 23);
+			this.button7.TabIndex = 0;
+			this.button7.Text = "Export Flat";
+			this.button7.UseVisualStyleBackColor = true;
+			this.button7.Click += new System.EventHandler(this.button7_Click);
+			// 
 			// ToolChest
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(496, 262);
+			this.ClientSize = new System.Drawing.Size(504, 270);
+			this.Controls.Add(this.groupBox5);
 			this.Controls.Add(this.groupBox4);
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.groupBox2);
@@ -172,6 +196,7 @@
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
+			this.groupBox5.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -188,5 +213,7 @@
 		private System.Windows.Forms.GroupBox groupBox4;
 		private System.Windows.Forms.Button button5;
 		private System.Windows.Forms.Button button6;
+		private System.Windows.Forms.GroupBox groupBox5;
+		private System.Windows.Forms.Button button7;
 	}
 }
