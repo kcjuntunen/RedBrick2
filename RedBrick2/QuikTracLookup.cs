@@ -114,6 +114,9 @@ namespace RedBrick2 {
 		}
 
 		private void lookup_item_SelectedIndexChanged(object sender, EventArgs e) {
+			if ((sender as ComboBox).SelectedValue == null) {
+				return;
+			}
 			LookUp((sender as ComboBox).SelectedValue.ToString().Trim());
 		}
 
