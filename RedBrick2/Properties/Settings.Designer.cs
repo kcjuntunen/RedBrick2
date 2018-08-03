@@ -1107,5 +1107,29 @@ namespace RedBrick2.Properties {
                 this["RenameSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
+        public global::System.Drawing.Point RelatedCutlistLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["RelatedCutlistLocation"]));
+            }
+            set {
+                this["RelatedCutlistLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("640, 480")]
+        public global::System.Drawing.Size RelatedCutlistSize {
+            get {
+                return ((global::System.Drawing.Size)(this["RelatedCutlistSize"]));
+            }
+            set {
+                this["RelatedCutlistSize"] = value;
+            }
+        }
     }
 }

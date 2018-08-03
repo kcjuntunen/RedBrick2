@@ -140,6 +140,20 @@
       <DependentUpon>AddToExistingCutlist.cs</DependentUpon>
     </Compile>
     <Compile Include="Estimation.cs" />
+    <Compile Include="RelatedCutlistReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RelatedCutlistReport.Designer.cs">
+      <DependentUpon>RelatedCutlistReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RelatedCutlistReportDataSet.cs">
+      <DependentUpon>RelatedCutlistReportDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="RelatedCutlistReportDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RelatedCutlistReportDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="RenameCutlist.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -317,6 +331,17 @@
     <None Include="ENGINEERINGDataSet.xss">
       <DependentUpon>ENGINEERINGDataSet.xsd</DependentUpon>
     </None>
+    <None Include="RelatedCutlistReportDataSet.xsc">
+      <DependentUpon>RelatedCutlistReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="RelatedCutlistReportDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RelatedCutlistReportDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="RelatedCutlistReportDataSet.xss">
+      <DependentUpon>RelatedCutlistReportDataSet.xsd</DependentUpon>
+    </None>
     <None Include="install.nsi" />
     <None Include="ManageCutlistTimeDataSet.xsc">
       <DependentUpon>ManageCutlistTimeDataSet.xsd</DependentUpon>
@@ -345,6 +370,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreateCutlist.resx">
       <DependentUpon>CreateCutlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RelatedCutlistReport.resx">
+      <DependentUpon>RelatedCutlistReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManageCutlistTimeEdit.resx">
       <DependentUpon>ManageCutlistTimeEdit.cs</DependentUpon>
