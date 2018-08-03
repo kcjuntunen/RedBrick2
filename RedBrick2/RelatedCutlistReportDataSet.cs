@@ -34,12 +34,12 @@ namespace RedBrick2.ExistingCutlistReportDataSetTableAdapters {
 				using (SqlDataReader rdr_ = cmd_.ExecuteReader()) {
 					while (rdr_.Read()) {
 						string item_ = !rdr_.IsDBNull(1) ? rdr_.GetString(1) : @"NULL";
+						string rev_ = !rdr_.IsDBNull(2) ? rdr_.GetString(2) : @"100";
 						string descr_ = !rdr_.IsDBNull(6) ? Redbrick.TitleCase(rdr_.GetString(6)) : @"NULL";
 						string dt_ = !rdr_.IsDBNull(5) ? 
-							string.Format(@"{0} {1}", rdr_.GetDateTime(5).ToLongDateString(),
-							rdr_.GetDateTime(5).ToLongTimeString())
+							string.Format(@"{0:yyyy-MM-dd ddd HH:mm:ss}", rdr_.GetDateTime(5))
 							: @"NULL";
-						result.Add(new string[] { item_, descr_, dt_ });
+						result.Add(new string[] { item_, rev_, descr_, dt_ });
 					}
 				}
 			} catch (Exception) {
@@ -50,3 +50,4 @@ namespace RedBrick2.ExistingCutlistReportDataSetTableAdapters {
 		}
 	}
 }
+

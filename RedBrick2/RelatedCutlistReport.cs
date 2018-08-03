@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 using System.Windows.Forms;
 
 namespace RedBrick2 {
@@ -11,7 +12,7 @@ namespace RedBrick2 {
 
 			listView1.FullRowSelect = true;
 			listView1.HideSelection = false;
-			listView1.MultiSelect = false;
+			listView1.MultiSelect = true;
 			listView1.View = View.Details;
 			listView1.SmallImageList = Redbrick.TreeViewIcons;
 
@@ -34,10 +35,28 @@ namespace RedBrick2 {
 			}
 		}
 
-		private void RelatedCutlistReport_FormClosing(object sender, FormClosingEventArgs e) {
+		private void RelatedCutlistReport_FormClosed(object sender, FormClosedEventArgs e) {
 			Properties.Settings.Default.RelatedCutlistLocation = Location;
 			Properties.Settings.Default.RelatedCutlistSize = Size;
 			Properties.Settings.Default.Save();
+		}
+
+		private void listView1_KeyDown(object sender, KeyEventArgs e) {
+			ListView lv_ = sender as ListView;
+			if (lv_.SelectedItems.Count < 1) {
+				return;
+			}
+			if (e.Control && e.KeyCode == Keys.C) {
+				StringBuilder sb_ = new StringBuilder();
+				foreach (ListViewItem item in lv_.SelectedItems) {
+					sb_.AppendLine(string.Format("{0}\t{1}\t{2}\t[{3}]",
+						item.SubItems[0].Text,
+						item.SubItems[1].Text,
+						item.SubItems[2].Text,
+						item.SubItems[3].Text));
+				}
+				Clipboard.SetText(sb_.ToString());
+			}
 		}
 	}
 }
