@@ -1,10 +1,10 @@
 
-1) Fixed a bug that caused crashes when `Description' field was empty in the `Create Cutlist' window.
-2) Last save date labels now show time as well.
-3) PDF date link-label now finds development PDFs as well.
-   + "Development PDF" means a PDF that isn't in the Drawing DB, but is sitting in the same path as the SLDDRW.
-   + Full path is shown in a tooltip when you hover the mouse over it.
-4) Fixed occasional error when adjusting Operation Setup/Run times.
-5) Added a warning on the `Create Cutlist' window that checks to see if there are any obvious Cutlists for the Drawing/Model you're looking at.
-6) Added a cutlist renaming tool.
-7) Anything after a space is chopped off in when looking up part numbers. Let me know if this causes any trouble.
+1) Blow away properties that are in the wrong place.
+   * Sometime properties that should be global are configuration specific. These supercede the correct properties when displaying in a BOM, so now they just get deleted.
+2) Another tweak to lookup string creating function.
+3) Added a button to export flat patterns.
+   * No one probably needs this but me, but if you want to use it, you'll need to create "C:\Optimize\Import\flat".
+4) Added a button on the Create Cutlist window.
+   * Displays any item in the model that has its own cutlist.
+   * You can cut from this window and paste into Excel, or Notepad, or whatever.
+5) For some reason, SolidWorks is only showing 5 buttons in the top row. Therefore, I've made my own button row.
