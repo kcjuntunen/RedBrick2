@@ -16,6 +16,7 @@ namespace RedBrick2 {
 	public partial class CreateCutlist : Form {
 		private SortedDictionary<string, int> _dict = new SortedDictionary<string, int>();
 		private SortedDictionary<string, SwProperties> _partlist = new SortedDictionary<string, SwProperties>();
+		private HashSet<string> _assemblies = new HashSet<string>();
 		private SldWorks _swApp;
 
 		private FileInfo PartFileInfo;
@@ -66,6 +67,7 @@ namespace RedBrick2 {
 
 			new ToolTip().SetToolTip(update_prts_btn, @"Experimental. This is supposed to write whatever you see in this table to the parts.");
 			new ToolTip().SetToolTip(getdatafromDBbtn, @"Experimental. Try and get part info from DB instead of parts.");
+			new ToolTip().SetToolTip(rel_cutlist_btn, @"Look up cutlists related to this model.");
 			dataGridView1.DataError += dataGridView1_DataError;
 			dataGridView1.UserDeletedRow += DataGridView1_UserDeletedRow;
 
@@ -452,7 +454,11 @@ namespace RedBrick2 {
 				}
 
 				ModelDoc2 md = (swChildComp.GetModelDoc2() as ModelDoc2);
+				if (md != null && (md is AssemblyDoc)) {
+					_assemblies.Add(Redbrick.FileInfoToLookup(new FileInfo(md.GetPathName())));
+				}
 				if (md != null && md.GetType() == (int)swDocumentTypes_e.swDocPART) {
+					_assemblies.Add(Redbrick.FileInfoToLookup(new FileInfo(md.GetPathName())));
 					fi_ = new FileInfo(md.GetPathName());
 					name = Redbrick.FileInfoToLookup(fi_);
 					pb.UpdateTitle(fi_.Name);
@@ -1199,7 +1205,11 @@ namespace RedBrick2 {
 		}
 
 		private void CreateCutlist_FormClosing(object sender, FormClosingEventArgs e) {
-			dataGridView1.Dispose();
+			try {
+				dataGridView1.Dispose();
+			} catch (Exception ex) {
+				MessageBox.Show(string.Format(@"Something is out of whack.\n{0}", ex.Message));
+			}
 			Properties.Settings.Default.CreateCutlistLocation = Location;
 			Properties.Settings.Default.CreateCutlistSize = Size;
 			Properties.Settings.Default.Save();
@@ -1707,6 +1717,7 @@ namespace RedBrick2 {
 			upload_btn.Enabled = true;
 			getdatafromDBbtn.Enabled = true;
 			update_prts_btn.Enabled = true;
+			rel_cutlist_btn.Enabled = true;
 		}
 
 		private void config_cbx_SelectedIndexChanged(object sender, EventArgs e) {
@@ -1749,6 +1760,15 @@ namespace RedBrick2 {
 		private void rename_button_Click(object sender, EventArgs e) {
 			using (RenameCutlist rc_ = new RenameCutlist(foundCLID)) {
 				rc_.ShowDialog(this);
+			}
+		}
+
+		private void button1_Click_1(object sender, EventArgs e) {
+			if (_assemblies.Count < 1) {
+				return;
+			}
+			using (RelatedCutlistReport scr_ = new RelatedCutlistReport(_assemblies)) {
+				scr_.ShowDialog(this);
 			}
 		}
 	}

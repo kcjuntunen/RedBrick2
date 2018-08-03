@@ -62,6 +62,7 @@ namespace RedBrick2 {
 			this.cancel_btn = new System.Windows.Forms.Button();
 			this.cutlist_warn_label = new System.Windows.Forms.Label();
 			this.rename_button = new System.Windows.Forms.Button();
+			this.rel_cutlist_btn = new System.Windows.Forms.Button();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -132,6 +133,7 @@ namespace RedBrick2 {
 			this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 1, 4);
 			this.tableLayoutPanel1.Controls.Add(this.cutlist_warn_label, 1, 3);
 			this.tableLayoutPanel1.Controls.Add(this.rename_button, 2, 3);
+			this.tableLayoutPanel1.Controls.Add(this.rel_cutlist_btn, 0, 3);
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(13, 13);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			this.tableLayoutPanel1.RowCount = 7;
@@ -588,6 +590,19 @@ namespace RedBrick2 {
 			this.rename_button.UseVisualStyleBackColor = true;
 			this.rename_button.Click += new System.EventHandler(this.rename_button_Click);
 			// 
+			// rel_cutlist_btn
+			// 
+			this.rel_cutlist_btn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.rel_cutlist_btn.Enabled = false;
+			this.rel_cutlist_btn.Location = new System.Drawing.Point(3, 93);
+			this.rel_cutlist_btn.Name = "rel_cutlist_btn";
+			this.rel_cutlist_btn.Size = new System.Drawing.Size(159, 23);
+			this.rel_cutlist_btn.TabIndex = 26;
+			this.rel_cutlist_btn.Text = "Related Cutlists";
+			this.rel_cutlist_btn.UseVisualStyleBackColor = true;
+			this.rel_cutlist_btn.Click += new System.EventHandler(this.button1_Click_1);
+			// 
 			// statusStrip1
 			// 
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -734,5 +749,6 @@ namespace RedBrick2 {
 		private System.Windows.Forms.Button getdatafromDBbtn;
 		private System.Windows.Forms.Label cutlist_warn_label;
 		private System.Windows.Forms.Button rename_button;
+		private System.Windows.Forms.Button rel_cutlist_btn;
 	}
 }
