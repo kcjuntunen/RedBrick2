@@ -24,6 +24,7 @@
     /// </summary>
     private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModelRedbrick));
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -144,6 +145,10 @@
 			this.cUT_PARTSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
 			this.friendlyCutOpsTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
+			this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.archive_btn = new System.Windows.Forms.Button();
+			this.qt_btn = new System.Windows.Forms.Button();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
@@ -176,6 +181,8 @@
 			this.tabPage1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.cUTMATERIALSBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.gENUSERSBindingSource)).BeginInit();
+			this.tableLayoutPanel7.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tableLayoutPanel1
@@ -195,7 +202,7 @@
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(282, 1125);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(259, 1125);
 			this.tableLayoutPanel1.TabIndex = 0;
 			// 
 			// groupBox1
@@ -205,7 +212,7 @@
 			this.groupBox1.Controls.Add(this.tableLayoutPanel2);
 			this.groupBox1.Location = new System.Drawing.Point(3, 3);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(276, 385);
+			this.groupBox1.Size = new System.Drawing.Size(253, 385);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Cutlist Properties";
@@ -259,7 +266,7 @@
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(270, 364);
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(247, 364);
 			this.tableLayoutPanel2.TabIndex = 0;
 			// 
 			// label1
@@ -282,10 +289,9 @@
 			this.cutlistMat.FormattingEnabled = true;
 			this.cutlistMat.Location = new System.Drawing.Point(3, 16);
 			this.cutlistMat.Name = "cutlistMat";
-			this.cutlistMat.Size = new System.Drawing.Size(183, 21);
+			this.cutlistMat.Size = new System.Drawing.Size(166, 21);
 			this.cutlistMat.TabIndex = 1;
 			this.cutlistMat.ValueMember = "MATID";
-			// this.cutlistMat.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
 			this.cutlistMat.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cutlistMat_KeyDown);
 			this.cutlistMat.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.cutlistMat.Resize += new System.EventHandler(this.comboBox_Resize);
@@ -320,10 +326,9 @@
 			this.edgef.FormattingEnabled = true;
 			this.edgef.Location = new System.Drawing.Point(3, 56);
 			this.edgef.Name = "edgef";
-			this.edgef.Size = new System.Drawing.Size(183, 21);
+			this.edgef.Size = new System.Drawing.Size(166, 21);
 			this.edgef.TabIndex = 2;
 			this.edgef.ValueMember = "EDGEID";
-			//this.edgef.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
 			this.edgef.TextChanged += new System.EventHandler(this.edgef_TextChanged);
 			this.edgef.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edgeF_KeyDown);
 			this.edgef.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
@@ -354,10 +359,9 @@
 			this.edgeb.FormattingEnabled = true;
 			this.edgeb.Location = new System.Drawing.Point(3, 96);
 			this.edgeb.Name = "edgeb";
-			this.edgeb.Size = new System.Drawing.Size(183, 21);
+			this.edgeb.Size = new System.Drawing.Size(166, 21);
 			this.edgeb.TabIndex = 3;
 			this.edgeb.ValueMember = "EDGEID";
-			//this.edgeb.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
 			this.edgeb.TextChanged += new System.EventHandler(this.edgeb_TextChanged);
 			this.edgeb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edgeB_KeyDown);
 			this.edgeb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
@@ -398,10 +402,9 @@
 			this.edgel.FormattingEnabled = true;
 			this.edgel.Location = new System.Drawing.Point(3, 136);
 			this.edgel.Name = "edgel";
-			this.edgel.Size = new System.Drawing.Size(183, 21);
+			this.edgel.Size = new System.Drawing.Size(166, 21);
 			this.edgel.TabIndex = 4;
 			this.edgel.ValueMember = "EDGEID";
-			//this.edgel.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
 			this.edgel.TextChanged += new System.EventHandler(this.edgel_TextChanged);
 			this.edgel.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edgeL_KeyDown);
 			this.edgel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
@@ -427,10 +430,9 @@
 			this.edger.FormattingEnabled = true;
 			this.edger.Location = new System.Drawing.Point(3, 176);
 			this.edger.Name = "edger";
-			this.edger.Size = new System.Drawing.Size(183, 21);
+			this.edger.Size = new System.Drawing.Size(166, 21);
 			this.edger.TabIndex = 5;
 			this.edger.ValueMember = "EDGEID";
-			//this.edger.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
 			this.edger.TextChanged += new System.EventHandler(this.edger_TextChanged);
 			this.edger.KeyDown += new System.Windows.Forms.KeyEventHandler(this.edgeR_KeyDown);
 			this.edger.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
@@ -447,10 +449,10 @@
 			this.label6.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTMATERIALSBindingSource1, "COLOR", true));
 			this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label6.Location = new System.Drawing.Point(192, 0);
+			this.label6.Location = new System.Drawing.Point(175, 0);
 			this.label6.Name = "label6";
 			this.tableLayoutPanel2.SetRowSpan(this.label6, 2);
-			this.label6.Size = new System.Drawing.Size(75, 40);
+			this.label6.Size = new System.Drawing.Size(69, 40);
 			this.label6.TabIndex = 0;
 			this.label6.Text = "label6";
 			this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -462,10 +464,10 @@
 			this.label7.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTEDGESBindingSource, "COLOR", true));
 			this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label7.Location = new System.Drawing.Point(192, 40);
+			this.label7.Location = new System.Drawing.Point(175, 40);
 			this.label7.Name = "label7";
 			this.tableLayoutPanel2.SetRowSpan(this.label7, 2);
-			this.label7.Size = new System.Drawing.Size(75, 40);
+			this.label7.Size = new System.Drawing.Size(69, 40);
 			this.label7.TabIndex = 0;
 			this.label7.Text = "label7";
 			this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -477,10 +479,10 @@
 			this.label8.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTEDGESBindingSource1, "COLOR", true));
 			this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label8.Location = new System.Drawing.Point(192, 80);
+			this.label8.Location = new System.Drawing.Point(175, 80);
 			this.label8.Name = "label8";
 			this.tableLayoutPanel2.SetRowSpan(this.label8, 2);
-			this.label8.Size = new System.Drawing.Size(75, 40);
+			this.label8.Size = new System.Drawing.Size(69, 40);
 			this.label8.TabIndex = 0;
 			this.label8.Text = "label8";
 			this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -492,10 +494,10 @@
 			this.label9.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTEDGESBindingSource2, "COLOR", true));
 			this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label9.Location = new System.Drawing.Point(192, 120);
+			this.label9.Location = new System.Drawing.Point(175, 120);
 			this.label9.Name = "label9";
 			this.tableLayoutPanel2.SetRowSpan(this.label9, 2);
-			this.label9.Size = new System.Drawing.Size(75, 40);
+			this.label9.Size = new System.Drawing.Size(69, 40);
 			this.label9.TabIndex = 0;
 			this.label9.Text = "label9";
 			this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -507,10 +509,10 @@
 			this.label10.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTEDGESBindingSource3, "COLOR", true));
 			this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label10.Location = new System.Drawing.Point(192, 160);
+			this.label10.Location = new System.Drawing.Point(175, 160);
 			this.label10.Name = "label10";
 			this.tableLayoutPanel2.SetRowSpan(this.label10, 2);
-			this.label10.Size = new System.Drawing.Size(75, 40);
+			this.label10.Size = new System.Drawing.Size(69, 40);
 			this.label10.TabIndex = 0;
 			this.label10.Text = "label10";
 			this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -529,7 +531,7 @@
 			// label30
 			// 
 			this.label30.AutoSize = true;
-			this.label30.Location = new System.Drawing.Point(192, 200);
+			this.label30.Location = new System.Drawing.Point(175, 200);
 			this.label30.Name = "label30";
 			this.label30.Size = new System.Drawing.Size(49, 13);
 			this.label30.TabIndex = 7;
@@ -539,9 +541,9 @@
 			// 
 			this.partq.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.partq.Location = new System.Drawing.Point(192, 216);
+			this.partq.Location = new System.Drawing.Point(175, 216);
 			this.partq.Name = "partq";
-			this.partq.Size = new System.Drawing.Size(75, 22);
+			this.partq.Size = new System.Drawing.Size(69, 22);
 			this.partq.TabIndex = 8;
 			this.partq.Value = new decimal(new int[] {
             1,
@@ -562,10 +564,9 @@
 			this.cutlistctl.FormattingEnabled = true;
 			this.cutlistctl.Location = new System.Drawing.Point(3, 216);
 			this.cutlistctl.Name = "cutlistctl";
-			this.cutlistctl.Size = new System.Drawing.Size(183, 21);
+			this.cutlistctl.Size = new System.Drawing.Size(166, 21);
 			this.cutlistctl.TabIndex = 6;
 			this.cutlistctl.ValueMember = "CLID";
-			//this.cutlistctl.SelectedIndexChanged += new System.EventHandler(this.comboBox6_SelectedIndexChanged);
 			this.cutlistctl.TextChanged += new System.EventHandler(this.cutlistctl_TextChanged);
 			this.cutlistctl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cutlistctl_KeyDown);
 			this.cutlistctl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cutlistctl_KeyPress);
@@ -586,10 +587,9 @@
 			this.stat_cbx.FormattingEnabled = true;
 			this.stat_cbx.Location = new System.Drawing.Point(3, 260);
 			this.stat_cbx.Name = "stat_cbx";
-			this.stat_cbx.Size = new System.Drawing.Size(183, 21);
+			this.stat_cbx.Size = new System.Drawing.Size(166, 21);
 			this.stat_cbx.TabIndex = 9;
 			this.stat_cbx.ValueMember = "ID";
-			//this.stat_cbx.SelectedIndexChanged += new System.EventHandler(this.stat_cbx_SelectedIndexChanged);
 			this.stat_cbx.Enter += new System.EventHandler(this.stat_cbx_Enter);
 			this.stat_cbx.Leave += new System.EventHandler(this.stat_cbx_Leave);
 			this.stat_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.stat_cbx_MouseClick);
@@ -610,9 +610,9 @@
 			// 
 			// update_btn
 			// 
-			this.update_btn.Location = new System.Drawing.Point(192, 260);
+			this.update_btn.Location = new System.Drawing.Point(175, 260);
 			this.update_btn.Name = "update_btn";
-			this.update_btn.Size = new System.Drawing.Size(75, 23);
+			this.update_btn.Size = new System.Drawing.Size(69, 23);
 			this.update_btn.TabIndex = 11;
 			this.update_btn.Text = "Update...";
 			this.update_btn.UseVisualStyleBackColor = true;
@@ -621,9 +621,9 @@
 			// remove_btn
 			// 
 			this.remove_btn.Enabled = false;
-			this.remove_btn.Location = new System.Drawing.Point(192, 289);
+			this.remove_btn.Location = new System.Drawing.Point(175, 289);
 			this.remove_btn.Name = "remove_btn";
-			this.remove_btn.Size = new System.Drawing.Size(75, 23);
+			this.remove_btn.Size = new System.Drawing.Size(69, 23);
 			this.remove_btn.TabIndex = 12;
 			this.remove_btn.Text = "Remove...";
 			this.remove_btn.UseVisualStyleBackColor = true;
@@ -642,9 +642,9 @@
 			// pull_btn
 			// 
 			this.pull_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.pull_btn.Location = new System.Drawing.Point(192, 244);
+			this.pull_btn.Location = new System.Drawing.Point(175, 244);
 			this.pull_btn.Name = "pull_btn";
-			this.pull_btn.Size = new System.Drawing.Size(75, 10);
+			this.pull_btn.Size = new System.Drawing.Size(69, 10);
 			this.pull_btn.TabIndex = 14;
 			this.pull_btn.Text = "←";
 			this.pull_btn.UseVisualStyleBackColor = true;
@@ -657,7 +657,7 @@
 			this.groupBox2.Controls.Add(this.tableLayoutPanel3);
 			this.groupBox2.Location = new System.Drawing.Point(3, 394);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(276, 329);
+			this.groupBox2.Size = new System.Drawing.Size(253, 329);
 			this.groupBox2.TabIndex = 0;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "General Properties";
@@ -701,7 +701,7 @@
 			this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel3.Size = new System.Drawing.Size(270, 308);
+			this.tableLayoutPanel3.Size = new System.Drawing.Size(247, 308);
 			this.tableLayoutPanel3.TabIndex = 0;
 			// 
 			// label12
@@ -759,7 +759,7 @@
 			this.descriptiontb.Location = new System.Drawing.Point(3, 16);
 			this.descriptiontb.MaxLength = 1000;
 			this.descriptiontb.Name = "descriptiontb";
-			this.descriptiontb.Size = new System.Drawing.Size(264, 22);
+			this.descriptiontb.Size = new System.Drawing.Size(241, 22);
 			this.descriptiontb.TabIndex = 7;
 			this.descriptiontb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.descriptiontb.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
@@ -777,7 +777,7 @@
 			this.lengthtb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
 			this.lengthtb.Location = new System.Drawing.Point(3, 57);
 			this.lengthtb.Name = "lengthtb";
-			this.lengthtb.Size = new System.Drawing.Size(183, 22);
+			this.lengthtb.Size = new System.Drawing.Size(166, 22);
 			this.lengthtb.TabIndex = 8;
 			this.lengthtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.lengthtb.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
@@ -803,7 +803,7 @@
 			this.commenttb.MaxLength = 105;
 			this.commenttb.Multiline = true;
 			this.commenttb.Name = "commenttb";
-			this.commenttb.Size = new System.Drawing.Size(264, 42);
+			this.commenttb.Size = new System.Drawing.Size(241, 42);
 			this.commenttb.TabIndex = 11;
 			this.commenttb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			// 
@@ -815,7 +815,7 @@
 			this.widthtb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
 			this.widthtb.Location = new System.Drawing.Point(3, 101);
 			this.widthtb.Name = "widthtb";
-			this.widthtb.Size = new System.Drawing.Size(183, 22);
+			this.widthtb.Size = new System.Drawing.Size(166, 22);
 			this.widthtb.TabIndex = 9;
 			this.widthtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.widthtb.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
@@ -830,7 +830,7 @@
 			this.thicknesstb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
 			this.thicknesstb.Location = new System.Drawing.Point(3, 145);
 			this.thicknesstb.Name = "thicknesstb";
-			this.thicknesstb.Size = new System.Drawing.Size(183, 22);
+			this.thicknesstb.Size = new System.Drawing.Size(166, 22);
 			this.thicknesstb.TabIndex = 10;
 			this.thicknesstb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.thicknesstb.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
@@ -845,7 +845,7 @@
 			this.wallthicknesstb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
 			this.wallthicknesstb.Location = new System.Drawing.Point(3, 186);
 			this.wallthicknesstb.Name = "wallthicknesstb";
-			this.wallthicknesstb.Size = new System.Drawing.Size(183, 22);
+			this.wallthicknesstb.Size = new System.Drawing.Size(166, 22);
 			this.wallthicknesstb.TabIndex = 10;
 			this.wallthicknesstb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.wallthicknesstb.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
@@ -857,7 +857,7 @@
 			// 
 			this.wall_thickness_label.AutoSize = true;
 			this.wall_thickness_label.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.wall_thickness_label.Location = new System.Drawing.Point(192, 183);
+			this.wall_thickness_label.Location = new System.Drawing.Point(175, 183);
 			this.wall_thickness_label.Name = "wall_thickness_label";
 			this.wall_thickness_label.Size = new System.Drawing.Size(0, 17);
 			this.wall_thickness_label.TabIndex = 15;
@@ -866,7 +866,7 @@
 			// 
 			this.thickness_label.AutoSize = true;
 			this.thickness_label.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.thickness_label.Location = new System.Drawing.Point(192, 142);
+			this.thickness_label.Location = new System.Drawing.Point(175, 142);
 			this.thickness_label.Name = "thickness_label";
 			this.thickness_label.Size = new System.Drawing.Size(0, 17);
 			this.thickness_label.TabIndex = 14;
@@ -875,7 +875,7 @@
 			// 
 			this.width_label.AutoSize = true;
 			this.width_label.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.width_label.Location = new System.Drawing.Point(192, 98);
+			this.width_label.Location = new System.Drawing.Point(175, 98);
 			this.width_label.Name = "width_label";
 			this.width_label.Size = new System.Drawing.Size(0, 17);
 			this.width_label.TabIndex = 13;
@@ -884,7 +884,7 @@
 			// 
 			this.length_label.AutoSize = true;
 			this.length_label.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.length_label.Location = new System.Drawing.Point(192, 54);
+			this.length_label.Location = new System.Drawing.Point(175, 54);
 			this.length_label.Name = "length_label";
 			this.length_label.Size = new System.Drawing.Size(0, 17);
 			this.length_label.TabIndex = 12;
@@ -892,9 +892,9 @@
 			// swapLnW
 			// 
 			this.swapLnW.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.swapLnW.Location = new System.Drawing.Point(192, 85);
+			this.swapLnW.Location = new System.Drawing.Point(175, 85);
 			this.swapLnW.Name = "swapLnW";
-			this.swapLnW.Size = new System.Drawing.Size(75, 10);
+			this.swapLnW.Size = new System.Drawing.Size(69, 10);
 			this.swapLnW.TabIndex = 16;
 			this.swapLnW.Text = "↔";
 			this.swapLnW.UseVisualStyleBackColor = true;
@@ -903,9 +903,9 @@
 			// swapWnT
 			// 
 			this.swapWnT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.swapWnT.Location = new System.Drawing.Point(192, 129);
+			this.swapWnT.Location = new System.Drawing.Point(175, 129);
 			this.swapWnT.Name = "swapWnT";
-			this.swapWnT.Size = new System.Drawing.Size(75, 10);
+			this.swapWnT.Size = new System.Drawing.Size(69, 10);
 			this.swapWnT.TabIndex = 17;
 			this.swapWnT.Text = "↔";
 			this.swapWnT.UseVisualStyleBackColor = true;
@@ -918,7 +918,7 @@
 			this.groupBox3.Controls.Add(this.tableLayoutPanel4);
 			this.groupBox3.Location = new System.Drawing.Point(3, 729);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(276, 174);
+			this.groupBox3.Size = new System.Drawing.Size(253, 174);
 			this.groupBox3.TabIndex = 0;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Machine Properties";
@@ -960,7 +960,7 @@
 			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel4.Size = new System.Drawing.Size(270, 155);
+			this.tableLayoutPanel4.Size = new System.Drawing.Size(247, 155);
 			this.tableLayoutPanel4.TabIndex = 0;
 			// 
 			// label31
@@ -968,7 +968,7 @@
 			this.label31.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.label31.AutoSize = true;
-			this.label31.Location = new System.Drawing.Point(75, 95);
+			this.label31.Location = new System.Drawing.Point(68, 95);
 			this.label31.Name = "label31";
 			this.label31.Size = new System.Drawing.Size(13, 13);
 			this.label31.TabIndex = 19;
@@ -983,7 +983,7 @@
 			this.tableLayoutPanel4.SetColumnSpan(this.label22, 2);
 			this.label22.Location = new System.Drawing.Point(3, 0);
 			this.label22.Name = "label22";
-			this.label22.Size = new System.Drawing.Size(85, 13);
+			this.label22.Size = new System.Drawing.Size(78, 13);
 			this.label22.TabIndex = 0;
 			this.label22.Text = "CNC1";
 			this.label22.Click += new System.EventHandler(this.label22_Click);
@@ -996,7 +996,7 @@
 			this.cnc1tb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "CNC1", true));
 			this.cnc1tb.Location = new System.Drawing.Point(3, 16);
 			this.cnc1tb.Name = "cnc1tb";
-			this.cnc1tb.Size = new System.Drawing.Size(85, 22);
+			this.cnc1tb.Size = new System.Drawing.Size(78, 22);
 			this.cnc1tb.TabIndex = 12;
 			this.cnc1tb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.cnc1tb.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
@@ -1010,7 +1010,7 @@
 			this.tableLayoutPanel4.SetColumnSpan(this.label25, 2);
 			this.label25.Location = new System.Drawing.Point(3, 41);
 			this.label25.Name = "label25";
-			this.label25.Size = new System.Drawing.Size(85, 13);
+			this.label25.Size = new System.Drawing.Size(78, 13);
 			this.label25.TabIndex = 0;
 			this.label25.Text = "OverL";
 			// 
@@ -1022,7 +1022,7 @@
 			this.overLtb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "OVER_L", true));
 			this.overLtb.Location = new System.Drawing.Point(3, 57);
 			this.overLtb.Name = "overLtb";
-			this.overLtb.Size = new System.Drawing.Size(85, 22);
+			this.overLtb.Size = new System.Drawing.Size(78, 22);
 			this.overLtb.TabIndex = 15;
 			this.overLtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.overLtb.TextChanged += new System.EventHandler(this.overL_TextChanged);
@@ -1037,7 +1037,7 @@
 			this.tableLayoutPanel4.SetColumnSpan(this.label28, 2);
 			this.label28.Location = new System.Drawing.Point(3, 82);
 			this.label28.Name = "label28";
-			this.label28.Size = new System.Drawing.Size(85, 13);
+			this.label28.Size = new System.Drawing.Size(78, 13);
 			this.label28.TabIndex = 0;
 			this.label28.Text = "Blank Size";
 			this.label28.Click += new System.EventHandler(this.label28_Click);
@@ -1050,7 +1050,7 @@
 			this.blnkszLtb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.blnkszLtb.Location = new System.Drawing.Point(3, 98);
 			this.blnkszLtb.Name = "blnkszLtb";
-			this.blnkszLtb.Size = new System.Drawing.Size(66, 22);
+			this.blnkszLtb.Size = new System.Drawing.Size(59, 22);
 			this.blnkszLtb.TabIndex = 18;
 			this.blnkszLtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.blnkszLtb.TextChanged += new System.EventHandler(this.blankL_TextChanged);
@@ -1063,9 +1063,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tableLayoutPanel4.SetColumnSpan(this.overWtb, 2);
 			this.overWtb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "OVER_W", true));
-			this.overWtb.Location = new System.Drawing.Point(94, 57);
+			this.overWtb.Location = new System.Drawing.Point(87, 57);
 			this.overWtb.Name = "overWtb";
-			this.overWtb.Size = new System.Drawing.Size(85, 22);
+			this.overWtb.Size = new System.Drawing.Size(78, 22);
 			this.overWtb.TabIndex = 16;
 			this.overWtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.overWtb.TextChanged += new System.EventHandler(this.overW_TextChanged);
@@ -1078,9 +1078,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.label26.AutoSize = true;
 			this.tableLayoutPanel4.SetColumnSpan(this.label26, 2);
-			this.label26.Location = new System.Drawing.Point(94, 41);
+			this.label26.Location = new System.Drawing.Point(87, 41);
 			this.label26.Name = "label26";
-			this.label26.Size = new System.Drawing.Size(85, 13);
+			this.label26.Size = new System.Drawing.Size(78, 13);
 			this.label26.TabIndex = 0;
 			this.label26.Text = "OverW";
 			// 
@@ -1090,9 +1090,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tableLayoutPanel4.SetColumnSpan(this.cnc2tb, 2);
 			this.cnc2tb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "CNC2", true));
-			this.cnc2tb.Location = new System.Drawing.Point(94, 16);
+			this.cnc2tb.Location = new System.Drawing.Point(87, 16);
 			this.cnc2tb.Name = "cnc2tb";
-			this.cnc2tb.Size = new System.Drawing.Size(85, 22);
+			this.cnc2tb.Size = new System.Drawing.Size(78, 22);
 			this.cnc2tb.TabIndex = 13;
 			this.cnc2tb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.cnc2tb.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
@@ -1104,9 +1104,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.label23.AutoSize = true;
 			this.tableLayoutPanel4.SetColumnSpan(this.label23, 2);
-			this.label23.Location = new System.Drawing.Point(94, 0);
+			this.label23.Location = new System.Drawing.Point(87, 0);
 			this.label23.Name = "label23";
-			this.label23.Size = new System.Drawing.Size(85, 13);
+			this.label23.Size = new System.Drawing.Size(78, 13);
 			this.label23.TabIndex = 0;
 			this.label23.Text = "CNC2";
 			this.label23.Click += new System.EventHandler(this.label23_Click);
@@ -1114,7 +1114,7 @@
 			// label24
 			// 
 			this.label24.AutoSize = true;
-			this.label24.Location = new System.Drawing.Point(185, 0);
+			this.label24.Location = new System.Drawing.Point(171, 0);
 			this.label24.Name = "label24";
 			this.label24.Size = new System.Drawing.Size(70, 13);
 			this.label24.TabIndex = 0;
@@ -1126,9 +1126,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.updateCNCcb.AutoSize = true;
 			this.updateCNCcb.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.cUTPARTSBindingSource, "UPDATE_CNC", true));
-			this.updateCNCcb.Location = new System.Drawing.Point(185, 16);
+			this.updateCNCcb.Location = new System.Drawing.Point(171, 16);
 			this.updateCNCcb.Name = "updateCNCcb";
-			this.updateCNCcb.Size = new System.Drawing.Size(82, 14);
+			this.updateCNCcb.Size = new System.Drawing.Size(73, 14);
 			this.updateCNCcb.TabIndex = 14;
 			this.updateCNCcb.UseVisualStyleBackColor = true;
 			this.updateCNCcb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
@@ -1136,7 +1136,7 @@
 			// label27
 			// 
 			this.label27.AutoSize = true;
-			this.label27.Location = new System.Drawing.Point(185, 41);
+			this.label27.Location = new System.Drawing.Point(171, 41);
 			this.label27.Name = "label27";
 			this.label27.Size = new System.Drawing.Size(65, 13);
 			this.label27.TabIndex = 0;
@@ -1146,9 +1146,9 @@
 			// 
 			this.prioritybtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.prioritybtn.Location = new System.Drawing.Point(185, 98);
+			this.prioritybtn.Location = new System.Drawing.Point(171, 98);
 			this.prioritybtn.Name = "prioritybtn";
-			this.prioritybtn.Size = new System.Drawing.Size(82, 23);
+			this.prioritybtn.Size = new System.Drawing.Size(73, 23);
 			this.prioritybtn.TabIndex = 20;
 			this.prioritybtn.Text = "Priority";
 			this.prioritybtn.UseVisualStyleBackColor = true;
@@ -1160,9 +1160,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.blnkszWtb.BackColor = System.Drawing.SystemColors.Window;
 			this.blnkszWtb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.blnkszWtb.Location = new System.Drawing.Point(94, 98);
+			this.blnkszWtb.Location = new System.Drawing.Point(87, 98);
 			this.blnkszWtb.Name = "blnkszWtb";
-			this.blnkszWtb.Size = new System.Drawing.Size(66, 22);
+			this.blnkszWtb.Size = new System.Drawing.Size(59, 22);
 			this.blnkszWtb.TabIndex = 19;
 			this.blnkszWtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.blnkszWtb.TextChanged += new System.EventHandler(this.blankW_TextChanged);
@@ -1174,14 +1174,14 @@
 			this.ppb_nud.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.ppb_nud.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.cUTPARTSBindingSource, "BLANKQTY", true));
-			this.ppb_nud.Location = new System.Drawing.Point(185, 57);
+			this.ppb_nud.Location = new System.Drawing.Point(171, 57);
 			this.ppb_nud.Maximum = new decimal(new int[] {
             500,
             0,
             0,
             0});
 			this.ppb_nud.Name = "ppb_nud";
-			this.ppb_nud.Size = new System.Drawing.Size(82, 22);
+			this.ppb_nud.Size = new System.Drawing.Size(73, 22);
 			this.ppb_nud.TabIndex = 21;
 			this.ppb_nud.Value = new decimal(new int[] {
             1,
@@ -1195,7 +1195,7 @@
 			this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.label29.AutoSize = true;
-			this.label29.Location = new System.Drawing.Point(166, 82);
+			this.label29.Location = new System.Drawing.Point(152, 82);
 			this.label29.Name = "label29";
 			this.label29.Size = new System.Drawing.Size(13, 13);
 			this.label29.TabIndex = 0;
@@ -1210,7 +1210,7 @@
 			this.groupBox4.Controls.Add(this.tableLayoutPanel5);
 			this.groupBox4.Location = new System.Drawing.Point(3, 909);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(276, 212);
+			this.groupBox4.Size = new System.Drawing.Size(253, 212);
 			this.groupBox4.TabIndex = 1;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Routing";
@@ -1234,14 +1234,14 @@
 			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
 			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel5.Size = new System.Drawing.Size(267, 222);
+			this.tableLayoutPanel5.Size = new System.Drawing.Size(244, 222);
 			this.tableLayoutPanel5.TabIndex = 1;
 			// 
 			// button2
 			// 
 			this.button2.Location = new System.Drawing.Point(3, 190);
 			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(83, 29);
+			this.button2.Size = new System.Drawing.Size(75, 29);
 			this.button2.TabIndex = 32;
 			this.button2.Text = "New...";
 			this.button2.UseVisualStyleBackColor = true;
@@ -1251,9 +1251,9 @@
 			// flowLayoutPanel1
 			// 
 			this.flowLayoutPanel1.AutoScroll = true;
-			this.flowLayoutPanel1.Location = new System.Drawing.Point(92, 190);
+			this.flowLayoutPanel1.Location = new System.Drawing.Point(84, 190);
 			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-			this.flowLayoutPanel1.Size = new System.Drawing.Size(83, 29);
+			this.flowLayoutPanel1.Size = new System.Drawing.Size(75, 29);
 			this.flowLayoutPanel1.TabIndex = 0;
 			this.flowLayoutPanel1.Visible = false;
 			// 
@@ -1294,7 +1294,7 @@
 			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel6.Size = new System.Drawing.Size(261, 181);
+			this.tableLayoutPanel6.Size = new System.Drawing.Size(238, 181);
 			this.tableLayoutPanel6.TabIndex = 2;
 			// 
 			// op5_cbx
@@ -1308,7 +1308,7 @@
 			this.op5_cbx.FormattingEnabled = true;
 			this.op5_cbx.Location = new System.Drawing.Point(40, 148);
 			this.op5_cbx.Name = "op5_cbx";
-			this.op5_cbx.Size = new System.Drawing.Size(184, 21);
+			this.op5_cbx.Size = new System.Drawing.Size(161, 21);
 			this.op5_cbx.TabIndex = 26;
 			this.op5_cbx.ValueMember = "OPID";
 			this.op5_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
@@ -1391,10 +1391,9 @@
 			this.op4_cbx.FormattingEnabled = true;
 			this.op4_cbx.Location = new System.Drawing.Point(40, 119);
 			this.op4_cbx.Name = "op4_cbx";
-			this.op4_cbx.Size = new System.Drawing.Size(184, 21);
+			this.op4_cbx.Size = new System.Drawing.Size(161, 21);
 			this.op4_cbx.TabIndex = 25;
 			this.op4_cbx.ValueMember = "OPID";
-			//this.op4_cbx.SelectedIndexChanged += new System.EventHandler(this.op_cbx_SelectedIndexChanged);
 			this.op4_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.op4_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.op4_cbx.Validating += new System.ComponentModel.CancelEventHandler(this.comboBox_validating);
@@ -1415,10 +1414,9 @@
 			this.op3_cbx.FormattingEnabled = true;
 			this.op3_cbx.Location = new System.Drawing.Point(40, 90);
 			this.op3_cbx.Name = "op3_cbx";
-			this.op3_cbx.Size = new System.Drawing.Size(184, 21);
+			this.op3_cbx.Size = new System.Drawing.Size(161, 21);
 			this.op3_cbx.TabIndex = 24;
 			this.op3_cbx.ValueMember = "OPID";
-			//this.op3_cbx.SelectedIndexChanged += new System.EventHandler(this.op_cbx_SelectedIndexChanged);
 			this.op3_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.op3_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.op3_cbx.Validating += new System.ComponentModel.CancelEventHandler(this.comboBox_validating);
@@ -1439,10 +1437,9 @@
 			this.op2_cbx.FormattingEnabled = true;
 			this.op2_cbx.Location = new System.Drawing.Point(40, 61);
 			this.op2_cbx.Name = "op2_cbx";
-			this.op2_cbx.Size = new System.Drawing.Size(184, 21);
+			this.op2_cbx.Size = new System.Drawing.Size(161, 21);
 			this.op2_cbx.TabIndex = 23;
 			this.op2_cbx.ValueMember = "OPID";
-			//this.op2_cbx.SelectedIndexChanged += new System.EventHandler(this.op_cbx_SelectedIndexChanged);
 			this.op2_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.op2_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.op2_cbx.Validating += new System.ComponentModel.CancelEventHandler(this.comboBox_validating);
@@ -1463,10 +1460,9 @@
 			this.op1_cbx.FormattingEnabled = true;
 			this.op1_cbx.Location = new System.Drawing.Point(40, 32);
 			this.op1_cbx.Name = "op1_cbx";
-			this.op1_cbx.Size = new System.Drawing.Size(184, 21);
+			this.op1_cbx.Size = new System.Drawing.Size(161, 21);
 			this.op1_cbx.TabIndex = 22;
 			this.op1_cbx.ValueMember = "OPID";
-			//this.op1_cbx.SelectedIndexChanged += new System.EventHandler(this.op_cbx_SelectedIndexChanged);
 			this.op1_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.op1_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			this.op1_cbx.Validating += new System.ComponentModel.CancelEventHandler(this.comboBox_validating);
@@ -1486,10 +1482,9 @@
 			this.type_cbx.FormattingEnabled = true;
 			this.type_cbx.Location = new System.Drawing.Point(40, 3);
 			this.type_cbx.Name = "type_cbx";
-			this.type_cbx.Size = new System.Drawing.Size(184, 21);
+			this.type_cbx.Size = new System.Drawing.Size(161, 21);
 			this.type_cbx.TabIndex = 21;
 			this.type_cbx.ValueMember = "TYPEID";
-			//this.type_cbx.SelectedIndexChanged += new System.EventHandler(this.comboBox12_SelectedIndexChanged);
 			this.type_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
 			// 
 			// cUTPARTTYPESBindingSource
@@ -1500,7 +1495,7 @@
 			// button3
 			// 
 			this.button3.Image = global::RedBrick2.Properties.Resources.stopwatch;
-			this.button3.Location = new System.Drawing.Point(230, 32);
+			this.button3.Location = new System.Drawing.Point(207, 32);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(28, 23);
 			this.button3.TabIndex = 27;
@@ -1510,7 +1505,7 @@
 			// button4
 			// 
 			this.button4.Image = global::RedBrick2.Properties.Resources.stopwatch;
-			this.button4.Location = new System.Drawing.Point(230, 61);
+			this.button4.Location = new System.Drawing.Point(207, 61);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(28, 23);
 			this.button4.TabIndex = 28;
@@ -1520,7 +1515,7 @@
 			// button5
 			// 
 			this.button5.Image = global::RedBrick2.Properties.Resources.stopwatch;
-			this.button5.Location = new System.Drawing.Point(230, 90);
+			this.button5.Location = new System.Drawing.Point(207, 90);
 			this.button5.Name = "button5";
 			this.button5.Size = new System.Drawing.Size(28, 23);
 			this.button5.TabIndex = 29;
@@ -1530,7 +1525,7 @@
 			// button6
 			// 
 			this.button6.Image = global::RedBrick2.Properties.Resources.stopwatch;
-			this.button6.Location = new System.Drawing.Point(230, 119);
+			this.button6.Location = new System.Drawing.Point(207, 119);
 			this.button6.Name = "button6";
 			this.button6.Size = new System.Drawing.Size(28, 23);
 			this.button6.TabIndex = 30;
@@ -1540,7 +1535,7 @@
 			// button7
 			// 
 			this.button7.Image = global::RedBrick2.Properties.Resources.stopwatch;
-			this.button7.Location = new System.Drawing.Point(230, 148);
+			this.button7.Location = new System.Drawing.Point(207, 148);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(28, 23);
 			this.button7.TabIndex = 31;
@@ -1550,7 +1545,7 @@
 			// cutlistTimeBtn
 			// 
 			this.cutlistTimeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.cutlistTimeBtn.Location = new System.Drawing.Point(230, 3);
+			this.cutlistTimeBtn.Location = new System.Drawing.Point(207, 3);
 			this.cutlistTimeBtn.Name = "cutlistTimeBtn";
 			this.cutlistTimeBtn.Size = new System.Drawing.Size(28, 23);
 			this.cutlistTimeBtn.TabIndex = 32;
@@ -1564,9 +1559,9 @@
 			this.ppbtb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.ppbtb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTPARTSBindingSource, "BLANKQTY", true));
-			this.ppbtb.Location = new System.Drawing.Point(181, 190);
+			this.ppbtb.Location = new System.Drawing.Point(165, 190);
 			this.ppbtb.Name = "ppbtb";
-			this.ppbtb.Size = new System.Drawing.Size(83, 22);
+			this.ppbtb.Size = new System.Drawing.Size(76, 22);
 			this.ppbtb.TabIndex = 17;
 			this.ppbtb.Visible = false;
 			this.ppbtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
@@ -1581,10 +1576,10 @@
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabPage2);
 			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tabControl1.Location = new System.Drawing.Point(0, 0);
+			this.tabControl1.Location = new System.Drawing.Point(3, 43);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(293, 1160);
+			this.tabControl1.Size = new System.Drawing.Size(287, 1114);
 			this.tabControl1.TabIndex = 1;
 			// 
 			// tabPage1
@@ -1594,7 +1589,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(285, 1134);
+			this.tabPage1.Size = new System.Drawing.Size(279, 1088);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "tabPage1";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -1648,11 +1643,58 @@
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
 			// 
+			// tableLayoutPanel7
+			// 
+			this.tableLayoutPanel7.ColumnCount = 1;
+			this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel7.Controls.Add(this.tabControl1, 0, 1);
+			this.tableLayoutPanel7.Controls.Add(this.panel1, 0, 0);
+			this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
+			this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+			this.tableLayoutPanel7.RowCount = 2;
+			this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+			this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel7.Size = new System.Drawing.Size(293, 1160);
+			this.tableLayoutPanel7.TabIndex = 2;
+			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.qt_btn);
+			this.panel1.Controls.Add(this.archive_btn);
+			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel1.Location = new System.Drawing.Point(3, 3);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(287, 34);
+			this.panel1.TabIndex = 2;
+			// 
+			// archive_btn
+			// 
+			this.archive_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.archive_btn.Image = ((System.Drawing.Image)(resources.GetObject("archive_btn.Image")));
+			this.archive_btn.Location = new System.Drawing.Point(4, 4);
+			this.archive_btn.Name = "archive_btn";
+			this.archive_btn.Size = new System.Drawing.Size(39, 23);
+			this.archive_btn.TabIndex = 0;
+			this.archive_btn.UseVisualStyleBackColor = true;
+			this.archive_btn.Click += new System.EventHandler(this.archive_btn_Click);
+			// 
+			// qt_btn
+			// 
+			this.qt_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.qt_btn.Image = ((System.Drawing.Image)(resources.GetObject("qt_btn.Image")));
+			this.qt_btn.Location = new System.Drawing.Point(49, 4);
+			this.qt_btn.Name = "qt_btn";
+			this.qt_btn.Size = new System.Drawing.Size(39, 23);
+			this.qt_btn.TabIndex = 1;
+			this.qt_btn.UseVisualStyleBackColor = true;
+			this.qt_btn.Click += new System.EventHandler(this.qt_btn_Click);
+			// 
 			// ModelRedbrick
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-			this.Controls.Add(this.tabControl1);
+			this.Controls.Add(this.tableLayoutPanel7);
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Name = "ModelRedbrick";
 			this.Size = new System.Drawing.Size(293, 1160);
@@ -1694,6 +1736,8 @@
 			this.tabPage1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.cUTMATERIALSBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.gENUSERSBindingSource)).EndInit();
+			this.tableLayoutPanel7.ResumeLayout(false);
+			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
     }
@@ -1820,5 +1864,9 @@
 		private System.Windows.Forms.Button add_prt_btn;
 		private System.Windows.Forms.Button pull_btn;
 		private System.Windows.Forms.Button cutlistTimeBtn;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Button qt_btn;
+		private System.Windows.Forms.Button archive_btn;
 	}
 }

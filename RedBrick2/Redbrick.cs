@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
+using System.Linq;
 
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
@@ -138,8 +139,8 @@ namespace RedBrick2 {
 				bool result = taskpaneView.AddStandardButton((int)swTaskPaneBitmapsOptions_e.swTaskPaneBitmapsOptions_Ok, "OK");
 				result = taskpaneView.AddStandardButton((int)swTaskPaneBitmapsOptions_e.swTaskPaneBitmapsOptions_Options, "Configuration");
 				result = taskpaneView.AddCustomButton(Properties.Settings.Default.NetPath + Properties.Settings.Default.RefreshIcon, "Refresh");
-				result = taskpaneView.AddCustomButton(Properties.Settings.Default.NetPath + Properties.Settings.Default.ArchiveIcon, "Archive PDF");
-				result = taskpaneView.AddCustomButton(Properties.Settings.Default.NetPath + Properties.Settings.Default.GlassesIcon, "QuikTrac Lookup");
+				//result = taskpaneView.AddCustomButton(Properties.Settings.Default.NetPath + Properties.Settings.Default.ArchiveIcon, "Archive PDF");
+				//result = taskpaneView.AddCustomButton(Properties.Settings.Default.NetPath + Properties.Settings.Default.GlassesIcon, "QuikTrac Lookup");
 				result = taskpaneView.AddCustomButton(Properties.Settings.Default.NetPath + Properties.Settings.Default.ToolsIcon, "Tools");
 				
 				taskpaneView.TaskPaneToolbarButtonClicked += taskpaneView_TaskPaneToolbarButtonClicked;
@@ -258,13 +259,13 @@ namespace RedBrick2 {
 				case 2:
 					taskpaneHost.ReStart();
 					break;
+				//case 3:
+				//	ArchivePDF();
+				//	break;
+				//case 4:
+				//	QuikTracLookup();
+				//	break;
 				case 3:
-					ArchivePDF();
-					break;
-				case 4:
-					QuikTracLookup();
-					break;
-				case 5:
 					OpenToolChest();
 					break;
 				default:

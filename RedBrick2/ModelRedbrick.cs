@@ -1775,6 +1775,7 @@ namespace RedBrick2 {
 			set {
 				//int gc_ = GC.GetGeneration(this);
 				//GC.Collect(gc_, GCCollectionMode.Optimized);
+				archive_btn.Enabled = value != null && value is DrawingDoc;
 				if (value != null && value != ActiveDoc) {
 					DisconnectEvents();
 					Show();
@@ -2942,14 +2943,39 @@ namespace RedBrick2 {
 		}
 
 		private void cutlistTimeBtn_MouseClick(object sender, MouseEventArgs e) {
-			ComboBox cb_ = cutlistctl;
-			if (cutlistctl.SelectedItem != null) {
-				using (ManageCutlistTime mct_ = new ManageCutlistTime(partLookup, Convert.ToInt32(cutlistctl.SelectedValue))) {
-					mct_.ShowDialog(this);
+			IEnumerable<KeyValuePair<string, double>> f_ = Redbrick.CollectDims(ActiveDoc);
+			MessageBox.Show(this, Redbrick.dumpIEnumerable(f_));
+			//ComboBox cb_ = cutlistctl;
+			//if (cutlistctl.SelectedItem != null) {
+			//	using (ManageCutlistTime mct_ = new ManageCutlistTime(partLookup, Convert.ToInt32(cutlistctl.SelectedValue))) {
+			//		mct_.ShowDialog(this);
+			//	}
+			//} else {
+			//	using (ManageCutlistTime mct_ = new ManageCutlistTime(partLookup)) {
+			//		mct_.ShowDialog(this);
+			//	}
+			//}
+		}
+
+		private void archive_btn_Click(object sender, EventArgs e) {
+			if (ActiveDoc is DrawingDoc) {
+				using (ENGINEERINGDataSet.GEN_ODOMETERDataTable gota =
+					new ENGINEERINGDataSet.GEN_ODOMETERDataTable()) {
+					gota.IncrementOdometer(Redbrick.Functions.ArchivePDF);
+					ArchivePDF.csproj.ArchivePDFWrapper apw = new ArchivePDF.csproj.ArchivePDFWrapper(SwApp, Redbrick.GeneratePathSet());
+					apw.Archive();
 				}
-			} else {
-				using (ManageCutlistTime mct_ = new ManageCutlistTime(partLookup)) {
-					mct_.ShowDialog(this);
+				drawingRedbrick.GetFileDates();
+			}
+		}
+
+		private void qt_btn_Click(object sender, EventArgs e) {
+			if (ActiveDoc != null ) {
+				using (ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter ta_ =
+					new ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter()) {
+					using (QuickTracLookup qt_ = new QuickTracLookup(partLookup)) {
+						qt_.ShowDialog(this);
+					}
 				}
 			}
 		}
