@@ -438,6 +438,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="redlego.ico" />
+    <None Include="Resources\greencheck1.bmp" />
+    <None Include="Resources\greencheck.ico" />
+    <None Include="Resources\greencheck.png" />
+    <None Include="Resources\greencheck.bmp" />
+    <None Include="Resources\cfg.bmp" />
+    <None Include="Resources\Refresh-icon.png" />
+    <None Include="Resources\Refresh-icon.bmp" />
+    <None Include="Resources\check.bmp" />
+    <None Include="Resources\Tools.bmp" />
     <None Include="Resources\Glasses-icon.png" />
     <None Include="Resources\stopwatch.bmp" />
     <None Include="Resources\delete-icon.bmp" />

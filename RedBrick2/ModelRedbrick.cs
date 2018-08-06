@@ -1904,6 +1904,8 @@ namespace RedBrick2 {
 			swap_tooltup.SetToolTip(swapWnT, Properties.Resources.DimensionSwapWarning);
 			//GetCutlistData();
 			//SelectTab();
+			grnchk_btn.Image = Image.FromFile(@"G:\Solid Works\Amstore_Macros\ICONS\greencheck.ico");
+			grnchk_btn.ImageAlign = ContentAlignment.MiddleCenter;
 			initialated = true;
 			AttachComboBoxEvents();
 		}
@@ -2977,6 +2979,39 @@ namespace RedBrick2 {
 						qt_.ShowDialog(this);
 					}
 				}
+			}
+		}
+
+		private void grnchk_btn_Click(object sender, EventArgs e) {
+			Commit();
+			if (Properties.Settings.Default.MakeSounds)
+				System.Media.SystemSounds.Beep.Play();
+		}
+
+		bool changed = false;
+		private void cfg_btn_Click(object sender, EventArgs e) {
+			Properties.Settings.Default.PropertyChanged += Default_PropertyChanged;
+
+			using (RedbrickConfiguration rbc = new RedbrickConfiguration()) {
+				rbc.ShowDialog(this);
+			}
+
+			if (changed) {
+				ReStart();
+				ToggleFlameWar(Properties.Settings.Default.FlameWar);
+			}
+
+			Properties.Settings.Default.PropertyChanged -= Default_PropertyChanged;
+			changed = false;
+		}
+
+		private void Default_PropertyChanged(object sender, PropertyChangedEventArgs e) {
+			changed = true;
+		}
+
+		private void button8_Click(object sender, EventArgs e) {
+			using (ToolChest t_ = new ToolChest(partLookup, SwApp)) {
+				t_.ShowDialog(this);
 			}
 		}
 	}

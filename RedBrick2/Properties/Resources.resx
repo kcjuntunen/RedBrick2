@@ -117,101 +117,122 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="NetworkNotAvailable" xml:space="preserve">
-    <value>Necessary network resources are not available. Redbrick not starting.</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>Property Editor {0}</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="redlego" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\redlego.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="setup" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\setup.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Update" xml:space="preserve">
-    <value>Your version of the  Property Editor is out of date.   Do you want to update from {0} to {1}?</value>
-  </data>
-  <data name="delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\delete-icon.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="InsertIntoEcrItems" xml:space="preserve">
-    <value>Insert '{0}' into ECR# {1} items?</value>
-  </data>
-  <data name="stopwatch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\stopwatch.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CustomerNotMatching" xml:space="preserve">
-    <value>Make sure the customer matches the project code in the filename.</value>
+  <data name="DimensionNotMatch" xml:space="preserve">
+    <value>The dimension from the cutlist database is {0}".</value>
   </data>
   <data name="CutlistNotSelectedWarning" xml:space="preserve">
     <value>Update will not apply Cutlist Material or Edging changes unless a cutlist is selected.</value>
   </data>
-  <data name="InfoFromDB" xml:space="preserve">
-    <value>The information in the Property Editor is in the database.</value>
-  </data>
-  <data name="InfoNotFromDB" xml:space="preserve">
-    <value>The information in the Property Editor is NOT in the database. It was taken from the part.</value>
-  </data>
-  <data name="NoDescriptionWarning" xml:space="preserve">
-    <value>It's not classy to have no description.</value>
-  </data>
-  <data name="NotNaturalNumberWarning" xml:space="preserve">
-    <value>Please enter an integer greater than 0.</value>
-  </data>
-  <data name="RegexHint" xml:space="preserve">
-    <value>You probably don't want to mess with this.</value>
-  </data>
-  <data name="RevisionNotMatching" xml:space="preserve">
-    <value>Make sure the revision matches the revision indicated in the filename.</value>
-  </data>
-  <data name="NoTypeWarning" xml:space="preserve">
-    <value>Type couldn't be figured out from property data.</value>
-  </data>
-  <data name="DimensionSwapWarning" xml:space="preserve">
-    <value>You should always confirm your edging after swapping dimensions.</value>
-  </data>
   <data name="ThicknessWarning" xml:space="preserve">
     <value>Material thickness doesn't match thickness dimension.</value>
   </data>
-  <data name="AddPartHint" xml:space="preserve">
-    <value>Add the selected part to a particular cutlist.</value>
+  <data name="NetworkNotAvailable" xml:space="preserve">
+    <value>Necessary network resources are not available. Redbrick not starting.</value>
   </data>
-  <data name="PriorityHint" xml:space="preserve">
-    <value>Adjust machine priority.</value>
+  <data name="Update" xml:space="preserve">
+    <value>Your version of the  Property Editor is out of date.   Do you want to update from {0} to {1}?</value>
   </data>
-  <data name="RemoveHint" xml:space="preserve">
-    <value>Remove the selected part from selected cutlist.</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Refreshicon1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Refresh-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TimeHint" xml:space="preserve">
     <value>Adjust run/setup time.</value>
   </data>
-  <data name="UpdateHint" xml:space="preserve">
-    <value>Add Part/Assembly to the cutlist database.</value>
+  <data name="NoDescriptionWarning" xml:space="preserve">
+    <value>It's not classy to have no description.</value>
   </data>
-  <data name="DimensionNotMatch" xml:space="preserve">
-    <value>The dimension from the cutlist database is {0}".</value>
+  <data name="Tools" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tools.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="InconsistentEdgingOp" xml:space="preserve">
-    <value>Edging is inconsistent with routing.</value>
+  <data name="InfoFromDB" xml:space="preserve">
+    <value>The information in the Property Editor is in the database.</value>
   </data>
-  <data name="EmptyWarning" xml:space="preserve">
-    <value>Please enter something in this field.</value>
-  </data>
-  <data name="LengthWarning" xml:space="preserve">
-    <value>This field can be no longer than {0} charaters.</value>
-  </data>
-  <data name="InDBReadOnlyWarning" xml:space="preserve">
-    <value>Property data has been saved to the cutlist database, but it could not be saved to the part because it's read-only.</value>
+  <data name="DimensionSwapWarning" xml:space="preserve">
+    <value>You should always confirm your edging after swapping dimensions.</value>
   </data>
   <data name="NotInDBReadOnlyWarning" xml:space="preserve">
     <value>Properties could not be saved to read-only part.</value>
   </data>
-  <data name="Glasses_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Glasses-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PriorityHint" xml:space="preserve">
+    <value>Adjust machine priority.</value>
+  </data>
+  <data name="NotNaturalNumberWarning" xml:space="preserve">
+    <value>Please enter an integer greater than 0.</value>
+  </data>
+  <data name="EmptyWarning" xml:space="preserve">
+    <value>Please enter something in this field.</value>
+  </data>
+  <data name="setup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\setup.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Refreshicon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Refresh-icon.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InfoNotFromDB" xml:space="preserve">
+    <value>The information in the Property Editor is NOT in the database. It was taken from the part.</value>
+  </data>
+  <data name="RegexHint" xml:space="preserve">
+    <value>You probably don't want to mess with this.</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Property Editor {0}</value>
+  </data>
+  <data name="InconsistentEdgingOp" xml:space="preserve">
+    <value>Edging is inconsistent with routing.</value>
+  </data>
+  <data name="AddPartHint" xml:space="preserve">
+    <value>Add the selected part to a particular cutlist.</value>
+  </data>
+  <data name="cfg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cfg.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RemoveHint" xml:space="preserve">
+    <value>Remove the selected part from selected cutlist.</value>
+  </data>
+  <data name="NoTypeWarning" xml:space="preserve">
+    <value>Type couldn't be figured out from property data.</value>
+  </data>
+  <data name="RevisionNotMatching" xml:space="preserve">
+    <value>Make sure the revision matches the revision indicated in the filename.</value>
+  </data>
+  <data name="greencheck" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\greencheck.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InDBReadOnlyWarning" xml:space="preserve">
+    <value>Property data has been saved to the cutlist database, but it could not be saved to the part because it's read-only.</value>
+  </data>
+  <data name="CustomerNotMatching" xml:space="preserve">
+    <value>Make sure the customer matches the project code in the filename.</value>
+  </data>
+  <data name="LengthWarning" xml:space="preserve">
+    <value>This field can be no longer than {0} charaters.</value>
+  </data>
+  <data name="delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete-icon.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="redlego" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\redlego.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="check" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\check.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UpdateHint" xml:space="preserve">
+    <value>Add Part/Assembly to the cutlist database.</value>
+  </data>
+  <data name="InsertIntoEcrItems" xml:space="preserve">
+    <value>Insert '{0}' into ECR# {1} items?</value>
   </data>
   <data name="WannaUpdateDimensions" xml:space="preserve">
     <value>The current dimensions differ from what's in the database. Do you want to update the dimensions in the database?</value>
+  </data>
+  <data name="stopwatch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stopwatch.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Glasses_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Glasses-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="greencheck" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\greencheck1.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
