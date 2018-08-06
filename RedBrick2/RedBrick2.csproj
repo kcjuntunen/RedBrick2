@@ -78,7 +78,7 @@
   <ItemGroup>
     <Reference Include="ArchivePDF, Version=2.4.1.0, Culture=neutral, PublicKeyToken=3dbf4f27f46e74d2, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ArchivePDF\ArchivePDF\bin\x64\Debug\ArchivePDF.dll</HintPath>
+      <HintPath>..\..\ArchivePDF\ArchivePDF\bin\x64\Release\ArchivePDF.dll</HintPath>
     </Reference>
     <Reference Include="DrawingCompiler">
       <HintPath>..\..\DrawingCollector\DrawingCollector\DrawingCompiler\bin\x64\Debug\DrawingCompiler.dll</HintPath>
@@ -445,7 +445,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"$(SolutionDir)".\GetAssemblyInfoForNSIS\bin\Release\GetAssemblyInfoForNSIS.exe
-:: C:\PROGRA~2\NSIS\makensisw.exe "$(ProjectDir)\install.nsi"
+C:\PROGRA~2\NSIS\makensisw.exe "$(ProjectDir)\install.nsi"
 :: start net use G: \\AMSTORE-SVR-22\cad
 :: start xcopy /Y "$(ProjectDir)InstallRedbrick.exe" "G:\Solid Works\Amstore_Macros\Redbrick\"
 :: start xcopy /Y "$(ProjectDir)version.xml" "G:\Solid Works\Amstore_Macros\Redbrick\"</PostBuildEvent>

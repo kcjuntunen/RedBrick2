@@ -1,10 +1,2 @@
 
-1) Blow away properties that are in the wrong place.
-   * Sometime properties that should be global are configuration specific. These supercede the correct properties when displaying in a BOM, so now they just get deleted.
-2) Another tweak to lookup string creating function.
-3) Added a button to export flat patterns.
-   * No one probably needs this but me, but if you want to use it, you'll need to create "C:\Optimize\Import\flat".
-4) Added a button on the Create Cutlist window.
-   * Displays any item in the model that has its own cutlist.
-   * You can cut from this window and paste into Excel, or Notepad, or whatever.
-5) For some reason, SolidWorks is only showing 5 buttons in the top row. Therefore, I've made my own button row.
+1) There's a new option in SolidWorks 2018 that fiddles with layer visibility when IModelDocExt.SaveAs() is called. I updated the archiver to defeat the new option.
