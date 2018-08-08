@@ -3017,5 +3017,10 @@ namespace RedBrick2 {
 				t_.ShowDialog(this);
 			}
 		}
+
+		private void refresh_btn_Click(object sender, EventArgs e) {
+			DumpActiveDoc();
+			ReStart();
+		}
 	}
 }
