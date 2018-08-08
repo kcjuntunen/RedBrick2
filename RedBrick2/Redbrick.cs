@@ -908,7 +908,7 @@ namespace RedBrick2 {
 				return m_.Groups[0].Value;
 			}
 
-			return lookup_.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)[0];
+			return lookup_;
 		}
 
 		/// <summary>
