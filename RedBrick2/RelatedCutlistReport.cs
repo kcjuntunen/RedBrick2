@@ -3,7 +3,14 @@ using System.Text;
 using System.Windows.Forms;
 
 namespace RedBrick2 {
+	/// <summary>
+	/// A form that displays a list of cutlists named after parts in a <see cref="HashSet{T}"/> of <see cref="string"/>s.
+	/// </summary>
 	public partial class RelatedCutlistReport : Form {
+		/// <summary>
+		/// Instantiate a form with a list of cutlists in it.
+		/// </summary>
+		/// <param name="items">A <see cref="HashSet{T}"/> of lookup <see cref="string"/>s.</param>
 		public RelatedCutlistReport(HashSet<string> items) {
 			InitializeComponent();
 

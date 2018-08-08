@@ -22,6 +22,11 @@ namespace RedBrick2.ExistingCutlistReportDataSetTableAdapters {
 			return query_ + criteria_.ToString();
 		}
 
+		/// <summary>
+		/// Get a list of string arrays to feed into a ListView.
+		/// </summary>
+		/// <param name="items">A hashset of items to look up.</param>
+		/// <returns>A <see cref="List{T}"/> of <see cref="string"/> arrays.</returns>
 		public List<string[]> Lookup(HashSet<string> items) {
 			string qry_ = GetQuery(items);
 			//StringBuilder result = new StringBuilder();
