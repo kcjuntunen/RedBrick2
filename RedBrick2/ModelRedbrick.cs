@@ -2953,18 +2953,16 @@ namespace RedBrick2 {
 		}
 
 		private void cutlistTimeBtn_MouseClick(object sender, MouseEventArgs e) {
-			IEnumerable<KeyValuePair<string, double>> f_ = Redbrick.CollectDims(ActiveDoc);
-			MessageBox.Show(this, Redbrick.dumpIEnumerable(f_));
-			//ComboBox cb_ = cutlistctl;
-			//if (cutlistctl.SelectedItem != null) {
-			//	using (ManageCutlistTime mct_ = new ManageCutlistTime(partLookup, Convert.ToInt32(cutlistctl.SelectedValue))) {
-			//		mct_.ShowDialog(this);
-			//	}
-			//} else {
-			//	using (ManageCutlistTime mct_ = new ManageCutlistTime(partLookup)) {
-			//		mct_.ShowDialog(this);
-			//	}
-			//}
+			ComboBox cb_ = cutlistctl;
+			if (cutlistctl.SelectedItem != null) {
+				using (ManageCutlistTime mct_ = new ManageCutlistTime(partLookup, Convert.ToInt32(cutlistctl.SelectedValue))) {
+					mct_.ShowDialog(this);
+				}
+			} else {
+				using (ManageCutlistTime mct_ = new ManageCutlistTime(partLookup)) {
+					mct_.ShowDialog(this);
+				}
+			}
 		}
 
 		private void archive_btn_Click(object sender, EventArgs e) {
