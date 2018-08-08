@@ -43,6 +43,9 @@ namespace RedBrick2 {
 			NewRev = true;
 			level = new StringProperty(@"REVISION LEVEL", true, RevSet.SwApp, (RevSet.SwApp.ActiveDoc as ModelDoc2), @"REV");
 			level.Get();
+			if (textBox2.Text.Trim() == string.Empty) {
+				textBox2.Text = Redbrick.LastECRDescription;
+			}
 			ToggleFlameWar(Properties.Settings.Default.FlameWar);
 		}
 
@@ -98,6 +101,7 @@ namespace RedBrick2 {
 				AddECRItem();
 			}
 			del_flag_ = false;
+			Redbrick.LastECRDescription = ThisRev.Description;
 			Close();
 		}
 
