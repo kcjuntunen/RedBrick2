@@ -106,10 +106,6 @@ namespace RedBrick2 {
 			tabPage2.Text = @"DrawingProperties";
 
 			AutoCompleteStringCollection skdim_ = new AutoCompleteStringCollection();
-			for (int i = 0; i < Properties.Settings.Default.SketchDimensions.Count; i++) {
-				skdim_.Add(Properties.Settings.Default.SketchDimensions[i]);
-			}
-
 			lengthtb.AutoCompleteCustomSource = skdim_;
 			widthtb.AutoCompleteCustomSource = skdim_;
 			thicknesstb.AutoCompleteCustomSource = skdim_;
@@ -1799,6 +1795,15 @@ namespace RedBrick2 {
 						partLookup = null;
 						PartFileInfo = new FileInfo(Path.GetTempFileName());
 						Hash = Redbrick.GetHash(PartFileInfo);
+					}
+
+					// lengthtb.AutoCompleteCustomSource is a pointer to _skdim in the constructor,
+					// so changing it changes all the dimension textbox AutoComplete sources.
+					lengthtb.AutoCompleteCustomSource.Clear();
+					foreach (string item in Redbrick.CollectDimNames(ActiveDoc)) {
+						if (!lengthtb.AutoCompleteCustomSource.Contains(item)) {
+							lengthtb.AutoCompleteCustomSource.Add(item);
+						}
 					}
 
 					swDocumentTypes_e dType = (swDocumentTypes_e)_activeDoc.GetType();
