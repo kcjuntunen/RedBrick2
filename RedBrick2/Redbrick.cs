@@ -24,6 +24,10 @@ namespace RedBrick2 {
 		private Version currentVersion;
 		private bool askedToUpdate = false;
 		private string UpdateMessage = string.Empty;
+
+		/// <summary>
+		/// A place to store the last ECR description that was typed.
+		/// </summary>
 		static public string LastECRDescription = string.Empty;
 		/// <summary>
 		/// Translation table of ugly field names to pretty ones.
