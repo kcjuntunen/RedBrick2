@@ -297,7 +297,10 @@ namespace RedBrick2 {
 			groupBox1.Text = groupBox1.Text.Replace(Properties.Settings.Default.NotSavedMark, string.Empty);
 			GetCutlistData();
 			flowLayoutPanel1.Controls.Clear();
-			if (ActiveDoc != null && PropertySet.Count > 0) {
+			if (ActiveDoc != null) {
+				if (PropertySet.Count < 1) {
+					PropertySet.GetProperties(ActiveDoc);
+				}
 				Enabled = true;
 				if (PropertySet[@"LENGTH"].Value != null) {
 					lengthtb.Text = Convert.ToString(PropertySet[@"LENGTH"].Value).Replace("\"", string.Empty);
