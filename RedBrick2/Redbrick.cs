@@ -1112,6 +1112,46 @@ namespace RedBrick2 {
 		}
 
 		/// <summary>
+		/// Collect dimension and equation names eligable for the dimension TextBoxes.
+		/// </summary>
+		/// <param name="_md">A <see cref="ModelDoc2"/> of the part we're looking at.</param>
+		/// <returns>A <see cref="List{T}"/> of <see cref="string"/>s.</returns>
+		static public List<string> CollectDimNames(ModelDoc2 _md) {
+			List<string> res_ = new List<string>();
+			Feature f_ = (Feature)_md.FirstFeature();
+			DisplayDimension dd_ = null;
+			while (f_ != null) {
+				dd_ = (DisplayDimension)f_.GetFirstDisplayDimension();
+				while (dd_ != null) {
+					if (dd_.GetType() != (int)swDimensionType_e.swLinearDimension) {
+						dd_ = (DisplayDimension)f_.GetNextDisplayDimension(dd_);
+						string dim_name_ = dd_ != null ? dd_.GetNameForSelection() : "NULL";
+						continue;
+					}
+					Dimension d_ = dd_.GetDimension2(0);
+					string name_ = d_.GetNameForSelection();
+					if (!res_.Contains(name_)) {
+						res_.Add(name_);
+					}
+					dd_ = (DisplayDimension)f_.GetNextDisplayDimension(dd_);
+				}
+				f_ = (Feature)f_.GetNextFeature();
+			}
+
+			EquationMgr em_ = _md.GetEquationMgr();
+			int eq_count_ = em_.GetCount();
+			for (int i = 0; i < eq_count_; i++) {
+				string eq_ = string.Format(@"{0}@{1}",
+					em_.Equation[i].Split('=')[0].Replace("\"", string.Empty),
+					System.IO.Path.GetFileName(_md.GetPathName()));
+				if (!res_.Contains(eq_)) {
+					res_.Add(eq_); 
+				}
+			}
+			return res_;
+		}
+
+		/// <summary>
 		/// A central place for TreeViewIcons.
 		/// </summary>
 		static public System.Windows.Forms.ImageList TreeViewIcons { get; set; }
