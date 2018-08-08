@@ -917,6 +917,9 @@ namespace RedBrick2 {
 		/// <param name="_part">A <see cref="String"/> to test.</param>
 		/// <returns>A <see cref="Boolean"/> indicating conformity.</returns>
 		static public bool IsConformingPartnumber(string _part) {
+			if (_part == null) {
+				return false;
+			}
 			System.Text.RegularExpressions.Regex r_ =
 				new System.Text.RegularExpressions.Regex(Redbrick.BOMFilter[0]);
 			return r_.IsMatch(_part);
@@ -1034,6 +1037,10 @@ namespace RedBrick2 {
 			}
 
 			void get_item_data_(string l_, ref string d_) {
+			if (lookup == null) {
+				return;
+			}
+
 				using (ENGINEERINGDataSetTableAdapters.CustToAmsTableAdapter cta_ =
 					new ENGINEERINGDataSetTableAdapters.CustToAmsTableAdapter()) {
 					using (ENGINEERINGDataSet.CustToAmsDataTable ctadt_ = cta_.GetDataByPart(lookup)) {
