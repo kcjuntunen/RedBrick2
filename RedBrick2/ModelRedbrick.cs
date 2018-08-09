@@ -776,7 +776,8 @@ namespace RedBrick2 {
 			overLtb.Text = Redbrick.enforce_number_format(StrTryProp("OVERL"));
 			ov_userediting = true;
 			overWtb.Text = Redbrick.enforce_number_format(StrTryProp("OVERW"));
-			ppb_nud.Value = Convert.ToDecimal(IntTryProp("BLANK QTY"));
+			Decimal ppb_tmp = Convert.ToDecimal(IntTryProp("BLANK QTY"));
+			ppb_nud.Value = ppb_tmp > 0 ? ppb_tmp : 1;
 			ppbtb.Text = StrTryProp("BLANK QTY");
 			updateCNCcb.Checked = BoolTryProp("UPDATE CNC");
 			length = DimTryProp(@"LENGTH");
