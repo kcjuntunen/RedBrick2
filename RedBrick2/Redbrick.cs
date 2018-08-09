@@ -887,7 +887,7 @@ namespace RedBrick2 {
 			lookup_ = lookup_.Split(new char[] { '^' }, StringSplitOptions.RemoveEmptyEntries)[0];
 
 			if (IsConformingPartnumber(lookup_) && !lookup_.StartsWith(@"Z")) {
-				return lookup_.Trim();
+				return lookup_.Trim().ToUpper();
 			}
 
 			// Z #
@@ -895,7 +895,7 @@ namespace RedBrick2 {
 				new System.Text.RegularExpressions.Regex(@"Z[0-9]{5,6}");
 			System.Text.RegularExpressions.Match m_ = r_.Match(lookup_);
 			if (m_.Groups[0].Value != string.Empty) {
-				return m_.Groups[0].Value;
+				return m_.Groups[0].Value.ToUpper();
 			}
 			
 			// Raw part #
@@ -909,7 +909,7 @@ namespace RedBrick2 {
 			r_ = new System.Text.RegularExpressions.Regex(@"[0-9]{4,5}[A-Z]{1}[0-9]+");
 			m_ = r_.Match(lookup_);
 			if (m_.Groups[0].Value != string.Empty) {
-				return m_.Groups[0].Value;
+				return m_.Groups[0].Value.ToUpper();
 			}
 
 			return lookup_;
