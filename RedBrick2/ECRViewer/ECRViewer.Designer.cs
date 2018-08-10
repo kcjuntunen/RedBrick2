@@ -1,4 +1,4 @@
-﻿namespace RedBrick2 {
+﻿namespace RedBrick2.ECRViewer {
 	partial class ECRViewer {
 		/// <summary>
 		/// Required designer variable.

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace RedBrick2 {
+namespace RedBrick2.ECRViewer {
 	/// <summary>
 	/// A Form for viewing ECR data.
 	/// </summary>
