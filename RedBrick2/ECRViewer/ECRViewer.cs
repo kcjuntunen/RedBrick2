@@ -100,14 +100,18 @@ namespace RedBrick2.ECRViewer {
 
 		private void LookUpPart(string _part) {
 			bool cleared_ = false;
-			using (ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter ta_ =
-				new ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter()) {
-				using (ENGINEERINGDataSet.ECRObjLookupDataTable dt_ = ta_.GetDataByItemNum(_part)) {
+			using (ECRViewerDataSetTableAdapters.ECRObjLookupTableAdapter ta_ =
+				new ECRViewerDataSetTableAdapters.ECRObjLookupTableAdapter()) {
+				using (ECRViewerDataSet.ECRObjLookupDataTable dt_ = ta_.GetDataByItemNum(_part)) {
 					if (dt_.Count > 0) {
 						ECRlistView.Items.Clear();
 						cleared_ = true;
 						originalText = ECRTextBox.Text;
-						foreach (ENGINEERINGDataSet.ECRObjLookupRow row in dt_.Rows) {
+						foreach (ECRViewerDataSet.ECRObjLookupRow row in dt_.Rows) {
+							if (ECRlistView.Items.Count > 0 &&
+								ECRlistView.Items[ECRlistView.Items.Count - 1].Text == row.ECR_NUM.ToString()) {
+								continue;
+							}
 							string[] row_str_ = new string[] { row.ECR_NUM.ToString(),
 								row.DATE_CREATE.ToString(dateFormat),
 								Redbrick.TitleCase(row.STATUS) };
@@ -145,13 +149,13 @@ namespace RedBrick2.ECRViewer {
 
 		private void LookUpECR(int eco) {
 			if (eco > Redbrick.LastLegacyECR) {
-				using (ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter ta_ =
-					new ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter()) {
-					using (ENGINEERINGDataSet.ECRObjLookupDataTable dt_ = ta_.GetDataByECO(eco)) {
+				using (ECRViewerDataSetTableAdapters.ECRObjLookupTableAdapter ta_ =
+					new ECRViewerDataSetTableAdapters.ECRObjLookupTableAdapter()) {
+					using (ECRViewerDataSet.ECRObjLookupDataTable dt_ = ta_.GetDataByECO(eco.ToString())) {
 						if (dt_.Count > 0) {
 							ECRlistView.Items.Clear();
 							originalText = ECRTextBox.Text;
-							foreach (ENGINEERINGDataSet.ECRObjLookupRow row in dt_.Rows) {
+							foreach (ECRViewerDataSet.ECRObjLookupRow row in dt_.Rows) {
 								string[] row_str_ = new string[] { row.ECR_NUM.ToString(),
 								row.DATE_CREATE.ToString(dateFormat),
 								Redbrick.TitleCase(row.STATUS) };
@@ -198,10 +202,10 @@ namespace RedBrick2.ECRViewer {
 			}
 		}
 
-		private ENGINEERINGDataSet.ECRObjLookupRow ECRObjLookup(int ecr_) {
-			using (ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter ta_ =
-				new ENGINEERINGDataSetTableAdapters.ECRObjLookupTableAdapter()) {
-				using (ENGINEERINGDataSet.ECRObjLookupDataTable dt_ = ta_.GetDataByECO(ecr_)) {
+		private ECRViewerDataSet.ECRObjLookupRow ECRObjLookup(int ecr_) {
+			using (ECRViewerDataSetTableAdapters.ECRObjLookupTableAdapter ta_ =
+				new ECRViewerDataSetTableAdapters.ECRObjLookupTableAdapter()) {
+				using (ECRViewerDataSet.ECRObjLookupDataTable dt_ = ta_.GetDataByECO(ecr_.ToString())) {
 					if (dt_.Count > 0) {
 						return dt_[0];
 					}
@@ -320,7 +324,7 @@ namespace RedBrick2.ECRViewer {
 
 		private void GetDescription(int ecrno) {
 			if (ecrno > Redbrick.LastLegacyECR) {
-				ENGINEERINGDataSet.ECRObjLookupRow r_ = ECRObjLookup(ecrno);
+				ECRViewerDataSet.ECRObjLookupRow r_ = ECRObjLookup(ecrno);
 				if (r_ != null) {
 					descriptionTextBox.Text = r_.CHANGES;
 				}
