@@ -36,6 +36,7 @@ namespace RedBrick2 {
 		private bool user_changed_config = false;
 		private ModelDoc2 mDoc = null;
 		private Configuration _config = null;
+		private Traverser tr;
 		private int? uid = null;
 		private bool[] sort_directions = { false, false, false, false, false, false,
 																			 false, false, false, false, false, false,
@@ -63,6 +64,7 @@ namespace RedBrick2 {
 		/// <param name="s">The connected application.</param>
 		public CreateCutlist(SldWorks s) {
 			_swApp = s;
+			tr = new Traverser(_swApp);
 			InitializeComponent();
 
 			new ToolTip().SetToolTip(update_prts_btn, @"Experimental. This is supposed to write whatever you see in this table to the parts.");
@@ -144,7 +146,8 @@ namespace RedBrick2 {
 			_swApp.GetUserProgressBar(out pb);
 			Cursor.Current = Cursors.WaitCursor;
 			if (m is AssemblyDoc) {
-				TraverseComponent(swRootComp, 1);
+				//TraverseComponent(swRootComp, 1);
+				tr.TraverseComponent(swRootComp, 1);
 			}
 
 			if (m is PartDoc) {
@@ -153,6 +156,8 @@ namespace RedBrick2 {
 			//dataGridView1.DataSource = ToDataTable(_dict, _partlist);
 			pb.End();
 			AddColumns();
+			_dict = tr.Dict;
+			_partlist = tr.PartList;
 			FillTable(_dict, _partlist);
 			Cursor.Current = Cursors.Default;
 			count_includes();
@@ -458,9 +463,9 @@ namespace RedBrick2 {
 					_assemblies.Add(Redbrick.FileInfoToLookup(new FileInfo(md.GetPathName())));
 				}
 				if (md != null && md.GetType() == (int)swDocumentTypes_e.swDocPART) {
-					_assemblies.Add(Redbrick.FileInfoToLookup(new FileInfo(md.GetPathName())));
 					fi_ = new FileInfo(md.GetPathName());
 					name = Redbrick.FileInfoToLookup(fi_);
+					_assemblies.Add(name);
 					pb.UpdateTitle(fi_.Name);
 					if (!_dict.ContainsKey(name)) {
 						SwProperties s = new SwProperties(_swApp, md);
@@ -1764,10 +1769,10 @@ namespace RedBrick2 {
 		}
 
 		private void button1_Click_1(object sender, EventArgs e) {
-			if (_assemblies.Count < 1) {
+			if (tr.PartHash.Count < 1) {
 				return;
 			}
-			using (RelatedCutlistReport scr_ = new RelatedCutlistReport(_assemblies)) {
+			using (RelatedCutlistReport scr_ = new RelatedCutlistReport(tr.PartHash)) {
 				scr_.ShowDialog(this);
 			}
 		}
