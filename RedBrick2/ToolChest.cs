@@ -44,8 +44,9 @@ namespace RedBrick2 {
 		}
 
 		private void button2_Click(object sender, EventArgs e) {
-			DrawingCompiler.SolidWorksMacro s = new DrawingCompiler.SolidWorksMacro();
-			s.Main(swApp);
+			using (DrawingCollector.DrawingCollector dc_ = new DrawingCollector.DrawingCollector(swApp)) {
+				dc_.ShowDialog(this);
+			}
 		}
 
 		private void ToolChest_FormClosing(object sender, FormClosingEventArgs e) {

@@ -300,9 +300,6 @@
     <Setting Name="ECRViewerLocation" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">100, 100</Value>
     </Setting>
-    <Setting Name="Setting" Type="System.String" Scope="User">
-      <Value Profile="(Default)">650; 612</Value>
-    </Setting>
     <Setting Name="FinishSpecURL" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://10.10.76.50/doku.php?id=reference:programcolors</Value>
     </Setting>
@@ -320,6 +317,24 @@
     </Setting>
     <Setting Name="RelatedCutlistSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">640, 480</Value>
+    </Setting>
+    <Setting Name="PageStampSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">8</Value>
+    </Setting>
+    <Setting Name="PageStampLoc" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">1175, 20</Value>
+    </Setting>
+    <Setting Name="PageStampWhiteoutRectangleA4" Type="System.Drawing.Rectangle" Scope="User">
+      <Value Profile="(Default)">720, 20, 47, 16</Value>
+    </Setting>
+    <Setting Name="PageStampLocA4" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">743, 20</Value>
+    </Setting>
+    <Setting Name="PageStampWhiteoutRectangle" Type="System.Drawing.Rectangle" Scope="User">
+      <Value Profile="(Default)">1154, 20, 47, 16</Value>
+    </Setting>
+    <Setting Name="Suffix" Type="System.String" Scope="User">
+      <Value Profile="(Default)">-PACKET</Value>
     </Setting>
   </Settings>
 </SettingsFile>

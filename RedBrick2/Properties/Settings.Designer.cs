@@ -1050,18 +1050,6 @@ namespace RedBrick2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("650; 612")]
-        public string Setting {
-            get {
-                return ((string)(this["Setting"]));
-            }
-            set {
-                this["Setting"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("http://10.10.76.50/doku.php?id=reference:programcolors")]
         public string FinishSpecURL {
             get {
@@ -1129,6 +1117,78 @@ namespace RedBrick2.Properties {
             }
             set {
                 this["RelatedCutlistSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
+        public int PageStampSize {
+            get {
+                return ((int)(this["PageStampSize"]));
+            }
+            set {
+                this["PageStampSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1175, 20")]
+        public global::System.Drawing.Point PageStampLoc {
+            get {
+                return ((global::System.Drawing.Point)(this["PageStampLoc"]));
+            }
+            set {
+                this["PageStampLoc"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("720, 20, 47, 16")]
+        public global::System.Drawing.Rectangle PageStampWhiteoutRectangleA4 {
+            get {
+                return ((global::System.Drawing.Rectangle)(this["PageStampWhiteoutRectangleA4"]));
+            }
+            set {
+                this["PageStampWhiteoutRectangleA4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("743, 20")]
+        public global::System.Drawing.Point PageStampLocA4 {
+            get {
+                return ((global::System.Drawing.Point)(this["PageStampLocA4"]));
+            }
+            set {
+                this["PageStampLocA4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1154, 20, 47, 16")]
+        public global::System.Drawing.Rectangle PageStampWhiteoutRectangle {
+            get {
+                return ((global::System.Drawing.Rectangle)(this["PageStampWhiteoutRectangle"]));
+            }
+            set {
+                this["PageStampWhiteoutRectangle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-PACKET")]
+        public string Suffix {
+            get {
+                return ((string)(this["Suffix"]));
+            }
+            set {
+                this["Suffix"] = value;
             }
         }
     }

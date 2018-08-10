@@ -80,15 +80,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ArchivePDF\ArchivePDF\bin\x64\Release\ArchivePDF.dll</HintPath>
     </Reference>
-    <Reference Include="DrawingCompiler">
-      <HintPath>..\..\DrawingCollector\DrawingCollector\DrawingCompiler\bin\x64\Debug\DrawingCompiler.dll</HintPath>
-    </Reference>
     <Reference Include="FormatFixtureBook, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Source\Repos\FormatFixtureBook\FormatFixtureBook\bin\x64\Release\FormatFixtureBook.dll</HintPath>
     </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.8.0.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.8.0\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\..\..\..\..\..\Program Files\RedBrick\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Machine Priority Control, Version=1.0.6697.10126, Culture=neutral, PublicKeyToken=3dbf4f27f46e74d2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -139,7 +139,24 @@
     <Compile Include="AddToExistingCutlist.Designer.cs">
       <DependentUpon>AddToExistingCutlist.cs</DependentUpon>
     </Compile>
+    <Compile Include="DrawingCollector\DrawingCollector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DrawingCollector\DrawingCollector.Designer.cs">
+      <DependentUpon>DrawingCollector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawingCollector\ItemInfo.cs" />
+    <Compile Include="DrawingCollector\PDFMerger.cs" />
+    <Compile Include="ECRViewer\ECRViewerDataSet.cs">
+      <DependentUpon>ECRViewerDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ECRViewer\ECRViewerDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ECRViewerDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Estimation.cs" />
+    <Compile Include="Exceptions\BuildPDFException.cs" />
     <Compile Include="RelatedCutlistReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -320,6 +337,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="ECRViewer\ECRViewerDataSet.xsc">
+      <DependentUpon>ECRViewerDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ECRViewer\ECRViewerDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ECRViewerDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ECRViewer\ECRViewerDataSet.xss">
+      <DependentUpon>ECRViewerDataSet.xsd</DependentUpon>
+    </None>
     <None Include="ENGINEERINGDataSet.xsc">
       <DependentUpon>ENGINEERINGDataSet.xsd</DependentUpon>
     </None>
@@ -389,7 +417,7 @@
     <EmbeddedResource Include="DrawingRedbrick.resx">
       <DependentUpon>DrawingRedbrick.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ECRViewer.resx">
+    <EmbeddedResource Include="ECRViewer\ECRViewer.resx">
       <DependentUpon>ECRViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditOp.resx">
@@ -454,6 +482,7 @@
     <None Include="Resources\stopwatch.bmp" />
     <None Include="Resources\delete-icon.bmp" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"$(SolutionDir)".\GetAssemblyInfoForNSIS\bin\Release\GetAssemblyInfoForNSIS.exe
