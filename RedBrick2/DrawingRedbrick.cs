@@ -937,7 +937,7 @@ namespace RedBrick2 {
 		}
 
 		private void button4_MouseClick(object sender, MouseEventArgs e) {
-			using (ECRViewer ecr_ = new ECRViewer(partLookup)) {
+			using (ECRViewer.ECRViewer ecr_ = new ECRViewer.ECRViewer(partLookup)) {
 				ecr_.ShowDialog(this);
 			}
 		}

@@ -1449,7 +1449,7 @@ namespace RedBrick2 {
 		}
 
 		private void OnRelatedECRs(object sender, EventArgs e) {
-			using (ECRViewer ev_ = new ECRViewer(selectedPart)) {
+			using (ECRViewer.ECRViewer ev_ = new ECRViewer.ECRViewer(selectedPart)) {
 				ev_.ShowDialog(this);
 			}
 		}

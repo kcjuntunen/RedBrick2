@@ -54,7 +54,7 @@ namespace RedBrick2 {
 		}
 
 		private void button3_Click(object sender, EventArgs e) {
-			using (ECRViewer ev_ = new ECRViewer(lookup)) {
+			using (ECRViewer.ECRViewer ev_ = new ECRViewer.ECRViewer(lookup)) {
 				ev_.ShowDialog(this);
 			}
 			Close();

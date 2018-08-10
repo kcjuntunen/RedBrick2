@@ -245,7 +245,7 @@ namespace RedBrick2 {
 
 		private void textBox1_MouseDoubleClick(object sender, MouseEventArgs e) {
 			if (int.TryParse(textBox1.Text, out int test_)) {
-				using (ECRViewer ev_ = new ECRViewer(test_)) {
+				using (ECRViewer.ECRViewer ev_ = new ECRViewer.ECRViewer(test_)) {
 					ev_.ShowDialog(this);
 				}
 			}

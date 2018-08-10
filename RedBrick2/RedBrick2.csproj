@@ -207,10 +207,10 @@
     <Compile Include="DrawingRedbrick.Designer.cs">
       <DependentUpon>DrawingRedbrick.cs</DependentUpon>
     </Compile>
-    <Compile Include="ECRViewer.cs">
+    <Compile Include="ECRViewer\ECRViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ECRViewer.Designer.cs">
+    <Compile Include="ECRViewer\ECRViewer.Designer.cs">
       <DependentUpon>ECRViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="SWProperties\EdgeId.cs" />
@@ -370,6 +370,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreateCutlist.resx">
       <DependentUpon>CreateCutlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawingCollector\DrawingCollector.resx">
+      <DependentUpon>DrawingCollector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RelatedCutlistReport.resx">
       <DependentUpon>RelatedCutlistReport.cs</DependentUpon>
