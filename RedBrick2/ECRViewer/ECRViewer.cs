@@ -126,14 +126,14 @@ namespace RedBrick2.ECRViewer {
 				}
 			}
 
-			using (ENGINEERINGDataSetTableAdapters.ECR_LEGACYTableAdapter ta_ =
-				new ENGINEERINGDataSetTableAdapters.ECR_LEGACYTableAdapter()) {
-				using (ENGINEERINGDataSet.ECR_LEGACYDataTable dt_ = ta_.GetDataByItemNum(_part)) {
+			using (ECRViewerDataSetTableAdapters.ECR_LEGACYTableAdapter ta_ =
+				new ECRViewerDataSetTableAdapters.ECR_LEGACYTableAdapter()) {
+				using (ECRViewerDataSet.ECR_LEGACYDataTable dt_ = ta_.GetDataByItemNum(_part)) {
 					if (dt_.Count > 0) {
 						if (!cleared_) {
 							ECRlistView.Items.Clear();
 						}
-						foreach (ENGINEERINGDataSet.ECR_LEGACYRow row_ in dt_.Rows) {
+						foreach (ECRViewerDataSet.ECR_LEGACYRow row_ in dt_.Rows) {
 							string holder_ = row_.IsHolderNull() ? "??" : Redbrick.TitleCase(row_.Holder);
 							string[] row_str_ = new string[] { string.Format(@"{0} (Legacy)", row_.ECRNum),
 								row_.DateRequested.ToString(dateFormat), holder_ };
@@ -151,7 +151,7 @@ namespace RedBrick2.ECRViewer {
 			if (eco > Redbrick.LastLegacyECR) {
 				using (ECRViewerDataSetTableAdapters.ECRObjLookupTableAdapter ta_ =
 					new ECRViewerDataSetTableAdapters.ECRObjLookupTableAdapter()) {
-					using (ECRViewerDataSet.ECRObjLookupDataTable dt_ = ta_.GetDataByECO(eco.ToString())) {
+					using (ECRViewerDataSet.ECRObjLookupDataTable dt_ = ta_.GetDataByECO(eco)) {
 						if (dt_.Count > 0) {
 							ECRlistView.Items.Clear();
 							originalText = ECRTextBox.Text;
@@ -170,13 +170,13 @@ namespace RedBrick2.ECRViewer {
 					}
 				}
 			} else {
-				using (ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter ta_ =
-					new ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter()) {
-					using (ENGINEERINGDataSet.LegacyECRObjLookupDataTable dt_ = ta_.GetDataByECO(eco.ToString())) {
+				using (ECRViewerDataSetTableAdapters.LegacyECRObjLookupTableAdapter ta_ =
+					new ECRViewerDataSetTableAdapters.LegacyECRObjLookupTableAdapter()) {
+					using (ECRViewerDataSet.LegacyECRObjLookupDataTable dt_ = ta_.GetDataByECO(eco.ToString())) {
 						if (dt_.Count > 0) {
 							ECRlistView.Items.Clear();
 							originalText = ECRTextBox.Text;
-							foreach (ENGINEERINGDataSet.LegacyECRObjLookupRow r_ in dt_.Rows) {
+							foreach (ECRViewerDataSet.LegacyECRObjLookupRow r_ in dt_.Rows) {
 								string holder_ = !r_.IsHolderNull() ? Redbrick.TitleCase(r_.Holder) : @"??";
 								string req_ = !r_.IsDateRequestedNull() ? r_.DateRequested.ToString(dateFormat) : @"??";
 								string[] row_str_ = new string[] { string.Format(@"{0} (Legacy)", eco),
@@ -195,9 +195,9 @@ namespace RedBrick2.ECRViewer {
 			ECRlistView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 		}
 
-		private ENGINEERINGDataSet.SigneesDataTable signeesRows(int ecr_) {
-			using (ENGINEERINGDataSetTableAdapters.SigneesTableAdapter ta_ =
-				new ENGINEERINGDataSetTableAdapters.SigneesTableAdapter()) {
+		private ECRViewerDataSet.SigneesDataTable signeesRows(int ecr_) {
+			using (ECRViewerDataSetTableAdapters.SigneesTableAdapter ta_ =
+				new ECRViewerDataSetTableAdapters.SigneesTableAdapter()) {
 				return ta_.GetDataByECRNum(ecr_);
 			}
 		}
@@ -205,7 +205,7 @@ namespace RedBrick2.ECRViewer {
 		private ECRViewerDataSet.ECRObjLookupRow ECRObjLookup(int ecr_) {
 			using (ECRViewerDataSetTableAdapters.ECRObjLookupTableAdapter ta_ =
 				new ECRViewerDataSetTableAdapters.ECRObjLookupTableAdapter()) {
-				using (ECRViewerDataSet.ECRObjLookupDataTable dt_ = ta_.GetDataByECO(ecr_.ToString())) {
+				using (ECRViewerDataSet.ECRObjLookupDataTable dt_ = ta_.GetDataByECO(ecr_)) {
 					if (dt_.Count > 0) {
 						return dt_[0];
 					}
@@ -214,10 +214,10 @@ namespace RedBrick2.ECRViewer {
 			return null;
 		}
 
-		private ENGINEERINGDataSet.ECR_LEGACYRow LegacyECRObjLookup(int ecr_) {
-			using (ENGINEERINGDataSetTableAdapters.ECR_LEGACYTableAdapter ta_ =
-				new ENGINEERINGDataSetTableAdapters.ECR_LEGACYTableAdapter()) {
-				using (ENGINEERINGDataSet.ECR_LEGACYDataTable dt_ = ta_.GetDataByECO(ecr_.ToString())) {
+		private ECRViewerDataSet.ECR_LEGACYRow LegacyECRObjLookup(int ecr_) {
+			using (ECRViewerDataSetTableAdapters.ECR_LEGACYTableAdapter ta_ =
+				new ECRViewerDataSetTableAdapters.ECR_LEGACYTableAdapter()) {
+				using (ECRViewerDataSet.ECR_LEGACYDataTable dt_ = ta_.GetDataByECO(ecr_.ToString())) {
 					if (dt_.Count > 0) {
 						return dt_[0];
 					}
@@ -226,23 +226,23 @@ namespace RedBrick2.ECRViewer {
 			return null;
 		}
 
-		private ENGINEERINGDataSet.ECR_ITEMSDataTable eCR_ITEMSRows(int ecr_) {
-			using (ENGINEERINGDataSetTableAdapters.ECR_ITEMSTableAdapter ta_ =
-				new ENGINEERINGDataSetTableAdapters.ECR_ITEMSTableAdapter()) {
+		private ECRViewerDataSet.ECR_ITEMSDataTable eCR_ITEMSRows(int ecr_) {
+			using (ECRViewerDataSetTableAdapters.ECR_ITEMSTableAdapter ta_ =
+				new ECRViewerDataSetTableAdapters.ECR_ITEMSTableAdapter()) {
 				return ta_.GetDataByECRNo(ecr_);
 			}
 		}
 
-		private	ENGINEERINGDataSet.ECR_DRAWINGSDataTable eCR_DRAWINGSRows(int itemid) {
-			using (ENGINEERINGDataSetTableAdapters.ECR_DRAWINGSTableAdapter ta_ =
-				new ENGINEERINGDataSetTableAdapters.ECR_DRAWINGSTableAdapter()) {
+		private	ECRViewerDataSet.ECR_DRAWINGSDataTable eCR_DRAWINGSRows(int itemid) {
+			using (ECRViewerDataSetTableAdapters.ECR_DRAWINGSTableAdapter ta_ =
+				new ECRViewerDataSetTableAdapters.ECR_DRAWINGSTableAdapter()) {
 				return ta_.GetDataByItemID(itemid);
 			}
 		}
 
-		private	ENGINEERINGDataSet.FILE_MAINDataTable fILE_MAINRows(int ecr_) {
-			using (ENGINEERINGDataSetTableAdapters.FILE_MAINTableAdapter ta_ =
-				new ENGINEERINGDataSetTableAdapters.FILE_MAINTableAdapter()) {
+		private	ECRViewerDataSet.FILE_MAINDataTable fILE_MAINRows(int ecr_) {
+			using (ECRViewerDataSetTableAdapters.FILE_MAINTableAdapter ta_ =
+				new ECRViewerDataSetTableAdapters.FILE_MAINTableAdapter()) {
 				return ta_.GetDataByECRNum(Convert.ToInt16(ecr_));	
 			}
 		}
@@ -260,8 +260,11 @@ namespace RedBrick2.ECRViewer {
 			ListView lv_ = sender as ListView;
 			if (lv_.SelectedItems.Count > 0 && lv_.SelectedItems[0] != null) {
 				int idx = lv_.Items.IndexOf(lv_.SelectedItems[0]);
-				string path = string.Format(@"\\AMSTORE-SVR-02\shared\shared\general\Engineering Utility\ECR Drawings\{0}",
-					drawings[idx]);
+				if (!(new System.IO.FileInfo(drawings[idx]).Exists)) {
+					string msg_ = string.Format(@"'{0}' was in the database, but I couldn't find it. This could happen if a) the file was deleted, or b) you don't have the network drives correctly mapped. (Running SolidWorks could have this effect.", drawings[idx]);
+					MessageBox.Show(this, msg_, @"Couldn't find the drawing.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return;
+				}
 				System.Diagnostics.Process.Start(drawings[idx]);
 			}
 		}
@@ -293,11 +296,11 @@ namespace RedBrick2.ECRViewer {
 						affectedDrawingsListView.Items[0].Selected = true;
 					}
 				} else {
-					using (ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter ta_ =
-						new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter()) {
-						using (ENGINEERINGDataSet.GEN_DRAWINGSDataTable dt_ =
+					using (ECRViewerDataSetTableAdapters.GEN_DRAWINGSTableAdapter ta_ =
+						new ECRViewerDataSetTableAdapters.GEN_DRAWINGSTableAdapter()) {
+						using (ECRViewerDataSet.GEN_DRAWINGSDataTable dt_ =
 							ta_.GetAnyDrawingByItemSearch(string.Format(@"{0}.PDF", lv_.SelectedItems[0].SubItems[0].Text))) {
-							foreach (ENGINEERINGDataSet.GEN_DRAWINGSRow row_ in dt_.Rows) {
+							foreach (ECRViewerDataSet.GEN_DRAWINGSRow row_ in dt_.Rows) {
 								string p_ = string.Format(@"{0}{1}", row_.FPath, row_.FName);
 								int strt_ = p_.LastIndexOf("\\");
 								string[] it_ = new string[] {
@@ -329,7 +332,7 @@ namespace RedBrick2.ECRViewer {
 					descriptionTextBox.Text = r_.CHANGES;
 				}
 			} else {
-				ENGINEERINGDataSet.ECR_LEGACYRow r_ = LegacyECRObjLookup(ecrno);
+				ECRViewerDataSet.ECR_LEGACYRow r_ = LegacyECRObjLookup(ecrno);
 				if (r_ != null) {
 					descriptionTextBox.Text = r_.Change;
 				}
@@ -338,10 +341,10 @@ namespace RedBrick2.ECRViewer {
 
 		private void GetECRItems(int ecrno) {
 			if (ecrno > Redbrick.LastLegacyECR) {
-				foreach (ENGINEERINGDataSet.ECR_ITEMSRow row in eCR_ITEMSRows(ecrno)) {
+				foreach (ECRViewerDataSet.ECR_ITEMSRow row in eCR_ITEMSRows(ecrno)) {
 					string[] row_str_ = new string[] { row.ITEMNUMBER, row.ITEMREV, Redbrick.TitleCase(row.TypeName) };
 					ListViewItem l_ = new ListViewItem(row_str_, 5);
-					foreach (ENGINEERINGDataSet.ECR_DRAWINGSRow drw in eCR_DRAWINGSRows(row.ITEM_ID)) {
+					foreach (ECRViewerDataSet.ECR_DRAWINGSRow drw in eCR_DRAWINGSRows(row.ITEM_ID)) {
 						l_.SubItems.Add(new ListViewItem.ListViewSubItem(l_, drw.ORIG_PATH));
 						l_.SubItems.Add(new ListViewItem.ListViewSubItem(l_, drw.DRWREV));
 						l_.SubItems.Add(new ListViewItem.ListViewSubItem(l_, drw.DRW_FILE));
@@ -353,7 +356,7 @@ namespace RedBrick2.ECRViewer {
 					affectedItemsListView.Items.Add(l_);
 				}
 			} else {
-				ENGINEERINGDataSet.ECR_LEGACYRow r_ = LegacyECRObjLookup(ecrno);
+				ECRViewerDataSet.ECR_LEGACYRow r_ = LegacyECRObjLookup(ecrno);
 				if (r_ != null) {
 					foreach (string prt_ in r_.AffectedParts.Split(new string[] { @",", @"/" }, StringSplitOptions.RemoveEmptyEntries)) {
 						if (prt_.Trim() != string.Empty) {
@@ -389,7 +392,7 @@ namespace RedBrick2.ECRViewer {
 
 		private void GetSignees(int ecrno) {
 			if (ecrno > Redbrick.LastLegacyECR) {
-				foreach (ENGINEERINGDataSet.SigneesRow row in signeesRows(ecrno)) {
+				foreach (ECRViewerDataSet.SigneesRow row in signeesRows(ecrno)) {
 					string signoff_ = string.Empty;
 					string comment_ = string.Empty;
 					if (!row.IsSIGNOFFNull()) {
@@ -438,7 +441,7 @@ namespace RedBrick2.ECRViewer {
 
 				GetSignees(ecrno);
 
-				foreach (ENGINEERINGDataSet.FILE_MAINRow row in fILE_MAINRows(ecrno)) {
+				foreach (ECRViewerDataSet.FILE_MAINRow row in fILE_MAINRows(ecrno)) {
 					string[] row_str_ = new string[] { row.EXT.ToUpper().Replace(@".", string.Empty), row.COMMENT, row.FileName };
 					attachedFilesListView.Items.Add(new ListViewItem(row_str_, 0));
 					if (row.EXT == string.Empty) {
