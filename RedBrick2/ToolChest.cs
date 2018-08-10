@@ -47,6 +47,7 @@ namespace RedBrick2 {
 			using (DrawingCollector.DrawingCollector dc_ = new DrawingCollector.DrawingCollector(swApp)) {
 				dc_.ShowDialog(this);
 			}
+			Close();
 		}
 
 		private void ToolChest_FormClosing(object sender, FormClosingEventArgs e) {

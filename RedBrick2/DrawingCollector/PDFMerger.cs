@@ -11,13 +11,22 @@ namespace RedBrick2.DrawingCollector {
 	class PDFMerger {
 
 		public PDFMerger(List<FileInfo> lfi, FileInfo target) {
-			_target = target;
-			_pdf_paths.AddRange(lfi);
+			Target = target;
+			PDFCollection.AddRange(lfi);
+		}
+
+		public PDFMerger(Dictionary<string, ItemInfo> lfi, FileInfo target) {
+			Target = target;
+			foreach (KeyValuePair<string, ItemInfo> item in lfi) {
+				if (item.Value.Pdf.Exists) {
+					PDFCollection.Add(item.Value.Pdf);
+				}
+			}
 		}
 
 		public void Merge() {
-			byte[] ba = merge_files(_pdf_paths);
-			using (FileStream fs = File.Create(_target.FullName)) {
+			byte[] ba = merge_files(PDFCollection);
+			using (FileStream fs = File.Create(Target.FullName)) {
 				for (int i = 0; i < ba.Length; i++) {
 					fs.WriteByte(ba[i]);
 				}
@@ -25,18 +34,44 @@ namespace RedBrick2.DrawingCollector {
 			}
 		}
 
+		public void DeletePDFs() {
+			foreach (FileInfo fi in PDFCollection) {
+				if (!fi.Name.Contains(Properties.Settings.Default.Suffix)
+					&& fi.Exists) {
+					OnAppend(new AppendEventArgs(string.Format(@"Deleting {0}...", fi.Name)));
+					try {
+						fi.Delete();
+					} catch (IOException ex) {
+						OnAppend(new AppendEventArgs(string.Format(@"Couldn't delete {0}: {1}", fi.Name, ex.Message)));
+					}
+				}
+			}
+		}
+
 		public static event EventHandler deleting_file;
 		public delegate void AppendEvent(object o, EventArgs e);
 
 		public static void OnAppend(EventArgs e) {
-			EventHandler handler = deleting_file;
-			if (handler != null) {
-				handler(new object(), e);
-			}
+			deleting_file?.Invoke(new object(), e);
 		}
 
 		public static void delete_pdfs(List<FileInfo> docs) {
 			foreach (FileInfo fi in docs) {
+				if (!fi.Name.Contains(Properties.Settings.Default.Suffix)
+					&& fi.Exists) {
+					OnAppend(new AppendEventArgs(string.Format(@"Deleting {0}...", fi.Name)));
+					try {
+						fi.Delete();
+					} catch (IOException ex) {
+						OnAppend(new AppendEventArgs(string.Format(@"Couldn't delete {0}: {1}", fi.Name, ex.Message)));
+					}
+				}
+			}
+		}
+
+		public static void delete_pdfs(Dictionary<string, ItemInfo> docs) {
+			foreach (KeyValuePair<string, ItemInfo> item in docs) {
+				FileInfo fi = item.Value.Pdf;
 				if (!fi.Name.Contains(Properties.Settings.Default.Suffix)
 					&& fi.Exists) {
 					OnAppend(new AppendEventArgs(string.Format(@"Deleting {0}...", fi.Name)));
@@ -111,44 +146,25 @@ namespace RedBrick2.DrawingCollector {
 			}
 		}
 
-		private FileInfo _target;
+		public FileInfo Target { get; set; }
 
-		public FileInfo Target
-		{
-			get { return _target; }
-			set { _target = value; }
-		}
-
-
-		private List<FileInfo> _pdf_paths = new List<FileInfo>();
-
-		public List<FileInfo> PDFCollection
-		{
-			get { return _pdf_paths; }
-			set { _pdf_paths = value; }
-		}
+		public List<FileInfo> PDFCollection { get; set; } = new List<FileInfo>();
 
 		class AppendEventArgs : EventArgs {
 			public AppendEventArgs() {
-				_msg = string.Empty;
+				Message = string.Empty;
 			}
 
 
 			public AppendEventArgs(string msg) {
-				_msg = msg;
+				Message = msg;
 			}
 
 			public override string ToString() {
-				return _msg;
+				return Message;
 			}
 
-			private string _msg;
-
-			public string Message
-			{
-				get { return _msg; }
-				set { _msg = value; }
-			}
+			public string Message { get; set; }
 		}
 	}
 }

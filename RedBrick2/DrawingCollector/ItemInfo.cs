@@ -1,5 +1,4 @@
 ﻿using SolidWorks.Interop.sldworks;
-using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
@@ -40,6 +39,9 @@ namespace RedBrick2.DrawingCollector {
 			}
 			set { pdf = value; }
 		}
+
+		public bool CloseSldDrw { get; set; }
+		public bool	DeletePdf { get; set; }
 
 		public ListViewItem Node {
 			get {

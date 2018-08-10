@@ -2,17 +2,13 @@
 using SolidWorks.Interop.swconst;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RedBrick2.DrawingCollector {
 	public partial class DrawingCollector : Form {
+		private string TopLevel = string.Empty;
+
 		public DrawingCollector(SldWorks sldWorks) {
 			SwApp = sldWorks;
 			InitializeComponent();
@@ -21,10 +17,10 @@ namespace RedBrick2.DrawingCollector {
 			listView1.MultiSelect = true;
 			listView1.View = System.Windows.Forms.View.Details;
 			listView1.SmallImageList = Redbrick.TreeViewIcons;
-			Go();
+			FindDrawings();
 		}
 
-		private void Go() {
+		private void FindDrawings() {
 			Traverser tr_ = new Traverser(SwApp, true);
 			ModelDoc2 md_ = SwApp.ActiveDoc as ModelDoc2;
 			if (md_ is DrawingDoc) {
@@ -33,16 +29,31 @@ namespace RedBrick2.DrawingCollector {
 			}
 			Configuration c_ = md_.GetActiveConfiguration();
 			tr_.TraverseComponent(c_.GetRootComponent3(true), 1);
+			SwProperties s = new SwProperties(SwApp, md_);
+			s.GetProperties(c_.GetRootComponent3(true));
+
+			ItemInfo tii = new ItemInfo {
+				PropertySet = s,
+				CloseSldDrw = false,
+				DeletePdf = true
+			};
+
+			TopLevel = s.PartLookup;
+			infos.Add(s.PartLookup, tii);
+			listView1.Items.Add(tii.Node);
 			foreach (var item in tr_.PartList) {
-				ItemInfo ii = new ItemInfo();
-				ii.PropertySet = item.Value;
+				ItemInfo ii = new ItemInfo {
+					PropertySet = item.Value,
+					CloseSldDrw = true,
+					DeletePdf = true
+				};
 				infos.Add(item.Key, ii);
 				listView1.Items.Add(ii.Node);
 			}
 			listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 		}
 
-		private void CreateDwg(FileInfo p) {
+		private FileInfo CreateDwg(FileInfo p) {
 			int dt = (int)swDocumentTypes_e.swDocDRAWING;
 			int odo = (int)swOpenDocOptions_e.swOpenDocOptions_Silent;
 			int err = 0;
@@ -55,10 +66,105 @@ namespace RedBrick2.DrawingCollector {
 			bool success;
 			//OnAppend(new AppendEventArgs(string.Format("Creating {0}...",
 			//	p.Name.Replace(@".SLDDRW", targetExt))));
+			toolStripStatusLabel1.Text = @"Opening";
+			toolStripStatusLabel2.Text = p.FullName;
 			SwApp.OpenDocSilent(p.FullName, dt, ref odo);
 			SwApp.ActivateDoc3(p.FullName,
 				true, (int)swRebuildOnActivation_e.swDontRebuildActiveDoc, ref err);
-			success = (SwApp.ActiveDoc as ModelDoc2).SaveAs4(tmpFile, saveVersion, saveOptions, ref err, ref warn);
+			toolStripProgressBar1.PerformStep();
+
+			toolStripStatusLabel1.Text = @"Saving";
+			toolStripStatusLabel2.Text = tmpFile;
+			bool layerPrint = SwApp.GetUserPreferenceToggle((int)swUserPreferenceToggle_e.swPDFExportIncludeLayersNotToPrint);
+			SwApp.SetUserPreferenceToggle((int)swUserPreferenceToggle_e.swPDFExportIncludeLayersNotToPrint, true);
+			success = (SwApp.ActiveDoc as ModelDoc2).SaveAs4(tmpFile, saveVersion, saveOptions, ref err, ref warn); 
+			SwApp.SetUserPreferenceToggle((int)swUserPreferenceToggle_e.swPDFExportIncludeLayersNotToPrint, layerPrint);
+			toolStripProgressBar1.PerformStep();
+
+			//string name = p.Name.Replace(p.Extension, string.Empty);
+			//if (infos[name].CloseSldDrw) {
+			//	toolStripStatusLabel1.Text = @"Closing";
+			//	toolStripStatusLabel2.Text = fileName;
+			//	SwApp.CloseDoc(p.Name.Replace(p.Extension, string.Empty));
+			//}
+			//toolStripProgressBar1.PerformStep();
+
+			return new FileInfo(tmpFile);
+		}
+
+		private void CreateDrawings() {
+			toolStripProgressBar1.Maximum = infos.Count * 3;
+			toolStripProgressBar1.Step = 1;
+			foreach (ListViewItem item in listView1.Items) {
+				string name = item.SubItems[0].Text;
+				if (item.Checked && infos[name].SldDrw.Exists) {
+					textBox1.Text = Redbrick.TitleCase(infos[item.Text].PropertySet[@"Description"].Data.ToString());
+					textBox2.Text = infos[item.Text].SldDoc.FullName;
+					textBox3.Text = infos[item.Text].SldDrw.FullName;
+					textBox4.Text = infos[item.Text].Pdf.FullName;
+
+					checkBox1.Checked = infos[item.Text].SldDoc.Exists;
+					checkBox2.Checked = infos[item.Text].SldDrw.Exists;
+					checkBox3.Checked = infos[item.Text].Pdf.Exists;
+					FileInfo sldDrw_ = new FileInfo(item.SubItems[5].Text);
+					infos[item.SubItems[0].Text].Pdf = CreateDwg(sldDrw_);
+				}
+			}
+		}
+
+		private void CloseSLDDRWsDeletePDFs() {
+			foreach (KeyValuePair<string, ItemInfo> item in infos) {
+				if (item.Value.CloseSldDrw) {
+					toolStripStatusLabel1.Text = @"Closing";
+					toolStripStatusLabel2.Text = item.Value.SldDrw.Name;
+					SwApp.CloseDoc(item.Value.SldDrw.FullName);
+				}
+				toolStripProgressBar1.PerformStep();
+				if (item.Value.DeletePdf) {
+					if (!item.Value.Pdf.Name.Contains(Properties.Settings.Default.Suffix)
+					&& item.Value.Pdf.Exists) {
+						toolStripStatusLabel1.Text = @"Deleting";
+						toolStripStatusLabel2.Text = item.Value.Pdf.Name;
+						try {
+							File.Delete(item.Value.Pdf.FullName);
+						} catch (Exception e) {
+							toolStripStatusLabel1.Text = string.Format(@"I couldn't. LAME!!1! {0}", e.Message);
+						}
+					}
+				}
+				toolStripProgressBar1.PerformStep();
+			}
+		}
+
+		private Dictionary<string, ItemInfo> infos = new Dictionary<string, ItemInfo>();
+		public SldWorks SwApp { get; set; }
+
+		private void listView1_SelectedIndexChanged(object sender, EventArgs e) {
+			ListView lv_ = sender as ListView;
+			if (lv_.SelectedItems.Count < 1 || lv_.SelectedItems[0] == null) {
+				return;
+			}
+			ListViewItem lvi_ = lv_.SelectedItems[0];
+			textBox1.Text = Redbrick.TitleCase(infos[lvi_.Text].PropertySet[@"Description"].Data.ToString());
+			textBox2.Text = infos[lvi_.Text].SldDoc.FullName;
+			textBox3.Text = infos[lvi_.Text].SldDrw.FullName;
+			textBox4.Text = infos[lvi_.Text].Pdf.FullName;
+
+			checkBox1.Checked = infos[lvi_.Text].SldDoc.Exists;
+			checkBox2.Checked = infos[lvi_.Text].SldDrw.Exists;
+			checkBox3.Checked = infos[lvi_.Text].Pdf.Exists;
+		}
+
+		private void go_btn_Click(object sender, EventArgs e) {
+			CreateDrawings();
+			string di = Path.GetDirectoryName((SwApp.ActiveDoc as ModelDoc2).GetPathName());
+			string tmpFile = Path.GetTempFileName().Replace(".tmp", ".PDF");
+			string fileName = string.Format(@"{0}\{1}{2}.PDF", di, TopLevel, Properties.Settings.Default.Suffix);
+			toolStripStatusLabel1.Text = @"Merging PDFs...";
+			toolStripStatusLabel2.Text = string.Empty;
+			PDFMerger pm_ = new PDFMerger(infos, new FileInfo(tmpFile));
+			pm_.Merge();
+
 			try {
 				File.Copy(tmpFile, fileName, true);
 			} catch (UnauthorizedAccessException uae) {
@@ -92,29 +198,24 @@ namespace RedBrick2.DrawingCollector {
 						String.Format("Source='{0}'; Dest='{1}' <= One of these is an invalid format.",
 						tmpFile, fileName), nse);
 			}
+			//PDFMerger.deleting_file += PDFMerger_deleting_file;
+			toolStripStatusLabel1.Text = @"Deleting PDFs...";
+			toolStripStatusLabel2.Text = string.Empty;
+			CloseSLDDRWsDeletePDFs();
+			//PDFMerger.delete_pdfs(pm_.PDFCollection);
+			toolStripStatusLabel1.Text = @"Done";
+			toolStripStatusLabel2.Text = string.Empty;
+			toolStripProgressBar1.Value = toolStripProgressBar1.Maximum;
+			//PDFMerger.deleting_file -= PDFMerger_deleting_file;
+			System.Diagnostics.Process.Start(fileName);
 		}
 
-		private Dictionary<string, ItemInfo> infos = new Dictionary<string, ItemInfo>();
-		public SldWorks SwApp { get; set; }
+		public delegate void PerformProgressBarStep();
 
-		private void listView1_SelectedIndexChanged(object sender, EventArgs e) {
-			ListView lv_ = sender as ListView;
-			if (lv_.SelectedItems.Count < 1 || lv_.SelectedItems[0] == null) {
-				return;
-			}
-			ListViewItem lvi_ = lv_.SelectedItems[0];
-			textBox1.Text = Redbrick.TitleCase(infos[lvi_.Text].PropertySet[@"Description"].Data.ToString());
-			textBox2.Text = infos[lvi_.Text].SldDoc.FullName;
-			textBox3.Text = infos[lvi_.Text].SldDrw.FullName;
-			textBox4.Text = infos[lvi_.Text].Pdf.FullName;
 
-			checkBox1.Checked = infos[lvi_.Text].SldDoc.Exists;
-			checkBox2.Checked = infos[lvi_.Text].SldDrw.Exists;
-			checkBox3.Checked = infos[lvi_.Text].Pdf.Exists;
-		}
-
-		private void go_btn_Click(object sender, EventArgs e) {
-
+		private void PDFMerger_deleting_file(object sender, EventArgs e) {
+			PerformProgressBarStep ppbs = toolStripProgressBar1.PerformStep;
+			Invoke(ppbs);
 		}
 	}
 }
