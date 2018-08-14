@@ -333,8 +333,14 @@
     <Setting Name="PageStampWhiteoutRectangle" Type="System.Drawing.Rectangle" Scope="User">
       <Value Profile="(Default)">1154, 20, 47, 16</Value>
     </Setting>
-    <Setting Name="Suffix" Type="System.String" Scope="User">
+    <Setting Name="DrawingCollectorSuffix" Type="System.String" Scope="User">
       <Value Profile="(Default)">-PACKET</Value>
+    </Setting>
+    <Setting Name="DrawingCollectorSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">800, 600</Value>
+    </Setting>
+    <Setting Name="DrawingCollectorLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">100, 100</Value>
     </Setting>
   </Settings>
 </SettingsFile>

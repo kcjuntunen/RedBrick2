@@ -43,10 +43,23 @@ namespace RedBrick2.DrawingCollector {
 		public bool CloseSldDrw { get; set; }
 		public bool	DeletePdf { get; set; }
 
+		private string name;
+		public string Name {
+			get {
+				if (name == null || name == string.Empty) {
+					return PropertySet.PartLookup;
+				}
+				return name;
+			}
+			set {
+				name = value;
+			}
+		}
+
 		public ListViewItem Node {
 			get {
 				string[] data_ = new string[] {
-					PropertySet.PartLookup,
+					Name,
 					PropertySet.ActiveDoc is AssemblyDoc ? "Assembly" : "Part",
 					Redbrick.TitleCase(PropertySet[@"DEPARTMENT"].Value),
 					PropertySet[@"Description"].Value,

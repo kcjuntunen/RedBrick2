@@ -8,9 +8,11 @@ using System.Windows.Forms;
 namespace RedBrick2.DrawingCollector {
 	public partial class DrawingCollector : Form {
 		private string TopLevel = string.Empty;
+		private string Here;
 
 		public DrawingCollector(SldWorks sldWorks) {
 			SwApp = sldWorks;
+			Here = Path.GetDirectoryName((SwApp.ActiveDoc as ModelDoc2).GetPathName());
 			InitializeComponent();
 			listView1.FullRowSelect = true;
 			listView1.HideSelection = false;
@@ -23,23 +25,29 @@ namespace RedBrick2.DrawingCollector {
 		private void FindDrawings() {
 			Traverser tr_ = new Traverser(SwApp, true);
 			ModelDoc2 md_ = SwApp.ActiveDoc as ModelDoc2;
-			if (md_ is DrawingDoc) {
-				SolidWorks.Interop.sldworks.View v_ = Redbrick.GetFirstView(SwApp);
-				md_ = v_.ReferencedDocument;
-			}
-			Configuration c_ = md_.GetActiveConfiguration();
-			tr_.TraverseComponent(c_.GetRootComponent3(true), 1);
-			SwProperties s = new SwProperties(SwApp, md_);
-			s.GetProperties(c_.GetRootComponent3(true));
+			FileInfo tlfi = new FileInfo(md_.GetPathName());
 
 			ItemInfo tii = new ItemInfo {
-				PropertySet = s,
+				Name = Redbrick.FileInfoToLookup(tlfi),
+				SldDrw = new FileInfo(tlfi.FullName.Replace(tlfi.Extension, @".SLDDRW")),
 				CloseSldDrw = false,
 				DeletePdf = true
 			};
 
-			TopLevel = s.PartLookup;
-			infos.Add(s.PartLookup, tii);
+			if (md_ is DrawingDoc) {
+				SolidWorks.Interop.sldworks.View v_ = Redbrick.GetFirstView(SwApp);
+				md_ = v_.ReferencedDocument;
+			}
+
+			Configuration c_ = md_.GetActiveConfiguration();
+			tr_.TraverseComponent(c_.GetRootComponent3(true), 1);
+
+			SwProperties s = new SwProperties(SwApp, md_);
+			s.GetProperties(c_.GetRootComponent3(true));
+			tii.PropertySet = s;
+
+			TopLevel = tii.Name;
+			infos.Add(tii.Name, tii);
 			listView1.Items.Add(tii.Node);
 			foreach (var item in tr_.PartList) {
 				ItemInfo ii = new ItemInfo {
@@ -121,7 +129,7 @@ namespace RedBrick2.DrawingCollector {
 				}
 				toolStripProgressBar1.PerformStep();
 				if (item.Value.DeletePdf) {
-					if (!item.Value.Pdf.Name.Contains(Properties.Settings.Default.Suffix)
+					if (!item.Value.Pdf.Name.Contains(Properties.Settings.Default.DrawingCollectorSuffix)
 					&& item.Value.Pdf.Exists) {
 						toolStripStatusLabel1.Text = @"Deleting";
 						toolStripStatusLabel2.Text = item.Value.Pdf.Name;
@@ -157,9 +165,11 @@ namespace RedBrick2.DrawingCollector {
 
 		private void go_btn_Click(object sender, EventArgs e) {
 			CreateDrawings();
-			string di = Path.GetDirectoryName((SwApp.ActiveDoc as ModelDoc2).GetPathName());
 			string tmpFile = Path.GetTempFileName().Replace(".tmp", ".PDF");
-			string fileName = string.Format(@"{0}\{1}{2}.PDF", di, TopLevel, Properties.Settings.Default.Suffix);
+			string fileName = string.Format(@"{0}\{1}{2}.PDF",
+				Here,
+				TopLevel,
+				Properties.Settings.Default.DrawingCollectorSuffix.Trim());
 			toolStripStatusLabel1.Text = @"Merging PDFs...";
 			toolStripStatusLabel2.Text = string.Empty;
 			PDFMerger pm_ = new PDFMerger(infos, new FileInfo(tmpFile));
@@ -203,8 +213,8 @@ namespace RedBrick2.DrawingCollector {
 			toolStripStatusLabel2.Text = string.Empty;
 			CloseSLDDRWsDeletePDFs();
 			//PDFMerger.delete_pdfs(pm_.PDFCollection);
-			toolStripStatusLabel1.Text = @"Done";
-			toolStripStatusLabel2.Text = string.Empty;
+			toolStripStatusLabel1.Text = @"Saved";
+			toolStripStatusLabel2.Text = fileName;
 			toolStripProgressBar1.Value = toolStripProgressBar1.Maximum;
 			//PDFMerger.deleting_file -= PDFMerger_deleting_file;
 			System.Diagnostics.Process.Start(fileName);
@@ -216,6 +226,18 @@ namespace RedBrick2.DrawingCollector {
 		private void PDFMerger_deleting_file(object sender, EventArgs e) {
 			PerformProgressBarStep ppbs = toolStripProgressBar1.PerformStep;
 			Invoke(ppbs);
+		}
+
+		private void DrawingCollector_Load(object sender, EventArgs e) {
+			Location = Properties.Settings.Default.DrawingCollectorLocation;
+			Size = Properties.Settings.Default.DrawingCollectorSize;
+			suffixTbx.Text = Properties.Settings.Default.DrawingCollectorSuffix;
+		}
+
+		private void DrawingCollector_FormClosed(object sender, FormClosedEventArgs e) {
+			Properties.Settings.Default.DrawingCollectorLocation = Location;
+			Properties.Settings.Default.DrawingCollectorSize = Size;
+			Properties.Settings.Default.DrawingCollectorSuffix = suffixTbx.Text.Trim();
 		}
 	}
 }

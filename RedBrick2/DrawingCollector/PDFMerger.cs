@@ -36,7 +36,7 @@ namespace RedBrick2.DrawingCollector {
 
 		public void DeletePDFs() {
 			foreach (FileInfo fi in PDFCollection) {
-				if (!fi.Name.Contains(Properties.Settings.Default.Suffix)
+				if (!fi.Name.Contains(Properties.Settings.Default.DrawingCollectorSuffix)
 					&& fi.Exists) {
 					OnAppend(new AppendEventArgs(string.Format(@"Deleting {0}...", fi.Name)));
 					try {
@@ -57,7 +57,7 @@ namespace RedBrick2.DrawingCollector {
 
 		public static void delete_pdfs(List<FileInfo> docs) {
 			foreach (FileInfo fi in docs) {
-				if (!fi.Name.Contains(Properties.Settings.Default.Suffix)
+				if (!fi.Name.Contains(Properties.Settings.Default.DrawingCollectorSuffix)
 					&& fi.Exists) {
 					OnAppend(new AppendEventArgs(string.Format(@"Deleting {0}...", fi.Name)));
 					try {
@@ -72,7 +72,7 @@ namespace RedBrick2.DrawingCollector {
 		public static void delete_pdfs(Dictionary<string, ItemInfo> docs) {
 			foreach (KeyValuePair<string, ItemInfo> item in docs) {
 				FileInfo fi = item.Value.Pdf;
-				if (!fi.Name.Contains(Properties.Settings.Default.Suffix)
+				if (!fi.Name.Contains(Properties.Settings.Default.DrawingCollectorSuffix)
 					&& fi.Exists) {
 					OnAppend(new AppendEventArgs(string.Format(@"Deleting {0}...", fi.Name)));
 					try {

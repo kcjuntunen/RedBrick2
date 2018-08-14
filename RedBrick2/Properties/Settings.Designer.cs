@@ -1183,12 +1183,36 @@ namespace RedBrick2.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("-PACKET")]
-        public string Suffix {
+        public string DrawingCollectorSuffix {
             get {
-                return ((string)(this["Suffix"]));
+                return ((string)(this["DrawingCollectorSuffix"]));
             }
             set {
-                this["Suffix"] = value;
+                this["DrawingCollectorSuffix"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("800, 600")]
+        public global::System.Drawing.Size DrawingCollectorSize {
+            get {
+                return ((global::System.Drawing.Size)(this["DrawingCollectorSize"]));
+            }
+            set {
+                this["DrawingCollectorSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
+        public global::System.Drawing.Point DrawingCollectorLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["DrawingCollectorLocation"]));
+            }
+            set {
+                this["DrawingCollectorLocation"] = value;
             }
         }
     }

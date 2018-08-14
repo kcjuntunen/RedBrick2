@@ -46,6 +46,8 @@
 			this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+			this.label5 = new System.Windows.Forms.Label();
+			this.suffixTbx = new System.Windows.Forms.TextBox();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -70,8 +72,8 @@
 			// splitContainer1.Panel2
 			// 
 			this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel1);
-			this.splitContainer1.Size = new System.Drawing.Size(746, 311);
-			this.splitContainer1.SplitterDistance = 266;
+			this.splitContainer1.Size = new System.Drawing.Size(792, 545);
+			this.splitContainer1.SplitterDistance = 282;
 			this.splitContainer1.TabIndex = 0;
 			// 
 			// listView1
@@ -87,7 +89,7 @@
 			this.listView1.HideSelection = false;
 			this.listView1.Location = new System.Drawing.Point(3, 12);
 			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(260, 287);
+			this.listView1.Size = new System.Drawing.Size(276, 521);
 			this.listView1.TabIndex = 0;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
@@ -134,7 +136,7 @@
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(476, 311);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(506, 545);
 			this.tableLayoutPanel1.TabIndex = 0;
 			// 
 			// label1
@@ -153,7 +155,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox1.Location = new System.Drawing.Point(3, 16);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(398, 22);
+			this.textBox1.Size = new System.Drawing.Size(424, 22);
 			this.textBox1.TabIndex = 4;
 			// 
 			// label2
@@ -172,7 +174,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox2.Location = new System.Drawing.Point(3, 57);
 			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(398, 22);
+			this.textBox2.Size = new System.Drawing.Size(424, 22);
 			this.textBox2.TabIndex = 5;
 			// 
 			// label3
@@ -191,7 +193,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox3.Location = new System.Drawing.Point(3, 98);
 			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(398, 22);
+			this.textBox3.Size = new System.Drawing.Size(424, 22);
 			this.textBox3.TabIndex = 6;
 			// 
 			// label4
@@ -210,7 +212,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBox4.Location = new System.Drawing.Point(3, 139);
 			this.textBox4.Name = "textBox4";
-			this.textBox4.Size = new System.Drawing.Size(398, 22);
+			this.textBox4.Size = new System.Drawing.Size(424, 22);
 			this.textBox4.TabIndex = 7;
 			// 
 			// checkBox1
@@ -219,9 +221,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkBox1.AutoSize = true;
-			this.checkBox1.Location = new System.Drawing.Point(407, 57);
+			this.checkBox1.Location = new System.Drawing.Point(433, 57);
 			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(66, 22);
+			this.checkBox1.Size = new System.Drawing.Size(70, 22);
 			this.checkBox1.TabIndex = 8;
 			this.checkBox1.Text = "Exists";
 			this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -233,9 +235,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkBox2.AutoSize = true;
-			this.checkBox2.Location = new System.Drawing.Point(407, 98);
+			this.checkBox2.Location = new System.Drawing.Point(433, 98);
 			this.checkBox2.Name = "checkBox2";
-			this.checkBox2.Size = new System.Drawing.Size(66, 22);
+			this.checkBox2.Size = new System.Drawing.Size(70, 22);
 			this.checkBox2.TabIndex = 9;
 			this.checkBox2.Text = "Exists";
 			this.checkBox2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -247,9 +249,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkBox3.AutoSize = true;
-			this.checkBox3.Location = new System.Drawing.Point(407, 139);
+			this.checkBox3.Location = new System.Drawing.Point(433, 139);
 			this.checkBox3.Name = "checkBox3";
-			this.checkBox3.Size = new System.Drawing.Size(66, 22);
+			this.checkBox3.Size = new System.Drawing.Size(70, 22);
 			this.checkBox3.TabIndex = 10;
 			this.checkBox3.Text = "Exists";
 			this.checkBox3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -264,18 +266,20 @@
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.tableLayoutPanel2.Controls.Add(this.go_btn, 1, 1);
-			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 235);
+			this.tableLayoutPanel2.Controls.Add(this.label5, 0, 0);
+			this.tableLayoutPanel2.Controls.Add(this.suffixTbx, 1, 0);
+			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 469);
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
 			this.tableLayoutPanel2.RowCount = 2;
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(470, 73);
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(500, 73);
 			this.tableLayoutPanel2.TabIndex = 11;
 			// 
 			// go_btn
 			// 
 			this.go_btn.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.go_btn.Location = new System.Drawing.Point(392, 47);
+			this.go_btn.Location = new System.Drawing.Point(422, 43);
 			this.go_btn.Name = "go_btn";
 			this.go_btn.Size = new System.Drawing.Size(75, 23);
 			this.go_btn.TabIndex = 0;
@@ -289,9 +293,9 @@
             this.toolStripProgressBar1,
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2});
-			this.statusStrip1.Location = new System.Drawing.Point(0, 314);
+			this.statusStrip1.Location = new System.Drawing.Point(0, 548);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(746, 22);
+			this.statusStrip1.Size = new System.Drawing.Size(792, 22);
 			this.statusStrip1.TabIndex = 1;
 			this.statusStrip1.Text = "statusStrip1";
 			// 
@@ -310,18 +314,42 @@
 			this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
 			this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 17);
 			// 
+			// label5
+			// 
+			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(211, 0);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(36, 35);
+			this.label5.TabIndex = 1;
+			this.label5.Text = "Suffix";
+			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// suffixTbx
+			// 
+			this.suffixTbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.suffixTbx.Location = new System.Drawing.Point(253, 3);
+			this.suffixTbx.Name = "suffixTbx";
+			this.suffixTbx.Size = new System.Drawing.Size(244, 22);
+			this.suffixTbx.TabIndex = 2;
+			// 
 			// DrawingCollector
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(746, 336);
+			this.ClientSize = new System.Drawing.Size(792, 570);
 			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.splitContainer1);
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Name = "DrawingCollector";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Drawing Collector";
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DrawingCollector_FormClosed);
+			this.Load += new System.EventHandler(this.DrawingCollector_Load);
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -329,6 +357,7 @@
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel1.PerformLayout();
 			this.tableLayoutPanel2.ResumeLayout(false);
+			this.tableLayoutPanel2.PerformLayout();
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
 			this.ResumeLayout(false);
@@ -361,5 +390,7 @@
 		private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.TextBox suffixTbx;
 	}
 }
