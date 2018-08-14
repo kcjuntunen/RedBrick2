@@ -29,6 +29,12 @@ namespace RedBrick2 {
 			InitializeComponent();
 			Location = Properties.Settings.Default.ToolChestLocation;
 			button7.Enabled = swApp.ActiveDoc is PartDoc;
+
+			button2.Enabled = !(swApp.ActiveDoc is PartDoc);
+			if (swApp.ActiveDoc is DrawingDoc) {
+				SolidWorks.Interop.sldworks.View v_ = Redbrick.GetFirstView(swApp);
+				button2.Enabled = !(v_.ReferencedDocument is PartDoc);
+			}
 			Deactivate += ToolChest_Deactivate;
 		}
 
