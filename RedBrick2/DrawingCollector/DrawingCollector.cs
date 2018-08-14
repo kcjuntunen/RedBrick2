@@ -169,7 +169,7 @@ namespace RedBrick2.DrawingCollector {
 			string fileName = string.Format(@"{0}\{1}{2}.PDF",
 				Here,
 				TopLevel,
-				Properties.Settings.Default.DrawingCollectorSuffix.Trim());
+				suffixTbx.Text.Trim());
 			toolStripStatusLabel1.Text = @"Merging PDFs...";
 			toolStripStatusLabel2.Text = string.Empty;
 			PDFMerger pm_ = new PDFMerger(infos, new FileInfo(tmpFile));
