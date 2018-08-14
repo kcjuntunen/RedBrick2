@@ -1,2 +1,6 @@
 
-1) There's a new option in SolidWorks 2018 that fiddles with layer visibility when IModelDocExt.SaveAs() is called. I updated the archiver to defeat the new option.
+1) Moved top buttons to their own panel.
+2) Dimension suggestions come from the available dimensions in a model, rather than a static list.
+3) Added the Drawing Collector to the RedBrick Toolbox (THE OLD ONE IS NOW DEPRECATED!)
+4) Fixed a bug in the ECR viewer that caused it to crash if an ECR affected multiple revs of the same item.
+5) When adding a new LVL, the "Description" field will now be pre-filled with whatever you typed in there last during the current session.
