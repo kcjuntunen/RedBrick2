@@ -3020,6 +3020,8 @@ namespace RedBrick2 {
 			using (ToolChest t_ = new ToolChest(partLookup, SwApp)) {
 				t_.ShowDialog(this);
 			}
+			DumpActiveDoc();
+			ReQuery((SwApp.ActiveDoc as ModelDoc2));
 		}
 
 		private void refresh_btn_Click(object sender, EventArgs e) {
