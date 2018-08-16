@@ -455,6 +455,10 @@ namespace RedBrick2 {
 			for (int i = 0; i < 5; i++) {
 				string _mat = string.Format(@"M{0}", i + 1);
 				string _fin = string.Format(@"FINISH {0}", i + 1);
+				string _fin_spec = _tboxes[i].Text.Trim();
+				if (!_tboxes[0].AutoCompleteCustomSource.Contains(_fin_spec)) {
+					_tboxes[0].AutoCompleteCustomSource.Add(_fin_spec);
+				}
 				PropertySet[_mat].Data = _cboxes[i].Text;
 				PropertySet[_fin].Data = _tboxes[i].Text;
 			}
