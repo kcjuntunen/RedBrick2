@@ -298,5 +298,13 @@ namespace RedBrick2.DrawingCollector {
 				item.Checked = exists_ && dept_ == select_only_cbx.Text.ToUpper().Trim();
 			}
 		}
+
+		private void deselect_raw_parts_btn_Click(object sender, EventArgs e) {
+			foreach (ListViewItem item in listView1.Items) {
+				if (infos[item.Text].SldDoc.FullName.ToUpper().Contains(@"PART")) {
+					item.Checked = false;
+				}
+			}
+		}
 	}
 }

@@ -58,6 +58,7 @@
 			this.manageCutlistTimeDataSet = new RedBrick2.ManageCutlistTimeDataSet();
 			this.cUTPARTTYPESBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ManageCutlistTimeDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
+			this.deselect_raw_parts_btn = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -151,10 +152,10 @@
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
 			this.tableLayoutPanel1.Size = new System.Drawing.Size(506, 545);
 			this.tableLayoutPanel1.TabIndex = 0;
 			// 
@@ -375,6 +376,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tableLayoutPanel1.SetColumnSpan(this.panel1, 2);
+			this.panel1.Controls.Add(this.deselect_raw_parts_btn);
 			this.panel1.Controls.Add(this.select_only_cbx);
 			this.panel1.Controls.Add(this.select_only_btn);
 			this.panel1.Controls.Add(this.select_none_btn);
@@ -382,7 +384,7 @@
 			this.panel1.Location = new System.Drawing.Point(3, 167);
 			this.panel1.Name = "panel1";
 			this.tableLayoutPanel1.SetRowSpan(this.panel1, 3);
-			this.panel1.Size = new System.Drawing.Size(500, 84);
+			this.panel1.Size = new System.Drawing.Size(500, 114);
 			this.panel1.TabIndex = 12;
 			// 
 			// select_all_btn
@@ -407,7 +409,7 @@
 			// 
 			// select_only_btn
 			// 
-			this.select_only_btn.Location = new System.Drawing.Point(4, 58);
+			this.select_only_btn.Location = new System.Drawing.Point(4, 88);
 			this.select_only_btn.Name = "select_only_btn";
 			this.select_only_btn.Size = new System.Drawing.Size(75, 23);
 			this.select_only_btn.TabIndex = 2;
@@ -420,7 +422,7 @@
 			this.select_only_cbx.DataSource = this.cUTPARTTYPESBindingSource;
 			this.select_only_cbx.DisplayMember = "TYPEDESC";
 			this.select_only_cbx.FormattingEnabled = true;
-			this.select_only_cbx.Location = new System.Drawing.Point(86, 58);
+			this.select_only_cbx.Location = new System.Drawing.Point(85, 88);
 			this.select_only_cbx.Name = "select_only_cbx";
 			this.select_only_cbx.Size = new System.Drawing.Size(230, 21);
 			this.select_only_cbx.TabIndex = 3;
@@ -439,6 +441,16 @@
 			// cUT_PART_TYPESTableAdapter
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
+			// 
+			// deselect_raw_parts_btn
+			// 
+			this.deselect_raw_parts_btn.Location = new System.Drawing.Point(181, 4);
+			this.deselect_raw_parts_btn.Name = "deselect_raw_parts_btn";
+			this.deselect_raw_parts_btn.Size = new System.Drawing.Size(206, 23);
+			this.deselect_raw_parts_btn.TabIndex = 4;
+			this.deselect_raw_parts_btn.Text = "Deselect Raw Parts and Library Parts";
+			this.deselect_raw_parts_btn.UseVisualStyleBackColor = true;
+			this.deselect_raw_parts_btn.Click += new System.EventHandler(this.deselect_raw_parts_btn_Click);
 			// 
 			// DrawingCollector
 			// 
@@ -509,5 +521,6 @@
 		private ManageCutlistTimeDataSet manageCutlistTimeDataSet;
 		private System.Windows.Forms.BindingSource cUTPARTTYPESBindingSource;
 		private ManageCutlistTimeDataSetTableAdapters.CUT_PART_TYPESTableAdapter cUT_PART_TYPESTableAdapter;
+		private System.Windows.Forms.Button deselect_raw_parts_btn;
 	}
 }
