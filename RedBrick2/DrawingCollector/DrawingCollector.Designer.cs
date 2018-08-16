@@ -42,12 +42,13 @@
 			this.checkBox3 = new System.Windows.Forms.CheckBox();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.go_btn = new System.Windows.Forms.Button();
+			this.label5 = new System.Windows.Forms.Label();
+			this.suffixTbx = new System.Windows.Forms.TextBox();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-			this.label5 = new System.Windows.Forms.Label();
-			this.suffixTbx = new System.Windows.Forms.TextBox();
+			this.close_btn = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -92,7 +93,9 @@
 			this.listView1.Size = new System.Drawing.Size(276, 521);
 			this.listView1.TabIndex = 0;
 			this.listView1.UseCompatibleStateImageBehavior = false;
+			this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ColumnClick);
 			this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+			this.listView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseClick);
 			// 
 			// columnHeader1
 			// 
@@ -265,9 +268,10 @@
 			this.tableLayoutPanel1.SetColumnSpan(this.tableLayoutPanel2, 2);
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel2.Controls.Add(this.go_btn, 1, 1);
 			this.tableLayoutPanel2.Controls.Add(this.label5, 0, 0);
 			this.tableLayoutPanel2.Controls.Add(this.suffixTbx, 1, 0);
+			this.tableLayoutPanel2.Controls.Add(this.go_btn, 0, 1);
+			this.tableLayoutPanel2.Controls.Add(this.close_btn, 1, 1);
 			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 469);
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
 			this.tableLayoutPanel2.RowCount = 2;
@@ -279,13 +283,34 @@
 			// go_btn
 			// 
 			this.go_btn.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.go_btn.Location = new System.Drawing.Point(422, 43);
+			this.go_btn.Location = new System.Drawing.Point(172, 43);
 			this.go_btn.Name = "go_btn";
 			this.go_btn.Size = new System.Drawing.Size(75, 23);
 			this.go_btn.TabIndex = 0;
 			this.go_btn.Text = "Go";
 			this.go_btn.UseVisualStyleBackColor = true;
 			this.go_btn.Click += new System.EventHandler(this.go_btn_Click);
+			// 
+			// label5
+			// 
+			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(211, 0);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(36, 35);
+			this.label5.TabIndex = 1;
+			this.label5.Text = "Suffix";
+			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// suffixTbx
+			// 
+			this.suffixTbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.suffixTbx.Location = new System.Drawing.Point(253, 3);
+			this.suffixTbx.Name = "suffixTbx";
+			this.suffixTbx.Size = new System.Drawing.Size(244, 22);
+			this.suffixTbx.TabIndex = 2;
 			// 
 			// statusStrip1
 			// 
@@ -314,26 +339,16 @@
 			this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
 			this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 17);
 			// 
-			// label5
+			// close_btn
 			// 
-			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(211, 0);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(36, 35);
-			this.label5.TabIndex = 1;
-			this.label5.Text = "Suffix";
-			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
-			// suffixTbx
-			// 
-			this.suffixTbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.suffixTbx.Location = new System.Drawing.Point(253, 3);
-			this.suffixTbx.Name = "suffixTbx";
-			this.suffixTbx.Size = new System.Drawing.Size(244, 22);
-			this.suffixTbx.TabIndex = 2;
+			this.close_btn.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.close_btn.Location = new System.Drawing.Point(422, 43);
+			this.close_btn.Name = "close_btn";
+			this.close_btn.Size = new System.Drawing.Size(75, 23);
+			this.close_btn.TabIndex = 3;
+			this.close_btn.Text = "Close";
+			this.close_btn.UseVisualStyleBackColor = true;
+			this.close_btn.Click += new System.EventHandler(this.close_btn_Click);
 			// 
 			// DrawingCollector
 			// 
@@ -392,5 +407,6 @@
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.TextBox suffixTbx;
+		private System.Windows.Forms.Button close_btn;
 	}
 }

@@ -165,6 +165,7 @@ namespace RedBrick2.DrawingCollector {
 		}
 
 		private void go_btn_Click(object sender, EventArgs e) {
+			var stopWatch = System.Diagnostics.Stopwatch.StartNew();
 			CreateDrawings();
 			string tmpFile = Path.GetTempFileName().Replace(".tmp", ".PDF");
 			string fileName = string.Format(@"{0}\{1}{2}.PDF",
@@ -214,8 +215,9 @@ namespace RedBrick2.DrawingCollector {
 			toolStripStatusLabel2.Text = string.Empty;
 			CloseSLDDRWsDeletePDFs();
 			//PDFMerger.delete_pdfs(pm_.PDFCollection);
+			stopWatch.Stop();
 			toolStripStatusLabel1.Text = @"Saved";
-			toolStripStatusLabel2.Text = fileName;
+			toolStripStatusLabel2.Text = string.Format(@"{0} in {1} seconds", fileName, stopWatch.Elapsed.TotalSeconds);
 			toolStripProgressBar1.Value = toolStripProgressBar1.Maximum;
 			//PDFMerger.deleting_file -= PDFMerger_deleting_file;
 			System.Diagnostics.Process.Start(fileName);
@@ -239,6 +241,29 @@ namespace RedBrick2.DrawingCollector {
 			Properties.Settings.Default.DrawingCollectorLocation = Location;
 			Properties.Settings.Default.DrawingCollectorSize = Size;
 			Properties.Settings.Default.DrawingCollectorSuffix = suffixTbx.Text.Trim();
+		}
+
+		private void ColumnClick(object sender, ColumnClickEventArgs e) {
+			ListView lv_ = sender as ListView;
+			if (lv_.Columns[e.Column].ListView.Sorting == SortOrder.Ascending) {
+				lv_.Columns[0].ListView.Sorting = SortOrder.Descending;
+			} else {
+				lv_.Columns[0].ListView.Sorting = SortOrder.Ascending;
+			}
+		}
+
+		private void listView1_MouseClick(object sender, MouseEventArgs e) {
+			if (e.Button == MouseButtons.Middle) {
+				if (listView1.View == System.Windows.Forms.View.Details) {
+					listView1.View = System.Windows.Forms.View.SmallIcon;
+				} else {
+					listView1.View = System.Windows.Forms.View.Details;
+				}
+			}
+		}
+
+		private void close_btn_Click(object sender, EventArgs e) {
+			Close();
 		}
 	}
 }
