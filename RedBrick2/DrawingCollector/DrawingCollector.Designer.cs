@@ -46,29 +46,29 @@
 			this.suffixTbx = new System.Windows.Forms.TextBox();
 			this.go_btn = new System.Windows.Forms.Button();
 			this.close_btn = new System.Windows.Forms.Button();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.deselect_raw_parts_btn = new System.Windows.Forms.Button();
+			this.select_only_cbx = new System.Windows.Forms.ComboBox();
+			this.cUTPARTTYPESBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.manageCutlistTimeDataSet = new RedBrick2.ManageCutlistTime.ManageCutlistTimeDataSet();
+			this.select_only_btn = new System.Windows.Forms.Button();
+			this.select_none_btn = new System.Windows.Forms.Button();
+			this.select_all_btn = new System.Windows.Forms.Button();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.select_all_btn = new System.Windows.Forms.Button();
-			this.select_none_btn = new System.Windows.Forms.Button();
-			this.select_only_btn = new System.Windows.Forms.Button();
-			this.select_only_cbx = new System.Windows.Forms.ComboBox();
-			this.manageCutlistTimeDataSet = new RedBrick2.ManageCutlistTimeDataSet();
-			this.cUTPARTTYPESBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ManageCutlistTimeDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
-			this.deselect_raw_parts_btn = new System.Windows.Forms.Button();
+			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
-			this.statusStrip1.SuspendLayout();
 			this.panel1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.manageCutlistTimeDataSet)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.cUTPARTTYPESBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.manageCutlistTimeDataSet)).BeginInit();
+			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// splitContainer1
@@ -343,6 +343,85 @@
 			this.close_btn.UseVisualStyleBackColor = true;
 			this.close_btn.Click += new System.EventHandler(this.close_btn_Click);
 			// 
+			// panel1
+			// 
+			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.tableLayoutPanel1.SetColumnSpan(this.panel1, 2);
+			this.panel1.Controls.Add(this.deselect_raw_parts_btn);
+			this.panel1.Controls.Add(this.select_only_cbx);
+			this.panel1.Controls.Add(this.select_only_btn);
+			this.panel1.Controls.Add(this.select_none_btn);
+			this.panel1.Controls.Add(this.select_all_btn);
+			this.panel1.Location = new System.Drawing.Point(3, 167);
+			this.panel1.Name = "panel1";
+			this.tableLayoutPanel1.SetRowSpan(this.panel1, 3);
+			this.panel1.Size = new System.Drawing.Size(500, 114);
+			this.panel1.TabIndex = 12;
+			// 
+			// deselect_raw_parts_btn
+			// 
+			this.deselect_raw_parts_btn.Location = new System.Drawing.Point(178, 4);
+			this.deselect_raw_parts_btn.Name = "deselect_raw_parts_btn";
+			this.deselect_raw_parts_btn.Size = new System.Drawing.Size(206, 23);
+			this.deselect_raw_parts_btn.TabIndex = 4;
+			this.deselect_raw_parts_btn.Text = "Deselect Raw Parts and Library Parts";
+			this.deselect_raw_parts_btn.UseVisualStyleBackColor = true;
+			this.deselect_raw_parts_btn.Click += new System.EventHandler(this.deselect_raw_parts_btn_Click);
+			// 
+			// select_only_cbx
+			// 
+			this.select_only_cbx.DataSource = this.cUTPARTTYPESBindingSource;
+			this.select_only_cbx.DisplayMember = "TYPEDESC";
+			this.select_only_cbx.FormattingEnabled = true;
+			this.select_only_cbx.Location = new System.Drawing.Point(83, 88);
+			this.select_only_cbx.Name = "select_only_cbx";
+			this.select_only_cbx.Size = new System.Drawing.Size(230, 21);
+			this.select_only_cbx.TabIndex = 3;
+			this.select_only_cbx.ValueMember = "TYPEID";
+			// 
+			// cUTPARTTYPESBindingSource
+			// 
+			this.cUTPARTTYPESBindingSource.DataMember = "CUT_PART_TYPES";
+			this.cUTPARTTYPESBindingSource.DataSource = this.manageCutlistTimeDataSet;
+			// 
+			// manageCutlistTimeDataSet
+			// 
+			this.manageCutlistTimeDataSet.DataSetName = "ManageCutlistTimeDataSet";
+			this.manageCutlistTimeDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+			// 
+			// select_only_btn
+			// 
+			this.select_only_btn.Location = new System.Drawing.Point(4, 86);
+			this.select_only_btn.Name = "select_only_btn";
+			this.select_only_btn.Size = new System.Drawing.Size(75, 23);
+			this.select_only_btn.TabIndex = 2;
+			this.select_only_btn.Text = "Select Only";
+			this.select_only_btn.UseVisualStyleBackColor = true;
+			this.select_only_btn.Click += new System.EventHandler(this.select_only_btn_Click);
+			// 
+			// select_none_btn
+			// 
+			this.select_none_btn.Location = new System.Drawing.Point(83, 4);
+			this.select_none_btn.Name = "select_none_btn";
+			this.select_none_btn.Size = new System.Drawing.Size(89, 23);
+			this.select_none_btn.TabIndex = 1;
+			this.select_none_btn.Text = "Select None";
+			this.select_none_btn.UseVisualStyleBackColor = true;
+			this.select_none_btn.Click += new System.EventHandler(this.select_none_btn_Click);
+			// 
+			// select_all_btn
+			// 
+			this.select_all_btn.Location = new System.Drawing.Point(2, 4);
+			this.select_all_btn.Name = "select_all_btn";
+			this.select_all_btn.Size = new System.Drawing.Size(75, 23);
+			this.select_all_btn.TabIndex = 0;
+			this.select_all_btn.Text = "Select All";
+			this.select_all_btn.UseVisualStyleBackColor = true;
+			this.select_all_btn.Click += new System.EventHandler(this.select_all_btn_Click);
+			// 
 			// statusStrip1
 			// 
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -370,87 +449,9 @@
 			this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
 			this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 17);
 			// 
-			// panel1
-			// 
-			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.tableLayoutPanel1.SetColumnSpan(this.panel1, 2);
-			this.panel1.Controls.Add(this.deselect_raw_parts_btn);
-			this.panel1.Controls.Add(this.select_only_cbx);
-			this.panel1.Controls.Add(this.select_only_btn);
-			this.panel1.Controls.Add(this.select_none_btn);
-			this.panel1.Controls.Add(this.select_all_btn);
-			this.panel1.Location = new System.Drawing.Point(3, 167);
-			this.panel1.Name = "panel1";
-			this.tableLayoutPanel1.SetRowSpan(this.panel1, 3);
-			this.panel1.Size = new System.Drawing.Size(500, 114);
-			this.panel1.TabIndex = 12;
-			// 
-			// select_all_btn
-			// 
-			this.select_all_btn.Location = new System.Drawing.Point(4, 4);
-			this.select_all_btn.Name = "select_all_btn";
-			this.select_all_btn.Size = new System.Drawing.Size(75, 23);
-			this.select_all_btn.TabIndex = 0;
-			this.select_all_btn.Text = "Select All";
-			this.select_all_btn.UseVisualStyleBackColor = true;
-			this.select_all_btn.Click += new System.EventHandler(this.select_all_btn_Click);
-			// 
-			// select_none_btn
-			// 
-			this.select_none_btn.Location = new System.Drawing.Point(86, 4);
-			this.select_none_btn.Name = "select_none_btn";
-			this.select_none_btn.Size = new System.Drawing.Size(89, 23);
-			this.select_none_btn.TabIndex = 1;
-			this.select_none_btn.Text = "Select None";
-			this.select_none_btn.UseVisualStyleBackColor = true;
-			this.select_none_btn.Click += new System.EventHandler(this.select_none_btn_Click);
-			// 
-			// select_only_btn
-			// 
-			this.select_only_btn.Location = new System.Drawing.Point(4, 88);
-			this.select_only_btn.Name = "select_only_btn";
-			this.select_only_btn.Size = new System.Drawing.Size(75, 23);
-			this.select_only_btn.TabIndex = 2;
-			this.select_only_btn.Text = "Select Only";
-			this.select_only_btn.UseVisualStyleBackColor = true;
-			this.select_only_btn.Click += new System.EventHandler(this.select_only_btn_Click);
-			// 
-			// select_only_cbx
-			// 
-			this.select_only_cbx.DataSource = this.cUTPARTTYPESBindingSource;
-			this.select_only_cbx.DisplayMember = "TYPEDESC";
-			this.select_only_cbx.FormattingEnabled = true;
-			this.select_only_cbx.Location = new System.Drawing.Point(85, 88);
-			this.select_only_cbx.Name = "select_only_cbx";
-			this.select_only_cbx.Size = new System.Drawing.Size(230, 21);
-			this.select_only_cbx.TabIndex = 3;
-			this.select_only_cbx.ValueMember = "TYPEID";
-			// 
-			// manageCutlistTimeDataSet
-			// 
-			this.manageCutlistTimeDataSet.DataSetName = "ManageCutlistTimeDataSet";
-			this.manageCutlistTimeDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-			// 
-			// cUTPARTTYPESBindingSource
-			// 
-			this.cUTPARTTYPESBindingSource.DataMember = "CUT_PART_TYPES";
-			this.cUTPARTTYPESBindingSource.DataSource = this.manageCutlistTimeDataSet;
-			// 
 			// cUT_PART_TYPESTableAdapter
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
-			// 
-			// deselect_raw_parts_btn
-			// 
-			this.deselect_raw_parts_btn.Location = new System.Drawing.Point(181, 4);
-			this.deselect_raw_parts_btn.Name = "deselect_raw_parts_btn";
-			this.deselect_raw_parts_btn.Size = new System.Drawing.Size(206, 23);
-			this.deselect_raw_parts_btn.TabIndex = 4;
-			this.deselect_raw_parts_btn.Text = "Deselect Raw Parts and Library Parts";
-			this.deselect_raw_parts_btn.UseVisualStyleBackColor = true;
-			this.deselect_raw_parts_btn.Click += new System.EventHandler(this.deselect_raw_parts_btn_Click);
 			// 
 			// DrawingCollector
 			// 
@@ -475,11 +476,11 @@
 			this.tableLayoutPanel1.PerformLayout();
 			this.tableLayoutPanel2.ResumeLayout(false);
 			this.tableLayoutPanel2.PerformLayout();
+			this.panel1.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.cUTPARTTYPESBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.manageCutlistTimeDataSet)).EndInit();
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
-			this.panel1.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.manageCutlistTimeDataSet)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.cUTPARTTYPESBindingSource)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -518,9 +519,9 @@
 		private System.Windows.Forms.Button select_only_btn;
 		private System.Windows.Forms.Button select_none_btn;
 		private System.Windows.Forms.Button select_all_btn;
-		private ManageCutlistTimeDataSet manageCutlistTimeDataSet;
+		private ManageCutlistTime.ManageCutlistTimeDataSet manageCutlistTimeDataSet;
 		private System.Windows.Forms.BindingSource cUTPARTTYPESBindingSource;
-		private ManageCutlistTimeDataSetTableAdapters.CUT_PART_TYPESTableAdapter cUT_PART_TYPESTableAdapter;
+		private ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CUT_PART_TYPESTableAdapter cUT_PART_TYPESTableAdapter;
 		private System.Windows.Forms.Button deselect_raw_parts_btn;
 	}
 }
