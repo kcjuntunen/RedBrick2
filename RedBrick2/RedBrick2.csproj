@@ -157,16 +157,16 @@
     </Compile>
     <Compile Include="Estimation.cs" />
     <Compile Include="Exceptions\BuildPDFException.cs" />
-    <Compile Include="RelatedCutlistReport.cs">
+    <Compile Include="RelatedCutlistReport\RelatedCutlistReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RelatedCutlistReport.Designer.cs">
+    <Compile Include="RelatedCutlistReport\RelatedCutlistReport.Designer.cs">
       <DependentUpon>RelatedCutlistReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="RelatedCutlistReportDataSet.cs">
+    <Compile Include="RelatedCutlistReport\RelatedCutlistReportDataSet.cs">
       <DependentUpon>RelatedCutlistReportDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="RelatedCutlistReportDataSet.Designer.cs">
+    <Compile Include="RelatedCutlistReport\RelatedCutlistReportDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RelatedCutlistReportDataSet.xsd</DependentUpon>
@@ -359,15 +359,15 @@
     <None Include="ENGINEERINGDataSet.xss">
       <DependentUpon>ENGINEERINGDataSet.xsd</DependentUpon>
     </None>
-    <None Include="RelatedCutlistReportDataSet.xsc">
+    <None Include="RelatedCutlistReport\RelatedCutlistReportDataSet.xsc">
       <DependentUpon>RelatedCutlistReportDataSet.xsd</DependentUpon>
     </None>
-    <None Include="RelatedCutlistReportDataSet.xsd">
+    <None Include="RelatedCutlistReport\RelatedCutlistReportDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>RelatedCutlistReportDataSet.Designer.cs</LastGenOutput>
     </None>
-    <None Include="RelatedCutlistReportDataSet.xss">
+    <None Include="RelatedCutlistReport\RelatedCutlistReportDataSet.xss">
       <DependentUpon>RelatedCutlistReportDataSet.xsd</DependentUpon>
     </None>
     <None Include="install.nsi" />
@@ -401,9 +401,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DrawingCollector\DrawingCollector.resx">
       <DependentUpon>DrawingCollector.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RelatedCutlistReport.resx">
-      <DependentUpon>RelatedCutlistReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManageCutlistTime\ManageCutlistTimeEdit.resx">
       <DependentUpon>ManageCutlistTimeEdit.cs</DependentUpon>

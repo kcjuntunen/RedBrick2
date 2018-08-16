@@ -1774,7 +1774,7 @@ namespace RedBrick2 {
 			if (tr.PartHash.Count < 1) {
 				return;
 			}
-			using (RelatedCutlistReport scr_ = new RelatedCutlistReport(tr.PartHash)) {
+			using (RelatedCutlistReportt scr_ = new RelatedCutlistReportt(tr.PartHash)) {
 				scr_.ShowDialog(this);
 			}
 		}
