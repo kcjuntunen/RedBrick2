@@ -384,7 +384,7 @@ namespace RedBrick2 {
 			// 
 			// unselect_btn
 			// 
-			this.unselect_btn.Location = new System.Drawing.Point(784, 3);
+			this.unselect_btn.Location = new System.Drawing.Point(765, 3);
 			this.unselect_btn.Name = "unselect_btn";
 			this.unselect_btn.Size = new System.Drawing.Size(75, 20);
 			this.unselect_btn.TabIndex = 16;
@@ -394,7 +394,7 @@ namespace RedBrick2 {
 			// 
 			// select_btn
 			// 
-			this.select_btn.Location = new System.Drawing.Point(703, 3);
+			this.select_btn.Location = new System.Drawing.Point(684, 3);
 			this.select_btn.Name = "select_btn";
 			this.select_btn.Size = new System.Drawing.Size(75, 20);
 			this.select_btn.TabIndex = 15;
@@ -409,7 +409,7 @@ namespace RedBrick2 {
 			this.type_cbx.DataSource = this.cUTPARTTYPESBindingSource;
 			this.type_cbx.DisplayMember = "TYPEDESC";
 			this.type_cbx.FormattingEnabled = true;
-			this.type_cbx.Location = new System.Drawing.Point(508, 3);
+			this.type_cbx.Location = new System.Drawing.Point(489, 3);
 			this.type_cbx.Name = "type_cbx";
 			this.type_cbx.Size = new System.Drawing.Size(189, 21);
 			this.type_cbx.TabIndex = 14;
@@ -445,17 +445,17 @@ namespace RedBrick2 {
 			// 
 			// hide_btn
 			// 
-			this.hide_btn.Location = new System.Drawing.Point(977, 3);
+			this.hide_btn.Location = new System.Drawing.Point(958, 3);
 			this.hide_btn.Name = "hide_btn";
-			this.hide_btn.Size = new System.Drawing.Size(110, 20);
+			this.hide_btn.Size = new System.Drawing.Size(129, 20);
 			this.hide_btn.TabIndex = 17;
-			this.hide_btn.Text = "Hide Unchecked";
+			this.hide_btn.Text = "Remove Unchecked";
 			this.hide_btn.UseVisualStyleBackColor = true;
 			this.hide_btn.Click += new System.EventHandler(this.hide_btn_Click);
 			// 
 			// sltnunslct_btn
 			// 
-			this.sltnunslct_btn.Location = new System.Drawing.Point(865, 3);
+			this.sltnunslct_btn.Location = new System.Drawing.Point(846, 3);
 			this.sltnunslct_btn.Name = "sltnunslct_btn";
 			this.sltnunslct_btn.Size = new System.Drawing.Size(106, 20);
 			this.sltnunslct_btn.TabIndex = 20;
