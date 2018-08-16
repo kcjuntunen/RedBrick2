@@ -930,11 +930,11 @@ namespace RedBrick2 {
 
 		private void label45_MouseDoubleClick(object sender, MouseEventArgs e) {
 			if (clid > 0) {
-				using (ManageCutlistTime mct_ = new ManageCutlistTime(clid)) {
+				using (ManageCutlistTime.ManageCutlistTime mct_ = new ManageCutlistTime.ManageCutlistTime(clid)) {
 					mct_.ShowDialog(this);
 				}
 			} else {
-				using (ManageCutlistTime mct_ = new ManageCutlistTime(partLookup)) {
+				using (ManageCutlistTime.ManageCutlistTime mct_ = new ManageCutlistTime.ManageCutlistTime(partLookup)) {
 					mct_.ShowDialog(this);
 				}
 			}

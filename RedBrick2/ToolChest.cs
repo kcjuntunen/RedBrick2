@@ -76,7 +76,7 @@ namespace RedBrick2 {
 		}
 
 		private void button5_Click(object sender, EventArgs e) {
-			using (ManageCutlistTime mct_ = new ManageCutlistTime(lookup)) {
+			using (ManageCutlistTime.ManageCutlistTime mct_ = new ManageCutlistTime.ManageCutlistTime(lookup)) {
 				mct_.ShowDialog(this);
 			}
 			Close();

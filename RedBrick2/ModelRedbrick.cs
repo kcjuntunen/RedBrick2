@@ -2956,11 +2956,11 @@ namespace RedBrick2 {
 		private void cutlistTimeBtn_MouseClick(object sender, MouseEventArgs e) {
 			ComboBox cb_ = cutlistctl;
 			if (cutlistctl.SelectedItem != null) {
-				using (ManageCutlistTime mct_ = new ManageCutlistTime(partLookup, Convert.ToInt32(cutlistctl.SelectedValue))) {
+				using (ManageCutlistTime.ManageCutlistTime mct_ = new ManageCutlistTime.ManageCutlistTime(partLookup, Convert.ToInt32(cutlistctl.SelectedValue))) {
 					mct_.ShowDialog(this);
 				}
 			} else {
-				using (ManageCutlistTime mct_ = new ManageCutlistTime(partLookup)) {
+				using (ManageCutlistTime.ManageCutlistTime mct_ = new ManageCutlistTime.ManageCutlistTime(partLookup)) {
 					mct_.ShowDialog(this);
 				}
 			}

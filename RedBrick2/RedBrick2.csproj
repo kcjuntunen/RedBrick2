@@ -188,18 +188,18 @@
       <DependentUpon>CreateCutlist.cs</DependentUpon>
     </Compile>
     <Compile Include="SWProperties\CustomerProperty.cs" />
-    <Compile Include="ManageCutlistTimeDataSet.cs">
+    <Compile Include="ManageCutlistTime\ManageCutlistTimeDataSet.cs">
       <DependentUpon>ManageCutlistTimeDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="ManageCutlistTimeDataSet.Designer.cs">
+    <Compile Include="ManageCutlistTime\ManageCutlistTimeDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ManageCutlistTimeDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="ManageCutlistTimeEdit.cs">
+    <Compile Include="ManageCutlistTime\ManageCutlistTimeEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManageCutlistTimeEdit.Designer.cs">
+    <Compile Include="ManageCutlistTime\ManageCutlistTimeEdit.Designer.cs">
       <DependentUpon>ManageCutlistTimeEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="QuikTracLookup.cs">
@@ -252,10 +252,10 @@
     <Compile Include="FormatFixtureBk.Designer.cs">
       <DependentUpon>FormatFixtureBk.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManageCutlistTime.cs">
+    <Compile Include="ManageCutlistTime\ManageCutlistTime.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManageCutlistTime.Designer.cs">
+    <Compile Include="ManageCutlistTime\ManageCutlistTime.Designer.cs">
       <DependentUpon>ManageCutlistTime.cs</DependentUpon>
     </Compile>
     <Compile Include="MaterialByNum.cs">
@@ -371,15 +371,15 @@
       <DependentUpon>RelatedCutlistReportDataSet.xsd</DependentUpon>
     </None>
     <None Include="install.nsi" />
-    <None Include="ManageCutlistTimeDataSet.xsc">
+    <None Include="ManageCutlistTime\ManageCutlistTimeDataSet.xsc">
       <DependentUpon>ManageCutlistTimeDataSet.xsd</DependentUpon>
     </None>
-    <None Include="ManageCutlistTimeDataSet.xsd">
+    <None Include="ManageCutlistTime\ManageCutlistTimeDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>ManageCutlistTimeDataSet.Designer.cs</LastGenOutput>
     </None>
-    <None Include="ManageCutlistTimeDataSet.xss">
+    <None Include="ManageCutlistTime\ManageCutlistTimeDataSet.xss">
       <DependentUpon>ManageCutlistTimeDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -405,7 +405,7 @@
     <EmbeddedResource Include="RelatedCutlistReport.resx">
       <DependentUpon>RelatedCutlistReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManageCutlistTimeEdit.resx">
+    <EmbeddedResource Include="ManageCutlistTime\ManageCutlistTimeEdit.resx">
       <DependentUpon>ManageCutlistTimeEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuikTracLookup.resx">
@@ -426,7 +426,7 @@
     <EmbeddedResource Include="FormatFixtureBk.resx">
       <DependentUpon>FormatFixtureBk.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManageCutlistTime.resx">
+    <EmbeddedResource Include="ManageCutlistTime\ManageCutlistTime.resx">
       <DependentUpon>ManageCutlistTime.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MaterialByNum.resx">
