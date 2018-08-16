@@ -232,15 +232,18 @@ namespace RedBrick2.DrawingCollector {
 		}
 
 		private void DrawingCollector_Load(object sender, EventArgs e) {
+			cUT_PART_TYPESTableAdapter.Fill(manageCutlistTimeDataSet.CUT_PART_TYPES);
 			Location = Properties.Settings.Default.DrawingCollectorLocation;
 			Size = Properties.Settings.Default.DrawingCollectorSize;
 			suffixTbx.Text = Properties.Settings.Default.DrawingCollectorSuffix;
+			splitContainer1.SplitterDistance = Properties.Settings.Default.DrawingCollectorSplitterDistance;
 		}
 
 		private void DrawingCollector_FormClosed(object sender, FormClosedEventArgs e) {
 			Properties.Settings.Default.DrawingCollectorLocation = Location;
 			Properties.Settings.Default.DrawingCollectorSize = Size;
 			Properties.Settings.Default.DrawingCollectorSuffix = suffixTbx.Text.Trim();
+			Properties.Settings.Default.DrawingCollectorSplitterDistance = splitContainer1.SplitterDistance;
 		}
 
 		private void ColumnClick(object sender, ColumnClickEventArgs e) {
@@ -264,6 +267,36 @@ namespace RedBrick2.DrawingCollector {
 
 		private void close_btn_Click(object sender, EventArgs e) {
 			Close();
+		}
+
+		private void select_all_btn_Click(object sender, EventArgs e) {
+			foreach (ListViewItem item in listView1.Items) {
+				if (infos[item.Text].SldDrw.Exists) {
+					item.Checked = true;
+				}
+			}
+		}
+
+		private void select_none_btn_Click(object sender, EventArgs e) {
+			foreach (ListViewItem item in listView1.Items) {
+				item.Checked = false;
+			}
+		}
+
+		private void select_only_btn_Click(object sender, EventArgs e) {
+			if (select_only_cbx.SelectedItem == null) {
+				return;
+			}
+
+			if (listView1.Items.Count < 1) {
+				return;
+			}
+
+			foreach (ListViewItem item in listView1.Items) {
+				string dept_ = item.SubItems[2].Text.ToUpper().Trim();
+				bool exists_ = infos[item.Text].SldDrw.Exists;
+				item.Checked = exists_ && dept_ == select_only_cbx.Text.ToUpper().Trim();
+			}
 		}
 	}
 }
