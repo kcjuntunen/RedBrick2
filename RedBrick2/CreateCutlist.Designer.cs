@@ -594,7 +594,6 @@ namespace RedBrick2 {
 			// 
 			this.rel_cutlist_btn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.rel_cutlist_btn.Enabled = false;
 			this.rel_cutlist_btn.Location = new System.Drawing.Point(3, 93);
 			this.rel_cutlist_btn.Name = "rel_cutlist_btn";
 			this.rel_cutlist_btn.Size = new System.Drawing.Size(159, 23);

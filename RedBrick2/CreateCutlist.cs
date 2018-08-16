@@ -1772,10 +1772,15 @@ namespace RedBrick2 {
 
 		private void button1_Click_1(object sender, EventArgs e) {
 			if (tr.PartHash.Count < 1) {
-				return;
-			}
-			using (RelatedCutlistReportt scr_ = new RelatedCutlistReportt(tr.PartHash)) {
-				scr_.ShowDialog(this);
+				Traverser t_ = new Traverser(_swApp, true);
+				t_.TraverseComponent((Component2)_config.GetRootComponent3(true), 1);
+				using (RelatedCutlistReportt scr_ = new RelatedCutlistReportt(t_.PartHash)) {
+					scr_.ShowDialog(this);
+				}
+			} else {
+				using (RelatedCutlistReportt scr_ = new RelatedCutlistReportt(tr.PartHash)) {
+					scr_.ShowDialog(this);
+				}
 			}
 		}
 	}
