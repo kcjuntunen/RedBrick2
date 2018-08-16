@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Collections.Specialized;
 
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
@@ -7,7 +8,8 @@ using SolidWorks.Interop.swconst;
 namespace RedBrick2 {
 	class Traverser {
 		public SortedDictionary<string, int> Dict = new SortedDictionary<string, int>();
-		public SortedDictionary<string, SwProperties> PartList = new SortedDictionary<string, SwProperties>();
+		public OrderedDictionary PartList = new OrderedDictionary();
+		//public SortedDictionary<string, SwProperties> PartList = new SortedDictionary<string, SwProperties>();
 		public HashSet<string> PartHash = new HashSet<string>();
 		private SldWorks _swApp;
 		private ModelDoc2 _activeDoc;
@@ -68,7 +70,7 @@ namespace RedBrick2 {
 							PartList.Add(name, s);
 						} else {
 							Dict[name] = Dict[name] + 1;
-							PartList[name][@"BLANK QTY"].Data = Dict[name];
+							(PartList[name] as SwProperties)[@"BLANK QTY"].Data = Dict[name];
 						}
 					}
 				}
@@ -84,7 +86,7 @@ namespace RedBrick2 {
 						PartList.Add(name, s);
 					} else {
 						Dict[name] = Dict[name] + 1;
-						PartList[name][@"BLANK QTY"].Data = Dict[name];
+						(PartList[name] as SwProperties)[@"BLANK QTY"].Data = Dict[name];
 					}
 					if (nLevel == 1) {
 						pb.UpdateProgress(++pos);

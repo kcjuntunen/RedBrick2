@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -15,7 +16,7 @@ namespace RedBrick2 {
 	/// </summary>
 	public partial class CreateCutlist : Form {
 		private SortedDictionary<string, int> _dict = new SortedDictionary<string, int>();
-		private SortedDictionary<string, SwProperties> _partlist = new SortedDictionary<string, SwProperties>();
+		private OrderedDictionary _partlist = new OrderedDictionary();
 		private HashSet<string> _assemblies = new HashSet<string>();
 		private SldWorks _swApp;
 
@@ -551,7 +552,7 @@ namespace RedBrick2 {
 				for (int i = 0; i < dt.Rows.Count; i++) {
 					DataRow row = dt.Rows[i];
 					if ((bool)row[@"Include"]) {
-						SwProperties p = _partlist[row["Part Number"].ToString()];
+						SwProperties p = _partlist[row["Part Number"].ToString()] as SwProperties;
 						ENGINEERINGDataSet.CUT_PARTSRow r = (ENGINEERINGDataSet.CUT_PARTSRow)outdt.NewRow();
 						r.BLANKQTY = (int)row["Blank Qty"];
 						r.CNC1 = (string)p[@"CNC1"].Data;
@@ -869,11 +870,11 @@ namespace RedBrick2 {
 			}
 		}
 
-		private void FillTable(SortedDictionary<string, int> pl, SortedDictionary<string, SwProperties> sp) {
+		private void FillTable(SortedDictionary<string, int> pl, OrderedDictionary sp) {
 			System.Text.RegularExpressions.Regex r =
 				new System.Text.RegularExpressions.Regex(Redbrick.BOMFilter[0]);
 			foreach (KeyValuePair<string, int> item in pl) {
-				SwProperties val = sp[item.Key];
+				SwProperties val = sp[item.Key] as SwProperties;
 				string name = item.Key;
 				int idx = dataGridView1.Rows.Add();
 				DataGridViewRow row = dataGridView1.Rows[idx];
@@ -1027,7 +1028,7 @@ namespace RedBrick2 {
 				bool inc_ = Convert.ToBoolean(dgvr_.Cells[@"Include"].Value);
 				if (inc_) {
 					string partnum_ = Convert.ToString(dgvr_.Cells[@"Part Number"].Value);
-					AddPart(_partlist[partnum_]);
+					AddPart(_partlist[partnum_] as SwProperties);
 				}
 			}
 		}
@@ -1284,7 +1285,7 @@ namespace RedBrick2 {
 					DataGridViewCell cell_ = (grid_[@"Part Number", current_row] as DataGridViewCell);
 					if (cell_.Value != null) {
 						selectedPart = cell_.Value.ToString();
-						FileInfo sp_ = new FileInfo(_partlist[selectedPart].ActiveDoc.GetPathName());
+						FileInfo sp_ = new FileInfo((_partlist[selectedPart] as SwProperties).ActiveDoc.GetPathName());
 						string sp_info_ = @"Open Model...";
 
 						if (sp_ != null && sp_.Exists) {
@@ -1497,46 +1498,46 @@ namespace RedBrick2 {
 					using (ENGINEERINGDataSet.CUT_PARTSDataTable cpdt_ = cpta_.GetDataByPartnum(partnum_)) {
 						if (inc_ && cpdt_.Rows.Count > 0) {
 							ENGINEERINGDataSet.CUT_PARTSRow r_ = cpdt_[0];
-							_partlist[partnum_].PartID = r_.PARTID;
-							_partlist[partnum_][@"COMMENT"].Data = !r_.IsCOMMENTNull() ? r_.COMMENT : string.Empty;
+							(_partlist[partnum_] as SwProperties).PartID = r_.PARTID;
+							(_partlist[partnum_] as SwProperties)[@"COMMENT"].Data = !r_.IsCOMMENTNull() ? r_.COMMENT : string.Empty;
 
 							dgvr_.Cells[@"Department"].Style.BackColor = Color.LightBlue;
-							_partlist[partnum_][@"DEPARTMENT"].Data = r_.TYPE;
+							(_partlist[partnum_] as SwProperties)[@"DEPARTMENT"].Data = r_.TYPE;
 							dgvr_.Cells[@"Department"].Value = r_.TYPE;
 
 							dgvr_.Cells[@"Description"].Style.BackColor = Color.LightBlue;
-							_partlist[partnum_][@"Description"].Data = r_.DESCR;
+							(_partlist[partnum_] as SwProperties)[@"Description"].Data = r_.DESCR;
 							dgvr_.Cells[@"Description"].Value = r_.DESCR;
 
 							dgvr_.Cells[@"L"].Style.BackColor = Color.LightBlue;
-							_partlist[partnum_][@"LENGTH"].Data = r_.FIN_L;
+							(_partlist[partnum_] as SwProperties)[@"LENGTH"].Data = r_.FIN_L;
 							dgvr_.Cells[@"L"].Value = Redbrick.enforce_number_format(r_.FIN_L);
 							dgvr_.Cells[@"W"].Style.BackColor = Color.LightBlue;
-							_partlist[partnum_][@"WIDTH"].Data = r_.FIN_W;
+							(_partlist[partnum_] as SwProperties)[@"WIDTH"].Data = r_.FIN_W;
 							dgvr_.Cells[@"W"].Value = Redbrick.enforce_number_format(r_.FIN_W);
 							dgvr_.Cells[@"T"].Style.BackColor = Color.LightBlue;
-							_partlist[partnum_][@"THICKNESS"].Data = r_.THICKNESS;
+							(_partlist[partnum_] as SwProperties)[@"THICKNESS"].Data = r_.THICKNESS;
 							dgvr_.Cells[@"T"].Value = Redbrick.enforce_number_format(r_.THICKNESS);
 							dgvr_.Cells[@"Blank Qty"].Style.BackColor = Color.LightBlue;
-							_partlist[partnum_][@"BLANK QTY"].Data = r_.BLANKQTY;
+							(_partlist[partnum_] as SwProperties)[@"BLANK QTY"].Data = r_.BLANKQTY;
 							dgvr_.Cells[@"Blank Qty"].Value = r_.BLANKQTY;
 
 							dgvr_.Cells[@"Over L"].Style.BackColor = Color.LightBlue;
-							_partlist[partnum_][@"OVERL"].Data = r_.OVER_L;
+							(_partlist[partnum_] as SwProperties)[@"OVERL"].Data = r_.OVER_L;
 							dgvr_.Cells[@"Over L"].Value = r_.OVER_L;
 							dgvr_.Cells[@"Over W"].Style.BackColor = Color.LightBlue;
-							_partlist[partnum_][@"OVERW"].Data = r_.OVER_W;
+							(_partlist[partnum_] as SwProperties)[@"OVERW"].Data = r_.OVER_W;
 							dgvr_.Cells[@"Over W"].Value = r_.OVER_W;
 
 							dgvr_.Cells[@"CNC 1"].Style.BackColor = Color.LightBlue;
-							_partlist[partnum_][@"CNC1"].Data = r_.CNC1;
+							(_partlist[partnum_] as SwProperties)[@"CNC1"].Data = r_.CNC1;
 							dgvr_.Cells[@"CNC 1"].Value = r_.CNC1;
 							dgvr_.Cells[@"CNC 2"].Style.BackColor = Color.LightBlue;
-							_partlist[partnum_][@"CNC2"].Data = r_.CNC2;
+							(_partlist[partnum_] as SwProperties)[@"CNC2"].Data = r_.CNC2;
 							dgvr_.Cells[@"CNC 2"].Value = r_.CNC2;
 
 							dgvr_.Cells[@"upd"].Style.BackColor = Color.LightBlue;
-							_partlist[partnum_][@"UPDATE CNC"].Data = r_.UPDATE_CNC;
+							(_partlist[partnum_] as SwProperties)[@"UPDATE CNC"].Data = r_.UPDATE_CNC;
 							dgvr_.Cells[@"upd"].Value = r_.UPDATE_CNC;
 						}
 					}
@@ -1552,7 +1553,8 @@ namespace RedBrick2 {
 					DataGridViewRow dgvr_ = dataGridView1.Rows[i];
 					string partnum_ = Convert.ToString(dgvr_.Cells[@"Part Number"].Value);
 					if (partnum_ != string.Empty) {
-						using (ENGINEERINGDataSet.CUT_PART_OPSDataTable cpodt_ = cpota_.GetDataByPartID(_partlist[partnum_].PartID)) {
+						using (ENGINEERINGDataSet.CUT_PART_OPSDataTable cpodt_ =
+							cpota_.GetDataByPartID((_partlist[partnum_] as SwProperties).PartID)) {
 							if (cpodt_.Rows.Count > 0) {
 								for (int j = 0; j < cpodt_.Rows.Count; j++) {
 									ENGINEERINGDataSet.CUT_PART_OPSRow r_ = cpodt_.Rows[j] as ENGINEERINGDataSet.CUT_PART_OPSRow;
@@ -1561,8 +1563,8 @@ namespace RedBrick2 {
 									string col_ = string.Format(@"Op {0}", r_.POPORDER);
 									dgvr_.Cells[col_].Style.BackColor = Color.LightBlue;
 									dgvr_.Cells[col_].Value = r_.POPOP;
-									_partlist[partnum_][op_].Data = r_.POPOP;
-									_partlist[partnum_][opid_].Data = r_.POPOP;
+									(_partlist[partnum_] as SwProperties)[op_].Data = r_.POPOP;
+									(_partlist[partnum_] as SwProperties)[opid_].Data = r_.POPOP;
 								}
 							}
 						}
@@ -1578,27 +1580,27 @@ namespace RedBrick2 {
 				bool inc_ = Convert.ToBoolean(dgvr_.Cells[@"Include"].FormattedValue);
 				if (inc_) {
 					string partnum_ = Convert.ToString(dgvr_.Cells[@"Part Number"].Value);
-					_partlist[partnum_][@"DEPARTMENT"].Data = Convert.ToInt32(dgvr_.Cells[@"Department"].Value);
+					(_partlist[partnum_] as SwProperties)[@"DEPARTMENT"].Data = Convert.ToInt32(dgvr_.Cells[@"Department"].Value);
 					dgvr_.Cells[@"Department"].Style.BackColor = Color.LightGreen;
-					_partlist[partnum_][@"Description"].Data = Convert.ToString(dgvr_.Cells[@"Description"].Value).Trim();
+					(_partlist[partnum_] as SwProperties)[@"Description"].Data = Convert.ToString(dgvr_.Cells[@"Description"].Value).Trim();
 					dgvr_.Cells[@"Description"].Style.BackColor = Color.LightGreen;
-					_partlist[partnum_].CutlistQty = Convert.ToInt32(dgvr_.Cells[@"Part Qty"].Value);
+					(_partlist[partnum_] as SwProperties).CutlistQty = Convert.ToInt32(dgvr_.Cells[@"Part Qty"].Value);
 					dgvr_.Cells[@"Part Qty"].Style.BackColor = Color.LightGreen;
-					_partlist[partnum_][@"BLANK QTY"].Data = Convert.ToInt32(dgvr_.Cells[@"Blank Qty"].Value);
+					(_partlist[partnum_] as SwProperties)[@"BLANK QTY"].Data = Convert.ToInt32(dgvr_.Cells[@"Blank Qty"].Value);
 					dgvr_.Cells[@"Blank Qty"].Style.BackColor = Color.LightGreen;
-					_partlist[partnum_][@"CUTLIST MATERIAL"].Data = Convert.ToInt32(dgvr_.Cells[@"Material"].Value);
+					(_partlist[partnum_] as SwProperties)[@"CUTLIST MATERIAL"].Data = Convert.ToInt32(dgvr_.Cells[@"Material"].Value);
 					dgvr_.Cells[@"Material"].Style.BackColor = Color.LightGreen;
-					_partlist[partnum_][@"EDGE FRONT (L)"].Data = Convert.ToInt32(dgvr_.Cells[@"ef"].Value);
+					(_partlist[partnum_] as SwProperties)[@"EDGE FRONT (L)"].Data = Convert.ToInt32(dgvr_.Cells[@"ef"].Value);
 					dgvr_.Cells[@"ef"].Style.BackColor = Color.LightGreen;
-					_partlist[partnum_][@"EDGE BACK (L)"].Data = Convert.ToInt32(dgvr_.Cells[@"eb"].Value);
+					(_partlist[partnum_] as SwProperties)[@"EDGE BACK (L)"].Data = Convert.ToInt32(dgvr_.Cells[@"eb"].Value);
 					dgvr_.Cells[@"eb"].Style.BackColor = Color.LightGreen;
-					_partlist[partnum_][@"EDGE LEFT (W)"].Data = Convert.ToInt32(dgvr_.Cells[@"el"].Value);
+					(_partlist[partnum_] as SwProperties)[@"EDGE LEFT (W)"].Data = Convert.ToInt32(dgvr_.Cells[@"el"].Value);
 					dgvr_.Cells[@"el"].Style.BackColor = Color.LightGreen;
-					_partlist[partnum_][@"EDGE RIGHT (W)"].Data = Convert.ToInt32(dgvr_.Cells[@"er"].Value);
+					(_partlist[partnum_] as SwProperties)[@"EDGE RIGHT (W)"].Data = Convert.ToInt32(dgvr_.Cells[@"er"].Value);
 					dgvr_.Cells[@"er"].Style.BackColor = Color.LightGreen;
-					_partlist[partnum_][@"UPDATE CNC"].Data = Convert.ToBoolean(dgvr_.Cells[@"upd"].FormattedValue);
+					(_partlist[partnum_] as SwProperties)[@"UPDATE CNC"].Data = Convert.ToBoolean(dgvr_.Cells[@"upd"].FormattedValue);
 					dgvr_.Cells[@"upd"].Style.BackColor = Color.LightGreen;
-					_partlist[partnum_].Write();
+					(_partlist[partnum_] as SwProperties).Write();
 
 					dgvr_.Cells[@"L"].Style.BackColor = Color.LightGreen;
 					dgvr_.Cells[@"W"].Style.BackColor = Color.LightGreen;
@@ -1609,10 +1611,10 @@ namespace RedBrick2 {
 					dgvr_.Cells[@"CNC 1"].Style.BackColor = Color.LightGreen;
 					dgvr_.Cells[@"CNC 2"].Style.BackColor = Color.LightGreen;
 					if (write_to_parts_) {
-						_partlist[partnum_].Write();
-						_partlist[partnum_].Save();
+						(_partlist[partnum_] as SwProperties).Write();
+						(_partlist[partnum_] as SwProperties).Save();
 					}
-					parts_.Add(_partlist[partnum_]);
+					parts_.Add((_partlist[partnum_] as SwProperties));
 				}
 			}
 			write_ops();
@@ -1629,10 +1631,10 @@ namespace RedBrick2 {
 						string op_ = string.Format(@"OP{0}", j);
 						string opid_ = string.Format(@"OP{0}ID", j);
 						string col_ = string.Format(@"Op {0}", j);
-						_partlist[partnum_][op_].Data = dgvr_.Cells[col_].Value;
-						_partlist[partnum_][opid_].Data = dgvr_.Cells[col_].Value;
+						(_partlist[partnum_] as SwProperties)[op_].Data = dgvr_.Cells[col_].Value;
+						(_partlist[partnum_] as SwProperties)[opid_].Data = dgvr_.Cells[col_].Value;
 						dgvr_.Cells[col_].Style.BackColor = Color.LightGreen;
-						_partlist[partnum_].Write();
+						(_partlist[partnum_] as SwProperties).Write();
 					}
 				}
 			}
@@ -1661,7 +1663,7 @@ namespace RedBrick2 {
 					dt_cc.UpdateCutlist(item_no_, ref_cbx.Text.Trim(), rev_cbx.Text.Trim(), descr_, custid_,
 						dateTimePicker1.Value, Properties.Settings.Default.DefaultState, Convert.ToInt32(uid), parts_);
 					(sender as Control).Enabled = false;
-					cancel_btn.Text = @"(づ｡◕‿‿◕｡)づ Close";
+					cancel_btn.Text = @"Close";
 					cancel_btn.BackColor = Color.Green;
 				}
 				Cursor = Cursors.Arrow;

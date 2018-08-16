@@ -1,6 +1,7 @@
 ﻿using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
@@ -49,13 +50,13 @@ namespace RedBrick2.DrawingCollector {
 			TopLevel = tii.Name;
 			infos.Add(tii.Name, tii);
 			listView1.Items.Add(tii.Node);
-			foreach (var item in tr_.PartList) {
+			foreach (DictionaryEntry item in tr_.PartList) {
 				ItemInfo ii = new ItemInfo {
-					PropertySet = item.Value,
+					PropertySet = item.Value as SwProperties,
 					CloseSldDrw = true,
 					DeletePdf = true
 				};
-				infos.Add(item.Key, ii);
+				infos.Add(item.Key.ToString(), ii);
 				listView1.Items.Add(ii.Node);
 			}
 			listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
