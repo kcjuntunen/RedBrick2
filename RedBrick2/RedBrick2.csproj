@@ -445,6 +445,9 @@
     <EmbeddedResource Include="RedbrickConfiguration.resx">
       <DependentUpon>RedbrickConfiguration.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RelatedCutlistReport\RelatedCutlistReport.resx">
+      <DependentUpon>RelatedCutlistReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RenameCutlist.resx">
       <DependentUpon>RenameCutlist.cs</DependentUpon>
     </EmbeddedResource>
