@@ -1724,7 +1724,6 @@ namespace RedBrick2 {
 			upload_btn.Enabled = true;
 			getdatafromDBbtn.Enabled = true;
 			update_prts_btn.Enabled = true;
-			rel_cutlist_btn.Enabled = true;
 		}
 
 		private void config_cbx_SelectedIndexChanged(object sender, EventArgs e) {
@@ -1771,9 +1770,11 @@ namespace RedBrick2 {
 		}
 
 		private void button1_Click_1(object sender, EventArgs e) {
+			Component2 comp_ = _config.GetRootComponent3(true);
+
 			if (tr.PartHash.Count < 1) {
 				Traverser t_ = new Traverser(_swApp, true);
-				t_.TraverseComponent((Component2)_config.GetRootComponent3(true), 1);
+				t_.TraverseComponent(comp_, 1);
 				using (RelatedCutlistReportt scr_ = new RelatedCutlistReportt(t_.PartHash)) {
 					scr_.ShowDialog(this);
 				}

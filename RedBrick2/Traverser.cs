@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
+using System;
 
 namespace RedBrick2 {
 	class Traverser {
@@ -45,6 +46,12 @@ namespace RedBrick2 {
 			}
 
 			vChildComp = (object[])swComp.GetChildren();
+
+			if (vChildComp == null) {
+				GetPart(swComp);
+				return;
+			}
+
 			if (nLevel == 1) {
 				pb.Start(0, vChildComp.Length, @"Enumerating parts...");
 			}
@@ -96,6 +103,17 @@ namespace RedBrick2 {
 				TraverseComponent(swChildComp, nLevel + 1);
 			}
 			pb.End();
+		}
+
+		private void GetPart(Component2 swComp) {
+			ModelDoc2 md_ = swComp.GetModelDoc2();
+			string name_ = Redbrick.FileInfoToLookup(new FileInfo(md_.GetPathName()));
+			SwProperties p_ = new SwProperties(_swApp, md_);
+			p_.Configuration = swComp.ComponentReference;
+			p_.GetProperties(swComp);
+			PartList.Add(name_, p_);
+			Dict.Add(name_, 1);
+			PartHash.Add(name_);
 		}
 	}
 }
