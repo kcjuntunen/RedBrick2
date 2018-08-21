@@ -6,7 +6,15 @@ using System;
 namespace RedBrick2.RelatedCutlistReport.ExistingCutlistReportDataSetTableAdapters {
 	public partial class CUT_CUTLISTSTableAdapter {
 		private string GetQuery(HashSet<string> items) {
-			string query_ = @"SELECT * FROM CUT_CUTLISTS ";
+			string query_ = @"SELECT CUT_CUTLISTS.CLID, CUT_CUTLISTS.PARTNUM, CUT_CUTLISTS.REV, CUT_CUTLISTS.DRAWING,
+CUT_CUTLISTS.CUSTID, CUT_CUTLISTS.CDATE, CUT_CUTLISTS.DESCR,
+(USER_SETUP_BY.FIRST + ' ' + USER_SETUP_BY.LAST + ' ' + ISNULL(USER_SETUP_BY.SUFFIX, '')) AS SETUP_BY,
+(USER_STATE_BY.FIRST + ' ' + USER_STATE_BY.LAST + ' ' + ISNULL(USER_STATE_BY.SUFFIX, '')) AS STATE_BY,
+CUT_STATES.STATE
+FROM
+((CUT_CUTLISTS INNER JOIN GEN_USERS AS USER_SETUP_BY ON CUT_CUTLISTS.SETUP_BY = USER_SETUP_BY.UID)
+INNER JOIN GEN_USERS AS USER_STATE_BY ON CUT_CUTLISTS.STATE_BY = USER_STATE_BY.UID)
+INNER JOIN CUT_STATES ON CUT_CUTLISTS.STATEID = CUT_STATES.ID ";
 			StringBuilder criteria_ = new StringBuilder();
 			criteria_.Append(@"WHERE ");
 			HashSet<string>.Enumerator e_ = items.GetEnumerator();
@@ -44,7 +52,10 @@ namespace RedBrick2.RelatedCutlistReport.ExistingCutlistReportDataSetTableAdapte
 						string dt_ = !rdr_.IsDBNull(5) ? 
 							string.Format(@"{0:yyyy-MM-dd ddd HH:mm:ss}", rdr_.GetDateTime(5))
 							: @"NULL";
-						result.Add(new string[] { item_, rev_, descr_, dt_ });
+						string setup_by = !rdr_.IsDBNull(7) ? Redbrick.TitleCase(rdr_.GetString(7)).Trim() : @"NULL";
+						string state_by = !rdr_.IsDBNull(8) ? Redbrick.TitleCase(rdr_.GetString(8)).Trim() : @"NULL";
+						string state = !rdr_.IsDBNull(9) ? Redbrick.TitleCase(rdr_.GetString(9)) : @"NULL";
+						result.Add(new string[] { item_, rev_, descr_, dt_, setup_by, state_by, state });
 					}
 				}
 			} catch (Exception) {
