@@ -306,5 +306,13 @@ namespace RedBrick2.DrawingCollector {
 				}
 			}
 		}
+
+		private void select_only_assemblies_btn_Click(object sender, EventArgs e) {
+			foreach (ListViewItem item in listView1.Items) {
+				string type_ = item.SubItems[1].Text.ToUpper().Trim();
+				bool exists_ = infos[item.Text].SldDrw.Exists;
+				item.Checked = exists_ && type_ == @"ASSEMBLY";
+			}
+		}
 	}
 }

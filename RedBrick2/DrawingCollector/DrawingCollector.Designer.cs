@@ -59,6 +59,7 @@
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
+			this.select_only_assemblies_btn = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -350,6 +351,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tableLayoutPanel1.SetColumnSpan(this.panel1, 2);
+			this.panel1.Controls.Add(this.select_only_assemblies_btn);
 			this.panel1.Controls.Add(this.deselect_raw_parts_btn);
 			this.panel1.Controls.Add(this.select_only_cbx);
 			this.panel1.Controls.Add(this.select_only_btn);
@@ -453,6 +455,16 @@
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
 			// 
+			// select_only_assemblies_btn
+			// 
+			this.select_only_assemblies_btn.Location = new System.Drawing.Point(4, 34);
+			this.select_only_assemblies_btn.Name = "select_only_assemblies_btn";
+			this.select_only_assemblies_btn.Size = new System.Drawing.Size(146, 23);
+			this.select_only_assemblies_btn.TabIndex = 5;
+			this.select_only_assemblies_btn.Text = "Select Only Assemblies";
+			this.select_only_assemblies_btn.UseVisualStyleBackColor = true;
+			this.select_only_assemblies_btn.Click += new System.EventHandler(this.select_only_assemblies_btn_Click);
+			// 
 			// DrawingCollector
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -523,5 +535,6 @@
 		private System.Windows.Forms.BindingSource cUTPARTTYPESBindingSource;
 		private ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CUT_PART_TYPESTableAdapter cUT_PART_TYPESTableAdapter;
 		private System.Windows.Forms.Button deselect_raw_parts_btn;
+		private System.Windows.Forms.Button select_only_assemblies_btn;
 	}
 }
