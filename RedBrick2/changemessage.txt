@@ -1,6 +1,5 @@
 
-1) Moved top buttons to their own panel.
-2) Dimension suggestions come from the available dimensions in a model, rather than a static list.
-3) Added the Drawing Collector to the RedBrick Toolbox (THE OLD ONE IS NOW DEPRECATED!)
-4) Fixed a bug in the ECR viewer that caused it to crash if an ECR affected multiple revs of the same item.
-5) When adding a new LVL, the "Description" field will now be pre-filled with whatever you typed in there last during the current session.
+1) Preserve Feature Tree order in "Create Cutlist" window, and Drawing Collector window.
+2) Made the "Related Cutlists" button clickable before scanning in "Create Cutlist" window.
+3) Added columns to the "Related Cutlist" report.
+4) Added a "Select Only Assemblies" button to the "Drawing Collector".

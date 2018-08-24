@@ -88,7 +88,7 @@
       <HintPath>..\packages\HtmlAgilityPack.1.8.0\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp">
-      <HintPath>bin\x64\Debug\itextsharp.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\RedBrick\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Machine Priority Control, Version=1.0.6697.10126, Culture=neutral, PublicKeyToken=3dbf4f27f46e74d2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
