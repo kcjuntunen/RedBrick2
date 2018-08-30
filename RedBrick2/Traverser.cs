@@ -77,7 +77,7 @@ namespace RedBrick2 {
 							PartList.Add(name, s);
 						} else {
 							Dict[name] = Dict[name] + 1;
-							(PartList[name] as SwProperties)[@"BLANK QTY"].Data = Dict[name];
+							(PartList[name] as SwProperties).CutlistQty = Dict[name];
 						}
 					}
 				}
@@ -93,7 +93,7 @@ namespace RedBrick2 {
 						PartList.Add(name, s);
 					} else {
 						Dict[name] = Dict[name] + 1;
-						(PartList[name] as SwProperties)[@"BLANK QTY"].Data = Dict[name];
+						(PartList[name] as SwProperties).CutlistQty = Dict[name];
 					}
 					if (nLevel == 1) {
 						pb.UpdateProgress(++pos);
