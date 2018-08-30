@@ -1,5 +1,3 @@
 
-1) Preserve Feature Tree order in "Create Cutlist" window, and Drawing Collector window.
-2) Made the "Related Cutlists" button clickable before scanning in "Create Cutlist" window.
-3) Added columns to the "Related Cutlist" report.
-4) Added a "Select Only Assemblies" button to the "Drawing Collector".
+1) Fixed a bug that caused Parts/Blank value to be set instead of Cutlist Qty.
+
