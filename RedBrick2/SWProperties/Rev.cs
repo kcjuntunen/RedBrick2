@@ -175,6 +175,7 @@ namespace RedBrick2 {
 			eco.Delete();
 			description.Delete();
 			author.Delete();
+			authorUID.Delete();
 			date.Delete();
 		}
 
