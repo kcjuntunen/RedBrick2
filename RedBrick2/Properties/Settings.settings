@@ -345,5 +345,8 @@
     <Setting Name="DrawingCollectorSplitterDistance" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">282</Value>
     </Setting>
+    <Setting Name="DrawingCollectorLastSaveLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -151,6 +151,11 @@ namespace RedBrick2.DrawingCollector {
 					checkBox3.Checked = infos[item.Text].Pdf.Exists;
 					FileInfo sldDrw_ = new FileInfo(item.SubItems[5].Text);
 					infos[item.SubItems[0].Text].Pdf = CreateDwg(sldDrw_);
+					if (infos[item.Text].CloseSldDrw) {
+						toolStripStatusLabel1.Text = @"Closing";
+						toolStripStatusLabel2.Text = infos[item.Text].SldDrw.Name;
+						SwApp.CloseDoc(infos[item.Text].SldDrw.FullName);
+					}
 				}
 			}
 		}
@@ -182,11 +187,6 @@ namespace RedBrick2.DrawingCollector {
 
 		private void DeletePDFs() {
 			foreach (KeyValuePair<string, ItemInfo> item in infos) {
-				//if (item.Value.CloseSldDrw) {
-				//	toolStripStatusLabel1.Text = @"Closing";
-				//	toolStripStatusLabel2.Text = item.Value.SldDrw.Name;
-				//	SwApp.CloseDoc(item.Value.SldDrw.FullName);
-				//}
 				toolStripProgressBar1.PerformStep();
 				if (item.Value.DeletePdf) {
 					if (!item.Value.Pdf.Name.Contains(Properties.Settings.Default.DrawingCollectorSuffix)
@@ -227,14 +227,35 @@ namespace RedBrick2.DrawingCollector {
 			var stopWatch = System.Diagnostics.Stopwatch.StartNew();
 			CreateDrawings();
 			string tmpFile = Path.GetTempFileName().Replace(".tmp", ".PDF");
-			string fileName = string.Format(@"{0}\{1}{2}.PDF",
-				Here,
+
+			string fileName = string.Format(@"{0}{1}.PDF",
 				TopLevel,
 				suffixTbx.Text.Trim());
+
 			toolStripStatusLabel1.Text = @"Merging PDFs...";
 			toolStripStatusLabel2.Text = string.Empty;
 			PDFMerger pm_ = new PDFMerger(infos, new FileInfo(tmpFile));
 			pm_.Merge();
+
+			stopWatch.Stop();
+
+			SaveFileDialog saveFileDialog = new SaveFileDialog();
+			saveFileDialog.FileName = fileName;
+			saveFileDialog.InitialDirectory = Properties.Settings.Default.DrawingCollectorLastSaveLocation;
+
+			if (saveFileDialog.ShowDialog(this) != DialogResult.OK) {
+				toolStripStatusLabel1.Text = @"Deleting PDFs...";
+				toolStripStatusLabel2.Text = string.Empty;
+				DeletePDFs();
+				toolStripStatusLabel1.Text = @"Aborted saving.";
+				toolStripStatusLabel2.Text = string.Format(@"You wasted {0} seconds", stopWatch.Elapsed.TotalSeconds);
+				toolStripProgressBar1.Value = toolStripProgressBar1.Maximum;
+				return;
+			}
+
+			fileName = saveFileDialog.FileName;
+			Properties.Settings.Default.DrawingCollectorLastSaveLocation = Path.GetDirectoryName(saveFileDialog.FileName);
+			Properties.Settings.Default.Save();
 
 			try {
 				File.Copy(tmpFile, fileName, true);
@@ -274,7 +295,6 @@ namespace RedBrick2.DrawingCollector {
 			toolStripStatusLabel2.Text = string.Empty;
 			DeletePDFs();
 			//PDFMerger.delete_pdfs(pm_.PDFCollection);
-			stopWatch.Stop();
 			toolStripStatusLabel1.Text = @"Saved";
 			toolStripStatusLabel2.Text = string.Format(@"{0} in {1} seconds", fileName, stopWatch.Elapsed.TotalSeconds);
 			toolStripProgressBar1.Value = toolStripProgressBar1.Maximum;

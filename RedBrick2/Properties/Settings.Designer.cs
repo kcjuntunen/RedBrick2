@@ -1227,5 +1227,17 @@ namespace RedBrick2.Properties {
                 this["DrawingCollectorSplitterDistance"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\")]
+        public string DrawingCollectorLastSaveLocation {
+            get {
+                return ((string)(this["DrawingCollectorLastSaveLocation"]));
+            }
+            set {
+                this["DrawingCollectorLastSaveLocation"] = value;
+            }
+        }
     }
 }
