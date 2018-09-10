@@ -32,6 +32,7 @@ namespace RedBrick2 {
 		private string req_info_ = string.Empty;
 		private DrawingDoc dd_ = null;
 		private AutoCompleteStringCollection Specs = new AutoCompleteStringCollection();
+		private bool newDrawing = false;
 
 		/// <summary>
 		/// Constructor.
@@ -219,6 +220,7 @@ namespace RedBrick2 {
 					groupBox5.Text = projectDescr != string.Empty ? string.Format(@"{0} - {1}", partLookup, projectDescr) : partLookup;
 				} else {
 					groupBox5.Text = @"New Drawing";
+					newDrawing = true;
 					dd_ = ActiveDoc as DrawingDoc;
 					dd_.FileSavePostNotify += dd__FileSavePostNotify;
 					dd_.FileSaveAsNotify2 += Dd__FileSaveAsNotify2;
@@ -354,6 +356,18 @@ namespace RedBrick2 {
 			SwProperty afip_ = new AuthorUIDProperty(@"AuthorUID", true, SwApp, ActiveDoc);
 			PropertySet.Add(ap_.Get());
 			PropertySet.Add(afip_.Get());
+
+			if (newDrawing) {
+				using (ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu =
+					new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
+					int? uid = gu.GetUID(System.Environment.UserName);
+					if (uid > 0) {
+						auth_cpx.SelectedValue = uid;
+					}
+				}
+				return;
+			}
+
 			if (afip_.Value != null && afip_.Value != string.Empty) {
 				if (Properties.Settings.Default.OnlyActiveAuthors) {
 					gENUSERSBindingSource.Filter = string.Format(@"(ACTIVE = True AND DEPT = 6) OR UID = {0}", afip_.Data);
@@ -368,16 +382,9 @@ namespace RedBrick2 {
 					gENUSERSBindingSource.Filter = @"DEPT = 6";
 				}
 				auth_cpx.SelectedValue = (int)ap_.Data;
-			} else {
-				using (ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu =
-					new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
-					int? uid = gu.GetUID(System.Environment.UserName);
-					if (uid > 0) {
-						auth_cpx.SelectedValue = uid;
-					}
-				}
 			}
 		}
+
 
 		private void FigureOutRev() {
 			using (ENGINEERINGDataSetTableAdapters.RevListTableAdapter rl =
@@ -399,6 +406,11 @@ namespace RedBrick2 {
 		private void FigureOutDate() {
 			DateProperty _p = new DateProperty(@"DATE", true, SwApp, ActiveDoc);
 			PropertySet.Add(_p.Get());
+
+			if (newDrawing) {
+				return;
+			}
+
 			dateTimePicker1.Value = (DateTime)_p.Data;
 		}
 
