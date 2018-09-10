@@ -46,10 +46,13 @@
 			this.suffixTbx = new System.Windows.Forms.TextBox();
 			this.go_btn = new System.Windows.Forms.Button();
 			this.close_btn = new System.Windows.Forms.Button();
+			this.button1 = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.select_only_assemblies_btn = new System.Windows.Forms.Button();
 			this.deselect_raw_parts_btn = new System.Windows.Forms.Button();
 			this.select_only_cbx = new System.Windows.Forms.ComboBox();
+			this.cUTPARTTYPESBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.manageCutlistTimeDataSet = new RedBrick2.ManageCutlistTime.ManageCutlistTimeDataSet();
 			this.select_only_btn = new System.Windows.Forms.Button();
 			this.select_none_btn = new System.Windows.Forms.Button();
 			this.select_all_btn = new System.Windows.Forms.Button();
@@ -57,10 +60,9 @@
 			this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-			this.button1 = new System.Windows.Forms.Button();
-			this.cUTPARTTYPESBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.manageCutlistTimeDataSet = new RedBrick2.ManageCutlistTime.ManageCutlistTimeDataSet();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
+			this.label6 = new System.Windows.Forms.Label();
+			this.config_cbx = new System.Windows.Forms.ComboBox();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -68,9 +70,9 @@
 			this.tableLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
 			this.panel1.SuspendLayout();
-			this.statusStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.cUTPARTTYPESBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.manageCutlistTimeDataSet)).BeginInit();
+			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// splitContainer1
@@ -129,23 +131,27 @@
 			this.tableLayoutPanel1.ColumnCount = 2;
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85F));
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-			this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-			this.tableLayoutPanel1.Controls.Add(this.textBox1, 0, 1);
-			this.tableLayoutPanel1.Controls.Add(this.label2, 0, 2);
-			this.tableLayoutPanel1.Controls.Add(this.textBox2, 0, 3);
-			this.tableLayoutPanel1.Controls.Add(this.label3, 0, 4);
-			this.tableLayoutPanel1.Controls.Add(this.textBox3, 0, 5);
-			this.tableLayoutPanel1.Controls.Add(this.label4, 0, 6);
-			this.tableLayoutPanel1.Controls.Add(this.textBox4, 0, 7);
-			this.tableLayoutPanel1.Controls.Add(this.checkBox1, 1, 3);
-			this.tableLayoutPanel1.Controls.Add(this.checkBox2, 1, 5);
-			this.tableLayoutPanel1.Controls.Add(this.checkBox3, 1, 7);
-			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 11);
-			this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 8);
+			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 12);
+			this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 10);
+			this.tableLayoutPanel1.Controls.Add(this.textBox4, 0, 9);
+			this.tableLayoutPanel1.Controls.Add(this.checkBox3, 1, 9);
+			this.tableLayoutPanel1.Controls.Add(this.label4, 0, 8);
+			this.tableLayoutPanel1.Controls.Add(this.textBox3, 0, 7);
+			this.tableLayoutPanel1.Controls.Add(this.checkBox2, 1, 7);
+			this.tableLayoutPanel1.Controls.Add(this.label3, 0, 6);
+			this.tableLayoutPanel1.Controls.Add(this.textBox2, 0, 5);
+			this.tableLayoutPanel1.Controls.Add(this.checkBox1, 1, 5);
+			this.tableLayoutPanel1.Controls.Add(this.label2, 0, 4);
+			this.tableLayoutPanel1.Controls.Add(this.textBox1, 0, 3);
+			this.tableLayoutPanel1.Controls.Add(this.label1, 0, 2);
+			this.tableLayoutPanel1.Controls.Add(this.label6, 0, 0);
+			this.tableLayoutPanel1.Controls.Add(this.config_cbx, 0, 1);
 			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-			this.tableLayoutPanel1.RowCount = 11;
+			this.tableLayoutPanel1.RowCount = 13;
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -157,14 +163,14 @@
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanel1.Size = new System.Drawing.Size(506, 545);
 			this.tableLayoutPanel1.TabIndex = 0;
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(3, 0);
+			this.label1.Location = new System.Drawing.Point(3, 40);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(66, 13);
 			this.label1.TabIndex = 0;
@@ -175,7 +181,7 @@
 			// 
 			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox1.Location = new System.Drawing.Point(3, 16);
+			this.textBox1.Location = new System.Drawing.Point(3, 56);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(424, 22);
 			this.textBox1.TabIndex = 4;
@@ -183,7 +189,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(3, 41);
+			this.label2.Location = new System.Drawing.Point(3, 81);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(60, 13);
 			this.label2.TabIndex = 1;
@@ -194,7 +200,7 @@
 			// 
 			this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox2.Location = new System.Drawing.Point(3, 57);
+			this.textBox2.Location = new System.Drawing.Point(3, 97);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(424, 22);
 			this.textBox2.TabIndex = 5;
@@ -202,7 +208,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(3, 82);
+			this.label3.Location = new System.Drawing.Point(3, 122);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(51, 13);
 			this.label3.TabIndex = 2;
@@ -213,7 +219,7 @@
 			// 
 			this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox3.Location = new System.Drawing.Point(3, 98);
+			this.textBox3.Location = new System.Drawing.Point(3, 138);
 			this.textBox3.Name = "textBox3";
 			this.textBox3.Size = new System.Drawing.Size(424, 22);
 			this.textBox3.TabIndex = 6;
@@ -221,7 +227,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(3, 123);
+			this.label4.Location = new System.Drawing.Point(3, 163);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(27, 13);
 			this.label4.TabIndex = 3;
@@ -233,7 +239,7 @@
 			// 
 			this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBox4.Location = new System.Drawing.Point(3, 139);
+			this.textBox4.Location = new System.Drawing.Point(3, 179);
 			this.textBox4.Name = "textBox4";
 			this.textBox4.Size = new System.Drawing.Size(424, 22);
 			this.textBox4.TabIndex = 7;
@@ -245,7 +251,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkBox1.AutoSize = true;
-			this.checkBox1.Location = new System.Drawing.Point(433, 57);
+			this.checkBox1.Location = new System.Drawing.Point(433, 97);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(70, 22);
 			this.checkBox1.TabIndex = 8;
@@ -259,7 +265,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkBox2.AutoSize = true;
-			this.checkBox2.Location = new System.Drawing.Point(433, 98);
+			this.checkBox2.Location = new System.Drawing.Point(433, 138);
 			this.checkBox2.Name = "checkBox2";
 			this.checkBox2.Size = new System.Drawing.Size(70, 22);
 			this.checkBox2.TabIndex = 9;
@@ -273,7 +279,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkBox3.AutoSize = true;
-			this.checkBox3.Location = new System.Drawing.Point(433, 139);
+			this.checkBox3.Location = new System.Drawing.Point(433, 179);
 			this.checkBox3.Name = "checkBox3";
 			this.checkBox3.Size = new System.Drawing.Size(70, 22);
 			this.checkBox3.TabIndex = 10;
@@ -347,6 +353,16 @@
 			this.close_btn.UseVisualStyleBackColor = true;
 			this.close_btn.Click += new System.EventHandler(this.close_btn_Click);
 			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(3, 78);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(75, 23);
+			this.button1.TabIndex = 4;
+			this.button1.Text = "DXF Out";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
 			// panel1
 			// 
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -360,7 +376,7 @@
 			this.panel1.Controls.Add(this.select_only_btn);
 			this.panel1.Controls.Add(this.select_none_btn);
 			this.panel1.Controls.Add(this.select_all_btn);
-			this.panel1.Location = new System.Drawing.Point(3, 167);
+			this.panel1.Location = new System.Drawing.Point(3, 207);
 			this.panel1.Name = "panel1";
 			this.tableLayoutPanel1.SetRowSpan(this.panel1, 3);
 			this.panel1.Size = new System.Drawing.Size(500, 114);
@@ -396,6 +412,16 @@
 			this.select_only_cbx.Size = new System.Drawing.Size(230, 21);
 			this.select_only_cbx.TabIndex = 3;
 			this.select_only_cbx.ValueMember = "TYPEID";
+			// 
+			// cUTPARTTYPESBindingSource
+			// 
+			this.cUTPARTTYPESBindingSource.DataMember = "CUT_PART_TYPES";
+			this.cUTPARTTYPESBindingSource.DataSource = this.manageCutlistTimeDataSet;
+			// 
+			// manageCutlistTimeDataSet
+			// 
+			this.manageCutlistTimeDataSet.DataSetName = "ManageCutlistTimeDataSet";
+			this.manageCutlistTimeDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
 			// 
 			// select_only_btn
 			// 
@@ -454,29 +480,29 @@
 			this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
 			this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 17);
 			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(3, 78);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 23);
-			this.button1.TabIndex = 4;
-			this.button1.Text = "DXF Out";
-			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
-			// 
-			// cUTPARTTYPESBindingSource
-			// 
-			this.cUTPARTTYPESBindingSource.DataMember = "CUT_PART_TYPES";
-			this.cUTPARTTYPESBindingSource.DataSource = this.manageCutlistTimeDataSet;
-			// 
-			// manageCutlistTimeDataSet
-			// 
-			this.manageCutlistTimeDataSet.DataSetName = "ManageCutlistTimeDataSet";
-			this.manageCutlistTimeDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-			// 
 			// cUT_PART_TYPESTableAdapter
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Location = new System.Drawing.Point(3, 0);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(80, 13);
+			this.label6.TabIndex = 13;
+			this.label6.Text = "Configuration";
+			// 
+			// config_cbx
+			// 
+			this.config_cbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.config_cbx.FormattingEnabled = true;
+			this.config_cbx.Location = new System.Drawing.Point(3, 16);
+			this.config_cbx.Name = "config_cbx";
+			this.config_cbx.Size = new System.Drawing.Size(424, 21);
+			this.config_cbx.TabIndex = 14;
+			this.config_cbx.SelectedIndexChanged += new System.EventHandler(this.config_cbx_SelectedIndexChanged);
 			// 
 			// DrawingCollector
 			// 
@@ -502,10 +528,10 @@
 			this.tableLayoutPanel2.ResumeLayout(false);
 			this.tableLayoutPanel2.PerformLayout();
 			this.panel1.ResumeLayout(false);
-			this.statusStrip1.ResumeLayout(false);
-			this.statusStrip1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.cUTPARTTYPESBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.manageCutlistTimeDataSet)).EndInit();
+			this.statusStrip1.ResumeLayout(false);
+			this.statusStrip1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -550,5 +576,7 @@
 		private System.Windows.Forms.Button deselect_raw_parts_btn;
 		private System.Windows.Forms.Button select_only_assemblies_btn;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.ComboBox config_cbx;
 	}
 }

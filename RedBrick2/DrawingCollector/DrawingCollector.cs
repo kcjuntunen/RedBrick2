@@ -8,11 +8,15 @@ using System.Windows.Forms;
 
 namespace RedBrick2.DrawingCollector {
 	public partial class DrawingCollector : Form {
+		private ItemInfo rootItem = new ItemInfo();
+		private ModelDoc2 rootDoc;
+		Traverser traverser;
 		private string TopLevel = string.Empty;
 		private string Here;
 
 		public DrawingCollector(SldWorks sldWorks) {
 			SwApp = sldWorks;
+			traverser = new Traverser(SwApp);
 			Here = Path.GetDirectoryName((SwApp.ActiveDoc as ModelDoc2).GetPathName());
 			InitializeComponent();
 			listView1.FullRowSelect = true;
@@ -24,32 +28,40 @@ namespace RedBrick2.DrawingCollector {
 		}
 
 		private void FindDrawings() {
-			Traverser tr_ = new Traverser(SwApp, true);
-			ModelDoc2 md_ = SwApp.ActiveDoc as ModelDoc2;
-			FileInfo tlfi = new FileInfo(md_.GetPathName());
+			rootDoc = SwApp.ActiveDoc as ModelDoc2;
+			FileInfo tlfi = new FileInfo(rootDoc.GetPathName());
 
-			ItemInfo tii = new ItemInfo {
+			rootItem = new ItemInfo {
 				Name = Redbrick.FileInfoToLookup(tlfi),
 				SldDrw = new FileInfo(tlfi.FullName.Replace(tlfi.Extension, @".SLDDRW")),
 				CloseSldDrw = false,
 				DeletePdf = true
 			};
 
-			if (md_ is DrawingDoc) {
+			if (rootDoc is DrawingDoc) {
 				SolidWorks.Interop.sldworks.View v_ = Redbrick.GetFirstView(SwApp);
-				md_ = v_.ReferencedDocument;
+				rootDoc = v_.ReferencedDocument;
 			}
 
-			Configuration c_ = md_.GetActiveConfiguration();
-			tr_.TraverseComponent(c_.GetRootComponent3(true), 1);
+			Configuration c_ = rootDoc.GetActiveConfiguration();
+			traverser.TraverseComponent(c_.GetRootComponent3(true), 1);
 
-			SwProperties s = new SwProperties(SwApp, md_);
+			config_cbx.Items.AddRange(rootDoc.GetConfigurationNames());
+			config_cbx.SelectedItem = c_.Name;
+			PopulateListViewAndItemInfo(c_, traverser);
+		}
+
+		private void PopulateListViewAndItemInfo(Configuration c_, Traverser tr_) {
+			listView1.Items.Clear();
+			infos.Clear();
+			SwProperties s = new SwProperties(SwApp, rootDoc);
 			s.GetProperties(c_.GetRootComponent3(true));
-			tii.PropertySet = s;
+			rootItem.PropertySet = s;
 
-			TopLevel = tii.Name;
-			infos.Add(tii.Name, tii);
-			listView1.Items.Add(tii.Node);
+			TopLevel = rootItem.Name;
+			infos.Add(rootItem.Name, rootItem);
+
+			listView1.Items.Add(rootItem.Node);
 			foreach (DictionaryEntry item in tr_.PartList) {
 				ItemInfo ii = new ItemInfo {
 					PropertySet = item.Value as SwProperties,
@@ -415,6 +427,20 @@ namespace RedBrick2.DrawingCollector {
 			toolStripStatusLabel1.Text = string.Empty;
 			toolStripStatusLabel2.Text = string.Format(@"Saved a bunch of DXFs in {0} seconds", stopWatch.Elapsed.TotalSeconds);
 			toolStripProgressBar1.Value = toolStripProgressBar1.Maximum;
+		}
+
+		private void config_cbx_SelectedIndexChanged(object sender, EventArgs e) {
+			ComboBox cbx_ = sender as ComboBox;
+			if (cbx_.SelectedItem == null) {
+				return;
+			}
+			Configuration c_ = rootDoc.GetConfigurationByName(cbx_.SelectedItem.ToString());
+			if (c_ == null) {
+				return;
+			}
+			traverser = new Traverser(SwApp);
+			traverser.TraverseComponent(c_.GetRootComponent3(true), 1);
+			PopulateListViewAndItemInfo(c_, traverser);
 		}
 	}
 }
