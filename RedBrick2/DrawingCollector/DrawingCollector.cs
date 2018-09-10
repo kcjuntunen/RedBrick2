@@ -73,8 +73,7 @@ namespace RedBrick2.DrawingCollector {
 			int saveVersion = (int)swSaveAsVersion_e.swSaveAsCurrentVersion;
 			int saveOptions = (int)swSaveAsOptions_e.swSaveAsOptions_Silent;
 			bool success;
-			//OnAppend(new AppendEventArgs(string.Format("Creating {0}...",
-			//	p.Name.Replace(@".SLDDRW", targetExt))));
+
 			toolStripStatusLabel1.Text = @"Opening";
 			toolStripStatusLabel2.Text = p.FullName;
 			SwApp.OpenDocSilent(p.FullName, dt, ref odo);
@@ -90,13 +89,36 @@ namespace RedBrick2.DrawingCollector {
 			SwApp.SetUserPreferenceToggle((int)swUserPreferenceToggle_e.swPDFExportIncludeLayersNotToPrint, layerPrint);
 			toolStripProgressBar1.PerformStep();
 
-			//string name = p.Name.Replace(p.Extension, string.Empty);
-			//if (infos[name].CloseSldDrw) {
-			//	toolStripStatusLabel1.Text = @"Closing";
-			//	toolStripStatusLabel2.Text = fileName;
-			//	SwApp.CloseDoc(p.Name.Replace(p.Extension, string.Empty));
-			//}
-			//toolStripProgressBar1.PerformStep();
+			return new FileInfo(tmpFile);
+		}
+
+		private FileInfo CreateDXF(FileInfo p) {
+			int dt = (int)swDocumentTypes_e.swDocDRAWING;
+			int odo = (int)swOpenDocOptions_e.swOpenDocOptions_Silent;
+			int err = 0;
+			int warn = 0;
+			string newName = p.Name.Replace(p.Extension, @".DXF");
+			string tmpFile = string.Format(@"{0}\{1}", Path.GetTempPath(), newName);
+			string fileName = p.FullName.Replace(p.Extension, @".DXF");
+			int saveVersion = (int)swSaveAsVersion_e.swSaveAsCurrentVersion;
+			int saveOptions = (int)swSaveAsOptions_e.swSaveAsOptions_Silent;
+			bool success;
+
+			toolStripStatusLabel1.Text = @"Opening";
+			toolStripStatusLabel2.Text = p.FullName;
+			SwApp.OpenDocSilent(p.FullName, dt, ref odo);
+			SwApp.ActivateDoc3(p.FullName,
+				true, (int)swRebuildOnActivation_e.swDontRebuildActiveDoc, ref err);
+			toolStripProgressBar1.PerformStep();
+
+			toolStripStatusLabel1.Text = @"Saving";
+			toolStripStatusLabel2.Text = tmpFile;
+
+			bool layerPrint = SwApp.GetUserPreferenceToggle((int)swUserPreferenceToggle_e.swPDFExportIncludeLayersNotToPrint);
+			SwApp.SetUserPreferenceToggle((int)swUserPreferenceToggle_e.swPDFExportIncludeLayersNotToPrint, true);
+			success = (SwApp.ActiveDoc as ModelDoc2).SaveAs4(tmpFile, saveVersion, saveOptions, ref err, ref warn); 
+			SwApp.SetUserPreferenceToggle((int)swUserPreferenceToggle_e.swPDFExportIncludeLayersNotToPrint, layerPrint);
+			toolStripProgressBar1.PerformStep();
 
 			return new FileInfo(tmpFile);
 		}
@@ -121,13 +143,38 @@ namespace RedBrick2.DrawingCollector {
 			}
 		}
 
-		private void CloseSLDDRWsDeletePDFs() {
-			foreach (KeyValuePair<string, ItemInfo> item in infos) {
-				if (item.Value.CloseSldDrw) {
-					toolStripStatusLabel1.Text = @"Closing";
-					toolStripStatusLabel2.Text = item.Value.SldDrw.Name;
-					SwApp.CloseDoc(item.Value.SldDrw.FullName);
+		private void CreateDXFs() {
+			toolStripProgressBar1.Maximum = infos.Count * 3;
+			toolStripProgressBar1.Step = 1;
+			foreach (ListViewItem item in listView1.Items) {
+				string name = item.SubItems[0].Text;
+				if (item.Checked && infos[name].SldDrw.Exists) {
+					textBox1.Text = Redbrick.TitleCase(infos[item.Text].PropertySet[@"Description"].Data.ToString());
+					textBox2.Text = infos[item.Text].SldDoc.FullName;
+					textBox3.Text = infos[item.Text].SldDrw.FullName;
+					textBox4.Text = infos[item.Text].Pdf.FullName;
+
+					checkBox1.Checked = infos[item.Text].SldDoc.Exists;
+					checkBox2.Checked = infos[item.Text].SldDrw.Exists;
+					checkBox3.Checked = infos[item.Text].Pdf.Exists;
+					FileInfo sldDrw_ = new FileInfo(item.SubItems[5].Text);
+					infos[item.SubItems[0].Text].Pdf = CreateDXF(sldDrw_);
+					if (infos[item.Text].CloseSldDrw) {
+						toolStripStatusLabel1.Text = @"Closing";
+						toolStripStatusLabel2.Text = infos[item.Text].SldDrw.Name;
+						SwApp.CloseDoc(infos[item.Text].SldDrw.FullName);
+					}
 				}
+			}
+		}
+
+		private void DeletePDFs() {
+			foreach (KeyValuePair<string, ItemInfo> item in infos) {
+				//if (item.Value.CloseSldDrw) {
+				//	toolStripStatusLabel1.Text = @"Closing";
+				//	toolStripStatusLabel2.Text = item.Value.SldDrw.Name;
+				//	SwApp.CloseDoc(item.Value.SldDrw.FullName);
+				//}
 				toolStripProgressBar1.PerformStep();
 				if (item.Value.DeletePdf) {
 					if (!item.Value.Pdf.Name.Contains(Properties.Settings.Default.DrawingCollectorSuffix)
@@ -213,7 +260,7 @@ namespace RedBrick2.DrawingCollector {
 			//PDFMerger.deleting_file += PDFMerger_deleting_file;
 			toolStripStatusLabel1.Text = @"Deleting PDFs...";
 			toolStripStatusLabel2.Text = string.Empty;
-			CloseSLDDRWsDeletePDFs();
+			DeletePDFs();
 			//PDFMerger.delete_pdfs(pm_.PDFCollection);
 			stopWatch.Stop();
 			toolStripStatusLabel1.Text = @"Saved";
@@ -313,6 +360,61 @@ namespace RedBrick2.DrawingCollector {
 				bool exists_ = infos[item.Text].SldDrw.Exists;
 				item.Checked = exists_ && type_ == @"ASSEMBLY";
 			}
+		}
+
+		private void button1_Click(object sender, EventArgs e) {
+			var stopWatch = System.Diagnostics.Stopwatch.StartNew();
+			CreateDXFs();
+
+			FolderBrowserDialog fbd_ = new FolderBrowserDialog();
+			fbd_.RootFolder = System.Environment.SpecialFolder.Desktop;
+			fbd_.ShowDialog(this);
+
+			foreach (ListViewItem item in listView1.Items) {
+				string name = item.SubItems[0].Text;
+				if (item.Checked && infos[name].Pdf.Exists) {
+					string tmpFile = infos[name].Pdf.FullName;
+					string fileName = string.Format(@"{0}\{1}", fbd_.SelectedPath, infos[name].Pdf.Name);
+					try {
+						File.Copy(tmpFile, fileName, true);
+					} catch (UnauthorizedAccessException uae) {
+						throw new Exceptions.BuildPDFException(
+								String.Format("You don't have the reqired permission to access '{0}'.", fileName),
+								uae);
+					} catch (ArgumentException ae) {
+						throw new Exceptions.BuildPDFException(
+								String.Format("Either '{0}' or '{1}' is not a proper file name.", tmpFile, fileName),
+								ae);
+					} catch (PathTooLongException ptle) {
+						throw new Exceptions.BuildPDFException(
+								String.Format("Source='{0}'; Dest='{1}' <= One of these is too long.", tmpFile, fileName),
+								ptle);
+					} catch (DirectoryNotFoundException dnfe) {
+						throw new Exceptions.BuildPDFException(
+								String.Format("Source='{0}'; Dest='{1}' <= One of these is invalid.", tmpFile, fileName),
+								dnfe);
+					} catch (FileNotFoundException fnfe) {
+						throw new Exceptions.BuildPDFException(
+								String.Format("Crap! I lost '{0}'!", tmpFile),
+								fnfe);
+					} catch (IOException) {
+						MessageBox.Show(
+								String.Format("If you have the file, '{0}', selected in an Explorer window, " +
+								"you may have to close it.", fileName), "This file is open somewhere.",
+								MessageBoxButtons.OK,
+								MessageBoxIcon.Error);
+					} catch (NotSupportedException nse) {
+						throw new Exceptions.BuildPDFException(
+								String.Format("Source='{0}'; Dest='{1}' <= One of these is an invalid format.",
+								tmpFile, fileName), nse);
+					}
+				}
+			}
+			DeletePDFs();
+			stopWatch.Stop();
+			toolStripStatusLabel1.Text = string.Empty;
+			toolStripStatusLabel2.Text = string.Format(@"Saved a bunch of DXFs in {0} seconds", stopWatch.Elapsed.TotalSeconds);
+			toolStripProgressBar1.Value = toolStripProgressBar1.Maximum;
 		}
 	}
 }
