@@ -73,8 +73,8 @@
     <Setting Name="ExportPDF" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="ExportEDrw" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+    <Setting Name="ExportSTEP" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ExportImg" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>

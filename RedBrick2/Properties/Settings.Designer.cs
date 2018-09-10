@@ -266,13 +266,13 @@ namespace RedBrick2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool ExportEDrw {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ExportSTEP {
             get {
-                return ((bool)(this["ExportEDrw"]));
+                return ((bool)(this["ExportSTEP"]));
             }
             set {
-                this["ExportEDrw"] = value;
+                this["ExportSTEP"] = value;
             }
         }
         

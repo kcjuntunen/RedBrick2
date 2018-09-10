@@ -707,6 +707,7 @@ namespace RedBrick2 {
 			ps.SilenceGaugeErrors = Properties.Settings.Default.SilenceGaugeErrors;
 			ps.ExportPDF = Properties.Settings.Default.ExportPDF;
 			ps.ExportEDrw = true;
+			ps.ExportSTEP = Properties.Settings.Default.ExportSTEP;
 			ps.ExportImg = Properties.Settings.Default.ExportImg;
 			ps.WriteToDb = true;
 			ps.Initialated = true;

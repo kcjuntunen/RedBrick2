@@ -218,7 +218,7 @@ namespace RedBrick2 {
 			new ToolTip().SetToolTip(checkBox3, @"Save before archiving.");
 			checkBox4.Checked = Properties.Settings.Default.SilenceGaugeErrors;
 			new ToolTip().SetToolTip(checkBox4, @"Ignore gauge discrepancies.");
-			checkBox5.Checked = Properties.Settings.Default.ExportEDrw;
+			checkBox5.Checked = Properties.Settings.Default.ExportSTEP;
 			checkBox6.Checked = Properties.Settings.Default.ExportImg;
 			readonly_warn_cb.Checked = Properties.Settings.Default.ReadOnlyWarn;
 			new ToolTip().SetToolTip(readonly_warn_cb, @"Read only parts can't be saved.");
@@ -509,7 +509,7 @@ namespace RedBrick2 {
 
 		private void checkBox5_CheckedChanged(object sender, EventArgs e) {
 			if (initialated) {
-				Properties.Settings.Default.ExportEDrw = checkBox5.Checked;
+				Properties.Settings.Default.ExportSTEP = checkBox5.Checked;
 				changed = true;
 			}
 		}

@@ -734,11 +734,10 @@ namespace RedBrick2 {
 			this.checkBox5.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkBox5.Location = new System.Drawing.Point(3, 270);
 			this.checkBox5.Name = "checkBox5";
-			this.checkBox5.Size = new System.Drawing.Size(143, 17);
+			this.checkBox5.Size = new System.Drawing.Size(111, 17);
 			this.checkBox5.TabIndex = 4;
-			this.checkBox5.Text = "Export EDrawings Files";
+			this.checkBox5.Text = "Export STEP Files";
 			this.checkBox5.UseVisualStyleBackColor = true;
-			this.checkBox5.Visible = false;
 			this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
 			// 
 			// checkBox6
