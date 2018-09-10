@@ -88,11 +88,7 @@ namespace RedBrick2 {
 				(mDoc as AssemblyDoc).ResolveAllLightWeightComponents(true);
 			}
 
-			string[] c_ = mDoc.GetConfigurationNames();
-			foreach (string item in c_) {
-				config_cbx.Items.Add(item);
-			}
-
+			config_cbx.Items.AddRange(mDoc.GetConfigurationNames());
 			config_cbx.SelectedItem = _config.Name;
 
 			if (mDoc is PartDoc) {
