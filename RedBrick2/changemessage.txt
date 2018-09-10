@@ -1,3 +1,5 @@
 
-1) Fixed a bug that caused Parts/Blank value to be set instead of Cutlist Qty.
-
+1) Enabled saving DXFs with the Drawing Collector.
+2) Configurations can be selected in the Drawing Collector.
+3) You can now choose a target location with the Drawing Collector.
+4) PDF Archiver can now export STEP files.
