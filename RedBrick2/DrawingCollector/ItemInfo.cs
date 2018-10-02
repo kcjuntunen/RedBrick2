@@ -40,6 +40,7 @@ namespace RedBrick2.DrawingCollector {
 			set { pdf = value; }
 		}
 
+		public bool Checked { get; set; }
 		public bool CloseSldDrw { get; set; }
 		public bool	DeletePdf { get; set; }
 
@@ -67,7 +68,7 @@ namespace RedBrick2.DrawingCollector {
 					SldDrw.FullName,
 					Pdf.FullName };
 				ListViewItem lvi_ = new ListViewItem(data_);
-				lvi_.Checked = SldDrw.Exists;
+				lvi_.Checked = SldDrw.Exists && !SldDrw.FullName.ToUpper().Contains(@"PART");
 				return lvi_;
 			}
 			private set {; }
