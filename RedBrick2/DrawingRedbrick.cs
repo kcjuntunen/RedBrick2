@@ -203,6 +203,7 @@ namespace RedBrick2 {
 			if (ActiveDoc != null) {
 				string path_ = ActiveDoc.GetPathName();
 				if (path_ != string.Empty) {
+					newDrawing = false;
 					PartFileInfo = new FileInfo(path_);
 					partLookup = Redbrick.FileInfoToLookup(PartFileInfo);
 					if (PartFileInfo.Name.ToUpper().Contains(@"REV")) {
