@@ -1335,10 +1335,11 @@ namespace RedBrick2 {
 		}
 
 		private FileInfo find_doc(string doc) {
-			foreach (KeyValuePair<string, SwProperties> item in _partlist) {
-				string fn = item.Value[@"DEPARTMENT"].PartFileInfo.Name;
+			foreach (string key in _dict.Keys) {
+				SwProperties item = _partlist[key] as SwProperties;
+				string fn = item[@"DEPARTMENT"].PartFileInfo.Name;
 				if (fn.Trim().ToUpper().Contains(doc.Trim().ToUpper())) {
-					return item.Value[@"DEPARTMENT"].PartFileInfo;
+					return item[@"DEPARTMENT"].PartFileInfo;
 				}
 			}
 			return null;
