@@ -31,14 +31,14 @@
 			this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-			this.label5 = new System.Windows.Forms.Label();
 			this.suffixTbx = new System.Windows.Forms.TextBox();
+			this.label5 = new System.Windows.Forms.Label();
 			this.go_btn = new System.Windows.Forms.Button();
 			this.close_btn = new System.Windows.Forms.Button();
 			this.dxf_out_btn = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.select_only_assemblies_btn = new System.Windows.Forms.Button();
-			this.deselect_raw_parts_btn = new System.Windows.Forms.Button();
+			this.select_raw_parts_btn = new System.Windows.Forms.Button();
 			this.select_only_cbx = new System.Windows.Forms.ComboBox();
 			this.cUTPARTTYPESBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.manageCutlistTimeDataSet = new RedBrick2.ManageCutlistTime.ManageCutlistTimeDataSet();
@@ -173,48 +173,48 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tableLayoutPanel2.ColumnCount = 3;
 			this.tableLayoutPanel1.SetColumnSpan(this.tableLayoutPanel2, 2);
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel2.Controls.Add(this.suffixTbx, 2, 0);
 			this.tableLayoutPanel2.Controls.Add(this.label5, 1, 0);
 			this.tableLayoutPanel2.Controls.Add(this.go_btn, 0, 0);
 			this.tableLayoutPanel2.Controls.Add(this.close_btn, 2, 2);
 			this.tableLayoutPanel2.Controls.Add(this.dxf_out_btn, 0, 1);
-			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 432);
+			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 452);
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
 			this.tableLayoutPanel2.RowCount = 3;
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(500, 110);
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(500, 90);
 			this.tableLayoutPanel2.TabIndex = 11;
+			// 
+			// suffixTbx
+			// 
+			this.suffixTbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.suffixTbx.Location = new System.Drawing.Point(173, 3);
+			this.suffixTbx.Name = "suffixTbx";
+			this.suffixTbx.Size = new System.Drawing.Size(324, 22);
+			this.suffixTbx.TabIndex = 2;
 			// 
 			// label5
 			// 
 			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(293, 0);
+			this.label5.Location = new System.Drawing.Point(131, 0);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(36, 35);
+			this.label5.Size = new System.Drawing.Size(36, 29);
 			this.label5.TabIndex = 1;
 			this.label5.Text = "Suffix";
 			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
-			// suffixTbx
-			// 
-			this.suffixTbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.suffixTbx.Location = new System.Drawing.Point(335, 3);
-			this.suffixTbx.Name = "suffixTbx";
-			this.suffixTbx.Size = new System.Drawing.Size(162, 22);
-			this.suffixTbx.TabIndex = 2;
-			// 
 			// go_btn
 			// 
 			this.go_btn.Anchor = System.Windows.Forms.AnchorStyles.Left;
-			this.go_btn.Location = new System.Drawing.Point(3, 6);
+			this.go_btn.Location = new System.Drawing.Point(3, 3);
 			this.go_btn.Name = "go_btn";
 			this.go_btn.Size = new System.Drawing.Size(75, 23);
 			this.go_btn.TabIndex = 0;
@@ -225,7 +225,7 @@
 			// close_btn
 			// 
 			this.close_btn.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.close_btn.Location = new System.Drawing.Point(422, 83);
+			this.close_btn.Location = new System.Drawing.Point(422, 62);
 			this.close_btn.Name = "close_btn";
 			this.close_btn.Size = new System.Drawing.Size(75, 23);
 			this.close_btn.TabIndex = 3;
@@ -235,7 +235,7 @@
 			// 
 			// dxf_out_btn
 			// 
-			this.dxf_out_btn.Location = new System.Drawing.Point(3, 38);
+			this.dxf_out_btn.Location = new System.Drawing.Point(3, 32);
 			this.dxf_out_btn.Name = "dxf_out_btn";
 			this.dxf_out_btn.Size = new System.Drawing.Size(75, 23);
 			this.dxf_out_btn.TabIndex = 4;
@@ -251,7 +251,7 @@
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tableLayoutPanel1.SetColumnSpan(this.panel1, 2);
 			this.panel1.Controls.Add(this.select_only_assemblies_btn);
-			this.panel1.Controls.Add(this.deselect_raw_parts_btn);
+			this.panel1.Controls.Add(this.select_raw_parts_btn);
 			this.panel1.Controls.Add(this.select_only_cbx);
 			this.panel1.Controls.Add(this.select_only_btn);
 			this.panel1.Controls.Add(this.select_none_btn);
@@ -272,15 +272,15 @@
 			this.select_only_assemblies_btn.UseVisualStyleBackColor = true;
 			this.select_only_assemblies_btn.Click += new System.EventHandler(this.select_only_assemblies_btn_Click);
 			// 
-			// deselect_raw_parts_btn
+			// select_raw_parts_btn
 			// 
-			this.deselect_raw_parts_btn.Location = new System.Drawing.Point(178, 4);
-			this.deselect_raw_parts_btn.Name = "deselect_raw_parts_btn";
-			this.deselect_raw_parts_btn.Size = new System.Drawing.Size(206, 23);
-			this.deselect_raw_parts_btn.TabIndex = 4;
-			this.deselect_raw_parts_btn.Text = "Deselect Raw Parts and Library Parts";
-			this.deselect_raw_parts_btn.UseVisualStyleBackColor = true;
-			this.deselect_raw_parts_btn.Click += new System.EventHandler(this.deselect_raw_parts_btn_Click);
+			this.select_raw_parts_btn.Location = new System.Drawing.Point(178, 4);
+			this.select_raw_parts_btn.Name = "select_raw_parts_btn";
+			this.select_raw_parts_btn.Size = new System.Drawing.Size(206, 23);
+			this.select_raw_parts_btn.TabIndex = 4;
+			this.select_raw_parts_btn.Text = "Select Raw Parts and Library Parts";
+			this.select_raw_parts_btn.UseVisualStyleBackColor = true;
+			this.select_raw_parts_btn.Click += new System.EventHandler(this.select_raw_parts_btn_Click);
 			// 
 			// select_only_cbx
 			// 
@@ -574,7 +574,7 @@
 		private ManageCutlistTime.ManageCutlistTimeDataSet manageCutlistTimeDataSet;
 		private System.Windows.Forms.BindingSource cUTPARTTYPESBindingSource;
 		private ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CUT_PART_TYPESTableAdapter cUT_PART_TYPESTableAdapter;
-		private System.Windows.Forms.Button deselect_raw_parts_btn;
+		private System.Windows.Forms.Button select_raw_parts_btn;
 		private System.Windows.Forms.Button select_only_assemblies_btn;
 		private System.Windows.Forms.Button dxf_out_btn;
 		private System.Windows.Forms.Label label6;
