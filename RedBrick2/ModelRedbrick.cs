@@ -1135,7 +1135,7 @@ namespace RedBrick2 {
 			PartEventsAssigned = false;
 		}
 
-		private void DisconnectEvents() {
+		public void DisconnectEvents() {
 			try {
 				if (SwApp.ActiveDoc != lastModelDoc) {
 					DisconnectAssemblyEvents();
@@ -1143,6 +1143,9 @@ namespace RedBrick2 {
 				}
 				DisconnectPartEvents();
 				DisconnectDrawingEvents();
+				if (drawingRedbrick != null) {
+					drawingRedbrick.DumpData();
+				}
 			} catch (Exception e_) {
 				MessageBox.Show(e_.Message);
 			}

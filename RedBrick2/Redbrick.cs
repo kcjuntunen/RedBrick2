@@ -280,6 +280,7 @@ namespace RedBrick2 {
 		}
 
 		private void UITearDown() {
+			taskpaneHost.DisconnectStuff();
 			taskpaneHost.Dispose();
 			taskpaneView.DeleteView();
 			Marshal.ReleaseComObject(taskpaneView);

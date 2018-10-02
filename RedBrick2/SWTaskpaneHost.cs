@@ -65,6 +65,12 @@ namespace RedBrick2 {
 			}
 		}
 
+		public void DisconnectStuff() {
+			if (mrb != null) {
+				mrb.DisconnectEvents();
+			}
+		}
+
 		private int SwApp_FileOpenPostNotify(string FileName) {
 			if (openpostnotify) {
 				ConnectSelection(false);
