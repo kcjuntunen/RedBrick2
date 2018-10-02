@@ -15,6 +15,15 @@ namespace RedBrick2.DrawingCollector {
 			PDFCollection.AddRange(lfi);
 		}
 
+		public PDFMerger(List<ItemInfo> lfi, FileInfo target) {
+			Target = target;
+			foreach (ItemInfo item in lfi) {
+				if (item.Pdf.Exists) {
+					PDFCollection.Add(item.Pdf);
+				}
+			}
+		}
+
 		public PDFMerger(Dictionary<string, ItemInfo> lfi, FileInfo target) {
 			Target = target;
 			foreach (KeyValuePair<string, ItemInfo> item in lfi) {
