@@ -38,9 +38,15 @@ namespace RedBrick2.DrawingCollector {
 				DeletePdf = true
 			};
 
+			reordered_by_boms.Add(rootItem);
+
 			if (rootDoc is DrawingDoc) {
 				SolidWorks.Interop.sldworks.View v_ = Redbrick.GetFirstView(SwApp);
 				rootDoc = v_.ReferencedDocument;
+			}
+
+			if (rootDoc is AssemblyDoc) {
+				(rootDoc as AssemblyDoc).ResolveAllLightWeightComponents(true);
 			}
 
 			Configuration c_ = rootDoc.GetActiveConfiguration();
