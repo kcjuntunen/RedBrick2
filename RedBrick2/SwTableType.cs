@@ -108,7 +108,9 @@ namespace RedBrick2 {
 					foreach (string pathname in pathnames) {
 						FileInfo fi_ = new FileInfo(pathname);
 						PathList.Add(fi_);
-						path_dict.Add(prt_.ToUpper(), fi_);
+						if (!path_dict.ContainsKey(prt_.ToUpper())) {
+							path_dict.Add(prt_.ToUpper(), fi_);
+						}
 					}
 				}
 			}
@@ -213,7 +215,7 @@ namespace RedBrick2 {
 				}
 			}
 			if (!found) {
-				throw new SWTableTypeException("I couldn't find the correct table.");
+				//throw new SWTableTypeException("I couldn't find the correct table.");
 			}
 		}
 

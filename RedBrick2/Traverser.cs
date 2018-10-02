@@ -111,8 +111,12 @@ namespace RedBrick2 {
 			SwProperties p_ = new SwProperties(_swApp, md_);
 			p_.Configuration = swComp.ComponentReference;
 			p_.GetProperties(swComp);
-			PartList.Add(name_, p_);
-			Dict.Add(name_, 1);
+			if (!PartList.Contains(name_)) {
+				PartList.Add(name_, p_);
+			}
+			if (!Dict.ContainsKey(name_)) {
+				Dict.Add(name_, 1);
+			}
 			PartHash.Add(name_);
 		}
 	}
