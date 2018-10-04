@@ -13,10 +13,11 @@ namespace RedBrick2.DrawingCollector {
 		Traverser traverser;
 		private string TopLevel = string.Empty;
 		private string Here;
+		private List<ItemInfo> reordered_by_boms = new List<ItemInfo>();
 
 		public DrawingCollector(SldWorks sldWorks) {
 			SwApp = sldWorks;
-			traverser = new Traverser(SwApp);
+			traverser = new Traverser(SwApp, true);
 			Here = Path.GetDirectoryName((SwApp.ActiveDoc as ModelDoc2).GetPathName());
 			InitializeComponent();
 			listView1.FullRowSelect = true;
@@ -86,7 +87,9 @@ namespace RedBrick2.DrawingCollector {
 			int err = 0;
 			int warn = 0;
 			string newName = p.Name.Replace(p.Extension, @".PDF");
-			string tmpFile = string.Format(@"{0}\{1}", Path.GetTempPath(), newName);
+			string tmpFile = string.Format(@"{0}{1}", Path.GetTempPath(), newName);
+			FileInfo tmp = new FileInfo(tmpFile);
+			string baseName = tmp.Name.Replace(tmp.Extension, string.Empty);
 			string fileName = p.FullName.Replace(p.Extension, @".PDF");
 			int saveVersion = (int)swSaveAsVersion_e.swSaveAsCurrentVersion;
 			int saveOptions = (int)swSaveAsOptions_e.swSaveAsOptions_Silent;
@@ -97,17 +100,28 @@ namespace RedBrick2.DrawingCollector {
 			SwApp.OpenDocSilent(p.FullName, dt, ref odo);
 			SwApp.ActivateDoc3(p.FullName,
 				true, (int)swRebuildOnActivation_e.swDontRebuildActiveDoc, ref err);
+			if (Redbrick.FileInfoToLookup(tmp) != rootItem.Name) {
+				SwTableType tt_ = new SwTableType(SwApp.ActiveDoc as ModelDoc2, Properties.Settings.Default.MasterTableHashes, @"PART NUMBER");
+				foreach (string item in tt_.Parts) {
+					if (infos.ContainsKey(item) && infos[item].Checked && !reordered_by_boms.Contains(infos[item])) {
+						reordered_by_boms.Add(infos[item]);
+					}
+				}
+			}
 			toolStripProgressBar1.PerformStep();
 
 			toolStripStatusLabel1.Text = @"Saving";
 			toolStripStatusLabel2.Text = tmpFile;
 			bool layerPrint = SwApp.GetUserPreferenceToggle((int)swUserPreferenceToggle_e.swPDFExportIncludeLayersNotToPrint);
 			SwApp.SetUserPreferenceToggle((int)swUserPreferenceToggle_e.swPDFExportIncludeLayersNotToPrint, true);
-			success = (SwApp.ActiveDoc as ModelDoc2).SaveAs4(tmpFile, saveVersion, saveOptions, ref err, ref warn); 
+			success = (SwApp.ActiveDoc as ModelDoc2).SaveAs4(tmpFile, saveVersion, saveOptions, ref err, ref warn);
+			if (infos.ContainsKey(baseName) && infos[baseName].Checked && !reordered_by_boms.Contains(infos[baseName])) {
+				reordered_by_boms.Add(infos[baseName]);
+			}
 			SwApp.SetUserPreferenceToggle((int)swUserPreferenceToggle_e.swPDFExportIncludeLayersNotToPrint, layerPrint);
 			toolStripProgressBar1.PerformStep();
 
-			return new FileInfo(tmpFile);
+			return tmp;
 		}
 
 		private FileInfo CreateDXF(FileInfo p) {
@@ -116,7 +130,7 @@ namespace RedBrick2.DrawingCollector {
 			int err = 0;
 			int warn = 0;
 			string newName = p.Name.Replace(p.Extension, @".DXF");
-			string tmpFile = string.Format(@"{0}\{1}", Path.GetTempPath(), newName);
+			string tmpFile = string.Format(@"{0}{1}", Path.GetTempPath(), newName);
 			string fileName = p.FullName.Replace(p.Extension, @".DXF");
 			int saveVersion = (int)swSaveAsVersion_e.swSaveAsCurrentVersion;
 			int saveOptions = (int)swSaveAsOptions_e.swSaveAsOptions_Silent;
@@ -144,23 +158,31 @@ namespace RedBrick2.DrawingCollector {
 		private void CreateDrawings() {
 			toolStripProgressBar1.Maximum = infos.Count * 3;
 			toolStripProgressBar1.Step = 1;
-			foreach (ListViewItem item in listView1.Items) {
-				string name = item.SubItems[0].Text;
-				if (item.Checked && infos[name].SldDrw.Exists) {
-					textBox1.Text = Redbrick.TitleCase(infos[item.Text].PropertySet[@"Description"].Data.ToString());
-					textBox2.Text = infos[item.Text].SldDoc.FullName;
-					textBox3.Text = infos[item.Text].SldDrw.FullName;
-					textBox4.Text = infos[item.Text].Pdf.FullName;
 
-					checkBox1.Checked = infos[item.Text].SldDoc.Exists;
-					checkBox2.Checked = infos[item.Text].SldDrw.Exists;
-					checkBox3.Checked = infos[item.Text].Pdf.Exists;
-					FileInfo sldDrw_ = new FileInfo(item.SubItems[5].Text);
-					infos[item.SubItems[0].Text].Pdf = CreateDwg(sldDrw_);
-					if (infos[item.Text].CloseSldDrw) {
+			foreach (ListViewItem itm in listView1.Items) {
+				string name = itm.Text;
+				if (!infos.ContainsKey(name)) {
+					continue;
+				}
+				infos[name].Checked = itm.Checked;
+				if (infos[name].Checked && infos[name].SldDrw.Exists) {
+					if (infos[name].Checked && !reordered_by_boms.Contains(infos[name])) {
+						reordered_by_boms.Add(infos[name]);
+					}
+					textBox1.Text = Redbrick.TitleCase(infos[name].PropertySet[@"Description"].Data.ToString());
+					textBox2.Text = infos[name].SldDoc.FullName;
+					textBox3.Text = infos[name].SldDrw.FullName;
+					textBox4.Text = infos[name].Pdf.FullName;
+
+					checkBox1.Checked = infos[name].SldDoc.Exists;
+					checkBox2.Checked = infos[name].SldDrw.Exists;
+					checkBox3.Checked = infos[name].Pdf.Exists;
+					infos[name].Pdf = CreateDwg(infos[name].SldDrw);
+					if (infos[name].CloseSldDrw) {
 						toolStripStatusLabel1.Text = @"Closing";
-						toolStripStatusLabel2.Text = infos[item.Text].SldDrw.Name;
-						SwApp.CloseDoc(infos[item.Text].SldDrw.FullName);
+						toolStripStatusLabel2.Text = infos[name].SldDrw.Name;
+						SwApp.CloseDoc(infos[name].SldDrw.FullName);
+						toolStripProgressBar1.PerformStep();
 					}
 				}
 			}
@@ -231,6 +253,12 @@ namespace RedBrick2.DrawingCollector {
 
 		private void go_btn_Click(object sender, EventArgs e) {
 			var stopWatch = System.Diagnostics.Stopwatch.StartNew();
+			toolStripProgressBar1.Maximum = infos.Count * 3;
+			toolStripProgressBar1.Step = 1;
+
+			foreach (ListViewItem item in listView1.Items) {
+				infos[item.Text].Checked = item.Checked;
+			}
 			CreateDrawings();
 			string tmpFile = Path.GetTempFileName().Replace(".tmp", ".PDF");
 
@@ -240,7 +268,7 @@ namespace RedBrick2.DrawingCollector {
 
 			toolStripStatusLabel1.Text = @"Merging PDFs...";
 			toolStripStatusLabel2.Text = string.Empty;
-			PDFMerger pm_ = new PDFMerger(infos, new FileInfo(tmpFile));
+			PDFMerger pm_ = new PDFMerger(reordered_by_boms, new FileInfo(tmpFile));
 			pm_.Merge();
 
 			stopWatch.Stop();
@@ -296,7 +324,7 @@ namespace RedBrick2.DrawingCollector {
 						String.Format("Source='{0}'; Dest='{1}' <= One of these is an invalid format.",
 						tmpFile, fileName), nse);
 			}
-			//PDFMerger.deleting_file += PDFMerger_deleting_file;
+			PDFMerger.deleting_file += PDFMerger_deleting_file;
 			toolStripStatusLabel1.Text = @"Deleting PDFs...";
 			toolStripStatusLabel2.Text = string.Empty;
 			DeletePDFs();
@@ -304,12 +332,11 @@ namespace RedBrick2.DrawingCollector {
 			toolStripStatusLabel1.Text = @"Saved";
 			toolStripStatusLabel2.Text = string.Format(@"{0} in {1} seconds", fileName, stopWatch.Elapsed.TotalSeconds);
 			toolStripProgressBar1.Value = toolStripProgressBar1.Maximum;
-			//PDFMerger.deleting_file -= PDFMerger_deleting_file;
+			PDFMerger.deleting_file -= PDFMerger_deleting_file;
 			System.Diagnostics.Process.Start(fileName);
 		}
 
 		public delegate void PerformProgressBarStep();
-
 
 		private void PDFMerger_deleting_file(object sender, EventArgs e) {
 			PerformProgressBarStep ppbs = toolStripProgressBar1.PerformStep;
@@ -384,10 +411,10 @@ namespace RedBrick2.DrawingCollector {
 			}
 		}
 
-		private void deselect_raw_parts_btn_Click(object sender, EventArgs e) {
+		private void select_raw_parts_btn_Click(object sender, EventArgs e) {
 			foreach (ListViewItem item in listView1.Items) {
-				if (infos[item.Text].SldDoc.FullName.ToUpper().Contains(@"PART")) {
-					item.Checked = false;
+				if (infos[item.Text].SldDoc.FullName.ToUpper().Contains(@"PART") && infos[item.Text].SldDrw.Exists) {
+					item.Checked = true;
 				}
 			}
 		}
@@ -447,6 +474,7 @@ namespace RedBrick2.DrawingCollector {
 								tmpFile, fileName), nse);
 					}
 				}
+				toolStripProgressBar1.PerformStep();
 			}
 			DeletePDFs();
 			stopWatch.Stop();
@@ -464,7 +492,7 @@ namespace RedBrick2.DrawingCollector {
 			if (c_ == null) {
 				return;
 			}
-			traverser = new Traverser(SwApp);
+			traverser = new Traverser(SwApp, true);
 			traverser.TraverseComponent(c_.GetRootComponent3(true), 1);
 			PopulateListViewAndItemInfo(c_, traverser);
 		}
