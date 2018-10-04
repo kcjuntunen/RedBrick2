@@ -398,6 +398,9 @@ namespace RedBrick2 {
 			dataGridView1.Rows.Clear();
 			dataGridView1.Columns.Clear();
 			dataGridView1.Refresh();
+			upload_btn.Enabled = false;
+			getdatafromDBbtn.Enabled = false;
+			update_prts_btn.Enabled = false;
 		}
 
 		private void GetPart(ModelDoc2 m) {
@@ -1713,6 +1716,7 @@ namespace RedBrick2 {
 		}
 
 		private void scan_Click(object sender, EventArgs e) {
+			empty_table();
 			if (parts_rdo.Checked && mDoc is AssemblyDoc) {
 				GetAssembly(mDoc);
 			} else if (toplvl_rdo.Checked) {
