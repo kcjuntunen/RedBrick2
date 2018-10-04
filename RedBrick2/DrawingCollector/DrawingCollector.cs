@@ -188,7 +188,8 @@ namespace RedBrick2.DrawingCollector {
 			}
 		}
 
-		private void CreateDXFs() {
+		private int CreateDXFs() {
+			int count = 0;
 			toolStripProgressBar1.Maximum = infos.Count * 3;
 			toolStripProgressBar1.Step = 1;
 			foreach (ListViewItem item in listView1.Items) {
@@ -204,13 +205,16 @@ namespace RedBrick2.DrawingCollector {
 					checkBox3.Checked = infos[item.Text].Pdf.Exists;
 					FileInfo sldDrw_ = new FileInfo(item.SubItems[5].Text);
 					infos[item.SubItems[0].Text].Pdf = CreateDXF(sldDrw_);
+					count++;
 					if (infos[item.Text].CloseSldDrw) {
 						toolStripStatusLabel1.Text = @"Closing";
 						toolStripStatusLabel2.Text = infos[item.Text].SldDrw.Name;
 						SwApp.CloseDoc(infos[item.Text].SldDrw.FullName);
+						toolStripProgressBar1.PerformStep();
 					}
 				}
 			}
+			return count;
 		}
 
 		private void DeletePDFs() {
@@ -429,7 +433,8 @@ namespace RedBrick2.DrawingCollector {
 
 		private void button1_Click(object sender, EventArgs e) {
 			var stopWatch = System.Diagnostics.Stopwatch.StartNew();
-			CreateDXFs();
+			int count = 0;
+			count = CreateDXFs();
 
 			FolderBrowserDialog fbd_ = new FolderBrowserDialog();
 			fbd_.RootFolder = System.Environment.SpecialFolder.Desktop;
@@ -479,8 +484,10 @@ namespace RedBrick2.DrawingCollector {
 			DeletePDFs();
 			stopWatch.Stop();
 			toolStripStatusLabel1.Text = string.Empty;
-			toolStripStatusLabel2.Text = string.Format(@"Saved a bunch of DXFs in {0} seconds", stopWatch.Elapsed.TotalSeconds);
+			string plural = count > 1 ? @"s" : string.Empty;
+			toolStripStatusLabel2.Text = string.Format(@"Saved {0} DXF{1} in {2} seconds", count, plural, stopWatch.Elapsed.TotalSeconds);
 			toolStripProgressBar1.Value = toolStripProgressBar1.Maximum;
+			System.Diagnostics.Process.Start(fbd_.SelectedPath);
 		}
 
 		private void config_cbx_SelectedIndexChanged(object sender, EventArgs e) {
