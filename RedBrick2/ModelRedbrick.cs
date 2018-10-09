@@ -594,6 +594,7 @@ namespace RedBrick2 {
 			}
 			partq.Enabled = on;
 			stat_cbx.Enabled = on;
+			remove_btn.Enabled = PropertySet.CutlistAndPartIDsOK;
 		}
 
 		private void ToggleCutlistQtyErr(bool on) {
@@ -2339,6 +2340,7 @@ namespace RedBrick2 {
 			partq.Value = _row.IsQTYNull() ? 0 : Convert.ToInt32(_row.QTY);
 			PropertySet.CutlistID = _row.IsCLIDNull() ? 0 : _row.CLID;
 			PropertySet.CutlistQty = _row.IsQTYNull() ? 0 : Convert.ToInt32(_row.QTY);
+			remove_btn.Enabled = PropertySet.CutlistAndPartIDsOK;
 			GetEstimationFromDB();
 		}
 
