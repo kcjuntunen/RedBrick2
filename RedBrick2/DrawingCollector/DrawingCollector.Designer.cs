@@ -27,6 +27,7 @@
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.listView1 = new System.Windows.Forms.ListView();
 			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -102,6 +103,7 @@
 			this.listView1.CheckBoxes = true;
 			this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
+            this.columnHeader4,
             this.columnHeader2,
             this.columnHeader3});
 			this.listView1.HideSelection = false;
@@ -117,6 +119,10 @@
 			// columnHeader1
 			// 
 			this.columnHeader1.Text = "Item";
+			// 
+			// columnHeader4
+			// 
+			this.columnHeader4.Text = "Configuration";
 			// 
 			// columnHeader2
 			// 
@@ -377,6 +383,7 @@
 			this.textBox3.Name = "textBox3";
 			this.textBox3.Size = new System.Drawing.Size(424, 22);
 			this.textBox3.TabIndex = 6;
+			this.textBox3.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox3_MouseDoubleClick);
 			// 
 			// checkBox2
 			// 
@@ -579,5 +586,6 @@
 		private System.Windows.Forms.Button dxf_out_btn;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.ComboBox config_cbx;
+		private System.Windows.Forms.ColumnHeader columnHeader4;
 	}
 }

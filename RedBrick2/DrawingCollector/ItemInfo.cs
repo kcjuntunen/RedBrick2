@@ -61,6 +61,7 @@ namespace RedBrick2.DrawingCollector {
 			get {
 				string[] data_ = new string[] {
 					Name,
+					PropertySet.Configuration,
 					PropertySet.ActiveDoc is AssemblyDoc ? "Assembly" : "Part",
 					Redbrick.TitleCase(PropertySet[@"DEPARTMENT"].Value),
 					PropertySet[@"Description"].Value,
