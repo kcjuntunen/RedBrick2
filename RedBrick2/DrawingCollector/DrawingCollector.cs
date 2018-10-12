@@ -3,6 +3,7 @@ using SolidWorks.Interop.swconst;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -25,7 +26,12 @@ namespace RedBrick2.DrawingCollector {
 			listView1.MultiSelect = true;
 			listView1.View = System.Windows.Forms.View.Details;
 			listView1.SmallImageList = Redbrick.TreeViewIcons;
+			listView1.ItemDrag += ListView1_ItemDrag;
 			FindDrawings();
+		}
+
+		private void ListView1_ItemDrag(object sender, ItemDragEventArgs e) {
+			listView1.DoDragDrop(listView1.SelectedItems, DragDropEffects.Move);
 		}
 
 		private void FindDrawings() {
@@ -502,6 +508,82 @@ namespace RedBrick2.DrawingCollector {
 			traverser = new Traverser(SwApp, true);
 			traverser.TraverseComponent(c_.GetRootComponent3(true), 1);
 			PopulateListViewAndItemInfo(c_, traverser);
+		}
+
+		private void textBox3_MouseDoubleClick(object sender, MouseEventArgs e) {
+			if (listView1.SelectedItems.Count < 1) {
+				return;
+			}
+
+			if (listView1.SelectedItems[0] == null) {
+				return;
+			}
+
+			string item = listView1.SelectedItems[0].Text;
+
+			OpenFileDialog ofd_ = new OpenFileDialog();
+			ofd_.Title = string.Format(@"Select drawing for {0} ({1})", item, infos[item].PropertySet.Configuration);
+			ofd_.InitialDirectory = Path.GetFullPath(textBox3.Text);
+			ofd_.Filter = @"SolidWorks Drawings (*.slddrw)|*.slddrw";
+
+			if (ofd_.ShowDialog() == DialogResult.OK) {
+				FileInfo selectedFile = new FileInfo(ofd_.FileName);
+				infos[item].SldDrw = selectedFile;
+				textBox3.Text = infos[item].SldDrw.FullName;
+				checkBox2.Checked = selectedFile.Exists;
+				listView1.SelectedItems[0].Checked = selectedFile.Exists;
+			}
+		}
+
+			// Code lifted directly from 
+			// <https://support.microsoft.com/en-us/help/822483/the-listview-control-does-not-support-drag-and-drop-functionality-for>
+		private void listView1_DragEnter(object sender, DragEventArgs e) {
+			int len = e.Data.GetFormats().Length - 1;
+			int i;
+			for (i = 0; i <= len; i++) {
+				if (e.Data.GetFormats()[i].Equals("System.Windows.Forms.ListView+SelectedListViewItemCollection")) {
+					//The data from the drag source is moved to the target.
+					e.Effect = DragDropEffects.Move;
+				}
+			}
+		}
+
+		private void listView1_DragDrop(object sender, DragEventArgs e) {
+			//Return if the items are not selected in the ListView control.
+			if (listView1.SelectedItems.Count == 0) {
+				return;
+			}
+			//Returns the location of the mouse pointer in the ListView control.
+			Point cp = listView1.PointToClient(new Point(e.X, e.Y));
+			//Obtain the item that is located at the specified location of the mouse pointer.
+			ListViewItem dragToItem = listView1.GetItemAt(cp.X, cp.Y);
+			if (dragToItem == null) {
+				return;
+			}
+			//Obtain the index of the item at the mouse pointer.
+			int dragIndex = dragToItem.Index;
+			ListViewItem[] sel = new ListViewItem[listView1.SelectedItems.Count];
+			for (int i = 0; i <= listView1.SelectedItems.Count - 1; i++) {
+				sel[i] = listView1.SelectedItems[i];
+			}
+			for (int i = 0; i < sel.GetLength(0); i++) {
+				//Obtain the ListViewItem to be dragged to the target location.
+				ListViewItem dragItem = sel[i];
+				int itemIndex = dragIndex;
+				if (itemIndex == dragItem.Index) {
+					return;
+				}
+				if (dragItem.Index < itemIndex)
+					itemIndex++;
+				else
+					itemIndex = dragIndex + i;
+				//Insert the item at the mouse pointer.
+				ListViewItem insertItem = (ListViewItem)dragItem.Clone();
+				listView1.Items.Insert(itemIndex, insertItem);
+				//Removes the item from the initial location while 
+				//the item is moved to the new location.
+				listView1.Items.Remove(dragItem);
+			}
 		}
 	}
 }

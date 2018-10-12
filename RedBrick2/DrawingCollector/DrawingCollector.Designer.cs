@@ -97,6 +97,7 @@
 			// 
 			// listView1
 			// 
+			this.listView1.AllowDrop = true;
 			this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -114,6 +115,8 @@
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ColumnClick);
 			this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+			this.listView1.DragDrop += new System.Windows.Forms.DragEventHandler(this.listView1_DragDrop);
+			this.listView1.DragEnter += new System.Windows.Forms.DragEventHandler(this.listView1_DragEnter);
 			this.listView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseClick);
 			// 
 			// columnHeader1
@@ -355,6 +358,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkBox3.AutoSize = true;
+			this.checkBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.checkBox3.Location = new System.Drawing.Point(433, 179);
 			this.checkBox3.Name = "checkBox3";
 			this.checkBox3.Size = new System.Drawing.Size(70, 22);
@@ -391,6 +395,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkBox2.AutoSize = true;
+			this.checkBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.checkBox2.Location = new System.Drawing.Point(433, 138);
 			this.checkBox2.Name = "checkBox2";
 			this.checkBox2.Size = new System.Drawing.Size(70, 22);
@@ -424,6 +429,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkBox1.AutoSize = true;
+			this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.checkBox1.Location = new System.Drawing.Point(433, 97);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(70, 22);
