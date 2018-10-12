@@ -281,11 +281,16 @@ namespace RedBrick2 {
 			if (descr_cbx.Text == string.Empty) {
 				ToggleDescrWarn(true);
 			}
-			itm_cbx.Text = partLookup;
-			if (rev_in_filename) {
-				ref_cbx.Text = string.Format(@"{0} REV {1}", topName, rev);
+			string textboxtext = partLookup.ToUpper();
+			if (Redbrick.ContainsRev(textboxtext)) {
+				itm_cbx.Text = textboxtext.Split(new string[] { @"REV" },StringSplitOptions.RemoveEmptyEntries)[0].Trim();
 			} else {
-				ref_cbx.Text = topName;
+				itm_cbx.Text = textboxtext;
+			}
+			if (rev_in_filename) {
+				ref_cbx.Text = string.Format(@"{0} REV {1}", topName, rev).ToUpper();
+			} else {
+				ref_cbx.Text = topName.ToUpper();
 			}
 
 			StringProperty stpr = null;
