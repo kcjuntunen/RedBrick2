@@ -785,8 +785,12 @@ namespace RedBrick2 {
 		/// <returns>A lookup <see cref="string"/>.</returns>
 		public static string GetModelNameFromDrawing(SldWorks sw) {
 			View v_ = GetFirstView(sw);
-			string lu_ = FileInfoToLookup(new System.IO.FileInfo(v_.ReferencedDocument.GetPathName()));
-			return lu_;
+			try {
+				string lu_ = FileInfoToLookup(new System.IO.FileInfo(v_.ReferencedDocument.GetPathName()));
+				return lu_;
+			} catch (NullReferenceException) {
+				return Properties.Settings.Default.ValErr;
+			}
 		}
 
 		/// <summary>
