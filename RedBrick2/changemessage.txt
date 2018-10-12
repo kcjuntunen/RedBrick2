@@ -1,6 +1,4 @@
 
-1) Drawing Collector attempts to compile drawings in order of BOMs.
-2) Drawing Collector resolves lightweight items before traversing the feature tree.
-3) Inverted logic on raw parts selecting button in Drawing Collector.
-4) Fixed a bug in Ben-proofing new drawings.
-5) Redbrick does a slightly better job cleaning up after itself when removed from AddIns.
+1) "Remove" button's enabled-ness is checked more often.
+2) Revision numbers are filted out of suggested Item Names on the Create Cutlist window.
+3) Handle possible null reference under unlikely conditions.
