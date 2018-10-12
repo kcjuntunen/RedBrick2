@@ -205,9 +205,9 @@ namespace RedBrick2 {
 				if (path_ != string.Empty) {
 					newDrawing = false;
 					PartFileInfo = new FileInfo(path_);
-					partLookup = Redbrick.FileInfoToLookup(PartFileInfo);
-					if (PartFileInfo.Name.ToUpper().Contains(@"REV")) {
-						string[] revcheck = Path.GetFileNameWithoutExtension(PartFileInfo.Name).
+					partLookup = Redbrick.FileInfoToLookup(PartFileInfo).ToUpper();
+					if (Redbrick.ContainsRev(partLookup)) {
+						string[] revcheck = Path.GetFileNameWithoutExtension(PartFileInfo.Name.ToUpper()).
 							Split(new string[] { @"REV" }, StringSplitOptions.RemoveEmptyEntries);
 						RevFromFile = revcheck.Length > 1 ? revcheck[revcheck.Length - 1].Trim() : null;
 						partLookup = revcheck[0].Trim();

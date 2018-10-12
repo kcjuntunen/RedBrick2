@@ -917,6 +917,11 @@ namespace RedBrick2 {
 			return lookup_;
 		}
 
+		static public bool ContainsRev(string partLookup) {
+			System.Text.RegularExpressions.Regex r_ = new System.Text.RegularExpressions.Regex(@".*REV\ ?1[0-9]{2}.*");
+			return r_.IsMatch(partLookup.ToUpper());
+		}
+
 		/// <summary>
 		/// Check if a partnumber conforms to Amstore's usual standards.
 		/// </summary>
