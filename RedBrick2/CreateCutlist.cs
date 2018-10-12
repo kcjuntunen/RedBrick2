@@ -88,6 +88,9 @@ namespace RedBrick2 {
 				(mDoc as AssemblyDoc).ResolveAllLightWeightComponents(true);
 			}
 
+			if (mDoc == null) {
+				return;
+			}
 			config_cbx.Items.AddRange(mDoc.GetConfigurationNames());
 			config_cbx.SelectedItem = _config.Name;
 
@@ -116,7 +119,12 @@ namespace RedBrick2 {
 			}
 			res_ = _v.ReferencedDocument;
 			sourceComp = _v.Name;
-			_config = res_.GetConfigurationByName(_v.ReferencedConfiguration);
+			try {
+				_config = res_.GetConfigurationByName(_v.ReferencedConfiguration);
+			} catch (NullReferenceException nre) {
+				MessageBox.Show(this, @"Unable to find a valid Drawing View.", @"Cutlist Creation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return null;
+			}
 			Text = string.Format(@"{0} - {1} (from {2})", topName, _config.Name, sourceComp);
 			return res_;
 		}
@@ -216,8 +224,6 @@ namespace RedBrick2 {
 		private void CreateCutlist_Load(object sender, EventArgs e) {
 			// TODO: This line of code loads data into the 'eNGINEERINGDataSet.CUT_PART_TYPES' table. You can move, or remove it, as needed.
 			this.cUT_PART_TYPESTableAdapter.Fill(this.eNGINEERINGDataSet.CUT_PART_TYPES);
-			Location = Properties.Settings.Default.CreateCutlistLocation;
-			Size = Properties.Settings.Default.CreateCutlistSize;
 			// TODO: This line of code loads data into the 'eNGINEERINGDataSet.CUT_CUTLISTS' table. You can move, or remove it, as needed.
 			//this.cUT_CUTLISTSTableAdapter.Fill(this.eNGINEERINGDataSet.CUT_CUTLISTS);
 			// TODO: This line of code loads data into the 'eNGINEERINGDataSet.GEN_CUSTOMERS' table. You can move, or remove it, as needed.
@@ -418,6 +424,9 @@ namespace RedBrick2 {
 			_swApp.GetUserProgressBar(out pb);
 			Cursor.Current = Cursors.WaitCursor;
 			pb.Start(0, 1, @"Enumerating parts...");
+			if (m == null) {
+				return;
+			}
 			string name = Redbrick.FileInfoToLookup(new FileInfo(m.GetPathName()));
 			SwProperties s = new SwProperties(_swApp);
 			s.Configuration = _config.Name;
@@ -1038,6 +1047,9 @@ namespace RedBrick2 {
 		}
 
 		private void CreateCutlist_Shown(object sender, EventArgs e) {
+			Location = Properties.Settings.Default.CreateCutlistLocation;
+			Size = Properties.Settings.Default.CreateCutlistSize;
+
 			dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.DisplayedCells);
 		}
 
@@ -1373,6 +1385,10 @@ namespace RedBrick2 {
 
 		private FileInfo find_pdf2(string doc) {
 			string searchterm_ = string.Format(@"{0}.PDF", doc);
+			if (mDoc == null) {
+				return null;
+			}
+
 			if (mDoc.GetPathName().ToUpper().StartsWith(@"G")) {
 				using (ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter gdta =
 					new ENGINEERINGDataSetTableAdapters.GEN_DRAWINGSTableAdapter()) {
