@@ -1,4 +1,7 @@
 
-1) "Remove" button's enabled-ness is checked more often.
-2) Revision numbers are filted out of suggested Item Names on the Create Cutlist window.
-3) Handle possible null reference under unlikely conditions.
+- On Drawing Collector:
+  1) Added drag and drop reordering.
+  2) Added double click drawing path to change.
+  3) Added ability to add arbitrary drawings.
+  4) Added configuration column.
+  5) Added ability to sort by any column; rather than just the first.
