@@ -27,6 +27,7 @@ namespace RedBrick2.DrawingCollector {
 			listView1.View = System.Windows.Forms.View.Details;
 			listView1.SmallImageList = Redbrick.TreeViewIcons;
 			listView1.ItemDrag += ListView1_ItemDrag;
+			new ToolTip().SetToolTip(textBox3, @"This filename was automatically guessed; doubleclick here to change it.");
 			FindDrawings();
 		}
 
