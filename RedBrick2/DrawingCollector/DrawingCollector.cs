@@ -540,6 +540,7 @@ namespace RedBrick2.DrawingCollector {
 		private void listView1_DragEnter(object sender, DragEventArgs e) {
 			int len = e.Data.GetFormats().Length - 1;
 			int i;
+			listView1.Sorting = SortOrder.None;
 			for (i = 0; i <= len; i++) {
 				if (e.Data.GetFormats()[i].Equals("System.Windows.Forms.ListView+SelectedListViewItemCollection")) {
 					//The data from the drag source is moved to the target.
