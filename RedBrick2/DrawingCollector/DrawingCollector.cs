@@ -28,6 +28,7 @@ namespace RedBrick2.DrawingCollector {
 			listView1.SmallImageList = Redbrick.TreeViewIcons;
 			listView1.ItemDrag += ListView1_ItemDrag;
 			new ToolTip().SetToolTip(textBox3, @"This filename was automatically guessed; doubleclick here to change it.");
+			new ToolTip().SetToolTip(listView1, "Click the column headings to sort.\nDrag and drop to manually reorder.");
 			FindDrawings();
 		}
 
