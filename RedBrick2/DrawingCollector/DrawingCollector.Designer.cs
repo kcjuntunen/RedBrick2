@@ -64,6 +64,7 @@
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
+			this.add_btn = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -140,7 +141,6 @@
 			this.tableLayoutPanel1.ColumnCount = 2;
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85F));
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 12);
 			this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 10);
 			this.tableLayoutPanel1.Controls.Add(this.textBox4, 0, 9);
 			this.tableLayoutPanel1.Controls.Add(this.checkBox3, 1, 9);
@@ -155,10 +155,12 @@
 			this.tableLayoutPanel1.Controls.Add(this.label1, 0, 2);
 			this.tableLayoutPanel1.Controls.Add(this.label6, 0, 0);
 			this.tableLayoutPanel1.Controls.Add(this.config_cbx, 0, 1);
+			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 14);
+			this.tableLayoutPanel1.Controls.Add(this.add_btn, 0, 13);
 			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-			this.tableLayoutPanel1.RowCount = 13;
+			this.tableLayoutPanel1.RowCount = 15;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -172,7 +174,8 @@
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
 			this.tableLayoutPanel1.Size = new System.Drawing.Size(506, 545);
 			this.tableLayoutPanel1.TabIndex = 0;
 			// 
@@ -518,6 +521,16 @@
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
 			// 
+			// add_btn
+			// 
+			this.add_btn.Location = new System.Drawing.Point(3, 327);
+			this.add_btn.Name = "add_btn";
+			this.add_btn.Size = new System.Drawing.Size(75, 23);
+			this.add_btn.TabIndex = 15;
+			this.add_btn.Text = "Add Item...";
+			this.add_btn.UseVisualStyleBackColor = true;
+			this.add_btn.Click += new System.EventHandler(this.add_btn_Click);
+			// 
 			// DrawingCollector
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -593,5 +606,6 @@
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.ComboBox config_cbx;
 		private System.Windows.Forms.ColumnHeader columnHeader4;
+		private System.Windows.Forms.Button add_btn;
 	}
 }

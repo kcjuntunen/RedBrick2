@@ -586,5 +586,28 @@ namespace RedBrick2.DrawingCollector {
 				listView1.Items.Remove(dragItem);
 			}
 		}
+
+		private void add_btn_Click(object sender, EventArgs e) {
+			int err = 0;
+			OpenFileDialog ofd_ = new OpenFileDialog();
+			ofd_.InitialDirectory = Path.GetDirectoryName(rootItem.SldDrw.FullName);
+			ofd_.Filter = @"SolidWorks Drawings (*.slddrw)|*.slddrw";
+
+			if (ofd_.ShowDialog() == DialogResult.OK) {
+				SwApp.OpenDocSilent(ofd_.FileName, (int)swDocumentTypes_e.swDocDRAWING, ref err);
+				SwApp.ActivateDoc3(ofd_.FileName, false, (int)swRebuildOnActivation_e.swDontRebuildActiveDoc, ref err);
+				SolidWorks.Interop.sldworks.View v_ = Redbrick.GetFirstView(SwApp);
+				SwProperties p_ = new SwProperties(SwApp, v_.ReferencedDocument);
+				p_.GetProperties(v_.ReferencedDocument);
+				ItemInfo i = new ItemInfo {
+					PropertySet = p_,
+					SldDrw = new FileInfo(ofd_.FileName),
+					CloseSldDrw = true,
+					DeletePdf = true
+				};
+				infos.Add(i.Name, i);
+				listView1.Items.Add(infos[i.Name].Node);
+			}
+		}
 	}
 }
