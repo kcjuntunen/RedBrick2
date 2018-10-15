@@ -15,6 +15,7 @@ namespace RedBrick2.DrawingCollector {
 		private string TopLevel = string.Empty;
 		private string Here;
 		private List<ItemInfo> reordered_by_boms = new List<ItemInfo>();
+		private int sortColumn = 0;
 
 		public DrawingCollector(SldWorks sldWorks) {
 			SwApp = sldWorks;
@@ -372,11 +373,18 @@ namespace RedBrick2.DrawingCollector {
 
 		private void ColumnClick(object sender, ColumnClickEventArgs e) {
 			ListView lv_ = sender as ListView;
-			if (lv_.Columns[e.Column].ListView.Sorting == SortOrder.Ascending) {
-				lv_.Columns[0].ListView.Sorting = SortOrder.Descending;
+			if (e.Column != sortColumn) {
+				sortColumn = e.Column;
+				lv_.Sorting = SortOrder.Ascending;
 			} else {
-				lv_.Columns[0].ListView.Sorting = SortOrder.Ascending;
+				if (lv_.Columns[e.Column].ListView.Sorting == SortOrder.Ascending) {
+					lv_.Columns[e.Column].ListView.Sorting = SortOrder.Descending;
+				} else {
+					lv_.Columns[e.Column].ListView.Sorting = SortOrder.Ascending;
+				}
 			}
+			lv_.Sort();
+			lv_.ListViewItemSorter = new ListViewItemComparer(e.Column, lv_.Sorting);
 		}
 
 		private void listView1_MouseClick(object sender, MouseEventArgs e) {
