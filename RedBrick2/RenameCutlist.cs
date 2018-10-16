@@ -8,6 +8,8 @@ namespace RedBrick2 {
 	/// </summary>
 	public partial class RenameCutlist : Form {
 		int pre_selected_clid = 0;
+		int pre_selected_cust = 0;
+		string drw_ref = string.Empty;
 		string selected_rev = string.Empty;
 
 		ToolTip descr_tt = new ToolTip();
@@ -27,10 +29,22 @@ namespace RedBrick2 {
 			Init();
 		}
 
+		/// <summary>
+		/// Constructor. Instantiate the RenameCutlist form with <see cref="int"/> selected.
+		/// </summary>
+		public RenameCutlist(int clid, int cust, string drw) {
+			pre_selected_clid = clid;
+			pre_selected_cust = cust;
+			drw_ref = drw;
+			Init();
+		}
+
 		private void Init() {
 			InitializeComponent();
+			
 			rename_button.Enabled = names_OK;
 			from_cbx.DrawMode = DrawMode.OwnerDrawFixed;
+			cust_cbx.DrawMode = DrawMode.OwnerDrawFixed;
 		} 
 
 		private bool CheckCutlistExists(string cl_, string rev_) {
@@ -45,11 +59,17 @@ namespace RedBrick2 {
 
 		private bool DoRename() {
 			using (ENGINEERINGDataSet.CUT_CUTLISTSDataTable dt_ = new ENGINEERINGDataSet.CUT_CUTLISTSDataTable()) {
-				return dt_.Rename(Convert.ToInt32(from_cbx.SelectedValue), to_tbx.Text.Trim(), rev_cbx.Text.Trim()) == 1;
+				return dt_.Rename(Convert.ToInt32(from_cbx.SelectedValue),
+					to_tbx.Text.Trim(),
+					rev_cbx.Text.Trim(),
+					drw_tb.Text.Trim(),
+					Convert.ToInt32(cust_cbx.SelectedValue)) == 1;
 			}
 		}
 
 		private void RenameCutlist_Load(object sender, EventArgs e) {
+			// TODO: This line of code loads data into the 'eNGINEERINGDataSet.GEN_CUSTOMERS' table. You can move, or remove it, as needed.
+			this.gEN_CUSTOMERSTableAdapter.Fill(this.eNGINEERINGDataSet.GEN_CUSTOMERS);
 			Location = Properties.Settings.Default.RenameLocation;
 			Size = Properties.Settings.Default.RenameSize;
 			cUT_CUTLISTSTableAdapter.Fill(eNGINEERINGDataSet.CUT_CUTLISTS);
@@ -63,13 +83,19 @@ namespace RedBrick2 {
 				System.Data.DataRowView drv_ = from_cbx.SelectedItem as System.Data.DataRowView;
 				selected_rev = Convert.ToString(drv_[@"REV"]);
 			}
+
+			if (pre_selected_cust > 0) {
+				cust_cbx.SelectedValue = pre_selected_cust;
+			}
+
+			drw_tb.Text = drw_ref;
 		}
 
 		private void close_btn_Click(object sender, EventArgs e) {
 			Close();
 		}
 
-		private void to_tbx_TextChanged(object sender, EventArgs e) {
+		private void tbx_TextChanged(object sender, EventArgs e) {
 			rename_button.Enabled = names_OK;
 		}
 
@@ -105,11 +131,15 @@ namespace RedBrick2 {
 		}
 
 		private bool names_OK {
-			get { return (to_tbx.Text.Trim() != string.Empty) && (rev_cbx.Text.Trim() != string.Empty); }
+			get
+			{ return (to_tbx.Text.Trim() != string.Empty) &&
+					(rev_cbx.Text.Trim() != string.Empty) &&
+					(drw_tb.Text.Trim() != string.Empty) &&
+					(cust_cbx.SelectedItem != null); }
 			set {; }
 		}
 
-		private void rev_cbx_TextChanged(object sender, EventArgs e) {
+		private void cbx_TextChanged(object sender, EventArgs e) {
 			rename_button.Enabled = names_OK;
 		}
 
@@ -121,6 +151,20 @@ namespace RedBrick2 {
 				Convert.ToString(drv_[@"PARTNUM"]),
 				Convert.ToString(drv_[@"REV"]));
 			e.Graphics.DrawString(display_string_, e.Font, SystemBrushes.ControlText, e.Bounds, StringFormat.GenericDefault);
+		}
+
+		private void cust_cbx_DrawItem(object sender, DrawItemEventArgs e) {
+			ComboBox cb_ = sender as ComboBox;
+			int index = e.Index >= 0 ? e.Index : 0;
+			System.Data.DataRowView drv_ = cb_.Items[index] as System.Data.DataRowView;
+			string custnum_ = Convert.ToString(drv_[@"CUSTNUM"]);
+			string cust_ = Redbrick.TitleCase(Convert.ToString(drv_[@"CUSTOMER"]));
+			if (custnum_ != string.Empty) {
+				e.Graphics.DrawString(string.Format(@"{0} - {1}", cust_, custnum_),
+					e.Font, SystemBrushes.ControlText, e.Bounds, StringFormat.GenericDefault);
+			} else {
+				e.Graphics.DrawString(cust_, e.Font, SystemBrushes.ControlText, e.Bounds, StringFormat.GenericDefault);
+			}
 		}
 
 		private void from_cbx_SelectedIndexChanged(object sender, EventArgs e) {
@@ -147,7 +191,7 @@ namespace RedBrick2 {
 			descr_tt.SetToolTip(cb_, tt_);
 		}
 
-		private void from_cbx_KeyDown(object sender, KeyEventArgs e) {
+		private void cbx_KeyDown(object sender, KeyEventArgs e) {
 			(sender as ComboBox).DroppedDown = false;
 		}
 

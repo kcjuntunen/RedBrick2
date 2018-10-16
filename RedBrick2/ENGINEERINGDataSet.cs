@@ -578,14 +578,16 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 			/// <param name="_itemnum">The new name.</param>
 			/// <param name="_rev">The new REV.</param>
 			/// <returns></returns>
-			public int Rename(int _clid, string _itemnum, string _rev) {
+			public int Rename(int _clid, string _itemnum, string _rev, string _drw, int _custid) {
 				int affected_ = 0;
 				using (ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter ta_ =
 									new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter()) {
-					string sql_ = @"UPDATE CUT_CUTLISTS SET PARTNUM = @partnum, REV = @rev WHERE CLID=@clid";
+					string sql_ = @"UPDATE CUT_CUTLISTS SET PARTNUM = @partnum, REV = @rev, DRAWING = @drw, CUSTID = @cust WHERE CLID=@clid";
 					using (SqlCommand comm = new SqlCommand(sql_, ta_.Connection)) {
 						comm.Parameters.AddWithValue(@"@partnum", _itemnum);
 						comm.Parameters.AddWithValue(@"@rev", _rev);
+						comm.Parameters.AddWithValue(@"@drw", _drw);
+						comm.Parameters.AddWithValue(@"@cust", _custid);
 						comm.Parameters.AddWithValue(@"@clid", _clid);
 						if (ta_.Connection.State == System.Data.ConnectionState.Closed) {
 							ta_.Connection.Open();

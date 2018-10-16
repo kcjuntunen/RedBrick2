@@ -1786,7 +1786,8 @@ namespace RedBrick2 {
 		}
 
 		private void rename_button_Click(object sender, EventArgs e) {
-			using (RenameCutlist rc_ = new RenameCutlist(foundCLID)) {
+			using (RenameCutlist rc_ = new RenameCutlist(foundCLID,
+				Convert.ToInt32(cust_cbx.SelectedValue), ref_cbx.Text.ToUpper().Trim())) {
 				rc_.ShowDialog(this);
 			}
 		}
