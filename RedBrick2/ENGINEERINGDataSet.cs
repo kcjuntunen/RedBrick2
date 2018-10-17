@@ -577,6 +577,8 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 			/// <param name="_clid">The cutlist ID to rename. A <see cref="int"/>.</param>
 			/// <param name="_itemnum">The new name.</param>
 			/// <param name="_rev">The new REV.</param>
+			/// <param name="_drw">The drawing reference.</param>
+			/// <param name="_custid">Customer ID number.</param>
 			/// <returns></returns>
 			public int Rename(int _clid, string _itemnum, string _rev, string _drw, int _custid) {
 				int affected_ = 0;
