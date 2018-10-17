@@ -56,6 +56,7 @@ namespace RedBrick2 {
 		private int foundCLID = 0;
 		private string foundCutlist = string.Empty;
 		private string foundRev = string.Empty;
+		private ENGINEERINGDataSet.CUT_CUTLISTSRow foundCulistRow;
 
 		private UserProgressBar pb;
 
@@ -342,10 +343,11 @@ namespace RedBrick2 {
 
 			foreach (string name_ in names_) {
 				using (ENGINEERINGDataSet.CUT_CUTLISTSDataTable cdt_ =
-				cUT_CUTLISTSTableAdapter.GetDataByName(name_, rev_cbx.Text)) {
+				cUT_CUTLISTSTableAdapter.GetDataByName(name_, rev_cbx.Text.Trim())) {
 					foreach (ENGINEERINGDataSet.CUT_CUTLISTSRow row_ in cdt_.Rows) {
 						msg_ += msg_ != string.Empty ? "\n" : string.Empty;
 						msg_ = string.Format(@"A cutlist exists under {0} REV {1}.", row_.PARTNUM, row_.REV);
+						foundCulistRow = row_;
 						foundCLID = row_.CLID;
 						foundCutlist = row_.PARTNUM;
 						foundRev = row_.REV;
@@ -1786,8 +1788,7 @@ namespace RedBrick2 {
 		}
 
 		private void rename_button_Click(object sender, EventArgs e) {
-			using (RenameCutlist rc_ = new RenameCutlist(foundCLID,
-				Convert.ToInt32(cust_cbx.SelectedValue), ref_cbx.Text.ToUpper().Trim())) {
+			using (RenameCutlist rc_ = new RenameCutlist(foundCulistRow)) {
 				rc_.ShowDialog(this);
 			}
 		}
