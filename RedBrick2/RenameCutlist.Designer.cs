@@ -120,6 +120,7 @@
 			this.from_cbx.TabIndex = 2;
 			this.from_cbx.ValueMember = "CLID";
 			this.from_cbx.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.from_cbx_DrawItem);
+			this.from_cbx.DropDown += new System.EventHandler(this.from_cbx_DropDown);
 			this.from_cbx.SelectedIndexChanged += new System.EventHandler(this.from_cbx_SelectedIndexChanged);
 			this.from_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbx_KeyDown);
 			// 
@@ -152,6 +153,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.rev_cbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.rev_cbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.rev_cbx.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cUTCUTLISTSBindingSource, "REV", true));
 			this.rev_cbx.DataSource = this.revListBindingSource;
 			this.rev_cbx.DisplayMember = "REV";
 			this.rev_cbx.FormattingEnabled = true;
@@ -200,6 +202,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.drw_tb.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.tableLayoutPanel1.SetColumnSpan(this.drw_tb, 2);
+			this.drw_tb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTCUTLISTSBindingSource, "DRAWING", true));
 			this.drw_tb.Location = new System.Drawing.Point(85, 57);
 			this.drw_tb.Name = "drw_tb";
 			this.drw_tb.Size = new System.Drawing.Size(282, 22);
@@ -224,6 +227,7 @@
 			this.cust_cbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.cust_cbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.tableLayoutPanel1.SetColumnSpan(this.cust_cbx, 2);
+			this.cust_cbx.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cUTCUTLISTSBindingSource, "CUSTID", true));
 			this.cust_cbx.DataSource = this.gENCUSTOMERSBindingSource;
 			this.cust_cbx.DisplayMember = "CUSTOMER";
 			this.cust_cbx.FormattingEnabled = true;

@@ -19,6 +19,7 @@ namespace RedBrick2 {
 		/// </summary>
 		public RenameCutlist() {
 			Init();
+			PrePopulate();
 		}
 
 		/// <summary>
@@ -27,6 +28,7 @@ namespace RedBrick2 {
 		public RenameCutlist(int clid) {
 			pre_selected_clid = clid;
 			Init();
+			PrePopulate();
 		}
 
 		/// <summary>
@@ -37,43 +39,37 @@ namespace RedBrick2 {
 			pre_selected_cust = cust;
 			drw_ref = drw;
 			Init();
+			PrePopulate();
+		}
+
+		/// <summary>
+		/// Constructor. Instantiate the RenameCutlist form with <see cref="int"/> selected.
+		/// </summary>
+		public RenameCutlist(ENGINEERINGDataSet.CUT_CUTLISTSRow _r) {
+			pre_selected_clid = _r.CLID;
+			pre_selected_cust = _r.CUSTID;
+			drw_ref = _r.DRAWING;
+			Init();
+			Text = string.Format(@"Rename {0}...", _r.DESCR);
+			from_cbx.SelectedValue = _r.CLID;
+			from_cbx.Text = _r.PARTNUM;
+			rev_cbx.Text = _r.REV;
+			selected_rev = _r.REV;
+			drw_tb.Text = _r.DRAWING;
+			cust_cbx.SelectedValue = _r.CUSTID;
 		}
 
 		private void Init() {
 			InitializeComponent();
+			gEN_CUSTOMERSTableAdapter.Fill(eNGINEERINGDataSet.GEN_CUSTOMERS);
+			revListTableAdapter.Fill(eNGINEERINGDataSet.RevList);
 			
 			rename_button.Enabled = names_OK;
 			from_cbx.DrawMode = DrawMode.OwnerDrawFixed;
 			cust_cbx.DrawMode = DrawMode.OwnerDrawFixed;
-		} 
-
-		private bool CheckCutlistExists(string cl_, string rev_) {
-			using (ENGINEERINGDataSet.CUT_CUTLISTSDataTable cdt_ =
-				cUT_CUTLISTSTableAdapter.GetDataByName(cl_, rev_)) {
-				if (cdt_.Count > 0) {
-					return true;
-				}
-			}
-			return false;
 		}
 
-		private bool DoRename() {
-			using (ENGINEERINGDataSet.CUT_CUTLISTSDataTable dt_ = new ENGINEERINGDataSet.CUT_CUTLISTSDataTable()) {
-				return dt_.Rename(Convert.ToInt32(from_cbx.SelectedValue),
-					to_tbx.Text.Trim(),
-					rev_cbx.Text.Trim(),
-					drw_tb.Text.Trim(),
-					Convert.ToInt32(cust_cbx.SelectedValue)) == 1;
-			}
-		}
-
-		private void RenameCutlist_Load(object sender, EventArgs e) {
-			// TODO: This line of code loads data into the 'eNGINEERINGDataSet.GEN_CUSTOMERS' table. You can move, or remove it, as needed.
-			this.gEN_CUSTOMERSTableAdapter.Fill(this.eNGINEERINGDataSet.GEN_CUSTOMERS);
-			Location = Properties.Settings.Default.RenameLocation;
-			Size = Properties.Settings.Default.RenameSize;
-			cUT_CUTLISTSTableAdapter.Fill(eNGINEERINGDataSet.CUT_CUTLISTS);
-			revListTableAdapter.Fill(eNGINEERINGDataSet.RevList);
+		private void PrePopulate() {
 			if (pre_selected_clid > 0) {
 				from_cbx.SelectedValue = pre_selected_clid;
 			}
@@ -89,6 +85,35 @@ namespace RedBrick2 {
 			}
 
 			drw_tb.Text = drw_ref;
+		}
+
+		private bool CheckCutlistExists(string cl_, string rev_) {
+			using (ENGINEERINGDataSet.CUT_CUTLISTSDataTable cdt_ =
+				cUT_CUTLISTSTableAdapter.GetDataByName(cl_, rev_)) {
+				if (cdt_.Count > 0) {
+					return true;
+				}
+			}
+			return false;
+		}
+
+		private bool DoRename() {
+			int cl_ = pre_selected_clid;
+			if (from_cbx.SelectedItem != null) {
+				cl_ = Convert.ToInt32(from_cbx.SelectedValue);
+			}
+			using (ENGINEERINGDataSet.CUT_CUTLISTSDataTable dt_ = new ENGINEERINGDataSet.CUT_CUTLISTSDataTable()) {
+				return dt_.Rename(cl_,
+					to_tbx.Text.Trim(),
+					rev_cbx.Text.Trim(),
+					drw_tb.Text.Trim(),
+					Convert.ToInt32(cust_cbx.SelectedValue)) == 1;
+			}
+		}
+
+		private void RenameCutlist_Load(object sender, EventArgs e) {
+			Location = Properties.Settings.Default.RenameLocation;
+			Size = Properties.Settings.Default.RenameSize;
 		}
 
 		private void close_btn_Click(object sender, EventArgs e) {
@@ -108,7 +133,7 @@ namespace RedBrick2 {
 				return;
 			}
 
-			if (from_cbx.SelectedItem == null) {
+			if (from_cbx.SelectedItem == null && pre_selected_clid < 1) {
 				string err_msg_ = string.Format(@"You didn't specify which one to rename!", to_item_, to_rev_);
 				MessageBox.Show(this, err_msg_, @"But you can't! ಠ_ಠ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				return;
@@ -188,6 +213,7 @@ namespace RedBrick2 {
 			string tt_ = string.Format(@"`{0}', created by {1} on {2}.",
 				Convert.ToString(drv_[@"DESCR"]), username_, dt_.ToShortDateString());
 			selected_rev = Convert.ToString(drv_[@"REV"]);
+			Text = string.Format(@"Rename {0}...", Convert.ToString(drv_[@"DESCR"]));
 			descr_tt.SetToolTip(cb_, tt_);
 		}
 
@@ -199,6 +225,15 @@ namespace RedBrick2 {
 			Properties.Settings.Default.RenameLocation = Location;
 			Properties.Settings.Default.RenameSize = Size;
 			Properties.Settings.Default.Save();
+		}
+
+		private void from_cbx_DropDown(object sender, EventArgs e) {
+			ComboBox cb_ = sender as ComboBox;
+			if (cb_.Items.Count < 1) {
+				Cursor = Cursors.WaitCursor;
+				cUT_CUTLISTSTableAdapter.Fill(eNGINEERINGDataSet.CUT_CUTLISTS);
+				Cursor = Cursors.Default;
+			}
 		}
 	}
 }
