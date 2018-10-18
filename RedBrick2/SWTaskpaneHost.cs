@@ -69,6 +69,17 @@ namespace RedBrick2 {
 			if (mrb != null) {
 				mrb.DisconnectEvents();
 			}
+			SwApp = null;
+			ActiveDoc = null;
+			try {
+				SwApp.ActiveDocChangeNotify -= SwApp_ActiveDocChangeNotify;
+				SwApp.DestroyNotify -= SwApp_DestroyNotify;
+				SwApp.FileCloseNotify -= SwApp_FileCloseNotify;
+				SwApp.CommandCloseNotify -= SwApp_CommandCloseNotify;
+				SwApp.FileOpenPostNotify -= SwApp_FileOpenPostNotify;
+			} catch (Exception e_) {
+				//MessageBox.Show(e_.Message);
+			}
 		}
 
 		private int SwApp_FileOpenPostNotify(string FileName) {

@@ -1148,7 +1148,7 @@ namespace RedBrick2 {
 					drawingRedbrick.DumpData();
 				}
 			} catch (Exception e_) {
-				MessageBox.Show(e_.Message);
+				//MessageBox.Show(e_.Message);
 			}
 		}
 
