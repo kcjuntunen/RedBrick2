@@ -1,7 +1,3 @@
 
-- On Drawing Collector:
-  1) Added drag and drop reordering.
-  2) Added double click drawing path to change.
-  3) Added ability to add arbitrary drawings.
-  4) Added configuration column.
-  5) Added ability to sort by any column; rather than just the first.
+1) Added fields to the renamer.
+2) Swallow some annoying messages.
