@@ -3033,5 +3033,12 @@ namespace RedBrick2 {
 			DumpActiveDoc();
 			ReStart();
 		}
+
+		private void overtb_Validating(object sender, CancelEventArgs e) {
+			TextBox tb_ = sender as TextBox;
+			if (!double.TryParse(tb_.Text, out double test_)) {
+				tb_.Text = @"0.000";
+			}
+		}
 	}
 }

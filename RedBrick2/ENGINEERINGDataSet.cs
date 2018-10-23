@@ -284,8 +284,7 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 					string sql_ = @"UPDATE CUT_PARTS SET DESCR = @descr, FIN_L = @finl, FIN_W = @finw, THICKNESS = @thk, " +
 						@"CNC1 = @cnc1, CNC2 = @cnc2, BLANKQTY = @blnkqty, " +
 						@"OVER_L = @ovrl, OVER_W = @ovrw, " +
-						//"OP1ID = @op1, OP2ID = @op2, OP3ID = @op3, OP4ID = @op4, OP5ID = @op5, " +
-						"COMMENT = @comment, HASH = @hash,  UPDATE_CNC = @updCnc, TYPE = @type WHERE PARTNUM=@prtNo";
+						@"COMMENT = @comment, HASH = @hash,  UPDATE_CNC = @updCnc, TYPE = @type WHERE PARTNUM=@prtNo";
 					using (SqlCommand comm = new SqlCommand(sql_, ta_.Connection)) {
 						int descr_limit_ = new ENGINEERINGDataSet.CUT_PARTSDataTable().DESCRColumn.MaxLength;
 						if (_pp[@"Description"].Data.ToString().Length > descr_limit_) {
@@ -304,15 +303,11 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 							blnk_qty_ = tmp_ > 1 ? tmp_ : 1;
 						}
 						comm.Parameters.AddWithValue("@blnkqty", blnk_qty_);
-						comm.Parameters.AddWithValue("@ovrl", Convert.ToDouble(_pp[@"OVERL"].Data));
-						comm.Parameters.AddWithValue("@ovrw", Convert.ToDouble(_pp[@"OVERW"].Data));
+						double overl = Convert.ToDouble(_pp[@"OVERL"].Data);
+						double overw = Convert.ToDouble(_pp[@"OVERW"].Data);
 
-						//for (ushort i = 0; i < Properties.Settings.Default.OpCount; i++) {
-						//	int seq_ = i + 1;
-						//	string key_ = string.Format(@"@op{0}", seq_);
-						//	string lkup_ = string.Format(@"OP{0}", seq_);
-						//	comm.Parameters.AddWithValue(key_, Convert.ToInt32(_pp[lkup_].Data));
-						//}
+						comm.Parameters.AddWithValue("@ovrl", overl > 0 ? overl : 0);
+						comm.Parameters.AddWithValue("@ovrw", overw > 0 ? overw : 0);
 
 						comm.Parameters.AddWithValue("@comment", _pp[@"COMMENT"].Data);
 						comm.Parameters.AddWithValue("@updCnc", ((bool)_pp[@"UPDATE CNC"].Data ? 1 : 0));
