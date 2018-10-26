@@ -157,10 +157,15 @@ namespace RedBrick2.DrawingCollector {
 
 			bool layerPrint = SwApp.GetUserPreferenceToggle((int)swUserPreferenceToggle_e.swPDFExportIncludeLayersNotToPrint);
 			SwApp.SetUserPreferenceToggle((int)swUserPreferenceToggle_e.swPDFExportIncludeLayersNotToPrint, true);
-			success = (SwApp.ActiveDoc as ModelDoc2).SaveAs4(tmpFile, saveVersion, saveOptions, ref err, ref warn); 
+			success = (SwApp.ActiveDoc as ModelDoc2).SaveAs4(tmpFile, saveVersion, saveOptions, ref err, ref warn);
 			SwApp.SetUserPreferenceToggle((int)swUserPreferenceToggle_e.swPDFExportIncludeLayersNotToPrint, layerPrint);
 			toolStripProgressBar1.PerformStep();
 
+			string key = Path.GetFileNameWithoutExtension(p.Name);
+			if (infos.ContainsKey(key) && infos[key].CloseSldDrw) {
+				SwApp.CloseDoc(p.FullName);
+				toolStripProgressBar1.PerformStep();
+			}
 			return new FileInfo(tmpFile);
 		}
 
@@ -212,15 +217,9 @@ namespace RedBrick2.DrawingCollector {
 					checkBox1.Checked = infos[item.Text].SldDoc.Exists;
 					checkBox2.Checked = infos[item.Text].SldDrw.Exists;
 					checkBox3.Checked = infos[item.Text].Pdf.Exists;
-					FileInfo sldDrw_ = new FileInfo(item.SubItems[5].Text);
+					FileInfo sldDrw_ = new FileInfo(item.SubItems[6].Text);
 					infos[item.SubItems[0].Text].Pdf = CreateDXF(sldDrw_);
 					count++;
-					if (infos[item.Text].CloseSldDrw) {
-						toolStripStatusLabel1.Text = @"Closing";
-						toolStripStatusLabel2.Text = infos[item.Text].SldDrw.Name;
-						SwApp.CloseDoc(infos[item.Text].SldDrw.FullName);
-						toolStripProgressBar1.PerformStep();
-					}
 				}
 			}
 			return count;
@@ -503,7 +502,9 @@ namespace RedBrick2.DrawingCollector {
 			string plural = count > 1 ? @"s" : string.Empty;
 			toolStripStatusLabel2.Text = string.Format(@"Saved {0} DXF{1} in {2} seconds", count, plural, stopWatch.Elapsed.TotalSeconds);
 			toolStripProgressBar1.Value = toolStripProgressBar1.Maximum;
-			System.Diagnostics.Process.Start(fbd_.SelectedPath);
+			if (fbd_.SelectedPath != string.Empty &&  new DirectoryInfo(fbd_.SelectedPath).Exists) {
+				System.Diagnostics.Process.Start(fbd_.SelectedPath);
+			}
 		}
 
 		private void config_cbx_SelectedIndexChanged(object sender, EventArgs e) {
