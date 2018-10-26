@@ -338,6 +338,12 @@ namespace RedBrick2 {
 				CheckEdgingOps();
 				TogglePriorityButton();
 
+				Label[] op_labels = { label32, label33, label34, label35, label36 };
+				for (int i = 0; i < 5; i++) {
+					op_labels[i].Text = string.Format(@"Op {0}", i + 1);
+					op_labels[i].Visible = true;
+				}
+
 				//textBox_TextChanged(PropertySet[@"WALL THICKNESS"].Value, label21);
 
 				flowLayoutPanel1.VerticalScroll.Value = scrollOffset.Y;

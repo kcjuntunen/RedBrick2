@@ -530,6 +530,16 @@ namespace RedBrick2 {
 				PropertySet.Clear();
 			}
 
+			Label[] mat_labels = { label31, label33, label35, label37, label39 };
+			Label[] fin_labels = { label32, label34, label36, label38, label40 };
+			for (int i = 0; i < 5; i++) {
+				mat_labels[i].Text = string.Format(@"Material {0}", i + 1);
+				fin_labels[i].Text = string.Format(@"Finish {0}", i + 1);
+
+				mat_labels[i].Visible = true;
+				fin_labels[i].Visible = true;
+			}
+
 			FigureOutCustomer();
 			FigureOutAuthor();
 			FigureOutRev();
