@@ -1,3 +1,4 @@
 
-1) Added fields to the renamer.
-2) Swallow some annoying messages.
+1) Handle wrong stuff being entered in Oversize boxes.
+2) Fixed DXF saving.
+3) Now saving Ariba label images as JPG.
