@@ -70,6 +70,11 @@ namespace RedBrick2 {
 		}
 
 		private void PrePopulate() {
+			if (from_cbx.Items.Count < 1) {
+				Cursor = Cursors.WaitCursor;
+				cUT_CUTLISTSTableAdapter.Fill(eNGINEERINGDataSet.CUT_CUTLISTS);
+				Cursor = Cursors.Default;
+			}
 			if (pre_selected_clid > 0) {
 				from_cbx.SelectedValue = pre_selected_clid;
 			}
