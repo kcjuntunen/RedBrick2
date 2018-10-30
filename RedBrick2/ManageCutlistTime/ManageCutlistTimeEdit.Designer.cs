@@ -54,9 +54,9 @@
 			this.op_sel_cb = new System.Windows.Forms.ComboBox();
 			this.friendlyCutOpsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-			this.button1 = new System.Windows.Forms.Button();
-			this.button2 = new System.Windows.Forms.Button();
-			this.button3 = new System.Windows.Forms.Button();
+			this.clr_btn = new System.Windows.Forms.Button();
+			this.add_btn = new System.Windows.Forms.Button();
+			this.save_btn = new System.Windows.Forms.Button();
 			this.cutlistsTableAdapter = new RedBrick2.ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CutlistsTableAdapter();
 			this.friendlyCutOpsTableAdapter = new RedBrick2.ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.FriendlyCutOpsTableAdapter();
 			this.tableLayoutPanel1.SuspendLayout();
@@ -234,6 +234,7 @@
 			this.update_btn.TabIndex = 0;
 			this.update_btn.Text = "Update";
 			this.update_btn.UseVisualStyleBackColor = true;
+			this.update_btn.Click += new System.EventHandler(this.update_btn_Click);
 			// 
 			// update_all_btn
 			// 
@@ -246,6 +247,7 @@
 			this.update_all_btn.TabIndex = 1;
 			this.update_all_btn.Text = "Update All";
 			this.update_all_btn.UseVisualStyleBackColor = true;
+			this.update_all_btn.Click += new System.EventHandler(this.update_all_btn_Click);
 			// 
 			// delete_btn
 			// 
@@ -258,6 +260,7 @@
 			this.delete_btn.TabIndex = 2;
 			this.delete_btn.Text = "Delete";
 			this.delete_btn.UseVisualStyleBackColor = true;
+			this.delete_btn.Click += new System.EventHandler(this.delete_btn_Click);
 			// 
 			// tableLayoutPanel4
 			// 
@@ -411,9 +414,9 @@
 			this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
 			this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-			this.tableLayoutPanel5.Controls.Add(this.button1, 0, 0);
-			this.tableLayoutPanel5.Controls.Add(this.button2, 1, 0);
-			this.tableLayoutPanel5.Controls.Add(this.button3, 2, 0);
+			this.tableLayoutPanel5.Controls.Add(this.clr_btn, 0, 0);
+			this.tableLayoutPanel5.Controls.Add(this.add_btn, 1, 0);
+			this.tableLayoutPanel5.Controls.Add(this.save_btn, 2, 0);
 			this.tableLayoutPanel5.Location = new System.Drawing.Point(52, 102);
 			this.tableLayoutPanel5.Name = "tableLayoutPanel5";
 			this.tableLayoutPanel5.RowCount = 1;
@@ -421,41 +424,43 @@
 			this.tableLayoutPanel5.Size = new System.Drawing.Size(193, 29);
 			this.tableLayoutPanel5.TabIndex = 10;
 			// 
-			// button1
+			// clr_btn
 			// 
-			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.clr_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.button1.Location = new System.Drawing.Point(3, 3);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(42, 23);
-			this.button1.TabIndex = 0;
-			this.button1.Text = "Clear";
-			this.button1.UseVisualStyleBackColor = true;
+			this.clr_btn.Location = new System.Drawing.Point(3, 3);
+			this.clr_btn.Name = "clr_btn";
+			this.clr_btn.Size = new System.Drawing.Size(42, 23);
+			this.clr_btn.TabIndex = 0;
+			this.clr_btn.Text = "Clear";
+			this.clr_btn.UseVisualStyleBackColor = true;
+			this.clr_btn.Click += new System.EventHandler(this.clr_btn_Click);
 			// 
-			// button2
+			// add_btn
 			// 
-			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.add_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.button2.Location = new System.Drawing.Point(51, 3);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(90, 23);
-			this.button2.TabIndex = 1;
-			this.button2.Text = "Add as New";
-			this.button2.UseVisualStyleBackColor = true;
+			this.add_btn.Location = new System.Drawing.Point(51, 3);
+			this.add_btn.Name = "add_btn";
+			this.add_btn.Size = new System.Drawing.Size(90, 23);
+			this.add_btn.TabIndex = 1;
+			this.add_btn.Text = "Add as New";
+			this.add_btn.UseVisualStyleBackColor = true;
 			// 
-			// button3
+			// save_btn
 			// 
-			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.save_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.button3.Location = new System.Drawing.Point(147, 3);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(43, 23);
-			this.button3.TabIndex = 2;
-			this.button3.Text = "Save";
-			this.button3.UseVisualStyleBackColor = true;
+			this.save_btn.Location = new System.Drawing.Point(147, 3);
+			this.save_btn.Name = "save_btn";
+			this.save_btn.Size = new System.Drawing.Size(43, 23);
+			this.save_btn.TabIndex = 2;
+			this.save_btn.Text = "Save";
+			this.save_btn.UseVisualStyleBackColor = true;
+			this.save_btn.Click += new System.EventHandler(this.save_btn_Click);
 			// 
 			// cutlistsTableAdapter
 			// 
@@ -521,9 +526,9 @@
 		private System.Windows.Forms.CheckBox op_chb;
 		private System.Windows.Forms.ComboBox op_sel_cb;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.Button button2;
-		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.Button clr_btn;
+		private System.Windows.Forms.Button add_btn;
+		private System.Windows.Forms.Button save_btn;
 		private System.Windows.Forms.BindingSource friendlyCutOpsBindingSource;
 		private ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.FriendlyCutOpsTableAdapter friendlyCutOpsTableAdapter;
 	}

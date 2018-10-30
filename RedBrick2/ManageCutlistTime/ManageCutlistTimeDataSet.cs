@@ -59,7 +59,7 @@ namespace RedBrick2.ManageCutlistTime {
 					string runTime_ = row_.CTRUN.ToString(@"0.000000");
 					string ctnote_ = row_.IsCTNOTENull() ? string.Empty : row_.CTNOTE;
 					string ctop_ = row_.CTOP.ToString();
-					string[] d_ = new string[] { type_, op_, setupTime_, runTime_, row_.CTID.ToString(), ctnote_, ctop_, row_.CTID.ToString() };
+					string[] d_ = new string[] { type_, op_, setupTime_, runTime_, row_.CTID.ToString(), ctnote_, ctop_, row_.CLID.ToString() };
 					list_.Add(d_);
 				}
 				return list_;
@@ -210,3 +210,5 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 		}
 	}
 }
+
+

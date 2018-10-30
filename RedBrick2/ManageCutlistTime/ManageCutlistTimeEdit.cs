@@ -117,5 +117,95 @@ namespace RedBrick2 {
 				note_tb.Text = lvi_.SubItems[5].Text;
 			}
 		}
+
+		private void delete_btn_Click(object sender, EventArgs e) {
+			if (cutlistTimeListView.SelectedItems.Count < 1) {
+				return;
+			}
+
+			if (cutlistTimeListView.SelectedItems[0] == null) {
+				return;
+			}
+
+			using (ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter ta =
+				new ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter()) {
+				ListViewItem lvi_ = cutlistTimeListView.SelectedItems[0];
+				if (int.TryParse(lvi_.SubItems[4].Text, out int test_)) {
+					ta.DeleteByCTID(test_);
+				}
+			}
+		}
+
+		private void update_btn_Click(object sender, EventArgs e) {
+			if (cutlistTimeListView.SelectedItems.Count < 1) {
+				return;
+			}
+
+			if (cutlistTimeListView.SelectedItems[0] == null) {
+				return;
+			}
+
+			using (ManageCutlistTime.ManageCutlistTimeDataSet ta =
+				new ManageCutlistTime.ManageCutlistTimeDataSet()) {
+				ListViewItem lvi_ = cutlistTimeListView.SelectedItems[0];
+				if (int.TryParse(lvi_.SubItems[4].Text, out int ctid_) &&
+					int.TryParse(lvi_.SubItems[7].Text, out int clid_) &&
+					int.TryParse(lvi_.SubItems[6].Text, out int ctop_)) {
+					int opMethod = 0;
+					int opSetup = 0;
+					using (ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.FriendlyCutOpsTableAdapter co =
+						new ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.FriendlyCutOpsTableAdapter()) {
+						opSetup = Convert.ToInt32(co.LookupOpSetup(ctop_));
+						opMethod = Convert.ToInt32(co.LookupOpMethod(ctop_));
+						ta.UpdCLTimeByID(ctid_, clid_, ctop_, opMethod, opSetup);
+					}
+				}
+			}
+		}
+
+		private void update_all_btn_Click(object sender, EventArgs e) {
+			MessageBox.Show(@"Not implemented.");
+		}
+
+		private void clr_btn_Click(object sender, EventArgs e) {
+			setup_tb.Text = string.Empty;
+			run_tb.Text = string.Empty;
+			op_chb.Checked = false;
+			op_sel_cb.SelectedIndex = -1;
+			note_tb.Text = string.Empty;
+		}
+
+		private void save_btn_Click(object sender, EventArgs e) {
+			if (cutlistTimeListView.SelectedItems.Count < 1) {
+				return;
+			}
+
+			if (cutlistTimeListView.SelectedItems[0] == null) {
+				return;
+			}
+
+
+			if (!(double.TryParse(setup_tb.Text, out double setup_) && double.TryParse(run_tb.Text, out double run_))) {
+				return;
+			}
+
+			if (Redbrick.FloatEquals((setup_ + run_), 0)) {
+				return;
+			}
+
+			if (op_chb.Checked) {
+				if (op_sel_cb.SelectedItem == null) {
+					return;
+				}
+			} else {
+				if (note_tb.Text.Trim() == string.Empty) {
+					return;
+				}
+			}
+
+
+
+
+		}
 	}
 }
