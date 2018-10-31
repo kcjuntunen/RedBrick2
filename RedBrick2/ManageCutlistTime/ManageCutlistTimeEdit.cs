@@ -43,6 +43,49 @@ namespace RedBrick2 {
 			op_sel_cb.DrawMode = DrawMode.OwnerDrawFixed;
 		}
 
+		private int ValidateAndReturnCTID(out double setup, out double run) {
+			setup = 0.0f;
+			run = 0.0f;
+
+			int ctid = -1;
+			bool setup_has_value = double.TryParse(setup_tb.Text, out setup);
+			bool run_has_value = double.TryParse(run_tb.Text, out run);
+
+			if (!(setup_has_value && run_has_value)) {
+				return ctid;
+			}
+
+			if (Redbrick.FloatEquals((setup + run), 0)) {
+				return ctid;
+			}
+
+			if (op_chb.Checked) {
+				if (op_sel_cb.SelectedItem == null) {
+					return ctid;
+				}
+			} else {
+				if (note_tb.Text.Trim() == string.Empty) {
+					return ctid;
+				}
+			}
+
+			if (cutlistComboBox.SelectedItem == null) {
+				return ctid;
+			}
+
+			if (cutlistTimeListView.SelectedItems.Count < 1) {
+				MessageBox.Show(@"You must select an item.");
+				return ctid;
+			}
+
+			if (cutlistTimeListView.SelectedItems[0] != null) {
+				ListViewItem lvi = cutlistTimeListView.SelectedItems[0];
+				ListViewItem.ListViewSubItem item = lvi.SubItems[4];
+				int.TryParse(item.Text, out ctid);
+			}
+			return ctid;
+		}
+
 		private void ManageCutlistTimeEdit_Load(object sender, EventArgs e) {
 			// TODO: This line of code loads data into the 'manageCutlistTimeDataSet.FriendlyCutOps' table. You can move, or remove it, as needed.
 			this.friendlyCutOpsTableAdapter.Fill(this.manageCutlistTimeDataSet.FriendlyCutOps);
@@ -176,36 +219,33 @@ namespace RedBrick2 {
 		}
 
 		private void save_btn_Click(object sender, EventArgs e) {
-			if (cutlistTimeListView.SelectedItems.Count < 1) {
+			int ctid = ValidateAndReturnCTID(out double setup_, out double run_);
+
+			if (ctid == -1) {
 				return;
 			}
 
-			if (cutlistTimeListView.SelectedItems[0] == null) {
+			using (ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter ta_ =
+				new ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter()) {
+				ta_.UpdateRecord(op_chb.Checked, Convert.ToInt32(op_sel_cb.SelectedValue), setup_, run_, note_tb.Text.Trim(), ctid);
+				ListViewItem lvi = cutlistTimeListView.SelectedItems[0];
+				lvi.SubItems[5].Text = note_tb.Text.Trim();
+				list[cutlistTimeListView.SelectedIndices[0]][5] = note_tb.Text.Trim();
+			}
+
+		}
+
+		private void add_btn_Click(object sender, EventArgs e) {
+			int ctid = ValidateAndReturnCTID(out double setup_, out double run_);
+
+			if (ctid == -1) {
 				return;
 			}
 
-
-			if (!(double.TryParse(setup_tb.Text, out double setup_) && double.TryParse(run_tb.Text, out double run_))) {
-				return;
+			using (ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter ta_ =
+				new ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter()) {
+				ta_.InsertRecord(Convert.ToInt32(cutlistComboBox.SelectedValue), op_chb.Checked, Convert.ToInt32(op_sel_cb.SelectedValue), setup_, run_, note_tb.Text.Trim());
 			}
-
-			if (Redbrick.FloatEquals((setup_ + run_), 0)) {
-				return;
-			}
-
-			if (op_chb.Checked) {
-				if (op_sel_cb.SelectedItem == null) {
-					return;
-				}
-			} else {
-				if (note_tb.Text.Trim() == string.Empty) {
-					return;
-				}
-			}
-
-
-
-
 		}
 	}
 }
