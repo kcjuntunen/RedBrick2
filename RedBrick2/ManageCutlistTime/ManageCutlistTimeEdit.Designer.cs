@@ -349,6 +349,7 @@
 			// 
 			this.note_tb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.note_tb.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.tableLayoutPanel4.SetColumnSpan(this.note_tb, 3);
 			this.note_tb.Location = new System.Drawing.Point(52, 69);
 			this.note_tb.Name = "note_tb";
@@ -477,7 +478,11 @@
 			this.ClientSize = new System.Drawing.Size(279, 519);
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "ManageCutlistTimeEdit";
+			this.ShowIcon = false;
+			this.ShowInTaskbar = false;
 			this.Text = "Manage Cutlist Time";
 			this.Load += new System.EventHandler(this.ManageCutlistTimeEdit_Load);
 			this.tableLayoutPanel1.ResumeLayout(false);
