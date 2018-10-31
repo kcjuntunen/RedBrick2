@@ -11,6 +11,8 @@ namespace RedBrick2 {
 		int pre_selected_cust = 0;
 		string drw_ref = string.Empty;
 		string selected_rev = string.Empty;
+		string descr = string.Empty;
+		bool cbox_populated = false;
 
 		ToolTip descr_tt = new ToolTip();
 
@@ -34,10 +36,11 @@ namespace RedBrick2 {
 		/// <summary>
 		/// Constructor. Instantiate the RenameCutlist form with <see cref="int"/> selected.
 		/// </summary>
-		public RenameCutlist(int clid, int cust, string drw) {
+		public RenameCutlist(int clid, int cust, string drw, string descr) {
 			pre_selected_clid = clid;
 			pre_selected_cust = cust;
 			drw_ref = drw;
+			this.descr = descr;
 			Init();
 			PrePopulate();
 		}
@@ -49,6 +52,7 @@ namespace RedBrick2 {
 			pre_selected_clid = _r.CLID;
 			pre_selected_cust = _r.CUSTID;
 			drw_ref = _r.DRAWING;
+			descr = _r.DESCR;
 			Init();
 			Text = string.Format(@"Rename {0}...", _r.DESCR);
 			from_cbx.SelectedValue = _r.CLID;
@@ -57,6 +61,7 @@ namespace RedBrick2 {
 			selected_rev = _r.REV;
 			drw_tb.Text = _r.DRAWING;
 			cust_cbx.SelectedValue = _r.CUSTID;
+			descr_tb.Text = _r.DESCR;
 		}
 
 		private void Init() {
@@ -112,7 +117,8 @@ namespace RedBrick2 {
 					to_tbx.Text.Trim(),
 					rev_cbx.Text.Trim(),
 					drw_tb.Text.Trim(),
-					Convert.ToInt32(cust_cbx.SelectedValue)) == 1;
+					Convert.ToInt32(cust_cbx.SelectedValue),
+					descr_tb.Text.Trim()) == 1;
 			}
 		}
 

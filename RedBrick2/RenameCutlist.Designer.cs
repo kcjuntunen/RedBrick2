@@ -43,6 +43,8 @@
 			this.revListTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.RevListTableAdapter();
 			this.cUT_CUTLISTSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
 			this.gEN_CUSTOMERSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.GEN_CUSTOMERSTableAdapter();
+			this.label5 = new System.Windows.Forms.Label();
+			this.descr_tb = new System.Windows.Forms.TextBox();
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.cUTCUTLISTSBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSet)).BeginInit();
@@ -56,7 +58,7 @@
 			this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label1.Location = new System.Drawing.Point(3, 0);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(76, 27);
+			this.label1.Size = new System.Drawing.Size(82, 29);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "From:";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -75,30 +77,33 @@
 			this.tableLayoutPanel1.Controls.Add(this.from_cbx, 1, 0);
 			this.tableLayoutPanel1.Controls.Add(this.to_tbx, 1, 1);
 			this.tableLayoutPanel1.Controls.Add(this.rev_cbx, 2, 1);
-			this.tableLayoutPanel1.Controls.Add(this.rename_button, 0, 4);
-			this.tableLayoutPanel1.Controls.Add(this.close_btn, 2, 4);
 			this.tableLayoutPanel1.Controls.Add(this.drw_tb, 1, 2);
 			this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
-			this.tableLayoutPanel1.Controls.Add(this.cust_cbx, 1, 3);
 			this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
+			this.tableLayoutPanel1.Controls.Add(this.rename_button, 0, 5);
+			this.tableLayoutPanel1.Controls.Add(this.close_btn, 2, 5);
+			this.tableLayoutPanel1.Controls.Add(this.cust_cbx, 1, 3);
+			this.tableLayoutPanel1.Controls.Add(this.label5, 0, 4);
+			this.tableLayoutPanel1.Controls.Add(this.descr_tb, 1, 4);
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-			this.tableLayoutPanel1.RowCount = 5;
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+			this.tableLayoutPanel1.RowCount = 6;
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(370, 138);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(400, 178);
 			this.tableLayoutPanel1.TabIndex = 1;
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
 			this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label2.Location = new System.Drawing.Point(3, 27);
+			this.label2.Location = new System.Drawing.Point(3, 29);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(76, 27);
+			this.label2.Size = new System.Drawing.Size(82, 29);
 			this.label2.TabIndex = 1;
 			this.label2.Text = "To:";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -114,9 +119,9 @@
 			this.from_cbx.DataSource = this.cUTCUTLISTSBindingSource;
 			this.from_cbx.DisplayMember = "PARTNUM";
 			this.from_cbx.FormattingEnabled = true;
-			this.from_cbx.Location = new System.Drawing.Point(85, 3);
+			this.from_cbx.Location = new System.Drawing.Point(91, 3);
 			this.from_cbx.Name = "from_cbx";
-			this.from_cbx.Size = new System.Drawing.Size(282, 21);
+			this.from_cbx.Size = new System.Drawing.Size(306, 21);
 			this.from_cbx.TabIndex = 2;
 			this.from_cbx.ValueMember = "CLID";
 			this.from_cbx.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.from_cbx_DrawItem);
@@ -140,9 +145,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.to_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-			this.to_tbx.Location = new System.Drawing.Point(85, 30);
+			this.to_tbx.Location = new System.Drawing.Point(91, 32);
 			this.to_tbx.Name = "to_tbx";
-			this.to_tbx.Size = new System.Drawing.Size(199, 22);
+			this.to_tbx.Size = new System.Drawing.Size(216, 22);
 			this.to_tbx.TabIndex = 3;
 			this.to_tbx.TextChanged += new System.EventHandler(this.tbx_TextChanged);
 			// 
@@ -157,9 +162,9 @@
 			this.rev_cbx.DataSource = this.revListBindingSource;
 			this.rev_cbx.DisplayMember = "REV";
 			this.rev_cbx.FormattingEnabled = true;
-			this.rev_cbx.Location = new System.Drawing.Point(290, 30);
+			this.rev_cbx.Location = new System.Drawing.Point(313, 32);
 			this.rev_cbx.Name = "rev_cbx";
-			this.rev_cbx.Size = new System.Drawing.Size(77, 21);
+			this.rev_cbx.Size = new System.Drawing.Size(84, 21);
 			this.rev_cbx.TabIndex = 4;
 			this.rev_cbx.ValueMember = "REV";
 			this.rev_cbx.TextChanged += new System.EventHandler(this.cbx_TextChanged);
@@ -175,9 +180,9 @@
 			this.rename_button.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.rename_button.Location = new System.Drawing.Point(3, 111);
+			this.rename_button.Location = new System.Drawing.Point(3, 148);
 			this.rename_button.Name = "rename_button";
-			this.rename_button.Size = new System.Drawing.Size(76, 24);
+			this.rename_button.Size = new System.Drawing.Size(82, 27);
 			this.rename_button.TabIndex = 6;
 			this.rename_button.Text = "Rename";
 			this.rename_button.UseVisualStyleBackColor = true;
@@ -188,9 +193,9 @@
 			this.close_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.close_btn.Location = new System.Drawing.Point(290, 111);
+			this.close_btn.Location = new System.Drawing.Point(313, 148);
 			this.close_btn.Name = "close_btn";
-			this.close_btn.Size = new System.Drawing.Size(77, 24);
+			this.close_btn.Size = new System.Drawing.Size(84, 27);
 			this.close_btn.TabIndex = 5;
 			this.close_btn.Text = "Cancel";
 			this.close_btn.UseVisualStyleBackColor = true;
@@ -203,9 +208,9 @@
 			this.drw_tb.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
 			this.tableLayoutPanel1.SetColumnSpan(this.drw_tb, 2);
 			this.drw_tb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTCUTLISTSBindingSource, "DRAWING", true));
-			this.drw_tb.Location = new System.Drawing.Point(85, 57);
+			this.drw_tb.Location = new System.Drawing.Point(91, 61);
 			this.drw_tb.Name = "drw_tb";
-			this.drw_tb.Size = new System.Drawing.Size(282, 22);
+			this.drw_tb.Size = new System.Drawing.Size(306, 22);
 			this.drw_tb.TabIndex = 7;
 			this.drw_tb.TextChanged += new System.EventHandler(this.tbx_TextChanged);
 			// 
@@ -213,9 +218,9 @@
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label3.Location = new System.Drawing.Point(3, 54);
+			this.label3.Location = new System.Drawing.Point(3, 58);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(76, 27);
+			this.label3.Size = new System.Drawing.Size(82, 29);
 			this.label3.TabIndex = 8;
 			this.label3.Text = "Drawing Ref:";
 			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -231,9 +236,9 @@
 			this.cust_cbx.DataSource = this.gENCUSTOMERSBindingSource;
 			this.cust_cbx.DisplayMember = "CUSTOMER";
 			this.cust_cbx.FormattingEnabled = true;
-			this.cust_cbx.Location = new System.Drawing.Point(85, 84);
+			this.cust_cbx.Location = new System.Drawing.Point(91, 90);
 			this.cust_cbx.Name = "cust_cbx";
-			this.cust_cbx.Size = new System.Drawing.Size(282, 21);
+			this.cust_cbx.Size = new System.Drawing.Size(306, 21);
 			this.cust_cbx.TabIndex = 9;
 			this.cust_cbx.ValueMember = "CUSTID";
 			this.cust_cbx.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cust_cbx_DrawItem);
@@ -249,9 +254,9 @@
 			// 
 			this.label4.AutoSize = true;
 			this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label4.Location = new System.Drawing.Point(3, 81);
+			this.label4.Location = new System.Drawing.Point(3, 87);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(76, 27);
+			this.label4.Size = new System.Drawing.Size(82, 29);
 			this.label4.TabIndex = 10;
 			this.label4.Text = "Customer:";
 			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -268,16 +273,39 @@
 			// 
 			this.gEN_CUSTOMERSTableAdapter.ClearBeforeFill = true;
 			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.label5.Location = new System.Drawing.Point(3, 116);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(82, 29);
+			this.label5.TabIndex = 11;
+			this.label5.Text = "Description";
+			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// descr_tb
+			// 
+			this.descr_tb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.descr_tb.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+			this.tableLayoutPanel1.SetColumnSpan(this.descr_tb, 2);
+			this.descr_tb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cUTCUTLISTSBindingSource, "DESCR", true));
+			this.descr_tb.Location = new System.Drawing.Point(91, 119);
+			this.descr_tb.Name = "descr_tb";
+			this.descr_tb.Size = new System.Drawing.Size(306, 22);
+			this.descr_tb.TabIndex = 12;
+			// 
 			// RenameCutlist
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(402, 170);
+			this.ClientSize = new System.Drawing.Size(432, 210);
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.MinimumSize = new System.Drawing.Size(410, 200);
+			this.MinimumSize = new System.Drawing.Size(440, 240);
 			this.Name = "RenameCutlist";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
@@ -315,5 +343,7 @@
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.BindingSource gENCUSTOMERSBindingSource;
 		private ENGINEERINGDataSetTableAdapters.GEN_CUSTOMERSTableAdapter gEN_CUSTOMERSTableAdapter;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.TextBox descr_tb;
 	}
 }

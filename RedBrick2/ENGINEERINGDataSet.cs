@@ -574,12 +574,18 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 			/// <param name="_rev">The new REV.</param>
 			/// <param name="_drw">The drawing reference.</param>
 			/// <param name="_custid">Customer ID number.</param>
+			/// <param name="descr_">A description, limited to 50 characters.</param>
 			/// <returns></returns>
-			public int Rename(int _clid, string _itemnum, string _rev, string _drw, int _custid) {
+			public int Rename(int _clid, string _itemnum, string _rev, string _drw, int _custid, string descr_) {
 				int affected_ = 0;
 				using (ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter ta_ =
 									new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter()) {
-					string sql_ = @"UPDATE CUT_CUTLISTS SET PARTNUM = @partnum, REV = @rev, DRAWING = @drw, CUSTID = @cust WHERE CLID=@clid";
+					string sql_ = @"UPDATE CUT_CUTLISTS SET PARTNUM = @partnum, REV = @rev, DRAWING = @drw, CUSTID = @cust, DESCR = @descr WHERE CLID=@clid";
+					using (CUT_CUTLISTSDataTable dt_ = new CUT_CUTLISTSDataTable()) {
+						if (descr_.Length > dt_.columnDESCR.MaxLength) {
+							descr_ = descr_.Substring(0, dt_.columnDESCR.MaxLength);
+						}
+					}
 					using (SqlCommand comm = new SqlCommand(sql_, ta_.Connection)) {
 						comm.Parameters.AddWithValue(@"@partnum", _itemnum);
 						comm.Parameters.AddWithValue(@"@rev", _rev);
