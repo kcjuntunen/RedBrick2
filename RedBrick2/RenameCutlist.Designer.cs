@@ -33,18 +33,19 @@
 			this.to_tbx = new System.Windows.Forms.TextBox();
 			this.rev_cbx = new System.Windows.Forms.ComboBox();
 			this.revListBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.rename_button = new System.Windows.Forms.Button();
-			this.close_btn = new System.Windows.Forms.Button();
 			this.drw_tb = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.rename_button = new System.Windows.Forms.Button();
+			this.close_btn = new System.Windows.Forms.Button();
 			this.cust_cbx = new System.Windows.Forms.ComboBox();
 			this.gENCUSTOMERSBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.label4 = new System.Windows.Forms.Label();
+			this.label5 = new System.Windows.Forms.Label();
+			this.descr_tb = new System.Windows.Forms.TextBox();
+			this.upd_btn = new System.Windows.Forms.Button();
 			this.revListTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.RevListTableAdapter();
 			this.cUT_CUTLISTSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter();
 			this.gEN_CUSTOMERSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.GEN_CUSTOMERSTableAdapter();
-			this.label5 = new System.Windows.Forms.Label();
-			this.descr_tb = new System.Windows.Forms.TextBox();
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.cUTCUTLISTSBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.eNGINEERINGDataSet)).BeginInit();
@@ -85,6 +86,7 @@
 			this.tableLayoutPanel1.Controls.Add(this.cust_cbx, 1, 3);
 			this.tableLayoutPanel1.Controls.Add(this.label5, 0, 4);
 			this.tableLayoutPanel1.Controls.Add(this.descr_tb, 1, 4);
+			this.tableLayoutPanel1.Controls.Add(this.upd_btn, 1, 5);
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			this.tableLayoutPanel1.RowCount = 6;
@@ -175,32 +177,6 @@
 			this.revListBindingSource.DataMember = "RevList";
 			this.revListBindingSource.DataSource = this.eNGINEERINGDataSet;
 			// 
-			// rename_button
-			// 
-			this.rename_button.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.rename_button.Location = new System.Drawing.Point(3, 148);
-			this.rename_button.Name = "rename_button";
-			this.rename_button.Size = new System.Drawing.Size(82, 27);
-			this.rename_button.TabIndex = 6;
-			this.rename_button.Text = "Rename";
-			this.rename_button.UseVisualStyleBackColor = true;
-			this.rename_button.Click += new System.EventHandler(this.rename_button_Click);
-			// 
-			// close_btn
-			// 
-			this.close_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.close_btn.Location = new System.Drawing.Point(313, 148);
-			this.close_btn.Name = "close_btn";
-			this.close_btn.Size = new System.Drawing.Size(84, 27);
-			this.close_btn.TabIndex = 5;
-			this.close_btn.Text = "Cancel";
-			this.close_btn.UseVisualStyleBackColor = true;
-			this.close_btn.Click += new System.EventHandler(this.close_btn_Click);
-			// 
 			// drw_tb
 			// 
 			this.drw_tb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -224,6 +200,43 @@
 			this.label3.TabIndex = 8;
 			this.label3.Text = "Drawing Ref:";
 			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.label4.Location = new System.Drawing.Point(3, 87);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(82, 29);
+			this.label4.TabIndex = 10;
+			this.label4.Text = "Customer:";
+			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// rename_button
+			// 
+			this.rename_button.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.rename_button.Location = new System.Drawing.Point(3, 148);
+			this.rename_button.Name = "rename_button";
+			this.rename_button.Size = new System.Drawing.Size(82, 27);
+			this.rename_button.TabIndex = 6;
+			this.rename_button.Text = "Update";
+			this.rename_button.UseVisualStyleBackColor = true;
+			this.rename_button.Click += new System.EventHandler(this.rename_button_Click);
+			// 
+			// close_btn
+			// 
+			this.close_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.close_btn.Location = new System.Drawing.Point(313, 148);
+			this.close_btn.Name = "close_btn";
+			this.close_btn.Size = new System.Drawing.Size(84, 27);
+			this.close_btn.TabIndex = 5;
+			this.close_btn.Text = "Cancel";
+			this.close_btn.UseVisualStyleBackColor = true;
+			this.close_btn.Click += new System.EventHandler(this.close_btn_Click);
 			// 
 			// cust_cbx
 			// 
@@ -250,29 +263,6 @@
 			this.gENCUSTOMERSBindingSource.DataMember = "GEN_CUSTOMERS";
 			this.gENCUSTOMERSBindingSource.DataSource = this.eNGINEERINGDataSet;
 			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label4.Location = new System.Drawing.Point(3, 87);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(82, 29);
-			this.label4.TabIndex = 10;
-			this.label4.Text = "Customer:";
-			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
-			// revListTableAdapter
-			// 
-			this.revListTableAdapter.ClearBeforeFill = true;
-			// 
-			// cUT_CUTLISTSTableAdapter
-			// 
-			this.cUT_CUTLISTSTableAdapter.ClearBeforeFill = true;
-			// 
-			// gEN_CUSTOMERSTableAdapter
-			// 
-			this.gEN_CUSTOMERSTableAdapter.ClearBeforeFill = true;
-			// 
 			// label5
 			// 
 			this.label5.AutoSize = true;
@@ -295,6 +285,30 @@
 			this.descr_tb.Name = "descr_tb";
 			this.descr_tb.Size = new System.Drawing.Size(306, 22);
 			this.descr_tb.TabIndex = 12;
+			// 
+			// upd_btn
+			// 
+			this.upd_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+			this.upd_btn.Location = new System.Drawing.Point(147, 148);
+			this.upd_btn.Name = "upd_btn";
+			this.upd_btn.Size = new System.Drawing.Size(103, 27);
+			this.upd_btn.TabIndex = 13;
+			this.upd_btn.Text = "Update Current";
+			this.upd_btn.UseVisualStyleBackColor = true;
+			this.upd_btn.Visible = false;
+			this.upd_btn.Click += new System.EventHandler(this.upd_btn_Click);
+			// 
+			// revListTableAdapter
+			// 
+			this.revListTableAdapter.ClearBeforeFill = true;
+			// 
+			// cUT_CUTLISTSTableAdapter
+			// 
+			this.cUT_CUTLISTSTableAdapter.ClearBeforeFill = true;
+			// 
+			// gEN_CUSTOMERSTableAdapter
+			// 
+			this.gEN_CUSTOMERSTableAdapter.ClearBeforeFill = true;
 			// 
 			// RenameCutlist
 			// 
@@ -345,5 +359,6 @@
 		private ENGINEERINGDataSetTableAdapters.GEN_CUSTOMERSTableAdapter gEN_CUSTOMERSTableAdapter;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.TextBox descr_tb;
+		private System.Windows.Forms.Button upd_btn;
 	}
 }

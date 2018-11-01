@@ -582,21 +582,25 @@ namespace RedBrick2 {
 			// 
 			// rename_button
 			// 
+			this.rename_button.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+			this.tableLayoutPanel1.SetColumnSpan(this.rename_button, 2);
 			this.rename_button.Location = new System.Drawing.Point(477, 93);
 			this.rename_button.Name = "rename_button";
-			this.rename_button.Size = new System.Drawing.Size(71, 23);
+			this.rename_button.Size = new System.Drawing.Size(105, 44);
 			this.rename_button.TabIndex = 25;
-			this.rename_button.Text = "Rename";
+			this.rename_button.Text = "Update/Rename";
 			this.rename_button.UseVisualStyleBackColor = true;
 			this.rename_button.Click += new System.EventHandler(this.rename_button_Click);
 			// 
 			// rel_cutlist_btn
 			// 
-			this.rel_cutlist_btn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			this.rel_cutlist_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.rel_cutlist_btn.Location = new System.Drawing.Point(3, 93);
 			this.rel_cutlist_btn.Name = "rel_cutlist_btn";
-			this.rel_cutlist_btn.Size = new System.Drawing.Size(159, 23);
+			this.rel_cutlist_btn.Size = new System.Drawing.Size(159, 44);
 			this.rel_cutlist_btn.TabIndex = 26;
 			this.rel_cutlist_btn.Text = "Related Cutlists";
 			this.rel_cutlist_btn.UseVisualStyleBackColor = true;

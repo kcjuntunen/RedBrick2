@@ -13,6 +13,7 @@ namespace RedBrick2 {
 		string selected_rev = string.Empty;
 		string descr = string.Empty;
 		bool cbox_populated = false;
+		bool rename = true;
 
 		ToolTip descr_tt = new ToolTip();
 
@@ -122,6 +123,21 @@ namespace RedBrick2 {
 			}
 		}
 
+		private bool DoUpdate() {
+			int cl_ = pre_selected_clid;
+			if (from_cbx.SelectedItem != null) {
+				cl_ = Convert.ToInt32(from_cbx.SelectedValue);
+			}
+			using (ENGINEERINGDataSet.CUT_CUTLISTSDataTable dt_ = new ENGINEERINGDataSet.CUT_CUTLISTSDataTable()) {
+				return dt_.Rename(cl_,
+					from_cbx.Text.Trim(),
+					rev_cbx.Text.Trim(),
+					drw_tb.Text.Trim(),
+					Convert.ToInt32(cust_cbx.SelectedValue),
+					descr_tb.Text.Trim()) == 1;
+			}
+		}
+
 		private void RenameCutlist_Load(object sender, EventArgs e) {
 			Location = Properties.Settings.Default.RenameLocation;
 			Size = Properties.Settings.Default.RenameSize;
@@ -139,26 +155,35 @@ namespace RedBrick2 {
 			string from_ = from_cbx.Text;
 			string to_item_ = to_tbx.Text.Trim();
 			string to_rev_ = rev_cbx.Text.Trim();
-			string query_ = string.Format(@"Really rename `{0} REV {1}' to `{2} REV {3}'?", from_, selected_rev, to_item_, to_rev_);
-			if (MessageBox.Show(this, query_, @"﴾͡๏̯͡๏﴿ RLY?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) {
-				return;
-			}
 
 			if (from_cbx.SelectedItem == null && pre_selected_clid < 1) {
-				string err_msg_ = string.Format(@"You didn't specify which one to rename!", to_item_, to_rev_);
+				string err_msg_ = string.Format(@"You didn't specify which one to update!", to_item_, to_rev_);
 				MessageBox.Show(this, err_msg_, @"But you can't! ಠ_ಠ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				return;
 			}
 
-			if (CheckCutlistExists(to_item_, to_rev_)) {
-				string err_msg_ = string.Format(@"A cutlist called `{0} REV {1}' already exists.", to_item_, to_rev_);
-				MessageBox.Show(this, err_msg_, @"But you can't! ಠ_ಠ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-				return;
-			}
+			rename = !(CheckCutlistExists(to_item_, to_rev_) || to_item_.Trim() == string.Empty);
 
-			if (!DoRename()) {
-				string err_msg_ = @"Something went wrong.";
-				MessageBox.Show(this, err_msg_, @"Aww, man!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+			if (rename) {
+				string query_ = string.Format(@"Really rename `{0} REV {1}' to `{2} REV {3}'?", from_, selected_rev, to_item_, to_rev_);
+				if (MessageBox.Show(this, query_, @"﴾͡๏̯͡๏﴿ RLY?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) {
+					return;
+				}
+
+				if (!DoRename()) {
+					string err_msg_ = @"Something went wrong.";
+					MessageBox.Show(this, err_msg_, @"Aww, man!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				}
+			} else {
+				string query_ = string.Format(@"Really update `{0} REV {1}'?", from_, selected_rev);
+				if (MessageBox.Show(this, query_, @"﴾͡๏̯͡๏﴿ RLY?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) {
+					return;
+				}
+
+				if (!DoUpdate()) {
+					string err_msg_ = @"Something went wrong.";
+					MessageBox.Show(this, err_msg_, @"Aww, man!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				}
 			}
 
 			rename_button.Enabled = false;
@@ -168,7 +193,8 @@ namespace RedBrick2 {
 
 		private bool names_OK {
 			get
-			{ return (to_tbx.Text.Trim() != string.Empty) &&
+			{ return
+					// (to_tbx.Text.Trim() != string.Empty) &&
 					(rev_cbx.Text.Trim() != string.Empty) &&
 					(drw_tb.Text.Trim() != string.Empty) &&
 					(cust_cbx.SelectedItem != null); }
@@ -245,6 +271,10 @@ namespace RedBrick2 {
 				cUT_CUTLISTSTableAdapter.Fill(eNGINEERINGDataSet.CUT_CUTLISTS);
 				Cursor = Cursors.Default;
 			}
+		}
+
+		private void upd_btn_Click(object sender, EventArgs e) {
+
 		}
 	}
 }
