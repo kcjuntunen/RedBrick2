@@ -80,7 +80,7 @@ namespace RedBrick2 {
 
 			if (cutlistTimeListView.SelectedItems[0] != null) {
 				ListViewItem lvi = cutlistTimeListView.SelectedItems[0];
-				ListViewItem.ListViewSubItem item = lvi.SubItems[4];
+				ListViewItem.ListViewSubItem item = lvi.SubItems[(int)Schema.Cols.CTID];
 				int.TryParse(item.Text, out ctid);
 			}
 			return ctid;
@@ -150,14 +150,14 @@ namespace RedBrick2 {
 		private void cutlistTimeListView_SelectedIndexChanged(object sender, EventArgs e) {
 			ListView l_ = sender as ListView;
 			if (l_.SelectedItems.Count > 0 && l_.SelectedItems[0] != null) {
-				ListViewItem lvi_ = l_.SelectedItems[0] as ListViewItem;
-				setup_tb.Text = lvi_.SubItems[2].Text;
-				run_tb.Text = lvi_.SubItems[3].Text;
-				op_chb.Checked = lvi_.SubItems[1].Text.Contains(@"Y");
-				if (int.TryParse(lvi_.SubItems[6].Text, out int test_) && test_ > 0) {
+				ListViewItem lvi_ = l_.SelectedItems[(int)Schema.Cols.TYPE] as ListViewItem;
+				setup_tb.Text = lvi_.SubItems[(int)Schema.Cols.SETUP_TIME].Text;
+				run_tb.Text = lvi_.SubItems[(int)Schema.Cols.RUN_TIME].Text;
+				op_chb.Checked = lvi_.SubItems[(int)Schema.Cols.IS_OP].Text.Contains(@"Y");
+				if (int.TryParse(lvi_.SubItems[(int)Schema.Cols.OP].Text, out int test_) && test_ > 0) {
 					op_sel_cb.SelectedValue = test_;
 				}
-				note_tb.Text = lvi_.SubItems[5].Text;
+				note_tb.Text = lvi_.SubItems[(int)Schema.Cols.NOTE].Text;
 			}
 		}
 

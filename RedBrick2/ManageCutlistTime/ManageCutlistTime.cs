@@ -271,7 +271,7 @@ namespace RedBrick2.ManageCutlistTime {
 				partsListView.Items[0].Selected = true;
 			}
 			foreach (ListViewItem item_ in partsListView.Items) {
-				if (lookup_ != string.Empty && item_.SubItems[0].Text.ToString().ToUpper().Equals(lookup_)) {
+				if (lookup_ != string.Empty && item_.SubItems[(int)Schema.Cols.TYPE].Text.ToString().ToUpper().Equals(lookup_)) {
 					item_.BackColor = Color.Yellow;
 				}
 			}

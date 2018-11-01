@@ -158,6 +158,7 @@
     </Compile>
     <Compile Include="Estimation.cs" />
     <Compile Include="Exceptions\BuildPDFException.cs" />
+    <Compile Include="ManageCutlistTime\Schema.cs" />
     <Compile Include="RelatedCutlistReport\RelatedCutlistReport.cs">
       <SubType>Form</SubType>
     </Compile>
