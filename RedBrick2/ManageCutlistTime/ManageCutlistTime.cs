@@ -204,7 +204,6 @@ namespace RedBrick2.ManageCutlistTime {
 							}
 						}
 					}
-					//partsListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 				}
 				includeListBox.Sorted = true;
 				SelectAllTypes();
@@ -214,6 +213,7 @@ namespace RedBrick2.ManageCutlistTime {
 		}
 
 		private void query_cutlist_time(int clid) {
+			cutlistTimeListView.Items.Clear();
 			cutlisttimes_.Clear();
 			List<string[]> list_ = manageCutlistTimeDataSet.QueryCutlistTime(clid);
 			cutlisttimes_ = list_;
@@ -336,6 +336,7 @@ namespace RedBrick2.ManageCutlistTime {
 			using (ManageCutlistTimeEdit mcte_ = new ManageCutlistTimeEdit(clid_, cutlisttimes_)) {
 				mcte_.ShowDialog(this);
 			}
+			query_cutlist_time(Convert.ToInt32(cutlistComboBox.SelectedValue));
 		}
 	}
 }

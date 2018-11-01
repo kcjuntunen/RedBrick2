@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RedBrick2.ManageCutlistTime;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -91,7 +92,7 @@ namespace RedBrick2 {
 			this.friendlyCutOpsTableAdapter.Fill(this.manageCutlistTimeDataSet.FriendlyCutOps);
 			// TODO: This line of code loads data into the 'manageCutlistTimeDataSet.Cutlists' table. You can move, or remove it, as needed.
 			this.cutlistsTableAdapter.Fill(this.manageCutlistTimeDataSet.Cutlists);
-			ManageCutlistTime.ManageCutlistTimeDataSet.CutlistsRow r_ = manageCutlistTimeDataSet.Cutlists.FindByCLID(starting_clid);
+			ManageCutlistTimeDataSet.CutlistsRow r_ = manageCutlistTimeDataSet.Cutlists.FindByCLID(starting_clid);
 			if (r_ != null) {
 				idx = cutlistComboBox.FindStringExact(r_.PARTNUM);
 				cutlistComboBox.SelectedIndex = idx;
@@ -104,6 +105,7 @@ namespace RedBrick2 {
 		}
 
 		private void query_cutlist_times(int clid) {
+			cutlistTimeListView.Items.Clear();
 			list.Clear();
 			List<string[]> list_ = manageCutlistTimeDataSet.QueryCutlistTime(clid);
 			list = list_;
@@ -173,10 +175,11 @@ namespace RedBrick2 {
 			using (ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter ta =
 				new ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter()) {
 				ListViewItem lvi_ = cutlistTimeListView.SelectedItems[0];
-				if (int.TryParse(lvi_.SubItems[4].Text, out int test_)) {
+				if (int.TryParse(lvi_.SubItems[(int)Schema.Cols.CTID].Text, out int test_)) {
 					ta.DeleteByCTID(test_);
 				}
 			}
+			query_cutlist_times(Convert.ToInt32(cutlistComboBox.SelectedValue));
 		}
 
 		private void update_btn_Click(object sender, EventArgs e) {
@@ -188,12 +191,11 @@ namespace RedBrick2 {
 				return;
 			}
 
-			using (ManageCutlistTime.ManageCutlistTimeDataSet ta =
-				new ManageCutlistTime.ManageCutlistTimeDataSet()) {
+			using (ManageCutlistTimeDataSet ta = new ManageCutlistTimeDataSet()) {
 				ListViewItem lvi_ = cutlistTimeListView.SelectedItems[0];
-				if (int.TryParse(lvi_.SubItems[4].Text, out int ctid_) &&
-					int.TryParse(lvi_.SubItems[7].Text, out int clid_) &&
-					int.TryParse(lvi_.SubItems[6].Text, out int ctop_)) {
+				if (int.TryParse(lvi_.SubItems[(int)Schema.Cols.CTID].Text, out int ctid_) &&
+					int.TryParse(lvi_.SubItems[(int)Schema.Cols.CLID].Text, out int clid_) &&
+					int.TryParse(lvi_.SubItems[(int)Schema.Cols.OP].Text, out int ctop_)) {
 					int opMethod = 0;
 					int opSetup = 0;
 					using (ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.FriendlyCutOpsTableAdapter co =
@@ -204,10 +206,12 @@ namespace RedBrick2 {
 					}
 				}
 			}
+			query_cutlist_times(Convert.ToInt32(cutlistComboBox.SelectedValue));
 		}
 
 		private void update_all_btn_Click(object sender, EventArgs e) {
 			MessageBox.Show(@"Not implemented.");
+			query_cutlist_times(Convert.ToInt32(cutlistComboBox.SelectedValue));
 		}
 
 		private void clr_btn_Click(object sender, EventArgs e) {
@@ -228,11 +232,9 @@ namespace RedBrick2 {
 			using (ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter ta_ =
 				new ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter()) {
 				ta_.UpdateRecord(op_chb.Checked, Convert.ToInt32(op_sel_cb.SelectedValue), setup_, run_, note_tb.Text.Trim(), ctid);
-				ListViewItem lvi = cutlistTimeListView.SelectedItems[0];
-				lvi.SubItems[5].Text = note_tb.Text.Trim();
-				list[cutlistTimeListView.SelectedIndices[0]][5] = note_tb.Text.Trim();
 			}
 
+			query_cutlist_times(Convert.ToInt32(cutlistComboBox.SelectedValue));
 		}
 
 		private void add_btn_Click(object sender, EventArgs e) {
@@ -246,6 +248,7 @@ namespace RedBrick2 {
 				new ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter()) {
 				ta_.InsertRecord(Convert.ToInt32(cutlistComboBox.SelectedValue), op_chb.Checked, Convert.ToInt32(op_sel_cb.SelectedValue), setup_, run_, note_tb.Text.Trim());
 			}
+			query_cutlist_times(Convert.ToInt32(cutlistComboBox.SelectedValue));
 		}
 	}
 }
