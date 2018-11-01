@@ -591,6 +591,7 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 						comm.Parameters.AddWithValue(@"@rev", _rev);
 						comm.Parameters.AddWithValue(@"@drw", _drw);
 						comm.Parameters.AddWithValue(@"@cust", _custid);
+						comm.Parameters.AddWithValue(@"descr", descr_);
 						comm.Parameters.AddWithValue(@"@clid", _clid);
 						if (ta_.Connection.State == System.Data.ConnectionState.Closed) {
 							ta_.Connection.Open();
@@ -603,7 +604,6 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 					}
 					return affected_;
 				}
-
 			}
 		}
 
