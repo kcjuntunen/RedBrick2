@@ -409,6 +409,7 @@ namespace RedBrick2 {
 			PropertySet.Add(_p.Get());
 
 			if (newDrawing) {
+				dateTimePicker1.Value = DateTime.Now;
 				return;
 			}
 
