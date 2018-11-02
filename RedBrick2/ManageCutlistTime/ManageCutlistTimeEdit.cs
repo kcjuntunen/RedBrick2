@@ -75,7 +75,6 @@ namespace RedBrick2 {
 			}
 
 			if (cutlistTimeListView.SelectedItems.Count < 1) {
-				MessageBox.Show(@"You must select an item.");
 				return ctid;
 			}
 
@@ -94,8 +93,7 @@ namespace RedBrick2 {
 			this.cutlistsTableAdapter.Fill(this.manageCutlistTimeDataSet.Cutlists);
 			ManageCutlistTimeDataSet.CutlistsRow r_ = manageCutlistTimeDataSet.Cutlists.FindByCLID(starting_clid);
 			if (r_ != null) {
-				idx = cutlistComboBox.FindStringExact(r_.PARTNUM);
-				cutlistComboBox.SelectedIndex = idx;
+				cutlistComboBox.SelectedValue = r_.CLID;
 			}
 
 			foreach (string[] item_ in list) {
@@ -165,10 +163,12 @@ namespace RedBrick2 {
 
 		private void delete_btn_Click(object sender, EventArgs e) {
 			if (cutlistTimeListView.SelectedItems.Count < 1) {
+				MessageBox.Show(@"You must select an entry!");
 				return;
 			}
 
 			if (cutlistTimeListView.SelectedItems[0] == null) {
+				MessageBox.Show(@"You must select an entry!");
 				return;
 			}
 
@@ -184,11 +184,19 @@ namespace RedBrick2 {
 
 		private void update_btn_Click(object sender, EventArgs e) {
 			if (cutlistTimeListView.SelectedItems.Count < 1) {
+				MessageBox.Show(@"You must select an entry!");
 				return;
 			}
 
 			if (cutlistTimeListView.SelectedItems[0] == null) {
+				MessageBox.Show(@"You must select an entry!");
 				return;
+			}
+
+			ListViewItem lvi = cutlistTimeListView.SelectedItems[0];
+
+			if (lvi.SubItems[(int)Schema.Cols.IS_OP].Text != @"Y") {
+				MessageBox.Show(@"Only OP based records can be recalculated!");
 			}
 
 			using (ManageCutlistTimeDataSet ta = new ManageCutlistTimeDataSet()) {
@@ -226,7 +234,17 @@ namespace RedBrick2 {
 			int ctid = ValidateAndReturnCTID(out double setup_, out double run_);
 
 			if (ctid == -1) {
+				MessageBox.Show(@"You must select an item.");
 				return;
+			}
+
+			if (op_chb.Checked) {
+				if (op_sel_cb.Text == string.Empty) {
+					MessageBox.Show(@"You must select an OP before saving an OP-linked record!");
+					return;
+				}
+
+				MessageBox.Show("Note: Changes to OP-linked records can be overwritten automatically when changes to the OP, part, or cutlist are made, or when an update request is sent.\n\nIf the changes being made at this time should not be overwritten, please instead create a new record that is not linked to an operation.");
 			}
 
 			using (ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter ta_ =
@@ -240,15 +258,17 @@ namespace RedBrick2 {
 		private void add_btn_Click(object sender, EventArgs e) {
 			int ctid = ValidateAndReturnCTID(out double setup_, out double run_);
 
-			if (ctid == -1) {
-				return;
-			}
-
 			using (ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter ta_ =
 				new ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CUT_CUTLISTS_TIMETableAdapter()) {
 				ta_.InsertRecord(Convert.ToInt32(cutlistComboBox.SelectedValue), op_chb.Checked, Convert.ToInt32(op_sel_cb.SelectedValue), setup_, run_, note_tb.Text.Trim());
 			}
 			query_cutlist_times(Convert.ToInt32(cutlistComboBox.SelectedValue));
+		}
+
+		private void op_chb_CheckedChanged(object sender, EventArgs e) {
+			if (!(sender as CheckBox).Checked) {
+				op_sel_cb.SelectedValue = -1;
+			}
 		}
 	}
 }

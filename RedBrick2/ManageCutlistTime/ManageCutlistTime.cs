@@ -19,6 +19,7 @@ namespace RedBrick2.ManageCutlistTime {
 		int guessed_clid_ = 0;
 		bool allow_refresh_ = false;
 		bool initialized = false;
+		bool recalc = false;
 
 		/// <summary>
 		/// Constructor. Preselect a cutlist.
@@ -56,7 +57,7 @@ namespace RedBrick2.ManageCutlistTime {
 					}
 				}
 			}
-			clids_.Add(cutlistComboBox.FindStringExact(lookup));
+			clids_.Add(cutlistComboBox.FindString(lookup));
 			guessed_clid_ = clid;
 			setup_listviews();
 			setup_types();
@@ -101,6 +102,7 @@ namespace RedBrick2.ManageCutlistTime {
 				setup_listviews();
 				setup_types();
 			}
+			initialized = true;
 		}
 
 		private void setup_types() {
@@ -143,7 +145,7 @@ namespace RedBrick2.ManageCutlistTime {
 			if (starting_clid_ > 0) {
 				ManageCutlistTimeDataSet.CutlistsRow r_ = manageCutlistTimeDataSet.Cutlists.FindByCLID(starting_clid_);
 				if (r_ != null) {
-					clids_.Add(cutlistComboBox.FindStringExact(r_.PARTNUM));
+					clids_.Add(r_.CLID);
 					string rev_ = r_.IsREVNull() ? @"N/A" : r_.REV;
 					string lookup_note = lookup_ != string.Empty ? string.Format(@" Part: {0}", lookup_) : string.Empty;
 					Text = string.Format(@"Manage Cutlist Time - Cutlist: {0} REV {1}{2}", r_.PARTNUM, r_.REV, lookup_note);
@@ -151,7 +153,7 @@ namespace RedBrick2.ManageCutlistTime {
 			} else if (guessed_clid_ > 0) {
 				ManageCutlistTimeDataSet.CutlistsRow r_ = manageCutlistTimeDataSet.Cutlists.FindByCLID(guessed_clid_);
 				if (r_ != null) {
-					clids_.Add(cutlistComboBox.FindStringExact(r_.PARTNUM));
+					clids_.Add(r_.CLID);
 					string rev_ = r_.IsREVNull() ? @"N/A" : r_.REV;
 					string lookup_note = lookup_ != string.Empty ? string.Format(@" Part: {0}", lookup_) : string.Empty;
 					Text = string.Format(@"Manage Cutlist Time - Guessed cutlist: {0} REV {1}{2}", r_.PARTNUM, r_.REV, lookup_note);
@@ -169,7 +171,7 @@ namespace RedBrick2.ManageCutlistTime {
 			} else if (guessed_clid_ > 0) {
 				cutlistComboBox.SelectedValue = guessed_clid_;
 			} else {
-				int idx = cutlistComboBox.FindStringExact(lookup_);
+				int idx = cutlistComboBox.FindString(lookup_);
 				cutlistComboBox.SelectedIndex = idx > 1 ? idx : 1;
 			}
 		}
@@ -207,15 +209,15 @@ namespace RedBrick2.ManageCutlistTime {
 				}
 				includeListBox.Sorted = true;
 				SelectAllTypes();
-				query_cutlist_time(clid_);
+				query_cutlist_time();
 				ShowIncludedParts();
 			}
 		}
 
-		private void query_cutlist_time(int clid) {
+		private void query_cutlist_time() {
 			cutlistTimeListView.Items.Clear();
 			cutlisttimes_.Clear();
-			List<string[]> list_ = manageCutlistTimeDataSet.QueryCutlistTime(clid);
+			List<string[]> list_ = manageCutlistTimeDataSet.QueryCutlistTime(Convert.ToInt32(cutlistComboBox.SelectedValue));
 			cutlisttimes_ = list_;
 			foreach (string[] item_ in list_) {
 				cutlistTimeListView.Items.Add(new ListViewItem(item_));
@@ -304,15 +306,19 @@ namespace RedBrick2.ManageCutlistTime {
 		}
 
 		private void allButton_Click(object sender, EventArgs e) {
+			recalc = false;
 			foreach (var item in cutlistTimeListView.Items) {
 				(item as ListViewItem).Selected = true;
 			}
+			recalc = true;
+			Recalc();
 		}
 
 		private void noneButton_Click(object sender, EventArgs e) {
-			foreach (var item in cutlistTimeListView.Items) {
-				(item as ListViewItem).Selected = false;
-			}
+			recalc = false;
+			cutlistTimeListView.SelectedItems.Clear();
+			recalc = true;
+			Recalc();
 		}
 
 		private void cutlistComboBox_DrawItem(object sender, DrawItemEventArgs e) {
@@ -336,7 +342,33 @@ namespace RedBrick2.ManageCutlistTime {
 			using (ManageCutlistTimeEdit mcte_ = new ManageCutlistTimeEdit(clid_, cutlisttimes_)) {
 				mcte_.ShowDialog(this);
 			}
-			query_cutlist_time(Convert.ToInt32(cutlistComboBox.SelectedValue));
+			query_cutlist_time();
+		}
+
+		private void cutlistTimeListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e) {
+			if (recalc) {
+				Recalc();
+			}
+		}
+
+		private void Recalc() {
+			List<string[]> list_ = manageCutlistTimeDataSet.QueryCutlistTime(Convert.ToInt32(cutlistComboBox.SelectedValue));
+			ShowIncludedParts();
+			double setup_ = 0.0f;
+			double run_ = 0.0f;
+			double.TryParse(setupTextBox.Text, out setup_);
+			double.TryParse(runTextBox.Text, out run_);
+
+			if (cutlistTimeListView.SelectedItems.Count > 0) {
+				foreach (ListViewItem item in cutlistTimeListView.SelectedItems) {
+					double.TryParse(item.SubItems[(int)Schema.Cols.SETUP_TIME].Text, out double setup_time_);
+					double.TryParse(item.SubItems[(int)Schema.Cols.RUN_TIME].Text, out double run_time_);
+					setup_ += setup_time_;
+					run_ += run_time_;
+				}
+			}
+			setupTextBox.Text = setup_.ToString(@"0.0000");
+			runTextBox.Text = run_.ToString(@"0.0000");
 		}
 	}
 }

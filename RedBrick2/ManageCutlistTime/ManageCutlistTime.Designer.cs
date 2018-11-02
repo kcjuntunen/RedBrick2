@@ -27,11 +27,9 @@
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.label1 = new System.Windows.Forms.Label();
-			this.label2 = new System.Windows.Forms.Label();
 			this.cutlistComboBox = new System.Windows.Forms.ComboBox();
 			this.cutlistsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.manageCutlistTimeDataSet = new RedBrick2.ManageCutlistTime.ManageCutlistTimeDataSet();
-			this.revTextBox = new System.Windows.Forms.TextBox();
 			this.descrTextBox = new System.Windows.Forms.TextBox();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.partsListView = new System.Windows.Forms.ListView();
@@ -116,9 +114,7 @@
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66647F));
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33353F));
 			this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
-			this.tableLayoutPanel2.Controls.Add(this.label2, 1, 0);
 			this.tableLayoutPanel2.Controls.Add(this.cutlistComboBox, 0, 1);
-			this.tableLayoutPanel2.Controls.Add(this.revTextBox, 1, 1);
 			this.tableLayoutPanel2.Controls.Add(this.descrTextBox, 0, 2);
 			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -141,30 +137,20 @@
 			this.label1.Text = "Cutlist";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label2.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-			this.label2.Location = new System.Drawing.Point(173, 0);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(80, 20);
-			this.label2.TabIndex = 1;
-			this.label2.Text = "Rev";
-			this.label2.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-			// 
 			// cutlistComboBox
 			// 
+			this.cutlistComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.cutlistComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
 			this.cutlistComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+			this.tableLayoutPanel2.SetColumnSpan(this.cutlistComboBox, 2);
 			this.cutlistComboBox.DataSource = this.cutlistsBindingSource;
-			this.cutlistComboBox.DisplayMember = "PARTNUM";
-			this.cutlistComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.cutlistComboBox.DisplayMember = "CutlistDisplayName";
 			this.cutlistComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.cutlistComboBox.FormattingEnabled = true;
 			this.cutlistComboBox.Location = new System.Drawing.Point(3, 23);
 			this.cutlistComboBox.Name = "cutlistComboBox";
-			this.cutlistComboBox.Size = new System.Drawing.Size(164, 21);
+			this.cutlistComboBox.Size = new System.Drawing.Size(250, 21);
 			this.cutlistComboBox.TabIndex = 2;
 			this.cutlistComboBox.ValueMember = "CLID";
 			this.cutlistComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cutlistComboBox_DrawItem);
@@ -179,17 +165,6 @@
 			// 
 			this.manageCutlistTimeDataSet.DataSetName = "ManageCutlistTimeDataSet";
 			this.manageCutlistTimeDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-			// 
-			// revTextBox
-			// 
-			this.revTextBox.BackColor = System.Drawing.SystemColors.Control;
-			this.revTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.revTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cutlistsBindingSource, "REV", true));
-			this.revTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.revTextBox.Location = new System.Drawing.Point(173, 23);
-			this.revTextBox.Name = "revTextBox";
-			this.revTextBox.Size = new System.Drawing.Size(80, 22);
-			this.revTextBox.TabIndex = 3;
 			// 
 			// descrTextBox
 			// 
@@ -447,11 +422,12 @@
 			this.cutlistTimeListView.Size = new System.Drawing.Size(382, 171);
 			this.cutlistTimeListView.TabIndex = 1;
 			this.cutlistTimeListView.UseCompatibleStateImageBehavior = false;
+			this.cutlistTimeListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.cutlistTimeListView_ItemSelectionChanged);
 			// 
 			// columnHeader3
 			// 
 			this.columnHeader3.Text = "Type";
-			this.columnHeader3.Width = 100;
+			this.columnHeader3.Width = 160;
 			// 
 			// columnHeader4
 			// 
@@ -461,12 +437,12 @@
 			// columnHeader5
 			// 
 			this.columnHeader5.Text = "Setup";
-			this.columnHeader5.Width = 100;
+			this.columnHeader5.Width = 70;
 			// 
 			// columnHeader6
 			// 
 			this.columnHeader6.Text = "Run";
-			this.columnHeader6.Width = 100;
+			this.columnHeader6.Width = 70;
 			// 
 			// label5
 			// 
@@ -618,9 +594,7 @@
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ComboBox cutlistComboBox;
-		private System.Windows.Forms.TextBox revTextBox;
 		private System.Windows.Forms.TextBox descrTextBox;
 		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.ListView partsListView;
