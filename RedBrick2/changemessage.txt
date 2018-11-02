@@ -1,4 +1,5 @@
 
-1) Handle wrong stuff being entered in Oversize boxes.
-2) Fixed DXF saving.
-3) Now saving Ariba label images as JPG.
+1) Renamer can do updates too.
+2) Archiver stores eDrawings file locations now.
+3) Cutlist time window is fully operational.
+4) Data migrated to new server.
