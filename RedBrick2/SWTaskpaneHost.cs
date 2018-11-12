@@ -91,12 +91,14 @@ namespace RedBrick2 {
 
 		private int SwApp_CommandCloseNotify(int Command, int reason) {
 			if ((swCommands_e)Command == swCommands_e.swCommands_Close || (swCommands_e)Command == swCommands_e.swCommands_Close_) {
+				//mrb.DumpActiveDoc();
 				mrb.Hide();
 			}
 
 			if ((swCommands_e)Command == swCommands_e.swCommands_Make_Lightweight ||
 				(swCommands_e)Command == swCommands_e.swCommands_Lightweight_Toggle ||
 				(swCommands_e)Command == swCommands_e.swCommands_Lightweight_All) {
+				//mrb.DumpActiveDoc();
 				mrb.Enabled = false;
 			}
 
@@ -104,11 +106,13 @@ namespace RedBrick2 {
 		}
 
 		private int SwApp_FileCloseNotify(string FileName, int reason) {
+			//mrb.DumpActiveDoc();
 			mrb.Hide();
 			return 0;
 		}
 
 		private int SwApp_DestroyNotify() {
+			//mrb.DumpActiveDoc();
 			mrb.Hide();
 			return 0;
 		}

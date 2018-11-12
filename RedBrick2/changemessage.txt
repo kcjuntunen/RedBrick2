@@ -2,4 +2,6 @@
 1) Renamer can do updates too.
 2) Archiver stores eDrawings file locations now.
 3) Cutlist time window is fully operational.
-4) Data migrated to new server.
+4) Cutlist creating screen updates on load, when config is changed, and when the redio buttons are messed with.
+5) Added a button for blitz estimates.
+6) Data migrated to new server.
