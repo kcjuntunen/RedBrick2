@@ -1777,10 +1777,11 @@ namespace RedBrick2 {
 			}
 		}
 
-		private void getdatafromDBbtn_Click_1(object sender, EventArgs e) {
-			if (MessageBox.Show(@"Read part data from DB?", @"﴾͡๏̯͡๏﴿ RLY?", MessageBoxButtons.YesNo) == DialogResult.Yes) {
-				ReadGlobalFromDb();
-			}
+		private void generatePartsSummary(object sender, EventArgs e) {
+			PartsSummary.PartsSummaryGenerator p = new PartsSummary.PartsSummaryGenerator(_partlist,
+				Properties.Settings.Default.PartsSummaryTemplate);
+			p.SuggestedName = itm_cbx.Text.Trim();
+			p.Generate();
 		}
 
 		private void itm_cbx_Leave(object sender, EventArgs e) {

@@ -1239,5 +1239,17 @@ namespace RedBrick2.Properties {
                 this["DrawingCollectorLastSaveLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("S:\\shared\\general\\Metals\\METAL MANUFACTURING\\Total Parts Summary.xlsx")]
+        public string PartsSummaryTemplate {
+            get {
+                return ((string)(this["PartsSummaryTemplate"]));
+            }
+            set {
+                this["PartsSummaryTemplate"] = value;
+            }
+        }
     }
 }

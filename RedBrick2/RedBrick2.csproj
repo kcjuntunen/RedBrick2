@@ -80,6 +80,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ArchivePDF\ArchivePDF\bin\x64\Release\ArchivePDF.dll</HintPath>
     </Reference>
+    <Reference Include="EPPlus, Version=4.1.1.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Source\Repos\FormatFixtureBook\FormatFixtureBook\bin\x64\Release\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="FormatFixtureBook, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Source\Repos\FormatFixtureBook\FormatFixtureBook\bin\x64\Release\FormatFixtureBook.dll</HintPath>
@@ -159,6 +163,7 @@
     <Compile Include="Estimation.cs" />
     <Compile Include="Exceptions\BuildPDFException.cs" />
     <Compile Include="ManageCutlistTime\Schema.cs" />
+    <Compile Include="PartsSummary\PartsSummaryGenerator.cs" />
     <Compile Include="RelatedCutlistReport\RelatedCutlistReport.cs">
       <SubType>Form</SubType>
     </Compile>

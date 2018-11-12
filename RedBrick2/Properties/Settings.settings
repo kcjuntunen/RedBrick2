@@ -348,5 +348,8 @@
     <Setting Name="DrawingCollectorLastSaveLocation" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\</Value>
     </Setting>
+    <Setting Name="PartsSummaryTemplate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">S:\shared\general\Metals\METAL MANUFACTURING\Total Parts Summary.xlsx</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

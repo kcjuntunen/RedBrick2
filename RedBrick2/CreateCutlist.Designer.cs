@@ -517,9 +517,9 @@ namespace RedBrick2 {
 			this.getdatafromDBbtn.Name = "getdatafromDBbtn";
 			this.getdatafromDBbtn.Size = new System.Drawing.Size(188, 28);
 			this.getdatafromDBbtn.TabIndex = 18;
-			this.getdatafromDBbtn.Text = "Get Global Part Data From DB";
+			this.getdatafromDBbtn.Text = "Generate Excel File";
 			this.getdatafromDBbtn.UseVisualStyleBackColor = true;
-			this.getdatafromDBbtn.Click += new System.EventHandler(this.getdatafromDBbtn_Click_1);
+			this.getdatafromDBbtn.Click += new System.EventHandler(this.generatePartsSummary);
 			// 
 			// update_prts_btn
 			// 
@@ -532,6 +532,7 @@ namespace RedBrick2 {
 			this.update_prts_btn.TabIndex = 17;
 			this.update_prts_btn.Text = "Update Part Properties";
 			this.update_prts_btn.UseVisualStyleBackColor = true;
+			this.update_prts_btn.Visible = false;
 			this.update_prts_btn.Click += new System.EventHandler(this.update_prts_btn_Click);
 			// 
 			// upload_btn
