@@ -271,6 +271,7 @@ namespace RedBrick2 {
 					pdfFile.LastWriteTime.ToShortDateString(),
 					pdfFile.LastWriteTime.ToLongTimeString());
 			}
+			scan_Click(this, new EventArgs());
 		}
 
 		private void check_ok() {
@@ -1754,7 +1755,8 @@ namespace RedBrick2 {
 			if (user_changed_config && (sender as ComboBox).SelectedItem != null) {
 				_config = mDoc.GetConfigurationByName((sender as ComboBox).SelectedItem.ToString());
 				Text = string.Format(@"{0} - {1}", topName, _config.Name);
-				empty_table();
+				//empty_table();
+				scan_Click(this, new EventArgs());
 				user_changed_config = false;
 			}
 		}
@@ -1808,6 +1810,10 @@ namespace RedBrick2 {
 					scr_.ShowDialog(this);
 				}
 			}
+		}
+
+		private void toplvl_rdo_CheckedChanged(object sender, EventArgs e) {
+			scan_Click(sender, new EventArgs());
 		}
 	}
 }

@@ -430,6 +430,7 @@ namespace RedBrick2 {
 			this.toplvl_rdo.TabIndex = 18;
 			this.toplvl_rdo.Text = "Top-level only";
 			this.toplvl_rdo.UseVisualStyleBackColor = true;
+			this.toplvl_rdo.CheckedChanged += new System.EventHandler(this.toplvl_rdo_CheckedChanged);
 			// 
 			// parts_rdo
 			// 
@@ -557,6 +558,7 @@ namespace RedBrick2 {
 			this.scan.TabIndex = 20;
 			this.scan.Text = "Scan Tree";
 			this.scan.UseVisualStyleBackColor = true;
+			this.scan.Visible = false;
 			this.scan.Click += new System.EventHandler(this.scan_Click);
 			// 
 			// cancel_btn
