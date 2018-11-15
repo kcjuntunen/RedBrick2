@@ -1636,9 +1636,9 @@ namespace RedBrick2 {
 					dgvr_.Cells[@"Over L"].Style.BackColor = Color.LightGreen;
 					(_partlist[partnum_] as SwProperties)[@"OVERW"].Data = Convert.ToDouble(dgvr_.Cells[@"Over W"].FormattedValue);
 					dgvr_.Cells[@"Over W"].Style.BackColor = Color.LightGreen;
-					(_partlist[partnum_] as SwProperties)[@"CNC1"].Data = Convert.ToString(dgvr_.Cells[@"CNC 1"].FormattedValue);
+					(_partlist[partnum_] as SwProperties)[@"CNC1"].Data = Convert.ToString(dgvr_.Cells[@"CNC 1"].FormattedValue).ToUpper();
 					dgvr_.Cells[@"CNC 1"].Style.BackColor = Color.LightGreen;
-					(_partlist[partnum_] as SwProperties)[@"CNC2"].Data = Convert.ToString(dgvr_.Cells[@"CNC 2"].FormattedValue);
+					(_partlist[partnum_] as SwProperties)[@"CNC2"].Data = Convert.ToString(dgvr_.Cells[@"CNC 2"].FormattedValue).ToUpper();
 					dgvr_.Cells[@"CNC 2"].Style.BackColor = Color.LightGreen;
 					if (write_to_parts_) {
 						(_partlist[partnum_] as SwProperties).Write();
