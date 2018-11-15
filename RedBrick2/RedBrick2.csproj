@@ -94,7 +94,7 @@
     <Reference Include="itextsharp">
       <HintPath>..\..\..\..\..\..\..\Program Files\RedBrick\itextsharp.dll</HintPath>
     </Reference>
-    <Reference Include="Machine Priority Control, Version=1.0.6697.10126, Culture=neutral, PublicKeyToken=3dbf4f27f46e74d2, processorArchitecture=MSIL">
+    <Reference Include="Machine Priority Control, Version=1.0.6893.11222, Culture=neutral, PublicKeyToken=3dbf4f27f46e74d2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Visual Studio 2013\Projects\Machine.Priority.Control\Machine Priority Control\bin\Release\Machine Priority Control.dll</HintPath>
     </Reference>
