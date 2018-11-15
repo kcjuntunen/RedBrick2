@@ -1599,6 +1599,7 @@ namespace RedBrick2 {
 
 		private List<SwProperties> GetPartList(bool write_to_parts_) {
 			List<SwProperties> parts_ = new List<SwProperties>();
+			dataGridView1.RefreshEdit();
 			for (int i = 0; i < dataGridView1.Rows.Count; i++) {
 				DataGridViewRow dgvr_ = dataGridView1.Rows[i];
 				bool inc_ = Convert.ToBoolean(dgvr_.Cells[@"Include"].FormattedValue);
@@ -1629,10 +1630,15 @@ namespace RedBrick2 {
 					dgvr_.Cells[@"L"].Style.BackColor = Color.LightGreen;
 					dgvr_.Cells[@"W"].Style.BackColor = Color.LightGreen;
 					dgvr_.Cells[@"T"].Style.BackColor = Color.LightGreen;
+					(_partlist[partnum_] as SwProperties)[@"BLANK QTY"].Data = Convert.ToInt32(dgvr_.Cells[@"Blank Qty"].FormattedValue);
 					dgvr_.Cells[@"Blank Qty"].Style.BackColor = Color.LightGreen;
+					(_partlist[partnum_] as SwProperties)[@"OVERL"].Data = Convert.ToDouble(dgvr_.Cells[@"Over L"].FormattedValue);
 					dgvr_.Cells[@"Over L"].Style.BackColor = Color.LightGreen;
+					(_partlist[partnum_] as SwProperties)[@"OVERW"].Data = Convert.ToDouble(dgvr_.Cells[@"Over W"].FormattedValue);
 					dgvr_.Cells[@"Over W"].Style.BackColor = Color.LightGreen;
+					(_partlist[partnum_] as SwProperties)[@"CNC1"].Data = Convert.ToString(dgvr_.Cells[@"CNC 1"].FormattedValue);
 					dgvr_.Cells[@"CNC 1"].Style.BackColor = Color.LightGreen;
+					(_partlist[partnum_] as SwProperties)[@"CNC2"].Data = Convert.ToString(dgvr_.Cells[@"CNC 2"].FormattedValue);
 					dgvr_.Cells[@"CNC 2"].Style.BackColor = Color.LightGreen;
 					if (write_to_parts_) {
 						(_partlist[partnum_] as SwProperties).Write();
@@ -1668,7 +1674,7 @@ namespace RedBrick2 {
 			if (itm_cbx.Text.Trim() == string.Empty) {
 				return;
 			}
-			ReadGlobalFromDb();
+			//ReadGlobalFromDb();
 			if (cust_cbx.SelectedItem != null && uid != null) {
 				Cursor = Cursors.WaitCursor;
 
