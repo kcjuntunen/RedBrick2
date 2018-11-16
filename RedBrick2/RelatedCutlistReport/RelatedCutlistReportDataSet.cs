@@ -5,6 +5,7 @@ using System;
 
 namespace RedBrick2.RelatedCutlistReport.ExistingCutlistReportDataSetTableAdapters {
 	public partial class CUT_CUTLISTSTableAdapter {
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")]
 		private string GetQuery(HashSet<string> items) {
 			string query_ = @"SELECT CUT_CUTLISTS.CLID, CUT_CUTLISTS.PARTNUM, CUT_CUTLISTS.REV, CUT_CUTLISTS.DRAWING,
 CUT_CUTLISTS.CUSTID, CUT_CUTLISTS.CDATE, CUT_CUTLISTS.DESCR,
@@ -35,6 +36,7 @@ INNER JOIN CUT_STATES ON CUT_CUTLISTS.STATEID = CUT_STATES.ID ";
 		/// </summary>
 		/// <param name="items">A hashset of items to look up.</param>
 		/// <returns>A <see cref="List{T}"/> of <see cref="string"/> arrays.</returns>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")]
 		public List<string[]> Lookup(HashSet<string> items) {
 			string qry_ = GetQuery(items);
 			//StringBuilder result = new StringBuilder();
