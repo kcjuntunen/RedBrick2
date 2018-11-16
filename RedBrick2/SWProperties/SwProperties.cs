@@ -282,7 +282,12 @@ namespace RedBrick2 {
 		/// <param name="property">The SwProperty to be added.</param>
 		public void Add(SwProperty property) {
 			try {
-				_innerDict.Add(property.Name, property);
+				if (_innerDict.ContainsKey(property.Name)) {
+					_innerDict.Remove(property.Name);
+					_innerDict.Add(property.Name, property);
+				} else {
+					_innerDict.Add(property.Name, property);
+				}
 				if (!property.DoNotWrite) {
 					if (property.Global) {
 						globalCount++;
