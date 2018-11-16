@@ -40,9 +40,12 @@ namespace RedBrick2 {
 			int intval = 0;
 			int tp = 0;
 			if (PartID > 0) {
-				using (ENGINEERINGDataSet.CUT_PARTSDataTable cpdt = cpta.GetDataByPartID(PartID)) {
-					if (cpdt.Rows.Count > 0) {
-						tp = (int)cpdt.Rows[0][@"TYPE"];
+				using (ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cpta =
+					new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter()) {
+					using (ENGINEERINGDataSet.CUT_PARTSDataTable cpdt = cpta.GetDataByPartID(PartID)) {
+						if (cpdt.Rows.Count > 0) {
+							tp = (int)cpdt.Rows[0][@"TYPE"];
+						}
 					}
 				}
 			}

@@ -13,9 +13,6 @@ namespace RedBrick2 {
 		private CustomPropertyManager globlProperty;
 		private CustomPropertyManager localProperty;
 
-		internal ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cpta =
-			new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
-
 		/// <summary>
 		/// Constructor for a new <see cref="RedBrick2.SwProperty"/>.
 		/// </summary>
@@ -72,7 +69,11 @@ namespace RedBrick2 {
 
 			PartFileInfo = new FileInfo(ActiveDoc.GetPathName());
 			Hash = Redbrick.GetHash(PartFileInfo);
-			object _prtID = cpta.GetPartIDByPartnum(Redbrick.FileInfoToLookup(PartFileInfo));
+			object _prtID = null;
+			using (ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cpta =
+				new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter()) {
+				_prtID = cpta.GetPartIDByPartnum(Redbrick.FileInfoToLookup(PartFileInfo));
+			}
 
 			if (_prtID == null) {
 				return;
