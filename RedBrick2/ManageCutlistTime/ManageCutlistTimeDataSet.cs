@@ -86,6 +86,7 @@ namespace RedBrick2.ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters {
 			return hs_.Count;
 		}
 
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")]
 		private HashSet<int> CountEdge(int clid, int op, string edge) {
 			HashSet<int> hs_ = new HashSet<int>();
 			string sql_ = string.Format(@"SELECT CUT_CUTLIST_PARTS.{0} FROM CUT_PART_OPS INNER JOIN CUT_CUTLIST_PARTS ON CUT_PART_OPS.POPPART = 
@@ -119,6 +120,7 @@ HAVING (((CUT_CUTLIST_PARTS.CLID)=@clid) AND ((CUT_PART_OPS.POPOP)=@glop));", ed
 		/// <param name="clID">The cutlist ID. An <see cref="int"/>.</param>
 		/// <param name="types">The part types to sum up. An array of <see cref="int"/></param>
 		/// <returns>A <see cref="double"/> of hours.</returns>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")]
 		public double GetCutlistRunTime(int clID, int[] types) {
 			double total = 0.0f;
 			using (CUT_PARTSTableAdapter ta_ =
@@ -167,6 +169,7 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 		/// <param name="clID">The cutlist ID. An <see cref="int"/>.</param>
 		/// <param name="types">The part types to sum up. An array of <see cref="int"/></param>
 		/// <returns>A <see cref="double"/> of hours.</returns>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")]
 		public double GetCutlistSetupTime(int clID, int[] types) {
 			double total = 0.0f;
 			using (ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter ta_ =

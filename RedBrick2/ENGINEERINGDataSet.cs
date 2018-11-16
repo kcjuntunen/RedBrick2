@@ -35,6 +35,7 @@ namespace RedBrick2 {
 			/// <param name="clID">A cutlist ID.</param>
 			/// <param name="types">An array of <see cref="int"/> of part types.</param>
 			/// <returns>Total time in hours. A <see cref="double"/></returns>
+			[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")]
 			public double GetCutlistRunTime(int clID, int[] types) {
 				double total = 0.0f;
 				using (ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter ta_ =
@@ -83,6 +84,7 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 			/// <param name="clID">A cutlist ID.</param>
 			/// <param name="types">An array of <see cref="int"/> of part types.</param>
 			/// <returns>Total time in hours. A <see cref="double"/></returns>
+			[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")]
 			public double GetCutlistSetupTime(int clID, int[] types) {
 				double total = 0.0f;
 				using (ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter ta_ =
@@ -900,6 +902,7 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 			/// </summary>
 			/// <param name="edgeid">The EDGEID from the cutlist database.</param>
 			/// <returns>A <see cref="List{String}"/> of M2M edges.</returns>
+			[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")]
 			public List<string> GetEdgePricing(int edgeid) {
 				List<string> l_ = new List<string>();
 				using (ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter ceta_ =
@@ -943,6 +946,7 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 			/// </summary>
 			/// <param name="matid">The MATID from the cutlist database.</param>
 			/// <returns>A <see cref="List{String}"/> of M2M materials.</returns>
+			[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")]
 			public List<string> GetMaterialPricing(int matid) {
 				List<string> l_ = new List<string>();
 				bool fail_ = false;
