@@ -775,11 +775,10 @@ namespace RedBrick2 {
 				x++;
 			} while ((v == null) && (x < d.GetSheetCount()));
 
-			message = (string)v.GetName2() + ":\n";
-
-			if (v == null) {
-				throw new Exception("I couldn't find a model anywhere in this document.");
+			if (v != null) {
+				message = (string)v.GetName2() + ":\n";
 			}
+
 			return v;
 		}
 
