@@ -77,7 +77,7 @@ namespace RedBrick2 {
 				SwApp.FileCloseNotify -= SwApp_FileCloseNotify;
 				SwApp.CommandCloseNotify -= SwApp_CommandCloseNotify;
 				SwApp.FileOpenPostNotify -= SwApp_FileOpenPostNotify;
-			} catch (Exception e_) {
+			} catch (Exception) {
 				//MessageBox.Show(e_.Message);
 			}
 		}

@@ -12,7 +12,6 @@ namespace RedBrick2 {
 		string drw_ref = string.Empty;
 		string selected_rev = string.Empty;
 		string descr = string.Empty;
-		bool cbox_populated = false;
 		bool rename = true;
 
 		ToolTip descr_tt = new ToolTip();

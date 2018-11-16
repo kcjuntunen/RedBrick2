@@ -122,7 +122,7 @@ namespace RedBrick2 {
 			sourceComp = _v.Name;
 			try {
 				_config = res_.GetConfigurationByName(_v.ReferencedConfiguration);
-			} catch (NullReferenceException nre) {
+			} catch (NullReferenceException) {
 				MessageBox.Show(this, @"Unable to find a valid Drawing View.", @"Cutlist Creation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return null;
 			}

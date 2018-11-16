@@ -1153,7 +1153,7 @@ namespace RedBrick2 {
 				if (drawingRedbrick != null) {
 					drawingRedbrick.DumpData();
 				}
-			} catch (Exception e_) {
+			} catch (Exception) {
 				//MessageBox.Show(e_.Message);
 			}
 		}
