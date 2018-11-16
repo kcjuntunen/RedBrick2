@@ -1,15 +1,27 @@
 ﻿using OfficeOpenXml;
 
 namespace RedBrick2.PartsSummary {
+	/// <summary>
+	/// A class to dump cutlist data to a excel sheet.
+	/// </summary>
 	public class PartsSummaryGenerator {
 		private System.Collections.Specialized.OrderedDictionary _partsList;
 		private string _path;
 
+		/// <summary>
+		/// constructor
+		/// </summary>
+		/// <param name="partsList">An <see cref="System.Collections.Specialized.OrderedDictionary"/> of
+		/// <see cref="System.String"/> keys, and <see cref="SwProperties"/> values.</param>
+		/// <param name="path"></param>
 		public PartsSummaryGenerator(System.Collections.Specialized.OrderedDictionary partsList, string path) {
 			_partsList = partsList;
 			_path = path;
 		}
 
+		/// <summary>
+		/// Generate and save the Excel sheet. It pops up a SaveAs dialogue.
+		/// </summary>
 		public void Generate() {
 			using (ExcelPackage xlp_ = new ExcelPackage(new System.IO.FileInfo(_path))) {
 				ExcelWorksheet wksht_ = xlp_.Workbook.Worksheets[1];
@@ -52,6 +64,9 @@ namespace RedBrick2.PartsSummary {
 			}
 		}
 
+		/// <summary>
+		/// We can suggest a name from the outside.
+		/// </summary>
 		public string SuggestedName { get; set; }
 
 	}

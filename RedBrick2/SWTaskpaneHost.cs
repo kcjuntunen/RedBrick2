@@ -65,6 +65,9 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// Disconnect top level stuff.
+		/// </summary>
 		public void DisconnectStuff() {
 			if (mrb != null) {
 				mrb.DisconnectEvents();

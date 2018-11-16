@@ -782,6 +782,10 @@ namespace RedBrick2 {
 			return v;
 		}
 
+		/// <summary>
+		/// Dump an error into the db.
+		/// </summary>
+		/// <param name="e">An <see cref="Exception"/> object.</param>
 		public static void ProcessError(Exception e) {
 			int uid_ = 0;
 			using (RedbrickDataSetTableAdapters.QueriesTableAdapter q_ =
@@ -947,6 +951,11 @@ namespace RedBrick2 {
 			return lookup_;
 		}
 
+		/// <summary>
+		/// Check whether there's a REV in the string we're looking at.
+		/// </summary>
+		/// <param name="partLookup">A <see cref="string"/>.</param>
+		/// <returns></returns>
 		static public bool ContainsRev(string partLookup) {
 			System.Text.RegularExpressions.Regex r_ = new System.Text.RegularExpressions.Regex(@".*REV\ ?1[0-9]{2}.*");
 			return r_.IsMatch(partLookup.ToUpper());

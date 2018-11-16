@@ -8,6 +8,9 @@ using System.IO;
 using System.Windows.Forms;
 
 namespace RedBrick2.DrawingCollector {
+	/// <summary>
+	/// Collect and combine drawings into a PDF.
+	/// </summary>
 	public partial class DrawingCollector : Form {
 		private ItemInfo rootItem = new ItemInfo();
 		private ModelDoc2 rootDoc;
@@ -17,6 +20,10 @@ namespace RedBrick2.DrawingCollector {
 		private List<ItemInfo> reordered_by_boms = new List<ItemInfo>();
 		private int sortColumn = 0;
 
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="sldWorks">A live <see cref="SldWorks"/> object.</param>
 		public DrawingCollector(SldWorks sldWorks) {
 			SwApp = sldWorks;
 			traverser = new Traverser(SwApp, true);
@@ -251,7 +258,7 @@ namespace RedBrick2.DrawingCollector {
 		}
 
 		private Dictionary<string, ItemInfo> infos = new Dictionary<string, ItemInfo>();
-		public SldWorks SwApp { get; set; }
+		private SldWorks SwApp { get; set; }
 
 		private void listView1_SelectedIndexChanged(object sender, EventArgs e) {
 			ListView lv_ = sender as ListView;
@@ -354,6 +361,9 @@ namespace RedBrick2.DrawingCollector {
 			System.Diagnostics.Process.Start(fileName);
 		}
 
+		/// <summary>
+		/// A delegate to perform a progress bar step.
+		/// </summary>
 		public delegate void PerformProgressBarStep();
 
 		private void PDFMerger_deleting_file(object sender, EventArgs e) {

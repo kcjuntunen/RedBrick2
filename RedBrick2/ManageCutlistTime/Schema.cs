@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿#pragma warning disable 1591
 namespace RedBrick2.ManageCutlistTime {
+	/// <summary>
+	/// I was tired of using raw numbers. These names kinda mean something to me.
+	/// </summary>
 	public static class Schema {
+		/// <summary>
+		/// Names from the CUTLIST TIMES db.
+		/// </summary>
 		public enum Cols {
 			TYPE,				// 0
 			IS_OP,			// 1

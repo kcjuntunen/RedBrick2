@@ -1142,6 +1142,9 @@ namespace RedBrick2 {
 			PartEventsAssigned = false;
 		}
 
+		/// <summary>
+		/// Disconnect all the events.
+		/// </summary>
 		public void DisconnectEvents() {
 			try {
 				if (SwApp.ActiveDoc != lastModelDoc) {

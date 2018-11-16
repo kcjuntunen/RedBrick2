@@ -1,4 +1,5 @@
-﻿namespace RedBrick2.ECRViewer {
+﻿#pragma warning disable 1591
+namespace RedBrick2.ECRViewer {
 	partial class ECRViewer {
 		/// <summary>
 		/// Required designer variable.
