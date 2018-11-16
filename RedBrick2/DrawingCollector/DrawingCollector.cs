@@ -12,7 +12,7 @@ namespace RedBrick2.DrawingCollector {
 		private ItemInfo rootItem = new ItemInfo();
 		private ModelDoc2 rootDoc;
 		Traverser traverser;
-		private string TopLevel = string.Empty;
+		private string TopLvl = string.Empty;
 		private string Here;
 		private List<ItemInfo> reordered_by_boms = new List<ItemInfo>();
 		private int sortColumn = 0;
@@ -74,7 +74,7 @@ namespace RedBrick2.DrawingCollector {
 			s.GetProperties(c_.GetRootComponent3(true));
 			rootItem.PropertySet = s;
 
-			TopLevel = rootItem.Name;
+			TopLvl = rootItem.Name;
 			infos.Add(rootItem.Name, rootItem);
 
 			listView1.Items.Add(rootItem.Node);
@@ -275,7 +275,7 @@ namespace RedBrick2.DrawingCollector {
 			string tmpFile = Path.GetTempFileName().Replace(".tmp", ".PDF");
 
 			string fileName = string.Format(@"{0}{1}.PDF",
-				TopLevel,
+				TopLvl,
 				suffixTbx.Text.Trim());
 
 			toolStripStatusLabel1.Text = @"Merging PDFs...";
