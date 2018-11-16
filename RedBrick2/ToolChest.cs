@@ -50,8 +50,12 @@ namespace RedBrick2 {
 		}
 
 		private void button2_Click(object sender, EventArgs e) {
-			using (DrawingCollector.DrawingCollector dc_ = new DrawingCollector.DrawingCollector(swApp)) {
-				dc_.ShowDialog(this);
+			try {
+				using (DrawingCollector.DrawingCollector dc_ = new DrawingCollector.DrawingCollector(swApp)) {
+					dc_.ShowDialog(this);
+				}
+			} catch (Exception ex) {
+				Redbrick.ProcessError(ex);
 			}
 			Close();
 		}
