@@ -93,9 +93,6 @@ namespace RedBrick2 {
 		public ModelRedbrick(SldWorks sw, ModelDoc2 md) {
 			SwApp = sw;
 			InitializeComponent();
-#if DEBUG
-			cutlistTimeBtn.Visible = true;
-#endif
 			new ToolTip().SetToolTip(pull_btn, @"Pull material properties from part.");
 			dirtTracker = new DirtTracker(this);
 			cbxes = new ComboBox[] { op1_cbx, op2_cbx, op3_cbx, op4_cbx, op5_cbx };
@@ -297,7 +294,7 @@ namespace RedBrick2 {
 				if (PropertySet.Count < 1) {
 					PropertySet.GetProperties(ActiveDoc);
 				}
-				Enabled = true;
+				tableLayoutPanel1.Enabled = true;
 				if (PropertySet[@"LENGTH"].Value != null) {
 					lengthtb.Text = Convert.ToString(PropertySet[@"LENGTH"].Value).Replace("\"", string.Empty);
 				}
@@ -338,12 +335,6 @@ namespace RedBrick2 {
 				CheckEdgingOps();
 				TogglePriorityButton();
 
-				Label[] op_labels = { label32, label33, label34, label35, label36 };
-				for (int i = 0; i < 5; i++) {
-					op_labels[i].Text = string.Format(@"Op {0}", i + 1);
-					op_labels[i].Visible = true;
-				}
-
 				//textBox_TextChanged(PropertySet[@"WALL THICKNESS"].Value, label21);
 
 				flowLayoutPanel1.VerticalScroll.Value = scrollOffset.Y;
@@ -353,7 +344,7 @@ namespace RedBrick2 {
 				groupBox1.Text = string.Format(@"{0} - {1}",
 					partLookup, configuration);
 			} else {
-				Enabled = false;
+				tableLayoutPanel1.Enabled = false;
 			}
 		}
 
@@ -1237,7 +1228,7 @@ namespace RedBrick2 {
 		}
 
 		private int ad_DestroyNotify2(int DestroyType) {
-			//Visible = false;
+			tabControl1.Visible = false;
 			return 0;
 		}
 
@@ -1251,7 +1242,7 @@ namespace RedBrick2 {
 				object selection_ = swSelMgr.GetSelectedObject6(1, -1);
 				if (selection_ is Component2) {
 					swSelComp = (Component2)selection_;
-					this.Enabled = true;
+					this.tableLayoutPanel1.Enabled = true;
 				}
 			}
 			if (swSelComp != null) {
@@ -1259,7 +1250,7 @@ namespace RedBrick2 {
 				if (swSelComp.GetModelDoc2() is ModelDoc2) {
 					configurationManager = (swSelComp.GetModelDoc2() as ModelDoc2).ConfigurationManager;
 					configuration = swSelComp.ReferencedConfiguration;
-					this.Enabled = true;
+					this.tableLayoutPanel1.Enabled = true;
 					ReQuery(swSelComp.GetModelDoc2());
 				}
 			} else {
@@ -1268,7 +1259,7 @@ namespace RedBrick2 {
 				try {
 					configurationManager = SwApp.ActiveDoc.ConfigurationManager;
 					configuration = configurationManager.ActiveConfiguration.Name;
-					this.Enabled = true;
+					this.tableLayoutPanel1.Enabled = true;
 					groupBox1.Text = string.Format(@"{0} - {1}",
 						partLookup, PropertySet.Configuration);
 					ReQuery(SwApp.ActiveDoc);
@@ -1299,7 +1290,7 @@ namespace RedBrick2 {
 		}
 
 		private int pd_DestroyNotify2(int DestroyType) {
-			//Visible = false;
+			tabControl1.Visible = false;
 			return 0;
 		}
 
@@ -1636,7 +1627,7 @@ namespace RedBrick2 {
 			if (!DrawingEventsAssigned) {
 				ConnectDrawingEvents();
 			}
-			this.Enabled = true;
+			this.tableLayoutPanel1.Enabled = true;
 			//tabControl1.SelectedTab = tabPage2;
 		}
 
@@ -1783,6 +1774,11 @@ namespace RedBrick2 {
 			drawingRedbrick.GetFileDates();
 		}
 
+		public TabControl TC {
+			get { return tabControl1; }
+			set { tabControl1 = value; }
+		}
+
 		private ModelDoc2 _activeDoc;
 
 		/// <summary>
@@ -1797,6 +1793,7 @@ namespace RedBrick2 {
 				if (value != null && value != ActiveDoc) {
 					DisconnectEvents();
 					Show();
+					tabControl1.Visible = true;
 					ToggleEdgeWarn(false);
 					lastModelDoc = _activeDoc;
 					_activeDoc = value;
