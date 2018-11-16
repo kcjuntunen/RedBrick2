@@ -26,15 +26,14 @@ namespace RedBrick2 {
 			this.labelProductName.Text = AssemblyProduct;
 			this.labelVersion.Text = string.Format("Version {0}", AssemblyVersion);
 			this.labelCopyright.Text = AssemblyCopyright;
-			this.textBoxDescription.Text = string.Format("New in version {3}:{0}" +
-				"{2}{0}" +
+			this.textBoxDescription.Text = string.Format("New in version {2}:{0}" +
+				"{1}{0}" +
 				"Get a complete history at https://github.com/kcjuntunen/RedBrick2/commits/master{0}" +
 				"{0}------------------------{0}" +
 				"Crc32.cs Copyright (c) Damien Guard.  All rights reserved.{0}" +
 				"Licensed under the Apache License, Version 2.0 (the \"License\"){0}" +
 				"You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0",
 				System.Environment.NewLine,
-				descr_,
 				GetVersionInfo(@"message"),
 				AssemblyVersion);
 
