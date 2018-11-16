@@ -152,9 +152,8 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 							}
 						}
 					}
-				} catch (Exception) {
-
-					throw;
+				} catch (Exception ex) {
+					Redbrick.ProcessError(ex);
 				} finally {
 					ta_.Connection.Close();
 					cmd_.Dispose();
@@ -201,9 +200,8 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 							}
 						}
 					}
-				} catch (Exception) {
-
-					throw;
+				} catch (Exception ex) {
+					Redbrick.ProcessError(ex);
 				} finally {
 					ta_.Connection.Close();
 					cmd_.Dispose();

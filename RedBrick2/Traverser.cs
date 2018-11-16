@@ -24,8 +24,12 @@ namespace RedBrick2 {
 			_swApp = s;
 			CollectAssemblies = collectAssemblies;
 			_activeDoc = _swApp.ActiveDoc;
-			PartFileInfo = new FileInfo(_activeDoc.GetPathName());
-			topName = Path.GetFileNameWithoutExtension(_activeDoc.GetPathName());
+			try {
+				PartFileInfo = new FileInfo(_activeDoc.GetPathName());
+				topName = Path.GetFileNameWithoutExtension(_activeDoc.GetPathName());
+			} catch (Exception ex) {
+				Redbrick.ProcessError(ex);
+			}
 			partLookup = topName;
 			_swApp.GetUserProgressBar(out pb);
 		}

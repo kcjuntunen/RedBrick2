@@ -60,9 +60,8 @@ INNER JOIN CUT_STATES ON CUT_CUTLISTS.STATEID = CUT_STATES.ID ";
 						result.Add(new string[] { item_, rev_, descr_, dt_, setup_by, state_by, state });
 					}
 				}
-			} catch (Exception) {
-
-				throw;
+			} catch (Exception ex) {
+				Redbrick.ProcessError(ex);
 			}
 			return result;
 		}
