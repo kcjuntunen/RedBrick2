@@ -787,7 +787,17 @@ namespace RedBrick2 {
 			using (RedbrickDataSetTableAdapters.QueriesTableAdapter q_ =
 				new RedbrickDataSetTableAdapters.QueriesTableAdapter()) {
 				uid_ = Convert.ToInt32(q_.UserQuery(System.Environment.UserName));
-				q_.InsertError(DateTime.Now, uid_, e.HResult, e.Message, e.Source, false, @"REDBRICK");
+				string[] stack = e.StackTrace.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+				string offender = stack[stack.Length - 1].Trim();
+				int len = offender.Length > 255 ? 255 : offender.Length;
+				q_.InsertError(
+					DateTime.Now,
+					uid_,
+					e.HResult,
+					e.Message,
+					offender.Substring(0, len),
+					false,
+					@"REDBRICK");
 			}
 		}
 
