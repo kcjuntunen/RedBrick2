@@ -164,6 +164,14 @@
     <Compile Include="Exceptions\BuildPDFException.cs" />
     <Compile Include="ManageCutlistTime\Schema.cs" />
     <Compile Include="PartsSummary\PartsSummaryGenerator.cs" />
+    <Compile Include="RedbrickDataSet.cs">
+      <DependentUpon>RedbrickDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="RedbrickDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RedbrickDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="RelatedCutlistReport\RelatedCutlistReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -365,6 +373,17 @@
     </None>
     <None Include="ENGINEERINGDataSet.xss">
       <DependentUpon>ENGINEERINGDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="RedbrickDataSet.xsc">
+      <DependentUpon>RedbrickDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="RedbrickDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RedbrickDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="RedbrickDataSet.xss">
+      <DependentUpon>RedbrickDataSet.xsd</DependentUpon>
     </None>
     <None Include="RelatedCutlistReport\RelatedCutlistReportDataSet.xsc">
       <DependentUpon>RelatedCutlistReportDataSet.xsd</DependentUpon>
