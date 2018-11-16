@@ -33,6 +33,9 @@ namespace RedBrick2.DrawingCollector {
 			}
 		}
 
+		// I think I'm wrongly getting these messages. If I don't call .Close(), the method doesn't work.
+		// It seems to be objecting to the "using" block, but we like using blocks.
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
 		public void Merge() {
 			byte[] ba = merge_files(PDFCollection);
 			using (FileStream fs = File.Create(Target.FullName)) {
@@ -102,6 +105,9 @@ namespace RedBrick2.DrawingCollector {
 			return total;
 		}
 
+		// I think I'm wrongly getting these messages.
+		// It seems to be objecting to the "using" block, but we like using blocks.
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
 		public static byte[] merge_files(List<FileInfo> docs) {
 			using (Document document = new Document()) {
 				using (MemoryStream ms = new MemoryStream()) {
