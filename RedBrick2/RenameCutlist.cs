@@ -156,7 +156,7 @@ namespace RedBrick2 {
 			string to_rev_ = rev_cbx.Text.Trim();
 
 			if (from_cbx.SelectedItem == null && pre_selected_clid < 1) {
-				string err_msg_ = string.Format(@"You didn't specify which one to update!", to_item_, to_rev_);
+				string err_msg_ = string.Format(@"You didn't specify which one to update!");
 				MessageBox.Show(this, err_msg_, @"But you can't! ಠ_ಠ", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				return;
 			}
