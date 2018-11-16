@@ -902,6 +902,9 @@ namespace RedBrick2 {
 		/// <param name="_fi">A <see cref="System.IO.FileInfo"/> object.</param>
 		/// <returns>A string for DB searches.</returns>
 		static public string FileInfoToLookup(System.IO.FileInfo _fi) {
+			if (_fi == null) {
+				return Properties.Settings.Default.ValErr;
+			}
 			string lookup_ =  System.IO.Path.GetFileNameWithoutExtension(_fi.FullName);
 			lookup_ = lookup_.Split(new char[] { '^' }, StringSplitOptions.RemoveEmptyEntries)[0];
 
