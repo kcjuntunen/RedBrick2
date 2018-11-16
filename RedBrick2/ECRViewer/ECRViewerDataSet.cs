@@ -23,10 +23,3 @@ namespace RedBrick2.ECRViewer.ECRViewerDataSetTableAdapters {
 		}
 	}
 }
-
-namespace RedBrick2.ECRViewer {
-
-
-	partial class ECRViewerDataSet {
-	}
-}
