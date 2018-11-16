@@ -1071,7 +1071,7 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 							try {
 								rowsAffected = comm.ExecuteNonQuery();
 							} catch (InvalidOperationException ioe) {
-								throw ioe;
+								Redbrick.ProcessError(ioe);
 							}
 						}
 
@@ -1084,7 +1084,7 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 								try {
 									rowsAffected = comm.ExecuteNonQuery();
 								} catch (InvalidOperationException ioe) {
-									throw ioe;
+									Redbrick.ProcessError(ioe);
 								}
 							}
 						}

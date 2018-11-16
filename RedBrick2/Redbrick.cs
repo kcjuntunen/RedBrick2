@@ -155,6 +155,7 @@ namespace RedBrick2 {
 				taskpaneHost.cookie = cookie;
 				taskpaneHost.Start();
 			} catch (Exception e_) {
+				ProcessError(e_);
 				string output_ = string.Format("{0}\n{1}\n{2}", e_.Message, e_.StackTrace, e_.Source);
 				System.Windows.Forms.MessageBox.Show(output_,
 					@"Redbrick Error",
@@ -625,6 +626,7 @@ namespace RedBrick2 {
 						System.Media.SoundPlayer sp = new System.Media.SoundPlayer(Properties.Settings.Default.ClipboardSound);
 						sp.PlaySync();
 					} catch (Exception ex) {
+						ProcessError(ex);
 						System.Windows.Forms.MessageBox.Show(ex.Message,
 							@"Redbrick Error",
 							 System.Windows.Forms.MessageBoxButtons.OK,
@@ -766,7 +768,7 @@ namespace RedBrick2 {
 				} catch (IndexOutOfRangeException e) {
 					throw new IndexOutOfRangeException("Went beyond the number of sheets.", e);
 				} catch (Exception e) {
-					throw e;
+					ProcessError(e);
 				}
 				v = (SolidWorks.Interop.sldworks.View)d.GetFirstView();
 				v = (SolidWorks.Interop.sldworks.View)v.GetNextView();
@@ -779,6 +781,15 @@ namespace RedBrick2 {
 				throw new Exception("I couldn't find a model anywhere in this document.");
 			}
 			return v;
+		}
+
+		public static void ProcessError(Exception e) {
+			int uid_ = 0;
+			using (RedbrickDataSetTableAdapters.QueriesTableAdapter q_ =
+				new RedbrickDataSetTableAdapters.QueriesTableAdapter()) {
+				uid_ = Convert.ToInt32(q_.UserQuery(System.Environment.UserName));
+				q_.InsertError(DateTime.Now, uid_, e.HResult, e.Message, e.Source, false, @"REDBRICK");
+			}
 		}
 
 		/// <summary>
