@@ -39,6 +39,15 @@ SELECT ERRID, ERRDATE, ERRUSER, ERRNUM, ERRMSG, ERROBJ, ERRCHK, ERRAPP FROM GEN_
               </DbCommand>
             </InsertCommand>
           </DbSource>
+          <DbSource ConnectionRef="ENGINEERINGConnectionString (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="MaxEcrNum" MethodsParameterType="CLR" Modifier="Public" Name="MaxEcrNum" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="MaxEcrNum">
+            <SelectCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>SELECT        MAX(ECR_NUM) AS ECR_NUM
+FROM            ECR_MAIN</CommandText>
+                <Parameters />
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
         </Sources>
       </DataSource>
     </xs:appinfo>

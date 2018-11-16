@@ -33,7 +33,7 @@ namespace RedBrick2 {
 			button2.Enabled = !(swApp.ActiveDoc is PartDoc);
 			if (swApp.ActiveDoc is DrawingDoc) {
 				SolidWorks.Interop.sldworks.View v_ = Redbrick.GetFirstView(swApp);
-				button2.Enabled = !(v_.ReferencedDocument is PartDoc);
+				button2.Enabled = !(v_ == null) && !(v_.ReferencedDocument is PartDoc);
 			}
 			Deactivate += ToolChest_Deactivate;
 		}
@@ -66,22 +66,44 @@ namespace RedBrick2 {
 		}
 
 		private void button3_Click(object sender, EventArgs e) {
-			using (ECRViewer.ECRViewer ev_ = new ECRViewer.ECRViewer(lookup)) {
-				ev_.ShowDialog(this);
+			if (lookup == null) {
+				int maxecr = 0;
+				using (RedbrickDataSetTableAdapters.QueriesTableAdapter q_ = new RedbrickDataSetTableAdapters.QueriesTableAdapter()) {
+					maxecr = Convert.ToInt32(q_.MaxEcrNum());
+				}
+				using (ECRViewer.ECRViewer ev_ = new ECRViewer.ECRViewer(maxecr)) {
+					ev_.ShowDialog(this);
+				}
+			} else {
+				using (ECRViewer.ECRViewer ev_ = new ECRViewer.ECRViewer(lookup)) {
+					ev_.ShowDialog(this);
+				}
 			}
 			Close();
 		}
 
 		private void button4_Click(object sender, EventArgs e) {
-			using (QuickTracLookup qt_ = new QuickTracLookup(lookup)) {
-				qt_.ShowDialog(this);
+			if (lookup == null) {
+				using (QuickTracLookup qt_ = new QuickTracLookup()) {
+					qt_.ShowDialog(this);
+				}
+			} else {
+				using (QuickTracLookup qt_ = new QuickTracLookup(lookup)) {
+					qt_.ShowDialog(this);
+				}
 			}
 			Close();
 		}
 
 		private void button5_Click(object sender, EventArgs e) {
-			using (ManageCutlistTime.ManageCutlistTime mct_ = new ManageCutlistTime.ManageCutlistTime(lookup)) {
-				mct_.ShowDialog(this);
+			if (lookup == null) {
+				using (ManageCutlistTime.ManageCutlistTime mct_ = new ManageCutlistTime.ManageCutlistTime()) {
+					mct_.ShowDialog(this);
+				}
+			} else {
+				using (ManageCutlistTime.ManageCutlistTime mct_ = new ManageCutlistTime.ManageCutlistTime(lookup)) {
+					mct_.ShowDialog(this);
+				}
 			}
 			Close();
 		}
