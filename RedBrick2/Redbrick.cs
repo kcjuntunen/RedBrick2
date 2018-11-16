@@ -12,6 +12,7 @@ namespace RedBrick2 {
 	/// <summary>
 	/// The root of all redbrick stuff.
 	/// </summary>
+	[ComVisible(true)]
 	public class Redbrick : ISwAddin {
 		/// <summary>
 		/// The connected application.
@@ -46,6 +47,7 @@ namespace RedBrick2 {
 		/// <param name="ThisSW">The connected application.</param>
 		/// <param name="Cookie">Yum.</param>
 		/// <returns></returns>
+		[ComVisible(true)]
 		public bool ConnectToSW(object ThisSW, int Cookie) {
 			swApp = (SldWorks)ThisSW;
 			cookie = Cookie;
@@ -103,6 +105,7 @@ namespace RedBrick2 {
 		/// Cleanly disconnect everything on shutdown.
 		/// </summary>
 		/// <returns></returns>
+		[ComVisible(true)]
 		public bool DisconnectFromSW() {
 			this.UITearDown();
 			return true;
@@ -1201,6 +1204,7 @@ namespace RedBrick2 {
 			}
 		}
 
+		[ComVisible(true)]
 		[ComRegisterFunction()]
 		private static void ComRegister(Type t) {
 			Properties.Settings.Default.Upgrade();
@@ -1213,6 +1217,7 @@ namespace RedBrick2 {
 			}
 		}
 
+		[ComVisible(true)]
 		[ComUnregisterFunction()]
 		private static void ComUnregister(Type t) {
 			string keyPath = String.Format(@"SOFTWARE\SolidWorks\AddIns\{0:b}", t.GUID);
