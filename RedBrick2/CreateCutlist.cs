@@ -118,6 +118,9 @@ namespace RedBrick2 {
 			if (_v == null) {
 				_v = Redbrick.GetFirstView(_swApp);
 			}
+			if (_v == null) {
+				return null;
+			}
 			res_ = _v.ReferencedDocument;
 			sourceComp = _v.Name;
 			try {
@@ -239,6 +242,10 @@ namespace RedBrick2 {
 				gENCUSTOMERSBindingSource.Filter = @"CUSTACTIVE = True";
 			}
 			this.revListTableAdapter.Fill(this.eNGINEERINGDataSet.RevList);
+			if ((_swApp.ActiveDoc as ModelDoc2).GetPathName() == string.Empty) {
+				Close();
+				return;
+			}
 			PartFileInfo = new FileInfo((_swApp.ActiveDoc as ModelDoc2).GetPathName());
 			partLookup = Redbrick.FileInfoToLookup(PartFileInfo);
 			ENGINEERINGDataSet.SCH_PROJECTSRow spr = (new ENGINEERINGDataSet.SCH_PROJECTSDataTable()).GetCorrectCustomer(partLookup);
