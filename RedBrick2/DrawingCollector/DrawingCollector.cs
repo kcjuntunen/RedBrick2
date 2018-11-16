@@ -122,12 +122,18 @@ namespace RedBrick2.DrawingCollector {
 			toolStripStatusLabel1.Text = @"Saving";
 			toolStripStatusLabel2.Text = tmpFile;
 			bool layerPrint = SwApp.GetUserPreferenceToggle((int)swUserPreferenceToggle_e.swPDFExportIncludeLayersNotToPrint);
+			bool viewOnSave = SwApp.GetUserPreferenceToggle((int)swUserPreferenceToggle_e.swPDFViewOnSave);
+			bool highQuality = SwApp.GetUserPreferenceToggle((int)swUserPreferenceToggle_e.swPDFExportHighQuality);
 			SwApp.SetUserPreferenceToggle((int)swUserPreferenceToggle_e.swPDFExportIncludeLayersNotToPrint, true);
+			SwApp.SetUserPreferenceToggle((int)swUserPreferenceToggle_e.swPDFViewOnSave, false);
+			SwApp.SetUserPreferenceToggle((int)swUserPreferenceToggle_e.swPDFExportHighQuality, true);
 			success = (SwApp.ActiveDoc as ModelDoc2).SaveAs4(tmpFile, saveVersion, saveOptions, ref err, ref warn);
 			if (infos.ContainsKey(baseName) && infos[baseName].Checked && !reordered_by_boms.Contains(infos[baseName])) {
 				reordered_by_boms.Add(infos[baseName]);
 			}
 			SwApp.SetUserPreferenceToggle((int)swUserPreferenceToggle_e.swPDFExportIncludeLayersNotToPrint, layerPrint);
+			SwApp.SetUserPreferenceToggle((int)swUserPreferenceToggle_e.swPDFViewOnSave, viewOnSave);
+			SwApp.SetUserPreferenceToggle((int)swUserPreferenceToggle_e.swPDFExportHighQuality, highQuality);
 			toolStripProgressBar1.PerformStep();
 
 			return tmp;
