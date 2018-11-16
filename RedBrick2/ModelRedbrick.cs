@@ -402,16 +402,19 @@ namespace RedBrick2 {
 				try {
 					cutlistPartsTableAdapter.FillByPartNum(eNGINEERINGDataSet.CutlistParts, partLookup);
 				} catch (ArgumentOutOfRangeException ex) {
+					Redbrick.ProcessError(ex);
 					System.Diagnostics.Debug.WriteLine(string.Format(@"[{0}] {1} - {2}", ex.HResult, ex.Source, ex.Message));
 				}
 				try {
 					cutlistPartsBindingSource.DataSource = cutlistPartsTableAdapter.GetDataByPartNum(partLookup);
 				} catch (ArgumentOutOfRangeException ex) {
+					Redbrick.ProcessError(ex);
 					System.Diagnostics.Debug.WriteLine(string.Format(@"[{0}] {1} - {2}", ex.HResult, ex.Source, ex.Message));
 				}
 				try {
 					cUTPARTSBindingSource.DataSource = cUT_PARTSTableAdapter.GetDataByPartnum(partLookup);
 				} catch (ArgumentOutOfRangeException ex) {
+					Redbrick.ProcessError(ex);
 					System.Diagnostics.Debug.WriteLine(string.Format(@"[{0}] {1} - {2}", ex.HResult, ex.Source, ex.Message));
 				}
 				overLtb.Text = Redbrick.enforce_number_format(overLtb.Text);
@@ -805,6 +808,7 @@ namespace RedBrick2 {
 				type_cbx.SelectedValue = type;
 				FilterOps(string.Format(@"TYPEID = {0}", type));
 			}
+			Redbrick.unselect(new ControlCollection(tableLayoutPanel6));
 		}
 
 		private void GetMaterialFromPart() {
@@ -1006,6 +1010,7 @@ namespace RedBrick2 {
 				try {
 					b_.Filter = filter;
 				} catch (ArgumentOutOfRangeException ex) {
+					Redbrick.ProcessError(ex);
 					System.Diagnostics.Debug.WriteLine(string.Format(@"[{0}] {1} - {2}", ex.HResult, ex.Source, ex.Message));
 				}
 			}
@@ -1232,7 +1237,7 @@ namespace RedBrick2 {
 		}
 
 		private int ad_DestroyNotify2(int DestroyType) {
-			Visible = false;
+			//Visible = false;
 			return 0;
 		}
 
@@ -1268,7 +1273,7 @@ namespace RedBrick2 {
 						partLookup, PropertySet.Configuration);
 					ReQuery(SwApp.ActiveDoc);
 				} catch (System.Runtime.InteropServices.COMException ex) {
-					System.Diagnostics.Debug.WriteLine(ex.Message + " from " + ex.Source + "\n" + ex.StackTrace);
+					Redbrick.ProcessError(ex);
 				} finally {
 				}
 			}
@@ -1294,7 +1299,7 @@ namespace RedBrick2 {
 		}
 
 		private int pd_DestroyNotify2(int DestroyType) {
-			Visible = false;
+			//Visible = false;
 			return 0;
 		}
 
