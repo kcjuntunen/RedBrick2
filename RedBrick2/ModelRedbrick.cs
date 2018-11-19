@@ -1037,7 +1037,8 @@ namespace RedBrick2 {
 		}
 
 		int dd_DestroyNotify2(int DestroyType) {
-			Hide();
+			//Hide();
+			TC.Visible = false;
 			DumpActiveDoc();
 			return 0;
 		}
