@@ -30,7 +30,7 @@ namespace RedBrick2 {
 			Location = Properties.Settings.Default.ToolChestLocation;
 			button7.Enabled = swApp.ActiveDoc is PartDoc;
 
-			button2.Enabled = !(swApp.ActiveDoc is PartDoc);
+			button2.Enabled = swApp.ActiveDoc != null && !(swApp.ActiveDoc is PartDoc);
 			if (swApp.ActiveDoc is DrawingDoc) {
 				SolidWorks.Interop.sldworks.View v_ = Redbrick.GetFirstView(swApp);
 				button2.Enabled = !(v_ == null) && !(v_.ReferencedDocument is PartDoc);
@@ -50,6 +50,10 @@ namespace RedBrick2 {
 		}
 
 		private void button2_Click(object sender, EventArgs e) {
+			if (swApp.ActiveDoc == null) {
+				Close();
+				return;
+			}
 			try {
 				using (DrawingCollector.DrawingCollector dc_ = new DrawingCollector.DrawingCollector(swApp)) {
 					dc_.ShowDialog(this);
