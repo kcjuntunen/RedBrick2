@@ -1875,6 +1875,7 @@ namespace RedBrick2 {
 							//}
 							SetupDrawing();
 							tabControl1.SelectedTab = tabPage2;
+							drawingRedbrick.Update();
 							break;
 						case swDocumentTypes_e.swDocPART:                         //Window looking at part.
 							if (drawingRedbrick != null) {
@@ -1911,6 +1912,7 @@ namespace RedBrick2 {
 						//Hide();
 					}
 				}
+				Update();
 			}
 		}
 
