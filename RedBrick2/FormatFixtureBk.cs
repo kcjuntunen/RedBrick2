@@ -133,10 +133,10 @@ namespace RedBrick2 {
 			} catch (ExcelReaderFoundNoFilesException nf) {
 				MessageBox.Show(nf.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			} catch (IOException ioe) {
-				MessageBox.Show(ioe.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				Redbrick.ProcessError(ioe);
 			} catch (System.Exception x) {
 				if (x.InnerException != null) {
-					MessageBox.Show(x.InnerException.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					Redbrick.ProcessError(x.InnerException);
 				}
 			}
 		}
