@@ -1265,7 +1265,9 @@ namespace RedBrick2 {
 						partLookup, PropertySet.Configuration);
 					ReQuery(SwApp.ActiveDoc);
 				} catch (System.Runtime.InteropServices.COMException ex) {
-					Redbrick.ProcessError(ex);
+					if (ex.HResult != -0x7FFDFFF5) {
+						Redbrick.ProcessError(ex);
+					}
 				} finally {
 				}
 			}
