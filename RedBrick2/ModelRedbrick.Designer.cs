@@ -12,7 +12,9 @@
     protected override void Dispose(bool disposing) {
       if (disposing && (components != null)) {
         components.Dispose();
-				PropertySet.Dispose();
+				if (PropertySet != null) {
+					PropertySet.Dispose();
+				}
       }
       base.Dispose(disposing);
     }
