@@ -627,10 +627,6 @@ namespace RedBrick2 {
 						sp.PlaySync();
 					} catch (Exception ex) {
 						ProcessError(ex);
-						System.Windows.Forms.MessageBox.Show(ex.Message,
-							@"Redbrick Error",
-							 System.Windows.Forms.MessageBoxButtons.OK,
-							 System.Windows.Forms.MessageBoxIcon.Error);
 					}
 				}
 			} else {
@@ -766,7 +762,7 @@ namespace RedBrick2 {
 				try {
 					d.ActivateSheet(shtNames[x]);
 				} catch (IndexOutOfRangeException e) {
-					throw new IndexOutOfRangeException("Went beyond the number of sheets.", e);
+					ProcessError(e);
 				} catch (Exception e) {
 					ProcessError(e);
 				}
@@ -794,7 +790,8 @@ namespace RedBrick2 {
 				string[] stack = e.StackTrace.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
 				string offender = stack[stack.Length - 1].Trim();
 				int len = offender.Length > 255 ? 255 : offender.Length;
-				q_.InsertError(
+				string msg_ = string.Format(@"Error `{0}' occurred {1}.", e.Message, offender);
+				int aff = q_.InsertError(
 					DateTime.Now,
 					uid_,
 					e.HResult,
@@ -802,6 +799,17 @@ namespace RedBrick2 {
 					offender.Substring(0, len),
 					false,
 					@"REDBRICK");
+				if (aff > 0) {
+					msg_ += "\n" + @"This error has been reported.";
+					System.Windows.Forms.MessageBox.Show(msg_, @"Redbrick Error",
+						System.Windows.Forms.MessageBoxButtons.OK,
+						System.Windows.Forms.MessageBoxIcon.Error);
+				} else {
+					msg_ += "\n" + @"This error failed to be reported.";
+					System.Windows.Forms.MessageBox.Show(msg_, @"Redbrick Error",
+						System.Windows.Forms.MessageBoxButtons.OK,
+						System.Windows.Forms.MessageBoxIcon.Error);
+				}
 			}
 		}
 
