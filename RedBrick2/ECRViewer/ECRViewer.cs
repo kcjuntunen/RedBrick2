@@ -473,6 +473,14 @@ namespace RedBrick2.ECRViewer {
 				Lookup = ECRTextBox.Text;
 				LookupItem(Lookup);
 			}
+			if (e.KeyCode == Keys.Up && int.TryParse(ECRTextBox.Text, out int _ecrup)) {
+				Lookup = (++_ecrup).ToString();
+				LookupItem(Lookup);
+			}
+			if (e.KeyCode == Keys.Down && int.TryParse(ECRTextBox.Text, out int _ecrdown)) {
+				Lookup = (--_ecrdown).ToString();
+				LookupItem(Lookup);
+			}
 		}
 
 		private void affectedItemsListView_MouseDoubleClick(object sender, MouseEventArgs e) {
