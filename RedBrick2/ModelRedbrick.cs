@@ -2695,6 +2695,9 @@ namespace RedBrick2 {
 		}
 
 		private void update_btn_MouseClick(object sender, MouseEventArgs e) {
+			if (SwApp.ActiveDoc == null) {
+				return;
+			}
 			using (CreateCutlist cc_ = new CreateCutlist(SwApp)) {
 				cc_.ShowDialog(this);
 			}
@@ -2723,6 +2726,9 @@ namespace RedBrick2 {
 		}
 
 		private void add_prt_btn_MouseClick(object sender, MouseEventArgs e) {
+			if (SwApp.ActiveDoc == null) {
+				return;
+			}
 			UpdateCutlistProperties();
 			using (AddToExistingCutlist atc_ = new AddToExistingCutlist(PropertySet)) {
 				atc_.ShowDialog(this);
