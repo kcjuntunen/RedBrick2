@@ -333,7 +333,7 @@ namespace RedBrick2.ECRViewer {
 				}
 			} else {
 				ECRViewerDataSet.ECR_LEGACYRow r_ = LegacyECRObjLookup(ecrno);
-				if (r_ != null) {
+				if (r_ != null && !r_.IsChangeNull()) {
 					descriptionTextBox.Text = r_.Change;
 				}
 			}
