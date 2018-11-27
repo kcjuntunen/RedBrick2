@@ -1259,6 +1259,7 @@ namespace RedBrick2 {
 					ReQuery(swSelComp.GetModelDoc2());
 				}
 			} else {
+				// TODO: Figure out just what sort of object .ActiveDoc is, so we don't have to try/catch.
 				// Nothing's selected?
 				// Just look at the root item then.
 				try {

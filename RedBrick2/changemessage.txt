@@ -1,3 +1,9 @@
 
-1) Updated Machine Priority Control.
-2) CNC fields should now update from the Create Cutlist tool.
+1) Added another color to indicate orphans.
+2) Reporting more internal errors to myself.
+3) Narrowed COM visibility.
+4) Got rid of some unused vars.
+5) Address or suppressed bits that caused compiler warnings.
+6) Changed font; maybe Ken's computer doesn't like Segoe UI. Let's go with default. Also calling .Update() superfluously to (perhaps) address the same problem.
+7) Show top buttons, even if documents are closed.
+8) Up/Down arrow keys can be used on the ECR viewer to page through ECRs.
