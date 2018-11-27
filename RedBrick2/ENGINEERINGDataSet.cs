@@ -67,9 +67,8 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 								}
 							}
 						}
-					} catch (Exception) {
-
-						throw;
+					} catch (Exception e) {
+						Redbrick.ProcessError(e);
 					} finally {
 						ta_.Connection.Close();
 						cmd_.Dispose();
@@ -116,9 +115,8 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 								}
 							}
 						}
-					} catch (Exception) {
-
-						throw;
+					} catch (Exception e) {
+						Redbrick.ProcessError(e);
 					} finally {
 						ta_.Connection.Close();
 						cmd_.Dispose();
@@ -175,6 +173,8 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 						}
 						try {
 							affected_ = comm.ExecuteNonQuery();
+						} catch (Exception e) {
+							Redbrick.ProcessError(e);
 						} finally {
 							ta_.Connection.Close();
 						}
@@ -200,6 +200,8 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 						}
 						try {
 							affected_ = comm.ExecuteNonQuery();
+						} catch (Exception e) {
+							Redbrick.ProcessError(e);
 						} finally {
 							ta_.Connection.Close();
 						}
@@ -225,6 +227,8 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 						}
 						try {
 							affected_ += comm.ExecuteNonQuery();
+						} catch (Exception e) {
+							Redbrick.ProcessError(e);
 						} finally {
 							ta_.Connection.Close();
 						}
@@ -271,7 +275,9 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 						}
 						try {
 							affected_ = comm.ExecuteNonQuery();
-						} finally {
+						} catch (Exception e) {
+							Redbrick.ProcessError(e);
+						}  finally {
 							ta_.Connection.Close();
 						}
 					}
@@ -321,7 +327,9 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 						}
 						try {
 							affected_ = comm.ExecuteNonQuery();
-						} finally {
+						} catch (Exception e) {
+							Redbrick.ProcessError(e);
+						}  finally {
 							ta_.Connection.Close();
 						}
 					}
@@ -369,7 +377,9 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 						}
 						try {
 							affected_ = comm.ExecuteNonQuery();
-						} finally {
+						} catch (Exception e) {
+							Redbrick.ProcessError(e);
+						}  finally {
 							ta_.Connection.Close();
 						}
 					}
@@ -436,7 +446,9 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 							}
 							try {
 								affected_ = comm_.ExecuteNonQuery();
-							} finally {
+							} catch (Exception e) {
+							Redbrick.ProcessError(e);
+						}  finally {
 								ta_.Connection.Close();
 							}
 						}
@@ -467,7 +479,9 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 						}
 						try {
 							affected_ = comm.ExecuteNonQuery();
-						} finally {
+						} catch (Exception e) {
+							Redbrick.ProcessError(e);
+						}  finally {
 							ta_.Connection.Close();
 						}
 					}
@@ -498,7 +512,9 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 						}
 						try {
 							affected_ = comm.ExecuteNonQuery();
-						} finally {
+						} catch (Exception e) {
+							Redbrick.ProcessError(e);
+						}  finally {
 							ta_.Connection.Close();
 						}
 					}
@@ -525,7 +541,9 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 									parts_.Add(dr_.GetInt32(0));
 								}
 							}
-						} finally {
+						} catch (Exception e) {
+							Redbrick.ProcessError(e);
+						}  finally {
 							ta_.Connection.Close();
 						}
 					}
@@ -600,7 +618,9 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 						}
 						try {
 							affected_ = comm.ExecuteNonQuery();
-						} finally {
+						} catch (Exception e) {
+							Redbrick.ProcessError(e);
+						}  finally {
 							ta_.Connection.Close();
 						}
 					}
@@ -642,7 +662,9 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 						}
 						try {
 							affected_ = comm.ExecuteNonQuery();
-						} finally {
+						} catch (Exception e) {
+							Redbrick.ProcessError(e);
+						}  finally {
 							ta_.Connection.Close();
 						}
 					}
@@ -671,7 +693,9 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 						}
 						try {
 							affected_ = comm.ExecuteNonQuery();
-						} finally {
+						} catch (Exception e) {
+							Redbrick.ProcessError(e);
+						}  finally {
 							ta_.Connection.Close();
 						}
 					}
@@ -930,6 +954,8 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 													dr_.GetString(5).Trim()));
 											}
 										}
+									} catch (Exception e) {
+										Redbrick.ProcessError(e);
 									} finally {
 										ita_.Connection.Close();
 									}
@@ -982,6 +1008,8 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 												dr_.GetString(5).Trim()));
 										}
 									}
+								} catch (Exception e) {
+									Redbrick.ProcessError(e);
 								} finally {
 									ita_.Connection.Close();
 								}

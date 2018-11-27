@@ -156,11 +156,6 @@ namespace RedBrick2 {
 				taskpaneHost.Start();
 			} catch (Exception e_) {
 				ProcessError(e_);
-				string output_ = string.Format("{0}\n{1}\n{2}", e_.Message, e_.StackTrace, e_.Source);
-				System.Windows.Forms.MessageBox.Show(output_,
-					@"Redbrick Error",
-					System.Windows.Forms.MessageBoxButtons.OK,
-					System.Windows.Forms.MessageBoxIcon.Error);
 			}
 		}
 

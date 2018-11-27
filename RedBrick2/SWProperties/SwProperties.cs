@@ -298,6 +298,7 @@ namespace RedBrick2 {
 				}
 			} catch (Exception e) {
 				AddException = e;
+				Redbrick.ProcessError(e);
 			}
 		}
 

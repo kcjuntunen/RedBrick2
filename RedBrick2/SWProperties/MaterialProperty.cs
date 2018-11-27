@@ -102,8 +102,9 @@ namespace RedBrick2 {
 						} else {
 							Value = value.ToString();
 						}
-					} catch (Exception) {
+					} catch (Exception e) {
 						_data = Properties.Settings.Default.DefaultMaterial;
+						Redbrick.ProcessError(e);
 					}
 				}
 			}

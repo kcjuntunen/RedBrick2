@@ -57,8 +57,8 @@ namespace RedBrick2 {
 								OpType = (int)cpdt.Rows[0][@"TYPE"];
 							}
 						}
-					} catch (Exception) {
-
+					} catch (Exception e) {
+						Redbrick.ProcessError(e);
 					}
 					using (ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter cota =
 						new ENGINEERINGDataSetTableAdapters.CUT_OPSTableAdapter()) {

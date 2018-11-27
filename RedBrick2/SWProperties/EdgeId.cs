@@ -33,8 +33,9 @@ namespace RedBrick2 {
 						new ENGINEERINGDataSetTableAdapters.CUT_EDGES_XREFTableAdapter()) {
 						try {
 							_data = (int)cex.GetEdgeID(value.ToString());
-						} catch (Exception) {
+						} catch (Exception e) {
 							_data = 0;
+							Redbrick.ProcessError(e);
 						}
 					}
 				} else {

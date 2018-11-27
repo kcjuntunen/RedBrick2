@@ -60,8 +60,9 @@ namespace RedBrick2 {
 							Value = value.ToString();
 							try {
 								_data = dt_.GetEdgeIDByDescr(value.ToString());
-							} catch (Exception) {
+							} catch (Exception e) {
 								_data = 0;
+								Redbrick.ProcessError(e);
 							}
 						} else {
 							_data = 0;

@@ -78,8 +78,9 @@ namespace RedBrick2 {
 						try {
 							_data = int.Parse(value.ToString());
 							Value = (string)cpt.GetDescrByID(_data);
-						} catch (Exception) {
+						} catch (Exception e) {
 							_data = 1;
+							Redbrick.ProcessError(e);
 						}
 					}
 				}

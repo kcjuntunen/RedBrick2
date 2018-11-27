@@ -128,6 +128,8 @@ namespace RedBrick2 {
 			} catch (NullReferenceException) {
 				MessageBox.Show(this, @"Unable to find a valid Drawing View.", @"Cutlist Creation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return null;
+			} catch (Exception e) {
+				Redbrick.ProcessError(e);
 			}
 			Text = string.Format(@"{0} - {1} (from {2})", topName, _config.Name, sourceComp);
 			return res_;
@@ -1474,8 +1476,7 @@ namespace RedBrick2 {
 				MessageBox.Show(this, string.Format("You must select a row with something in it.\n{0}", nex.Message),
 					@"Not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			} catch (Exception ex) {
-				MessageBox.Show(this, ex.Message,
-					@"Not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				Redbrick.ProcessError(ex);
 			}
 		}
 
@@ -1514,8 +1515,7 @@ namespace RedBrick2 {
 				MessageBox.Show(this, string.Format("You must select a row with something in it.\n{0}", nex.Message),
 					@"Not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			} catch (Exception ex) {
-				MessageBox.Show(this, ex.Message,
-					@"Not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				Redbrick.ProcessError(ex);
 			}
 		}
 

@@ -68,8 +68,9 @@ namespace RedBrick2 {
 					}
 					_data = res;
 					Value = cmta.GetDataByMatID(res)[0].MATID.ToString();
-				} catch (Exception) {
+				} catch (Exception e) {
 					_data = Properties.Settings.Default.DefaultMaterial;
+					Redbrick.ProcessError(e);
 				}
 			}
 		}
