@@ -579,7 +579,11 @@ namespace RedBrick2 {
 			if (!on) {
 				if (data_from_db) {
 					ToggleCutlistErr(false);
-					Redbrick.SetGroupBoxColor(groupBox1, Color.Blue);
+					if (cutlistctl.Items.Count < 1) {
+						Redbrick.SetGroupBoxColor(groupBox1, Color.Orange);
+					} else {
+						Redbrick.SetGroupBoxColor(groupBox1, Color.Blue);
+					}
 					StringBuilder sb_ = new StringBuilder(groupbox_tooltip.GetToolTip(groupBox1));
 					sb_.AppendLine();
 					sb_.AppendFormat(@"No cutlist selected. Data will be written to the configuration '{0}',{1}",
