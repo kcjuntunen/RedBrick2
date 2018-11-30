@@ -1793,10 +1793,27 @@ namespace RedBrick2 {
 		}
 
 		private void generatePartsSummary(object sender, EventArgs e) {
-			PartsSummary.PartsSummaryGenerator p = new PartsSummary.PartsSummaryGenerator(_partlist,
-				Properties.Settings.Default.PartsSummaryTemplate);
-			p.SuggestedName = itm_cbx.Text.Trim();
-			p.Generate();
+			try {
+				OrderedDictionary pl = new OrderedDictionary();
+				foreach (DataGridViewRow row in dataGridView1.Rows) {
+					if (row.Cells[0].Value == null) {
+						break;
+					}
+					string key = row.Cells[@"Part Number"].Value.ToString();
+					if (!_partlist.Contains(key)) {
+						continue;
+					}
+					if (Convert.ToBoolean((row.Cells[@"Include"] as DataGridViewCheckBoxCell).Value)) {
+						pl.Add(key, _partlist[key]);
+					}
+				}
+				PartsSummary.PartsSummaryGenerator p = new PartsSummary.PartsSummaryGenerator(pl,
+					Properties.Settings.Default.PartsSummaryTemplate);
+				p.SuggestedName = itm_cbx.Text.Trim();
+				p.Generate();
+			} catch (Exception ex) {
+				MessageBox.Show(ex.StackTrace);
+			}
 		}
 
 		private void itm_cbx_Leave(object sender, EventArgs e) {
