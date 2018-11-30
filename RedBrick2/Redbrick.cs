@@ -215,19 +215,16 @@ namespace RedBrick2 {
 
 		private bool changed = false;
 		private void ConfigureRedbrick() {
-			Properties.Settings.Default.PropertyChanged += Default_PropertyChanged;
-
 			using (RedbrickConfiguration rbc = new RedbrickConfiguration()) {
+				rbc.ChangedStuff += Rbc_ChangedStuff;
 				rbc.ShowDialog(taskpaneHost);
+				rbc.ChangedStuff -= Rbc_ChangedStuff;
 			}
-
 
 			if (changed) {
 				taskpaneHost.ConnectSelection(true);
 				taskpaneHost.ToggleFlameWar(Properties.Settings.Default.FlameWar);
 			}
-
-			Properties.Settings.Default.PropertyChanged -= Default_PropertyChanged;
 			changed = false;
 		}
 

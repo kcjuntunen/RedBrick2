@@ -264,6 +264,7 @@ namespace RedBrick2 {
 		private void cbRevLimit_SelectedIndexChanged(object sender, EventArgs e) {
 			if (initialated) {
 				Properties.Settings.Default.LvlLimit = (int)cbRevLimit.SelectedIndex + 1;
+				changed = true;
 			}
 		}
 
@@ -544,7 +545,6 @@ namespace RedBrick2 {
 		private void comboBox_Resize(object sender, EventArgs e) {
 			ComboBox _me = (sender as ComboBox);
 			_me.SelectionLength = 0;
-			changed = true;
 		}
 
 		private void checkBox8_CheckedChanged(object sender, EventArgs e) {

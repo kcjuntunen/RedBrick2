@@ -3029,19 +3029,22 @@ namespace RedBrick2 {
 
 		bool changed = false;
 		private void cfg_btn_Click(object sender, EventArgs e) {
-			Properties.Settings.Default.PropertyChanged += Default_PropertyChanged;
-
 			using (RedbrickConfiguration rbc = new RedbrickConfiguration()) {
+				rbc.ChangedStuff += Rbc_ChangedStuff;
 				rbc.ShowDialog(this);
+				rbc.ChangedStuff -= Rbc_ChangedStuff;
 			}
 
 			if (changed) {
+				DumpActiveDoc();
 				ReStart();
 				ToggleFlameWar(Properties.Settings.Default.FlameWar);
 			}
-
-			Properties.Settings.Default.PropertyChanged -= Default_PropertyChanged;
 			changed = false;
+		}
+
+		private void Rbc_ChangedStuff(object sender, EventArgs e) {
+			changed = true;
 		}
 
 		private void Default_PropertyChanged(object sender, PropertyChangedEventArgs e) {
