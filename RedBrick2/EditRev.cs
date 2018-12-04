@@ -44,7 +44,10 @@ namespace RedBrick2 {
 			level = new StringProperty(@"REVISION LEVEL", true, RevSet.SwApp, (RevSet.SwApp.ActiveDoc as ModelDoc2), @"REV");
 			level.Get();
 			if (textBox2.Text.Trim() == string.Empty && Redbrick.LastECRDescription != @"RELEASED") {
+				textBox1.Text = Redbrick.LastECRNo;
 				textBox2.Text = Redbrick.LastECRDescription;
+				textBox1.ForeColor = System.Drawing.Color.Green;
+				textBox2.ForeColor = System.Drawing.Color.Green;
 			}
 			ToggleFlameWar(Properties.Settings.Default.FlameWar);
 		}
@@ -101,7 +104,15 @@ namespace RedBrick2 {
 				AddECRItem();
 			}
 			del_flag_ = false;
+			Redbrick.LastECRNo = ThisRev.ECO;
 			Redbrick.LastECRDescription = ThisRev.Description;
+			if (!Redbrick.ECRDescriptions.Contains(ThisRev.Description)) {
+				Redbrick.ECRDescriptions.Add(ThisRev.Description);
+			}
+
+			if (!Redbrick.ECRNos.Contains(ThisRev.ECO)) {
+				Redbrick.ECRNos.Add(ThisRev.ECO);
+			}
 			Close();
 		}
 
@@ -218,6 +229,9 @@ namespace RedBrick2 {
 				dateTimePicker1.Value = ThisRev.Date;
 			}
 
+			textBox1.AutoCompleteCustomSource = Redbrick.ECRNos;
+			textBox2.AutoCompleteCustomSource = Redbrick.ECRDescriptions;
+
 			comboBox1.Enabled = false;
 		}
 
@@ -249,6 +263,10 @@ namespace RedBrick2 {
 					ev_.ShowDialog(this);
 				}
 			}
+		}
+
+		private void tb_TextChanged(object sender, EventArgs e) {
+			(sender as TextBox).ForeColor = Properties.Settings.Default.NormalForeground;
 		}
 	}
 }

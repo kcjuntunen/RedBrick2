@@ -26,10 +26,13 @@ namespace RedBrick2 {
 		private bool askedToUpdate = false;
 		private string UpdateMessage = string.Empty;
 
+		static public System.Windows.Forms.AutoCompleteStringCollection ECRNos { get; set; } = new System.Windows.Forms.AutoCompleteStringCollection();
+		static public System.Windows.Forms.AutoCompleteStringCollection ECRDescriptions { get; set; } = new System.Windows.Forms.AutoCompleteStringCollection();
+		static public string LastECRNo { get; set; } = string.Empty;
 		/// <summary>
 		/// A place to store the last ECR description that was typed.
 		/// </summary>
-		static public string LastECRDescription = string.Empty;
+		static public string LastECRDescription { get; set; } = string.Empty;
 		/// <summary>
 		/// Translation table of ugly field names to pretty ones.
 		/// </summary>

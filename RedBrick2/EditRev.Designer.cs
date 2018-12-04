@@ -116,10 +116,13 @@ namespace RedBrick2 {
 			// 
 			this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.textBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
 			this.textBox1.Location = new System.Drawing.Point(3, 56);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(186, 22);
 			this.textBox1.TabIndex = 3;
+			this.textBox1.TextChanged += new System.EventHandler(this.tb_TextChanged);
 			this.textBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBox1_MouseDoubleClick);
 			// 
 			// label3
@@ -135,10 +138,13 @@ namespace RedBrick2 {
 			// 
 			this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.textBox2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
 			this.textBox2.Location = new System.Drawing.Point(3, 97);
 			this.textBox2.Name = "textBox2";
 			this.textBox2.Size = new System.Drawing.Size(186, 22);
 			this.textBox2.TabIndex = 5;
+			this.textBox2.TextChanged += new System.EventHandler(this.tb_TextChanged);
 			// 
 			// label4
 			// 
