@@ -25,18 +25,17 @@
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.listView1 = new System.Windows.Forms.ListView();
 			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.listView2 = new System.Windows.Forms.ListView();
+			this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+			this.include_btn = new System.Windows.Forms.Button();
+			this.exclude_btn = new System.Windows.Forms.Button();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-			this.suffixTbx = new System.Windows.Forms.TextBox();
-			this.label5 = new System.Windows.Forms.Label();
-			this.go_btn = new System.Windows.Forms.Button();
-			this.close_btn = new System.Windows.Forms.Button();
-			this.dxf_out_btn = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.select_only_assemblies_btn = new System.Windows.Forms.Button();
 			this.select_raw_parts_btn = new System.Windows.Forms.Button();
@@ -59,21 +58,35 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.config_cbx = new System.Windows.Forms.ComboBox();
+			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+			this.suffixTbx = new System.Windows.Forms.TextBox();
+			this.label5 = new System.Windows.Forms.Label();
+			this.go_btn = new System.Windows.Forms.Button();
+			this.close_btn = new System.Windows.Forms.Button();
+			this.dxf_out_btn = new System.Windows.Forms.Button();
+			this.button2 = new System.Windows.Forms.Button();
+			this.add_btn = new System.Windows.Forms.Button();
+			this.button1 = new System.Windows.Forms.Button();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
-			this.add_btn = new System.Windows.Forms.Button();
+			this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
+			this.tableLayoutPanel3.SuspendLayout();
+			this.tableLayoutPanel4.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
-			this.tableLayoutPanel2.SuspendLayout();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.cUTPARTTYPESBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.manageCutlistTimeDataSet)).BeginInit();
+			this.tableLayoutPanel2.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -87,7 +100,7 @@
 			// 
 			// splitContainer1.Panel1
 			// 
-			this.splitContainer1.Panel1.Controls.Add(this.listView1);
+			this.splitContainer1.Panel1.Controls.Add(this.tableLayoutPanel3);
 			// 
 			// splitContainer1.Panel2
 			// 
@@ -95,6 +108,23 @@
 			this.splitContainer1.Size = new System.Drawing.Size(792, 545);
 			this.splitContainer1.SplitterDistance = 282;
 			this.splitContainer1.TabIndex = 0;
+			// 
+			// tableLayoutPanel3
+			// 
+			this.tableLayoutPanel3.ColumnCount = 3;
+			this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+			this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel3.Controls.Add(this.listView1, 2, 0);
+			this.tableLayoutPanel3.Controls.Add(this.listView2, 0, 0);
+			this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 1, 0);
+			this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+			this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+			this.tableLayoutPanel3.RowCount = 1;
+			this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel3.Size = new System.Drawing.Size(282, 545);
+			this.tableLayoutPanel3.TabIndex = 0;
 			// 
 			// listView1
 			// 
@@ -109,9 +139,9 @@
             this.columnHeader2,
             this.columnHeader3});
 			this.listView1.HideSelection = false;
-			this.listView1.Location = new System.Drawing.Point(3, 12);
+			this.listView1.Location = new System.Drawing.Point(164, 3);
 			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(276, 521);
+			this.listView1.Size = new System.Drawing.Size(115, 539);
 			this.listView1.TabIndex = 0;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ColumnClick);
@@ -136,6 +166,61 @@
 			// 
 			this.columnHeader3.Text = "Department";
 			// 
+			// listView2
+			// 
+			this.listView2.AllowDrop = true;
+			this.listView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.listView2.CheckBoxes = true;
+			this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8});
+			this.listView2.Location = new System.Drawing.Point(3, 3);
+			this.listView2.Name = "listView2";
+			this.listView2.Size = new System.Drawing.Size(115, 539);
+			this.listView2.TabIndex = 1;
+			this.listView2.UseCompatibleStateImageBehavior = false;
+			// 
+			// tableLayoutPanel4
+			// 
+			this.tableLayoutPanel4.ColumnCount = 1;
+			this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel4.Controls.Add(this.include_btn, 0, 0);
+			this.tableLayoutPanel4.Controls.Add(this.exclude_btn, 0, 1);
+			this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tableLayoutPanel4.Location = new System.Drawing.Point(124, 3);
+			this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+			this.tableLayoutPanel4.RowCount = 2;
+			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.tableLayoutPanel4.Size = new System.Drawing.Size(34, 539);
+			this.tableLayoutPanel4.TabIndex = 2;
+			// 
+			// include_btn
+			// 
+			this.include_btn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.include_btn.Location = new System.Drawing.Point(3, 243);
+			this.include_btn.Name = "include_btn";
+			this.include_btn.Size = new System.Drawing.Size(28, 23);
+			this.include_btn.TabIndex = 0;
+			this.include_btn.Text = "←";
+			this.include_btn.UseVisualStyleBackColor = true;
+			// 
+			// exclude_btn
+			// 
+			this.exclude_btn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.exclude_btn.Location = new System.Drawing.Point(3, 272);
+			this.exclude_btn.Name = "exclude_btn";
+			this.exclude_btn.Size = new System.Drawing.Size(28, 23);
+			this.exclude_btn.TabIndex = 1;
+			this.exclude_btn.Text = "→";
+			this.exclude_btn.UseVisualStyleBackColor = true;
+			// 
 			// tableLayoutPanel1
 			// 
 			this.tableLayoutPanel1.ColumnCount = 2;
@@ -157,6 +242,7 @@
 			this.tableLayoutPanel1.Controls.Add(this.config_cbx, 0, 1);
 			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 14);
 			this.tableLayoutPanel1.Controls.Add(this.add_btn, 0, 13);
+			this.tableLayoutPanel1.Controls.Add(this.button1, 1, 13);
 			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -178,82 +264,6 @@
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
 			this.tableLayoutPanel1.Size = new System.Drawing.Size(506, 545);
 			this.tableLayoutPanel1.TabIndex = 0;
-			// 
-			// tableLayoutPanel2
-			// 
-			this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.tableLayoutPanel2.ColumnCount = 3;
-			this.tableLayoutPanel1.SetColumnSpan(this.tableLayoutPanel2, 2);
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel2.Controls.Add(this.suffixTbx, 2, 0);
-			this.tableLayoutPanel2.Controls.Add(this.label5, 1, 0);
-			this.tableLayoutPanel2.Controls.Add(this.go_btn, 0, 0);
-			this.tableLayoutPanel2.Controls.Add(this.close_btn, 2, 2);
-			this.tableLayoutPanel2.Controls.Add(this.dxf_out_btn, 0, 1);
-			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 452);
-			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-			this.tableLayoutPanel2.RowCount = 3;
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(500, 90);
-			this.tableLayoutPanel2.TabIndex = 11;
-			// 
-			// suffixTbx
-			// 
-			this.suffixTbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.suffixTbx.Location = new System.Drawing.Point(173, 3);
-			this.suffixTbx.Name = "suffixTbx";
-			this.suffixTbx.Size = new System.Drawing.Size(324, 22);
-			this.suffixTbx.TabIndex = 2;
-			// 
-			// label5
-			// 
-			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(131, 0);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(36, 29);
-			this.label5.TabIndex = 1;
-			this.label5.Text = "Suffix";
-			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
-			// go_btn
-			// 
-			this.go_btn.Anchor = System.Windows.Forms.AnchorStyles.Left;
-			this.go_btn.Location = new System.Drawing.Point(3, 3);
-			this.go_btn.Name = "go_btn";
-			this.go_btn.Size = new System.Drawing.Size(75, 23);
-			this.go_btn.TabIndex = 0;
-			this.go_btn.Text = "PDF Packet";
-			this.go_btn.UseVisualStyleBackColor = true;
-			this.go_btn.Click += new System.EventHandler(this.go_btn_Click);
-			// 
-			// close_btn
-			// 
-			this.close_btn.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this.close_btn.Location = new System.Drawing.Point(422, 62);
-			this.close_btn.Name = "close_btn";
-			this.close_btn.Size = new System.Drawing.Size(75, 23);
-			this.close_btn.TabIndex = 3;
-			this.close_btn.Text = "Close";
-			this.close_btn.UseVisualStyleBackColor = true;
-			this.close_btn.Click += new System.EventHandler(this.close_btn_Click);
-			// 
-			// dxf_out_btn
-			// 
-			this.dxf_out_btn.Location = new System.Drawing.Point(3, 32);
-			this.dxf_out_btn.Name = "dxf_out_btn";
-			this.dxf_out_btn.Size = new System.Drawing.Size(75, 23);
-			this.dxf_out_btn.TabIndex = 4;
-			this.dxf_out_btn.Text = "DXF Out";
-			this.dxf_out_btn.UseVisualStyleBackColor = true;
-			this.dxf_out_btn.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// panel1
 			// 
@@ -490,6 +500,113 @@
 			this.config_cbx.TabIndex = 14;
 			this.config_cbx.SelectedIndexChanged += new System.EventHandler(this.config_cbx_SelectedIndexChanged);
 			// 
+			// tableLayoutPanel2
+			// 
+			this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.tableLayoutPanel2.ColumnCount = 3;
+			this.tableLayoutPanel1.SetColumnSpan(this.tableLayoutPanel2, 2);
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel2.Controls.Add(this.suffixTbx, 2, 0);
+			this.tableLayoutPanel2.Controls.Add(this.label5, 1, 0);
+			this.tableLayoutPanel2.Controls.Add(this.go_btn, 0, 0);
+			this.tableLayoutPanel2.Controls.Add(this.close_btn, 2, 2);
+			this.tableLayoutPanel2.Controls.Add(this.dxf_out_btn, 0, 1);
+			this.tableLayoutPanel2.Controls.Add(this.button2, 1, 1);
+			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 452);
+			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+			this.tableLayoutPanel2.RowCount = 3;
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(500, 90);
+			this.tableLayoutPanel2.TabIndex = 11;
+			// 
+			// suffixTbx
+			// 
+			this.suffixTbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.suffixTbx.Location = new System.Drawing.Point(173, 3);
+			this.suffixTbx.Name = "suffixTbx";
+			this.suffixTbx.Size = new System.Drawing.Size(324, 22);
+			this.suffixTbx.TabIndex = 2;
+			// 
+			// label5
+			// 
+			this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(131, 0);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(36, 29);
+			this.label5.TabIndex = 1;
+			this.label5.Text = "Suffix";
+			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
+			// go_btn
+			// 
+			this.go_btn.Anchor = System.Windows.Forms.AnchorStyles.Left;
+			this.go_btn.Location = new System.Drawing.Point(3, 3);
+			this.go_btn.Name = "go_btn";
+			this.go_btn.Size = new System.Drawing.Size(75, 23);
+			this.go_btn.TabIndex = 0;
+			this.go_btn.Text = "PDF Packet";
+			this.go_btn.UseVisualStyleBackColor = true;
+			this.go_btn.Click += new System.EventHandler(this.go_btn_Click);
+			// 
+			// close_btn
+			// 
+			this.close_btn.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this.close_btn.Location = new System.Drawing.Point(422, 62);
+			this.close_btn.Name = "close_btn";
+			this.close_btn.Size = new System.Drawing.Size(75, 23);
+			this.close_btn.TabIndex = 3;
+			this.close_btn.Text = "Close";
+			this.close_btn.UseVisualStyleBackColor = true;
+			this.close_btn.Click += new System.EventHandler(this.close_btn_Click);
+			// 
+			// dxf_out_btn
+			// 
+			this.dxf_out_btn.Location = new System.Drawing.Point(3, 32);
+			this.dxf_out_btn.Name = "dxf_out_btn";
+			this.dxf_out_btn.Size = new System.Drawing.Size(75, 23);
+			this.dxf_out_btn.TabIndex = 4;
+			this.dxf_out_btn.Text = "DXF Out";
+			this.dxf_out_btn.UseVisualStyleBackColor = true;
+			this.dxf_out_btn.Click += new System.EventHandler(this.button1_Click);
+			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(103, 32);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(64, 23);
+			this.button2.TabIndex = 5;
+			this.button2.Text = "button2";
+			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.button2_Click);
+			// 
+			// add_btn
+			// 
+			this.add_btn.Location = new System.Drawing.Point(3, 327);
+			this.add_btn.Name = "add_btn";
+			this.add_btn.Size = new System.Drawing.Size(75, 23);
+			this.add_btn.TabIndex = 15;
+			this.add_btn.Text = "Add Item...";
+			this.add_btn.UseVisualStyleBackColor = true;
+			this.add_btn.Click += new System.EventHandler(this.add_btn_Click);
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(433, 327);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(70, 23);
+			this.button1.TabIndex = 16;
+			this.button1.Text = "button1";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click_1);
+			// 
 			// statusStrip1
 			// 
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -521,16 +638,6 @@
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
 			// 
-			// add_btn
-			// 
-			this.add_btn.Location = new System.Drawing.Point(3, 327);
-			this.add_btn.Name = "add_btn";
-			this.add_btn.Size = new System.Drawing.Size(75, 23);
-			this.add_btn.TabIndex = 15;
-			this.add_btn.Text = "Add Item...";
-			this.add_btn.UseVisualStyleBackColor = true;
-			this.add_btn.Click += new System.EventHandler(this.add_btn_Click);
-			// 
 			// DrawingCollector
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -550,13 +657,15 @@
 			this.splitContainer1.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
+			this.tableLayoutPanel3.ResumeLayout(false);
+			this.tableLayoutPanel4.ResumeLayout(false);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel1.PerformLayout();
-			this.tableLayoutPanel2.ResumeLayout(false);
-			this.tableLayoutPanel2.PerformLayout();
 			this.panel1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.cUTPARTTYPESBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.manageCutlistTimeDataSet)).EndInit();
+			this.tableLayoutPanel2.ResumeLayout(false);
+			this.tableLayoutPanel2.PerformLayout();
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
 			this.ResumeLayout(false);
@@ -607,5 +716,16 @@
 		private System.Windows.Forms.ComboBox config_cbx;
 		private System.Windows.Forms.ColumnHeader columnHeader4;
 		private System.Windows.Forms.Button add_btn;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+		private System.Windows.Forms.ListView listView2;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+		private System.Windows.Forms.Button include_btn;
+		private System.Windows.Forms.Button exclude_btn;
+		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.ColumnHeader columnHeader5;
+		private System.Windows.Forms.ColumnHeader columnHeader6;
+		private System.Windows.Forms.ColumnHeader columnHeader7;
+		private System.Windows.Forms.ColumnHeader columnHeader8;
 	}
 }

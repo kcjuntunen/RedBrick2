@@ -153,8 +153,10 @@
     <Compile Include="DrawingCollector\DrawingCollector.Designer.cs">
       <DependentUpon>DrawingCollector.cs</DependentUpon>
     </Compile>
+    <Compile Include="DrawingCollector\InfosFile.cs" />
     <Compile Include="DrawingCollector\ItemInfo.cs" />
     <Compile Include="DrawingCollector\ListViewItemComparer.cs" />
+    <Compile Include="DrawingCollector\PacketItem.cs" />
     <Compile Include="DrawingCollector\PDFMerger.cs" />
     <Compile Include="ECRViewer\ECRViewerDataSet.cs">
       <DependentUpon>ECRViewerDataSet.xsd</DependentUpon>

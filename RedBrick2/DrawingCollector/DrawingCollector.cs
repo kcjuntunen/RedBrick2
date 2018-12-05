@@ -3,9 +3,11 @@ using SolidWorks.Interop.swconst;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace RedBrick2.DrawingCollector {
 	/// <summary>
@@ -29,6 +31,14 @@ namespace RedBrick2.DrawingCollector {
 			traverser = new Traverser(SwApp, true);
 			Here = Path.GetDirectoryName((SwApp.ActiveDoc as ModelDoc2).GetPathName());
 			InitializeComponent();
+
+
+			listView2.FullRowSelect = true;
+			listView2.HideSelection = false;
+			listView2.MultiSelect = true;
+			listView2.View = System.Windows.Forms.View.Details;
+			listView2.SmallImageList = Redbrick.TreeViewIcons;
+
 			listView1.FullRowSelect = true;
 			listView1.HideSelection = false;
 			listView1.MultiSelect = true;
@@ -634,6 +644,52 @@ namespace RedBrick2.DrawingCollector {
 				};
 				infos.Add(i.Name, i);
 				listView1.Items.Add(infos[i.Name].Node);
+			}
+		}
+
+		private void button1_Click_1(object sender, EventArgs e) {
+			using (SaveFileDialog sfd = new SaveFileDialog()) {
+				sfd.Filter = @"XML Files (*.xmldc)|*.xmldc";
+				if (sfd.ShowDialog() != DialogResult.OK) {
+					return;
+				}
+				try {
+					List<PacketItem> itemInfos = new List<PacketItem>();
+					foreach (ListViewItem item in listView1.Items) {
+						itemInfos.Add(infos[item.Text].pItem);
+					}
+					using (FileStream fs = new FileStream(sfd.FileName, FileMode.OpenOrCreate)) {
+						XmlSerializer xs = new XmlSerializer(typeof(List<PacketItem>));
+						xs.Serialize(fs, itemInfos);
+					}
+				} catch (IOException ie) {
+					Redbrick.ProcessError(ie);
+				} catch (Exception ex) {
+					Redbrick.ProcessError(ex);
+				}
+
+			}
+		}
+
+		private void button2_Click(object sender, EventArgs e) {
+			using (OpenFileDialog ofd = new OpenFileDialog()) {
+				ofd.Filter = @"XML Files (*.xmldc)|*.xmldc";
+				if (ofd.ShowDialog() != DialogResult.OK) {
+					return;
+				}
+				try {
+					using (FileStream fs = new FileStream(ofd.FileName, FileMode.Open)) {
+						XmlSerializer xs = new XmlSerializer(typeof(List<PacketItem>));
+						List<PacketItem> li = (List<PacketItem>)xs.Deserialize(fs);
+						foreach (PacketItem item in li) {
+							string[] data_ = new string[] { Name, item.Configuration, item.DocType, item.Department, item.Description, item.SldDoc, item.SldDrw, item.Pdf };
+							ListViewItem lvi_ = new ListViewItem(data_);
+							listView2.Items.Add(lvi_);
+						}
+					}
+				} catch (Exception ex) {
+					Redbrick.ProcessError(ex);
+				}
 			}
 		}
 	}
