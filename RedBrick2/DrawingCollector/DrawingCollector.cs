@@ -677,12 +677,13 @@ namespace RedBrick2.DrawingCollector {
 				if (ofd.ShowDialog() != DialogResult.OK) {
 					return;
 				}
+				listView2.Items.Clear();
 				try {
 					using (FileStream fs = new FileStream(ofd.FileName, FileMode.Open)) {
 						XmlSerializer xs = new XmlSerializer(typeof(List<PacketItem>));
 						List<PacketItem> li = (List<PacketItem>)xs.Deserialize(fs);
 						foreach (PacketItem item in li) {
-							string[] data_ = new string[] { Name, item.Configuration, item.DocType, item.Department, item.Description, item.SldDoc, item.SldDrw, item.Pdf };
+							string[] data_ = new string[] { item.Name, item.Configuration, item.DocType, item.Department, item.Description, item.SldDoc, item.SldDrw, item.Pdf };
 							ListViewItem lvi_ = new ListViewItem(data_);
 							listView2.Items.Add(lvi_);
 						}
