@@ -803,7 +803,7 @@ namespace RedBrick2 {
 				type_cbx.SelectedValue = type;
 				FilterOps(string.Format(@"TYPEID = {0}", type));
 			}
-			Redbrick.unselect(new ControlCollection(tableLayoutPanel6));
+			Redbrick.unselect(tableLayoutPanel6.Controls);
 		}
 
 		private void GetMaterialFromPart() {
