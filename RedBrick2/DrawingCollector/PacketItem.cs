@@ -18,6 +18,5 @@ namespace RedBrick2.DrawingCollector {
 		public bool Checked { get; set; } = true;
 		public bool CloseSldDrw { get; set; } = true;
 		public bool DeletePdf { get; set; } = true;
-		public DateTime Timestamp { get; set; } = DateTime.Now;
 	}
 }

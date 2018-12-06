@@ -8,6 +8,22 @@ namespace RedBrick2.DrawingCollector {
 		public ItemInfo() {
 
 		}
+
+		public ItemInfo(PacketItem item, SldWorks sld) {
+			SwProperties ps = new SwProperties(sld) {
+				PartLookup = item.Name,
+				Configuration = item.Configuration
+			};
+			ps.Add(new StringProperty(@"Description", true, sld, sld.ActiveDoc as ModelDoc2, @"DESCRIPTION"));
+			ps[@"Description"].Data = item.Description;
+			Name = item.Name;
+			PropertySet = ps;
+			SldDoc = new FileInfo(item.SldDoc);
+			SldDrw = new FileInfo(item.SldDrw);
+			Pdf = new FileInfo(item.Pdf);
+			CloseSldDrw = item.CloseSldDrw;
+		}
+
 		public SwProperties PropertySet { get; set; }
 
 		private FileInfo sldDoc;
