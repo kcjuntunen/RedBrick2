@@ -3,7 +3,6 @@ using SolidWorks.Interop.swconst;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -21,6 +20,8 @@ namespace RedBrick2.DrawingCollector {
 		private string Here;
 		private List<ItemInfo> reordered_by_boms = new List<ItemInfo>();
 		private int sortColumn = 0;
+		private double ts;
+		private string pathname = string.Empty;
 
 		/// <summary>
 		/// Constructor.
@@ -44,14 +45,14 @@ namespace RedBrick2.DrawingCollector {
 			listView1.MultiSelect = true;
 			listView1.View = System.Windows.Forms.View.Details;
 			listView1.SmallImageList = Redbrick.TreeViewIcons;
-			listView1.ItemDrag += ListView1_ItemDrag;
+			listView2.ItemDrag += ListView1_ItemDrag;
 			new ToolTip().SetToolTip(textBox3, @"This filename was automatically guessed; doubleclick here to change it.");
-			new ToolTip().SetToolTip(listView1, "Click the column headings to sort.\nDrag and drop to manually reorder.");
+			new ToolTip().SetToolTip(listView2, "Click the column headings to sort.\nDrag and drop to manually reorder.");
 			FindDrawings();
 		}
 
 		private void ListView1_ItemDrag(object sender, ItemDragEventArgs e) {
-			listView1.DoDragDrop(listView1.SelectedItems, DragDropEffects.Move);
+			listView2.DoDragDrop(listView2.SelectedItems, DragDropEffects.Move);
 		}
 
 		private void FindDrawings() {
@@ -126,14 +127,14 @@ namespace RedBrick2.DrawingCollector {
 			SwApp.OpenDocSilent(p.FullName, dt, ref odo);
 			SwApp.ActivateDoc3(p.FullName,
 				true, (int)swRebuildOnActivation_e.swDontRebuildActiveDoc, ref err);
-			if (Redbrick.FileInfoToLookup(tmp) != rootItem.Name) {
+			//if (Redbrick.FileInfoToLookup(tmp) != rootItem.Name) {
 				SwTableType tt_ = new SwTableType(SwApp.ActiveDoc as ModelDoc2, Properties.Settings.Default.MasterTableHashes, @"PART NUMBER");
 				foreach (string item in tt_.Parts) {
 					if (infos.ContainsKey(item) && infos[item].Checked && !reordered_by_boms.Contains(infos[item])) {
 						reordered_by_boms.Add(infos[item]);
 					}
 				}
-			}
+			//}
 			toolStripProgressBar1.PerformStep();
 
 			toolStripStatusLabel1.Text = @"Saving";
@@ -196,7 +197,7 @@ namespace RedBrick2.DrawingCollector {
 			toolStripProgressBar1.Maximum = infos.Count * 3;
 			toolStripProgressBar1.Step = 1;
 
-			foreach (ListViewItem itm in listView1.Items) {
+			foreach (ListViewItem itm in listView2.Items) {
 				string name = itm.Text;
 				if (!infos.ContainsKey(name)) {
 					continue;
@@ -229,7 +230,7 @@ namespace RedBrick2.DrawingCollector {
 			int count = 0;
 			toolStripProgressBar1.Maximum = infos.Count * 3;
 			toolStripProgressBar1.Step = 1;
-			foreach (ListViewItem item in listView1.Items) {
+			foreach (ListViewItem item in listView2.Items) {
 				string name = item.SubItems[0].Text;
 				if (item.Checked && infos[name].SldDrw.Exists) {
 					textBox1.Text = Redbrick.TitleCase(infos[item.Text].PropertySet[@"Description"].Data.ToString());
@@ -276,6 +277,9 @@ namespace RedBrick2.DrawingCollector {
 				return;
 			}
 			ListViewItem lvi_ = lv_.SelectedItems[0];
+			if (!infos.ContainsKey(lvi_.Text)) {
+				return;
+			}
 			textBox1.Text = Redbrick.TitleCase(infos[lvi_.Text].PropertySet[@"Description"].Data.ToString());
 			textBox2.Text = infos[lvi_.Text].SldDoc.FullName;
 			textBox3.Text = infos[lvi_.Text].SldDrw.FullName;
@@ -287,11 +291,14 @@ namespace RedBrick2.DrawingCollector {
 		}
 
 		private void go_btn_Click(object sender, EventArgs e) {
+			if (listView2.Items.Count < 1 && listView2.CheckedItems.Count < 1) {
+				return;
+			}
 			var stopWatch = System.Diagnostics.Stopwatch.StartNew();
 			toolStripProgressBar1.Maximum = infos.Count * 3;
 			toolStripProgressBar1.Step = 1;
 
-			foreach (ListViewItem item in listView1.Items) {
+			foreach (ListViewItem item in listView2.Items) {
 				infos[item.Text].Checked = item.Checked;
 			}
 			CreateDrawings();
@@ -307,9 +314,13 @@ namespace RedBrick2.DrawingCollector {
 			pm_.Merge();
 
 			stopWatch.Stop();
-
+			ts = stopWatch.Elapsed.TotalSeconds;
+			button1.Enabled = true;
 			SaveFileDialog saveFileDialog = new SaveFileDialog();
 			saveFileDialog.FileName = fileName;
+			if (pathname != string.Empty) {
+				saveFileDialog.FileName = pathname;
+			}
 			saveFileDialog.InitialDirectory = Properties.Settings.Default.DrawingCollectorLastSaveLocation;
 
 			if (saveFileDialog.ShowDialog(this) != DialogResult.OK) {
@@ -322,6 +333,7 @@ namespace RedBrick2.DrawingCollector {
 				return;
 			}
 
+			pathname = saveFileDialog.FileName;
 			fileName = saveFileDialog.FileName;
 			Properties.Settings.Default.DrawingCollectorLastSaveLocation = Path.GetDirectoryName(saveFileDialog.FileName);
 			Properties.Settings.Default.Save();
@@ -427,7 +439,7 @@ namespace RedBrick2.DrawingCollector {
 		}
 
 		private void select_all_btn_Click(object sender, EventArgs e) {
-			foreach (ListViewItem item in listView1.Items) {
+			foreach (ListViewItem item in listView2.Items) {
 				if (infos[item.Text].SldDrw.Exists) {
 					item.Checked = true;
 				}
@@ -435,7 +447,7 @@ namespace RedBrick2.DrawingCollector {
 		}
 
 		private void select_none_btn_Click(object sender, EventArgs e) {
-			foreach (ListViewItem item in listView1.Items) {
+			foreach (ListViewItem item in listView2.Items) {
 				item.Checked = false;
 			}
 		}
@@ -445,11 +457,11 @@ namespace RedBrick2.DrawingCollector {
 				return;
 			}
 
-			if (listView1.Items.Count < 1) {
+			if (listView2.Items.Count < 1) {
 				return;
 			}
 
-			foreach (ListViewItem item in listView1.Items) {
+			foreach (ListViewItem item in listView2.Items) {
 				string dept_ = item.SubItems[2].Text.ToUpper().Trim();
 				bool exists_ = infos[item.Text].SldDrw.Exists;
 				item.Checked = exists_ && dept_ == select_only_cbx.Text.ToUpper().Trim();
@@ -457,7 +469,7 @@ namespace RedBrick2.DrawingCollector {
 		}
 
 		private void select_raw_parts_btn_Click(object sender, EventArgs e) {
-			foreach (ListViewItem item in listView1.Items) {
+			foreach (ListViewItem item in listView2.Items) {
 				if (infos[item.Text].SldDoc.FullName.ToUpper().Contains(@"PART") && infos[item.Text].SldDrw.Exists) {
 					item.Checked = true;
 				}
@@ -465,7 +477,7 @@ namespace RedBrick2.DrawingCollector {
 		}
 
 		private void select_only_assemblies_btn_Click(object sender, EventArgs e) {
-			foreach (ListViewItem item in listView1.Items) {
+			foreach (ListViewItem item in listView2.Items) {
 				string type_ = item.SubItems[1].Text.ToUpper().Trim();
 				bool exists_ = infos[item.Text].SldDrw.Exists;
 				item.Checked = exists_ && type_ == @"ASSEMBLY";
@@ -473,6 +485,9 @@ namespace RedBrick2.DrawingCollector {
 		}
 
 		private void button1_Click(object sender, EventArgs e) {
+			if (listView2.Items.Count < 1 && listView2.CheckedItems.Count < 1) {
+				return;
+			}
 			var stopWatch = System.Diagnostics.Stopwatch.StartNew();
 			int count = 0;
 			count = CreateDXFs();
@@ -481,7 +496,7 @@ namespace RedBrick2.DrawingCollector {
 			fbd_.RootFolder = System.Environment.SpecialFolder.Desktop;
 			fbd_.ShowDialog(this);
 
-			foreach (ListViewItem item in listView1.Items) {
+			foreach (ListViewItem item in listView2.Items) {
 				string name = item.SubItems[0].Text;
 				if (item.Checked && infos[name].Pdf.Exists) {
 					string tmpFile = infos[name].Pdf.FullName;
@@ -548,15 +563,15 @@ namespace RedBrick2.DrawingCollector {
 		}
 
 		private void textBox3_MouseDoubleClick(object sender, MouseEventArgs e) {
-			if (listView1.SelectedItems.Count < 1) {
+			if (listView2.SelectedItems.Count < 1) {
 				return;
 			}
 
-			if (listView1.SelectedItems[0] == null) {
+			if (listView2.SelectedItems[0] == null) {
 				return;
 			}
 
-			string item = listView1.SelectedItems[0].Text;
+			string item = listView2.SelectedItems[0].Text;
 
 			OpenFileDialog ofd_ = new OpenFileDialog();
 			ofd_.Title = string.Format(@"Select drawing for {0} ({1})", item, infos[item].PropertySet.Configuration);
@@ -568,16 +583,17 @@ namespace RedBrick2.DrawingCollector {
 				infos[item].SldDrw = selectedFile;
 				textBox3.Text = infos[item].SldDrw.FullName;
 				checkBox2.Checked = selectedFile.Exists;
-				listView1.SelectedItems[0].Checked = selectedFile.Exists;
+				listView2.SelectedItems[0].Checked = selectedFile.Exists;
 			}
 		}
 
 			// Code lifted directly from 
 			// <https://support.microsoft.com/en-us/help/822483/the-listview-control-does-not-support-drag-and-drop-functionality-for>
 		private void listView1_DragEnter(object sender, DragEventArgs e) {
+			ListView listView = sender as ListView;
 			int len = e.Data.GetFormats().Length - 1;
 			int i;
-			listView1.Sorting = SortOrder.None;
+			listView.Sorting = SortOrder.None;
 			for (i = 0; i <= len; i++) {
 				if (e.Data.GetFormats()[i].Equals("System.Windows.Forms.ListView+SelectedListViewItemCollection")) {
 					//The data from the drag source is moved to the target.
@@ -588,21 +604,22 @@ namespace RedBrick2.DrawingCollector {
 
 		private void listView1_DragDrop(object sender, DragEventArgs e) {
 			//Return if the items are not selected in the ListView control.
-			if (listView1.SelectedItems.Count == 0) {
+			ListView listView = sender as ListView;
+			if (listView.SelectedItems.Count == 0) {
 				return;
 			}
 			//Returns the location of the mouse pointer in the ListView control.
-			Point cp = listView1.PointToClient(new Point(e.X, e.Y));
+			Point cp = listView.PointToClient(new Point(e.X, e.Y));
 			//Obtain the item that is located at the specified location of the mouse pointer.
-			ListViewItem dragToItem = listView1.GetItemAt(cp.X, cp.Y);
+			ListViewItem dragToItem = listView.GetItemAt(cp.X, cp.Y);
 			if (dragToItem == null) {
 				return;
 			}
 			//Obtain the index of the item at the mouse pointer.
 			int dragIndex = dragToItem.Index;
-			ListViewItem[] sel = new ListViewItem[listView1.SelectedItems.Count];
-			for (int i = 0; i <= listView1.SelectedItems.Count - 1; i++) {
-				sel[i] = listView1.SelectedItems[i];
+			ListViewItem[] sel = new ListViewItem[listView.SelectedItems.Count];
+			for (int i = 0; i <= listView.SelectedItems.Count - 1; i++) {
+				sel[i] = listView.SelectedItems[i];
 			}
 			for (int i = 0; i < sel.GetLength(0); i++) {
 				//Obtain the ListViewItem to be dragged to the target location.
@@ -617,10 +634,10 @@ namespace RedBrick2.DrawingCollector {
 					itemIndex = dragIndex + i;
 				//Insert the item at the mouse pointer.
 				ListViewItem insertItem = (ListViewItem)dragItem.Clone();
-				listView1.Items.Insert(itemIndex, insertItem);
+				listView.Items.Insert(itemIndex, insertItem);
 				//Removes the item from the initial location while 
 				//the item is moved to the new location.
-				listView1.Items.Remove(dragItem);
+				listView.Items.Remove(dragItem);
 			}
 		}
 
@@ -647,50 +664,119 @@ namespace RedBrick2.DrawingCollector {
 			}
 		}
 
-		private void button1_Click_1(object sender, EventArgs e) {
+		private void saveListBox(string fileName) {
+			try {
+				Steps steps = new Steps();
+				PacketItems itemInfos = new PacketItems();
+				foreach (ListViewItem item in listView2.Items) {
+					PacketItem pi = infos[item.Text].pItem;
+					pi.Checked = item.Checked;
+					itemInfos.Add(pi);
+				}
+				steps.Items = itemInfos;
+				using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate)) {
+					XmlSerializer xs = new XmlSerializer(typeof(Steps));
+					xs.Serialize(fs, steps);
+				}
+			} catch (IOException ie) {
+				Redbrick.ProcessError(ie);
+			} catch (Exception ex) {
+				Redbrick.ProcessError(ex);
+			}
+		}
+
+		private void saveOrdered(string fileName) {
+			try {
+				Steps steps = new Steps();
+				PacketItems itemInfos = new PacketItems();
+				steps.Duration = ts.ToString();
+				steps.Timestamp = DateTime.Now;
+				steps.PathName = pathname;
+				foreach (ItemInfo item in reordered_by_boms) {
+					itemInfos.Add(item.pItem);
+				}
+				steps.Items = itemInfos;
+				using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate)) {
+					XmlSerializer xs = new XmlSerializer(typeof(Steps));
+					xs.Serialize(fs, steps);
+				}
+			} catch (IOException ie) {
+				Redbrick.ProcessError(ie);
+			} catch (Exception ex) {
+				Redbrick.ProcessError(ex);
+			}
+		}
+
+		private void save_Click_1(object sender, EventArgs e) {
 			using (SaveFileDialog sfd = new SaveFileDialog()) {
 				sfd.Filter = @"XML Files (*.xmldc)|*.xmldc";
 				if (sfd.ShowDialog() != DialogResult.OK) {
 					return;
 				}
-				try {
-					List<PacketItem> itemInfos = new List<PacketItem>();
-					foreach (ListViewItem item in listView1.Items) {
-						itemInfos.Add(infos[item.Text].pItem);
-					}
-					using (FileStream fs = new FileStream(sfd.FileName, FileMode.OpenOrCreate)) {
-						XmlSerializer xs = new XmlSerializer(typeof(List<PacketItem>));
-						xs.Serialize(fs, itemInfos);
-					}
-				} catch (IOException ie) {
-					Redbrick.ProcessError(ie);
-				} catch (Exception ex) {
-					Redbrick.ProcessError(ex);
+				if (reordered_by_boms.Count > 1) {
+					saveOrdered(sfd.FileName);
+				} else {
+					saveListBox(sfd.FileName);
 				}
-
 			}
 		}
 
-		private void button2_Click(object sender, EventArgs e) {
+		private void load_Click(object sender, EventArgs e) {
 			using (OpenFileDialog ofd = new OpenFileDialog()) {
 				ofd.Filter = @"XML Files (*.xmldc)|*.xmldc";
 				if (ofd.ShowDialog() != DialogResult.OK) {
 					return;
 				}
+				//infos.Clear();
 				listView2.Items.Clear();
+				reordered_by_boms.Clear();
 				try {
 					using (FileStream fs = new FileStream(ofd.FileName, FileMode.Open)) {
-						XmlSerializer xs = new XmlSerializer(typeof(List<PacketItem>));
-						List<PacketItem> li = (List<PacketItem>)xs.Deserialize(fs);
-						foreach (PacketItem item in li) {
+						XmlSerializer xs = new XmlSerializer(typeof(Steps));
+						Steps steps = (Steps)xs.Deserialize(fs);
+						toolStripStatusLabel2.Text = string.Format(@"Takes around {0} seconds.", steps.Duration);
+						pathname = steps.PathName;
+						foreach (PacketItem item in steps.Items) {
 							string[] data_ = new string[] { item.Name, item.Configuration, item.DocType, item.Department, item.Description, item.SldDoc, item.SldDrw, item.Pdf };
 							ListViewItem lvi_ = new ListViewItem(data_);
+							lvi_.Checked = item.Checked;
 							listView2.Items.Add(lvi_);
+							if (!infos.ContainsKey(item.Name)) {
+								ItemInfo ii = new ItemInfo(item, SwApp);
+								infos.Add(item.Name, ii);
+							}
+							for (int i = 0; i < listView1.Items.Count; i++) {
+								if (listView1.Items[i].Text == lvi_.Text) {
+									listView1.Items.RemoveAt(i);
+								}
+							}
 						}
 					}
+					listView2.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 				} catch (Exception ex) {
 					Redbrick.ProcessError(ex);
 				}
+			}
+		}
+
+		private void include_btn_Click(object sender, EventArgs e) {
+			if (listView1.SelectedItems.Count < 1) {
+				return;
+			}
+			foreach (ListViewItem item_ in listView1.SelectedItems) {
+				listView2.Items.Add((ListViewItem)item_.Clone());
+				listView1.Items.Remove(item_);
+				listView2.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+			}
+		}
+
+		private void exclude_btn_Click(object sender, EventArgs e) {
+			if (listView2.SelectedItems.Count < 1) {
+				return;
+			}
+			foreach (ListViewItem item_ in listView2.SelectedItems) {
+				listView1.Items.Add((ListViewItem)item_.Clone());
+				listView2.Items.Remove(item_);
 			}
 		}
 	}
