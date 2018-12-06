@@ -786,6 +786,7 @@ namespace RedBrick2 {
 				string offender = stack[stack.Length - 1].Trim();
 				int len = offender.Length > 255 ? 255 : offender.Length;
 				string msg_ = string.Format(@"Error `{0}' occurred {1}.", e.Message, offender);
+#if !DEBUG
 				int aff = q_.InsertError(
 					DateTime.Now,
 					uid_,
@@ -800,11 +801,14 @@ namespace RedBrick2 {
 						System.Windows.Forms.MessageBoxButtons.OK,
 						System.Windows.Forms.MessageBoxIcon.Error);
 				} else {
+#endif
 					msg_ += "\n" + @"This error failed to be reported.";
 					System.Windows.Forms.MessageBox.Show(msg_, @"Redbrick Error",
 						System.Windows.Forms.MessageBoxButtons.OK,
 						System.Windows.Forms.MessageBoxIcon.Error);
+#if !DEBUG
 				}
+#endif
 			}
 		}
 
