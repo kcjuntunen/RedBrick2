@@ -1,9 +1,29 @@
 ﻿using SolidWorks.Interop.sldworks;
+using System;
 using System.IO;
 using System.Windows.Forms;
 
 namespace RedBrick2.DrawingCollector {
-	class ItemInfo {
+	public class ItemInfo {
+		public ItemInfo() {
+
+		}
+
+		public ItemInfo(PacketItem item, SldWorks sld) {
+			SwProperties ps = new SwProperties(sld) {
+				PartLookup = item.Name,
+				Configuration = item.Configuration
+			};
+			ps.Add(new StringProperty(@"Description", true, sld, sld.ActiveDoc as ModelDoc2, @"DESCRIPTION"));
+			ps[@"Description"].Data = item.Description;
+			Name = item.Name;
+			PropertySet = ps;
+			SldDoc = new FileInfo(item.SldDoc);
+			SldDrw = new FileInfo(item.SldDrw);
+			Pdf = new FileInfo(item.Pdf);
+			CloseSldDrw = item.CloseSldDrw;
+		}
+
 		public SwProperties PropertySet { get; set; }
 
 		private FileInfo sldDoc;
@@ -54,6 +74,27 @@ namespace RedBrick2.DrawingCollector {
 			}
 			set {
 				name = value;
+			}
+		}
+		public PacketItem pItem {
+			get {
+				PacketItem p = new PacketItem();
+				p.Checked = Checked;
+				p.CloseSldDrw = CloseSldDrw;
+				p.DeletePdf = DeletePdf;
+
+				p.Name = Name;
+				p.Configuration = PropertySet.Configuration;
+				p.DocType = PropertySet.ActiveDoc is AssemblyDoc ? "Assembly" : "Part";
+				p.Department = Redbrick.TitleCase(PropertySet[@"DEPARTMENT"].Value);
+				p.Description = PropertySet[@"Description"].Value;
+				p.SldDoc = SldDoc.FullName;
+				p.SldDrw = SldDrw.FullName;
+				p.Pdf = Pdf.FullName;
+				return p;
+			}
+			private set {
+				pItem = value;
 			}
 		}
 
