@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace RedBrick2.ECRViewer {
@@ -326,15 +327,33 @@ namespace RedBrick2.ECRViewer {
 		}
 
 		private void GetDescription(int ecrno) {
+			Font font = descriptionRichTextBox.Font;
+			Font newfont = new Font(font, FontStyle.Italic | FontStyle.Underline);
 			if (ecrno > Redbrick.LastLegacyECR) {
 				ECRViewerDataSet.ECRObjLookupRow r_ = ECRObjLookup(ecrno);
 				if (r_ != null) {
-					descriptionTextBox.Text = r_.CHANGES;
+					descriptionRichTextBox.Clear();
+					if (!r_.IsCHANGESNull()) {
+						descriptionRichTextBox.SelectionFont = newfont;
+						descriptionRichTextBox.SelectedText = string.Format(@"Requested Changes:{0}", Environment.NewLine);
+						descriptionRichTextBox.SelectionFont = font;
+						descriptionRichTextBox.AppendText(r_.CHANGES);
+					}
+					if (r_.IsREVISIONNull()) {
+						return;
+					}
+					descriptionRichTextBox.AppendText(Environment.NewLine);
+					descriptionRichTextBox.SelectionFont = newfont;
+					descriptionRichTextBox.SelectedText = string.Format(@"{0}Completed changes and notes:{0}", Environment.NewLine);
+					descriptionRichTextBox.SelectionFont = font;
+					descriptionRichTextBox.AppendText(r_.REVISION);
 				}
 			} else {
 				ECRViewerDataSet.ECR_LEGACYRow r_ = LegacyECRObjLookup(ecrno);
 				if (r_ != null && !r_.IsChangeNull()) {
-					descriptionTextBox.Text = r_.Change;
+					descriptionRichTextBox.Clear();
+					descriptionRichTextBox.SelectionFont = font;
+					descriptionRichTextBox.AppendText(r_.Change);
 				}
 			}
 		}

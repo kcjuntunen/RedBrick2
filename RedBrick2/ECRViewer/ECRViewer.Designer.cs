@@ -30,7 +30,6 @@ namespace RedBrick2.ECRViewer {
 			this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.descriptionTextBox = new System.Windows.Forms.TextBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this.affectedItemsListView = new System.Windows.Forms.ListView();
@@ -54,6 +53,7 @@ namespace RedBrick2.ECRViewer {
 			this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.label1 = new System.Windows.Forms.Label();
 			this.ECRTextBox = new System.Windows.Forms.TextBox();
+			this.descriptionRichTextBox = new System.Windows.Forms.RichTextBox();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
@@ -125,25 +125,13 @@ namespace RedBrick2.ECRViewer {
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox1.Controls.Add(this.descriptionTextBox);
+			this.groupBox1.Controls.Add(this.descriptionRichTextBox);
 			this.groupBox1.Location = new System.Drawing.Point(3, 181);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(303, 172);
 			this.groupBox1.TabIndex = 2;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Description";
-			// 
-			// descriptionTextBox
-			// 
-			this.descriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.descriptionTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.descriptionTextBox.Location = new System.Drawing.Point(7, 22);
-			this.descriptionTextBox.Multiline = true;
-			this.descriptionTextBox.Name = "descriptionTextBox";
-			this.descriptionTextBox.Size = new System.Drawing.Size(290, 144);
-			this.descriptionTextBox.TabIndex = 0;
 			// 
 			// groupBox2
 			// 
@@ -366,6 +354,21 @@ namespace RedBrick2.ECRViewer {
 			this.ECRTextBox.TabIndex = 4;
 			this.ECRTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ECRTextBox_KeyDown);
 			// 
+			// descriptionRichTextBox
+			// 
+			this.descriptionRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.descriptionRichTextBox.BackColor = System.Drawing.SystemColors.Window;
+			this.descriptionRichTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.descriptionRichTextBox.Cursor = System.Windows.Forms.Cursors.Arrow;
+			this.descriptionRichTextBox.Location = new System.Drawing.Point(6, 21);
+			this.descriptionRichTextBox.Name = "descriptionRichTextBox";
+			this.descriptionRichTextBox.ReadOnly = true;
+			this.descriptionRichTextBox.Size = new System.Drawing.Size(291, 145);
+			this.descriptionRichTextBox.TabIndex = 0;
+			this.descriptionRichTextBox.Text = "";
+			// 
 			// ECRViewer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -385,7 +388,6 @@ namespace RedBrick2.ECRViewer {
 			this.Load += new System.EventHandler(this.ECRViewer_Load);
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.groupBox1.ResumeLayout(false);
-			this.groupBox1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox4.ResumeLayout(false);
@@ -409,7 +411,6 @@ namespace RedBrick2.ECRViewer {
 		private System.Windows.Forms.ColumnHeader columnHeader3;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 		private System.Windows.Forms.GroupBox groupBox1;
-		private System.Windows.Forms.TextBox descriptionTextBox;
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.GroupBox groupBox3;
 		private System.Windows.Forms.ListView affectedItemsListView;
@@ -433,5 +434,6 @@ namespace RedBrick2.ECRViewer {
 		private System.Windows.Forms.ColumnHeader columnHeader13;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.TextBox ECRTextBox;
+		private System.Windows.Forms.RichTextBox descriptionRichTextBox;
 	}
 }
