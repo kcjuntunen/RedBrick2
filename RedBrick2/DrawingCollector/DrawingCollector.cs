@@ -113,6 +113,9 @@ namespace RedBrick2.DrawingCollector {
 		}
 
 		private FileInfo CreateDwg(FileInfo p) {
+			if (p.Extension.ToUpper().EndsWith(@"PDF")) {
+				return null;
+			}
 			int dt = (int)swDocumentTypes_e.swDocDRAWING;
 			int odo = (int)swOpenDocOptions_e.swOpenDocOptions_Silent;
 			int err = 0;
@@ -666,30 +669,63 @@ namespace RedBrick2.DrawingCollector {
 			int err = 0;
 			OpenFileDialog ofd_ = new OpenFileDialog();
 			ofd_.InitialDirectory = Path.GetDirectoryName(rootItem.SldDrw.FullName);
-			ofd_.Filter = @"SolidWorks Drawings (*.slddrw)|*.slddrw";
+			ofd_.Filter = @"SolidWorks Drawings and PDFs (*.pdf;*.slddrw)|*.slddrw;*.pdf";
 
 			if (ofd_.ShowDialog() == DialogResult.OK) {
-				SwApp.OpenDocSilent(ofd_.FileName, (int)swDocumentTypes_e.swDocDRAWING, ref err);
-				SwApp.ActivateDoc3(ofd_.FileName, false, (int)swRebuildOnActivation_e.swDontRebuildActiveDoc, ref err);
-				SolidWorks.Interop.sldworks.View v_ = Redbrick.GetFirstView(SwApp);
-				if (v_ == null || v_.ReferencedDocument == null) {
-					MessageBox.Show(this, @"Couldn't find a model in the drawing.", @"Error",
-						MessageBoxButtons.OK, MessageBoxIcon.Error);
-					return;
+				if (ofd_.FileName.ToUpper().EndsWith(@"SLDDRW")) {
+					AddItem(ofd_.FileName);
+				} else if (ofd_.FileName.ToUpper().EndsWith(@"PDF")) {
+					AddPDF(ofd_.FileName);
 				}
-				SwProperties p_ = new SwProperties(SwApp, v_.ReferencedDocument);
-				p_.GetProperties(v_.ReferencedDocument);
-				ItemInfo i = new ItemInfo {
-					PropertySet = p_,
-					SldDrw = new FileInfo(ofd_.FileName),
-					CloseSldDrw = true,
-					DeletePdf = true
-				};
-				if (!infos.ContainsKey(i.Name)) {
-					infos.Add(i.Name, i);
-				}
-				listView2.Items.Add(infos[i.Name].Node);
 			}
+		}
+
+		private void AddPDF(string fileName) {
+			FileInfo f = new FileInfo(fileName);
+			SwProperties p_ = new SwProperties(SwApp);
+			DepartmentProperty dp = new DepartmentProperty(@"DEPARTMENT", true, SwApp, (SwApp.ActiveDoc as ModelDoc2), string.Empty);
+			StringProperty sp = new StringProperty(@"Description", true, SwApp, (SwApp.ActiveDoc as ModelDoc2), string.Empty);
+			dp.Data = @"OTHER";
+			sp.Data = @"PDF File";
+			p_.Add(dp);
+			p_.Add(sp);
+			ItemInfo i = new ItemInfo {
+				Name = string.Format(@"PDF → {0}", Path.GetFileNameWithoutExtension(fileName)),
+				PropertySet = p_,
+				SldDoc = f,
+				SldDrw = f,
+				Pdf = f,
+				CloseSldDrw = true,
+				DeletePdf = false
+			};
+			if (!infos.ContainsKey(i.Name)) {
+				infos.Add(i.Name, i);
+			}
+			listView2.Items.Add(infos[i.Name].Node);
+		}
+
+		private void AddItem(string fileName) {
+			int err = 0;
+			SwApp.OpenDocSilent(fileName, (int)swDocumentTypes_e.swDocDRAWING, ref err);
+			SwApp.ActivateDoc3(fileName, false, (int)swRebuildOnActivation_e.swDontRebuildActiveDoc, ref err);
+			SolidWorks.Interop.sldworks.View v_ = Redbrick.GetFirstView(SwApp);
+			if (v_ == null || v_.ReferencedDocument == null) {
+				MessageBox.Show(this, @"Couldn't find a model in the drawing.", @"Error",
+					MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+			SwProperties p_ = new SwProperties(SwApp, v_.ReferencedDocument);
+			p_.GetProperties(v_.ReferencedDocument);
+			ItemInfo i = new ItemInfo {
+				PropertySet = p_,
+				SldDrw = new FileInfo(fileName),
+				CloseSldDrw = true,
+				DeletePdf = true
+			};
+			if (!infos.ContainsKey(i.Name)) {
+				infos.Add(i.Name, i);
+			}
+			listView2.Items.Add(infos[i.Name].Node);
 		}
 
 		private void saveListBox(string fileName) {
@@ -771,6 +807,11 @@ namespace RedBrick2.DrawingCollector {
 							listView2.Items.Add(lvi_);
 							if (!infos.ContainsKey(item.Name)) {
 								ItemInfo ii = new ItemInfo(item, SwApp);
+								ii.PropertySet = new SwProperties(SwApp);
+								ii.PropertySet.Add(new StringProperty(@"Description", true, SwApp, (SwApp as ModelDoc2), string.Empty));
+								ii.PropertySet.Add(new DepartmentProperty(@"DEPARTMENT", true, SwApp, (SwApp as ModelDoc2), string.Empty));
+								ii.PropertySet[@"Description"].Data = item.Description;
+								ii.PropertySet[@"DEPARTMENT"].Data = item.Department;
 								infos.Add(item.Name, ii);
 							}
 							for (int i = 0; i < listView1.Items.Count; i++) {

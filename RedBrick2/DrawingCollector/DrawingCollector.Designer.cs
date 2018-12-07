@@ -41,6 +41,7 @@
 			this.exclude_btn = new System.Windows.Forms.Button();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.manualOrder_chb = new System.Windows.Forms.CheckBox();
 			this.select_only_assemblies_btn = new System.Windows.Forms.Button();
 			this.select_raw_parts_btn = new System.Windows.Forms.Button();
 			this.select_only_cbx = new System.Windows.Forms.ComboBox();
@@ -76,7 +77,6 @@
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
-			this.manualOrder_chb = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -305,6 +305,19 @@
 			this.tableLayoutPanel1.SetRowSpan(this.panel1, 3);
 			this.panel1.Size = new System.Drawing.Size(423, 114);
 			this.panel1.TabIndex = 12;
+			// 
+			// manualOrder_chb
+			// 
+			this.manualOrder_chb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.manualOrder_chb.AutoSize = true;
+			this.manualOrder_chb.Checked = true;
+			this.manualOrder_chb.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.manualOrder_chb.Location = new System.Drawing.Point(323, 34);
+			this.manualOrder_chb.Name = "manualOrder_chb";
+			this.manualOrder_chb.Size = new System.Drawing.Size(90, 17);
+			this.manualOrder_chb.TabIndex = 17;
+			this.manualOrder_chb.Text = "Manual Order";
+			this.manualOrder_chb.UseVisualStyleBackColor = true;
 			// 
 			// select_only_assemblies_btn
 			// 
@@ -665,17 +678,6 @@
 			// cUT_PART_TYPESTableAdapter
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
-			// 
-			// manualOrder_chb
-			// 
-			this.manualOrder_chb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.manualOrder_chb.AutoSize = true;
-			this.manualOrder_chb.Location = new System.Drawing.Point(323, 34);
-			this.manualOrder_chb.Name = "manualOrder_chb";
-			this.manualOrder_chb.Size = new System.Drawing.Size(90, 17);
-			this.manualOrder_chb.TabIndex = 17;
-			this.manualOrder_chb.Text = "Manual Order";
-			this.manualOrder_chb.UseVisualStyleBackColor = true;
 			// 
 			// DrawingCollector
 			// 

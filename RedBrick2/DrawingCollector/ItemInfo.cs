@@ -78,19 +78,23 @@ namespace RedBrick2.DrawingCollector {
 		}
 		public PacketItem pItem {
 			get {
-				PacketItem p = new PacketItem();
-				p.Checked = Checked;
-				p.CloseSldDrw = CloseSldDrw;
-				p.DeletePdf = DeletePdf;
+				PacketItem p = new PacketItem {
+					Checked = Checked,
+					CloseSldDrw = CloseSldDrw,
+					DeletePdf = DeletePdf,
+					Name = Name,
+					SldDoc = SldDoc.FullName,
+					SldDrw = SldDrw.FullName,
+					Pdf = Pdf.FullName
+				};
 
-				p.Name = Name;
-				p.Configuration = PropertySet.Configuration;
-				p.DocType = PropertySet.ActiveDoc is AssemblyDoc ? "Assembly" : "Part";
-				p.Department = Redbrick.TitleCase(PropertySet[@"DEPARTMENT"].Value);
-				p.Description = PropertySet[@"Description"].Value;
-				p.SldDoc = SldDoc.FullName;
-				p.SldDrw = SldDrw.FullName;
-				p.Pdf = Pdf.FullName;
+				if (PropertySet != null) {
+					p.Configuration = PropertySet.Configuration;
+					p.DocType = PropertySet.ActiveDoc is AssemblyDoc ? "Assembly" : "Part";
+					p.Description = PropertySet[@"Description"].Value;
+					p.Department = Redbrick.TitleCase(PropertySet[@"DEPARTMENT"].Value);
+				}
+
 				return p;
 			}
 			private set {
