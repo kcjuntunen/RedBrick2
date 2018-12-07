@@ -87,13 +87,15 @@ namespace RedBrick2.DrawingCollector {
 
 		private void PopulateListViewAndItemInfo(Configuration c_, Traverser tr_) {
 			listView1.Items.Clear();
-			infos.Clear();
+			//infos.Clear();
 			SwProperties s = new SwProperties(SwApp, rootDoc);
 			s.GetProperties(c_.GetRootComponent3(true));
 			rootItem.PropertySet = s;
 
 			TopLvl = rootItem.Name;
-			infos.Add(rootItem.Name, rootItem);
+			if (!infos.ContainsKey(rootItem.Name)) {
+				infos.Add(rootItem.Name, rootItem);
+			}
 
 			listView1.Items.Add(rootItem.Node);
 			foreach (DictionaryEntry item in tr_.PartList) {
@@ -102,7 +104,9 @@ namespace RedBrick2.DrawingCollector {
 					CloseSldDrw = true,
 					DeletePdf = true
 				};
-				infos.Add(item.Key.ToString(), ii);
+				if (!infos.ContainsKey(item.Key.ToString())) {
+					infos.Add(item.Key.ToString(), ii);
+				}
 				listView1.Items.Add(ii.Node);
 			}
 			listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -659,8 +663,10 @@ namespace RedBrick2.DrawingCollector {
 					CloseSldDrw = true,
 					DeletePdf = true
 				};
-				infos.Add(i.Name, i);
-				listView1.Items.Add(infos[i.Name].Node);
+				if (!infos.ContainsKey(i.Name)) {
+					infos.Add(i.Name, i);
+				}
+				listView2.Items.Add(infos[i.Name].Node);
 			}
 		}
 
