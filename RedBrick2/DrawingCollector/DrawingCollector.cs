@@ -724,10 +724,10 @@ namespace RedBrick2.DrawingCollector {
 				if (sfd.ShowDialog() != DialogResult.OK) {
 					return;
 				}
-				if (reordered_by_boms.Count > 1) {
-					saveOrdered(sfd.FileName);
-				} else {
+				if (manualOrder_chb.Checked) {
 					saveListBox(sfd.FileName);
+				} else {
+					saveOrdered(sfd.FileName);
 				}
 			}
 		}
