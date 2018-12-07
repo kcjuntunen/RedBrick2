@@ -351,5 +351,11 @@
     <Setting Name="PartsSummaryTemplate" Type="System.String" Scope="User">
       <Value Profile="(Default)">S:\shared\general\Metals\METAL MANUFACTURING\Total Parts Summary.xlsx</Value>
     </Setting>
+    <Setting Name="ErrorLogSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">967, 634</Value>
+    </Setting>
+    <Setting Name="ErrorLogLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">100, 100</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -168,6 +168,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ECRViewerDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ErrorLog\ErrorDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorLog\ErrorLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ErrorLog\ErrorLog.Designer.cs">
+      <DependentUpon>ErrorLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Estimation.cs" />
     <Compile Include="Exceptions\BuildPDFException.cs" />
     <Compile Include="ManageCutlistTime\Schema.cs" />
@@ -382,6 +393,17 @@
     <None Include="ENGINEERINGDataSet.xss">
       <DependentUpon>ENGINEERINGDataSet.xsd</DependentUpon>
     </None>
+    <None Include="ErrorLog\ErrorDataSet.xsc">
+      <DependentUpon>ErrorDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ErrorLog\ErrorDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ErrorDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ErrorLog\ErrorDataSet.xss">
+      <DependentUpon>ErrorDataSet.xsd</DependentUpon>
+    </None>
     <None Include="RedbrickDataSet.xsc">
       <DependentUpon>RedbrickDataSet.xsd</DependentUpon>
     </None>
@@ -435,6 +457,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DrawingCollector\DrawingCollector.resx">
       <DependentUpon>DrawingCollector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ErrorLog\ErrorLog.resx">
+      <DependentUpon>ErrorLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManageCutlistTime\ManageCutlistTimeEdit.resx">
       <DependentUpon>ManageCutlistTimeEdit.cs</DependentUpon>

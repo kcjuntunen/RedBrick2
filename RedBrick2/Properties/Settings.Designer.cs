@@ -12,7 +12,7 @@ namespace RedBrick2.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.8.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -1249,6 +1249,30 @@ namespace RedBrick2.Properties {
             }
             set {
                 this["PartsSummaryTemplate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("967, 634")]
+        public global::System.Drawing.Size ErrorLogSize {
+            get {
+                return ((global::System.Drawing.Size)(this["ErrorLogSize"]));
+            }
+            set {
+                this["ErrorLogSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
+        public global::System.Drawing.Point ErrorLogLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["ErrorLogLocation"]));
+            }
+            set {
+                this["ErrorLogLocation"] = value;
             }
         }
     }
