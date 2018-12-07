@@ -28,14 +28,35 @@ namespace RedBrick2 {
 			lookup = lk;
 			InitializeComponent();
 			Location = Properties.Settings.Default.ToolChestLocation;
-			button7.Enabled = swApp.ActiveDoc is PartDoc;
+			ShowHideButtons();
+			ShowAccessControlledButtons();
+			Deactivate += ToolChest_Deactivate;
+		}
 
+		void ShowHideButtons() {
+			button7.Enabled = swApp.ActiveDoc is PartDoc;
 			button2.Enabled = swApp.ActiveDoc != null && !(swApp.ActiveDoc is PartDoc);
 			if (swApp.ActiveDoc is DrawingDoc) {
 				SolidWorks.Interop.sldworks.View v_ = Redbrick.GetFirstView(swApp);
 				button2.Enabled = !(v_ == null) && !(v_.ReferencedDocument is PartDoc);
 			}
-			Deactivate += ToolChest_Deactivate;
+		}
+
+		void ShowAccessControlledButtons() {
+			using (ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter ta =
+				new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
+				int uacc = Convert.ToInt32(ta.GetAccessLevel(System.Environment.UserName));
+				bool show = IsDeveloper(uacc) || IsSuperAdmin(uacc);
+				button8.Visible = show;
+			}
+		}
+
+		private static bool IsDeveloper(int uacc) {
+			return ((uacc & 32) == 32);
+		}
+
+		private static bool IsSuperAdmin(int uacc) {
+			return ((uacc & 64) == 64);
 		}
 
 		private void ToolChest_Deactivate(object sender, EventArgs e) {
@@ -125,6 +146,13 @@ namespace RedBrick2 {
 			}
 			(swApp.ActiveDoc as PartDoc).ExportFlatPatternView(@"C:\Optimize\Import\flat\temp.dxf",
 				(int)SolidWorks.Interop.swconst.swExportFlatPatternViewOptions_e.swExportFlatPatternOption_None);
+			Close();
+		}
+
+		private void button8_Click(object sender, EventArgs e) {
+			using (ErrorLog.ErrorLog er_ = new ErrorLog.ErrorLog()) {
+				er_.ShowDialog(this);
+			}
 			Close();
 		}
 	}
