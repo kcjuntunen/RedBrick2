@@ -655,7 +655,7 @@ namespace RedBrick2.DrawingCollector {
 				SwApp.OpenDocSilent(ofd_.FileName, (int)swDocumentTypes_e.swDocDRAWING, ref err);
 				SwApp.ActivateDoc3(ofd_.FileName, false, (int)swRebuildOnActivation_e.swDontRebuildActiveDoc, ref err);
 				SolidWorks.Interop.sldworks.View v_ = Redbrick.GetFirstView(SwApp);
-				if (v_ == null) {
+				if (v_ == null || v_.ReferencedDocument == null) {
 					MessageBox.Show(this, @"Couldn't find a model in the drawing.", @"Error",
 						MessageBoxButtons.OK, MessageBoxIcon.Error);
 					return;
