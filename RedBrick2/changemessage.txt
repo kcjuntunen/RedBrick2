@@ -1,4 +1,7 @@
 
-1) The "New Rev" window remembers stuff and has suggestions.
-2) Probably fixed disappearing labels, and wrongly shrinking group boxes.
-3) Swapped "Toolbox" and "Redbrick Configuration" buttons.
+1) Added buttons to save steps on Drawing Collector.
+2) Overhauled selection method in Drawing Collector.
+3) Allowing addition of arbitrary PDFs in Drwing Collector.
+4) ECRViewer showing a little more information.
+5) Added Error Log window to ToolBox for folks with high enough access.
+
