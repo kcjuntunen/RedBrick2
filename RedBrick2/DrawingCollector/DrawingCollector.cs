@@ -314,8 +314,11 @@ namespace RedBrick2.DrawingCollector {
 
 			toolStripStatusLabel1.Text = @"Merging PDFs...";
 			toolStripStatusLabel2.Text = string.Empty;
-			PDFMerger pm_ = new PDFMerger(reordered_by_boms, new FileInfo(tmpFile));
-			pm_.Merge();
+			if (manualOrder_chb.Checked) {
+				ManualOrderedMerge(tmpFile);
+			} else {
+				ReorderedMerge(tmpFile);
+			}
 
 			stopWatch.Stop();
 			ts = stopWatch.Elapsed.TotalSeconds;
@@ -385,6 +388,20 @@ namespace RedBrick2.DrawingCollector {
 			toolStripProgressBar1.Value = toolStripProgressBar1.Maximum;
 			PDFMerger.deleting_file -= PDFMerger_deleting_file;
 			System.Diagnostics.Process.Start(fileName);
+		}
+
+		private void ManualOrderedMerge(string tmpFile) {
+			List<ItemInfo> itemInfos = new List<ItemInfo>();
+			foreach (ListViewItem item in listView2.Items) {
+				itemInfos.Add(infos[item.Text]);
+			}
+			PDFMerger pm_ = new PDFMerger(itemInfos, new FileInfo(tmpFile));
+			pm_.Merge();
+		}
+
+		private void ReorderedMerge(string tmpFile) {
+			PDFMerger pm_ = new PDFMerger(reordered_by_boms, new FileInfo(tmpFile));
+			pm_.Merge();
 		}
 
 		/// <summary>
