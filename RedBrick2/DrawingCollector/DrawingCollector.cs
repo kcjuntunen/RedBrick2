@@ -655,6 +655,11 @@ namespace RedBrick2.DrawingCollector {
 				SwApp.OpenDocSilent(ofd_.FileName, (int)swDocumentTypes_e.swDocDRAWING, ref err);
 				SwApp.ActivateDoc3(ofd_.FileName, false, (int)swRebuildOnActivation_e.swDontRebuildActiveDoc, ref err);
 				SolidWorks.Interop.sldworks.View v_ = Redbrick.GetFirstView(SwApp);
+				if (v_ == null) {
+					MessageBox.Show(this, @"Couldn't find a model in the drawing.", @"Error",
+						MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return;
+				}
 				SwProperties p_ = new SwProperties(SwApp, v_.ReferencedDocument);
 				p_.GetProperties(v_.ReferencedDocument);
 				ItemInfo i = new ItemInfo {
