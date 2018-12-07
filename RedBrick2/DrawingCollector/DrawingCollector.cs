@@ -87,13 +87,15 @@ namespace RedBrick2.DrawingCollector {
 
 		private void PopulateListViewAndItemInfo(Configuration c_, Traverser tr_) {
 			listView1.Items.Clear();
-			infos.Clear();
+			//infos.Clear();
 			SwProperties s = new SwProperties(SwApp, rootDoc);
 			s.GetProperties(c_.GetRootComponent3(true));
 			rootItem.PropertySet = s;
 
 			TopLvl = rootItem.Name;
-			infos.Add(rootItem.Name, rootItem);
+			if (!infos.ContainsKey(rootItem.Name)) {
+				infos.Add(rootItem.Name, rootItem);
+			}
 
 			listView1.Items.Add(rootItem.Node);
 			foreach (DictionaryEntry item in tr_.PartList) {
@@ -102,7 +104,9 @@ namespace RedBrick2.DrawingCollector {
 					CloseSldDrw = true,
 					DeletePdf = true
 				};
-				infos.Add(item.Key.ToString(), ii);
+				if (!infos.ContainsKey(item.Key.ToString())) {
+					infos.Add(item.Key.ToString(), ii);
+				}
 				listView1.Items.Add(ii.Node);
 			}
 			listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -310,8 +314,11 @@ namespace RedBrick2.DrawingCollector {
 
 			toolStripStatusLabel1.Text = @"Merging PDFs...";
 			toolStripStatusLabel2.Text = string.Empty;
-			PDFMerger pm_ = new PDFMerger(reordered_by_boms, new FileInfo(tmpFile));
-			pm_.Merge();
+			if (manualOrder_chb.Checked) {
+				ManualOrderedMerge(tmpFile);
+			} else {
+				ReorderedMerge(tmpFile);
+			}
 
 			stopWatch.Stop();
 			ts = stopWatch.Elapsed.TotalSeconds;
@@ -381,6 +388,20 @@ namespace RedBrick2.DrawingCollector {
 			toolStripProgressBar1.Value = toolStripProgressBar1.Maximum;
 			PDFMerger.deleting_file -= PDFMerger_deleting_file;
 			System.Diagnostics.Process.Start(fileName);
+		}
+
+		private void ManualOrderedMerge(string tmpFile) {
+			List<ItemInfo> itemInfos = new List<ItemInfo>();
+			foreach (ListViewItem item in listView2.Items) {
+				itemInfos.Add(infos[item.Text]);
+			}
+			PDFMerger pm_ = new PDFMerger(itemInfos, new FileInfo(tmpFile));
+			pm_.Merge();
+		}
+
+		private void ReorderedMerge(string tmpFile) {
+			PDFMerger pm_ = new PDFMerger(reordered_by_boms, new FileInfo(tmpFile));
+			pm_.Merge();
 		}
 
 		/// <summary>
@@ -462,7 +483,7 @@ namespace RedBrick2.DrawingCollector {
 			}
 
 			foreach (ListViewItem item in listView2.Items) {
-				string dept_ = item.SubItems[2].Text.ToUpper().Trim();
+				string dept_ = item.SubItems[3].Text.ToUpper().Trim();
 				bool exists_ = infos[item.Text].SldDrw.Exists;
 				item.Checked = exists_ && dept_ == select_only_cbx.Text.ToUpper().Trim();
 			}
@@ -478,7 +499,7 @@ namespace RedBrick2.DrawingCollector {
 
 		private void select_only_assemblies_btn_Click(object sender, EventArgs e) {
 			foreach (ListViewItem item in listView2.Items) {
-				string type_ = item.SubItems[1].Text.ToUpper().Trim();
+				string type_ = item.SubItems[2].Text.ToUpper().Trim();
 				bool exists_ = infos[item.Text].SldDrw.Exists;
 				item.Checked = exists_ && type_ == @"ASSEMBLY";
 			}
@@ -651,6 +672,11 @@ namespace RedBrick2.DrawingCollector {
 				SwApp.OpenDocSilent(ofd_.FileName, (int)swDocumentTypes_e.swDocDRAWING, ref err);
 				SwApp.ActivateDoc3(ofd_.FileName, false, (int)swRebuildOnActivation_e.swDontRebuildActiveDoc, ref err);
 				SolidWorks.Interop.sldworks.View v_ = Redbrick.GetFirstView(SwApp);
+				if (v_ == null || v_.ReferencedDocument == null) {
+					MessageBox.Show(this, @"Couldn't find a model in the drawing.", @"Error",
+						MessageBoxButtons.OK, MessageBoxIcon.Error);
+					return;
+				}
 				SwProperties p_ = new SwProperties(SwApp, v_.ReferencedDocument);
 				p_.GetProperties(v_.ReferencedDocument);
 				ItemInfo i = new ItemInfo {
@@ -659,8 +685,10 @@ namespace RedBrick2.DrawingCollector {
 					CloseSldDrw = true,
 					DeletePdf = true
 				};
-				infos.Add(i.Name, i);
-				listView1.Items.Add(infos[i.Name].Node);
+				if (!infos.ContainsKey(i.Name)) {
+					infos.Add(i.Name, i);
+				}
+				listView2.Items.Add(infos[i.Name].Node);
 			}
 		}
 
@@ -713,10 +741,10 @@ namespace RedBrick2.DrawingCollector {
 				if (sfd.ShowDialog() != DialogResult.OK) {
 					return;
 				}
-				if (reordered_by_boms.Count > 1) {
-					saveOrdered(sfd.FileName);
-				} else {
+				if (manualOrder_chb.Checked) {
 					saveListBox(sfd.FileName);
+				} else {
+					saveOrdered(sfd.FileName);
 				}
 			}
 		}

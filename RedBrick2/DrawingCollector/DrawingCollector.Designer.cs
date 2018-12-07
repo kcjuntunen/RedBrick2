@@ -76,6 +76,7 @@
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.cUT_PART_TYPESTableAdapter = new RedBrick2.ManageCutlistTime.ManageCutlistTimeDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
+			this.manualOrder_chb = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -290,6 +291,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tableLayoutPanel1.SetColumnSpan(this.panel1, 2);
+			this.panel1.Controls.Add(this.manualOrder_chb);
 			this.panel1.Controls.Add(this.select_only_assemblies_btn);
 			this.panel1.Controls.Add(this.select_raw_parts_btn);
 			this.panel1.Controls.Add(this.select_only_cbx);
@@ -664,6 +666,17 @@
 			// 
 			this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
 			// 
+			// manualOrder_chb
+			// 
+			this.manualOrder_chb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.manualOrder_chb.AutoSize = true;
+			this.manualOrder_chb.Location = new System.Drawing.Point(323, 34);
+			this.manualOrder_chb.Name = "manualOrder_chb";
+			this.manualOrder_chb.Size = new System.Drawing.Size(90, 17);
+			this.manualOrder_chb.TabIndex = 17;
+			this.manualOrder_chb.Text = "Manual Order";
+			this.manualOrder_chb.UseVisualStyleBackColor = true;
+			// 
 			// DrawingCollector
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -687,6 +700,7 @@
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel1.PerformLayout();
 			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.cUTPARTTYPESBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.manageCutlistTimeDataSet)).EndInit();
 			this.tableLayoutPanel2.ResumeLayout(false);
@@ -752,5 +766,6 @@
 		private System.Windows.Forms.ColumnHeader columnHeader6;
 		private System.Windows.Forms.ColumnHeader columnHeader7;
 		private System.Windows.Forms.ColumnHeader columnHeader8;
+		private System.Windows.Forms.CheckBox manualOrder_chb;
 	}
 }
