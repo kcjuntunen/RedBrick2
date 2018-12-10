@@ -3,6 +3,7 @@ using SolidWorks.Interop.swconst;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -48,7 +49,9 @@ namespace RedBrick2.DrawingCollector {
 			listView2.ItemDrag += ListView1_ItemDrag;
 			new ToolTip().SetToolTip(textBox3, @"This filename was automatically guessed; doubleclick here to change it.");
 			new ToolTip().SetToolTip(listView2, "Click the column headings to sort.\nDrag and drop to manually reorder.");
+			Cursor = Cursors.WaitCursor;
 			FindDrawings();
+			Cursor = Cursors.Default;
 		}
 
 		private void ListView1_ItemDrag(object sender, ItemDragEventArgs e) {
@@ -69,6 +72,7 @@ namespace RedBrick2.DrawingCollector {
 			reordered_by_boms.Add(rootItem);
 
 			if (rootDoc is DrawingDoc) {
+				(rootDoc as DrawingDoc).ResolveOutOfDateLightWeightComponents();
 				SolidWorks.Interop.sldworks.View v_ = Redbrick.GetFirstView(SwApp);
 				rootDoc = v_.ReferencedDocument;
 			}
@@ -97,7 +101,9 @@ namespace RedBrick2.DrawingCollector {
 				infos.Add(rootItem.Name, rootItem);
 			}
 
-			listView1.Items.Add(rootItem.Node);
+			if (!(rootDoc as ModelDoc2).GetPathName().ToUpper().EndsWith(@".SLDPRT")) {
+				listView1.Items.Add(rootItem.Node);
+			}
 			foreach (DictionaryEntry item in tr_.PartList) {
 				ItemInfo ii = new ItemInfo {
 					PropertySet = item.Value as SwProperties,
@@ -846,6 +852,30 @@ namespace RedBrick2.DrawingCollector {
 			foreach (ListViewItem item_ in listView2.SelectedItems) {
 				listView1.Items.Add((ListViewItem)item_.Clone());
 				listView2.Items.Remove(item_);
+			}
+		}
+
+		private void createPartsSummary_Click(object sender, EventArgs e) {
+			try {
+				OrderedDictionary pl = new OrderedDictionary();
+				foreach (ListViewItem item in listView2.Items) {
+					string key = item.Text;
+					if (!infos.ContainsKey(key)) {
+						continue;
+					}
+					if (item.Checked) {
+						if (infos[key].PropertySet.CutlistQty == 0) {
+							infos[key].PropertySet.CutlistQty++;
+						}
+						pl.Add(key, infos[key].PropertySet);
+					}
+				}
+				PartsSummary.PartsSummaryGenerator p = new PartsSummary.PartsSummaryGenerator(pl,
+					Properties.Settings.Default.PartsSummaryTemplate);
+				p.SuggestedName = pathname;
+				p.Generate();
+			} catch (Exception ex) {
+				Redbrick.ProcessError(ex);
 			}
 		}
 	}

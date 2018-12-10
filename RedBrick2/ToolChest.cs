@@ -39,7 +39,7 @@ namespace RedBrick2 {
 			button2.Enabled = swApp.ActiveDoc != null && !(swApp.ActiveDoc is PartDoc);
 			if (swApp.ActiveDoc is DrawingDoc) {
 				SolidWorks.Interop.sldworks.View v_ = Redbrick.GetFirstView(swApp);
-				button2.Enabled = !(v_ == null) && !(v_.ReferencedDocument is PartDoc);
+				button2.Enabled = !(v_ == null) && v_.ReferencedDocument != null;
 			}
 		}
 

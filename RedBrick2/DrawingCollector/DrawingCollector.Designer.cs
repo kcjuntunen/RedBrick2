@@ -72,6 +72,7 @@
 			this.close_btn = new System.Windows.Forms.Button();
 			this.dxf_out_btn = new System.Windows.Forms.Button();
 			this.add_btn = new System.Windows.Forms.Button();
+			this.button3 = new System.Windows.Forms.Button();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -262,6 +263,7 @@
 			this.tableLayoutPanel1.Controls.Add(this.config_cbx, 0, 1);
 			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 14);
 			this.tableLayoutPanel1.Controls.Add(this.add_btn, 0, 13);
+			this.tableLayoutPanel1.Controls.Add(this.button3, 1, 13);
 			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -648,6 +650,16 @@
 			this.add_btn.UseVisualStyleBackColor = true;
 			this.add_btn.Click += new System.EventHandler(this.add_btn_Click);
 			// 
+			// button3
+			// 
+			this.button3.Location = new System.Drawing.Point(367, 319);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(59, 23);
+			this.button3.TabIndex = 16;
+			this.button3.Text = "Export...";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += new System.EventHandler(this.createPartsSummary_Click);
+			// 
 			// statusStrip1
 			// 
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -769,5 +781,6 @@
 		private System.Windows.Forms.ColumnHeader columnHeader7;
 		private System.Windows.Forms.ColumnHeader columnHeader8;
 		private System.Windows.Forms.CheckBox manualOrder_chb;
+		private System.Windows.Forms.Button button3;
 	}
 }
