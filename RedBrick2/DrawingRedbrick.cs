@@ -953,9 +953,12 @@ namespace RedBrick2 {
 		}
 
 		private void button4_MouseClick(object sender, MouseEventArgs e) {
-			using (ECRViewer.ECRViewer ecr_ = new ECRViewer.ECRViewer(partLookup)) {
-				ecr_.ShowDialog(this);
-			}
+			new System.Threading.Thread(() => {
+				using (ECRViewer.ECRViewer ecr_ = new ECRViewer.ECRViewer(partLookup)) {
+					ecr_.ShowInTaskbar = true;
+					ecr_.ShowDialog(this);
+				}
+			}).Start();
 		}
 
 		private void fileDateLabel_MouseClick(object sender, MouseEventArgs e) {

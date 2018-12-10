@@ -1592,7 +1592,10 @@ namespace RedBrick2 {
 					}
 					GetEstimationFromDB();
 					if (Properties.Settings.Default.AutoOpenPriority && checked_at_start && !updateCNCcb.Checked) {
-						popup_priority_(PropertySet.PartLookup);
+						ParameterizedThreadStart pts = new ParameterizedThreadStart(popup_priority_);
+						Thread t = new Thread(pts);
+						t.SetApartmentState(ApartmentState.STA);
+						t.Start(PropertySet.PartLookup);
 						checked_at_start = false;
 					}
 				} else {
@@ -1616,10 +1619,14 @@ namespace RedBrick2 {
 			ReQuery(tmp_);
 		}
 
-		private void popup_priority_(string _lookup) {
+		static private void popup_priority_(object _lkp) {
+			if (_lkp == null) {
+				return;
+			}
+			string _lookup = _lkp as string;
 			using (Machine_Priority_Control.MachinePriority m_ =
 				new Machine_Priority_Control.MachinePriority(_lookup)) {
-				m_.ShowDialog(this);
+				m_.ShowDialog();
 			}
 		}
 
@@ -2193,9 +2200,13 @@ namespace RedBrick2 {
 		private void button1_Click(object sender, EventArgs e) {
 			string _filename = Path.GetFileNameWithoutExtension(PartFileInfo.Name);
 			string _lookup = _filename.Split(' ')[0];
-			Machine_Priority_Control.MachinePriority mp =
-				new Machine_Priority_Control.MachinePriority(_lookup);
-			mp.Show(this);
+			ParameterizedThreadStart pts = new ParameterizedThreadStart(popup_priority_);
+			Thread t = new Thread(pts);
+			t.SetApartmentState(ApartmentState.STA);
+			t.Start(_lookup);
+			//Machine_Priority_Control.MachinePriority mp =
+			//	new Machine_Priority_Control.MachinePriority(_lookup);
+			//mp.Show(this);
 		}
 
 		private void textBox_Enter(object sender, EventArgs e) {

@@ -558,9 +558,24 @@ namespace RedBrick2 {
 
 		}
 
+		static private void about() {
+			try {
+				using (AboutBox ab = new AboutBox()) {
+					System.Drawing.Point p = Properties.Settings.Default.RBConfigLocation;
+					p.X += 10;
+					p.Y += 10;
+					ab.Location = p;
+					ab.ShowDialog();
+				}
+			} catch (Exception ex) {
+				Redbrick.ProcessError(ex);
+			}
+		}
+
 		private void button1_Click(object sender, EventArgs e) {
-			AboutBox ab = new AboutBox();
-			ab.ShowDialog();
+			System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(about));
+			t.SetApartmentState(System.Threading.ApartmentState.STA);
+			t.Start();
 		}
 
 		private void numericUpDown1_ValueChanged(object sender, EventArgs e) {

@@ -9,6 +9,7 @@ using System.IO;
 
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
+using System.Threading;
 
 namespace RedBrick2 {
 	/// <summary>
@@ -1447,9 +1448,22 @@ namespace RedBrick2 {
 			System.Diagnostics.Process.Start(foundPDF.FullName);
 		}
 
+		static private void mp(object obj) {
+			string selectedPart = obj != null ? obj as string : string.Empty;
+			try {
+				Machine_Priority_Control.MachinePriority mp = new Machine_Priority_Control.MachinePriority(selectedPart);
+				mp.ShowInTaskbar = true;
+				mp.Show();
+			} catch (Exception ex) {
+				Redbrick.ProcessError(ex);
+			}
+		}
+
 		private void OnClickMachinePriority(object sender, EventArgs e) {
-			Machine_Priority_Control.MachinePriority mp = new Machine_Priority_Control.MachinePriority(selectedPart);
-			mp.Show(this);
+			ParameterizedThreadStart pts = new ParameterizedThreadStart(mp);
+			Thread t = new Thread(pts);
+			t.SetApartmentState(ApartmentState.STA);
+			t.Start(selectedPart);
 		}
 
 		private void OnClickOpenModel(object sender, EventArgs e) {
@@ -1474,16 +1488,42 @@ namespace RedBrick2 {
 			}
 		}
 
+		static private void qtl(object obj) {
+			string selectedPart = obj != null ? obj as string : string.Empty;
+			try {
+				using (QuickTracLookup qt_ = new QuickTracLookup(selectedPart)) {
+					qt_.ShowInTaskbar = true;
+					qt_.ShowDialog();
+				}
+			} catch (Exception ex) {
+				Redbrick.ProcessError(ex);
+			}
+		}
+
 		private void OnQuickTracLookup(object sender, EventArgs e) {
-			using (QuickTracLookup qt_ = new QuickTracLookup(selectedPart)) {
-				qt_.ShowDialog(this);
+			ParameterizedThreadStart pts = new ParameterizedThreadStart(qtl);
+			Thread t = new Thread(pts);
+			t.SetApartmentState(ApartmentState.STA);
+			t.Start(selectedPart);
+		}
+
+		static private void relatedECR(object obj) {
+			string selectedPart = obj != null ? obj as string : string.Empty;
+			try {
+				using (ECRViewer.ECRViewer ev_ = new ECRViewer.ECRViewer(selectedPart)) {
+					ev_.ShowInTaskbar = true;
+					ev_.ShowDialog();
+				}
+			} catch (Exception ex) {
+				Redbrick.ProcessError(ex);
 			}
 		}
 
 		private void OnRelatedECRs(object sender, EventArgs e) {
-			using (ECRViewer.ECRViewer ev_ = new ECRViewer.ECRViewer(selectedPart)) {
-				ev_.ShowDialog(this);
-			}
+			ParameterizedThreadStart pts = new ParameterizedThreadStart(relatedECR);
+			Thread t = new Thread(pts);
+			t.SetApartmentState(ApartmentState.STA);
+			t.Start(selectedPart);
 		}
 
 		private void OnClickOpenDrawing(object sender, EventArgs e) {

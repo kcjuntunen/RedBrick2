@@ -51,10 +51,14 @@ namespace RedBrick2 {
 		private void ToolChest_Deactivate(object sender, EventArgs e) {
 			Close();
 		}
-
 		private void button1_Click(object sender, EventArgs e) {
-			using (FormatFixtureBk ffb = new FormatFixtureBk(swApp)) {
-				ffb.ShowDialog(this);
+			try {
+				using (FormatFixtureBk ffb = new FormatFixtureBk(swApp)) {
+					ffb.ShowInTaskbar = true;
+					ffb.ShowDialog();
+				}
+			} catch (Exception ex) {
+				Redbrick.ProcessError(ex);
 			}
 			Close();
 		}
@@ -79,37 +83,60 @@ namespace RedBrick2 {
 			Properties.Settings.Default.Save();
 		}
 
-		private void button3_Click(object sender, EventArgs e) {
-			ParameterizedThreadStart ts;
-			if (lookup == null) {
+		static private void ecrViewer(object obj) {
+			string lookup = obj != null ? obj as string : string.Empty;
+			if (lookup == string.Empty) {
 				int maxecr = 0;
 				using (RedbrickDataSetTableAdapters.QueriesTableAdapter q_ = new RedbrickDataSetTableAdapters.QueriesTableAdapter()) {
 					maxecr = Convert.ToInt32(q_.MaxEcrNum());
+					try {
+						using (ECRViewer.ECRViewer ev_ = new ECRViewer.ECRViewer(maxecr)) {
+							ev_.ShowInTaskbar = true;
+							ev_.ShowDialog();
+						}
+					} catch (Exception ex) {
+						Redbrick.ProcessError(ex);
+					}
 				}
-				new Thread(() => {
-					using (ECRViewer.ECRViewer ev_ = new ECRViewer.ECRViewer(maxecr)) {
-						ev_.ShowDialog();
-					}
-				}).Start();
 			} else {
-				new Thread(() => {
+				try {
 					using (ECRViewer.ECRViewer ev_ = new ECRViewer.ECRViewer(lookup)) {
+						ev_.ShowInTaskbar = true;
 						ev_.ShowDialog();
 					}
-				}).Start();
+				} catch (Exception ex) {
+					Redbrick.ProcessError(ex);
+				}
 			}
+		}
+
+		private void button3_Click(object sender, EventArgs e) {
+			ParameterizedThreadStart pts = new ParameterizedThreadStart(ecrViewer);
+			Thread t = new Thread(pts);
+			t.SetApartmentState(ApartmentState.STA);
+			t.Start(lookup);
 			Close();
 		}
 
 		static void QTThread(object obj) {
 			string lookup = obj != null ? obj as string : string.Empty;
 			if (lookup == string.Empty) {
-				using (QuickTracLookup qt_ = new QuickTracLookup()) {
-					qt_.ShowDialog();
+				try {
+					using (QuickTracLookup qt_ = new QuickTracLookup()) {
+						qt_.ShowInTaskbar = true;
+						qt_.ShowDialog();
+					}
+				} catch (Exception ex) {
+					Redbrick.ProcessError(ex);
 				}
 			} else {
-				using (QuickTracLookup qt_ = new QuickTracLookup(lookup)) {
-					qt_.ShowDialog();
+				try {
+					using (QuickTracLookup qt_ = new QuickTracLookup(lookup)) {
+						qt_.ShowInTaskbar = true;
+						qt_.ShowDialog();
+					}
+				} catch (Exception ex) {
+					Redbrick.ProcessError(ex);
 				}
 			}
 		}
@@ -122,23 +149,40 @@ namespace RedBrick2 {
 			Close();
 		}
 
-		private void button5_Click(object sender, EventArgs e) {
-			if (lookup == null) {
+		static private void mct(object obj) {
+			string lookup = obj != null ? obj as string : string.Empty;
+			if (lookup == string.Empty) {
 				using (ManageCutlistTime.ManageCutlistTime mct_ = new ManageCutlistTime.ManageCutlistTime()) {
-					mct_.ShowDialog(this);
+					mct_.ShowInTaskbar = true;
+					mct_.ShowDialog();
 				}
 			} else {
 				using (ManageCutlistTime.ManageCutlistTime mct_ = new ManageCutlistTime.ManageCutlistTime(lookup)) {
-					mct_.ShowDialog(this);
+					mct_.ShowInTaskbar = true;
+					mct_.ShowDialog();
 				}
 			}
+		}
+
+		private void button5_Click(object sender, EventArgs e) {
+			ParameterizedThreadStart pts = new ParameterizedThreadStart(mct);
+			Thread t = new Thread(pts);
+			t.SetApartmentState(ApartmentState.STA);
+			t.Start(lookup);
 			Close();
 		}
 
-		private void button6_Click(object sender, EventArgs e) {
+		static private void rc() {
 			using (RenameCutlist rc_ = new RenameCutlist(Properties.Settings.Default.LastCutlist)) {
-				rc_.ShowDialog(this);
+				rc_.ShowInTaskbar = true;
+				rc_.ShowDialog();
 			}
+		}
+
+		private void button6_Click(object sender, EventArgs e) {
+			Thread t = new Thread(new ThreadStart(rc));
+			t.SetApartmentState(ApartmentState.STA);
+			t.Start();
 			Close();
 		}
 
