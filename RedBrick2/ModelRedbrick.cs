@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.IO;
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
+using System.Threading;
 
 namespace RedBrick2 {
 	/// <summary>
@@ -3009,14 +3010,25 @@ namespace RedBrick2 {
 			}
 		}
 
-		private void qt_btn_Click(object sender, EventArgs e) {
-			if (ActiveDoc != null ) {
-				using (ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter ta_ =
-					new ENGINEERINGDataSetTableAdapters.CLIENT_STUFFTableAdapter()) {
-					using (QuickTracLookup qt_ = new QuickTracLookup(partLookup)) {
-						qt_.ShowDialog(this);
-					}
+		static void QTThread(object obj) {
+			string lookup = obj != null ? obj as string : string.Empty;
+			if (lookup == string.Empty) {
+				using (QuickTracLookup qt_ = new QuickTracLookup()) {
+					qt_.ShowDialog();
 				}
+			} else {
+				using (QuickTracLookup qt_ = new QuickTracLookup(lookup)) {
+					qt_.ShowDialog();
+				}
+			}
+		}
+
+		private void qt_btn_Click(object sender, EventArgs e) {
+			if (ActiveDoc != null) {
+				ParameterizedThreadStart pts = new ParameterizedThreadStart(QTThread);
+				Thread t = new Thread(pts);
+				t.SetApartmentState(ApartmentState.STA);
+				t.Start(partLookup);
 			}
 		}
 

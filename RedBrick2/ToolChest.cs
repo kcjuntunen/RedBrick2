@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows.Forms;
 
 using SolidWorks.Interop.sldworks;
@@ -79,32 +80,45 @@ namespace RedBrick2 {
 		}
 
 		private void button3_Click(object sender, EventArgs e) {
+			ParameterizedThreadStart ts;
 			if (lookup == null) {
 				int maxecr = 0;
 				using (RedbrickDataSetTableAdapters.QueriesTableAdapter q_ = new RedbrickDataSetTableAdapters.QueriesTableAdapter()) {
 					maxecr = Convert.ToInt32(q_.MaxEcrNum());
 				}
-				using (ECRViewer.ECRViewer ev_ = new ECRViewer.ECRViewer(maxecr)) {
-					ev_.ShowDialog(this);
-				}
+				new Thread(() => {
+					using (ECRViewer.ECRViewer ev_ = new ECRViewer.ECRViewer(maxecr)) {
+						ev_.ShowDialog();
+					}
+				}).Start();
 			} else {
-				using (ECRViewer.ECRViewer ev_ = new ECRViewer.ECRViewer(lookup)) {
-					ev_.ShowDialog(this);
-				}
+				new Thread(() => {
+					using (ECRViewer.ECRViewer ev_ = new ECRViewer.ECRViewer(lookup)) {
+						ev_.ShowDialog();
+					}
+				}).Start();
 			}
 			Close();
 		}
 
-		private void button4_Click(object sender, EventArgs e) {
-			if (lookup == null) {
+		static void QTThread(object obj) {
+			string lookup = obj != null ? obj as string : string.Empty;
+			if (lookup == string.Empty) {
 				using (QuickTracLookup qt_ = new QuickTracLookup()) {
-					qt_.ShowDialog(this);
+					qt_.ShowDialog();
 				}
 			} else {
 				using (QuickTracLookup qt_ = new QuickTracLookup(lookup)) {
-					qt_.ShowDialog(this);
+					qt_.ShowDialog();
 				}
 			}
+		}
+
+		private void button4_Click(object sender, EventArgs e) {
+			ParameterizedThreadStart pts = new ParameterizedThreadStart(QTThread);
+			Thread t = new Thread(pts);
+			t.SetApartmentState(ApartmentState.STA);
+			t.Start(lookup);
 			Close();
 		}
 
@@ -137,10 +151,16 @@ namespace RedBrick2 {
 			Close();
 		}
 
-		private void button8_Click(object sender, EventArgs e) {
+		static void LaunchErrorLog() {
 			using (ErrorLog.ErrorLog er_ = new ErrorLog.ErrorLog()) {
-				er_.ShowDialog(this);
+				er_.ShowDialog();
 			}
+		}
+
+		private void button8_Click(object sender, EventArgs e) {
+			Thread t = new Thread(new ThreadStart(LaunchErrorLog));
+			t.SetApartmentState(ApartmentState.STA);
+			t.Start();
 			Close();
 		}
 	}
