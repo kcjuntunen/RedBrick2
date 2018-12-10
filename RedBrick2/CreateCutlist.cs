@@ -1806,7 +1806,7 @@ namespace RedBrick2 {
 				p.SuggestedName = itm_cbx.Text.Trim();
 				p.Generate();
 			} catch (Exception ex) {
-				MessageBox.Show(ex.StackTrace);
+				Redbrick.ProcessError(ex);
 			}
 		}
 
