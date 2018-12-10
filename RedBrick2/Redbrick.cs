@@ -40,10 +40,7 @@ namespace RedBrick2 {
 				}
 				return _uacc;
 			}
-			private set
-			{
-				_uacc = value;
-			}
+			private set { _uacc = value; }
 		}
 
 		static private int _uid = -1;
@@ -69,6 +66,40 @@ namespace RedBrick2 {
 
 		public static bool IsSuperAdmin() {
 			return ((UACC & 64) == 64);
+		}
+
+		static private string _fullName = string.Empty;
+		static public string FullName
+		{
+			get
+			{
+				if (_fullName != string.Empty) {
+					return _fullName;
+				}
+				using(ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter ta =
+					new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
+					_fullName = Convert.ToString(ta.GetCurrentUserFullname(System.Environment.UserName));
+				}
+				return _fullName;
+			}
+			private set { _fullName = value; }
+		}
+
+		static private string _initial = string.Empty;
+		static public string Initial
+		{
+			get
+			{
+				if (_initial != string.Empty) {
+					return _initial;
+				}
+				using (ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter ta =
+					new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
+					_initial = ta.GetUserInitial(System.Environment.UserName);
+				}
+				return _initial;
+			}
+			private set { _initial = value; }
 		}
 
 		static public System.Windows.Forms.AutoCompleteStringCollection ECRNos { get; set; } = new System.Windows.Forms.AutoCompleteStringCollection();

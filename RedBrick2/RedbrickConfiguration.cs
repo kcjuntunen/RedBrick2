@@ -76,7 +76,7 @@ namespace RedBrick2 {
 			var t = new System.Globalization.CultureInfo("en-US", false).TextInfo;
 			using (ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter guta =
 				new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
-				string currentUserName = t.ToTitleCase(guta.GetCurrentUserFullname(Environment.UserName));
+				string currentUserName = Redbrick.TitleCase(Redbrick.FullName);
 				dataGridView1.AutoResizeRows();
 				dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
 				dataGridView1.AutoResizeColumns();
