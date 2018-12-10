@@ -26,6 +26,51 @@ namespace RedBrick2 {
 		private bool askedToUpdate = false;
 		private string UpdateMessage = string.Empty;
 
+		static private int _uacc = -1;
+		static public int UACC
+		{
+			get
+			{
+				if (_uacc > -1) {
+					return _uacc;
+				}
+				using (ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter ta =
+					new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
+					_uacc = Convert.ToInt32(ta.GetAccessLevel(System.Environment.UserName));
+				}
+				return _uacc;
+			}
+			private set
+			{
+				_uacc = value;
+			}
+		}
+
+		static private int _uid = -1;
+		static public int UID
+		{
+			get
+			{
+				if (_uid > -1) {
+					return _uid;
+				}
+				using (ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter ta =
+					new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
+					_uid = Convert.ToInt32(ta.GetUID(System.Environment.UserName));
+				}
+				return _uid;
+			}
+			private set { _uid = value; }
+		}
+
+		public static bool IsDeveloper() {
+			return ((UACC & 32) == 32);
+		}
+
+		public static bool IsSuperAdmin() {
+			return ((UACC & 64) == 64);
+		}
+
 		static public System.Windows.Forms.AutoCompleteStringCollection ECRNos { get; set; } = new System.Windows.Forms.AutoCompleteStringCollection();
 		static public System.Windows.Forms.AutoCompleteStringCollection ECRDescriptions { get; set; } = new System.Windows.Forms.AutoCompleteStringCollection();
 		static public string LastECRNo { get; set; } = string.Empty;

@@ -38,7 +38,6 @@ namespace RedBrick2 {
 		private ModelDoc2 mDoc = null;
 		private Configuration _config = null;
 		private Traverser tr;
-		private int? uid = null;
 		private bool[] sort_directions = { false, false, false, false, false, false,
 																			 false, false, false, false, false, false,
 																			 false, false, false, false, false, false,
@@ -235,11 +234,6 @@ namespace RedBrick2 {
 			// TODO: This line of code loads data into the 'eNGINEERINGDataSet.GEN_CUSTOMERS' table. You can move, or remove it, as needed.
 			this.gEN_CUSTOMERSTableAdapter.Fill(this.eNGINEERINGDataSet.GEN_CUSTOMERS);
 
-			using (ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter guta =
-				new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
-				uid = guta.GetUID(System.Environment.UserName);
-			}
-
 			if (Properties.Settings.Default.OnlyCurrentCustomers) {
 				gENCUSTOMERSBindingSource.Filter = @"CUSTACTIVE = True";
 			}
@@ -288,7 +282,7 @@ namespace RedBrick2 {
 						descr_cbx.Text != string.Empty &&
 						ref_cbx.Text != string.Empty &&
 						cust_cbx.SelectedItem != null &&
-						uid != null);
+						Redbrick.UID > -1);
 			upload_btn.Enabled = ok;
 			update_prts_btn.Enabled = ok;
 			getdatafromDBbtn.Enabled = ok;
@@ -998,7 +992,7 @@ namespace RedBrick2 {
 			if (eNGINEERINGDataSet.CUT_CUTLISTS.Rows.Count < 1) {
 				eNGINEERINGDataSet.CUT_CUTLISTS.AddCUT_CUTLISTSRow(
 					itm, rev_cbx.Text, refr, (int)cust_cbx.SelectedValue, dateTimePicker1.Value,
-					descr, 0.0f, 0.0f, 0.0f, (int)uid, (int)uid, Properties.Settings.Default.DefaultState,
+					descr, 0.0f, 0.0f, 0.0f, Redbrick.UID, Redbrick.UID, Properties.Settings.Default.DefaultState,
 					new byte[8]);
 			} else {
 				clid = (eNGINEERINGDataSet.CUT_CUTLISTS.Rows[0] as ENGINEERINGDataSet.CUT_CUTLISTSRow).CLID;
@@ -1682,7 +1676,7 @@ namespace RedBrick2 {
 				return;
 			}
 			//ReadGlobalFromDb();
-			if (cust_cbx.SelectedItem != null && uid != null) {
+			if (cust_cbx.SelectedItem != null && Redbrick.UID > -1) {
 				Cursor = Cursors.WaitCursor;
 
 				List<SwProperties> parts_ = GetPartList(true);
@@ -1698,7 +1692,7 @@ namespace RedBrick2 {
 						descr_ = descr_.Substring(0, dt_cc.DESCRColumn.MaxLength);
 
 					dt_cc.UpdateCutlist(item_no_, ref_cbx.Text.Trim(), rev_cbx.Text.Trim(), descr_, custid_,
-						dateTimePicker1.Value, Properties.Settings.Default.DefaultState, Convert.ToInt32(uid), parts_);
+						dateTimePicker1.Value, Properties.Settings.Default.DefaultState, Redbrick.UID, parts_);
 					(sender as Control).Enabled = false;
 					cancel_btn.Text = @"Close";
 					cancel_btn.BackColor = Color.Green;

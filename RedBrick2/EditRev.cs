@@ -200,11 +200,10 @@ namespace RedBrick2 {
 			if (NewRev) {
 				using (ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter guta =
 				new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
-					int? uid = guta.GetUID(System.Environment.UserName);
-					if (uid == null) {
-						throw new NullReferenceException(@"Hmm... Maybe you're not in the DB.");
+					if (Redbrick.UID < 0) {
+						Redbrick.ProcessError(new NullReferenceException(@"Your username couldn't be matched to a UID."));
 					}
-					index = RevSet.NewRev(string.Empty, string.Empty, (int)uid, DateTime.Now);
+					index = RevSet.NewRev(string.Empty, string.Empty, Redbrick.UID, DateTime.Now);
 					ThisRev = RevSet[RevSet.Count - 1];
 					comboBox1.Text = ThisRev.Level;
 					Text = string.Format(@"Creating Rev Level {0}", comboBox1.Text);

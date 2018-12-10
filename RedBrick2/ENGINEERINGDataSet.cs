@@ -1091,14 +1091,13 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 					using (ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter guta =
 						new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
 						int rowsAffected = 0;
-						int uid = (int)guta.GetUID(Environment.UserName);
 						string SQL = @"UPDATE GEN_ODOMETER SET ODO = ODO + 1 WHERE (FUNCID = @funcid AND USERID = @userid);";
 						if (gota.Connection.State != System.Data.ConnectionState.Open) {
 							gota.Connection.Open();
 						}
 						using (SqlCommand comm = new SqlCommand(SQL, gota.Connection)) {
 							comm.Parameters.AddWithValue(@"@funcid", func);
-							comm.Parameters.AddWithValue(@"@userid", uid);
+							comm.Parameters.AddWithValue(@"@userid", Redbrick.UID);
 
 							try {
 								rowsAffected = comm.ExecuteNonQuery();
@@ -1111,7 +1110,7 @@ WHERE(((CUT_CUTLIST_PARTS.CLID) = @cutlistID) AND((CUT_PARTS.TYPE)In(");
 							SQL = @"INSERT INTO GEN_ODOMETER (ODO, FUNCID, USERID) VALUES (1, @funcid, @userid);";
 							using (SqlCommand comm = new SqlCommand(SQL, gota.Connection)) {
 								comm.Parameters.AddWithValue(@"@funcid", func);
-								comm.Parameters.AddWithValue(@"@userid", uid);
+								comm.Parameters.AddWithValue(@"@userid", Redbrick.UID);
 
 								try {
 									rowsAffected = comm.ExecuteNonQuery();

@@ -2681,9 +2681,8 @@ namespace RedBrick2 {
 					using (ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter cc_ =
 						new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter()) {
 						ComboBox cbx_ = sender as ComboBox;
-						int uid = Convert.ToInt32(gu_.GetUID(System.Environment.UserName));
 						if (clid_ != 0 && cbx_.SelectedItem != null) {
-							cc_.UpdateState(uid, Convert.ToInt32(cbx_.SelectedValue), clid_);
+							cc_.UpdateState(Redbrick.UID, Convert.ToInt32(cbx_.SelectedValue), clid_);
 						}
 						cl_stat_userediting = false;
 					}

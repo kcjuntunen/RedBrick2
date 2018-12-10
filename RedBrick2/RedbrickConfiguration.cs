@@ -134,7 +134,7 @@ namespace RedBrick2 {
 							int mf = 0;
 
 							f = Convert.ToInt32(gota.GetOdometerTotalValue((int)item));
-							mf = Convert.ToInt32(gota.GetOdometerValue((int)item, guta.GetUID(Environment.UserName)));
+							mf = Convert.ToInt32(gota.GetOdometerValue((int)item, Redbrick.UID));
 
 							double y = f / workDays;
 							double my = mf / workDays;

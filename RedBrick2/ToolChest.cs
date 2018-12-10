@@ -43,20 +43,8 @@ namespace RedBrick2 {
 		}
 
 		void ShowAccessControlledButtons() {
-			using (ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter ta =
-				new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
-				int uacc = Convert.ToInt32(ta.GetAccessLevel(System.Environment.UserName));
-				bool show = IsDeveloper(uacc) || IsSuperAdmin(uacc);
-				button8.Visible = show;
-			}
-		}
-
-		private static bool IsDeveloper(int uacc) {
-			return ((uacc & 32) == 32);
-		}
-
-		private static bool IsSuperAdmin(int uacc) {
-			return ((uacc & 64) == 64);
+			bool show = Redbrick.IsDeveloper() || Redbrick.IsSuperAdmin();
+			button8.Visible = show;
 		}
 
 		private void ToolChest_Deactivate(object sender, EventArgs e) {

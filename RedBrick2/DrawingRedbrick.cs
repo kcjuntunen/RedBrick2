@@ -361,9 +361,8 @@ namespace RedBrick2 {
 			if (newDrawing) {
 				using (ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter gu =
 					new ENGINEERINGDataSetTableAdapters.GEN_USERSTableAdapter()) {
-					int? uid = gu.GetUID(System.Environment.UserName);
-					if (uid > 0) {
-						auth_cpx.SelectedValue = uid;
+					if (Redbrick.UID > -1) {
+						auth_cpx.SelectedValue = Redbrick.UID;
 					}
 				}
 				return;
@@ -836,9 +835,8 @@ namespace RedBrick2 {
 					using (ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter cc_ =
 						new ENGINEERINGDataSetTableAdapters.CUT_CUTLISTSTableAdapter()) {
 						ComboBox cbx_ = sender as ComboBox;
-						int uid = Convert.ToInt32(gu_.GetUID(System.Environment.UserName));
 						if (clid != 0 && cbx_.SelectedItem != null) {
-							cc_.UpdateState(uid, Convert.ToInt32(cbx_.SelectedValue), clid);
+							cc_.UpdateState(Redbrick.UID, Convert.ToInt32(cbx_.SelectedValue), clid);
 						}
 					}
 				}
