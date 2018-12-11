@@ -2776,14 +2776,18 @@ namespace RedBrick2 {
 			}
 
 			StringBuilder sb_ = new StringBuilder();
-			using (ENGINEERINGDataSet.CUT_MATERIALSDataTable dt_ =
-				new ENGINEERINGDataSet.CUT_MATERIALSDataTable()) {
-				foreach (var item in dt_.GetMaterialPricing(_matid)) {
-					sb_.AppendFormat(@"{0} {1}{2}", Properties.Settings.Default.Bullet, item, System.Environment.NewLine);
+			using (RedbrickDataSetTableAdapters.RED_GET_PRICINGTableAdapter rgp =
+				new RedbrickDataSetTableAdapters.RED_GET_PRICINGTableAdapter()) {
+				foreach (RedbrickDataSet.RED_GET_PRICINGRow row in rgp.GetDataByMatID(_matid)) {
+					sb_.AppendFormat("{0} {1}: '{2}' last purchased for {3:C}/{4}.\n\t{5:0.0} {4} on hand, {6:0.0} {4} on order.\n",
+						Properties.Settings.Default.Bullet,
+						row.fpartno.Trim(),
+						row.fdescript.Trim(),
+						row.flastcost, row.fmeasure, row.fonhand, row.fonorder);
 				}
 				mat_price_ = sb_.ToString();
 			}
-			return mat_price_;
+				return mat_price_;
 		}
 
 		private void GetEdgePrices(int _edgeid, ref string _info) {
@@ -2792,13 +2796,17 @@ namespace RedBrick2 {
 			}
 
 			StringBuilder sb_ = new StringBuilder();
-			using (ENGINEERINGDataSet.CUT_MATERIALSDataTable dt_ =
-				new ENGINEERINGDataSet.CUT_MATERIALSDataTable()) {
-				foreach (var item in dt_.GetEdgePricing(_edgeid)) {
-					sb_.AppendFormat(@"{0} {1}{2}", Properties.Settings.Default.Bullet, item, System.Environment.NewLine);
+			using (RedbrickDataSetTableAdapters.RED_GET_PRICINGTableAdapter rgp =
+				new RedbrickDataSetTableAdapters.RED_GET_PRICINGTableAdapter()) {
+				foreach (RedbrickDataSet.RED_GET_PRICINGRow row in rgp.GetDataByEdgeID(_edgeid)) {
+					sb_.AppendFormat("{0} {1}: '{2}' last purchased for {3:C}/{4}.\n\t{5:0.0} {4} on hand, {6:0.0} {4} on order.\n",
+						Properties.Settings.Default.Bullet,
+						row.fpartno.Trim(),
+						row.fdescript.Trim(),
+						row.flastcost, row.fmeasure, row.fonhand, row.fonorder);
 				}
+				_info = sb_.ToString();
 			}
-			_info = sb_.ToString();
 		}
 
 		private void label6_MouseHover(object sender, EventArgs e) {
@@ -2996,17 +3004,29 @@ namespace RedBrick2 {
 			}
 		}
 
-		private void cutlistTimeBtn_MouseClick(object sender, MouseEventArgs e) {
-			ComboBox cb_ = cutlistctl;
-			if (cutlistctl.SelectedItem != null) {
-				using (ManageCutlistTime.ManageCutlistTime mct_ = new ManageCutlistTime.ManageCutlistTime(partLookup, Convert.ToInt32(cutlistctl.SelectedValue))) {
-					mct_.ShowDialog(this);
+		static private void cutlistTime(object obj) {
+			string lkup = (obj as object[])[0] as string;
+			int val = Convert.ToInt32((obj as object[])[1]);
+			if (val > 0) {
+				using (ManageCutlistTime.ManageCutlistTime mct_ =
+					new ManageCutlistTime.ManageCutlistTime(lkup, val)) {
+					mct_.ShowDialog();
 				}
 			} else {
-				using (ManageCutlistTime.ManageCutlistTime mct_ = new ManageCutlistTime.ManageCutlistTime(partLookup)) {
-					mct_.ShowDialog(this);
+				using (ManageCutlistTime.ManageCutlistTime mct_ =
+					new ManageCutlistTime.ManageCutlistTime(lkup)) {
+					mct_.ShowDialog();
 				}
 			}
+		}
+
+		private void cutlistTimeBtn_MouseClick(object sender, MouseEventArgs e) {
+			ComboBox cb_ = cutlistctl;
+			object[] x = { partLookup, Convert.ToInt32(cutlistctl.SelectedValue) };
+			ParameterizedThreadStart pts = new ParameterizedThreadStart(cutlistTime);
+			Thread t = new Thread(pts);
+			t.SetApartmentState(ApartmentState.STA);
+			t.Start(x);
 		}
 
 		private void archive_btn_Click(object sender, EventArgs e) {
