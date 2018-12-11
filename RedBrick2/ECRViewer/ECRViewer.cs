@@ -479,6 +479,9 @@ namespace RedBrick2.ECRViewer {
 		private void ECRViewer_Load(object sender, EventArgs e) {
 			Location = Properties.Settings.Default.ECRViewerLocation;
 			Size = Properties.Settings.Default.ECRViewerSize;
+			WindowState = FormWindowState.Minimized;
+			Show();
+			WindowState = FormWindowState.Normal;
 		}
 
 		private void ECRViewer_FormClosing(object sender, FormClosingEventArgs e) {

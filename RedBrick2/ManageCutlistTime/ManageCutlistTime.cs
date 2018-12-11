@@ -139,6 +139,9 @@ namespace RedBrick2.ManageCutlistTime {
 
 		private void ManageCutlistTime_Load(object sender, EventArgs e) {
 			GenerateTitle();
+			WindowState = FormWindowState.Minimized;
+			Show();
+			WindowState = FormWindowState.Normal;
 		}
 
 		private void GenerateTitle() {

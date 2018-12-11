@@ -9,6 +9,7 @@ namespace RedBrick2.ErrorLog {
 		public ErrorLog() {
 			InitializeComponent();
 			InitListView();
+
 		}
 
 		private void InitListView() {
@@ -85,6 +86,9 @@ namespace RedBrick2.ErrorLog {
 			Size = Properties.Settings.Default.ErrorLogSize;
 			dateTimePicker1.Value = DateTime.Now.AddMonths(-1);
 			PopulateAll(false);
+			WindowState = FormWindowState.Minimized;
+			Show();
+			WindowState = FormWindowState.Normal;
 		}
 
 		private void ReQuery() {
