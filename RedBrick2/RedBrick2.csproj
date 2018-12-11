@@ -148,6 +148,20 @@
     <Compile Include="AddToExistingCutlist.Designer.cs">
       <DependentUpon>AddToExistingCutlist.cs</DependentUpon>
     </Compile>
+    <Compile Include="CNCTodo\CncTodo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CNCTodo\CncTodo.Designer.cs">
+      <DependentUpon>CncTodo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CNCTodo\CNCTodoDataSet.cs">
+      <DependentUpon>CNCTodoDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CNCTodo\CNCTodoDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CNCTodoDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DrawingCollector\DrawingCollector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -371,6 +385,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="CNCTodo\CNCTodoDataSet.xsc">
+      <DependentUpon>CNCTodoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CNCTodo\CNCTodoDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CNCTodoDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="CNCTodo\CNCTodoDataSet.xss">
+      <DependentUpon>CNCTodoDataSet.xsd</DependentUpon>
+    </None>
     <None Include="ECRViewer\ECRViewerDataSet.xsc">
       <DependentUpon>ECRViewerDataSet.xsd</DependentUpon>
     </None>
@@ -451,6 +476,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddToExistingCutlist.resx">
       <DependentUpon>AddToExistingCutlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CNCTodo\CncTodo.resx">
+      <DependentUpon>CncTodo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateCutlist.resx">
       <DependentUpon>CreateCutlist.cs</DependentUpon>
