@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RedBrick2 {
@@ -21,18 +14,16 @@ namespace RedBrick2 {
 			listView1.MultiSelect = false;
 			listView1.View = View.Details;
 			listView1.SmallImageList = Redbrick.TreeViewIcons;
-
-			listView2.FullRowSelect = true;
-			listView2.HideSelection = false;
-			listView2.MultiSelect = false;
-			listView2.View = View.Details;
-			listView2.SmallImageList = Redbrick.TreeViewIcons;
 		}
 
 		private void CncTodo_Load(object sender, EventArgs e) {
-			// TODO: This line of code loads data into the 'cNCTodoDataSet.CUT_CNC_JOBS_VIEW1' table. You can move, or remove it, as needed.
+			this.dataTable1TableAdapter.Fill(this.cNCTodoDataSet.CUT_CNC_MAIN);
+			this.cUT_CNC_CUTLIST_PARTSTableAdapter.Fill(this.cNCTodoDataSet.CUT_CNC_CUTLIST_PARTS);
 			this.cUT_CNC_JOBS_VIEW1TableAdapter.Fill(this.cNCTodoDataSet.CUT_CNC_JOBS_VIEW1);
 			QueryTab1();
+			WindowState = FormWindowState.Minimized;
+			Show();
+			WindowState = FormWindowState.Normal;
 		}
 
 		private void QueryTab1() {
@@ -64,34 +55,7 @@ namespace RedBrick2 {
 			listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 		}
 
-		private void QueryTab2() {
-			using (CNCTodo.CNCTodoDataSetTableAdapters.CUT_CNC_CUTLIST_PARTSTableAdapter ta_ =
-				new CNCTodo.CNCTodoDataSetTableAdapters.CUT_CNC_CUTLIST_PARTSTableAdapter()) {
-				ta_.Fill(cNCTodoDataSet.CUT_CNC_CUTLIST_PARTS);
-				foreach (CNCTodo.CNCTodoDataSet.CUT_CNC_CUTLIST_PARTSRow row in cNCTodoDataSet.CUT_CNC_CUTLIST_PARTS) {
-					string[] data = new string[] {
-						row.PARTNUM,
-						row.DESCR,
-						row.ItemNum,
-						row.REV,
-						row.FIN_L.ToString(),
-						row.FIN_W.ToString(),
-						row.THICKNESS.ToString(),
-						row.OVER_L.ToString(),
-						row.OVER_W.ToString(),
-						row.UPDATE_CNC ? "Yes" :"No",
-						row.CNC1,
-						row.CNC2
-					};
-					ListViewItem l = new ListViewItem(data);
-					l.Checked = row.UPDATE_CNC;
-					listView2.Items.Add(l);
-				}
-				listView2.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-			}
-		}
-
-			private void checkBox1_CheckedChanged(object sender, EventArgs e) {
+		private void checkBox1_CheckedChanged(object sender, EventArgs e) {
 			QueryTab1();
 		}
 
@@ -100,7 +64,7 @@ namespace RedBrick2 {
 		}
 
 		private void tabControl1_MouseDoubleClick(object sender, MouseEventArgs e) {
-			QueryTab2();
+			// QueryTab2();
 		}
 	}
 }

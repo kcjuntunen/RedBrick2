@@ -42,24 +42,31 @@
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.listView2 = new System.Windows.Forms.ListView();
-			this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.dataGridView1 = new System.Windows.Forms.DataGridView();
+			this.pARTDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dESCRIPTIONDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.cUTLISTDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.lDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.wDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.tDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.uPDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.cNC1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.cNC2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataTable1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.cUTCNCCUTLISTPARTSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.cUT_CNC_CUTLIST_PARTSTableAdapter = new RedBrick2.CNCTodo.CNCTodoDataSetTableAdapters.CUT_CNC_CUTLIST_PARTSTableAdapter();
 			((System.ComponentModel.ISupportInitialize)(this.cUTCNCJOBSVIEW1BindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.cNCTodoDataSet)).BeginInit();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.tabPage2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dataTable1BindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.cUTCNCCUTLISTPARTSBindingSource)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// listView1
@@ -77,9 +84,9 @@
             this.columnHeader7,
             this.columnHeader8,
             this.columnHeader9});
-			this.listView1.Location = new System.Drawing.Point(6, 6);
+			this.listView1.Location = new System.Drawing.Point(6, 33);
 			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(735, 330);
+			this.listView1.Size = new System.Drawing.Size(735, 335);
 			this.listView1.TabIndex = 0;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			// 
@@ -123,7 +130,7 @@
 			// 
 			this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.checkBox1.AutoSize = true;
-			this.checkBox1.Location = new System.Drawing.Point(661, 342);
+			this.checkBox1.Location = new System.Drawing.Point(661, 371);
 			this.checkBox1.Name = "checkBox1";
 			this.checkBox1.Size = new System.Drawing.Size(80, 17);
 			this.checkBox1.TabIndex = 1;
@@ -136,7 +143,7 @@
 			this.comboBox1.DataSource = this.cUTCNCJOBSVIEW1BindingSource;
 			this.comboBox1.DisplayMember = "WorkCenter";
 			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(13, 13);
+			this.comboBox1.Location = new System.Drawing.Point(6, 6);
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(260, 21);
 			this.comboBox1.TabIndex = 2;
@@ -164,28 +171,29 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabPage2);
-			this.tabControl1.Location = new System.Drawing.Point(13, 41);
+			this.tabControl1.Location = new System.Drawing.Point(13, 12);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(755, 391);
+			this.tabControl1.Size = new System.Drawing.Size(755, 420);
 			this.tabControl1.TabIndex = 3;
 			this.tabControl1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseDoubleClick);
 			// 
 			// tabPage1
 			// 
 			this.tabPage1.Controls.Add(this.listView1);
+			this.tabPage1.Controls.Add(this.comboBox1);
 			this.tabPage1.Controls.Add(this.checkBox1);
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(747, 365);
+			this.tabPage1.Size = new System.Drawing.Size(747, 394);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "tabPage1";
 			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
 			// tabPage2
 			// 
-			this.tabPage2.Controls.Add(this.listView2);
+			this.tabPage2.Controls.Add(this.dataGridView1);
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -194,77 +202,124 @@
 			this.tabPage2.Text = "tabPage2";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
-			// listView2
+			// dataGridView1
 			// 
-			this.listView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader10,
-            this.columnHeader11,
-            this.columnHeader12,
-            this.columnHeader13,
-            this.columnHeader14,
-            this.columnHeader15,
-            this.columnHeader16,
-            this.columnHeader17,
-            this.columnHeader18,
-            this.columnHeader19,
-            this.columnHeader20,
-            this.columnHeader21});
-			this.listView2.Location = new System.Drawing.Point(7, 7);
-			this.listView2.Name = "listView2";
-			this.listView2.Size = new System.Drawing.Size(734, 352);
-			this.listView2.TabIndex = 0;
-			this.listView2.UseCompatibleStateImageBehavior = false;
+			this.dataGridView1.AutoGenerateColumns = false;
+			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.pARTDataGridViewTextBoxColumn,
+            this.dESCRIPTIONDataGridViewTextBoxColumn,
+            this.cUTLISTDataGridViewTextBoxColumn,
+            this.dataGridViewTextBoxColumn8,
+            this.lDataGridViewTextBoxColumn,
+            this.wDataGridViewTextBoxColumn,
+            this.tDataGridViewTextBoxColumn,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10,
+            this.uPDataGridViewCheckBoxColumn,
+            this.cNC1DataGridViewTextBoxColumn,
+            this.cNC2DataGridViewTextBoxColumn,
+            this.dataGridViewTextBoxColumn11});
+			this.dataGridView1.DataSource = this.dataTable1BindingSource;
+			this.dataGridView1.Location = new System.Drawing.Point(6, 6);
+			this.dataGridView1.Name = "dataGridView1";
+			this.dataGridView1.Size = new System.Drawing.Size(735, 353);
+			this.dataGridView1.TabIndex = 0;
 			// 
-			// columnHeader10
+			// pARTDataGridViewTextBoxColumn
 			// 
-			this.columnHeader10.Text = "Part";
+			this.pARTDataGridViewTextBoxColumn.DataPropertyName = "PART";
+			this.pARTDataGridViewTextBoxColumn.HeaderText = "PART";
+			this.pARTDataGridViewTextBoxColumn.Name = "pARTDataGridViewTextBoxColumn";
 			// 
-			// columnHeader11
+			// dESCRIPTIONDataGridViewTextBoxColumn
 			// 
-			this.columnHeader11.Text = "Description";
+			this.dESCRIPTIONDataGridViewTextBoxColumn.DataPropertyName = "DESCRIPTION";
+			this.dESCRIPTIONDataGridViewTextBoxColumn.HeaderText = "DESCRIPTION";
+			this.dESCRIPTIONDataGridViewTextBoxColumn.Name = "dESCRIPTIONDataGridViewTextBoxColumn";
 			// 
-			// columnHeader12
+			// cUTLISTDataGridViewTextBoxColumn
 			// 
-			this.columnHeader12.Text = "Cutlist";
+			this.cUTLISTDataGridViewTextBoxColumn.DataPropertyName = "CUTLIST";
+			this.cUTLISTDataGridViewTextBoxColumn.HeaderText = "CUTLIST";
+			this.cUTLISTDataGridViewTextBoxColumn.Name = "cUTLISTDataGridViewTextBoxColumn";
 			// 
-			// columnHeader13
+			// dataGridViewTextBoxColumn8
 			// 
-			this.columnHeader13.Text = "Rev";
+			this.dataGridViewTextBoxColumn8.DataPropertyName = "REV";
+			this.dataGridViewTextBoxColumn8.HeaderText = "REV";
+			this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
 			// 
-			// columnHeader14
+			// lDataGridViewTextBoxColumn
 			// 
-			this.columnHeader14.Text = "L";
+			this.lDataGridViewTextBoxColumn.DataPropertyName = "L";
+			this.lDataGridViewTextBoxColumn.HeaderText = "L";
+			this.lDataGridViewTextBoxColumn.Name = "lDataGridViewTextBoxColumn";
 			// 
-			// columnHeader15
+			// wDataGridViewTextBoxColumn
 			// 
-			this.columnHeader15.Text = "W";
+			this.wDataGridViewTextBoxColumn.DataPropertyName = "W";
+			this.wDataGridViewTextBoxColumn.HeaderText = "W";
+			this.wDataGridViewTextBoxColumn.Name = "wDataGridViewTextBoxColumn";
 			// 
-			// columnHeader16
+			// tDataGridViewTextBoxColumn
 			// 
-			this.columnHeader16.Text = "T";
+			this.tDataGridViewTextBoxColumn.DataPropertyName = "T";
+			this.tDataGridViewTextBoxColumn.HeaderText = "T";
+			this.tDataGridViewTextBoxColumn.Name = "tDataGridViewTextBoxColumn";
 			// 
-			// columnHeader17
+			// dataGridViewTextBoxColumn9
 			// 
-			this.columnHeader17.Text = "Over L";
+			this.dataGridViewTextBoxColumn9.DataPropertyName = "OVERL";
+			this.dataGridViewTextBoxColumn9.HeaderText = "OVERL";
+			this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
 			// 
-			// columnHeader18
+			// dataGridViewTextBoxColumn10
 			// 
-			this.columnHeader18.Text = "Over R";
+			this.dataGridViewTextBoxColumn10.DataPropertyName = "OVERW";
+			this.dataGridViewTextBoxColumn10.HeaderText = "OVERW";
+			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
 			// 
-			// columnHeader19
+			// uPDataGridViewCheckBoxColumn
 			// 
-			this.columnHeader19.Text = "Up";
+			this.uPDataGridViewCheckBoxColumn.DataPropertyName = "UP";
+			this.uPDataGridViewCheckBoxColumn.HeaderText = "UP";
+			this.uPDataGridViewCheckBoxColumn.Name = "uPDataGridViewCheckBoxColumn";
 			// 
-			// columnHeader20
+			// cNC1DataGridViewTextBoxColumn
 			// 
-			this.columnHeader20.Text = "CNC 1";
+			this.cNC1DataGridViewTextBoxColumn.DataPropertyName = "CNC1";
+			this.cNC1DataGridViewTextBoxColumn.HeaderText = "CNC1";
+			this.cNC1DataGridViewTextBoxColumn.Name = "cNC1DataGridViewTextBoxColumn";
 			// 
-			// columnHeader21
+			// cNC2DataGridViewTextBoxColumn
 			// 
-			this.columnHeader21.Text = "CNC 2";
+			this.cNC2DataGridViewTextBoxColumn.DataPropertyName = "CNC2";
+			this.cNC2DataGridViewTextBoxColumn.HeaderText = "CNC2";
+			this.cNC2DataGridViewTextBoxColumn.Name = "cNC2DataGridViewTextBoxColumn";
+			// 
+			// dataGridViewTextBoxColumn11
+			// 
+			this.dataGridViewTextBoxColumn11.DataPropertyName = "COMMENT";
+			this.dataGridViewTextBoxColumn11.HeaderText = "COMMENT";
+			this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+			// 
+			// dataTable1BindingSource
+			// 
+			this.dataTable1BindingSource.DataMember = "CUT_CNC_MAIN";
+			this.dataTable1BindingSource.DataSource = this.cNCTodoDataSet;
+			// 
+			// cUTCNCCUTLISTPARTSBindingSource
+			// 
+			this.cUTCNCCUTLISTPARTSBindingSource.DataMember = "CUT_CNC_CUTLIST_PARTS";
+			this.cUTCNCCUTLISTPARTSBindingSource.DataSource = this.cNCTodoDataSet;
+			// 
+			// cUT_CNC_CUTLIST_PARTSTableAdapter
+			// 
+			this.cUT_CNC_CUTLIST_PARTSTableAdapter.ClearBeforeFill = true;
 			// 
 			// CncTodo
 			// 
@@ -272,7 +327,6 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(780, 444);
 			this.Controls.Add(this.tabControl1);
-			this.Controls.Add(this.comboBox1);
 			this.Name = "CncTodo";
 			this.Text = "CncTodo";
 			this.Load += new System.EventHandler(this.CncTodo_Load);
@@ -282,6 +336,9 @@
 			this.tabPage1.ResumeLayout(false);
 			this.tabPage1.PerformLayout();
 			this.tabPage2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dataTable1BindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.cUTCNCCUTLISTPARTSBindingSource)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -306,18 +363,43 @@
 		private System.Windows.Forms.TabControl tabControl1;
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.TabPage tabPage2;
-		private System.Windows.Forms.ListView listView2;
-		private System.Windows.Forms.ColumnHeader columnHeader10;
-		private System.Windows.Forms.ColumnHeader columnHeader11;
-		private System.Windows.Forms.ColumnHeader columnHeader12;
-		private System.Windows.Forms.ColumnHeader columnHeader13;
-		private System.Windows.Forms.ColumnHeader columnHeader14;
-		private System.Windows.Forms.ColumnHeader columnHeader15;
-		private System.Windows.Forms.ColumnHeader columnHeader16;
-		private System.Windows.Forms.ColumnHeader columnHeader17;
-		private System.Windows.Forms.ColumnHeader columnHeader18;
-		private System.Windows.Forms.ColumnHeader columnHeader19;
-		private System.Windows.Forms.ColumnHeader columnHeader20;
-		private System.Windows.Forms.ColumnHeader columnHeader21;
+		private System.Windows.Forms.DataGridView dataGridView1;
+		private System.Windows.Forms.BindingSource cUTCNCCUTLISTPARTSBindingSource;
+		private CNCTodo.CNCTodoDataSetTableAdapters.CUT_CNC_CUTLIST_PARTSTableAdapter cUT_CNC_CUTLIST_PARTSTableAdapter;
+		private System.Windows.Forms.DataGridViewTextBoxColumn cLIDDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn pARTNUMDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn rEVDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dESCRDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn sTATEIDDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn sTATEDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn fINLDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn fINWDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn tHICKNESSDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn oVERLDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn oVERWDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn cOMMENTDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+		private System.Windows.Forms.DataGridViewTextBoxColumn pARTIDDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn itemNumDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn uPDATECNCDataGridViewCheckBoxColumn;
+		private System.Windows.Forms.BindingSource dataTable1BindingSource;
+		private CNCTodo.CNCTodoDataSetTableAdapters.CUT_CNC_MAINTableAdapter dataTable1TableAdapter;
+		private System.Windows.Forms.DataGridViewTextBoxColumn pARTDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dESCRIPTIONDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn cUTLISTDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+		private System.Windows.Forms.DataGridViewTextBoxColumn lDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn wDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn tDataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn uPDataGridViewCheckBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn cNC1DataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn cNC2DataGridViewTextBoxColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
 	}
 }

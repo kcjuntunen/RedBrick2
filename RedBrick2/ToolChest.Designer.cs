@@ -36,6 +36,7 @@
 			this.groupBox5 = new System.Windows.Forms.GroupBox();
 			this.button7 = new System.Windows.Forms.Button();
 			this.button8 = new System.Windows.Forms.Button();
+			this.button9 = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
@@ -182,11 +183,23 @@
 			this.button8.Visible = false;
 			this.button8.Click += new System.EventHandler(this.button8_Click);
 			// 
+			// button9
+			// 
+			this.button9.Location = new System.Drawing.Point(221, 161);
+			this.button9.Name = "button9";
+			this.button9.Size = new System.Drawing.Size(118, 23);
+			this.button9.TabIndex = 6;
+			this.button9.Text = "CNC";
+			this.button9.UseVisualStyleBackColor = true;
+			this.button9.Visible = false;
+			this.button9.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button9_MouseClick);
+			// 
 			// ToolChest
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(504, 270);
+			this.Controls.Add(this.button9);
 			this.Controls.Add(this.button8);
 			this.Controls.Add(this.groupBox5);
 			this.Controls.Add(this.groupBox4);
@@ -228,5 +241,6 @@
 		private System.Windows.Forms.GroupBox groupBox5;
 		private System.Windows.Forms.Button button7;
 		private System.Windows.Forms.Button button8;
+		private System.Windows.Forms.Button button9;
 	}
 }

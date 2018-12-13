@@ -80,43 +80,76 @@ FROM            CUT_CNC_JOBS_VIEW</CommandText>
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT DISTINCT 
-                         CUT_CNC_CUTLIST_PARTS.PARTNUM, CUT_CNC_CUTLIST_PARTS.CLID, CUT_PARTS.PARTID, CUT_CNC_CUTLIST_PARTS.REV, 
-                         CUT_CNC_CUTLIST_PARTS.STATEID, CUT_CNC_CUTLIST_PARTS.STATE, CUT_PARTS.FIN_L, CUT_PARTS.FIN_W, CUT_PARTS.THICKNESS, CUT_PARTS.OVER_L, 
-                         CUT_PARTS.OVER_W, CUT_PARTS.COMMENT, CUT_CHECK_OPS.[1], CUT_CHECK_OPS.[2], CUT_CHECK_OPS.[3], CUT_CHECK_OPS.[4], CUT_CHECK_OPS.[5], 
-                         CUT_PARTS.CNC1, CUT_PARTS.CNC2, CUT_PARTS.UPDATE_CNC, CUT_PARTS.DESCR, CUT_CUTLISTS.PARTNUM AS ItemNum
+                         CUT_PARTS.PARTNUM AS Part, CUT_CUTLISTS.PARTNUM AS Cutlist, CUT_CUTLISTS.REV AS Rev, CUT_PARTS.FIN_L AS L, CUT_PARTS.FIN_W AS W, 
+                         CUT_PARTS.THICKNESS AS T, CUT_PARTS.OVER_L AS OverL, CUT_PARTS.OVER_W AS OverW, CUT_PARTS.UPDATE_CNC AS Up, CUT_PARTS.CNC1, 
+                         CUT_PARTS.CNC2
 FROM            CUT_CUTLISTS INNER JOIN
                          CUT_CNC_CUTLIST_PARTS ON CUT_CUTLISTS.CLID = CUT_CNC_CUTLIST_PARTS.CLID INNER JOIN
-                         CUT_CHECK_OPS INNER JOIN
-                         CUT_PARTS ON CUT_CHECK_OPS.PART = CUT_PARTS.PARTID ON CUT_CNC_CUTLIST_PARTS.PARTNUM = CUT_PARTS.PARTNUM
-ORDER BY CUT_CNC_CUTLIST_PARTS.CLID, CUT_PARTS.PARTID</CommandText>
+                         CUT_PARTS ON CUT_CNC_CUTLIST_PARTS.PARTNUM = CUT_PARTS.PARTNUM
+WHERE        (CUT_PARTS.UPDATE_CNC = - 1)</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
             </MainSource>
             <Mappings>
-              <Mapping SourceColumn="CLID" DataSetColumn="CLID" />
-              <Mapping SourceColumn="PARTNUM" DataSetColumn="PARTNUM" />
-              <Mapping SourceColumn="REV" DataSetColumn="REV" />
-              <Mapping SourceColumn="DESCR" DataSetColumn="DESCR" />
               <Mapping SourceColumn="CNC1" DataSetColumn="CNC1" />
               <Mapping SourceColumn="CNC2" DataSetColumn="CNC2" />
-              <Mapping SourceColumn="STATEID" DataSetColumn="STATEID" />
-              <Mapping SourceColumn="STATE" DataSetColumn="STATE" />
-              <Mapping SourceColumn="FIN_L" DataSetColumn="FIN_L" />
-              <Mapping SourceColumn="FIN_W" DataSetColumn="FIN_W" />
-              <Mapping SourceColumn="THICKNESS" DataSetColumn="THICKNESS" />
-              <Mapping SourceColumn="OVER_L" DataSetColumn="OVER_L" />
-              <Mapping SourceColumn="OVER_W" DataSetColumn="OVER_W" />
-              <Mapping SourceColumn="COMMENT" DataSetColumn="COMMENT" />
-              <Mapping SourceColumn="1" DataSetColumn="1" />
-              <Mapping SourceColumn="2" DataSetColumn="2" />
-              <Mapping SourceColumn="3" DataSetColumn="3" />
-              <Mapping SourceColumn="4" DataSetColumn="4" />
-              <Mapping SourceColumn="5" DataSetColumn="5" />
+              <Mapping SourceColumn="Part" DataSetColumn="Part" />
+              <Mapping SourceColumn="Cutlist" DataSetColumn="Cutlist" />
+              <Mapping SourceColumn="Rev" DataSetColumn="Rev" />
+              <Mapping SourceColumn="L" DataSetColumn="L" />
+              <Mapping SourceColumn="W" DataSetColumn="W" />
+              <Mapping SourceColumn="T" DataSetColumn="T" />
+              <Mapping SourceColumn="OverL" DataSetColumn="OverL" />
+              <Mapping SourceColumn="OverW" DataSetColumn="OverW" />
+              <Mapping SourceColumn="Up" DataSetColumn="Up" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CUT_CNC_MAINTableAdapter" GeneratorDataComponentClassName="CUT_CNC_MAINTableAdapter" Name="CUT_CNC_MAIN" UserDataComponentName="CUT_CNC_MAINTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ENGINEERINGConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        CUT_CUTLIST_PARTS.CLPARTID, CUT_CUTLIST_PARTS.CLID, CUT_PARTS.PARTID, CUT_PARTS.PARTNUM AS PART, CUT_PARTS.DESCR AS DESCRIPTION, 
+                         CUT_CUTLISTS.PARTNUM AS CUTLIST, CUT_CUTLISTS.REV, CUT_PARTS.FIN_L AS L, CUT_PARTS.FIN_W AS W, CUT_PARTS.THICKNESS AS T, 
+                         CUT_PARTS.OVER_L AS OVERL, CUT_PARTS.OVER_W AS OVERW, CUT_PARTS.UPDATE_CNC AS UP, CUT_PARTS.CNC1, CUT_PARTS.CNC2, 
+                         CUT_PARTS.COMMENT
+FROM            CUT_CUTLIST_PARTS INNER JOIN
+                         CUT_PARTS ON CUT_CUTLIST_PARTS.PARTID = CUT_PARTS.PARTID INNER JOIN
+                         CUT_CUTLISTS ON CUT_CUTLIST_PARTS.CLID = CUT_CUTLISTS.CLID
+GROUP BY CUT_CUTLIST_PARTS.CLPARTID, CUT_CUTLIST_PARTS.CLID, CUT_PARTS.PARTID, CUT_PARTS.PARTNUM, CUT_PARTS.DESCR, CUT_CUTLISTS.PARTNUM, 
+                         CUT_CUTLISTS.REV, CUT_PARTS.FIN_L, CUT_PARTS.FIN_W, CUT_PARTS.THICKNESS, CUT_PARTS.OVER_L, CUT_PARTS.OVER_W, CUT_PARTS.UPDATE_CNC, 
+                         CUT_PARTS.CNC1, CUT_PARTS.CNC2, CUT_PARTS.COMMENT, CUT_CUTLISTS.STATEID, CUT_PARTS.UPDATE_CNC
+HAVING        (CUT_CUTLISTS.STATEID = 2) AND (CUT_PARTS.UPDATE_CNC &lt;&gt; 0) OR
+                         (CUT_CUTLISTS.STATEID = 3) AND (CUT_PARTS.CNC1 IS NULL) OR
+                         (CUT_PARTS.CNC1 = N'YES') AND (CUT_PARTS.CNC2 IS NULL)
+ORDER BY PART, CUTLIST, CUT_CUTLISTS.REV;    
+
+</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="CLPARTID" DataSetColumn="CLPARTID" />
+              <Mapping SourceColumn="CLID" DataSetColumn="CLID" />
               <Mapping SourceColumn="PARTID" DataSetColumn="PARTID" />
-              <Mapping SourceColumn="ItemNum" DataSetColumn="ItemNum" />
-              <Mapping SourceColumn="UPDATE_CNC" DataSetColumn="UPDATE_CNC" />
+              <Mapping SourceColumn="PART" DataSetColumn="PART" />
+              <Mapping SourceColumn="DESCRIPTION" DataSetColumn="DESCRIPTION" />
+              <Mapping SourceColumn="CUTLIST" DataSetColumn="CUTLIST" />
+              <Mapping SourceColumn="REV" DataSetColumn="REV" />
+              <Mapping SourceColumn="L" DataSetColumn="L" />
+              <Mapping SourceColumn="W" DataSetColumn="W" />
+              <Mapping SourceColumn="T" DataSetColumn="T" />
+              <Mapping SourceColumn="OVERL" DataSetColumn="OVERL" />
+              <Mapping SourceColumn="OVERW" DataSetColumn="OVERW" />
+              <Mapping SourceColumn="UP" DataSetColumn="UP" />
+              <Mapping SourceColumn="CNC1" DataSetColumn="CNC1" />
+              <Mapping SourceColumn="CNC2" DataSetColumn="CNC2" />
+              <Mapping SourceColumn="COMMENT" DataSetColumn="COMMENT" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -128,7 +161,7 @@ ORDER BY CUT_CNC_CUTLIST_PARTS.CLID, CUT_PARTS.PARTID</CommandText>
   <xs:element name="CNCTodoDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="CNCTodoDataSet" msprop:Generator_UserDSName="CNCTodoDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="CUT_CNC_JOBS_VIEW" msprop:Generator_TableClassName="CUT_CNC_JOBS_VIEWDataTable" msprop:Generator_TableVarName="tableCUT_CNC_JOBS_VIEW" msprop:Generator_RowChangedName="CUT_CNC_JOBS_VIEWRowChanged" msprop:Generator_TablePropName="CUT_CNC_JOBS_VIEW" msprop:Generator_RowDeletingName="CUT_CNC_JOBS_VIEWRowDeleting" msprop:Generator_RowChangingName="CUT_CNC_JOBS_VIEWRowChanging" msprop:Generator_RowEvHandlerName="CUT_CNC_JOBS_VIEWRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_CNC_JOBS_VIEWRowDeleted" msprop:Generator_RowClassName="CUT_CNC_JOBS_VIEWRow" msprop:Generator_UserTableName="CUT_CNC_JOBS_VIEW" msprop:Generator_RowEvArgName="CUT_CNC_JOBS_VIEWRowChangeEvent">
+        <xs:element name="CUT_CNC_JOBS_VIEW" msprop:Generator_TableClassName="CUT_CNC_JOBS_VIEWDataTable" msprop:Generator_TableVarName="tableCUT_CNC_JOBS_VIEW" msprop:Generator_TablePropName="CUT_CNC_JOBS_VIEW" msprop:Generator_RowDeletingName="CUT_CNC_JOBS_VIEWRowDeleting" msprop:Generator_RowChangingName="CUT_CNC_JOBS_VIEWRowChanging" msprop:Generator_RowEvHandlerName="CUT_CNC_JOBS_VIEWRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_CNC_JOBS_VIEWRowDeleted" msprop:Generator_UserTableName="CUT_CNC_JOBS_VIEW" msprop:Generator_RowChangedName="CUT_CNC_JOBS_VIEWRowChanged" msprop:Generator_RowEvArgName="CUT_CNC_JOBS_VIEWRowChangeEvent" msprop:Generator_RowClassName="CUT_CNC_JOBS_VIEWRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CutID" msprop:Generator_ColumnVarNameInTable="columnCutID" msprop:Generator_ColumnPropNameInRow="CutID" msprop:Generator_ColumnPropNameInTable="CutIDColumn" msprop:Generator_UserColumnName="CutID" type="xs:int" minOccurs="0" />
@@ -224,7 +257,7 @@ ORDER BY CUT_CNC_CUTLIST_PARTS.CLID, CUT_PARTS.PARTID</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CUT_CNC_JOBS_VIEW1" msprop:Generator_TableClassName="CUT_CNC_JOBS_VIEW1DataTable" msprop:Generator_TableVarName="tableCUT_CNC_JOBS_VIEW1" msprop:Generator_RowChangedName="CUT_CNC_JOBS_VIEW1RowChanged" msprop:Generator_TablePropName="CUT_CNC_JOBS_VIEW1" msprop:Generator_RowDeletingName="CUT_CNC_JOBS_VIEW1RowDeleting" msprop:Generator_RowChangingName="CUT_CNC_JOBS_VIEW1RowChanging" msprop:Generator_RowEvHandlerName="CUT_CNC_JOBS_VIEW1RowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_CNC_JOBS_VIEW1RowDeleted" msprop:Generator_RowClassName="CUT_CNC_JOBS_VIEW1Row" msprop:Generator_UserTableName="CUT_CNC_JOBS_VIEW1" msprop:Generator_RowEvArgName="CUT_CNC_JOBS_VIEW1RowChangeEvent">
+        <xs:element name="CUT_CNC_JOBS_VIEW1" msprop:Generator_TableClassName="CUT_CNC_JOBS_VIEW1DataTable" msprop:Generator_TableVarName="tableCUT_CNC_JOBS_VIEW1" msprop:Generator_TablePropName="CUT_CNC_JOBS_VIEW1" msprop:Generator_RowDeletingName="CUT_CNC_JOBS_VIEW1RowDeleting" msprop:Generator_RowChangingName="CUT_CNC_JOBS_VIEW1RowChanging" msprop:Generator_RowEvHandlerName="CUT_CNC_JOBS_VIEW1RowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_CNC_JOBS_VIEW1RowDeleted" msprop:Generator_UserTableName="CUT_CNC_JOBS_VIEW1" msprop:Generator_RowChangedName="CUT_CNC_JOBS_VIEW1RowChanged" msprop:Generator_RowEvArgName="CUT_CNC_JOBS_VIEW1RowChangeEvent" msprop:Generator_RowClassName="CUT_CNC_JOBS_VIEW1Row">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="WorkCenter" msprop:Generator_ColumnVarNameInTable="columnWorkCenter" msprop:Generator_ColumnPropNameInRow="WorkCenter" msprop:Generator_ColumnPropNameInTable="WorkCenterColumn" msprop:Generator_UserColumnName="WorkCenter" minOccurs="0">
@@ -237,31 +270,9 @@ ORDER BY CUT_CNC_CUTLIST_PARTS.CLID, CUT_PARTS.PARTID</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CUT_CNC_CUTLIST_PARTS" msprop:Generator_TableClassName="CUT_CNC_CUTLIST_PARTSDataTable" msprop:Generator_TableVarName="tableCUT_CNC_CUTLIST_PARTS" msprop:Generator_TablePropName="CUT_CNC_CUTLIST_PARTS" msprop:Generator_RowDeletingName="CUT_CNC_CUTLIST_PARTSRowDeleting" msprop:Generator_RowChangingName="CUT_CNC_CUTLIST_PARTSRowChanging" msprop:Generator_RowEvHandlerName="CUT_CNC_CUTLIST_PARTSRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_CNC_CUTLIST_PARTSRowDeleted" msprop:Generator_UserTableName="CUT_CNC_CUTLIST_PARTS" msprop:Generator_RowChangedName="CUT_CNC_CUTLIST_PARTSRowChanged" msprop:Generator_RowEvArgName="CUT_CNC_CUTLIST_PARTSRowChangeEvent" msprop:Generator_RowClassName="CUT_CNC_CUTLIST_PARTSRow">
+        <xs:element name="CUT_CNC_CUTLIST_PARTS" msprop:Generator_TableClassName="CUT_CNC_CUTLIST_PARTSDataTable" msprop:Generator_TableVarName="tableCUT_CNC_CUTLIST_PARTS" msprop:Generator_RowChangedName="CUT_CNC_CUTLIST_PARTSRowChanged" msprop:Generator_TablePropName="CUT_CNC_CUTLIST_PARTS" msprop:Generator_RowDeletingName="CUT_CNC_CUTLIST_PARTSRowDeleting" msprop:Generator_RowChangingName="CUT_CNC_CUTLIST_PARTSRowChanging" msprop:Generator_RowEvHandlerName="CUT_CNC_CUTLIST_PARTSRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_CNC_CUTLIST_PARTSRowDeleted" msprop:Generator_RowClassName="CUT_CNC_CUTLIST_PARTSRow" msprop:Generator_UserTableName="CUT_CNC_CUTLIST_PARTS" msprop:Generator_RowEvArgName="CUT_CNC_CUTLIST_PARTSRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="CLID" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCLID" msprop:Generator_ColumnPropNameInRow="CLID" msprop:Generator_ColumnPropNameInTable="CLIDColumn" msprop:Generator_UserColumnName="CLID" type="xs:int" />
-              <xs:element name="PARTNUM" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPARTNUM" msprop:Generator_ColumnPropNameInRow="PARTNUM" msprop:Generator_ColumnPropNameInTable="PARTNUMColumn" msprop:Generator_UserColumnName="PARTNUM">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="35" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="REV" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnREV" msprop:Generator_ColumnPropNameInRow="REV" msprop:Generator_ColumnPropNameInTable="REVColumn" msprop:Generator_UserColumnName="REV">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="3" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="DESCR" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDESCR" msprop:Generator_ColumnPropNameInRow="DESCR" msprop:Generator_ColumnPropNameInTable="DESCRColumn" msprop:Generator_UserColumnName="DESCR" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
               <xs:element name="CNC1" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCNC1" msprop:Generator_ColumnPropNameInRow="CNC1" msprop:Generator_ColumnPropNameInTable="CNC1Column" msprop:Generator_UserColumnName="CNC1" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -276,19 +287,90 @@ ORDER BY CUT_CNC_CUTLIST_PARTS.CLID, CUT_PARTS.PARTID</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="STATEID" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSTATEID" msprop:Generator_ColumnPropNameInRow="STATEID" msprop:Generator_ColumnPropNameInTable="STATEIDColumn" msprop:Generator_UserColumnName="STATEID" type="xs:int" minOccurs="0" />
-              <xs:element name="STATE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSTATE" msprop:Generator_ColumnPropNameInRow="STATE" msprop:Generator_ColumnPropNameInTable="STATEColumn" msprop:Generator_UserColumnName="STATE" minOccurs="0">
+              <xs:element name="Part" msprop:Generator_ColumnVarNameInTable="columnPart" msprop:Generator_ColumnPropNameInRow="Part" msprop:Generator_ColumnPropNameInTable="PartColumn" msprop:Generator_UserColumnName="Part">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="15" />
+                    <xs:maxLength value="25" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="FIN_L" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnFIN_L" msprop:Generator_ColumnPropNameInRow="FIN_L" msprop:Generator_ColumnPropNameInTable="FIN_LColumn" msprop:Generator_UserColumnName="FIN_L" type="xs:float" />
-              <xs:element name="FIN_W" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnFIN_W" msprop:Generator_ColumnPropNameInRow="FIN_W" msprop:Generator_ColumnPropNameInTable="FIN_WColumn" msprop:Generator_UserColumnName="FIN_W" type="xs:float" />
-              <xs:element name="THICKNESS" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTHICKNESS" msprop:Generator_ColumnPropNameInRow="THICKNESS" msprop:Generator_ColumnPropNameInTable="THICKNESSColumn" msprop:Generator_UserColumnName="THICKNESS" type="xs:float" />
-              <xs:element name="OVER_L" msprop:Generator_ColumnVarNameInTable="columnOVER_L" msprop:Generator_ColumnPropNameInRow="OVER_L" msprop:Generator_ColumnPropNameInTable="OVER_LColumn" msprop:Generator_UserColumnName="OVER_L" type="xs:float" minOccurs="0" />
-              <xs:element name="OVER_W" msprop:Generator_ColumnVarNameInTable="columnOVER_W" msprop:Generator_ColumnPropNameInRow="OVER_W" msprop:Generator_ColumnPropNameInTable="OVER_WColumn" msprop:Generator_UserColumnName="OVER_W" type="xs:float" minOccurs="0" />
+              <xs:element name="Cutlist" msprop:Generator_ColumnVarNameInTable="columnCutlist" msprop:Generator_ColumnPropNameInRow="Cutlist" msprop:Generator_ColumnPropNameInTable="CutlistColumn" msprop:Generator_UserColumnName="Cutlist">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="35" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Rev" msprop:Generator_ColumnVarNameInTable="columnRev" msprop:Generator_ColumnPropNameInRow="Rev" msprop:Generator_ColumnPropNameInTable="RevColumn" msprop:Generator_UserColumnName="Rev" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="L" msprop:Generator_ColumnVarNameInTable="columnL" msprop:Generator_ColumnPropNameInRow="L" msprop:Generator_ColumnPropNameInTable="LColumn" msprop:Generator_UserColumnName="L" type="xs:float" />
+              <xs:element name="W" msprop:Generator_ColumnVarNameInTable="columnW" msprop:Generator_ColumnPropNameInRow="W" msprop:Generator_ColumnPropNameInTable="WColumn" msprop:Generator_UserColumnName="W" type="xs:float" />
+              <xs:element name="T" msprop:Generator_ColumnVarNameInTable="columnT" msprop:Generator_ColumnPropNameInRow="T" msprop:Generator_ColumnPropNameInTable="TColumn" msprop:Generator_UserColumnName="T" type="xs:float" />
+              <xs:element name="OverL" msprop:Generator_ColumnVarNameInTable="columnOverL" msprop:Generator_ColumnPropNameInRow="OverL" msprop:Generator_ColumnPropNameInTable="OverLColumn" msprop:Generator_UserColumnName="OverL" type="xs:float" minOccurs="0" />
+              <xs:element name="OverW" msprop:Generator_ColumnVarNameInTable="columnOverW" msprop:Generator_ColumnPropNameInRow="OverW" msprop:Generator_ColumnPropNameInTable="OverWColumn" msprop:Generator_UserColumnName="OverW" type="xs:float" minOccurs="0" />
+              <xs:element name="Up" msprop:Generator_ColumnVarNameInTable="columnUp" msprop:Generator_ColumnPropNameInRow="Up" msprop:Generator_ColumnPropNameInTable="UpColumn" msprop:Generator_UserColumnName="Up" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CUT_CNC_MAIN" msprop:Generator_TableClassName="CUT_CNC_MAINDataTable" msprop:Generator_TableVarName="tableCUT_CNC_MAIN" msprop:Generator_TablePropName="CUT_CNC_MAIN" msprop:Generator_RowDeletingName="CUT_CNC_MAINRowDeleting" msprop:Generator_RowChangingName="CUT_CNC_MAINRowChanging" msprop:Generator_RowEvHandlerName="CUT_CNC_MAINRowChangeEventHandler" msprop:Generator_RowDeletedName="CUT_CNC_MAINRowDeleted" msprop:Generator_UserTableName="CUT_CNC_MAIN" msprop:Generator_RowChangedName="CUT_CNC_MAINRowChanged" msprop:Generator_RowEvArgName="CUT_CNC_MAINRowChangeEvent" msprop:Generator_RowClassName="CUT_CNC_MAINRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CLPARTID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnCLPARTID" msprop:Generator_ColumnPropNameInRow="CLPARTID" msprop:Generator_ColumnPropNameInTable="CLPARTIDColumn" msprop:Generator_UserColumnName="CLPARTID" type="xs:int" />
+              <xs:element name="CLID" msprop:Generator_ColumnVarNameInTable="columnCLID" msprop:Generator_ColumnPropNameInRow="CLID" msprop:Generator_ColumnPropNameInTable="CLIDColumn" msprop:Generator_UserColumnName="CLID" type="xs:int" minOccurs="0" />
+              <xs:element name="PARTID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnPARTID" msprop:Generator_ColumnPropNameInRow="PARTID" msprop:Generator_ColumnPropNameInTable="PARTIDColumn" msprop:Generator_UserColumnName="PARTID" type="xs:int" />
+              <xs:element name="PART" msprop:Generator_ColumnVarNameInTable="columnPART" msprop:Generator_ColumnPropNameInRow="PART" msprop:Generator_ColumnPropNameInTable="PARTColumn" msprop:Generator_UserColumnName="PART">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_UserColumnName="DESCRIPTION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="35" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CUTLIST" msprop:Generator_ColumnVarNameInTable="columnCUTLIST" msprop:Generator_ColumnPropNameInRow="CUTLIST" msprop:Generator_ColumnPropNameInTable="CUTLISTColumn" msprop:Generator_UserColumnName="CUTLIST">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="35" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="REV" msprop:Generator_ColumnVarNameInTable="columnREV" msprop:Generator_ColumnPropNameInRow="REV" msprop:Generator_ColumnPropNameInTable="REVColumn" msprop:Generator_UserColumnName="REV" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="L" msprop:Generator_ColumnVarNameInTable="columnL" msprop:Generator_ColumnPropNameInRow="L" msprop:Generator_ColumnPropNameInTable="LColumn" msprop:Generator_UserColumnName="L" type="xs:float" />
+              <xs:element name="W" msprop:Generator_ColumnVarNameInTable="columnW" msprop:Generator_ColumnPropNameInRow="W" msprop:Generator_ColumnPropNameInTable="WColumn" msprop:Generator_UserColumnName="W" type="xs:float" />
+              <xs:element name="T" msprop:Generator_ColumnVarNameInTable="columnT" msprop:Generator_ColumnPropNameInRow="T" msprop:Generator_ColumnPropNameInTable="TColumn" msprop:Generator_UserColumnName="T" type="xs:float" />
+              <xs:element name="OVERL" msprop:Generator_ColumnVarNameInTable="columnOVERL" msprop:Generator_ColumnPropNameInRow="OVERL" msprop:Generator_ColumnPropNameInTable="OVERLColumn" msprop:Generator_UserColumnName="OVERL" type="xs:float" minOccurs="0" />
+              <xs:element name="OVERW" msprop:Generator_ColumnVarNameInTable="columnOVERW" msprop:Generator_ColumnPropNameInRow="OVERW" msprop:Generator_ColumnPropNameInTable="OVERWColumn" msprop:Generator_UserColumnName="OVERW" type="xs:float" minOccurs="0" />
+              <xs:element name="UP" msprop:Generator_ColumnVarNameInTable="columnUP" msprop:Generator_ColumnPropNameInRow="UP" msprop:Generator_ColumnPropNameInTable="UPColumn" msprop:Generator_UserColumnName="UP" type="xs:boolean" />
+              <xs:element name="CNC1" msprop:Generator_ColumnVarNameInTable="columnCNC1" msprop:Generator_ColumnPropNameInRow="CNC1" msprop:Generator_ColumnPropNameInTable="CNC1Column" msprop:Generator_UserColumnName="CNC1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CNC2" msprop:Generator_ColumnVarNameInTable="columnCNC2" msprop:Generator_ColumnPropNameInRow="CNC2" msprop:Generator_ColumnPropNameInTable="CNC2Column" msprop:Generator_UserColumnName="CNC2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
               <xs:element name="COMMENT" msprop:Generator_ColumnVarNameInTable="columnCOMMENT" msprop:Generator_ColumnPropNameInRow="COMMENT" msprop:Generator_ColumnPropNameInTable="COMMENTColumn" msprop:Generator_UserColumnName="COMMENT" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -296,62 +378,15 @@ ORDER BY CUT_CNC_CUTLIST_PARTS.CLID, CUT_PARTS.PARTID</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="_x0031_" msprop:Generator_ColumnVarNameInTable="column1" msprop:Generator_ColumnPropNameInRow="_1" msprop:Generator_ColumnPropNameInTable="_1Column" msprop:Generator_UserColumnName="1" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="3" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="_x0032_" msprop:Generator_ColumnVarNameInTable="column2" msprop:Generator_ColumnPropNameInRow="_2" msprop:Generator_ColumnPropNameInTable="_2Column" msprop:Generator_UserColumnName="2" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="3" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="_x0033_" msprop:Generator_ColumnVarNameInTable="column3" msprop:Generator_ColumnPropNameInRow="_3" msprop:Generator_ColumnPropNameInTable="_3Column" msprop:Generator_UserColumnName="3" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="3" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="_x0034_" msprop:Generator_ColumnVarNameInTable="column4" msprop:Generator_ColumnPropNameInRow="_4" msprop:Generator_ColumnPropNameInTable="_4Column" msprop:Generator_UserColumnName="4" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="3" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="_x0035_" msprop:Generator_ColumnVarNameInTable="column5" msprop:Generator_ColumnPropNameInRow="_5" msprop:Generator_ColumnPropNameInTable="_5Column" msprop:Generator_UserColumnName="5" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="3" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="PARTID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnPARTID" msprop:Generator_ColumnPropNameInRow="PARTID" msprop:Generator_ColumnPropNameInTable="PARTIDColumn" msprop:Generator_UserColumnName="PARTID" type="xs:int" />
-              <xs:element name="ItemNum" msprop:Generator_ColumnVarNameInTable="columnItemNum" msprop:Generator_ColumnPropNameInRow="ItemNum" msprop:Generator_ColumnPropNameInTable="ItemNumColumn" msprop:Generator_UserColumnName="ItemNum">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="35" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="UPDATE_CNC" msprop:Generator_ColumnVarNameInTable="columnUPDATE_CNC" msprop:Generator_ColumnPropNameInRow="UPDATE_CNC" msprop:Generator_ColumnPropNameInTable="UPDATE_CNCColumn" msprop:Generator_UserColumnName="UPDATE_CNC" type="xs:boolean" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:CUT_CNC_CUTLIST_PARTS" />
-      <xs:field xpath="mstns:CLID" />
-      <xs:field xpath="mstns:PARTNUM" />
-      <xs:field xpath="mstns:REV" />
+      <xs:selector xpath=".//mstns:CUT_CNC_MAIN" />
+      <xs:field xpath="mstns:CLPARTID" />
       <xs:field xpath="mstns:PARTID" />
-      <xs:field xpath="mstns:ItemNum" />
     </xs:unique>
   </xs:element>
 </xs:schema>

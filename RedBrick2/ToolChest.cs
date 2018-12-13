@@ -46,6 +46,7 @@ namespace RedBrick2 {
 		void ShowAccessControlledButtons() {
 			bool show = Redbrick.IsDeveloper() || Redbrick.IsSuperAdmin();
 			button8.Visible = show;
+			button9.Visible = show;
 		}
 
 		private void ToolChest_Deactivate(object sender, EventArgs e) {
@@ -203,6 +204,19 @@ namespace RedBrick2 {
 
 		private void button8_Click(object sender, EventArgs e) {
 			Thread t = new Thread(new ThreadStart(LaunchErrorLog));
+			t.SetApartmentState(ApartmentState.STA);
+			t.Start();
+			Close();
+		}
+
+		static void LaunchCNCMAIN() {
+			using (CncTodo c = new CncTodo()) {
+				c.ShowDialog();
+			}
+		}
+
+		private void button9_MouseClick(object sender, MouseEventArgs e) {
+			Thread t = new Thread(new ThreadStart(LaunchCNCMAIN));
 			t.SetApartmentState(ApartmentState.STA);
 			t.Start();
 			Close();
