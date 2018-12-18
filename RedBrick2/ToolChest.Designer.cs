@@ -37,6 +37,7 @@
 			this.button7 = new System.Windows.Forms.Button();
 			this.button8 = new System.Windows.Forms.Button();
 			this.button9 = new System.Windows.Forms.Button();
+			this.button10 = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
@@ -194,11 +195,22 @@
 			this.button9.Visible = false;
 			this.button9.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button9_MouseClick);
 			// 
+			// button10
+			// 
+			this.button10.Location = new System.Drawing.Point(221, 191);
+			this.button10.Name = "button10";
+			this.button10.Size = new System.Drawing.Size(118, 23);
+			this.button10.TabIndex = 7;
+			this.button10.Text = "Time Entry";
+			this.button10.UseVisualStyleBackColor = true;
+			this.button10.Click += new System.EventHandler(this.button10_Click);
+			// 
 			// ToolChest
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(504, 270);
+			this.Controls.Add(this.button10);
 			this.Controls.Add(this.button9);
 			this.Controls.Add(this.button8);
 			this.Controls.Add(this.groupBox5);
@@ -242,5 +254,6 @@
 		private System.Windows.Forms.Button button7;
 		private System.Windows.Forms.Button button8;
 		private System.Windows.Forms.Button button9;
+		private System.Windows.Forms.Button button10;
 	}
 }

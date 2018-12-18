@@ -41,6 +41,7 @@ namespace RedBrick2 {
 				SolidWorks.Interop.sldworks.View v_ = Redbrick.GetFirstView(swApp);
 				button2.Enabled = !(v_ == null) && v_.ReferencedDocument != null;
 			}
+			button10.Visible = true;
 		}
 
 		void ShowAccessControlledButtons() {
@@ -217,6 +218,19 @@ namespace RedBrick2 {
 
 		private void button9_MouseClick(object sender, MouseEventArgs e) {
 			Thread t = new Thread(new ThreadStart(LaunchCNCMAIN));
+			t.SetApartmentState(ApartmentState.STA);
+			t.Start();
+			Close();
+		}
+
+		static void LaunchTimeEntry() {
+			using (Time_Entry.TimeEntry te = new Time_Entry.TimeEntry()) {
+				te.ShowDialog();
+			}
+		}
+
+		private void button10_Click(object sender, EventArgs e) {
+			Thread t = new Thread(new ThreadStart(LaunchTimeEntry));
 			t.SetApartmentState(ApartmentState.STA);
 			t.Start();
 			Close();
