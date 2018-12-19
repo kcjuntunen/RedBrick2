@@ -591,6 +591,7 @@ namespace RedBrick2 {
 			this.cust_cbx.Size = new System.Drawing.Size(201, 21);
 			this.cust_cbx.TabIndex = 5;
 			this.cust_cbx.ValueMember = "CUSTID";
+			this.cust_cbx.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cust_cbx_DrawItem);
 			this.cust_cbx.SelectedIndexChanged += new System.EventHandler(this.comboBox12_SelectedIndexChanged);
 			this.cust_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.cust_cbx.Resize += new System.EventHandler(this.comboBox_Resize);
@@ -614,6 +615,7 @@ namespace RedBrick2 {
 			this.auth_cpx.Size = new System.Drawing.Size(132, 21);
 			this.auth_cpx.TabIndex = 6;
 			this.auth_cpx.ValueMember = "UID";
+			this.auth_cpx.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.auth_cpx_DrawItem);
 			this.auth_cpx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
 			this.auth_cpx.Resize += new System.EventHandler(this.comboBox_Resize);
 			// 

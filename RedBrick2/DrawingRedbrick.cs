@@ -53,6 +53,9 @@ namespace RedBrick2 {
 			label41.MouseDown += label41_MouseDown;
 			label42.MouseDown += label42_MouseDown;
 			ToggleFlameWar(Properties.Settings.Default.FlameWar);
+
+			cust_cbx.DrawMode = DrawMode.OwnerDrawFixed;
+			auth_cpx.DrawMode = DrawMode.OwnerDrawFixed;
 		}
 
 		private void InitSuggestedSpecs() {
@@ -61,7 +64,7 @@ namespace RedBrick2 {
 			if (System.Net.IPAddress.TryParse(url_.Split('/')[2], out System.Net.IPAddress ip_)) {
 				System.Net.NetworkInformation.PingReply pr_ = p_.Send(ip_);
 				if (pr_.Status != System.Net.NetworkInformation.IPStatus.Success)
-				return;
+					return;
 			} else {
 				return;
 			}
@@ -553,7 +556,8 @@ namespace RedBrick2 {
 			button7.Enabled = enab_;
 		}
 
-		private Revs RevSet {
+		private Revs RevSet
+		{
 			get { return revSet; }
 			set { revSet = value; }
 		}
@@ -971,6 +975,25 @@ namespace RedBrick2 {
 			if (PDFFileInfo != null) {
 				Redbrick.Clip(PDFFileInfo.FullName);
 			}
+		}
+
+		private void auth_cpx_DrawItem(object sender, DrawItemEventArgs e) {
+			ComboBox cb_ = sender as ComboBox;
+			int index = e.Index >= 0 ? e.Index : 0;
+			DataRowView drv_ = cb_.Items[index] as DataRowView;
+			e.DrawBackground();
+			e.Graphics.DrawString(Redbrick.TitleCase(drv_["Fullname"].ToString()), e.Font, SystemBrushes.ControlText, e.Bounds, StringFormat.GenericDefault);
+			e.DrawFocusRectangle();
+		}
+
+		private void cust_cbx_DrawItem(object sender, DrawItemEventArgs e) {
+			ComboBox cb_ = sender as ComboBox;
+			int index = e.Index >= 0 ? e.Index : 0;
+			DataRowView drv_ = cb_.Items[index] as DataRowView;
+			e.DrawBackground();
+			string item = string.Format("{0} - {1}", Redbrick.TitleCase(drv_["CUSTOMER"].ToString()), drv_["CUSTNUM"].ToString());
+			e.Graphics.DrawString(item, e.Font, SystemBrushes.ControlText, e.Bounds, StringFormat.GenericDefault);
+			e.DrawFocusRectangle();
 		}
 	}
 }
