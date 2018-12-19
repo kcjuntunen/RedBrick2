@@ -34,6 +34,8 @@ namespace RedBrick2 {
 			this.cUT_CNC_MAINTableAdapter.Fill(this.cNCTodoDataSet.CUT_CNC_MAIN);
 			this.cUT_CNC_JOBS_VIEW1TableAdapter.Fill(this.cNCTodoDataSet.CUT_CNC_JOBS_VIEW1);
 			comboBox1.SelectedValue = Properties.Settings.Default.CNCTodoLastWC;
+			Location = Properties.Settings.Default.CNCTodoLocation; 
+			Size = Properties.Settings.Default.CNCTodoSize;
 			try {
 				QueryTab1();
 			} catch (Exception ex) {
@@ -181,6 +183,12 @@ namespace RedBrick2 {
 			} catch (Exception ex) {
 				Redbrick.ProcessError(ex);
 			}
+		}
+
+		private void CncTodo_FormClosing(object sender, FormClosingEventArgs e) {
+			Properties.Settings.Default.CNCTodoLocation = Location;
+			Properties.Settings.Default.CNCTodoSize = Size;
+			Properties.Settings.Default.Save();
 		}
 	}
 }
