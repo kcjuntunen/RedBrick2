@@ -41,13 +41,13 @@ namespace RedBrick2 {
 				SolidWorks.Interop.sldworks.View v_ = Redbrick.GetFirstView(swApp);
 				button2.Enabled = !(v_ == null) && v_.ReferencedDocument != null;
 			}
+			button9.Visible = true;
 			button10.Visible = true;
 		}
 
 		void ShowAccessControlledButtons() {
 			bool show = Redbrick.IsDeveloper() || Redbrick.IsSuperAdmin();
 			button8.Visible = show;
-			button9.Visible = show;
 		}
 
 		private void ToolChest_Deactivate(object sender, EventArgs e) {
