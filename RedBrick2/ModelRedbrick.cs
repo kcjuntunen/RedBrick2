@@ -1095,6 +1095,9 @@ namespace RedBrick2 {
 		private void UpdateDims(object displayDim) {
 			DisplayDimension d_ = (DisplayDimension)displayDim;
 			Dimension dim_ = d_.GetDimension2(0);
+			if (!lengthtb.AutoCompleteCustomSource.Contains(d_.GetNameForSelection())) {
+				lengthtb.AutoCompleteCustomSource.Add(d_.GetNameForSelection());
+			}
 			if (PropertySet[@"LENGTH"].Value != null) {
 				if (dim_.FullName.Contains(PropertySet[@"LENGTH"].Value.Replace("\"", string.Empty))) {
 					PropertySet[@"LENGTH"].Data = dim_.Value;
@@ -1831,12 +1834,10 @@ namespace RedBrick2 {
 
 					// lengthtb.AutoCompleteCustomSource is a pointer to _skdim in the constructor,
 					// so changing it changes all the dimension textbox AutoComplete sources.
-					lengthtb.AutoCompleteCustomSource.Clear();
-					foreach (string item in Redbrick.CollectDimNames(ActiveDoc)) {
-						if (!lengthtb.AutoCompleteCustomSource.Contains(item)) {
-							lengthtb.AutoCompleteCustomSource.Add(item);
-						}
-					}
+					ParameterizedThreadStart pts = new ParameterizedThreadStart(CollectDimNames);
+					Thread t = new Thread(pts);
+					t.SetApartmentState(ApartmentState.STA);
+					t.Start(_activeDoc);
 
 					swDocumentTypes_e dType = (swDocumentTypes_e)_activeDoc.GetType();
 					swDocumentTypes_e odType = (swDocumentTypes_e)(SwApp.ActiveDoc as ModelDoc2).GetType();
@@ -1928,6 +1929,27 @@ namespace RedBrick2 {
 					}
 				}
 				Update();
+			}
+		}
+
+		private delegate void ClearList();
+		private void ClearListMethod() {
+			lengthtb.AutoCompleteCustomSource.Clear();
+		}
+
+		private delegate void AddDimItem(string item);
+		private void AddDimItemMethod(string item) {
+			if (!lengthtb.AutoCompleteCustomSource.Contains(item)) {
+				lengthtb.AutoCompleteCustomSource.Add(item);
+			}
+		}
+
+		private void CollectDimNames(object obj) {
+			Delegate clearmethod = new ClearList(ClearListMethod);
+			lengthtb.Invoke(clearmethod);
+			foreach (string item in Redbrick.CollectDimNames(obj as ModelDoc2)) {
+				Delegate addmethod = new AddDimItem(AddDimItemMethod);
+				lengthtb.Invoke(addmethod, item);
 			}
 		}
 

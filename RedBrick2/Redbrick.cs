@@ -7,6 +7,7 @@ using System.Linq;
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 using SolidWorks.Interop.swpublished;
+using System.Threading;
 
 namespace RedBrick2 {
 	/// <summary>
@@ -133,7 +134,9 @@ namespace RedBrick2 {
 
 			bool res = swApp.SetAddinCallbackInfo2(0, this, cookie);
 			if (CheckNetwork()) {
-				UISetup();
+				Thread t = new Thread(new ThreadStart(UISetup));
+				t.SetApartmentState(ApartmentState.STA);
+				t.Start();
 				return true;
 			} else {
 				swApp.SendMsgToUser2(Properties.Resources.NetworkNotAvailable,
@@ -1253,9 +1256,12 @@ namespace RedBrick2 {
 			int limit = 10;
 			int count = 0;
 			List<string> res_ = new List<string>();
+			if (_md == null) {
+				return res_;
+			}
 			Feature f_ = (Feature)_md.FirstFeature();
 			DisplayDimension dd_ = null;
-			while (count < limit && f_ != null) {
+			while (f_ != null) {
 				dd_ = (DisplayDimension)f_.GetFirstDisplayDimension();
 				while (count < limit && dd_ != null) {
 					if (dd_.GetType() != (int)swDimensionType_e.swLinearDimension) {
