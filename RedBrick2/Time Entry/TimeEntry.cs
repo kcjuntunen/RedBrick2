@@ -224,7 +224,7 @@ namespace RedBrick2.Time_Entry {
 				double.TryParse(time_[1], out double min);
 				total_time = hrs + (min / 60);
 			}
-			if (total_time < .01) {
+			if (total_time < 1 / 60) {
 				return;
 			}
 			using (TimeEntryDataSetTableAdapters.SCH_RECORDSTableAdapter ta =
