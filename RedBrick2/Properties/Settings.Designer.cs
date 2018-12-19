@@ -1299,5 +1299,41 @@ namespace RedBrick2.Properties {
                 this["TimeEntryLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("800, 600")]
+        public global::System.Drawing.Size CNCTodoSize {
+            get {
+                return ((global::System.Drawing.Size)(this["CNCTodoSize"]));
+            }
+            set {
+                this["CNCTodoSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
+        public global::System.Drawing.Point CNCTodoLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["CNCTodoLocation"]));
+            }
+            set {
+                this["CNCTodoLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("500")]
+        public string CNCTodoLastWC {
+            get {
+                return ((string)(this["CNCTodoLastWC"]));
+            }
+            set {
+                this["CNCTodoLastWC"] = value;
+            }
+        }
     }
 }

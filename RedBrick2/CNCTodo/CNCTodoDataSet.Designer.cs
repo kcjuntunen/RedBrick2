@@ -28,9 +28,11 @@ namespace RedBrick2.CNCTodo {
         
         private CUT_CNC_JOBS_VIEW1DataTable tableCUT_CNC_JOBS_VIEW1;
         
-        private CUT_CNC_CUTLIST_PARTSDataTable tableCUT_CNC_CUTLIST_PARTS;
-        
         private CUT_CNC_MAINDataTable tableCUT_CNC_MAIN;
+        
+        private OpDataTable tableOp;
+        
+        private CUT_PARTSDataTable tableCUT_PARTS;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -66,11 +68,14 @@ namespace RedBrick2.CNCTodo {
                 if ((ds.Tables["CUT_CNC_JOBS_VIEW1"] != null)) {
                     base.Tables.Add(new CUT_CNC_JOBS_VIEW1DataTable(ds.Tables["CUT_CNC_JOBS_VIEW1"]));
                 }
-                if ((ds.Tables["CUT_CNC_CUTLIST_PARTS"] != null)) {
-                    base.Tables.Add(new CUT_CNC_CUTLIST_PARTSDataTable(ds.Tables["CUT_CNC_CUTLIST_PARTS"]));
-                }
                 if ((ds.Tables["CUT_CNC_MAIN"] != null)) {
                     base.Tables.Add(new CUT_CNC_MAINDataTable(ds.Tables["CUT_CNC_MAIN"]));
+                }
+                if ((ds.Tables["Op"] != null)) {
+                    base.Tables.Add(new OpDataTable(ds.Tables["Op"]));
+                }
+                if ((ds.Tables["CUT_PARTS"] != null)) {
+                    base.Tables.Add(new CUT_PARTSDataTable(ds.Tables["CUT_PARTS"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -114,9 +119,9 @@ namespace RedBrick2.CNCTodo {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public CUT_CNC_CUTLIST_PARTSDataTable CUT_CNC_CUTLIST_PARTS {
+        public CUT_CNC_MAINDataTable CUT_CNC_MAIN {
             get {
-                return this.tableCUT_CNC_CUTLIST_PARTS;
+                return this.tableCUT_CNC_MAIN;
             }
         }
         
@@ -124,9 +129,19 @@ namespace RedBrick2.CNCTodo {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public CUT_CNC_MAINDataTable CUT_CNC_MAIN {
+        public OpDataTable Op {
             get {
-                return this.tableCUT_CNC_MAIN;
+                return this.tableOp;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public CUT_PARTSDataTable CUT_PARTS {
+            get {
+                return this.tableCUT_PARTS;
             }
         }
         
@@ -203,11 +218,14 @@ namespace RedBrick2.CNCTodo {
                 if ((ds.Tables["CUT_CNC_JOBS_VIEW1"] != null)) {
                     base.Tables.Add(new CUT_CNC_JOBS_VIEW1DataTable(ds.Tables["CUT_CNC_JOBS_VIEW1"]));
                 }
-                if ((ds.Tables["CUT_CNC_CUTLIST_PARTS"] != null)) {
-                    base.Tables.Add(new CUT_CNC_CUTLIST_PARTSDataTable(ds.Tables["CUT_CNC_CUTLIST_PARTS"]));
-                }
                 if ((ds.Tables["CUT_CNC_MAIN"] != null)) {
                     base.Tables.Add(new CUT_CNC_MAINDataTable(ds.Tables["CUT_CNC_MAIN"]));
+                }
+                if ((ds.Tables["Op"] != null)) {
+                    base.Tables.Add(new OpDataTable(ds.Tables["Op"]));
+                }
+                if ((ds.Tables["CUT_PARTS"] != null)) {
+                    base.Tables.Add(new CUT_PARTSDataTable(ds.Tables["CUT_PARTS"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -254,16 +272,22 @@ namespace RedBrick2.CNCTodo {
                     this.tableCUT_CNC_JOBS_VIEW1.InitVars();
                 }
             }
-            this.tableCUT_CNC_CUTLIST_PARTS = ((CUT_CNC_CUTLIST_PARTSDataTable)(base.Tables["CUT_CNC_CUTLIST_PARTS"]));
-            if ((initTable == true)) {
-                if ((this.tableCUT_CNC_CUTLIST_PARTS != null)) {
-                    this.tableCUT_CNC_CUTLIST_PARTS.InitVars();
-                }
-            }
             this.tableCUT_CNC_MAIN = ((CUT_CNC_MAINDataTable)(base.Tables["CUT_CNC_MAIN"]));
             if ((initTable == true)) {
                 if ((this.tableCUT_CNC_MAIN != null)) {
                     this.tableCUT_CNC_MAIN.InitVars();
+                }
+            }
+            this.tableOp = ((OpDataTable)(base.Tables["Op"]));
+            if ((initTable == true)) {
+                if ((this.tableOp != null)) {
+                    this.tableOp.InitVars();
+                }
+            }
+            this.tableCUT_PARTS = ((CUT_PARTSDataTable)(base.Tables["CUT_PARTS"]));
+            if ((initTable == true)) {
+                if ((this.tableCUT_PARTS != null)) {
+                    this.tableCUT_PARTS.InitVars();
                 }
             }
         }
@@ -280,10 +304,12 @@ namespace RedBrick2.CNCTodo {
             base.Tables.Add(this.tableCUT_CNC_JOBS_VIEW);
             this.tableCUT_CNC_JOBS_VIEW1 = new CUT_CNC_JOBS_VIEW1DataTable();
             base.Tables.Add(this.tableCUT_CNC_JOBS_VIEW1);
-            this.tableCUT_CNC_CUTLIST_PARTS = new CUT_CNC_CUTLIST_PARTSDataTable();
-            base.Tables.Add(this.tableCUT_CNC_CUTLIST_PARTS);
             this.tableCUT_CNC_MAIN = new CUT_CNC_MAINDataTable();
             base.Tables.Add(this.tableCUT_CNC_MAIN);
+            this.tableOp = new OpDataTable();
+            base.Tables.Add(this.tableOp);
+            this.tableCUT_PARTS = new CUT_PARTSDataTable();
+            base.Tables.Add(this.tableCUT_PARTS);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -300,13 +326,19 @@ namespace RedBrick2.CNCTodo {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeCUT_CNC_CUTLIST_PARTS() {
+        private bool ShouldSerializeCUT_CNC_MAIN() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeCUT_CNC_MAIN() {
+        private bool ShouldSerializeOp() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeCUT_PARTS() {
             return false;
         }
         
@@ -372,10 +404,13 @@ namespace RedBrick2.CNCTodo {
         public delegate void CUT_CNC_JOBS_VIEW1RowChangeEventHandler(object sender, CUT_CNC_JOBS_VIEW1RowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void CUT_CNC_CUTLIST_PARTSRowChangeEventHandler(object sender, CUT_CNC_CUTLIST_PARTSRowChangeEvent e);
+        public delegate void CUT_CNC_MAINRowChangeEventHandler(object sender, CUT_CNC_MAINRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void CUT_CNC_MAINRowChangeEventHandler(object sender, CUT_CNC_MAINRowChangeEvent e);
+        public delegate void OpRowChangeEventHandler(object sender, OpRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void CUT_PARTSRowChangeEventHandler(object sender, CUT_PARTSRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1149,406 +1184,6 @@ namespace RedBrick2.CNCTodo {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class CUT_CNC_CUTLIST_PARTSDataTable : global::System.Data.TypedTableBase<CUT_CNC_CUTLIST_PARTSRow> {
-            
-            private global::System.Data.DataColumn columnCNC1;
-            
-            private global::System.Data.DataColumn columnCNC2;
-            
-            private global::System.Data.DataColumn columnPart;
-            
-            private global::System.Data.DataColumn columnCutlist;
-            
-            private global::System.Data.DataColumn columnRev;
-            
-            private global::System.Data.DataColumn columnL;
-            
-            private global::System.Data.DataColumn columnW;
-            
-            private global::System.Data.DataColumn columnT;
-            
-            private global::System.Data.DataColumn columnOverL;
-            
-            private global::System.Data.DataColumn columnOverW;
-            
-            private global::System.Data.DataColumn columnUp;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public CUT_CNC_CUTLIST_PARTSDataTable() {
-                this.TableName = "CUT_CNC_CUTLIST_PARTS";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal CUT_CNC_CUTLIST_PARTSDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected CUT_CNC_CUTLIST_PARTSDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn CNC1Column {
-                get {
-                    return this.columnCNC1;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn CNC2Column {
-                get {
-                    return this.columnCNC2;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn PartColumn {
-                get {
-                    return this.columnPart;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn CutlistColumn {
-                get {
-                    return this.columnCutlist;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn RevColumn {
-                get {
-                    return this.columnRev;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn LColumn {
-                get {
-                    return this.columnL;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn WColumn {
-                get {
-                    return this.columnW;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn TColumn {
-                get {
-                    return this.columnT;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn OverLColumn {
-                get {
-                    return this.columnOverL;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn OverWColumn {
-                get {
-                    return this.columnOverW;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn UpColumn {
-                get {
-                    return this.columnUp;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public CUT_CNC_CUTLIST_PARTSRow this[int index] {
-                get {
-                    return ((CUT_CNC_CUTLIST_PARTSRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event CUT_CNC_CUTLIST_PARTSRowChangeEventHandler CUT_CNC_CUTLIST_PARTSRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event CUT_CNC_CUTLIST_PARTSRowChangeEventHandler CUT_CNC_CUTLIST_PARTSRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event CUT_CNC_CUTLIST_PARTSRowChangeEventHandler CUT_CNC_CUTLIST_PARTSRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event CUT_CNC_CUTLIST_PARTSRowChangeEventHandler CUT_CNC_CUTLIST_PARTSRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddCUT_CNC_CUTLIST_PARTSRow(CUT_CNC_CUTLIST_PARTSRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public CUT_CNC_CUTLIST_PARTSRow AddCUT_CNC_CUTLIST_PARTSRow(string CNC1, string CNC2, string Part, string Cutlist, string Rev, float L, float W, float T, float OverL, float OverW, bool Up) {
-                CUT_CNC_CUTLIST_PARTSRow rowCUT_CNC_CUTLIST_PARTSRow = ((CUT_CNC_CUTLIST_PARTSRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        CNC1,
-                        CNC2,
-                        Part,
-                        Cutlist,
-                        Rev,
-                        L,
-                        W,
-                        T,
-                        OverL,
-                        OverW,
-                        Up};
-                rowCUT_CNC_CUTLIST_PARTSRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowCUT_CNC_CUTLIST_PARTSRow);
-                return rowCUT_CNC_CUTLIST_PARTSRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                CUT_CNC_CUTLIST_PARTSDataTable cln = ((CUT_CNC_CUTLIST_PARTSDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new CUT_CNC_CUTLIST_PARTSDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal void InitVars() {
-                this.columnCNC1 = base.Columns["CNC1"];
-                this.columnCNC2 = base.Columns["CNC2"];
-                this.columnPart = base.Columns["Part"];
-                this.columnCutlist = base.Columns["Cutlist"];
-                this.columnRev = base.Columns["Rev"];
-                this.columnL = base.Columns["L"];
-                this.columnW = base.Columns["W"];
-                this.columnT = base.Columns["T"];
-                this.columnOverL = base.Columns["OverL"];
-                this.columnOverW = base.Columns["OverW"];
-                this.columnUp = base.Columns["Up"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            private void InitClass() {
-                this.columnCNC1 = new global::System.Data.DataColumn("CNC1", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCNC1);
-                this.columnCNC2 = new global::System.Data.DataColumn("CNC2", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCNC2);
-                this.columnPart = new global::System.Data.DataColumn("Part", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPart);
-                this.columnCutlist = new global::System.Data.DataColumn("Cutlist", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCutlist);
-                this.columnRev = new global::System.Data.DataColumn("Rev", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRev);
-                this.columnL = new global::System.Data.DataColumn("L", typeof(float), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnL);
-                this.columnW = new global::System.Data.DataColumn("W", typeof(float), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnW);
-                this.columnT = new global::System.Data.DataColumn("T", typeof(float), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnT);
-                this.columnOverL = new global::System.Data.DataColumn("OverL", typeof(float), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOverL);
-                this.columnOverW = new global::System.Data.DataColumn("OverW", typeof(float), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOverW);
-                this.columnUp = new global::System.Data.DataColumn("Up", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnUp);
-                this.columnCNC1.ReadOnly = true;
-                this.columnCNC1.MaxLength = 25;
-                this.columnCNC2.ReadOnly = true;
-                this.columnCNC2.MaxLength = 25;
-                this.columnPart.AllowDBNull = false;
-                this.columnPart.MaxLength = 25;
-                this.columnCutlist.AllowDBNull = false;
-                this.columnCutlist.MaxLength = 35;
-                this.columnRev.MaxLength = 3;
-                this.columnL.AllowDBNull = false;
-                this.columnW.AllowDBNull = false;
-                this.columnT.AllowDBNull = false;
-                this.columnUp.AllowDBNull = false;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public CUT_CNC_CUTLIST_PARTSRow NewCUT_CNC_CUTLIST_PARTSRow() {
-                return ((CUT_CNC_CUTLIST_PARTSRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new CUT_CNC_CUTLIST_PARTSRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(CUT_CNC_CUTLIST_PARTSRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.CUT_CNC_CUTLIST_PARTSRowChanged != null)) {
-                    this.CUT_CNC_CUTLIST_PARTSRowChanged(this, new CUT_CNC_CUTLIST_PARTSRowChangeEvent(((CUT_CNC_CUTLIST_PARTSRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.CUT_CNC_CUTLIST_PARTSRowChanging != null)) {
-                    this.CUT_CNC_CUTLIST_PARTSRowChanging(this, new CUT_CNC_CUTLIST_PARTSRowChangeEvent(((CUT_CNC_CUTLIST_PARTSRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.CUT_CNC_CUTLIST_PARTSRowDeleted != null)) {
-                    this.CUT_CNC_CUTLIST_PARTSRowDeleted(this, new CUT_CNC_CUTLIST_PARTSRowChangeEvent(((CUT_CNC_CUTLIST_PARTSRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.CUT_CNC_CUTLIST_PARTSRowDeleting != null)) {
-                    this.CUT_CNC_CUTLIST_PARTSRowDeleting(this, new CUT_CNC_CUTLIST_PARTSRowChangeEvent(((CUT_CNC_CUTLIST_PARTSRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveCUT_CNC_CUTLIST_PARTSRow(CUT_CNC_CUTLIST_PARTSRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                CNCTodoDataSet ds = new CNCTodoDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "CUT_CNC_CUTLIST_PARTSDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class CUT_CNC_MAINDataTable : global::System.Data.TypedTableBase<CUT_CNC_MAINRow> {
             
             private global::System.Data.DataColumn columnCLPARTID;
@@ -1995,6 +1630,649 @@ namespace RedBrick2.CNCTodo {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "CUT_CNC_MAINDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class OpDataTable : global::System.Data.TypedTableBase<OpRow> {
+            
+            private global::System.Data.DataColumn columnOPID;
+            
+            private global::System.Data.DataColumn columnOPNAME;
+            
+            private global::System.Data.DataColumn columnOPDESCR;
+            
+            private global::System.Data.DataColumn columnOPTYPE;
+            
+            private global::System.Data.DataColumn columnPOPORDER;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public OpDataTable() {
+                this.TableName = "Op";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal OpDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected OpDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OPIDColumn {
+                get {
+                    return this.columnOPID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OPNAMEColumn {
+                get {
+                    return this.columnOPNAME;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OPDESCRColumn {
+                get {
+                    return this.columnOPDESCR;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OPTYPEColumn {
+                get {
+                    return this.columnOPTYPE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn POPORDERColumn {
+                get {
+                    return this.columnPOPORDER;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public OpRow this[int index] {
+                get {
+                    return ((OpRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event OpRowChangeEventHandler OpRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event OpRowChangeEventHandler OpRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event OpRowChangeEventHandler OpRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event OpRowChangeEventHandler OpRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddOpRow(OpRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public OpRow AddOpRow(string OPNAME, string OPDESCR, int OPTYPE, int POPORDER) {
+                OpRow rowOpRow = ((OpRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        OPNAME,
+                        OPDESCR,
+                        OPTYPE,
+                        POPORDER};
+                rowOpRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowOpRow);
+                return rowOpRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public OpRow FindByOPID(int OPID) {
+                return ((OpRow)(this.Rows.Find(new object[] {
+                            OPID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                OpDataTable cln = ((OpDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new OpDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnOPID = base.Columns["OPID"];
+                this.columnOPNAME = base.Columns["OPNAME"];
+                this.columnOPDESCR = base.Columns["OPDESCR"];
+                this.columnOPTYPE = base.Columns["OPTYPE"];
+                this.columnPOPORDER = base.Columns["POPORDER"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnOPID = new global::System.Data.DataColumn("OPID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOPID);
+                this.columnOPNAME = new global::System.Data.DataColumn("OPNAME", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOPNAME);
+                this.columnOPDESCR = new global::System.Data.DataColumn("OPDESCR", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOPDESCR);
+                this.columnOPTYPE = new global::System.Data.DataColumn("OPTYPE", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOPTYPE);
+                this.columnPOPORDER = new global::System.Data.DataColumn("POPORDER", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPOPORDER);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnOPID}, true));
+                this.columnOPID.AutoIncrement = true;
+                this.columnOPID.AutoIncrementSeed = -1;
+                this.columnOPID.AutoIncrementStep = -1;
+                this.columnOPID.AllowDBNull = false;
+                this.columnOPID.ReadOnly = true;
+                this.columnOPID.Unique = true;
+                this.columnOPNAME.MaxLength = 3;
+                this.columnOPDESCR.MaxLength = 35;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public OpRow NewOpRow() {
+                return ((OpRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new OpRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(OpRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.OpRowChanged != null)) {
+                    this.OpRowChanged(this, new OpRowChangeEvent(((OpRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.OpRowChanging != null)) {
+                    this.OpRowChanging(this, new OpRowChangeEvent(((OpRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.OpRowDeleted != null)) {
+                    this.OpRowDeleted(this, new OpRowChangeEvent(((OpRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.OpRowDeleting != null)) {
+                    this.OpRowDeleting(this, new OpRowChangeEvent(((OpRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveOpRow(OpRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                CNCTodoDataSet ds = new CNCTodoDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "OpDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class CUT_PARTSDataTable : global::System.Data.TypedTableBase<CUT_PARTSRow> {
+            
+            private global::System.Data.DataColumn columnPARTID;
+            
+            private global::System.Data.DataColumn columnPART;
+            
+            private global::System.Data.DataColumn columnCNC1;
+            
+            private global::System.Data.DataColumn columnCNC2;
+            
+            private global::System.Data.DataColumn columnUPDATE_CNC;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public CUT_PARTSDataTable() {
+                this.TableName = "CUT_PARTS";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal CUT_PARTSDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected CUT_PARTSDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PARTIDColumn {
+                get {
+                    return this.columnPARTID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PARTColumn {
+                get {
+                    return this.columnPART;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CNC1Column {
+                get {
+                    return this.columnCNC1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CNC2Column {
+                get {
+                    return this.columnCNC2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn UPDATE_CNCColumn {
+                get {
+                    return this.columnUPDATE_CNC;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public CUT_PARTSRow this[int index] {
+                get {
+                    return ((CUT_PARTSRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event CUT_PARTSRowChangeEventHandler CUT_PARTSRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event CUT_PARTSRowChangeEventHandler CUT_PARTSRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event CUT_PARTSRowChangeEventHandler CUT_PARTSRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event CUT_PARTSRowChangeEventHandler CUT_PARTSRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddCUT_PARTSRow(CUT_PARTSRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public CUT_PARTSRow AddCUT_PARTSRow(string PART, string CNC1, string CNC2, bool UPDATE_CNC) {
+                CUT_PARTSRow rowCUT_PARTSRow = ((CUT_PARTSRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        PART,
+                        CNC1,
+                        CNC2,
+                        UPDATE_CNC};
+                rowCUT_PARTSRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowCUT_PARTSRow);
+                return rowCUT_PARTSRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public CUT_PARTSRow FindByPARTID(int PARTID) {
+                return ((CUT_PARTSRow)(this.Rows.Find(new object[] {
+                            PARTID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                CUT_PARTSDataTable cln = ((CUT_PARTSDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new CUT_PARTSDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnPARTID = base.Columns["PARTID"];
+                this.columnPART = base.Columns["PART"];
+                this.columnCNC1 = base.Columns["CNC1"];
+                this.columnCNC2 = base.Columns["CNC2"];
+                this.columnUPDATE_CNC = base.Columns["UPDATE_CNC"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnPARTID = new global::System.Data.DataColumn("PARTID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPARTID);
+                this.columnPART = new global::System.Data.DataColumn("PART", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPART);
+                this.columnCNC1 = new global::System.Data.DataColumn("CNC1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCNC1);
+                this.columnCNC2 = new global::System.Data.DataColumn("CNC2", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCNC2);
+                this.columnUPDATE_CNC = new global::System.Data.DataColumn("UPDATE_CNC", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUPDATE_CNC);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnPARTID}, true));
+                this.columnPARTID.AutoIncrement = true;
+                this.columnPARTID.AutoIncrementSeed = -1;
+                this.columnPARTID.AutoIncrementStep = -1;
+                this.columnPARTID.AllowDBNull = false;
+                this.columnPARTID.ReadOnly = true;
+                this.columnPARTID.Unique = true;
+                this.columnPART.AllowDBNull = false;
+                this.columnPART.MaxLength = 25;
+                this.columnCNC1.MaxLength = 25;
+                this.columnCNC2.MaxLength = 25;
+                this.columnUPDATE_CNC.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public CUT_PARTSRow NewCUT_PARTSRow() {
+                return ((CUT_PARTSRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new CUT_PARTSRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(CUT_PARTSRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.CUT_PARTSRowChanged != null)) {
+                    this.CUT_PARTSRowChanged(this, new CUT_PARTSRowChangeEvent(((CUT_PARTSRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.CUT_PARTSRowChanging != null)) {
+                    this.CUT_PARTSRowChanging(this, new CUT_PARTSRowChangeEvent(((CUT_PARTSRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.CUT_PARTSRowDeleted != null)) {
+                    this.CUT_PARTSRowDeleted(this, new CUT_PARTSRowChangeEvent(((CUT_PARTSRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.CUT_PARTSRowDeleting != null)) {
+                    this.CUT_PARTSRowDeleting(this, new CUT_PARTSRowChangeEvent(((CUT_PARTSRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveCUT_PARTSRow(CUT_PARTSRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                CNCTodoDataSet ds = new CNCTodoDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "CUT_PARTSDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -2532,227 +2810,6 @@ namespace RedBrick2.CNCTodo {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class CUT_CNC_CUTLIST_PARTSRow : global::System.Data.DataRow {
-            
-            private CUT_CNC_CUTLIST_PARTSDataTable tableCUT_CNC_CUTLIST_PARTS;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal CUT_CNC_CUTLIST_PARTSRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableCUT_CNC_CUTLIST_PARTS = ((CUT_CNC_CUTLIST_PARTSDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string CNC1 {
-                get {
-                    try {
-                        return ((string)(this[this.tableCUT_CNC_CUTLIST_PARTS.CNC1Column]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CNC1\' in table \'CUT_CNC_CUTLIST_PARTS\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCUT_CNC_CUTLIST_PARTS.CNC1Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string CNC2 {
-                get {
-                    try {
-                        return ((string)(this[this.tableCUT_CNC_CUTLIST_PARTS.CNC2Column]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CNC2\' in table \'CUT_CNC_CUTLIST_PARTS\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCUT_CNC_CUTLIST_PARTS.CNC2Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Part {
-                get {
-                    return ((string)(this[this.tableCUT_CNC_CUTLIST_PARTS.PartColumn]));
-                }
-                set {
-                    this[this.tableCUT_CNC_CUTLIST_PARTS.PartColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Cutlist {
-                get {
-                    return ((string)(this[this.tableCUT_CNC_CUTLIST_PARTS.CutlistColumn]));
-                }
-                set {
-                    this[this.tableCUT_CNC_CUTLIST_PARTS.CutlistColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Rev {
-                get {
-                    try {
-                        return ((string)(this[this.tableCUT_CNC_CUTLIST_PARTS.RevColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Rev\' in table \'CUT_CNC_CUTLIST_PARTS\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCUT_CNC_CUTLIST_PARTS.RevColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public float L {
-                get {
-                    return ((float)(this[this.tableCUT_CNC_CUTLIST_PARTS.LColumn]));
-                }
-                set {
-                    this[this.tableCUT_CNC_CUTLIST_PARTS.LColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public float W {
-                get {
-                    return ((float)(this[this.tableCUT_CNC_CUTLIST_PARTS.WColumn]));
-                }
-                set {
-                    this[this.tableCUT_CNC_CUTLIST_PARTS.WColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public float T {
-                get {
-                    return ((float)(this[this.tableCUT_CNC_CUTLIST_PARTS.TColumn]));
-                }
-                set {
-                    this[this.tableCUT_CNC_CUTLIST_PARTS.TColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public float OverL {
-                get {
-                    try {
-                        return ((float)(this[this.tableCUT_CNC_CUTLIST_PARTS.OverLColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'OverL\' in table \'CUT_CNC_CUTLIST_PARTS\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCUT_CNC_CUTLIST_PARTS.OverLColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public float OverW {
-                get {
-                    try {
-                        return ((float)(this[this.tableCUT_CNC_CUTLIST_PARTS.OverWColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'OverW\' in table \'CUT_CNC_CUTLIST_PARTS\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableCUT_CNC_CUTLIST_PARTS.OverWColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool Up {
-                get {
-                    return ((bool)(this[this.tableCUT_CNC_CUTLIST_PARTS.UpColumn]));
-                }
-                set {
-                    this[this.tableCUT_CNC_CUTLIST_PARTS.UpColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsCNC1Null() {
-                return this.IsNull(this.tableCUT_CNC_CUTLIST_PARTS.CNC1Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetCNC1Null() {
-                this[this.tableCUT_CNC_CUTLIST_PARTS.CNC1Column] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsCNC2Null() {
-                return this.IsNull(this.tableCUT_CNC_CUTLIST_PARTS.CNC2Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetCNC2Null() {
-                this[this.tableCUT_CNC_CUTLIST_PARTS.CNC2Column] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsRevNull() {
-                return this.IsNull(this.tableCUT_CNC_CUTLIST_PARTS.RevColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetRevNull() {
-                this[this.tableCUT_CNC_CUTLIST_PARTS.RevColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsOverLNull() {
-                return this.IsNull(this.tableCUT_CNC_CUTLIST_PARTS.OverLColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetOverLNull() {
-                this[this.tableCUT_CNC_CUTLIST_PARTS.OverLColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsOverWNull() {
-                return this.IsNull(this.tableCUT_CNC_CUTLIST_PARTS.OverWColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetOverWNull() {
-                this[this.tableCUT_CNC_CUTLIST_PARTS.OverWColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
         public partial class CUT_CNC_MAINRow : global::System.Data.DataRow {
             
             private CUT_CNC_MAINDataTable tableCUT_CNC_MAIN;
@@ -3078,6 +3135,248 @@ namespace RedBrick2.CNCTodo {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class OpRow : global::System.Data.DataRow {
+            
+            private OpDataTable tableOp;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal OpRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableOp = ((OpDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int OPID {
+                get {
+                    return ((int)(this[this.tableOp.OPIDColumn]));
+                }
+                set {
+                    this[this.tableOp.OPIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string OPNAME {
+                get {
+                    try {
+                        return ((string)(this[this.tableOp.OPNAMEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OPNAME\' in table \'Op\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOp.OPNAMEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string OPDESCR {
+                get {
+                    try {
+                        return ((string)(this[this.tableOp.OPDESCRColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OPDESCR\' in table \'Op\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOp.OPDESCRColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int OPTYPE {
+                get {
+                    try {
+                        return ((int)(this[this.tableOp.OPTYPEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OPTYPE\' in table \'Op\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOp.OPTYPEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int POPORDER {
+                get {
+                    try {
+                        return ((int)(this[this.tableOp.POPORDERColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'POPORDER\' in table \'Op\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOp.POPORDERColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOPNAMENull() {
+                return this.IsNull(this.tableOp.OPNAMEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOPNAMENull() {
+                this[this.tableOp.OPNAMEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOPDESCRNull() {
+                return this.IsNull(this.tableOp.OPDESCRColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOPDESCRNull() {
+                this[this.tableOp.OPDESCRColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOPTYPENull() {
+                return this.IsNull(this.tableOp.OPTYPEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOPTYPENull() {
+                this[this.tableOp.OPTYPEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPOPORDERNull() {
+                return this.IsNull(this.tableOp.POPORDERColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPOPORDERNull() {
+                this[this.tableOp.POPORDERColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class CUT_PARTSRow : global::System.Data.DataRow {
+            
+            private CUT_PARTSDataTable tableCUT_PARTS;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal CUT_PARTSRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableCUT_PARTS = ((CUT_PARTSDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int PARTID {
+                get {
+                    return ((int)(this[this.tableCUT_PARTS.PARTIDColumn]));
+                }
+                set {
+                    this[this.tableCUT_PARTS.PARTIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string PART {
+                get {
+                    return ((string)(this[this.tableCUT_PARTS.PARTColumn]));
+                }
+                set {
+                    this[this.tableCUT_PARTS.PARTColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CNC1 {
+                get {
+                    try {
+                        return ((string)(this[this.tableCUT_PARTS.CNC1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CNC1\' in table \'CUT_PARTS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCUT_PARTS.CNC1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CNC2 {
+                get {
+                    try {
+                        return ((string)(this[this.tableCUT_PARTS.CNC2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CNC2\' in table \'CUT_PARTS\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCUT_PARTS.CNC2Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool UPDATE_CNC {
+                get {
+                    return ((bool)(this[this.tableCUT_PARTS.UPDATE_CNCColumn]));
+                }
+                set {
+                    this[this.tableCUT_PARTS.UPDATE_CNCColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCNC1Null() {
+                return this.IsNull(this.tableCUT_PARTS.CNC1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCNC1Null() {
+                this[this.tableCUT_PARTS.CNC1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCNC2Null() {
+                return this.IsNull(this.tableCUT_PARTS.CNC2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCNC2Null() {
+                this[this.tableCUT_PARTS.CNC2Column] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -3149,22 +3448,22 @@ namespace RedBrick2.CNCTodo {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class CUT_CNC_CUTLIST_PARTSRowChangeEvent : global::System.EventArgs {
+        public class CUT_CNC_MAINRowChangeEvent : global::System.EventArgs {
             
-            private CUT_CNC_CUTLIST_PARTSRow eventRow;
+            private CUT_CNC_MAINRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public CUT_CNC_CUTLIST_PARTSRowChangeEvent(CUT_CNC_CUTLIST_PARTSRow row, global::System.Data.DataRowAction action) {
+            public CUT_CNC_MAINRowChangeEvent(CUT_CNC_MAINRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public CUT_CNC_CUTLIST_PARTSRow Row {
+            public CUT_CNC_MAINRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -3183,22 +3482,56 @@ namespace RedBrick2.CNCTodo {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class CUT_CNC_MAINRowChangeEvent : global::System.EventArgs {
+        public class OpRowChangeEvent : global::System.EventArgs {
             
-            private CUT_CNC_MAINRow eventRow;
+            private OpRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public CUT_CNC_MAINRowChangeEvent(CUT_CNC_MAINRow row, global::System.Data.DataRowAction action) {
+            public OpRowChangeEvent(OpRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public CUT_CNC_MAINRow Row {
+            public OpRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class CUT_PARTSRowChangeEvent : global::System.EventArgs {
+            
+            private CUT_PARTSRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public CUT_PARTSRowChangeEvent(CUT_PARTSRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public CUT_PARTSRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -3369,7 +3702,7 @@ namespace RedBrick2.CNCTodo.CNCTodoDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        CUT_CNC_JOBS_VIEW.*\r\nFROM            CUT_CNC_JOBS_VIEW\r\nORDER BY Op" +
@@ -3384,6 +3717,16 @@ WHERE        (WorkCenter = @workCenter)
 ORDER BY OpDue";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@workCenter", global::System.Data.SqlDbType.NVarChar, 7, global::System.Data.ParameterDirection.Input, 0, 0, "WorkCenter", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = @"SELECT        CutID, OpDue, JobNumber, OpNumber, JobStatus, PartNumber, PartRev, IssChk, DESCR, CutSt, LastPrn, WorkCenter, IgnChk, JobQty, PartDescription, CutChk, 
+                         CutRevChk, JinfChk
+FROM            CUT_CNC_JOBS_VIEW
+GROUP BY JobNumber, OpNumber, JobStatus, PartNumber, PartRev, IssChk, DESCR, CutSt, LastPrn, WorkCenter, IgnChk, JobQty, PartDescription, CutChk, CutRevChk, JinfChk, 
+                         CutID, OpDue
+HAVING        (WorkCenter = @wc)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@wc", global::System.Data.SqlDbType.NVarChar, 7, global::System.Data.ParameterDirection.Input, 0, 0, "WorkCenter", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3440,6 +3783,42 @@ ORDER BY OpDue";
             }
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((string)(workCenter));
+            }
+            CNCTodoDataSet.CUT_CNC_JOBS_VIEWDataTable dataTable = new CNCTodoDataSet.CUT_CNC_JOBS_VIEWDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillGroupedByWC(CNCTodoDataSet.CUT_CNC_JOBS_VIEWDataTable dataTable, string wc) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((wc == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(wc));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual CNCTodoDataSet.CUT_CNC_JOBS_VIEWDataTable GetGroupedDataByWC(string wc) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((wc == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(wc));
             }
             CNCTodoDataSet.CUT_CNC_JOBS_VIEWDataTable dataTable = new CNCTodoDataSet.CUT_CNC_JOBS_VIEWDataTable();
             this.Adapter.Fill(dataTable);
@@ -3623,190 +4002,6 @@ ORDER BY OpDue";
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class CUT_CNC_CUTLIST_PARTSTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public CUT_CNC_CUTLIST_PARTSTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "CUT_CNC_CUTLIST_PARTS";
-            tableMapping.ColumnMappings.Add("CNC1", "CNC1");
-            tableMapping.ColumnMappings.Add("CNC2", "CNC2");
-            tableMapping.ColumnMappings.Add("Part", "Part");
-            tableMapping.ColumnMappings.Add("Cutlist", "Cutlist");
-            tableMapping.ColumnMappings.Add("Rev", "Rev");
-            tableMapping.ColumnMappings.Add("L", "L");
-            tableMapping.ColumnMappings.Add("W", "W");
-            tableMapping.ColumnMappings.Add("T", "T");
-            tableMapping.ColumnMappings.Add("OverL", "OverL");
-            tableMapping.ColumnMappings.Add("OverW", "OverW");
-            tableMapping.ColumnMappings.Add("Up", "Up");
-            this._adapter.TableMappings.Add(tableMapping);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::RedBrick2.Properties.Settings.Default.ENGINEERINGConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT DISTINCT 
-                         CUT_PARTS.PARTNUM AS Part, CUT_CUTLISTS.PARTNUM AS Cutlist, CUT_CUTLISTS.REV AS Rev, CUT_PARTS.FIN_L AS L, CUT_PARTS.FIN_W AS W, 
-                         CUT_PARTS.THICKNESS AS T, CUT_PARTS.OVER_L AS OverL, CUT_PARTS.OVER_W AS OverW, CUT_PARTS.UPDATE_CNC AS Up, CUT_PARTS.CNC1, 
-                         CUT_PARTS.CNC2
-FROM            CUT_CUTLISTS INNER JOIN
-                         CUT_CNC_CUTLIST_PARTS ON CUT_CUTLISTS.CLID = CUT_CNC_CUTLIST_PARTS.CLID INNER JOIN
-                         CUT_PARTS ON CUT_CNC_CUTLIST_PARTS.PARTNUM = CUT_PARTS.PARTNUM
-WHERE        (CUT_PARTS.UPDATE_CNC = - 1)";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(CNCTodoDataSet.CUT_CNC_CUTLIST_PARTSDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual CNCTodoDataSet.CUT_CNC_CUTLIST_PARTSDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            CNCTodoDataSet.CUT_CNC_CUTLIST_PARTSDataTable dataTable = new CNCTodoDataSet.CUT_CNC_CUTLIST_PARTSDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
     public partial class CUT_CNC_MAINTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
@@ -3951,22 +4146,26 @@ WHERE        (CUT_PARTS.UPDATE_CNC = - 1)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        CUT_CUTLIST_PARTS.CLPARTID, CUT_CUTLIST_PARTS.CLID, CUT_PARTS.PARTID, CUT_PARTS.PARTNUM AS PART, CUT_PARTS.DESCR AS DESCRIPTION, 
-                         CUT_CUTLISTS.PARTNUM AS CUTLIST, CUT_CUTLISTS.REV, CUT_PARTS.FIN_L AS L, CUT_PARTS.FIN_W AS W, CUT_PARTS.THICKNESS AS T, 
-                         CUT_PARTS.OVER_L AS OVERL, CUT_PARTS.OVER_W AS OVERW, CUT_PARTS.UPDATE_CNC AS UP, CUT_PARTS.CNC1, CUT_PARTS.CNC2, 
-                         CUT_PARTS.COMMENT
-FROM            CUT_CUTLIST_PARTS INNER JOIN
-                         CUT_PARTS ON CUT_CUTLIST_PARTS.PARTID = CUT_PARTS.PARTID INNER JOIN
-                         CUT_CUTLISTS ON CUT_CUTLIST_PARTS.CLID = CUT_CUTLISTS.CLID
-GROUP BY CUT_CUTLIST_PARTS.CLPARTID, CUT_CUTLIST_PARTS.CLID, CUT_PARTS.PARTID, CUT_PARTS.PARTNUM, CUT_PARTS.DESCR, CUT_CUTLISTS.PARTNUM, 
-                         CUT_CUTLISTS.REV, CUT_PARTS.FIN_L, CUT_PARTS.FIN_W, CUT_PARTS.THICKNESS, CUT_PARTS.OVER_L, CUT_PARTS.OVER_W, CUT_PARTS.UPDATE_CNC, 
-                         CUT_PARTS.CNC1, CUT_PARTS.CNC2, CUT_PARTS.COMMENT, CUT_CUTLISTS.STATEID, CUT_PARTS.UPDATE_CNC
-HAVING        (CUT_CUTLISTS.STATEID = 2) AND (CUT_PARTS.UPDATE_CNC <> 0) OR
-                         (CUT_CUTLISTS.STATEID = 3) AND (CUT_PARTS.CNC1 IS NULL) OR
-                         (CUT_PARTS.CNC1 = N'YES') AND (CUT_PARTS.CNC2 IS NULL)
-ORDER BY PART, CUTLIST, CUT_CUTLISTS.REV;    
-
-";
+            this._commandCollection[0].CommandText = "SELECT        CUT_CUTLIST_PARTS.CLPARTID, CUT_CUTLIST_PARTS.CLID, CUT_PARTS.PARTI" +
+                "D, CUT_PARTS.PARTNUM AS PART, CUT_PARTS.DESCR AS DESCRIPTION, \r\n                " +
+                "         CUT_CUTLISTS.PARTNUM AS CUTLIST, CUT_CUTLISTS.REV, CUT_PARTS.FIN_L AS L" +
+                ", CUT_PARTS.FIN_W AS W, CUT_PARTS.THICKNESS AS T, \r\n                         CUT" +
+                "_PARTS.OVER_L AS OVERL, CUT_PARTS.OVER_W AS OVERW, CUT_PARTS.UPDATE_CNC AS UP, C" +
+                "UT_PARTS.CNC1, CUT_PARTS.CNC2, \r\n                         CUT_PARTS.COMMENT\r\nFRO" +
+                "M            CUT_CUTLIST_PARTS INNER JOIN\r\n                         CUT_PARTS ON" +
+                " CUT_CUTLIST_PARTS.PARTID = CUT_PARTS.PARTID INNER JOIN\r\n                       " +
+                "  CUT_CUTLISTS ON CUT_CUTLIST_PARTS.CLID = CUT_CUTLISTS.CLID\r\nGROUP BY CUT_CUTLI" +
+                "ST_PARTS.CLPARTID, CUT_CUTLIST_PARTS.CLID, CUT_PARTS.PARTID, CUT_PARTS.PARTNUM, " +
+                "CUT_PARTS.DESCR, CUT_CUTLISTS.PARTNUM, \r\n                         CUT_CUTLISTS.R" +
+                "EV, CUT_PARTS.FIN_L, CUT_PARTS.FIN_W, CUT_PARTS.THICKNESS, CUT_PARTS.OVER_L, CUT" +
+                "_PARTS.OVER_W, CUT_PARTS.UPDATE_CNC, \r\n                         CUT_PARTS.CNC1, " +
+                "CUT_PARTS.CNC2, CUT_PARTS.COMMENT, CUT_CUTLISTS.STATEID, CUT_PARTS.UPDATE_CNC\r\nH" +
+                "AVING        (CUT_CUTLISTS.STATEID = 2 OR\r\n                         CUT_CUTLISTS" +
+                ".STATEID = 3) AND (CUT_PARTS.UPDATE_CNC <> 0) OR\r\n                         (CUT_" +
+                "CUTLISTS.STATEID = 2 OR\r\n                         CUT_CUTLISTS.STATEID = 3) AND " +
+                "(CUT_PARTS.CNC1 IS NULL) OR\r\n                         (CUT_CUTLISTS.STATEID = 2 " +
+                "OR\r\n                         CUT_CUTLISTS.STATEID = 3) AND (CUT_PARTS.CNC2 IS NU" +
+                "LL)\r\nORDER BY PART, CUTLIST, CUT_CUTLISTS.REV;  \r\n\r\n";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3990,6 +4189,429 @@ ORDER BY PART, CUTLIST, CUT_CUTLISTS.REV;
         public virtual CNCTodoDataSet.CUT_CNC_MAINDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             CNCTodoDataSet.CUT_CNC_MAINDataTable dataTable = new CNCTodoDataSet.CUT_CNC_MAINDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class OpTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public OpTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "Op";
+            tableMapping.ColumnMappings.Add("OPID", "OPID");
+            tableMapping.ColumnMappings.Add("OPNAME", "OPNAME");
+            tableMapping.ColumnMappings.Add("OPDESCR", "OPDESCR");
+            tableMapping.ColumnMappings.Add("OPTYPE", "OPTYPE");
+            tableMapping.ColumnMappings.Add("POPORDER", "POPORDER");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::RedBrick2.Properties.Settings.Default.ENGINEERINGConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = @"SELECT        CUT_OPS.OPID, CUT_OPS.OPNAME, CUT_OPS.OPDESCR, CUT_OPS.OPTYPE, CUT_PART_OPS.POPORDER
+FROM            CUT_OPS INNER JOIN
+                         CUT_PART_OPS ON CUT_OPS.OPID = CUT_PART_OPS.POPOP
+WHERE        (CUT_PART_OPS.POPPART = @partID)";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "POPPART", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT        CUT_OPS.OPID, CUT_OPS.OPNAME, CUT_OPS.OPDESCR, CUT_OPS.OPTYPE, CUT_PART_OPS.POPORDER
+FROM            CUT_OPS INNER JOIN
+                         CUT_PART_OPS ON CUT_OPS.OPID = CUT_PART_OPS.POPOP INNER JOIN
+                         CUT_PARTS ON CUT_PART_OPS.POPPART = CUT_PARTS.PARTID
+WHERE        (CUT_PARTS.PARTNUM = @partNum)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@partNum", global::System.Data.SqlDbType.NVarChar, 25, global::System.Data.ParameterDirection.Input, 0, 0, "PARTNUM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(CNCTodoDataSet.OpDataTable dataTable, global::System.Nullable<int> partID) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((partID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(partID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual CNCTodoDataSet.OpDataTable GetData(global::System.Nullable<int> partID) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((partID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(partID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            CNCTodoDataSet.OpDataTable dataTable = new CNCTodoDataSet.OpDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBy(CNCTodoDataSet.OpDataTable dataTable, string partNum) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((partNum == null)) {
+                throw new global::System.ArgumentNullException("partNum");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(partNum));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual CNCTodoDataSet.OpDataTable GetDataBy(string partNum) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((partNum == null)) {
+                throw new global::System.ArgumentNullException("partNum");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(partNum));
+            }
+            CNCTodoDataSet.OpDataTable dataTable = new CNCTodoDataSet.OpDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class CUT_PARTSTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public CUT_PARTSTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "CUT_PARTS";
+            tableMapping.ColumnMappings.Add("PARTID", "PARTID");
+            tableMapping.ColumnMappings.Add("PART", "PART");
+            tableMapping.ColumnMappings.Add("CNC1", "CNC1");
+            tableMapping.ColumnMappings.Add("CNC2", "CNC2");
+            tableMapping.ColumnMappings.Add("UPDATE_CNC", "UPDATE_CNC");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::RedBrick2.Properties.Settings.Default.ENGINEERINGConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = @"SELECT        CUT_PARTS.PARTID, CUT_PARTS.PARTNUM AS PART, CUT_PARTS.CNC1, CUT_PARTS.CNC2, CUT_PARTS.UPDATE_CNC
+FROM            CUT_CUTLIST_PARTS INNER JOIN
+                         CUT_PARTS ON CUT_CUTLIST_PARTS.PARTID = CUT_PARTS.PARTID
+WHERE        (CUT_PARTS.CNC1 = '') AND (CUT_CUTLIST_PARTS.CLID = @clid) OR
+                         (CUT_PARTS.CNC2 = '') AND (CUT_CUTLIST_PARTS.CLID = @clid) OR
+                         (CUT_PARTS.UPDATE_CNC <> 0) AND (CUT_CUTLIST_PARTS.CLID = @clid)
+ORDER BY PART; 
+";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@clid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "CLID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int FillByClID(CNCTodoDataSet.CUT_PARTSDataTable dataTable, global::System.Nullable<int> clid) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((clid.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(clid.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual CNCTodoDataSet.CUT_PARTSDataTable GetDataByClID(global::System.Nullable<int> clid) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((clid.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(clid.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            CNCTodoDataSet.CUT_PARTSDataTable dataTable = new CNCTodoDataSet.CUT_PARTSDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
