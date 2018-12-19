@@ -58,11 +58,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tableLayoutPanel1.ColumnCount = 5;
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21F));
+			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21F));
 			this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
 			this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
 			this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
@@ -94,7 +94,7 @@
 			this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label1.Location = new System.Drawing.Point(3, 0);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(97, 33);
+			this.label1.Size = new System.Drawing.Size(76, 33);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Project";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -105,7 +105,7 @@
 			this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label2.Location = new System.Drawing.Point(3, 33);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(97, 33);
+			this.label2.Size = new System.Drawing.Size(76, 33);
 			this.label2.TabIndex = 1;
 			this.label2.Text = "Description";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -116,7 +116,7 @@
 			this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label3.Location = new System.Drawing.Point(3, 66);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(97, 33);
+			this.label3.Size = new System.Drawing.Size(76, 33);
 			this.label3.TabIndex = 2;
 			this.label3.Text = "Date";
 			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -127,7 +127,7 @@
 			this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label4.Location = new System.Drawing.Point(3, 99);
 			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(97, 33);
+			this.label4.Size = new System.Drawing.Size(76, 33);
 			this.label4.TabIndex = 3;
 			this.label4.Text = "Process";
 			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -138,7 +138,7 @@
 			this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.label5.Location = new System.Drawing.Point(3, 132);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(97, 36);
+			this.label5.Size = new System.Drawing.Size(76, 36);
 			this.label5.TabIndex = 4;
 			this.label5.Text = "Hours";
 			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -151,7 +151,7 @@
 			this.proj_cbx.DisplayMember = "DisplayName";
 			this.proj_cbx.DropDownWidth = 250;
 			this.proj_cbx.FormattingEnabled = true;
-			this.proj_cbx.Location = new System.Drawing.Point(106, 3);
+			this.proj_cbx.Location = new System.Drawing.Point(85, 3);
 			this.proj_cbx.Name = "proj_cbx";
 			this.proj_cbx.Size = new System.Drawing.Size(97, 21);
 			this.proj_cbx.TabIndex = 5;
@@ -173,9 +173,9 @@
 			// 
 			this.tableLayoutPanel1.SetColumnSpan(this.dateTimePicker1, 2);
 			this.dateTimePicker1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.dateTimePicker1.Location = new System.Drawing.Point(106, 69);
+			this.dateTimePicker1.Location = new System.Drawing.Point(85, 69);
 			this.dateTimePicker1.Name = "dateTimePicker1";
-			this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+			this.dateTimePicker1.Size = new System.Drawing.Size(210, 20);
 			this.dateTimePicker1.TabIndex = 6;
 			// 
 			// proc_cbx
@@ -187,9 +187,9 @@
 			this.proc_cbx.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.proc_cbx.DropDownWidth = 150;
 			this.proc_cbx.FormattingEnabled = true;
-			this.proc_cbx.Location = new System.Drawing.Point(106, 102);
+			this.proc_cbx.Location = new System.Drawing.Point(85, 102);
 			this.proc_cbx.Name = "proc_cbx";
-			this.proc_cbx.Size = new System.Drawing.Size(97, 21);
+			this.proc_cbx.Size = new System.Drawing.Size(102, 21);
 			this.proc_cbx.TabIndex = 7;
 			this.proc_cbx.ValueMember = "PROCID";
 			this.proc_cbx.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.proc_cbx_DrawItem);
@@ -202,18 +202,18 @@
 			// hrs_tb
 			// 
 			this.hrs_tb.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.hrs_tb.Location = new System.Drawing.Point(106, 135);
+			this.hrs_tb.Location = new System.Drawing.Point(85, 135);
 			this.hrs_tb.Name = "hrs_tb";
-			this.hrs_tb.Size = new System.Drawing.Size(97, 20);
+			this.hrs_tb.Size = new System.Drawing.Size(102, 20);
 			this.hrs_tb.TabIndex = 8;
 			// 
 			// label6
 			// 
 			this.label6.AutoSize = true;
 			this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label6.Location = new System.Drawing.Point(209, 0);
+			this.label6.Location = new System.Drawing.Point(193, 0);
 			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(97, 33);
+			this.label6.Size = new System.Drawing.Size(102, 33);
 			this.label6.TabIndex = 9;
 			this.label6.Text = "Customer";
 			this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -223,9 +223,9 @@
 			this.tableLayoutPanel1.SetColumnSpan(this.descr_tb, 4);
 			this.descr_tb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sCHPROJECTSBindingSource, "DESCRIPTION", true));
 			this.descr_tb.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.descr_tb.Location = new System.Drawing.Point(106, 36);
+			this.descr_tb.Location = new System.Drawing.Point(85, 36);
 			this.descr_tb.Name = "descr_tb";
-			this.descr_tb.Size = new System.Drawing.Size(408, 20);
+			this.descr_tb.Size = new System.Drawing.Size(429, 20);
 			this.descr_tb.TabIndex = 10;
 			// 
 			// cust_tb
@@ -233,9 +233,9 @@
 			this.tableLayoutPanel1.SetColumnSpan(this.cust_tb, 2);
 			this.cust_tb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sCHPROJECTSBindingSource, "CUSTOMER", true));
 			this.cust_tb.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.cust_tb.Location = new System.Drawing.Point(312, 3);
+			this.cust_tb.Location = new System.Drawing.Point(301, 3);
 			this.cust_tb.Name = "cust_tb";
-			this.cust_tb.Size = new System.Drawing.Size(202, 20);
+			this.cust_tb.Size = new System.Drawing.Size(213, 20);
 			this.cust_tb.TabIndex = 11;
 			// 
 			// save_btn
@@ -252,7 +252,7 @@
 			// discard_btn
 			// 
 			this.discard_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.discard_btn.Location = new System.Drawing.Point(334, 142);
+			this.discard_btn.Location = new System.Drawing.Point(328, 142);
 			this.discard_btn.Name = "discard_btn";
 			this.discard_btn.Size = new System.Drawing.Size(75, 23);
 			this.discard_btn.TabIndex = 13;
