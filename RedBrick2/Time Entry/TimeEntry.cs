@@ -26,6 +26,7 @@ namespace RedBrick2.Time_Entry {
 			uid_cbx.DrawMode = DrawMode.OwnerDrawFixed;
 			cust_cbx.DrawMode = DrawMode.OwnerDrawFixed;
 			proj_cbx.DrawMode = DrawMode.OwnerDrawFixed;
+			proc_cbx.DrawMode = DrawMode.OwnerDrawFixed;
 			add_proj_cbx.DrawMode = DrawMode.OwnerDrawFixed;
 			add_proc_cbx.DrawMode = DrawMode.OwnerDrawFixed;
 
@@ -71,14 +72,17 @@ namespace RedBrick2.Time_Entry {
 					dateTimePicker1.Value, dateTimePicker2.Value);
 				try {
 					foreach (TimeEntryDataSet.ScheduleListViewRow row in timeEntryDataSet.ScheduleListView.Rows) {
+						int qty = Convert.ToInt32(row.QTY * 60);
+						string time = string.Format("{0}:{1:D2}", (qty / 60), (qty % 60));
 						string[] data = new string[] {
 						row.DATE.ToString("yyyy-MM-dd"),
 						row.PROJECT,
 						Redbrick.TitleCase(row.DESCRIPTION),
-						row.PROCESS,
-						row.QTY.ToString(),
+						Redbrick.TitleCase(row.PROCESS).Replace("Cad", "CAD").Replace("Cnc", "CNC").Replace("M2m", "M2M"),
+						time,
 						row.CUSTID.ToString(),
-						row.RECID.ToString()
+						row.RECID.ToString(),
+						row.QTY.ToString()
 					};
 						ListViewItems.Add(new ListViewItem(data));
 					}
@@ -101,10 +105,10 @@ namespace RedBrick2.Time_Entry {
 					continue;
 				}
 				if (proc_cbx.SelectedIndex != -1 &&
-					lvi.SubItems[3].Text.Trim() != Convert.ToString(proc_cbx.SelectedValue).Trim()) {
+					lvi.SubItems[3].Text.Trim().ToUpper() != Convert.ToString(proc_cbx.SelectedValue).Trim().ToUpper()) {
 					continue;
 				}
-				if (double.TryParse(lvi.SubItems[4].Text, out double test)) {
+				if (double.TryParse(lvi.SubItems[7].Text, out double test)) {
 					total += test;
 				}
 				listView1.Items.Add(lvi);
