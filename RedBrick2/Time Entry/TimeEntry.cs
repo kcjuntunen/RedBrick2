@@ -34,6 +34,8 @@ namespace RedBrick2.Time_Entry {
 		}
 
 		private void TimeEntry_Load(object sender, EventArgs e) {
+			Location = Properties.Settings.Default.TimeEntryLocation;
+			Size = Properties.Settings.Default.TimeEntrySize;
 			this.sCH_PROCESSTableAdapter.Fill(this.timeEntryDataSet.SCH_PROCESS);
 			this.sCH_PROJECTSTableAdapter.Fill(this.timeEntryDataSet.SCH_PROJECTS);
 			this.gEN_CUSTOMERSTableAdapter.Fill(this.timeEntryDataSet.GEN_CUSTOMERS);
@@ -256,6 +258,10 @@ namespace RedBrick2.Time_Entry {
 		}
 
 		private void editToolStripMenuItem_Click(object sender, EventArgs e) {
+			edit();
+		}
+
+		private void edit() {
 			if (listView1.SelectedItems.Count < 1) {
 				return;
 			}
@@ -268,9 +274,9 @@ namespace RedBrick2.Time_Entry {
 			}
 			using (EditTimeEntry ete = new EditTimeEntry(test_)) {
 				ete.ShowDialog(this);
-				PopulateList();
-				Filter();
 			}
+			PopulateList();
+			Filter();
 		}
 
 		private void deleteToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -296,6 +302,16 @@ namespace RedBrick2.Time_Entry {
 
 		private void cbx_KeyDown(object sender, KeyEventArgs e) {
 			(sender as ComboBox).DroppedDown = false;
+		}
+
+		private void listView1_MouseDoubleClick(object sender, MouseEventArgs e) {
+			edit();
+		}
+
+		private void TimeEntry_FormClosing(object sender, FormClosingEventArgs e) {
+			Properties.Settings.Default.TimeEntryLocation = Location;
+			Properties.Settings.Default.TimeEntrySize = Size;
+			Properties.Settings.Default.Save();
 		}
 	}
 }

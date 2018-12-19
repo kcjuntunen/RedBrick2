@@ -1275,5 +1275,29 @@ namespace RedBrick2.Properties {
                 this["ErrorLogLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("800, 600")]
+        public global::System.Drawing.Size TimeEntrySize {
+            get {
+                return ((global::System.Drawing.Size)(this["TimeEntrySize"]));
+            }
+            set {
+                this["TimeEntrySize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
+        public global::System.Drawing.Point TimeEntryLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["TimeEntryLocation"]));
+            }
+            set {
+                this["TimeEntryLocation"] = value;
+            }
+        }
     }
 }
