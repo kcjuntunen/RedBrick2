@@ -42,7 +42,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <RegisterForComInterop>true</RegisterForComInterop>
     <DocumentationFile>bin\x64\Debug\RedBrick2.XML</DocumentationFile>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
   </PropertyGroup>
@@ -129,6 +129,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="UIAutomationProvider" />
@@ -369,6 +370,23 @@
     <Compile Include="SWTaskpaneHost.Designer.cs">
       <DependentUpon>SWTaskpaneHost.cs</DependentUpon>
     </Compile>
+    <Compile Include="Time Entry\EditTimeEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Time Entry\EditTimeEntry.Designer.cs">
+      <DependentUpon>EditTimeEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Time Entry\TimeEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Time Entry\TimeEntry.Designer.cs">
+      <DependentUpon>TimeEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Time Entry\TimeEntryDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TimeEntryDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ToolChest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -468,6 +486,17 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Time Entry\TimeEntryDataSet.xsc">
+      <DependentUpon>TimeEntryDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Time Entry\TimeEntryDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TimeEntryDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Time Entry\TimeEntryDataSet.xss">
+      <DependentUpon>TimeEntryDataSet.xsd</DependentUpon>
+    </None>
     <None Include="version.nsh" />
   </ItemGroup>
   <ItemGroup>
@@ -540,6 +569,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SWTaskpaneHost.resx">
       <DependentUpon>SWTaskpaneHost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Time Entry\EditTimeEntry.resx">
+      <DependentUpon>EditTimeEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Time Entry\TimeEntry.resx">
+      <DependentUpon>TimeEntry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolChest.resx">
       <DependentUpon>ToolChest.cs</DependentUpon>
