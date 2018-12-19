@@ -261,7 +261,7 @@ namespace RedBrick2 {
 		/// Delete item from SW properties.
 		/// </summary>
 		public virtual void Delete() {
-			DeleteResult = (swCustomInfoDeleteResult_e)PropertyManager.Delete2(Name);
+			DeleteResult = (swCustomInfoDeleteResult_e)PropertyManager?.Delete2(Name);
 		}
 
 		/// <summary>
