@@ -1937,20 +1937,26 @@ namespace RedBrick2 {
 			lengthtb.AutoCompleteCustomSource.Clear();
 		}
 
-		private delegate void AddDimItem(string item);
-		private void AddDimItemMethod(string item) {
-			if (!lengthtb.AutoCompleteCustomSource.Contains(item)) {
-				lengthtb.AutoCompleteCustomSource.Add(item);
-			}
+		private delegate void AddDimItem(object obj);
+		private void AddDimItemMethod(object obj) {
+			string[] items = obj as string[];
+			lengthtb.AutoCompleteCustomSource.AddRange(items);
 		}
 
 		private void CollectDimNames(object obj) {
-			Delegate clearmethod = new ClearList(ClearListMethod);
-			lengthtb.Invoke(clearmethod);
-			foreach (string item in Redbrick.CollectDimNames(obj as ModelDoc2)) {
-				Delegate addmethod = new AddDimItem(AddDimItemMethod);
-				lengthtb.Invoke(addmethod, item);
+			if (!(obj is ModelDoc2)) {
+				return;
 			}
+			if ((obj as ModelDoc2) is  DrawingDoc) {
+				return;
+			}
+
+			string[] items = Redbrick.CollectDimNames(obj as ModelDoc2).ToArray();
+
+			Delegate clearmethod = new ClearList(ClearListMethod);
+			Delegate addmethod = new AddDimItem(AddDimItemMethod);
+			lengthtb.Invoke(clearmethod);
+			lengthtb.Invoke(addmethod, items as object);
 		}
 
 		/// <summary>
