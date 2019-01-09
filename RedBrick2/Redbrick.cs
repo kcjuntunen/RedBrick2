@@ -1261,24 +1261,29 @@ namespace RedBrick2 {
 			if (_md == null) {
 				return res_;
 			}
-			Feature f_ = (Feature)_md.FirstFeature();
-			DisplayDimension dd_ = null;
-			while (f_ != null) {
-				dd_ = (DisplayDimension)f_.GetFirstDisplayDimension();
-				while (count < limit && dd_ != null) {
-					if (dd_.GetType() != (int)swDimensionType_e.swLinearDimension) {
+			try {
+				Feature f_ = (Feature)_md.FirstFeature();
+				DisplayDimension dd_ = null;
+				while (f_ != null) {
+					dd_ = (DisplayDimension)f_.GetFirstDisplayDimension();
+					while (count < limit && dd_ != null) {
+						if (dd_.GetType() != (int)swDimensionType_e.swLinearDimension) {
+							dd_ = (DisplayDimension)f_.GetNextDisplayDimension(dd_);
+							continue;
+						}
+						Dimension d_ = dd_.GetDimension2(0);
+						string name_ = d_.GetNameForSelection();
+						if (!res_.Contains(name_)) {
+							count++;
+							res_.Add(name_);
+						}
 						dd_ = (DisplayDimension)f_.GetNextDisplayDimension(dd_);
-						continue;
 					}
-					Dimension d_ = dd_.GetDimension2(0);
-					string name_ = d_.GetNameForSelection();
-					if (!res_.Contains(name_)) {
-						count++;
-						res_.Add(name_);
-					}
-					dd_ = (DisplayDimension)f_.GetNextDisplayDimension(dd_);
+					f_ = (Feature)f_.GetNextFeature();
 				}
-				f_ = (Feature)f_.GetNextFeature();
+			} catch (Exception e) {
+				//ProcessError(e);
+				return res_;
 			}
 
 			EquationMgr em_ = _md.GetEquationMgr();
