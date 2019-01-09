@@ -5,7 +5,7 @@ namespace RedBrick2 {
 	class MatId : IntProperty {
 		public MatId(string name, bool global, SldWorks sw, ModelDoc2 md, string fieldName)
 			: base(name, global, sw, md, @"", fieldName) {
-				DoNotWrite = true;
+				DoNotWrite = false;
 		}
 
 		public override void Set(object data_, string value_) {
