@@ -30,7 +30,7 @@ namespace RedBrick2.Time_Entry {
 			add_proc_cbx.DrawMode = DrawMode.OwnerDrawFixed;
 
 			dateTimePicker1.Value = DateTime.Now.AddMonths(-3);
-			dateTimePicker2.Value = DateTime.Now;
+			dateTimePicker2.Value = DateTime.Now.AddDays(1);
 		}
 
 		private void TimeEntry_Load(object sender, EventArgs e) {

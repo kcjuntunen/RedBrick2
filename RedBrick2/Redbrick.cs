@@ -135,6 +135,7 @@ namespace RedBrick2 {
 			bool res = swApp.SetAddinCallbackInfo2(0, this, cookie);
 			if (CheckNetwork()) {
 				UISetup();
+				// test
 				//Thread t = new Thread(new ThreadStart(UISetup));
 				//t.SetApartmentState(ApartmentState.STA);
 				//t.Start();
