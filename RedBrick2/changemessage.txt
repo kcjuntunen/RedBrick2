@@ -2,6 +2,7 @@
 1. Redbrick
    1) Fix routing lookups for parts not in the DB.
    2) Fix odd Ctrl+C behaviour in comboboxes.
+   3) Fix bad oversize calculation on cutlist selection.
 2. Time Entry
    1) Changed tab stops on Time Entry window.
    2) Display updates after delete.
