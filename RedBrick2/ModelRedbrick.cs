@@ -801,9 +801,12 @@ namespace RedBrick2 {
 						type = Convert.ToInt32(pta.GetIDByDescr(StrTryProp(@"DEPARTMENT")));
 					}
 				}
-				type_cbx.SelectedValue = type;
-				FilterOps(string.Format(@"TYPEID = {0}", type));
 			}
+			if (type < 1) {
+				type = 1;
+			}
+			type_cbx.SelectedValue = type;
+			FilterOps(string.Format(@"TYPEID = {0}", type));
 			Redbrick.unselect(tableLayoutPanel6.Controls);
 		}
 
