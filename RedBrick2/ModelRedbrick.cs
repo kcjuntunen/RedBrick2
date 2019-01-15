@@ -2117,7 +2117,11 @@ namespace RedBrick2 {
 			}
 			float edge_thickness_ = get_edge_thickness_total(edgef, edgeb);
 			if (float.TryParse(overLtb.Text, out float test_)) {
-				calculate_blanksize_from_oversize(test_, blnkszWtb, width, edge_thickness_);
+				calculate_blanksize_from_oversize(test_, blnkszLtb, width, edge_thickness_);
+			}
+			edge_thickness_ = get_edge_thickness_total(edgel, edger);
+			if (float.TryParse(overLtb.Text, out test_)) {
+				calculate_blanksize_from_oversize(test_, blnkszWtb, length, edge_thickness_);
 			}
 			edgef_price_ = string.Empty;
 			CheckEdgingOps();
