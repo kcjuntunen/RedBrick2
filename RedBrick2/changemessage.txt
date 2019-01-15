@@ -9,3 +9,7 @@
    3) Fixed a Time Entry bug (Converting double to int).
 3. Error log
    1) Don't show all apps on start.
+
+*.5
+
+1. Stop Redbrick from stealing focus.

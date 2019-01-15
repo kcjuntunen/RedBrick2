@@ -56,6 +56,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
     <RunCodeAnalysis>true</RunCodeAnalysis>
+    <NoWarn>CA2240</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>redlego.ico</ApplicationIcon>
