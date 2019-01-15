@@ -281,10 +281,12 @@ namespace RedBrick2 {
 		/// </summary>
 		/// <param name="md">ModelDoc2 to query.</param>
 		public void ReQuery(ModelDoc2 md) {
+			tabControl1.Focus();
 			ActiveDoc = md;
 		}
 
 		private void ReQuery() {
+			tabControl1.Focus();
 			Properties.Settings.Default.NumberFormat = get_format_txt(_activeDoc);
 			Properties.Settings.Default.Save();
 			dirtTracker.IsDirty = false;
