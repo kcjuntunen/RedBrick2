@@ -58,7 +58,7 @@ namespace RedBrick2.Time_Entry {
 			timeEntryDataSet.SCH_RECORDS[0].PID = Convert.ToInt32(proj_cbx.SelectedValue);
 			timeEntryDataSet.SCH_RECORDS[0].PDATE = dateTimePicker1.Value;
 			timeEntryDataSet.SCH_RECORDS[0].PROCID = Convert.ToInt32(proc_cbx.SelectedValue);
-			timeEntryDataSet.SCH_RECORDS[0].QTY = Convert.ToInt32(total_time);
+			timeEntryDataSet.SCH_RECORDS[0].QTY = Convert.ToDecimal(total_time);
 			using (TimeEntryDataSetTableAdapters.SCH_RECORDSTableAdapter ta =
 				new TimeEntryDataSetTableAdapters.SCH_RECORDSTableAdapter()) {
 				ta.Update(timeEntryDataSet.SCH_RECORDS[0]);

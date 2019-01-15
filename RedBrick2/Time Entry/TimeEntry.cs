@@ -298,6 +298,8 @@ namespace RedBrick2.Time_Entry {
 				new TimeEntryDataSetTableAdapters.SCH_RECORDSTableAdapter()) {
 				try {
 					ta.DeleteByRecID(test_);
+					PopulateList();
+					Filter();
 				} catch (Exception ex) {
 					Redbrick.ProcessError(ex);
 				}
