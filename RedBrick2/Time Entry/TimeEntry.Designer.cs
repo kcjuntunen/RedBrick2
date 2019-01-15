@@ -153,6 +153,7 @@
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(500, 180);
             this.listView1.TabIndex = 6;
+            this.listView1.TabStop = false;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseClick);
             this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDoubleClick);
@@ -189,6 +190,7 @@
             this.uid_cbx.Name = "uid_cbx";
             this.uid_cbx.Size = new System.Drawing.Size(224, 21);
             this.uid_cbx.TabIndex = 99;
+            this.uid_cbx.TabStop = false;
             this.uid_cbx.ValueMember = "UID";
             this.uid_cbx.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.uid_cbx_DrawItem);
             this.uid_cbx.SelectedIndexChanged += new System.EventHandler(this.uid_cbx_SelectedIndexChanged);
