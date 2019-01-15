@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Windows.Forms;
 
 namespace RedBrick2 {
@@ -33,6 +34,7 @@ namespace RedBrick2 {
 		private void CncTodo_Load(object sender, EventArgs e) {
 			this.cUT_CNC_MAINTableAdapter.Fill(this.cNCTodoDataSet.CUT_CNC_MAIN);
 			this.cUT_CNC_JOBS_VIEW1TableAdapter.Fill(this.cNCTodoDataSet.CUT_CNC_JOBS_VIEW1);
+			this.metalAlertTableAdapter.FillBy(this.cNCTodoDataSet.MetalAlert);
 			comboBox1.SelectedValue = Properties.Settings.Default.CNCTodoLastWC;
 			Location = Properties.Settings.Default.CNCTodoLocation; 
 			Size = Properties.Settings.Default.CNCTodoSize;
@@ -44,6 +46,7 @@ namespace RedBrick2 {
 			WindowState = FormWindowState.Minimized;
 			Show();
 			WindowState = FormWindowState.Normal;
+			Filter();
 			Initialated = true;
 		}
 
@@ -189,6 +192,28 @@ namespace RedBrick2 {
 			Properties.Settings.Default.CNCTodoLocation = Location;
 			Properties.Settings.Default.CNCTodoSize = Size;
 			Properties.Settings.Default.Save();
+		}
+
+		private void Filter() {
+			StringBuilder sb = new StringBuilder();
+			if (show_unch_chb.Checked) {
+				sb.Append("ALERTCHK = 0");
+			}
+			metalAlertBindingSource.Filter = sb.ToString();
+			dataGridView2.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.DisplayedCellsExceptHeader);
+		}
+
+		private void show_unch_chb_CheckedChanged(object sender, EventArgs e) {
+			Filter();
+		}
+
+		private void button2_Click(object sender, EventArgs e) {
+			if (dataGridView2.SelectedRows.Count < 1) {
+				return;
+			}
+			DataGridViewRow r = dataGridView2.SelectedRows[0];
+			string path = string.Format(@"{0}{1}", r.Cells[5].Value.ToString(), r.Cells[6].Value.ToString());
+			System.Diagnostics.Process.Start(path);
 		}
 	}
 }
