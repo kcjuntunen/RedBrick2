@@ -1,7 +1,10 @@
 
-1) Added buttons to save steps on Drawing Collector.
-2) Overhauled selection method in Drawing Collector.
-3) Allowing addition of arbitrary PDFs in Drwing Collector.
-4) ECRViewer showing a little more information.
-5) Added Error Log window to ToolBox for folks with high enough access.
-
+1. Redbrick
+   1) Fix routing lookups for parts not in the DB.
+   2) Fix odd Ctrl+C behaviour in comboboxes.
+2. Time Entry
+   1) Changed tab stops on Time Entry window.
+   2) Display updates after delete.
+   3) Fixed a Time Entry bug (Converting double to int).
+3. Error log
+   1) Don't show all apps on start.
