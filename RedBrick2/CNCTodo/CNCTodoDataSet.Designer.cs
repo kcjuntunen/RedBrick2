@@ -3724,7 +3724,8 @@ ORDER BY OpDue";
 FROM            CUT_CNC_JOBS_VIEW
 GROUP BY JobNumber, OpNumber, JobStatus, PartNumber, PartRev, IssChk, DESCR, CutSt, LastPrn, WorkCenter, IgnChk, JobQty, PartDescription, CutChk, CutRevChk, JinfChk, 
                          CutID, OpDue
-HAVING        (WorkCenter = @wc)";
+HAVING        (WorkCenter = @wc)
+ORDER BY OpDue";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@wc", global::System.Data.SqlDbType.NVarChar, 7, global::System.Data.ParameterDirection.Input, 0, 0, "WorkCenter", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
