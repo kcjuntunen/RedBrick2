@@ -85,7 +85,7 @@ namespace RedBrick2.ErrorLog {
 			Location = Properties.Settings.Default.ErrorLogLocation;
 			Size = Properties.Settings.Default.ErrorLogSize;
 			dateTimePicker1.Value = DateTime.Now.AddMonths(-1);
-			PopulateAll(false);
+			Populate(false);
 			WindowState = FormWindowState.Minimized;
 			Show();
 			WindowState = FormWindowState.Normal;
