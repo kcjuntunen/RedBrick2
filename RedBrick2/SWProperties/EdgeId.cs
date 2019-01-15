@@ -28,7 +28,7 @@ namespace RedBrick2 {
 				return _data;
 			}
 			set {
-				if (value is string) {
+				if (value is string && (string)value != string.Empty) {
 					using (ENGINEERINGDataSetTableAdapters.CUT_EDGES_XREFTableAdapter cex =
 						new ENGINEERINGDataSetTableAdapters.CUT_EDGES_XREFTableAdapter()) {
 						try {
@@ -39,8 +39,8 @@ namespace RedBrick2 {
 						}
 					}
 				} else {
-					using (ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter ce =
-						new ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter()) {
+					//using (ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter ce =
+					//	new ENGINEERINGDataSetTableAdapters.CUT_EDGESTableAdapter()) {
 						if (value != null) {
 							int res;
 							if (!int.TryParse(value.ToString(), out res)) {
@@ -51,7 +51,7 @@ namespace RedBrick2 {
 						} else {
 							_data = 0;
 						}
-					}
+					//}
 				}
 			}
 		}
