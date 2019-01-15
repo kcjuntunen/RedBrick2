@@ -3824,7 +3824,8 @@ namespace RedBrick2.Time_Entry.TimeEntryDataSetTableAdapters {
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [GEN_USERS] DEFAULT VALUES;\r\nSELECT UID, FIRST + \' \' + LAST + \' \' + I" +
-                "SNULL(SUFFIX, \'\') AS Fullname FROM GEN_USERS WHERE (UID = SCOPE_IDENTITY())";
+                "SNULL(SUFFIX, \'\') AS Fullname FROM GEN_USERS WHERE (UID = SCOPE_IDENTITY()) ORDE" +
+                "R BY LAST, SUFFIX, FIRST";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3842,7 +3843,8 @@ namespace RedBrick2.Time_Entry.TimeEntryDataSetTableAdapters {
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        UID, FIRST + \' \' + LAST + \' \' + ISNULL(SUFFIX, \'\') AS Fullname\r\nFRO" +
-                "M            GEN_USERS\r\nWHERE        (DEPT = @dept)";
+                "M            GEN_USERS\r\nWHERE        (DEPT = @dept)\r\nORDER BY LAST, SUFFIX, FIRS" +
+                "T";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dept", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "DEPT", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
