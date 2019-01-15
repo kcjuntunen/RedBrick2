@@ -222,12 +222,13 @@ namespace RedBrick2.Time_Entry {
 			if (add_proj_cbx.SelectedItem == null || add_proc_cbx.SelectedItem == null) {
 				return;
 			}
-			double total_time = 0.0;
-			if (hrs_tbx.Text.Contains(":")) {
-				string[] time_ = hrs_tbx.Text.Split(':');
-				double.TryParse(time_[0], out double hrs);
-				double.TryParse(time_[1], out double min);
-				total_time = hrs + (min / 60);
+			if (!double.TryParse(hrs_tbx.Text, out double total_time)) {
+				if (hrs_tbx.Text.Contains(":")) {
+					string[] time_ = hrs_tbx.Text.Split(':');
+					double.TryParse(time_[0], out double hrs);
+					double.TryParse(time_[1], out double min);
+					total_time = hrs + (min / 60);
+				}
 			}
 			if (total_time < 1 / 60) {
 				return;
