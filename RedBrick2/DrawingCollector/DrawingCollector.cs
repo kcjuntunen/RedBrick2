@@ -672,7 +672,6 @@ namespace RedBrick2.DrawingCollector {
 		}
 
 		private void add_btn_Click(object sender, EventArgs e) {
-			int err = 0;
 			OpenFileDialog ofd_ = new OpenFileDialog();
 			ofd_.InitialDirectory = Path.GetDirectoryName(rootItem.SldDrw.FullName);
 			ofd_.Filter = @"SolidWorks Drawings and PDFs (*.pdf;*.slddrw)|*.slddrw;*.pdf";
