@@ -24,12 +24,12 @@
 		/// </summary>
 		private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -83,15 +83,9 @@
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.sw_btn = new System.Windows.Forms.Button();
+            this.viewPDF_btn = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.metalAlertBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.show_unch_chb = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.cUT_CNC_MAINTableAdapter = new RedBrick2.CNCTodo.CNCTodoDataSetTableAdapters.CUT_CNC_MAINTableAdapter();
-            this.opTableAdapter = new RedBrick2.CNCTodo.CNCTodoDataSetTableAdapters.OpTableAdapter();
-            this.cNCTodoDataSet1 = new RedBrick2.CNCTodo.CNCTodoDataSet();
-            this.cUT_CNC_JOBS_VIEW1TableAdapter = new RedBrick2.CNCTodo.CNCTodoDataSetTableAdapters.CUT_CNC_JOBS_VIEW1TableAdapter();
-            this.metalAlertTableAdapter = new RedBrick2.CNCTodo.CNCTodoDataSetTableAdapters.MetalAlertTableAdapter();
             this.aLERTDATEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.aLERTTYPEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.aLERTDESCDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -100,8 +94,15 @@
             this.fPathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.aLERTIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.metalAlertBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.show_unch_chb = new System.Windows.Forms.CheckBox();
+            this.chk_btn = new System.Windows.Forms.Button();
+            this.cUT_CNC_MAINTableAdapter = new RedBrick2.CNCTodo.CNCTodoDataSetTableAdapters.CUT_CNC_MAINTableAdapter();
+            this.opTableAdapter = new RedBrick2.CNCTodo.CNCTodoDataSetTableAdapters.OpTableAdapter();
+            this.cNCTodoDataSet1 = new RedBrick2.CNCTodo.CNCTodoDataSet();
+            this.cUT_CNC_JOBS_VIEW1TableAdapter = new RedBrick2.CNCTodo.CNCTodoDataSetTableAdapters.CUT_CNC_JOBS_VIEW1TableAdapter();
+            this.metalAlertTableAdapter = new RedBrick2.CNCTodo.CNCTodoDataSetTableAdapters.MetalAlertTableAdapter();
+            this.pathLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.cUTCNCJOBSVIEW1BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cNCTodoDataSet)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -511,9 +512,9 @@
             // lDataGridViewTextBoxColumn
             // 
             this.lDataGridViewTextBoxColumn.DataPropertyName = "L";
-            dataGridViewCellStyle1.Format = "N3";
-            dataGridViewCellStyle1.NullValue = "0.000";
-            this.lDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Format = "N3";
+            dataGridViewCellStyle7.NullValue = "0.000";
+            this.lDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
             this.lDataGridViewTextBoxColumn.HeaderText = "L";
             this.lDataGridViewTextBoxColumn.Name = "lDataGridViewTextBoxColumn";
             this.lDataGridViewTextBoxColumn.ReadOnly = true;
@@ -521,9 +522,9 @@
             // wDataGridViewTextBoxColumn
             // 
             this.wDataGridViewTextBoxColumn.DataPropertyName = "W";
-            dataGridViewCellStyle2.Format = "N3";
-            dataGridViewCellStyle2.NullValue = "0.000";
-            this.wDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Format = "N3";
+            dataGridViewCellStyle8.NullValue = "0.000";
+            this.wDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
             this.wDataGridViewTextBoxColumn.HeaderText = "W";
             this.wDataGridViewTextBoxColumn.Name = "wDataGridViewTextBoxColumn";
             this.wDataGridViewTextBoxColumn.ReadOnly = true;
@@ -531,9 +532,9 @@
             // tDataGridViewTextBoxColumn
             // 
             this.tDataGridViewTextBoxColumn.DataPropertyName = "T";
-            dataGridViewCellStyle3.Format = "N3";
-            dataGridViewCellStyle3.NullValue = "0.000";
-            this.tDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Format = "N3";
+            dataGridViewCellStyle9.NullValue = "0.000";
+            this.tDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle9;
             this.tDataGridViewTextBoxColumn.HeaderText = "T";
             this.tDataGridViewTextBoxColumn.Name = "tDataGridViewTextBoxColumn";
             this.tDataGridViewTextBoxColumn.ReadOnly = true;
@@ -541,9 +542,9 @@
             // OVERL
             // 
             this.OVERL.DataPropertyName = "OVERL";
-            dataGridViewCellStyle4.Format = "N3";
-            dataGridViewCellStyle4.NullValue = "0.000";
-            this.OVERL.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Format = "N3";
+            dataGridViewCellStyle10.NullValue = "0.000";
+            this.OVERL.DefaultCellStyle = dataGridViewCellStyle10;
             this.OVERL.HeaderText = "OverL";
             this.OVERL.Name = "OVERL";
             this.OVERL.ReadOnly = true;
@@ -551,9 +552,9 @@
             // OVERW
             // 
             this.OVERW.DataPropertyName = "OVERW";
-            dataGridViewCellStyle5.Format = "N3";
-            dataGridViewCellStyle5.NullValue = "0.000";
-            this.OVERW.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Format = "N3";
+            dataGridViewCellStyle11.NullValue = "0.000";
+            this.OVERW.DefaultCellStyle = dataGridViewCellStyle11;
             this.OVERW.HeaderText = "OverW";
             this.OVERW.Name = "OVERW";
             this.OVERW.ReadOnly = true;
@@ -615,11 +616,12 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.button3);
-            this.tabPage3.Controls.Add(this.button2);
+            this.tabPage3.Controls.Add(this.pathLabel);
+            this.tabPage3.Controls.Add(this.sw_btn);
+            this.tabPage3.Controls.Add(this.viewPDF_btn);
             this.tabPage3.Controls.Add(this.dataGridView2);
             this.tabPage3.Controls.Add(this.show_unch_chb);
-            this.tabPage3.Controls.Add(this.button1);
+            this.tabPage3.Controls.Add(this.chk_btn);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -627,6 +629,28 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Metal Alerts";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // sw_btn
+            // 
+            this.sw_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.sw_btn.Location = new System.Drawing.Point(88, 372);
+            this.sw_btn.Name = "sw_btn";
+            this.sw_btn.Size = new System.Drawing.Size(75, 23);
+            this.sw_btn.TabIndex = 4;
+            this.sw_btn.Text = "SolidWorks";
+            this.sw_btn.UseVisualStyleBackColor = true;
+            this.sw_btn.Click += new System.EventHandler(this.sw_btn_Click);
+            // 
+            // viewPDF_btn
+            // 
+            this.viewPDF_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.viewPDF_btn.Location = new System.Drawing.Point(7, 372);
+            this.viewPDF_btn.Name = "viewPDF_btn";
+            this.viewPDF_btn.Size = new System.Drawing.Size(75, 23);
+            this.viewPDF_btn.TabIndex = 3;
+            this.viewPDF_btn.Text = "View PDF";
+            this.viewPDF_btn.UseVisualStyleBackColor = true;
+            this.viewPDF_btn.Click += new System.EventHandler(this.viewPDF_btn_Click);
             // 
             // dataGridView2
             // 
@@ -654,63 +678,15 @@
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.Size = new System.Drawing.Size(962, 364);
             this.dataGridView2.TabIndex = 2;
-            // 
-            // metalAlertBindingSource
-            // 
-            this.metalAlertBindingSource.DataMember = "MetalAlert";
-            this.metalAlertBindingSource.DataSource = this.cNCTodoDataSet;
-            // 
-            // show_unch_chb
-            // 
-            this.show_unch_chb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.show_unch_chb.AutoSize = true;
-            this.show_unch_chb.Checked = true;
-            this.show_unch_chb.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.show_unch_chb.Location = new System.Drawing.Point(729, 378);
-            this.show_unch_chb.Name = "show_unch_chb";
-            this.show_unch_chb.Size = new System.Drawing.Size(132, 17);
-            this.show_unch_chb.TabIndex = 1;
-            this.show_unch_chb.Text = "Show unchecked only";
-            this.show_unch_chb.UseVisualStyleBackColor = true;
-            this.show_unch_chb.CheckedChanged += new System.EventHandler(this.show_unch_chb_CheckedChanged);
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(894, 374);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Check";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // cUT_CNC_MAINTableAdapter
-            // 
-            this.cUT_CNC_MAINTableAdapter.ClearBeforeFill = true;
-            // 
-            // opTableAdapter
-            // 
-            this.opTableAdapter.ClearBeforeFill = true;
-            // 
-            // cNCTodoDataSet1
-            // 
-            this.cNCTodoDataSet1.DataSetName = "CNCTodoDataSet";
-            this.cNCTodoDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // cUT_CNC_JOBS_VIEW1TableAdapter
-            // 
-            this.cUT_CNC_JOBS_VIEW1TableAdapter.ClearBeforeFill = true;
-            // 
-            // metalAlertTableAdapter
-            // 
-            this.metalAlertTableAdapter.ClearBeforeFill = true;
+            this.dataGridView2.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView2_CellFormatting);
+            this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
             // aLERTDATEDataGridViewTextBoxColumn
             // 
             this.aLERTDATEDataGridViewTextBoxColumn.DataPropertyName = "ALERTDATE";
-            dataGridViewCellStyle6.Format = "G";
-            dataGridViewCellStyle6.NullValue = null;
-            this.aLERTDATEDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Format = "G";
+            dataGridViewCellStyle12.NullValue = null;
+            this.aLERTDATEDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle12;
             this.aLERTDATEDataGridViewTextBoxColumn.HeaderText = "Stamp";
             this.aLERTDATEDataGridViewTextBoxColumn.Name = "aLERTDATEDataGridViewTextBoxColumn";
             this.aLERTDATEDataGridViewTextBoxColumn.ReadOnly = true;
@@ -768,26 +744,66 @@
             this.aLERTIDDataGridViewTextBoxColumn.ReadOnly = true;
             this.aLERTIDDataGridViewTextBoxColumn.Visible = false;
             // 
-            // button2
+            // metalAlertBindingSource
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.Location = new System.Drawing.Point(7, 372);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "View PDF";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.metalAlertBindingSource.DataMember = "MetalAlert";
+            this.metalAlertBindingSource.DataSource = this.cNCTodoDataSet;
             // 
-            // button3
+            // show_unch_chb
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button3.Location = new System.Drawing.Point(88, 372);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "SolidWorks";
-            this.button3.UseVisualStyleBackColor = true;
+            this.show_unch_chb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.show_unch_chb.AutoSize = true;
+            this.show_unch_chb.Checked = true;
+            this.show_unch_chb.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.show_unch_chb.Location = new System.Drawing.Point(729, 378);
+            this.show_unch_chb.Name = "show_unch_chb";
+            this.show_unch_chb.Size = new System.Drawing.Size(132, 17);
+            this.show_unch_chb.TabIndex = 1;
+            this.show_unch_chb.Text = "Show unchecked only";
+            this.show_unch_chb.UseVisualStyleBackColor = true;
+            this.show_unch_chb.CheckedChanged += new System.EventHandler(this.show_unch_chb_CheckedChanged);
+            // 
+            // chk_btn
+            // 
+            this.chk_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.chk_btn.Location = new System.Drawing.Point(894, 374);
+            this.chk_btn.Name = "chk_btn";
+            this.chk_btn.Size = new System.Drawing.Size(75, 23);
+            this.chk_btn.TabIndex = 0;
+            this.chk_btn.Text = "Check";
+            this.chk_btn.UseVisualStyleBackColor = true;
+            this.chk_btn.Click += new System.EventHandler(this.chk_btn_Click);
+            // 
+            // cUT_CNC_MAINTableAdapter
+            // 
+            this.cUT_CNC_MAINTableAdapter.ClearBeforeFill = true;
+            // 
+            // opTableAdapter
+            // 
+            this.opTableAdapter.ClearBeforeFill = true;
+            // 
+            // cNCTodoDataSet1
+            // 
+            this.cNCTodoDataSet1.DataSetName = "CNCTodoDataSet";
+            this.cNCTodoDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // cUT_CNC_JOBS_VIEW1TableAdapter
+            // 
+            this.cUT_CNC_JOBS_VIEW1TableAdapter.ClearBeforeFill = true;
+            // 
+            // metalAlertTableAdapter
+            // 
+            this.metalAlertTableAdapter.ClearBeforeFill = true;
+            // 
+            // pathLabel
+            // 
+            this.pathLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pathLabel.AutoSize = true;
+            this.pathLabel.Location = new System.Drawing.Point(169, 377);
+            this.pathLabel.Name = "pathLabel";
+            this.pathLabel.Size = new System.Drawing.Size(10, 13);
+            this.pathLabel.TabIndex = 5;
+            this.pathLabel.Text = "-";
             // 
             // CncTodo
             // 
@@ -882,7 +898,7 @@
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.TabPage tabPage3;
 		private System.Windows.Forms.CheckBox show_unch_chb;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button chk_btn;
 		private System.Windows.Forms.DataGridView dataGridView2;
 		private System.Windows.Forms.BindingSource metalAlertBindingSource;
 		private CNCTodo.CNCTodoDataSetTableAdapters.MetalAlertTableAdapter metalAlertTableAdapter;
@@ -894,7 +910,8 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn fPathDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn fNameDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn aLERTIDDataGridViewTextBoxColumn;
-		private System.Windows.Forms.Button button3;
-		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.Button sw_btn;
+		private System.Windows.Forms.Button viewPDF_btn;
+		private System.Windows.Forms.Label pathLabel;
 	}
 }

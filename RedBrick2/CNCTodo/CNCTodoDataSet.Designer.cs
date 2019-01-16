@@ -5367,14 +5367,15 @@ ORDER BY PART;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT        GEN_ALERTS.ALERTID, GEN_ALERTS.ALERTDATE, GEN_ALERTS.ALERTTYPE, GEN_ALERTS.ALERTDESC, GEN_ALERTS.ALERTMSG, GEN_ALERTS.ALERTCHK, 
                          GEN_DRAWINGS.FPath, GEN_DRAWINGS.FName
 FROM            GEN_ALERTS INNER JOIN
                          GEN_DRAWINGS ON GEN_ALERTS.ALERTKEYCOL = GEN_DRAWINGS.FileID
-WHERE        (GEN_ALERTS.ALERTCHK = @checked) AND (GEN_ALERTS.ALERTDATE > @startdate) AND (GEN_ALERTS.ALERTDATE < @enddate);  
+WHERE        (GEN_ALERTS.ALERTCHK = @checked) AND (GEN_ALERTS.ALERTDATE > @startdate) AND (GEN_ALERTS.ALERTDATE < @enddate)
+ORDER BY GEN_ALERTS.ALERTDATE;   
 ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@checked", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "ALERTCHK", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5385,7 +5386,8 @@ WHERE        (GEN_ALERTS.ALERTCHK = @checked) AND (GEN_ALERTS.ALERTDATE > @start
             this._commandCollection[1].CommandText = @"SELECT        GEN_ALERTS.ALERTID, GEN_ALERTS.ALERTDATE, GEN_ALERTS.ALERTTYPE, GEN_ALERTS.ALERTDESC, GEN_ALERTS.ALERTMSG, GEN_ALERTS.ALERTCHK, 
                          GEN_DRAWINGS.FPath, GEN_DRAWINGS.FName
 FROM            GEN_ALERTS INNER JOIN
-                         GEN_DRAWINGS ON GEN_ALERTS.ALERTKEYCOL = GEN_DRAWINGS.FileID;   
+                         GEN_DRAWINGS ON GEN_ALERTS.ALERTKEYCOL = GEN_DRAWINGS.FileID
+ORDER BY GEN_ALERTS.ALERTDATE;    
 ";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
@@ -5394,9 +5396,17 @@ FROM            GEN_ALERTS INNER JOIN
                          GEN_DRAWINGS.FPath, GEN_DRAWINGS.FName
 FROM            GEN_ALERTS INNER JOIN
                          GEN_DRAWINGS ON GEN_ALERTS.ALERTKEYCOL = GEN_DRAWINGS.FileID
-WHERE        (GEN_ALERTS.ALERTCHK = 0);  
+WHERE        (GEN_ALERTS.ALERTCHK = 0)
+ORDER BY GEN_ALERTS.ALERTDATE;   
 ";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = "UPDATE       GEN_ALERTS\r\nSET                ALERTCHK = @chk\r\nWHERE        (ALERTI" +
+                "D = @id)";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@chk", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "ALERTCHK", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ALERTID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5475,6 +5485,31 @@ WHERE        (GEN_ALERTS.ALERTCHK = 0);
             CNCTodoDataSet.MetalAlertDataTable dataTable = new CNCTodoDataSet.MetalAlertDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
+        public virtual int UpdateAlertChecked(bool chk, int id) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
+            command.Parameters[0].Value = ((bool)(chk));
+            command.Parameters[1].Value = ((int)(id));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
         }
     }
     

@@ -1,10 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
 namespace RedBrick2 {
 	public partial class CncTodo : Form {
 		private bool Initialated = false;
+		private string selectedMetalAlertPath = string.Empty;
+		private string selectedMetalAlertPDFPath = string.Empty;
+		private string selectedMetalAlertSWPath = string.Empty;
+		private string metalPath = @"S:\shared\general\Metals\METAL MANUFACTURING\";
+		private	List<int> stringIdxs = new List<int>() { 2, 3 };
+		private ToolTip ttSW = new ToolTip();
 
 		public CncTodo() {
 			InitializeComponent();
@@ -159,11 +167,12 @@ namespace RedBrick2 {
 		}
 
 		private void dataGridView1_SelectionChanged(object sender, EventArgs e) {
-			if (dataGridView1.SelectedCells.Count < 1) {
+			DataGridView dgv = sender as DataGridView;
+			if (dgv.SelectedCells.Count < 1) {
 				return;
 			}
 			listView2.Items.Clear();
-			int idx = dataGridView1.SelectedCells[0].RowIndex;
+			int idx = dgv.SelectedCells[0].RowIndex;
 			DataGridViewCell c = (sender as DataGridView)[0, idx];
 			opTableAdapter.FillBy(cNCTodoDataSet.Op, c.Value.ToString());
 			foreach (CNCTodo.CNCTodoDataSet.OpRow row in cNCTodoDataSet.Op) {
@@ -200,20 +209,91 @@ namespace RedBrick2 {
 				sb.Append("ALERTCHK = 0");
 			}
 			metalAlertBindingSource.Filter = sb.ToString();
-			dataGridView2.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.DisplayedCellsExceptHeader);
+			dataGridView2.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+			if (dataGridView2.RowCount > dataGridView2.DisplayedRowCount(false)) {
+				dataGridView2.FirstDisplayedScrollingRowIndex = dataGridView2.RowCount - 1;
+			}
 		}
 
 		private void show_unch_chb_CheckedChanged(object sender, EventArgs e) {
 			Filter();
 		}
 
-		private void button2_Click(object sender, EventArgs e) {
-			if (dataGridView2.SelectedRows.Count < 1) {
+		private void viewPDF_btn_Click(object sender, EventArgs e) {
+			if (selectedMetalAlertPath == string.Empty) {
 				return;
 			}
-			DataGridViewRow r = dataGridView2.SelectedRows[0];
-			string path = string.Format(@"{0}{1}", r.Cells[5].Value.ToString(), r.Cells[6].Value.ToString());
-			System.Diagnostics.Process.Start(path);
+			if ((new FileInfo(selectedMetalAlertPath)).Exists) {
+				System.Diagnostics.Process.Start(selectedMetalAlertPath);
+			} else {
+				MessageBox.Show(@"Couldn't find " + selectedMetalAlertPath);
+			}
+		}
+
+		private void dataGridView2_SelectionChanged(object sender, EventArgs e) {
+			DataGridView dgv = sender as DataGridView;
+			if (dgv.SelectedCells.Count < 1) {
+				pathLabel.Text = "-";
+				selectedMetalAlertPath = string.Empty;
+				selectedMetalAlertPDFPath = string.Empty;
+				selectedMetalAlertSWPath = string.Empty;
+				ttSW.RemoveAll();
+				return;
+			}
+			int idx = dgv.SelectedCells[0].RowIndex;
+			string _path = dgv.Rows[idx].Cells[5].Value.ToString();
+			string _file = dgv.Rows[idx].Cells[6].Value.ToString();
+			selectedMetalAlertPath = string.Format(@"{0}{1}", _path, _file);
+			pathLabel.Text = selectedMetalAlertPath;
+			selectedMetalAlertPDFPath = selectedMetalAlertPath.Replace(@"K:\", metalPath);
+			selectedMetalAlertSWPath = selectedMetalAlertPDFPath.Replace(@"PDF", @"SLDDRW");
+			ttSW.SetToolTip(sw_btn, selectedMetalAlertSWPath);
+		}
+
+		private void dataGridView2_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e) {
+			if (stringIdxs.Contains(e.ColumnIndex)) {
+				string v = e.Value.ToString().Trim();
+				e.Value = v;
+				e.FormattingApplied = true;
+			}
+		}
+
+		private void sw_btn_Click(object sender, EventArgs e) {
+			if (selectedMetalAlertSWPath == string.Empty) {
+				return;
+			}
+
+			if ((new FileInfo(selectedMetalAlertSWPath)).Exists) {
+				System.Diagnostics.Process.Start(selectedMetalAlertSWPath);
+			} else {
+				MessageBox.Show(@"Couldn't find " + selectedMetalAlertSWPath);
+			}
+
+		}
+
+		private void chk_btn_Click(object sender, EventArgs e) {
+			if (dataGridView2.SelectedCells.Count < 1) {
+				return;
+			}
+
+			using (CNCTodo.CNCTodoDataSetTableAdapters.MetalAlertTableAdapter ta_ =
+				new CNCTodo.CNCTodoDataSetTableAdapters.MetalAlertTableAdapter()) {
+				foreach (DataGridViewCell cell in dataGridView2.SelectedCells) {
+					int rowidx = cell.RowIndex;
+					string alertID = dataGridView2[7, rowidx].Value.ToString();
+					string checked_ = dataGridView2[4, rowidx].Value.ToString();
+					if (!int.TryParse(alertID, out int id_)) {
+						continue;
+					}
+
+					if (!bool.TryParse(checked_, out bool chk_)) {
+						continue;
+					}
+
+					ta_.UpdateAlertChecked(!chk_, id_);
+					dataGridView2[4, rowidx].Value = !chk_;
+				}
+			}
 		}
 	}
 }

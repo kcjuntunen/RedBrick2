@@ -11,7 +11,7 @@
     <Shape ID="DesignTable:CUT_CNC_MAIN" ZOrder="5" X="725" Y="81" Height="305" Width="238" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
     <Shape ID="DesignTable:Op" ZOrder="4" X="684" Y="454" Height="191" Width="201" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
     <Shape ID="DesignTable:CUT_PARTS" ZOrder="2" X="63" Y="442" Height="172" Width="212" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
-    <Shape ID="DesignTable:MetalAlert" ZOrder="1" X="411" Y="188" Height="267" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="178" />
+    <Shape ID="DesignTable:MetalAlert" ZOrder="1" X="362" Y="165" Height="286" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="178" />
   </Shapes>
   <Connectors />
 </DiagramLayout>
