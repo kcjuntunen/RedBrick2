@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace RedBrick2 {
@@ -8,12 +10,14 @@ namespace RedBrick2 {
 	/// </summary>
 	public partial class AddToExistingCutlist : Form {
 		private SwProperties props_;
+		private List<int> alreadyAddedTo = new List<int>();
 
 		/// <summary>
 		/// Constructor.
 		/// </summary>
 		public AddToExistingCutlist() {
 			InitializeComponent();
+			cutlist_cbx.DrawMode = DrawMode.OwnerDrawFixed;
 			Location = Properties.Settings.Default.AddToCutlistLocation;
 			Size = Properties.Settings.Default.AddToCutlistSize;
 		}
@@ -48,9 +52,9 @@ namespace RedBrick2 {
 				props_.CutlistQty = (float)Convert.ToDouble(partq_nud.Value);
 				eNGINEERINGDataSet.CUT_PARTS.UpdatePart(props_);
 				eNGINEERINGDataSet.CUT_CUTLIST_PARTS.UpdateCutlistPart(props_);
+				alreadyAddedTo.Add(cutlist_cbx.SelectedIndex);
 				add_btn.Enabled = false;
 				cancel_btn.Text = @"Close";
-				cancel_btn.BackColor = System.Drawing.Color.Green;
 			}
 		}
 
@@ -65,11 +69,31 @@ namespace RedBrick2 {
 			if (c_.SelectedItem != null) {
 				DataRowView d_ = c_.SelectedItem as DataRowView;
 				Text = string.Format(@"Adding {0} to {1}", props_.PartLookup, d_[@"CutlistDisplayName"]);
+				add_btn.Enabled = true;
 			}
 		}
 
 		private void cutlist_cbx_KeyDown(object sender, KeyEventArgs e) {
 			(sender as ComboBox).DroppedDown = false;
+		}
+
+		private void cutlist_cbx_DrawItem(object sender, DrawItemEventArgs e) {
+			ComboBox cb_ = sender as ComboBox;
+			int index = e.Index >= 0 ? e.Index : 0;
+			DataRowView drv_ = cb_.Items[index] as DataRowView;
+
+			if (alreadyAddedTo.Contains(e.Index)) {
+				e.DrawBackground();
+				Font x = new Font(e.Font, FontStyle.Italic);
+				e.Graphics.DrawString(drv_[@"CutlistDisplayName"].ToString(), x, SystemBrushes.GrayText,
+					e.Bounds, StringFormat.GenericDefault);
+				e.DrawFocusRectangle();
+			} else {
+				e.DrawBackground();
+				e.Graphics.DrawString(drv_[@"CutlistDisplayName"].ToString(), e.Font, SystemBrushes.ControlText,
+					e.Bounds, StringFormat.GenericDefault);
+				e.DrawFocusRectangle();
+			}
 		}
 	}
 }
