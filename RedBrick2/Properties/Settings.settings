@@ -372,5 +372,11 @@
     <Setting Name="CNCTodoLastWC" Type="System.String" Scope="User">
       <Value Profile="(Default)">500</Value>
     </Setting>
+    <Setting Name="CutlistDisplaySize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">800, 500</Value>
+    </Setting>
+    <Setting Name="CutlistDisplayLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">100, 100</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

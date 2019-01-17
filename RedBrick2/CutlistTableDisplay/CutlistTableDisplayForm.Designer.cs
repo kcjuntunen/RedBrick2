@@ -24,37 +24,12 @@
 		/// </summary>
 		private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.remove_btn = new System.Windows.Forms.Button();
-            this.selected_lbl = new System.Windows.Forms.Label();
-            this.cutlistCheckTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cTDDataSet = new RedBrick2.CutlistTableDisplay.CTDDataSet();
-            this.cutlistCheckTableAdapter = new RedBrick2.CutlistTableDisplay.CTDDataSetTableAdapters.CutlistCheckTableAdapter();
-            this.tYPEDESCDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pARTNUMDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pARTDESCDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qTYDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mATDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.wDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bLANKQTYDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.oVERLDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.oVERWDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.uPDATECNCDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.cNC1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cNC2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.oP1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.oP2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.oP3DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.oP4DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.oP5DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.eDGELFDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.eDGELBDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.eDGEWLDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.eDGEWRDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cLIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tYPEDESCDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pARTNUMDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pARTDESCDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -81,9 +56,43 @@
             this.pARTIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cLIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cLPARTIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cutlistCheckTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cTDDataSet = new RedBrick2.CutlistTableDisplay.CTDDataSet();
+            this.remove_btn = new System.Windows.Forms.Button();
+            this.selected_lbl = new System.Windows.Forms.Label();
+            this.tYPEDESCDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pARTNUMDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pARTDESCDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qTYDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mATDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.wDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bLANKQTYDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oVERLDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oVERWDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uPDATECNCDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.cNC1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cNC2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oP1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oP2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oP3DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oP4DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oP5DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.eDGELFDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.eDGELBDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.eDGEWLDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.eDGEWRDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cLIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cutlist_cbx = new System.Windows.Forms.ComboBox();
+            this.comboboxCutlistsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cutlistCheckTableAdapter = new RedBrick2.CutlistTableDisplay.CTDDataSetTableAdapters.CutlistCheckTableAdapter();
+            this.comboboxCutlistsTableAdapter = new RedBrick2.CutlistTableDisplay.CTDDataSetTableAdapters.ComboboxCutlistsTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cutlistCheckTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cTDDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboboxCutlistsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -124,36 +133,209 @@
             this.cLIDDataGridViewTextBoxColumn1,
             this.cLPARTIDDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.cutlistCheckTableBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(11, 12);
+            this.dataGridView1.Location = new System.Drawing.Point(13, 39);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(775, 363);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.Size = new System.Drawing.Size(775, 335);
+            this.dataGridView1.TabIndex = 1;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
-            // remove_btn
+            // tYPEDESCDataGridViewTextBoxColumn1
             // 
-            this.remove_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.remove_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.remove_btn.Location = new System.Drawing.Point(13, 381);
-            this.remove_btn.Name = "remove_btn";
-            this.remove_btn.Size = new System.Drawing.Size(75, 23);
-            this.remove_btn.TabIndex = 1;
-            this.remove_btn.Text = "Remove";
-            this.remove_btn.UseVisualStyleBackColor = true;
-            this.remove_btn.Click += new System.EventHandler(this.remove_btn_Click);
+            this.tYPEDESCDataGridViewTextBoxColumn1.DataPropertyName = "TYPEDESC";
+            this.tYPEDESCDataGridViewTextBoxColumn1.HeaderText = "Dept.";
+            this.tYPEDESCDataGridViewTextBoxColumn1.Name = "tYPEDESCDataGridViewTextBoxColumn1";
+            this.tYPEDESCDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
-            // selected_lbl
+            // pARTNUMDataGridViewTextBoxColumn1
             // 
-            this.selected_lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.selected_lbl.AutoSize = true;
-            this.selected_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.selected_lbl.Location = new System.Drawing.Point(94, 386);
-            this.selected_lbl.Name = "selected_lbl";
-            this.selected_lbl.Size = new System.Drawing.Size(66, 13);
-            this.selected_lbl.TabIndex = 2;
-            this.selected_lbl.Text = "No selection";
+            this.pARTNUMDataGridViewTextBoxColumn1.DataPropertyName = "PARTNUM";
+            this.pARTNUMDataGridViewTextBoxColumn1.HeaderText = "Part Number";
+            this.pARTNUMDataGridViewTextBoxColumn1.Name = "pARTNUMDataGridViewTextBoxColumn1";
+            this.pARTNUMDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // pARTDESCDataGridViewTextBoxColumn1
+            // 
+            this.pARTDESCDataGridViewTextBoxColumn1.DataPropertyName = "PARTDESC";
+            this.pARTDESCDataGridViewTextBoxColumn1.HeaderText = "Description";
+            this.pARTDESCDataGridViewTextBoxColumn1.Name = "pARTDESCDataGridViewTextBoxColumn1";
+            this.pARTDESCDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // qTYDataGridViewTextBoxColumn1
+            // 
+            this.qTYDataGridViewTextBoxColumn1.DataPropertyName = "QTY";
+            this.qTYDataGridViewTextBoxColumn1.HeaderText = "Part Qty.";
+            this.qTYDataGridViewTextBoxColumn1.Name = "qTYDataGridViewTextBoxColumn1";
+            this.qTYDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // mATDataGridViewTextBoxColumn1
+            // 
+            this.mATDataGridViewTextBoxColumn1.DataPropertyName = "MAT";
+            this.mATDataGridViewTextBoxColumn1.HeaderText = "Material";
+            this.mATDataGridViewTextBoxColumn1.Name = "mATDataGridViewTextBoxColumn1";
+            this.mATDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // lDataGridViewTextBoxColumn1
+            // 
+            this.lDataGridViewTextBoxColumn1.DataPropertyName = "L";
+            dataGridViewCellStyle1.Format = "N3";
+            dataGridViewCellStyle1.NullValue = null;
+            this.lDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle1;
+            this.lDataGridViewTextBoxColumn1.HeaderText = "L";
+            this.lDataGridViewTextBoxColumn1.Name = "lDataGridViewTextBoxColumn1";
+            this.lDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // wDataGridViewTextBoxColumn1
+            // 
+            this.wDataGridViewTextBoxColumn1.DataPropertyName = "W";
+            dataGridViewCellStyle2.Format = "N3";
+            this.wDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.wDataGridViewTextBoxColumn1.HeaderText = "W";
+            this.wDataGridViewTextBoxColumn1.Name = "wDataGridViewTextBoxColumn1";
+            this.wDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // tDataGridViewTextBoxColumn1
+            // 
+            this.tDataGridViewTextBoxColumn1.DataPropertyName = "T";
+            dataGridViewCellStyle3.Format = "N3";
+            this.tDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle3;
+            this.tDataGridViewTextBoxColumn1.HeaderText = "T";
+            this.tDataGridViewTextBoxColumn1.Name = "tDataGridViewTextBoxColumn1";
+            this.tDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // bLANKQTYDataGridViewTextBoxColumn1
+            // 
+            this.bLANKQTYDataGridViewTextBoxColumn1.DataPropertyName = "BLANKQTY";
+            this.bLANKQTYDataGridViewTextBoxColumn1.HeaderText = "Blank Qty.";
+            this.bLANKQTYDataGridViewTextBoxColumn1.Name = "bLANKQTYDataGridViewTextBoxColumn1";
+            this.bLANKQTYDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // oVERLDataGridViewTextBoxColumn1
+            // 
+            this.oVERLDataGridViewTextBoxColumn1.DataPropertyName = "OVERL";
+            dataGridViewCellStyle4.Format = "N3";
+            this.oVERLDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle4;
+            this.oVERLDataGridViewTextBoxColumn1.HeaderText = "OverL";
+            this.oVERLDataGridViewTextBoxColumn1.Name = "oVERLDataGridViewTextBoxColumn1";
+            this.oVERLDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // oVERWDataGridViewTextBoxColumn1
+            // 
+            this.oVERWDataGridViewTextBoxColumn1.DataPropertyName = "OVERW";
+            dataGridViewCellStyle5.Format = "N3";
+            this.oVERWDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle5;
+            this.oVERWDataGridViewTextBoxColumn1.HeaderText = "Over W";
+            this.oVERWDataGridViewTextBoxColumn1.Name = "oVERWDataGridViewTextBoxColumn1";
+            this.oVERWDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // uPDATECNCDataGridViewCheckBoxColumn1
+            // 
+            this.uPDATECNCDataGridViewCheckBoxColumn1.DataPropertyName = "UPDATE_CNC";
+            this.uPDATECNCDataGridViewCheckBoxColumn1.HeaderText = "Update CNC";
+            this.uPDATECNCDataGridViewCheckBoxColumn1.Name = "uPDATECNCDataGridViewCheckBoxColumn1";
+            this.uPDATECNCDataGridViewCheckBoxColumn1.ReadOnly = true;
+            // 
+            // cNC1DataGridViewTextBoxColumn1
+            // 
+            this.cNC1DataGridViewTextBoxColumn1.DataPropertyName = "CNC1";
+            this.cNC1DataGridViewTextBoxColumn1.HeaderText = "CNC 1";
+            this.cNC1DataGridViewTextBoxColumn1.Name = "cNC1DataGridViewTextBoxColumn1";
+            this.cNC1DataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // cNC2DataGridViewTextBoxColumn1
+            // 
+            this.cNC2DataGridViewTextBoxColumn1.DataPropertyName = "CNC2";
+            this.cNC2DataGridViewTextBoxColumn1.HeaderText = "CNC 2";
+            this.cNC2DataGridViewTextBoxColumn1.Name = "cNC2DataGridViewTextBoxColumn1";
+            this.cNC2DataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // oP1DataGridViewTextBoxColumn1
+            // 
+            this.oP1DataGridViewTextBoxColumn1.DataPropertyName = "OP1";
+            this.oP1DataGridViewTextBoxColumn1.HeaderText = "OP1";
+            this.oP1DataGridViewTextBoxColumn1.Name = "oP1DataGridViewTextBoxColumn1";
+            this.oP1DataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // oP2DataGridViewTextBoxColumn1
+            // 
+            this.oP2DataGridViewTextBoxColumn1.DataPropertyName = "OP2";
+            this.oP2DataGridViewTextBoxColumn1.HeaderText = "OP2";
+            this.oP2DataGridViewTextBoxColumn1.Name = "oP2DataGridViewTextBoxColumn1";
+            this.oP2DataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // oP3DataGridViewTextBoxColumn1
+            // 
+            this.oP3DataGridViewTextBoxColumn1.DataPropertyName = "OP3";
+            this.oP3DataGridViewTextBoxColumn1.HeaderText = "OP3";
+            this.oP3DataGridViewTextBoxColumn1.Name = "oP3DataGridViewTextBoxColumn1";
+            this.oP3DataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // oP4DataGridViewTextBoxColumn1
+            // 
+            this.oP4DataGridViewTextBoxColumn1.DataPropertyName = "OP4";
+            this.oP4DataGridViewTextBoxColumn1.HeaderText = "OP4";
+            this.oP4DataGridViewTextBoxColumn1.Name = "oP4DataGridViewTextBoxColumn1";
+            this.oP4DataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // oP5DataGridViewTextBoxColumn1
+            // 
+            this.oP5DataGridViewTextBoxColumn1.DataPropertyName = "OP5";
+            this.oP5DataGridViewTextBoxColumn1.HeaderText = "OP5";
+            this.oP5DataGridViewTextBoxColumn1.Name = "oP5DataGridViewTextBoxColumn1";
+            this.oP5DataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // eDGELFDataGridViewTextBoxColumn1
+            // 
+            this.eDGELFDataGridViewTextBoxColumn1.DataPropertyName = "EDGE_LF";
+            this.eDGELFDataGridViewTextBoxColumn1.HeaderText = "Edge Front (L)";
+            this.eDGELFDataGridViewTextBoxColumn1.Name = "eDGELFDataGridViewTextBoxColumn1";
+            this.eDGELFDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // eDGELBDataGridViewTextBoxColumn1
+            // 
+            this.eDGELBDataGridViewTextBoxColumn1.DataPropertyName = "EDGE_LB";
+            this.eDGELBDataGridViewTextBoxColumn1.HeaderText = "Edge Back (L)";
+            this.eDGELBDataGridViewTextBoxColumn1.Name = "eDGELBDataGridViewTextBoxColumn1";
+            this.eDGELBDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // eDGEWLDataGridViewTextBoxColumn1
+            // 
+            this.eDGEWLDataGridViewTextBoxColumn1.DataPropertyName = "EDGE_WL";
+            this.eDGEWLDataGridViewTextBoxColumn1.HeaderText = "Edge Left (W)";
+            this.eDGEWLDataGridViewTextBoxColumn1.Name = "eDGEWLDataGridViewTextBoxColumn1";
+            this.eDGEWLDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // eDGEWRDataGridViewTextBoxColumn1
+            // 
+            this.eDGEWRDataGridViewTextBoxColumn1.DataPropertyName = "EDGE_WR";
+            this.eDGEWRDataGridViewTextBoxColumn1.HeaderText = "Edge Right (W)";
+            this.eDGEWRDataGridViewTextBoxColumn1.Name = "eDGEWRDataGridViewTextBoxColumn1";
+            this.eDGEWRDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // pARTIDDataGridViewTextBoxColumn
+            // 
+            this.pARTIDDataGridViewTextBoxColumn.DataPropertyName = "PARTID";
+            this.pARTIDDataGridViewTextBoxColumn.HeaderText = "PARTID";
+            this.pARTIDDataGridViewTextBoxColumn.Name = "pARTIDDataGridViewTextBoxColumn";
+            this.pARTIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.pARTIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // cLIDDataGridViewTextBoxColumn1
+            // 
+            this.cLIDDataGridViewTextBoxColumn1.DataPropertyName = "CLID";
+            this.cLIDDataGridViewTextBoxColumn1.HeaderText = "CLID";
+            this.cLIDDataGridViewTextBoxColumn1.Name = "cLIDDataGridViewTextBoxColumn1";
+            this.cLIDDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.cLIDDataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // cLPARTIDDataGridViewTextBoxColumn
+            // 
+            this.cLPARTIDDataGridViewTextBoxColumn.DataPropertyName = "CLPARTID";
+            this.cLPARTIDDataGridViewTextBoxColumn.HeaderText = "CLPARTID";
+            this.cLPARTIDDataGridViewTextBoxColumn.Name = "cLPARTIDDataGridViewTextBoxColumn";
+            this.cLPARTIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.cLPARTIDDataGridViewTextBoxColumn.Visible = false;
             // 
             // cutlistCheckTableBindingSource
             // 
@@ -165,9 +347,28 @@
             this.cTDDataSet.DataSetName = "CTDDataSet";
             this.cTDDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // cutlistCheckTableAdapter
+            // remove_btn
             // 
-            this.cutlistCheckTableAdapter.ClearBeforeFill = true;
+            this.remove_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.remove_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.remove_btn.Location = new System.Drawing.Point(13, 380);
+            this.remove_btn.Name = "remove_btn";
+            this.remove_btn.Size = new System.Drawing.Size(109, 23);
+            this.remove_btn.TabIndex = 2;
+            this.remove_btn.Text = "Remove Selection";
+            this.remove_btn.UseVisualStyleBackColor = true;
+            this.remove_btn.Click += new System.EventHandler(this.remove_btn_Click);
+            // 
+            // selected_lbl
+            // 
+            this.selected_lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.selected_lbl.AutoSize = true;
+            this.selected_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selected_lbl.Location = new System.Drawing.Point(128, 385);
+            this.selected_lbl.Name = "selected_lbl";
+            this.selected_lbl.Size = new System.Drawing.Size(66, 13);
+            this.selected_lbl.TabIndex = 3;
+            this.selected_lbl.Text = "No selection";
             // 
             // tYPEDESCDataGridViewTextBoxColumn
             // 
@@ -346,196 +547,44 @@
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
             this.dataGridViewTextBoxColumn1.Visible = false;
             // 
-            // tYPEDESCDataGridViewTextBoxColumn1
+            // cutlist_cbx
             // 
-            this.tYPEDESCDataGridViewTextBoxColumn1.DataPropertyName = "TYPEDESC";
-            this.tYPEDESCDataGridViewTextBoxColumn1.HeaderText = "Dept.";
-            this.tYPEDESCDataGridViewTextBoxColumn1.Name = "tYPEDESCDataGridViewTextBoxColumn1";
-            this.tYPEDESCDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.cutlist_cbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cutlist_cbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cutlist_cbx.DataSource = this.comboboxCutlistsBindingSource;
+            this.cutlist_cbx.DisplayMember = "DisplayName";
+            this.cutlist_cbx.DropDownHeight = 300;
+            this.cutlist_cbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cutlist_cbx.FormattingEnabled = true;
+            this.cutlist_cbx.IntegralHeight = false;
+            this.cutlist_cbx.Location = new System.Drawing.Point(13, 13);
+            this.cutlist_cbx.Name = "cutlist_cbx";
+            this.cutlist_cbx.Size = new System.Drawing.Size(233, 21);
+            this.cutlist_cbx.TabIndex = 0;
+            this.cutlist_cbx.ValueMember = "CLID";
+            this.cutlist_cbx.SelectedIndexChanged += new System.EventHandler(this.cutlist_cbx_SelectedIndexChanged);
+            this.cutlist_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cutlist_cbx_KeyDown);
+            this.cutlist_cbx.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cutlist_cbx_MouseClick);
             // 
-            // pARTNUMDataGridViewTextBoxColumn1
+            // comboboxCutlistsBindingSource
             // 
-            this.pARTNUMDataGridViewTextBoxColumn1.DataPropertyName = "PARTNUM";
-            this.pARTNUMDataGridViewTextBoxColumn1.HeaderText = "Part Number";
-            this.pARTNUMDataGridViewTextBoxColumn1.Name = "pARTNUMDataGridViewTextBoxColumn1";
-            this.pARTNUMDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.comboboxCutlistsBindingSource.DataMember = "ComboboxCutlists";
+            this.comboboxCutlistsBindingSource.DataSource = this.cTDDataSet;
             // 
-            // pARTDESCDataGridViewTextBoxColumn1
+            // cutlistCheckTableAdapter
             // 
-            this.pARTDESCDataGridViewTextBoxColumn1.DataPropertyName = "PARTDESC";
-            this.pARTDESCDataGridViewTextBoxColumn1.HeaderText = "Description";
-            this.pARTDESCDataGridViewTextBoxColumn1.Name = "pARTDESCDataGridViewTextBoxColumn1";
-            this.pARTDESCDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.cutlistCheckTableAdapter.ClearBeforeFill = true;
             // 
-            // qTYDataGridViewTextBoxColumn1
+            // comboboxCutlistsTableAdapter
             // 
-            this.qTYDataGridViewTextBoxColumn1.DataPropertyName = "QTY";
-            this.qTYDataGridViewTextBoxColumn1.HeaderText = "Part Qty.";
-            this.qTYDataGridViewTextBoxColumn1.Name = "qTYDataGridViewTextBoxColumn1";
-            this.qTYDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // mATDataGridViewTextBoxColumn1
-            // 
-            this.mATDataGridViewTextBoxColumn1.DataPropertyName = "MAT";
-            this.mATDataGridViewTextBoxColumn1.HeaderText = "Material";
-            this.mATDataGridViewTextBoxColumn1.Name = "mATDataGridViewTextBoxColumn1";
-            this.mATDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // lDataGridViewTextBoxColumn1
-            // 
-            this.lDataGridViewTextBoxColumn1.DataPropertyName = "L";
-            this.lDataGridViewTextBoxColumn1.HeaderText = "L";
-            this.lDataGridViewTextBoxColumn1.Name = "lDataGridViewTextBoxColumn1";
-            this.lDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // wDataGridViewTextBoxColumn1
-            // 
-            this.wDataGridViewTextBoxColumn1.DataPropertyName = "W";
-            this.wDataGridViewTextBoxColumn1.HeaderText = "W";
-            this.wDataGridViewTextBoxColumn1.Name = "wDataGridViewTextBoxColumn1";
-            this.wDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // tDataGridViewTextBoxColumn1
-            // 
-            this.tDataGridViewTextBoxColumn1.DataPropertyName = "T";
-            this.tDataGridViewTextBoxColumn1.HeaderText = "T";
-            this.tDataGridViewTextBoxColumn1.Name = "tDataGridViewTextBoxColumn1";
-            this.tDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // bLANKQTYDataGridViewTextBoxColumn1
-            // 
-            this.bLANKQTYDataGridViewTextBoxColumn1.DataPropertyName = "BLANKQTY";
-            this.bLANKQTYDataGridViewTextBoxColumn1.HeaderText = "Blank Qty.";
-            this.bLANKQTYDataGridViewTextBoxColumn1.Name = "bLANKQTYDataGridViewTextBoxColumn1";
-            this.bLANKQTYDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // oVERLDataGridViewTextBoxColumn1
-            // 
-            this.oVERLDataGridViewTextBoxColumn1.DataPropertyName = "OVERL";
-            this.oVERLDataGridViewTextBoxColumn1.HeaderText = "OverL";
-            this.oVERLDataGridViewTextBoxColumn1.Name = "oVERLDataGridViewTextBoxColumn1";
-            this.oVERLDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // oVERWDataGridViewTextBoxColumn1
-            // 
-            this.oVERWDataGridViewTextBoxColumn1.DataPropertyName = "OVERW";
-            this.oVERWDataGridViewTextBoxColumn1.HeaderText = "Over W";
-            this.oVERWDataGridViewTextBoxColumn1.Name = "oVERWDataGridViewTextBoxColumn1";
-            this.oVERWDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // uPDATECNCDataGridViewCheckBoxColumn1
-            // 
-            this.uPDATECNCDataGridViewCheckBoxColumn1.DataPropertyName = "UPDATE_CNC";
-            this.uPDATECNCDataGridViewCheckBoxColumn1.HeaderText = "Update CNC";
-            this.uPDATECNCDataGridViewCheckBoxColumn1.Name = "uPDATECNCDataGridViewCheckBoxColumn1";
-            this.uPDATECNCDataGridViewCheckBoxColumn1.ReadOnly = true;
-            // 
-            // cNC1DataGridViewTextBoxColumn1
-            // 
-            this.cNC1DataGridViewTextBoxColumn1.DataPropertyName = "CNC1";
-            this.cNC1DataGridViewTextBoxColumn1.HeaderText = "CNC 1";
-            this.cNC1DataGridViewTextBoxColumn1.Name = "cNC1DataGridViewTextBoxColumn1";
-            this.cNC1DataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // cNC2DataGridViewTextBoxColumn1
-            // 
-            this.cNC2DataGridViewTextBoxColumn1.DataPropertyName = "CNC2";
-            this.cNC2DataGridViewTextBoxColumn1.HeaderText = "CNC 2";
-            this.cNC2DataGridViewTextBoxColumn1.Name = "cNC2DataGridViewTextBoxColumn1";
-            this.cNC2DataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // oP1DataGridViewTextBoxColumn1
-            // 
-            this.oP1DataGridViewTextBoxColumn1.DataPropertyName = "OP1";
-            this.oP1DataGridViewTextBoxColumn1.HeaderText = "OP1";
-            this.oP1DataGridViewTextBoxColumn1.Name = "oP1DataGridViewTextBoxColumn1";
-            this.oP1DataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // oP2DataGridViewTextBoxColumn1
-            // 
-            this.oP2DataGridViewTextBoxColumn1.DataPropertyName = "OP2";
-            this.oP2DataGridViewTextBoxColumn1.HeaderText = "OP2";
-            this.oP2DataGridViewTextBoxColumn1.Name = "oP2DataGridViewTextBoxColumn1";
-            this.oP2DataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // oP3DataGridViewTextBoxColumn1
-            // 
-            this.oP3DataGridViewTextBoxColumn1.DataPropertyName = "OP3";
-            this.oP3DataGridViewTextBoxColumn1.HeaderText = "OP3";
-            this.oP3DataGridViewTextBoxColumn1.Name = "oP3DataGridViewTextBoxColumn1";
-            this.oP3DataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // oP4DataGridViewTextBoxColumn1
-            // 
-            this.oP4DataGridViewTextBoxColumn1.DataPropertyName = "OP4";
-            this.oP4DataGridViewTextBoxColumn1.HeaderText = "OP4";
-            this.oP4DataGridViewTextBoxColumn1.Name = "oP4DataGridViewTextBoxColumn1";
-            this.oP4DataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // oP5DataGridViewTextBoxColumn1
-            // 
-            this.oP5DataGridViewTextBoxColumn1.DataPropertyName = "OP5";
-            this.oP5DataGridViewTextBoxColumn1.HeaderText = "OP5";
-            this.oP5DataGridViewTextBoxColumn1.Name = "oP5DataGridViewTextBoxColumn1";
-            this.oP5DataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // eDGELFDataGridViewTextBoxColumn1
-            // 
-            this.eDGELFDataGridViewTextBoxColumn1.DataPropertyName = "EDGE_LF";
-            this.eDGELFDataGridViewTextBoxColumn1.HeaderText = "Edge Front (L)";
-            this.eDGELFDataGridViewTextBoxColumn1.Name = "eDGELFDataGridViewTextBoxColumn1";
-            this.eDGELFDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // eDGELBDataGridViewTextBoxColumn1
-            // 
-            this.eDGELBDataGridViewTextBoxColumn1.DataPropertyName = "EDGE_LB";
-            this.eDGELBDataGridViewTextBoxColumn1.HeaderText = "Edge Back (L)";
-            this.eDGELBDataGridViewTextBoxColumn1.Name = "eDGELBDataGridViewTextBoxColumn1";
-            this.eDGELBDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // eDGEWLDataGridViewTextBoxColumn1
-            // 
-            this.eDGEWLDataGridViewTextBoxColumn1.DataPropertyName = "EDGE_WL";
-            this.eDGEWLDataGridViewTextBoxColumn1.HeaderText = "Edge Left (W)";
-            this.eDGEWLDataGridViewTextBoxColumn1.Name = "eDGEWLDataGridViewTextBoxColumn1";
-            this.eDGEWLDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // eDGEWRDataGridViewTextBoxColumn1
-            // 
-            this.eDGEWRDataGridViewTextBoxColumn1.DataPropertyName = "EDGE_WR";
-            this.eDGEWRDataGridViewTextBoxColumn1.HeaderText = "Edge Right (W)";
-            this.eDGEWRDataGridViewTextBoxColumn1.Name = "eDGEWRDataGridViewTextBoxColumn1";
-            this.eDGEWRDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // pARTIDDataGridViewTextBoxColumn
-            // 
-            this.pARTIDDataGridViewTextBoxColumn.DataPropertyName = "PARTID";
-            this.pARTIDDataGridViewTextBoxColumn.HeaderText = "PARTID";
-            this.pARTIDDataGridViewTextBoxColumn.Name = "pARTIDDataGridViewTextBoxColumn";
-            this.pARTIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.pARTIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // cLIDDataGridViewTextBoxColumn1
-            // 
-            this.cLIDDataGridViewTextBoxColumn1.DataPropertyName = "CLID";
-            this.cLIDDataGridViewTextBoxColumn1.HeaderText = "CLID";
-            this.cLIDDataGridViewTextBoxColumn1.Name = "cLIDDataGridViewTextBoxColumn1";
-            this.cLIDDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.cLIDDataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // cLPARTIDDataGridViewTextBoxColumn
-            // 
-            this.cLPARTIDDataGridViewTextBoxColumn.DataPropertyName = "CLPARTID";
-            this.cLPARTIDDataGridViewTextBoxColumn.HeaderText = "CLPARTID";
-            this.cLPARTIDDataGridViewTextBoxColumn.Name = "cLPARTIDDataGridViewTextBoxColumn";
-            this.cLPARTIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.cLPARTIDDataGridViewTextBoxColumn.Visible = false;
+            this.comboboxCutlistsTableAdapter.ClearBeforeFill = true;
             // 
             // CutlistTableDisplayForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 416);
+            this.Controls.Add(this.cutlist_cbx);
             this.Controls.Add(this.selected_lbl);
             this.Controls.Add(this.remove_btn);
             this.Controls.Add(this.dataGridView1);
@@ -544,10 +593,12 @@
             this.Name = "CutlistTableDisplayForm";
             this.ShowIcon = false;
             this.Text = "Cutlist Overview";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CutlistTableDisplayForm_FormClosing);
             this.Load += new System.EventHandler(this.CutlistTableDisplayForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cutlistCheckTableBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cTDDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboboxCutlistsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -586,6 +637,9 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn eDGEWRDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn cLIDDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+		private System.Windows.Forms.ComboBox cutlist_cbx;
+		private System.Windows.Forms.BindingSource comboboxCutlistsBindingSource;
+		private CTDDataSetTableAdapters.ComboboxCutlistsTableAdapter comboboxCutlistsTableAdapter;
 		private System.Windows.Forms.DataGridViewTextBoxColumn tYPEDESCDataGridViewTextBoxColumn1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn pARTNUMDataGridViewTextBoxColumn1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn pARTDESCDataGridViewTextBoxColumn1;

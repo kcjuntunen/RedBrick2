@@ -166,6 +166,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CNCTodoDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="CutlistTableDisplay\CTDDataSet.cs">
+      <DependentUpon>CTDDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CutlistTableDisplay\CTDDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CTDDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CutlistTableDisplay\CutlistTableDisplayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CutlistTableDisplay\CutlistTableDisplayForm.Designer.cs">
+      <DependentUpon>CutlistTableDisplayForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DrawingCollector\DrawingCollector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -417,6 +431,17 @@
     <None Include="CNCTodo\CNCTodoDataSet.xss">
       <DependentUpon>CNCTodoDataSet.xsd</DependentUpon>
     </None>
+    <None Include="CutlistTableDisplay\CTDDataSet.xsc">
+      <DependentUpon>CTDDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CutlistTableDisplay\CTDDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CTDDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="CutlistTableDisplay\CTDDataSet.xss">
+      <DependentUpon>CTDDataSet.xsd</DependentUpon>
+    </None>
     <None Include="ECRViewer\ECRViewerDataSet.xsc">
       <DependentUpon>ECRViewerDataSet.xsd</DependentUpon>
     </None>
@@ -514,6 +539,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreateCutlist.resx">
       <DependentUpon>CreateCutlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CutlistTableDisplay\CutlistTableDisplayForm.resx">
+      <DependentUpon>CutlistTableDisplayForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DrawingCollector\DrawingCollector.resx">
       <DependentUpon>DrawingCollector.cs</DependentUpon>

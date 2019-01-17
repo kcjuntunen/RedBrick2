@@ -1335,5 +1335,29 @@ namespace RedBrick2.Properties {
                 this["CNCTodoLastWC"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("800, 500")]
+        public global::System.Drawing.Size CutlistDisplaySize {
+            get {
+                return ((global::System.Drawing.Size)(this["CutlistDisplaySize"]));
+            }
+            set {
+                this["CutlistDisplaySize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
+        public global::System.Drawing.Point CutlistDisplayLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["CutlistDisplayLocation"]));
+            }
+            set {
+                this["CutlistDisplayLocation"] = value;
+            }
+        }
     }
 }
