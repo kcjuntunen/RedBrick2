@@ -1245,6 +1245,12 @@ namespace RedBrick2 {
 		}
 
 		private int ad_UserSelectionPostNotify() {
+			// If I were to try avoiding the BADINDEX error with the following, there would
+			// be no change in behavior. The condition is always true, and the block between 
+			// the braces is always skipped.
+			//if ((SwApp.ActiveDoc as ModelDoc2) == null) {
+			//	return -1;
+			//}
 			// What do we got?
 			if (swSelMgr == null) {
 				swSelMgr = ActiveDoc.SelectionManager;
