@@ -111,6 +111,9 @@ namespace RedBrick2 {
 
 		private void GetPart(Component2 swComp) {
 			ModelDoc2 md_ = swComp.GetModelDoc2();
+			if (md_ == null) {
+				return;
+			}
 			string name_ = Redbrick.FileInfoToLookup(new FileInfo(md_.GetPathName()));
 			SwProperties p_ = new SwProperties(_swApp, md_);
 			p_.Configuration = swComp.ComponentReference;
