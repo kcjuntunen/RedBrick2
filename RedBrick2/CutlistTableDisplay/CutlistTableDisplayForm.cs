@@ -141,7 +141,7 @@ namespace RedBrick2.CutlistTableDisplay {
 
 		private void CutlistTableDisplayForm_FormClosing(object sender, FormClosingEventArgs e) {
 			Properties.Settings.Default.CutlistDisplayLocation = Location;
-			Properties.Settings.Default.CreateCutlistSize = Size;
+			Properties.Settings.Default.CutlistDisplaySize = Size;
 			Properties.Settings.Default.Save();
 		}
 	}
