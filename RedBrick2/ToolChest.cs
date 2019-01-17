@@ -216,6 +216,19 @@ namespace RedBrick2 {
 			}
 		}
 
+		static void LaunchCutlistOverView() {
+			using (CutlistTableDisplay.CutlistTableDisplayForm ctd =
+				new CutlistTableDisplay.CutlistTableDisplayForm()) {
+				ctd.ShowInTaskbar = true;
+				try {
+					ctd.ShowDialog();
+				} catch(Exception e) {
+					Redbrick.ProcessError(e);
+				}
+			}
+		}
+
+
 		private void button9_MouseClick(object sender, MouseEventArgs e) {
 			Thread t = new Thread(new ThreadStart(LaunchCNCMAIN));
 			t.SetApartmentState(ApartmentState.STA);
@@ -231,6 +244,13 @@ namespace RedBrick2 {
 
 		private void button10_Click(object sender, EventArgs e) {
 			Thread t = new Thread(new ThreadStart(LaunchTimeEntry));
+			t.SetApartmentState(ApartmentState.STA);
+			t.Start();
+			Close();
+		}
+
+		private void ctl_ovr_btn_Click(object sender, EventArgs e) {
+			Thread t = new Thread(new ThreadStart(LaunchCutlistOverView));
 			t.SetApartmentState(ApartmentState.STA);
 			t.Start();
 			Close();
