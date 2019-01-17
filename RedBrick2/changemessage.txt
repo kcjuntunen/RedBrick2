@@ -13,3 +13,7 @@
 *.5
 
 1. Stop Redbrick from stealing focus.
+
+*.6
+
+1. Fix unclearable edging.
