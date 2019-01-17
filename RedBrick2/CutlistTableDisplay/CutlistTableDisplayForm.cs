@@ -17,8 +17,7 @@ namespace RedBrick2.CutlistTableDisplay {
 
 		public CutlistTableDisplayForm() {
 			InitializeComponent();
-			dataGridView1.Enabled = false;
-			remove_btn.Enabled = false;
+			PopulateComboBox();
 		}
 
 		public CutlistTableDisplayForm(int clid) {
@@ -51,6 +50,13 @@ namespace RedBrick2.CutlistTableDisplay {
 
 		private void Query() {
 			this.cutlistCheckTableAdapter.FillByItem(this.cTDDataSet.CutlistCheckTable, Item, Rev);
+		}
+
+		private void PopulateComboBox() {
+			Cursor = Cursors.WaitCursor;
+			this.comboboxCutlistsTableAdapter.Fill(this.cTDDataSet.ComboboxCutlists);
+			populated = true;
+			Cursor = Cursors.Default;
 		}
 
 		private void CutlistTableDisplayForm_Load(object sender, EventArgs e) {
@@ -119,8 +125,7 @@ namespace RedBrick2.CutlistTableDisplay {
 
 		private void cutlist_cbx_MouseClick(object sender, MouseEventArgs e) {
 			if (!populated) {
-				this.comboboxCutlistsTableAdapter.Fill(this.cTDDataSet.ComboboxCutlists);
-				populated = true;
+				PopulateComboBox();
 			}
 		}
 
