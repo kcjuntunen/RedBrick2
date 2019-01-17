@@ -1359,5 +1359,17 @@ namespace RedBrick2.Properties {
                 this["CutlistDisplayLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool CutlistDisplayAfterUpload {
+            get {
+                return ((bool)(this["CutlistDisplayAfterUpload"]));
+            }
+            set {
+                this["CutlistDisplayAfterUpload"] = value;
+            }
+        }
     }
 }

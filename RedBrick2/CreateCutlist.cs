@@ -1738,6 +1738,17 @@ namespace RedBrick2 {
 					cancel_btn.BackColor = Color.Green;
 				}
 				Cursor = Cursors.Arrow;
+				MaybeShowOverview();
+			}
+		}
+
+		private void MaybeShowOverview() {
+			if (ovrvw_chb.Checked) {
+				using (CutlistTableDisplay.CutlistTableDisplayForm ctd =
+					new CutlistTableDisplay.CutlistTableDisplayForm(itm_cbx.Text.Trim(), rev_cbx.Text.Trim())) {
+					ctd.ShowDialog(this);
+					Close();
+				}
 			}
 		}
 
