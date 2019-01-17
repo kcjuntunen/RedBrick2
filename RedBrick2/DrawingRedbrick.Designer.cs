@@ -348,7 +348,6 @@ namespace RedBrick2 {
             this.mat3_cbx.Size = new System.Drawing.Size(97, 21);
             this.mat3_cbx.TabIndex = 10;
             this.mat3_cbx.ValueMember = "DMATID";
-            this.mat3_cbx.SelectedIndexChanged += new System.EventHandler(this.mat3_cbx_SelectedIndexChanged);
             this.mat3_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyDown);
             this.mat3_cbx.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBox_KeyUp);
             this.mat3_cbx.Resize += new System.EventHandler(this.comboBox_Resize);
@@ -565,6 +564,7 @@ namespace RedBrick2 {
             this.label44.TabIndex = 6;
             this.label44.Text = "Rev";
             this.label44.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label44.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.label44_MouseDoubleClick);
             // 
             // label43
             // 
@@ -761,6 +761,7 @@ namespace RedBrick2 {
             this.pdfDateLabel.Name = "pdfDateLabel";
             this.pdfDateLabel.Size = new System.Drawing.Size(45, 13);
             this.pdfDateLabel.TabIndex = 1;
+            this.pdfDateLabel.TabStop = true;
             this.pdfDateLabel.Text = "No PDF";
             this.pdfDateLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.PdfDateLabel_LinkClicked);
             this.pdfDateLabel.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pdfDateLabel_MouseDoubleClick);

@@ -995,5 +995,19 @@ namespace RedBrick2 {
 			e.Graphics.DrawString(item, e.Font, SystemBrushes.ControlText, e.Bounds, StringFormat.GenericDefault);
 			e.DrawFocusRectangle();
 		}
+
+		private void label44_MouseDoubleClick(object sender, MouseEventArgs e) {
+			if (clid > 0) {
+				using (CutlistTableDisplay.CutlistTableDisplayForm ctd =
+					new CutlistTableDisplay.CutlistTableDisplayForm(clid)) {
+					ctd.ShowDialog(this);
+				}
+			} else {
+				using (CutlistTableDisplay.CutlistTableDisplayForm ctd =
+					new CutlistTableDisplay.CutlistTableDisplayForm(clid)) {
+					ctd.ShowDialog(this);
+				}
+			}
+		}
 	}
 }
