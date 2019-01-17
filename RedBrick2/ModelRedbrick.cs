@@ -2669,8 +2669,8 @@ namespace RedBrick2 {
 				cbx_.SelectedIndex = -1;
 				label7.Visible = false;
 				if (PropertySet != null && PropertySet.Contains(@"EDGE FRONT (L)")) {
-					PropertySet[@"EDGE FRONT (L)"].Data = PropertySet[@"EDGE FRONT (L)"].Value;
-					PropertySet[@"EFID"].Data = PropertySet[@"EDGE FRONT (L)"].Data;
+					PropertySet[@"EDGE FRONT (L)"].Data = 0;
+					PropertySet[@"EFID"].Data = 0;
 				}
 				recalculate_blanksizeL();
 				CheckEdgingOps();
@@ -2683,8 +2683,8 @@ namespace RedBrick2 {
 				cbx_.SelectedIndex = -1;
 				label8.Visible = false;
 				if (PropertySet != null && PropertySet.Contains(@"EDGE BACK (L)")) {
-					PropertySet[@"EDGE BACK (L)"].Data = PropertySet[@"EDGE BACK (L)"].Value;
-					PropertySet[@"EBID"].Data = PropertySet[@"EDGE BACK (L)"].Data;
+					PropertySet[@"EDGE BACK (L)"].Data = 0;
+					PropertySet[@"EBID"].Data = 0;
 				}
 				recalculate_blanksizeL();
 				CheckEdgingOps();
@@ -2697,8 +2697,8 @@ namespace RedBrick2 {
 				cbx_.SelectedIndex = -1;
 				label9.Visible = false;
 				if (PropertySet != null && PropertySet.Contains(@"EDGE LEFT (W)")) {
-					PropertySet[@"EDGE LEFT (W)"].Data = PropertySet[@"EDGE LEFT (W)"].Value;
-					PropertySet[@"ELID"].Data = PropertySet[@"EDGE LEFT (W)"].Data;
+					PropertySet[@"EDGE LEFT (W)"].Data = 0;
+					PropertySet[@"ELID"].Data = 0;
 				}
 				recalculate_blanksizeW();
 				CheckEdgingOps();
@@ -2711,8 +2711,8 @@ namespace RedBrick2 {
 				cbx_.SelectedIndex = -1;
 				label10.Visible = false;
 				if (PropertySet != null && PropertySet.Contains(@"EDGE RIGHT (W)")) {
-					PropertySet[@"EDGE RIGHT (W)"].Data = PropertySet[@"EDGE RIGHT (W)"].Value;
-					PropertySet[@"ERID"].Data = PropertySet[@"EDGE RIGHT (W)"].Data;
+					PropertySet[@"EDGE RIGHT (W)"].Data = 0;
+					PropertySet[@"ERID"].Data = 0;
 				}
 				recalculate_blanksizeW();
 				CheckEdgingOps();
