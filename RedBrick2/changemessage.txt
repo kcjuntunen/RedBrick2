@@ -1,19 +1,6 @@
 
-1. Redbrick
-   1) Fix routing lookups for parts not in the DB.
-   2) Fix odd Ctrl+C behaviour in comboboxes.
-   3) Fix bad oversize calculation on cutlist selection.
-2. Time Entry
-   1) Changed tab stops on Time Entry window.
-   2) Display updates after delete.
-   3) Fixed a Time Entry bug (Converting double to int).
-3. Error log
-   1) Don't show all apps on start.
-
-*.5
-
-1. Stop Redbrick from stealing focus.
-
-*.6
-
-1. Fix unclearable edging.
+* Cutlist Overview window
+  The new cutlist overview can be started from 
+  1. the toolbox
+  2. upon uploading a cutlist (if the "Show overview after uploading" checkbox is checked)
+  3. By double-clicking the "Rev" label while in a drawing.
