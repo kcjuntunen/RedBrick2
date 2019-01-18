@@ -124,7 +124,7 @@
             this.label9.Location = new System.Drawing.Point(245, 22);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(32, 13);
-            this.label9.TabIndex = 3;
+            this.label9.TabIndex = 0;
             this.label9.Text = "User:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -135,7 +135,7 @@
             this.total_label.Location = new System.Drawing.Point(7, 229);
             this.total_label.Name = "total_label";
             this.total_label.Size = new System.Drawing.Size(10, 13);
-            this.total_label.TabIndex = 2;
+            this.total_label.TabIndex = 3;
             this.total_label.Text = "-";
             // 
             // listView1
@@ -152,7 +152,7 @@
             this.listView1.Location = new System.Drawing.Point(7, 46);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(500, 180);
-            this.listView1.TabIndex = 6;
+            this.listView1.TabIndex = 2;
             this.listView1.TabStop = false;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseClick);
@@ -189,7 +189,7 @@
             this.uid_cbx.Location = new System.Drawing.Point(283, 19);
             this.uid_cbx.Name = "uid_cbx";
             this.uid_cbx.Size = new System.Drawing.Size(224, 21);
-            this.uid_cbx.TabIndex = 99;
+            this.uid_cbx.TabIndex = 1;
             this.uid_cbx.TabStop = false;
             this.uid_cbx.ValueMember = "UID";
             this.uid_cbx.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.uid_cbx_DrawItem);
@@ -213,7 +213,7 @@
             this.groupBox2.Location = new System.Drawing.Point(522, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(341, 249);
-            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Filters";
             // 
@@ -267,7 +267,7 @@
             this.label2.Location = new System.Drawing.Point(3, 54);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(158, 27);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 2;
             this.label2.Text = "Project";
             this.label2.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
@@ -278,7 +278,7 @@
             this.label3.Location = new System.Drawing.Point(3, 108);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(158, 27);
-            this.label3.TabIndex = 2;
+            this.label3.TabIndex = 4;
             this.label3.Text = "Process";
             this.label3.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
@@ -289,7 +289,7 @@
             this.label4.Location = new System.Drawing.Point(3, 162);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(158, 27);
-            this.label4.TabIndex = 3;
+            this.label4.TabIndex = 6;
             this.label4.Text = "From";
             this.label4.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
@@ -300,7 +300,7 @@
             this.label5.Location = new System.Drawing.Point(167, 162);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(158, 27);
-            this.label5.TabIndex = 4;
+            this.label5.TabIndex = 8;
             this.label5.Text = "To";
             this.label5.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
@@ -317,7 +317,7 @@
             this.cust_cbx.Location = new System.Drawing.Point(3, 30);
             this.cust_cbx.Name = "cust_cbx";
             this.cust_cbx.Size = new System.Drawing.Size(322, 21);
-            this.cust_cbx.TabIndex = 5;
+            this.cust_cbx.TabIndex = 1;
             this.cust_cbx.TabStop = false;
             this.cust_cbx.ValueMember = "CUSTID";
             this.cust_cbx.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cust_cbx_DrawItem);
@@ -343,7 +343,7 @@
             this.proj_cbx.Location = new System.Drawing.Point(3, 84);
             this.proj_cbx.Name = "proj_cbx";
             this.proj_cbx.Size = new System.Drawing.Size(322, 21);
-            this.proj_cbx.TabIndex = 6;
+            this.proj_cbx.TabIndex = 3;
             this.proj_cbx.TabStop = false;
             this.proj_cbx.ValueMember = "PROJECT";
             this.proj_cbx.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.proj_cbx_DrawItem);
@@ -369,7 +369,7 @@
             this.proc_cbx.Location = new System.Drawing.Point(3, 138);
             this.proc_cbx.Name = "proc_cbx";
             this.proc_cbx.Size = new System.Drawing.Size(322, 21);
-            this.proc_cbx.TabIndex = 7;
+            this.proc_cbx.TabIndex = 5;
             this.proc_cbx.TabStop = false;
             this.proc_cbx.ValueMember = "PROCESS";
             this.proc_cbx.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.add_proc_cbx_DrawItem);
@@ -389,7 +389,7 @@
             this.dateTimePicker1.Location = new System.Drawing.Point(3, 192);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(158, 20);
-            this.dateTimePicker1.TabIndex = 8;
+            this.dateTimePicker1.TabIndex = 7;
             this.dateTimePicker1.TabStop = false;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
@@ -411,7 +411,7 @@
             this.groupBox3.Location = new System.Drawing.Point(3, 258);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(513, 165);
-            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Add New Record";
             // 
@@ -467,7 +467,7 @@
             this.label7.Location = new System.Drawing.Point(3, 29);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(75, 29);
-            this.label7.TabIndex = 1;
+            this.label7.TabIndex = 4;
             this.label7.Text = "Description:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -478,7 +478,7 @@
             this.label8.Location = new System.Drawing.Point(3, 58);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(75, 29);
-            this.label8.TabIndex = 2;
+            this.label8.TabIndex = 6;
             this.label8.Text = "Date";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -489,7 +489,7 @@
             this.label10.Location = new System.Drawing.Point(3, 87);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(75, 29);
-            this.label10.TabIndex = 3;
+            this.label10.TabIndex = 8;
             this.label10.Text = "Process";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -500,7 +500,7 @@
             this.label11.Location = new System.Drawing.Point(3, 116);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(75, 30);
-            this.label11.TabIndex = 4;
+            this.label11.TabIndex = 10;
             this.label11.Text = "Hours (0.0/0:00)";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -516,7 +516,7 @@
             this.add_proj_cbx.Location = new System.Drawing.Point(84, 3);
             this.add_proj_cbx.Name = "add_proj_cbx";
             this.add_proj_cbx.Size = new System.Drawing.Size(100, 21);
-            this.add_proj_cbx.TabIndex = 0;
+            this.add_proj_cbx.TabIndex = 1;
             this.add_proj_cbx.ValueMember = "PID";
             this.add_proj_cbx.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.proj_cbx_DrawItem);
             this.add_proj_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbx_KeyDown);
@@ -533,7 +533,7 @@
             this.label12.Location = new System.Drawing.Point(190, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(100, 29);
-            this.label12.TabIndex = 6;
+            this.label12.TabIndex = 2;
             this.label12.Text = "Customer:";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -546,8 +546,9 @@
             this.cust_tb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cust_tb.Location = new System.Drawing.Point(296, 3);
             this.cust_tb.Name = "cust_tb";
+            this.cust_tb.ReadOnly = true;
             this.cust_tb.Size = new System.Drawing.Size(208, 20);
-            this.cust_tb.TabIndex = 99;
+            this.cust_tb.TabIndex = 3;
             this.cust_tb.TabStop = false;
             // 
             // descr_tb
@@ -559,8 +560,9 @@
             this.descr_tb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.descr_tb.Location = new System.Drawing.Point(84, 32);
             this.descr_tb.Name = "descr_tb";
+            this.descr_tb.ReadOnly = true;
             this.descr_tb.Size = new System.Drawing.Size(420, 20);
-            this.descr_tb.TabIndex = 99;
+            this.descr_tb.TabIndex = 5;
             this.descr_tb.TabStop = false;
             // 
             // dateTimePicker3
@@ -570,7 +572,7 @@
             this.dateTimePicker3.Location = new System.Drawing.Point(84, 61);
             this.dateTimePicker3.Name = "dateTimePicker3";
             this.dateTimePicker3.Size = new System.Drawing.Size(206, 20);
-            this.dateTimePicker3.TabIndex = 5;
+            this.dateTimePicker3.TabIndex = 7;
             this.dateTimePicker3.ValueChanged += new System.EventHandler(this.dateTimePicker3_ValueChanged);
             // 
             // add_proc_cbx
@@ -585,7 +587,7 @@
             this.add_proc_cbx.Location = new System.Drawing.Point(84, 90);
             this.add_proc_cbx.Name = "add_proc_cbx";
             this.add_proc_cbx.Size = new System.Drawing.Size(100, 21);
-            this.add_proc_cbx.TabIndex = 1;
+            this.add_proc_cbx.TabIndex = 9;
             this.add_proc_cbx.ValueMember = "PROCID";
             this.add_proc_cbx.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.add_proc_cbx_DrawItem);
             this.add_proc_cbx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbx_KeyDown);
@@ -601,7 +603,7 @@
             this.hrs_tbx.Location = new System.Drawing.Point(84, 119);
             this.hrs_tbx.Name = "hrs_tbx";
             this.hrs_tbx.Size = new System.Drawing.Size(100, 20);
-            this.hrs_tbx.TabIndex = 2;
+            this.hrs_tbx.TabIndex = 11;
             // 
             // clear_btn
             // 
@@ -609,7 +611,7 @@
             this.clear_btn.Location = new System.Drawing.Point(321, 119);
             this.clear_btn.Name = "clear_btn";
             this.clear_btn.Size = new System.Drawing.Size(75, 23);
-            this.clear_btn.TabIndex = 4;
+            this.clear_btn.TabIndex = 12;
             this.clear_btn.Text = "Clear";
             this.clear_btn.UseVisualStyleBackColor = true;
             this.clear_btn.Click += new System.EventHandler(this.clear_btn_Click);
@@ -619,7 +621,7 @@
             this.add_btn.Location = new System.Drawing.Point(402, 119);
             this.add_btn.Name = "add_btn";
             this.add_btn.Size = new System.Drawing.Size(75, 23);
-            this.add_btn.TabIndex = 3;
+            this.add_btn.TabIndex = 13;
             this.add_btn.Text = "Add";
             this.add_btn.UseVisualStyleBackColor = true;
             this.add_btn.Click += new System.EventHandler(this.add_btn_Click);
@@ -679,7 +681,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(866, 426);
-            this.tableLayoutPanel1.TabIndex = 4;
+            this.tableLayoutPanel1.TabIndex = 0;
             // 
             // sCH_PROJECTSTableAdapter
             // 
