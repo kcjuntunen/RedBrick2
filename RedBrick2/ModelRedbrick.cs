@@ -39,9 +39,6 @@ namespace RedBrick2 {
 		private Single db_width = 0.0F;
 		private Single db_thickness = 0.0F;
 
-
-		private Point scrollOffset;
-
 		private ModelDoc2 lastModelDoc = null;
 		private DirtTracker dirtTracker;
 
@@ -290,12 +287,12 @@ namespace RedBrick2 {
 			dirtTracker.IsDirty = false;
 			groupBox1.Text = groupBox1.Text.Replace(Properties.Settings.Default.NotSavedMark, string.Empty);
 			GetCutlistData();
-			flowLayoutPanel1.Controls.Clear();
+			//flowLayoutPanel1.Controls.Clear();
 			if (ActiveDoc != null) {
 				if (PropertySet.Count < 1) {
 					PropertySet.GetProperties(ActiveDoc);
 				}
-				tableLayoutPanel1.Enabled = true;
+				//tableLayoutPanel1.Enabled = true;
 				if (PropertySet[@"LENGTH"].Value != null) {
 					lengthtb.Text = Convert.ToString(PropertySet[@"LENGTH"].Value).Replace("\"", string.Empty);
 				}
@@ -338,14 +335,14 @@ namespace RedBrick2 {
 
 				//textBox_TextChanged(PropertySet[@"WALL THICKNESS"].Value, label21);
 
-				flowLayoutPanel1.VerticalScroll.Value = scrollOffset.Y;
+				//flowLayoutPanel1.VerticalScroll.Value = scrollOffset.Y;
 				recalculate_blanksizeL();
 				recalculate_blanksizeW();
 
 				groupBox1.Text = string.Format(@"{0} - {1}",
 					partLookup, configuration);
 			} else {
-				tableLayoutPanel1.Enabled = false;
+				//tableLayoutPanel1.Enabled = false;
 			}
 		}
 
@@ -784,7 +781,7 @@ namespace RedBrick2 {
 			overWtb.Text = Redbrick.enforce_number_format(StrTryProp("OVERW"));
 			Decimal ppb_tmp = Convert.ToDecimal(IntTryProp("BLANK QTY"));
 			ppb_nud.Value = ppb_tmp > 0 ? ppb_tmp : 1;
-			ppbtb.Text = StrTryProp("BLANK QTY");
+			//ppbtb.Text = StrTryProp("BLANK QTY");
 			updateCNCcb.Checked = BoolTryProp("UPDATE CNC");
 			length = DimTryProp(@"LENGTH");
 			width = DimTryProp(@"WIDTH");
@@ -1016,14 +1013,14 @@ namespace RedBrick2 {
 		}
 
 		private void GetOps() {
-			flowLayoutPanel1.Controls.Clear();
+			//flowLayoutPanel1.Controls.Clear();
 			OpSets ops = new OpSets(PropertySet, partLookup);
 			PropertySet.opSets = ops;
 			foreach (OpSet op in ops) {
 				OpControl opc = op.OperationControl;
-				opc.Width = flowLayoutPanel1.Width - 25;
-				flowLayoutPanel1.Controls.Add(opc);
-				flowLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+				//opc.Width = flowLayoutPanel1.Width - 25;
+				//flowLayoutPanel1.Controls.Add(opc);
+				//flowLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
 				opc.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 			}
 
@@ -1260,7 +1257,7 @@ namespace RedBrick2 {
 				object selection_ = swSelMgr.GetSelectedObject6(1, -1);
 				if (selection_ is Component2) {
 					swSelComp = (Component2)selection_;
-					this.tableLayoutPanel1.Enabled = true;
+					//this.tableLayoutPanel1.Enabled = true;
 				}
 			}
 			if (swSelComp != null) {
@@ -1268,7 +1265,7 @@ namespace RedBrick2 {
 				if (swSelComp.GetModelDoc2() is ModelDoc2) {
 					configurationManager = (swSelComp.GetModelDoc2() as ModelDoc2).ConfigurationManager;
 					configuration = swSelComp.ReferencedConfiguration;
-					this.tableLayoutPanel1.Enabled = true;
+					//this.tableLayoutPanel1.Enabled = true;
 					ReQuery(swSelComp.GetModelDoc2());
 				}
 			} else {
@@ -1278,7 +1275,7 @@ namespace RedBrick2 {
 				try {
 					configurationManager = SwApp.ActiveDoc.ConfigurationManager;
 					configuration = configurationManager.ActiveConfiguration.Name;
-					this.tableLayoutPanel1.Enabled = true;
+					//this.tableLayoutPanel1.Enabled = true;
 					groupBox1.Text = string.Format(@"{0} - {1}",
 						partLookup, PropertySet.Configuration);
 					ReQuery(SwApp.ActiveDoc);
@@ -1655,12 +1652,12 @@ namespace RedBrick2 {
 			if (!DrawingEventsAssigned) {
 				ConnectDrawingEvents();
 			}
-			this.tableLayoutPanel1.Enabled = true;
-			//tabControl1.SelectedTab = tabPage2;
+			//this.tablelayoutpanel1.enabled = true;
+			//tabcontrol1.selectedtab = tabpage2;
 		}
 
 		private void SetupPart() {
-			scrollOffset = new Point(0, flowLayoutPanel1.VerticalScroll.Value);
+			//scrollOffset = new Point(0, flowLayoutPanel1.VerticalScroll.Value);
 
 			if (!(_activeDoc is DrawingDoc)) {
 				configuration = _activeDoc.ConfigurationManager.ActiveConfiguration.Name;
