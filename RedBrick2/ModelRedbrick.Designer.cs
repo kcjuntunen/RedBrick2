@@ -1124,6 +1124,7 @@
             this.blnkszWtb.Name = "blnkszWtb";
             this.blnkszWtb.Size = new System.Drawing.Size(68, 20);
             this.blnkszWtb.TabIndex = 15;
+            this.blnkszWtb.TabStop = false;
             this.blnkszWtb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FocusHere);
             this.blnkszWtb.TextChanged += new System.EventHandler(this.blankW_TextChanged);
             this.blnkszWtb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.bl_textBox_KeyDown);
@@ -1510,7 +1511,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(295, 1049);
+            this.tabPage2.Size = new System.Drawing.Size(295, 1083);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1568,6 +1569,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(300, 34);
             this.panel1.TabIndex = 0;
+            this.panel1.TabStop = true;
             // 
             // cfg_btn
             // 
