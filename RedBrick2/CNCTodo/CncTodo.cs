@@ -80,7 +80,8 @@ namespace RedBrick2 {
 						row.IgnChk == -1 ? "Yes" : "No",		// 8
 						row.IsCutIDNull() ? string.Empty : row.CutID.ToString(),	// 9
 						row.IsDESCRNull() ? string.Empty : row.DESCR,							// 10	
-						row.JinfChk == -1 ? "Y" : "N"															// 11
+						row.JinfChk == -1 ? "Y" : "N",			// 11
+						row.OpNumber.ToString()							// 12
 					};
 					ListViewItem l = new ListViewItem(data);
 					l.Checked = row.IgnChk == -1;
@@ -294,6 +295,17 @@ namespace RedBrick2 {
 					dataGridView2[4, rowidx].Value = !chk_;
 				}
 			}
+		}
+
+		private void ign_btn_Click(object sender, EventArgs e) {
+			if (listView1.SelectedItems.Count < 1) {
+				return;
+			}
+
+			ListViewItem lvi = listView1.SelectedItems[0];
+			MessageBox.Show(string.Format(@"Job: {0} Op: {1}",
+				lvi.SubItems[1].Text,
+				lvi.SubItems[12].Text));
 		}
 	}
 }

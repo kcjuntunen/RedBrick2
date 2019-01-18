@@ -24,12 +24,12 @@
 		/// </summary>
 		private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -83,6 +83,7 @@
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.pathLabel = new System.Windows.Forms.Label();
             this.sw_btn = new System.Windows.Forms.Button();
             this.viewPDF_btn = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
@@ -102,7 +103,6 @@
             this.cNCTodoDataSet1 = new RedBrick2.CNCTodo.CNCTodoDataSet();
             this.cUT_CNC_JOBS_VIEW1TableAdapter = new RedBrick2.CNCTodo.CNCTodoDataSetTableAdapters.CUT_CNC_JOBS_VIEW1TableAdapter();
             this.metalAlertTableAdapter = new RedBrick2.CNCTodo.CNCTodoDataSetTableAdapters.MetalAlertTableAdapter();
-            this.pathLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.cUTCNCJOBSVIEW1BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cNCTodoDataSet)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -353,6 +353,7 @@
             this.ign_btn.TabIndex = 7;
             this.ign_btn.Text = "Ignore";
             this.ign_btn.UseVisualStyleBackColor = true;
+            this.ign_btn.Click += new System.EventHandler(this.ign_btn_Click);
             // 
             // cutl_tb
             // 
@@ -512,9 +513,9 @@
             // lDataGridViewTextBoxColumn
             // 
             this.lDataGridViewTextBoxColumn.DataPropertyName = "L";
-            dataGridViewCellStyle7.Format = "N3";
-            dataGridViewCellStyle7.NullValue = "0.000";
-            this.lDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Format = "N3";
+            dataGridViewCellStyle1.NullValue = "0.000";
+            this.lDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.lDataGridViewTextBoxColumn.HeaderText = "L";
             this.lDataGridViewTextBoxColumn.Name = "lDataGridViewTextBoxColumn";
             this.lDataGridViewTextBoxColumn.ReadOnly = true;
@@ -522,9 +523,9 @@
             // wDataGridViewTextBoxColumn
             // 
             this.wDataGridViewTextBoxColumn.DataPropertyName = "W";
-            dataGridViewCellStyle8.Format = "N3";
-            dataGridViewCellStyle8.NullValue = "0.000";
-            this.wDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Format = "N3";
+            dataGridViewCellStyle2.NullValue = "0.000";
+            this.wDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.wDataGridViewTextBoxColumn.HeaderText = "W";
             this.wDataGridViewTextBoxColumn.Name = "wDataGridViewTextBoxColumn";
             this.wDataGridViewTextBoxColumn.ReadOnly = true;
@@ -532,9 +533,9 @@
             // tDataGridViewTextBoxColumn
             // 
             this.tDataGridViewTextBoxColumn.DataPropertyName = "T";
-            dataGridViewCellStyle9.Format = "N3";
-            dataGridViewCellStyle9.NullValue = "0.000";
-            this.tDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Format = "N3";
+            dataGridViewCellStyle3.NullValue = "0.000";
+            this.tDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.tDataGridViewTextBoxColumn.HeaderText = "T";
             this.tDataGridViewTextBoxColumn.Name = "tDataGridViewTextBoxColumn";
             this.tDataGridViewTextBoxColumn.ReadOnly = true;
@@ -542,9 +543,9 @@
             // OVERL
             // 
             this.OVERL.DataPropertyName = "OVERL";
-            dataGridViewCellStyle10.Format = "N3";
-            dataGridViewCellStyle10.NullValue = "0.000";
-            this.OVERL.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Format = "N3";
+            dataGridViewCellStyle4.NullValue = "0.000";
+            this.OVERL.DefaultCellStyle = dataGridViewCellStyle4;
             this.OVERL.HeaderText = "OverL";
             this.OVERL.Name = "OVERL";
             this.OVERL.ReadOnly = true;
@@ -552,9 +553,9 @@
             // OVERW
             // 
             this.OVERW.DataPropertyName = "OVERW";
-            dataGridViewCellStyle11.Format = "N3";
-            dataGridViewCellStyle11.NullValue = "0.000";
-            this.OVERW.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Format = "N3";
+            dataGridViewCellStyle5.NullValue = "0.000";
+            this.OVERW.DefaultCellStyle = dataGridViewCellStyle5;
             this.OVERW.HeaderText = "OverW";
             this.OVERW.Name = "OVERW";
             this.OVERW.ReadOnly = true;
@@ -630,6 +631,16 @@
             this.tabPage3.Text = "Metal Alerts";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // pathLabel
+            // 
+            this.pathLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pathLabel.AutoSize = true;
+            this.pathLabel.Location = new System.Drawing.Point(169, 377);
+            this.pathLabel.Name = "pathLabel";
+            this.pathLabel.Size = new System.Drawing.Size(10, 13);
+            this.pathLabel.TabIndex = 5;
+            this.pathLabel.Text = "-";
+            // 
             // sw_btn
             // 
             this.sw_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -684,9 +695,9 @@
             // aLERTDATEDataGridViewTextBoxColumn
             // 
             this.aLERTDATEDataGridViewTextBoxColumn.DataPropertyName = "ALERTDATE";
-            dataGridViewCellStyle12.Format = "G";
-            dataGridViewCellStyle12.NullValue = null;
-            this.aLERTDATEDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Format = "G";
+            dataGridViewCellStyle6.NullValue = null;
+            this.aLERTDATEDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
             this.aLERTDATEDataGridViewTextBoxColumn.HeaderText = "Stamp";
             this.aLERTDATEDataGridViewTextBoxColumn.Name = "aLERTDATEDataGridViewTextBoxColumn";
             this.aLERTDATEDataGridViewTextBoxColumn.ReadOnly = true;
@@ -794,16 +805,6 @@
             // metalAlertTableAdapter
             // 
             this.metalAlertTableAdapter.ClearBeforeFill = true;
-            // 
-            // pathLabel
-            // 
-            this.pathLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pathLabel.AutoSize = true;
-            this.pathLabel.Location = new System.Drawing.Point(169, 377);
-            this.pathLabel.Name = "pathLabel";
-            this.pathLabel.Size = new System.Drawing.Size(10, 13);
-            this.pathLabel.TabIndex = 5;
-            this.pathLabel.Text = "-";
             // 
             // CncTodo
             // 
