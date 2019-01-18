@@ -7,6 +7,7 @@ using SolidWorks.Interop.swcommands;
 using SolidWorks.Interop.swconst;
 
 using System.Runtime.InteropServices;
+using System.Drawing;
 
 namespace RedBrick2 {
 	/// <summary>
@@ -34,6 +35,8 @@ namespace RedBrick2 {
 		/// </summary>
 		public SWTaskpaneHost() {
 			InitializeComponent();
+			grnchk_btn.Image = Image.FromFile(@"G:\Solid Works\Amstore_Macros\ICONS\greencheck.ico");
+			grnchk_btn.ImageAlign = ContentAlignment.MiddleCenter;
 		}
 
 		/// <summary>
@@ -161,7 +164,8 @@ namespace RedBrick2 {
 		private void BuildStuff() {
 			if (!initialated) {
 				mrb = new ModelRedbrick(SwApp, ActiveDoc);
-				Controls.Add(mrb);
+				tableLayoutPanel1.Controls.Add(mrb, 0, 1);
+				//Controls.Add(mrb);
 				mrb.Dock = DockStyle.Fill;
 				initialated = true;
 			}
@@ -304,5 +308,54 @@ namespace RedBrick2 {
 			ConnectSelection(true);
 		}
 
+		private void grnchk_btn_Click(object sender, EventArgs e) {
+			if (mrb == null) {
+				return;
+			}
+			mrb.GreenCheck();
+		}
+
+		private void button8_Click(object sender, EventArgs e) {
+			if (mrb == null) {
+				using (ToolChest t = new ToolChest())
+					t.ShowDialog(this);
+			} else {
+				using (ToolChest t_ = new ToolChest(mrb.PartLookup, SwApp)) {
+					t_.ShowDialog(this);
+				}
+			}
+		}
+
+		private void refresh_btn_Click(object sender, EventArgs e) {
+			if (mrb == null) {
+				return;
+			}
+			mrb.Refresh();
+		}
+
+		private void archive_btn_Click(object sender, EventArgs e) {
+			if (mrb == null) {
+				return;
+			}
+			mrb.Archive();
+		}
+
+		private void qt_btn_Click(object sender, EventArgs e) {
+			if (mrb == null)
+				using (QuickTracLookup q = new QuickTracLookup())
+					q.ShowDialog();
+			else
+				mrb.QuikTrac();
+		}
+
+		private void cfg_btn_Click(object sender, EventArgs e) {
+			if (mrb == null) {
+				using (RedbrickConfiguration rbc = new RedbrickConfiguration()) {
+					rbc.ShowDialog(this);
+				}
+			} else {
+				mrb.Configurator();
+			}
+		}
 	}
 }
