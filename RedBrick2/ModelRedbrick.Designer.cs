@@ -142,13 +142,13 @@
             this.cUT_PARTSTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter();
             this.friendlyCutOpsTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.FriendlyCutOpsTableAdapter();
             this.cUT_PART_TYPESTableAdapter = new RedBrick2.ENGINEERINGDataSetTableAdapters.CUT_PART_TYPESTableAdapter();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.cfg_btn = new System.Windows.Forms.Button();
-            this.refresh_btn = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.grnchk_btn = new System.Windows.Forms.Button();
-            this.qt_btn = new System.Windows.Forms.Button();
             this.archive_btn = new System.Windows.Forms.Button();
+            this.qt_btn = new System.Windows.Forms.Button();
+            this.grnchk_btn = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.refresh_btn = new System.Windows.Forms.Button();
+            this.cfg_btn = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cUTEDGESBindingSource3)).BeginInit();
@@ -1484,10 +1484,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(7, 43);
+            this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(303, 1109);
+            this.tabControl1.Size = new System.Drawing.Size(303, 1152);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -1500,7 +1500,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(295, 1083);
+            this.tabPage1.Size = new System.Drawing.Size(295, 1126);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1554,50 +1554,47 @@
             // 
             this.cUT_PART_TYPESTableAdapter.ClearBeforeFill = true;
             // 
-            // panel1
+            // archive_btn
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panel1.Controls.Add(this.cfg_btn);
-            this.panel1.Controls.Add(this.refresh_btn);
-            this.panel1.Controls.Add(this.button8);
-            this.panel1.Controls.Add(this.grnchk_btn);
-            this.panel1.Controls.Add(this.qt_btn);
-            this.panel1.Controls.Add(this.archive_btn);
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(300, 34);
-            this.panel1.TabIndex = 0;
-            this.panel1.TabStop = true;
+            this.archive_btn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.archive_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.archive_btn.Image = ((System.Drawing.Image)(resources.GetObject("archive_btn.Image")));
+            this.archive_btn.Location = new System.Drawing.Point(139, 3);
+            this.archive_btn.Name = "archive_btn";
+            this.archive_btn.Size = new System.Drawing.Size(39, 23);
+            this.archive_btn.TabIndex = 3;
+            this.archive_btn.TabStop = false;
+            this.archive_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.archive_btn.UseVisualStyleBackColor = true;
+            this.archive_btn.Click += new System.EventHandler(this.archive_btn_Click);
             // 
-            // cfg_btn
+            // qt_btn
             // 
-            this.cfg_btn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.cfg_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cfg_btn.Image = global::RedBrick2.Properties.Resources.cfg;
-            this.cfg_btn.Location = new System.Drawing.Point(229, 3);
-            this.cfg_btn.Name = "cfg_btn";
-            this.cfg_btn.Size = new System.Drawing.Size(39, 23);
-            this.cfg_btn.TabIndex = 5;
-            this.cfg_btn.TabStop = false;
-            this.cfg_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.cfg_btn.UseVisualStyleBackColor = true;
-            this.cfg_btn.Click += new System.EventHandler(this.cfg_btn_Click);
+            this.qt_btn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.qt_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.qt_btn.Image = ((System.Drawing.Image)(resources.GetObject("qt_btn.Image")));
+            this.qt_btn.Location = new System.Drawing.Point(184, 3);
+            this.qt_btn.Name = "qt_btn";
+            this.qt_btn.Size = new System.Drawing.Size(39, 23);
+            this.qt_btn.TabIndex = 4;
+            this.qt_btn.TabStop = false;
+            this.qt_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.qt_btn.UseVisualStyleBackColor = true;
+            this.qt_btn.Click += new System.EventHandler(this.qt_btn_Click);
             // 
-            // refresh_btn
+            // grnchk_btn
             // 
-            this.refresh_btn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.refresh_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.refresh_btn.Image = global::RedBrick2.Properties.Resources.Refreshicon;
-            this.refresh_btn.Location = new System.Drawing.Point(94, 3);
-            this.refresh_btn.Name = "refresh_btn";
-            this.refresh_btn.Size = new System.Drawing.Size(39, 23);
-            this.refresh_btn.TabIndex = 2;
-            this.refresh_btn.TabStop = false;
-            this.refresh_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.refresh_btn.UseVisualStyleBackColor = true;
-            this.refresh_btn.Click += new System.EventHandler(this.refresh_btn_Click);
+            this.grnchk_btn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.grnchk_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.grnchk_btn.ImageKey = "(none)";
+            this.grnchk_btn.Location = new System.Drawing.Point(4, 3);
+            this.grnchk_btn.Name = "grnchk_btn";
+            this.grnchk_btn.Size = new System.Drawing.Size(39, 23);
+            this.grnchk_btn.TabIndex = 0;
+            this.grnchk_btn.TabStop = false;
+            this.grnchk_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.grnchk_btn.UseVisualStyleBackColor = true;
+            this.grnchk_btn.Click += new System.EventHandler(this.grnchk_btn_Click);
             // 
             // button8
             // 
@@ -1614,47 +1611,51 @@
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
-            // grnchk_btn
+            // refresh_btn
             // 
-            this.grnchk_btn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.grnchk_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.grnchk_btn.ImageKey = "(none)";
-            this.grnchk_btn.Location = new System.Drawing.Point(4, 3);
-            this.grnchk_btn.Name = "grnchk_btn";
-            this.grnchk_btn.Size = new System.Drawing.Size(39, 23);
-            this.grnchk_btn.TabIndex = 0;
-            this.grnchk_btn.TabStop = false;
-            this.grnchk_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.grnchk_btn.UseVisualStyleBackColor = true;
-            this.grnchk_btn.Click += new System.EventHandler(this.grnchk_btn_Click);
+            this.refresh_btn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.refresh_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.refresh_btn.Image = global::RedBrick2.Properties.Resources.Refreshicon;
+            this.refresh_btn.Location = new System.Drawing.Point(94, 3);
+            this.refresh_btn.Name = "refresh_btn";
+            this.refresh_btn.Size = new System.Drawing.Size(39, 23);
+            this.refresh_btn.TabIndex = 2;
+            this.refresh_btn.TabStop = false;
+            this.refresh_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.refresh_btn.UseVisualStyleBackColor = true;
+            this.refresh_btn.Click += new System.EventHandler(this.refresh_btn_Click);
             // 
-            // qt_btn
+            // cfg_btn
             // 
-            this.qt_btn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.qt_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.qt_btn.Image = ((System.Drawing.Image)(resources.GetObject("qt_btn.Image")));
-            this.qt_btn.Location = new System.Drawing.Point(184, 3);
-            this.qt_btn.Name = "qt_btn";
-            this.qt_btn.Size = new System.Drawing.Size(39, 23);
-            this.qt_btn.TabIndex = 4;
-            this.qt_btn.TabStop = false;
-            this.qt_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.qt_btn.UseVisualStyleBackColor = true;
-            this.qt_btn.Click += new System.EventHandler(this.qt_btn_Click);
+            this.cfg_btn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.cfg_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cfg_btn.Image = global::RedBrick2.Properties.Resources.cfg;
+            this.cfg_btn.Location = new System.Drawing.Point(229, 3);
+            this.cfg_btn.Name = "cfg_btn";
+            this.cfg_btn.Size = new System.Drawing.Size(39, 23);
+            this.cfg_btn.TabIndex = 5;
+            this.cfg_btn.TabStop = false;
+            this.cfg_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.cfg_btn.UseVisualStyleBackColor = true;
+            this.cfg_btn.Click += new System.EventHandler(this.cfg_btn_Click);
             // 
-            // archive_btn
+            // panel1
             // 
-            this.archive_btn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.archive_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.archive_btn.Image = ((System.Drawing.Image)(resources.GetObject("archive_btn.Image")));
-            this.archive_btn.Location = new System.Drawing.Point(139, 3);
-            this.archive_btn.Name = "archive_btn";
-            this.archive_btn.Size = new System.Drawing.Size(39, 23);
-            this.archive_btn.TabIndex = 3;
-            this.archive_btn.TabStop = false;
-            this.archive_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.archive_btn.UseVisualStyleBackColor = true;
-            this.archive_btn.Click += new System.EventHandler(this.archive_btn_Click);
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panel1.Controls.Add(this.cfg_btn);
+            this.panel1.Controls.Add(this.refresh_btn);
+            this.panel1.Controls.Add(this.button8);
+            this.panel1.Controls.Add(this.grnchk_btn);
+            this.panel1.Controls.Add(this.qt_btn);
+            this.panel1.Controls.Add(this.archive_btn);
+            this.panel1.Location = new System.Drawing.Point(3, 1118);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(300, 34);
+            this.panel1.TabIndex = 0;
+            this.panel1.TabStop = true;
+            this.panel1.Visible = false;
             // 
             // ModelRedbrick
             // 
@@ -1819,13 +1820,13 @@
 		private System.Windows.Forms.Button add_prt_btn;
 		private System.Windows.Forms.Button pull_btn;
 		private System.Windows.Forms.Button cutlistTimeBtn;
-		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.Button qt_btn;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 		private System.Windows.Forms.Button archive_btn;
-		private System.Windows.Forms.Button button8;
+		private System.Windows.Forms.Button qt_btn;
 		private System.Windows.Forms.Button grnchk_btn;
+		private System.Windows.Forms.Button button8;
 		private System.Windows.Forms.Button refresh_btn;
 		private System.Windows.Forms.Button cfg_btn;
-		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+		private System.Windows.Forms.Panel panel1;
 	}
 }

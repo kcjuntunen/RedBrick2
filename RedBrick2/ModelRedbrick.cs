@@ -31,6 +31,11 @@ namespace RedBrick2 {
 		private DrawingRedbrick drawingRedbrick;
 
 		private string partLookup;
+		public string PartLookup
+		{
+			get { return partLookup; }
+			private set { partLookup = value; }
+		}
 		private Single length = 0.0F;
 		private Single width = 0.0F;
 		private Single thickness = 0.0F;
@@ -3067,7 +3072,7 @@ namespace RedBrick2 {
 			t.Start(x);
 		}
 
-		private void archive_btn_Click(object sender, EventArgs e) {
+		public void Archive() {
 			if (ActiveDoc is DrawingDoc) {
 				using (ENGINEERINGDataSet.GEN_ODOMETERDataTable gota =
 					new ENGINEERINGDataSet.GEN_ODOMETERDataTable()) {
@@ -3077,6 +3082,10 @@ namespace RedBrick2 {
 				}
 				drawingRedbrick.GetFileDates();
 			}
+		}
+
+		private void archive_btn_Click(object sender, EventArgs e) {
+			Archive();
 		}
 
 		static void QTThread(object obj) {
@@ -3093,6 +3102,10 @@ namespace RedBrick2 {
 		}
 
 		private void qt_btn_Click(object sender, EventArgs e) {
+			QuikTrac();
+		}
+
+		public void QuikTrac() {
 			if (ActiveDoc != null) {
 				ParameterizedThreadStart pts = new ParameterizedThreadStart(QTThread);
 				Thread t = new Thread(pts);
@@ -3101,14 +3114,18 @@ namespace RedBrick2 {
 			}
 		}
 
-		private void grnchk_btn_Click(object sender, EventArgs e) {
+		public void GreenCheck() {
 			Commit();
 			if (Properties.Settings.Default.MakeSounds)
 				System.Media.SystemSounds.Beep.Play();
 		}
 
+		private void grnchk_btn_Click(object sender, EventArgs e) {
+			GreenCheck();
+		}
+
 		bool changed = false;
-		private void cfg_btn_Click(object sender, EventArgs e) {
+		public void Configurator() {
 			using (RedbrickConfiguration rbc = new RedbrickConfiguration()) {
 				rbc.ChangedStuff += Rbc_ChangedStuff;
 				rbc.ShowDialog(this);
@@ -3121,6 +3138,10 @@ namespace RedBrick2 {
 				ToggleFlameWar(Properties.Settings.Default.FlameWar);
 			}
 			changed = false;
+		}
+
+		private void cfg_btn_Click(object sender, EventArgs e) {
+			Configurator();
 		}
 
 		private void Rbc_ChangedStuff(object sender, EventArgs e) {
@@ -3139,9 +3160,13 @@ namespace RedBrick2 {
 			ReQuery((SwApp.ActiveDoc as ModelDoc2));
 		}
 
-		private void refresh_btn_Click(object sender, EventArgs e) {
+		public void Refresh() {
 			DumpActiveDoc();
 			ReStart();
+		}
+
+		private void refresh_btn_Click(object sender, EventArgs e) {
+			Refresh();
 		}
 
 		private void overtb_Validating(object sender, CancelEventArgs e) {
