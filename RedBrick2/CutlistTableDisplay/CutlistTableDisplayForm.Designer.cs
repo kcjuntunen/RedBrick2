@@ -24,11 +24,11 @@
 		/// </summary>
 		private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tYPEDESCDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pARTNUMDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -89,6 +89,7 @@
             this.comboboxCutlistsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cutlistCheckTableAdapter = new RedBrick2.CutlistTableDisplay.CTDDataSetTableAdapters.CutlistCheckTableAdapter();
             this.comboboxCutlistsTableAdapter = new RedBrick2.CutlistTableDisplay.CTDDataSetTableAdapters.ComboboxCutlistsTableAdapter();
+            this.descr_lbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cutlistCheckTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cTDDataSet)).BeginInit();
@@ -179,9 +180,9 @@
             // lDataGridViewTextBoxColumn1
             // 
             this.lDataGridViewTextBoxColumn1.DataPropertyName = "L";
-            dataGridViewCellStyle1.Format = "N3";
-            dataGridViewCellStyle1.NullValue = null;
-            this.lDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Format = "N3";
+            dataGridViewCellStyle6.NullValue = null;
+            this.lDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle6;
             this.lDataGridViewTextBoxColumn1.HeaderText = "L";
             this.lDataGridViewTextBoxColumn1.Name = "lDataGridViewTextBoxColumn1";
             this.lDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -189,8 +190,8 @@
             // wDataGridViewTextBoxColumn1
             // 
             this.wDataGridViewTextBoxColumn1.DataPropertyName = "W";
-            dataGridViewCellStyle2.Format = "N3";
-            this.wDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Format = "N3";
+            this.wDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle7;
             this.wDataGridViewTextBoxColumn1.HeaderText = "W";
             this.wDataGridViewTextBoxColumn1.Name = "wDataGridViewTextBoxColumn1";
             this.wDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -198,8 +199,8 @@
             // tDataGridViewTextBoxColumn1
             // 
             this.tDataGridViewTextBoxColumn1.DataPropertyName = "T";
-            dataGridViewCellStyle3.Format = "N3";
-            this.tDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Format = "N3";
+            this.tDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle8;
             this.tDataGridViewTextBoxColumn1.HeaderText = "T";
             this.tDataGridViewTextBoxColumn1.Name = "tDataGridViewTextBoxColumn1";
             this.tDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -214,8 +215,8 @@
             // oVERLDataGridViewTextBoxColumn1
             // 
             this.oVERLDataGridViewTextBoxColumn1.DataPropertyName = "OVERL";
-            dataGridViewCellStyle4.Format = "N3";
-            this.oVERLDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Format = "N3";
+            this.oVERLDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle9;
             this.oVERLDataGridViewTextBoxColumn1.HeaderText = "OverL";
             this.oVERLDataGridViewTextBoxColumn1.Name = "oVERLDataGridViewTextBoxColumn1";
             this.oVERLDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -223,8 +224,8 @@
             // oVERWDataGridViewTextBoxColumn1
             // 
             this.oVERWDataGridViewTextBoxColumn1.DataPropertyName = "OVERW";
-            dataGridViewCellStyle5.Format = "N3";
-            this.oVERWDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.Format = "N3";
+            this.oVERWDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle10;
             this.oVERWDataGridViewTextBoxColumn1.HeaderText = "Over W";
             this.oVERWDataGridViewTextBoxColumn1.Name = "oVERWDataGridViewTextBoxColumn1";
             this.oVERWDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -579,11 +580,23 @@
             // 
             this.comboboxCutlistsTableAdapter.ClearBeforeFill = true;
             // 
+            // descr_lbl
+            // 
+            this.descr_lbl.AutoSize = true;
+            this.descr_lbl.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.comboboxCutlistsBindingSource, "DESCR", true));
+            this.descr_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.descr_lbl.Location = new System.Drawing.Point(252, 16);
+            this.descr_lbl.Name = "descr_lbl";
+            this.descr_lbl.Size = new System.Drawing.Size(10, 13);
+            this.descr_lbl.TabIndex = 4;
+            this.descr_lbl.Text = "-";
+            // 
             // CutlistTableDisplayForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 416);
+            this.Controls.Add(this.descr_lbl);
             this.Controls.Add(this.cutlist_cbx);
             this.Controls.Add(this.selected_lbl);
             this.Controls.Add(this.remove_btn);
@@ -666,5 +679,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn pARTIDDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn cLIDDataGridViewTextBoxColumn1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn cLPARTIDDataGridViewTextBoxColumn;
+		private System.Windows.Forms.Label descr_lbl;
 	}
 }
