@@ -89,7 +89,8 @@
             this.comboboxCutlistsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cutlistCheckTableAdapter = new RedBrick2.CutlistTableDisplay.CTDDataSetTableAdapters.CutlistCheckTableAdapter();
             this.comboboxCutlistsTableAdapter = new RedBrick2.CutlistTableDisplay.CTDDataSetTableAdapters.ComboboxCutlistsTableAdapter();
-            this.descr_lbl = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cutlistCheckTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cTDDataSet)).BeginInit();
@@ -580,23 +581,33 @@
             // 
             this.comboboxCutlistsTableAdapter.ClearBeforeFill = true;
             // 
-            // descr_lbl
+            // textBox1
             // 
-            this.descr_lbl.AutoSize = true;
-            this.descr_lbl.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.comboboxCutlistsBindingSource, "DESCR", true));
-            this.descr_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descr_lbl.Location = new System.Drawing.Point(252, 16);
-            this.descr_lbl.Name = "descr_lbl";
-            this.descr_lbl.Size = new System.Drawing.Size(10, 13);
-            this.descr_lbl.TabIndex = 4;
-            this.descr_lbl.Text = "-";
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.comboboxCutlistsBindingSource, "DESCR", true));
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(252, 13);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(237, 20);
+            this.textBox1.TabIndex = 4;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.comboboxCutlistsBindingSource, "CDATE", true));
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(495, 13);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(97, 20);
+            this.dateTimePicker1.TabIndex = 5;
             // 
             // CutlistTableDisplayForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 416);
-            this.Controls.Add(this.descr_lbl);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.cutlist_cbx);
             this.Controls.Add(this.selected_lbl);
             this.Controls.Add(this.remove_btn);
@@ -679,6 +690,7 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn pARTIDDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn cLIDDataGridViewTextBoxColumn1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn cLPARTIDDataGridViewTextBoxColumn;
-		private System.Windows.Forms.Label descr_lbl;
+		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.DateTimePicker dateTimePicker1;
 	}
 }

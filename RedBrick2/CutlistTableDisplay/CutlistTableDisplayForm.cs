@@ -17,11 +17,13 @@ namespace RedBrick2.CutlistTableDisplay {
 
 		public CutlistTableDisplayForm() {
 			InitializeComponent();
+			dataGridView1.ReadOnly = true;
 			PopulateComboBox();
 		}
 
 		public CutlistTableDisplayForm(int clid) {
 			InitializeComponent();
+			dataGridView1.ReadOnly = true;
 			ClID = clid;
 			GetClInfo();
 			Query();
@@ -29,6 +31,7 @@ namespace RedBrick2.CutlistTableDisplay {
 
 		public CutlistTableDisplayForm(string item, string rev) {
 			InitializeComponent();
+			dataGridView1.ReadOnly = true;
 			Item = item;
 			Rev = rev;
 			Query();
