@@ -60,14 +60,14 @@ namespace RedBrick2 {
 
 		private void QueryTab1() {
 			listView1.Items.Clear();
-			using (CNCTodo.CNCTodoDataSetTableAdapters.CUT_CNC_JOBS_VIEWTableAdapter ta_ =
-				new CNCTodo.CNCTodoDataSetTableAdapters.CUT_CNC_JOBS_VIEWTableAdapter()) {
-				ta_.FillGroupedByWC(cNCTodoDataSet.CUT_CNC_JOBS_VIEW, comboBox1.SelectedValue.ToString().Trim());
-				foreach (CNCTodo.CNCTodoDataSet.CUT_CNC_JOBS_VIEWRow row in cNCTodoDataSet.CUT_CNC_JOBS_VIEW) {
-					if (!showIgn_chb.Checked && row.IgnChk == -1) {
+			using (CNCTodo.CNCTodoDataSetTableAdapters.CUT_CNC_CLISSTableAdapter ta_ =
+				new CNCTodo.CNCTodoDataSetTableAdapters.CUT_CNC_CLISSTableAdapter()) {
+				ta_.FillByWC(cNCTodoDataSet.CUT_CNC_CLISS, comboBox1.SelectedValue.ToString().Trim());
+				foreach (CNCTodo.CNCTodoDataSet.CUT_CNC_CLISSRow row in cNCTodoDataSet.CUT_CNC_CLISS) {
+					if (!showIgn_chb.Checked && row.IgnChk != 0) {
 						continue;
 					}
-					string lastprn = row.LastPrn == "NOT PRINTED" ? "Not Printed" : Convert.ToDateTime(row.LastPrn).ToString(@"yyyy-MM-dd H:m tt");
+					string lastprn = row.LastPrn == "NOT PRINTED" ? "Not Printed" : Convert.ToDateTime(row.LastPrn).ToString(@"yyyy-MM-dd");
 					string[] data = new string[] {
 						row.OpDue.ToString(@"yyyy-MM-dd"),	// 0
 						row.JobNumber,											// 1
@@ -75,12 +75,12 @@ namespace RedBrick2 {
 						Redbrick.TitleCase(row.JobStatus),	// 3
 						row.PartNumber,											// 4
 						row.PartRev,												// 5
-						Redbrick.TitleCase(row.CutSt),			// 6
+						Redbrick.TitleCase(row.CutStat),		// 6
 						lastprn,														// 7
-						row.IgnChk == -1 ? "Yes" : "No",		// 8
+						row.IgnChk == 0 ? "No" : "Yes",			// 8
 						row.IsCutIDNull() ? string.Empty : row.CutID.ToString(),	// 9
-						row.IsDESCRNull() ? string.Empty : row.DESCR,							// 10	
-						row.JinfChk == -1 ? "Y" : "N",			// 11
+						row.CutDesc,												// 10
+						row.Linked == -1 ? "Y" : "N",				// 11
 						row.OpNumber.ToString()							// 12
 					};
 					ListViewItem l = new ListViewItem(data);
