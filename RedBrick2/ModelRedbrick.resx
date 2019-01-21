@@ -117,8 +117,74 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="cUTEDGESBindingSource3.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 95</value>
+  </metadata>
+  <metadata name="cUTEDGESBindingSource3.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 95</value>
+  </metadata>
+  <metadata name="eNGINEERINGDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="eNGINEERINGDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="cUTEDGESBindingSource2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>838, 56</value>
+  </metadata>
+  <metadata name="cUTEDGESBindingSource2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>838, 56</value>
+  </metadata>
+  <metadata name="eNGINEERINGDataSetBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>587, 56</value>
+  </metadata>
+  <metadata name="eNGINEERINGDataSetBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>587, 56</value>
+  </metadata>
+  <metadata name="cUTEDGESBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 56</value>
+  </metadata>
+  <metadata name="cUTEDGESBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 56</value>
+  </metadata>
+  <metadata name="cUTEDGESBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>616, 17</value>
+  </metadata>
+  <metadata name="cUTEDGESBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>616, 17</value>
+  </metadata>
+  <metadata name="cUTMATERIALSBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>211, 95</value>
+  </metadata>
+  <metadata name="cUTMATERIALSBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>211, 95</value>
+  </metadata>
+  <metadata name="cUTSTATESBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>629, 172</value>
+  </metadata>
+  <metadata name="cUTSTATESBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>629, 172</value>
+  </metadata>
+  <metadata name="cutlistPartsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>432, 95</value>
+  </metadata>
+  <metadata name="cutlistPartsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>432, 95</value>
+  </metadata>
+  <metadata name="cUTPARTSBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>806, 95</value>
+  </metadata>
+  <metadata name="cUTPARTSBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>806, 95</value>
+  </metadata>
   <metadata name="friendlyCutOpsBindingSource4.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>425, 172</value>
+  </metadata>
+  <metadata name="friendlyCutOpsBindingSource4.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>425, 172</value>
+  </metadata>
+  <metadata name="friendlyCutOpsBindingSource3.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>221, 172</value>
   </metadata>
   <metadata name="friendlyCutOpsBindingSource3.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>221, 172</value>
@@ -126,89 +192,23 @@
   <metadata name="friendlyCutOpsBindingSource2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 172</value>
   </metadata>
+  <metadata name="friendlyCutOpsBindingSource2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 172</value>
+  </metadata>
   <metadata name="friendlyCutOpsBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>984, 134</value>
+  </metadata>
+  <metadata name="friendlyCutOpsBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>984, 134</value>
+  </metadata>
+  <metadata name="friendlyCutOpsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>191, 134</value>
   </metadata>
   <metadata name="friendlyCutOpsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>191, 134</value>
   </metadata>
   <metadata name="cUTPARTTYPESBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>582, 134</value>
-  </metadata>
-  <metadata name="cUTPARTSBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>806, 95</value>
-  </metadata>
-  <metadata name="cUTMATERIALSBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>211, 95</value>
-  </metadata>
-  <metadata name="cUTMATERIALSBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>211, 95</value>
-  </metadata>
-  <metadata name="eNGINEERINGDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="eNGINEERINGDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="cUTEDGESBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>616, 17</value>
-  </metadata>
-  <metadata name="cUTEDGESBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>616, 17</value>
-  </metadata>
-  <metadata name="cUTEDGESBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
-  </metadata>
-  <metadata name="cUTEDGESBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
-  </metadata>
-  <metadata name="cUTEDGESBindingSource2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>838, 56</value>
-  </metadata>
-  <metadata name="cUTEDGESBindingSource2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>838, 56</value>
-  </metadata>
-  <metadata name="eNGINEERINGDataSetBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>587, 56</value>
-  </metadata>
-  <metadata name="eNGINEERINGDataSetBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>587, 56</value>
-  </metadata>
-  <metadata name="cUTEDGESBindingSource3.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 95</value>
-  </metadata>
-  <metadata name="cUTEDGESBindingSource3.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 95</value>
-  </metadata>
-  <metadata name="cutlistPartsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>432, 95</value>
-  </metadata>
-  <metadata name="cutlistPartsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>432, 95</value>
-  </metadata>
-  <metadata name="cUTSTATESBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>629, 172</value>
-  </metadata>
-  <metadata name="cUTSTATESBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>629, 172</value>
-  </metadata>
-  <metadata name="cUTPARTSBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>806, 95</value>
-  </metadata>
-  <metadata name="friendlyCutOpsBindingSource4.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>425, 172</value>
-  </metadata>
-  <metadata name="friendlyCutOpsBindingSource3.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>221, 172</value>
-  </metadata>
-  <metadata name="friendlyCutOpsBindingSource2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 172</value>
-  </metadata>
-  <metadata name="friendlyCutOpsBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>984, 134</value>
-  </metadata>
-  <metadata name="friendlyCutOpsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>191, 134</value>
   </metadata>
   <metadata name="cUTPARTTYPESBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>582, 134</value>
@@ -244,6 +244,24 @@
     <value>781, 134</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="archive_btn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAATCwAAEwsAAAAAAAAAAAAA9/f39/f3
+        ppmUl4uGloqFloqFloqFloqFloqFloqFloqFloqFl4uGppmU9/f39/f39/f39/f3UXGaAEWYAECRAECR
+        AECRAECRAECRAECRAECRAECRAEWYUXGa9/f39/f39/f39/f3b420FWCwLYTdLofhHnnXC2rNCWjKHHjW
+        LofhLYTdFWCwb4209/f39/f39/f39/f3cJC2ElqpJnbKJ3fNT4jEhaXJmLndWpLPJ3fNJnbKElqpcJC2
+        9/f39/f39/f39/f3cJK4DUeLFECAFEGBFEGBE0CBE0CBFEGBFEGBFECADUeLcJK49/f39/f39/f39/f3
+        c5a7FmW5LorkMI/mIY3hD4jaDYbXIIzgMI/mLorkFmW5c5a79/f39/f39/f39/f3dJi9FWa5LIffL43i
+        WqHZj73bo9HuZKzjL43iLIffFWa5dJi99/f39/f39/f39/f3dpm+H3nJQafzRq/4TLv7UsT9UsT9TLv7
+        Rq/4QafzH3nKdpm+9/f39/f39/f39/f3ep3CAkmKBCxgAAouAAouAAkuAAkuAAouAAouBCxgAUeGep3C
+        9/f39/f39/f39/f3fJ7CClOZCEWHBDh2BDh2Azd2Azd2BDh2BDh2CEWHCFGXfJ7C9/f39/f39/f39/f3
+        gaLHH2/CLorjMpHmJJLhEo/bEI3YIpDgMpHmLorjH3DDgaHG9/f39/f39/f39/f3hKXKH27ALYbfL4zh
+        WaDYjrraos7uZKrjL4zhLYbfIG/BhKTJ9/f39/f39/f39/f3h6fMJ3nHP6TvQafwRq7ySbXzSbXzRq7y
+        QafwP6TvKHrJh6fL9/f39/f39/f39/f3hqXKHGOvGFuoGFuoGFuoF1uoF1uoGFuoGFuoGFuoG2Ovh6bL
+        9/f39/f39/f39/f33eHkHo/YJZLZJZLZJZLZJZLZJZLZJZLZJZLZJZLZHo7Y2N7j9/f39/f39/f39/f3
+        9/f3tcfZeqnReqnReqnReqnReqnReqnReqnReqnRsMTY9/f39/f39/f3
+</value>
+  </data>
   <data name="qt_btn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         Qk2uBgAAAAAAADYAAAAoAAAAFwAAABcAAAABABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA9/f39/f3
@@ -277,25 +295,7 @@
         9/f39/f39/f39/f39/f39/f39/f39/f39/f3AAAA
 </value>
   </data>
-  <data name="archive_btn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        Qk02AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAAAAAATCwAAEwsAAAAAAAAAAAAA9/f39/f3
-        ppmUl4uGloqFloqFloqFloqFloqFloqFloqFloqFl4uGppmU9/f39/f39/f39/f3UXGaAEWYAECRAECR
-        AECRAECRAECRAECRAECRAECRAEWYUXGa9/f39/f39/f39/f3b420FWCwLYTdLofhHnnXC2rNCWjKHHjW
-        LofhLYTdFWCwb4209/f39/f39/f39/f3cJC2ElqpJnbKJ3fNT4jEhaXJmLndWpLPJ3fNJnbKElqpcJC2
-        9/f39/f39/f39/f3cJK4DUeLFECAFEGBFEGBE0CBE0CBFEGBFEGBFECADUeLcJK49/f39/f39/f39/f3
-        c5a7FmW5LorkMI/mIY3hD4jaDYbXIIzgMI/mLorkFmW5c5a79/f39/f39/f39/f3dJi9FWa5LIffL43i
-        WqHZj73bo9HuZKzjL43iLIffFWa5dJi99/f39/f39/f39/f3dpm+H3nJQafzRq/4TLv7UsT9UsT9TLv7
-        Rq/4QafzH3nKdpm+9/f39/f39/f39/f3ep3CAkmKBCxgAAouAAouAAkuAAkuAAouAAouBCxgAUeGep3C
-        9/f39/f39/f39/f3fJ7CClOZCEWHBDh2BDh2Azd2Azd2BDh2BDh2CEWHCFGXfJ7C9/f39/f39/f39/f3
-        gaLHH2/CLorjMpHmJJLhEo/bEI3YIpDgMpHmLorjH3DDgaHG9/f39/f39/f39/f3hKXKH27ALYbfL4zh
-        WaDYjrraos7uZKrjL4zhLYbfIG/BhKTJ9/f39/f39/f39/f3h6fMJ3nHP6TvQafwRq7ySbXzSbXzRq7y
-        QafwP6TvKHrJh6fL9/f39/f39/f39/f3hqXKHGOvGFuoGFuoGFuoF1uoF1uoGFuoGFuoGFuoG2Ovh6bL
-        9/f39/f39/f39/f33eHkHo/YJZLZJZLZJZLZJZLZJZLZJZLZJZLZJZLZHo7Y2N7j9/f39/f39/f39/f3
-        9/f3tcfZeqnReqnReqnReqnReqnReqnReqnReqnRsMTY9/f39/f39/f3
-</value>
-  </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>54</value>
+    <value>25</value>
   </metadata>
 </root>

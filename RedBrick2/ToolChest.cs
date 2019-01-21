@@ -16,6 +16,10 @@ namespace RedBrick2 {
 		/// </summary>
 		public ToolChest() {
 			InitializeComponent();
+			Location = Properties.Settings.Default.ToolChestLocation;
+			ShowHideButtons();
+			ShowAccessControlledButtons();
+			Deactivate += ToolChest_Deactivate;
 		}
 
 		/// <summary>
@@ -35,9 +39,10 @@ namespace RedBrick2 {
 		}
 
 		void ShowHideButtons() {
-			button7.Enabled = swApp.ActiveDoc is PartDoc;
-			button2.Enabled = swApp.ActiveDoc != null && !(swApp.ActiveDoc is PartDoc);
-			if (swApp.ActiveDoc is DrawingDoc) {
+			bool not_null = swApp != null;
+			button7.Enabled = not_null && (swApp.ActiveDoc is PartDoc);
+			button2.Enabled = not_null && !(swApp.ActiveDoc is PartDoc);
+			if (not_null && swApp.ActiveDoc is DrawingDoc) {
 				SolidWorks.Interop.sldworks.View v_ = Redbrick.GetFirstView(swApp);
 				button2.Enabled = !(v_ == null) && v_.ReferencedDocument != null;
 			}

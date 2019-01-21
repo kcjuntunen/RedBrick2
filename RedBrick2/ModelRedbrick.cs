@@ -31,6 +31,11 @@ namespace RedBrick2 {
 		private DrawingRedbrick drawingRedbrick;
 
 		private string partLookup;
+		public string PartLookup
+		{
+			get { return partLookup; }
+			private set { partLookup = value; }
+		}
 		private Single length = 0.0F;
 		private Single width = 0.0F;
 		private Single thickness = 0.0F;
@@ -38,9 +43,6 @@ namespace RedBrick2 {
 		private Single db_length = 0.0F;
 		private Single db_width = 0.0F;
 		private Single db_thickness = 0.0F;
-
-
-		private Point scrollOffset;
 
 		private ModelDoc2 lastModelDoc = null;
 		private DirtTracker dirtTracker;
@@ -290,12 +292,12 @@ namespace RedBrick2 {
 			dirtTracker.IsDirty = false;
 			groupBox1.Text = groupBox1.Text.Replace(Properties.Settings.Default.NotSavedMark, string.Empty);
 			GetCutlistData();
-			flowLayoutPanel1.Controls.Clear();
+			//flowLayoutPanel1.Controls.Clear();
 			if (ActiveDoc != null) {
 				if (PropertySet.Count < 1) {
 					PropertySet.GetProperties(ActiveDoc);
 				}
-				tableLayoutPanel1.Enabled = true;
+				//tableLayoutPanel1.Enabled = true;
 				if (PropertySet[@"LENGTH"].Value != null) {
 					lengthtb.Text = Convert.ToString(PropertySet[@"LENGTH"].Value).Replace("\"", string.Empty);
 				}
@@ -338,14 +340,14 @@ namespace RedBrick2 {
 
 				//textBox_TextChanged(PropertySet[@"WALL THICKNESS"].Value, label21);
 
-				flowLayoutPanel1.VerticalScroll.Value = scrollOffset.Y;
+				//flowLayoutPanel1.VerticalScroll.Value = scrollOffset.Y;
 				recalculate_blanksizeL();
 				recalculate_blanksizeW();
 
 				groupBox1.Text = string.Format(@"{0} - {1}",
 					partLookup, configuration);
 			} else {
-				tableLayoutPanel1.Enabled = false;
+				//tableLayoutPanel1.Enabled = false;
 			}
 		}
 
@@ -784,7 +786,7 @@ namespace RedBrick2 {
 			overWtb.Text = Redbrick.enforce_number_format(StrTryProp("OVERW"));
 			Decimal ppb_tmp = Convert.ToDecimal(IntTryProp("BLANK QTY"));
 			ppb_nud.Value = ppb_tmp > 0 ? ppb_tmp : 1;
-			ppbtb.Text = StrTryProp("BLANK QTY");
+			//ppbtb.Text = StrTryProp("BLANK QTY");
 			updateCNCcb.Checked = BoolTryProp("UPDATE CNC");
 			length = DimTryProp(@"LENGTH");
 			width = DimTryProp(@"WIDTH");
@@ -1016,14 +1018,14 @@ namespace RedBrick2 {
 		}
 
 		private void GetOps() {
-			flowLayoutPanel1.Controls.Clear();
+			//flowLayoutPanel1.Controls.Clear();
 			OpSets ops = new OpSets(PropertySet, partLookup);
 			PropertySet.opSets = ops;
 			foreach (OpSet op in ops) {
 				OpControl opc = op.OperationControl;
-				opc.Width = flowLayoutPanel1.Width - 25;
-				flowLayoutPanel1.Controls.Add(opc);
-				flowLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+				//opc.Width = flowLayoutPanel1.Width - 25;
+				//flowLayoutPanel1.Controls.Add(opc);
+				//flowLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
 				opc.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 			}
 
@@ -1260,7 +1262,7 @@ namespace RedBrick2 {
 				object selection_ = swSelMgr.GetSelectedObject6(1, -1);
 				if (selection_ is Component2) {
 					swSelComp = (Component2)selection_;
-					this.tableLayoutPanel1.Enabled = true;
+					//this.tableLayoutPanel1.Enabled = true;
 				}
 			}
 			if (swSelComp != null) {
@@ -1268,7 +1270,7 @@ namespace RedBrick2 {
 				if (swSelComp.GetModelDoc2() is ModelDoc2) {
 					configurationManager = (swSelComp.GetModelDoc2() as ModelDoc2).ConfigurationManager;
 					configuration = swSelComp.ReferencedConfiguration;
-					this.tableLayoutPanel1.Enabled = true;
+					//this.tableLayoutPanel1.Enabled = true;
 					ReQuery(swSelComp.GetModelDoc2());
 				}
 			} else {
@@ -1278,7 +1280,7 @@ namespace RedBrick2 {
 				try {
 					configurationManager = SwApp.ActiveDoc.ConfigurationManager;
 					configuration = configurationManager.ActiveConfiguration.Name;
-					this.tableLayoutPanel1.Enabled = true;
+					//this.tableLayoutPanel1.Enabled = true;
 					groupBox1.Text = string.Format(@"{0} - {1}",
 						partLookup, PropertySet.Configuration);
 					ReQuery(SwApp.ActiveDoc);
@@ -1655,12 +1657,12 @@ namespace RedBrick2 {
 			if (!DrawingEventsAssigned) {
 				ConnectDrawingEvents();
 			}
-			this.tableLayoutPanel1.Enabled = true;
-			//tabControl1.SelectedTab = tabPage2;
+			//this.tablelayoutpanel1.enabled = true;
+			//tabcontrol1.selectedtab = tabpage2;
 		}
 
 		private void SetupPart() {
-			scrollOffset = new Point(0, flowLayoutPanel1.VerticalScroll.Value);
+			//scrollOffset = new Point(0, flowLayoutPanel1.VerticalScroll.Value);
 
 			if (!(_activeDoc is DrawingDoc)) {
 				configuration = _activeDoc.ConfigurationManager.ActiveConfiguration.Name;
@@ -3070,7 +3072,7 @@ namespace RedBrick2 {
 			t.Start(x);
 		}
 
-		private void archive_btn_Click(object sender, EventArgs e) {
+		public void Archive() {
 			if (ActiveDoc is DrawingDoc) {
 				using (ENGINEERINGDataSet.GEN_ODOMETERDataTable gota =
 					new ENGINEERINGDataSet.GEN_ODOMETERDataTable()) {
@@ -3080,6 +3082,10 @@ namespace RedBrick2 {
 				}
 				drawingRedbrick.GetFileDates();
 			}
+		}
+
+		private void archive_btn_Click(object sender, EventArgs e) {
+			Archive();
 		}
 
 		static void QTThread(object obj) {
@@ -3096,6 +3102,10 @@ namespace RedBrick2 {
 		}
 
 		private void qt_btn_Click(object sender, EventArgs e) {
+			QuikTrac();
+		}
+
+		public void QuikTrac() {
 			if (ActiveDoc != null) {
 				ParameterizedThreadStart pts = new ParameterizedThreadStart(QTThread);
 				Thread t = new Thread(pts);
@@ -3104,14 +3114,18 @@ namespace RedBrick2 {
 			}
 		}
 
-		private void grnchk_btn_Click(object sender, EventArgs e) {
+		public void GreenCheck() {
 			Commit();
 			if (Properties.Settings.Default.MakeSounds)
 				System.Media.SystemSounds.Beep.Play();
 		}
 
+		private void grnchk_btn_Click(object sender, EventArgs e) {
+			GreenCheck();
+		}
+
 		bool changed = false;
-		private void cfg_btn_Click(object sender, EventArgs e) {
+		public void Configurator() {
 			using (RedbrickConfiguration rbc = new RedbrickConfiguration()) {
 				rbc.ChangedStuff += Rbc_ChangedStuff;
 				rbc.ShowDialog(this);
@@ -3124,6 +3138,10 @@ namespace RedBrick2 {
 				ToggleFlameWar(Properties.Settings.Default.FlameWar);
 			}
 			changed = false;
+		}
+
+		private void cfg_btn_Click(object sender, EventArgs e) {
+			Configurator();
 		}
 
 		private void Rbc_ChangedStuff(object sender, EventArgs e) {
@@ -3142,9 +3160,13 @@ namespace RedBrick2 {
 			ReQuery((SwApp.ActiveDoc as ModelDoc2));
 		}
 
-		private void refresh_btn_Click(object sender, EventArgs e) {
+		public void Refresh() {
 			DumpActiveDoc();
 			ReStart();
+		}
+
+		private void refresh_btn_Click(object sender, EventArgs e) {
+			Refresh();
 		}
 
 		private void overtb_Validating(object sender, CancelEventArgs e) {
