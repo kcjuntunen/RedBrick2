@@ -24,11 +24,11 @@
 		/// </summary>
 		private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tYPEDESCDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pARTNUMDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -91,10 +91,19 @@
             this.comboboxCutlistsTableAdapter = new RedBrick2.CutlistTableDisplay.CTDDataSetTableAdapters.ComboboxCutlistsTableAdapter();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cUTSTATESBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cUT_STATESTableAdapter = new RedBrick2.CutlistTableDisplay.CTDDataSetTableAdapters.CUT_STATESTableAdapter();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cutlistCheckTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cTDDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboboxCutlistsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cUTSTATESBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -139,7 +148,7 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(775, 335);
+            this.dataGridView1.Size = new System.Drawing.Size(1165, 335);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -181,9 +190,9 @@
             // lDataGridViewTextBoxColumn1
             // 
             this.lDataGridViewTextBoxColumn1.DataPropertyName = "L";
-            dataGridViewCellStyle6.Format = "N3";
-            dataGridViewCellStyle6.NullValue = null;
-            this.lDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle16.Format = "N3";
+            dataGridViewCellStyle16.NullValue = null;
+            this.lDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle16;
             this.lDataGridViewTextBoxColumn1.HeaderText = "L";
             this.lDataGridViewTextBoxColumn1.Name = "lDataGridViewTextBoxColumn1";
             this.lDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -191,8 +200,8 @@
             // wDataGridViewTextBoxColumn1
             // 
             this.wDataGridViewTextBoxColumn1.DataPropertyName = "W";
-            dataGridViewCellStyle7.Format = "N3";
-            this.wDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle17.Format = "N3";
+            this.wDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle17;
             this.wDataGridViewTextBoxColumn1.HeaderText = "W";
             this.wDataGridViewTextBoxColumn1.Name = "wDataGridViewTextBoxColumn1";
             this.wDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -200,8 +209,8 @@
             // tDataGridViewTextBoxColumn1
             // 
             this.tDataGridViewTextBoxColumn1.DataPropertyName = "T";
-            dataGridViewCellStyle8.Format = "N3";
-            this.tDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle18.Format = "N3";
+            this.tDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle18;
             this.tDataGridViewTextBoxColumn1.HeaderText = "T";
             this.tDataGridViewTextBoxColumn1.Name = "tDataGridViewTextBoxColumn1";
             this.tDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -216,8 +225,8 @@
             // oVERLDataGridViewTextBoxColumn1
             // 
             this.oVERLDataGridViewTextBoxColumn1.DataPropertyName = "OVERL";
-            dataGridViewCellStyle9.Format = "N3";
-            this.oVERLDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle19.Format = "N3";
+            this.oVERLDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle19;
             this.oVERLDataGridViewTextBoxColumn1.HeaderText = "OverL";
             this.oVERLDataGridViewTextBoxColumn1.Name = "oVERLDataGridViewTextBoxColumn1";
             this.oVERLDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -225,8 +234,8 @@
             // oVERWDataGridViewTextBoxColumn1
             // 
             this.oVERWDataGridViewTextBoxColumn1.DataPropertyName = "OVERW";
-            dataGridViewCellStyle10.Format = "N3";
-            this.oVERWDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle20.Format = "N3";
+            this.oVERWDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle20;
             this.oVERWDataGridViewTextBoxColumn1.HeaderText = "Over W";
             this.oVERWDataGridViewTextBoxColumn1.Name = "oVERWDataGridViewTextBoxColumn1";
             this.oVERWDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -601,11 +610,90 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(97, 20);
             this.dateTimePicker1.TabIndex = 5;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(598, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Setup by:";
+            // 
+            // textBox2
+            // 
+            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.comboboxCutlistsBindingSource, "SetupName", true));
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(656, 13);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(115, 20);
+            this.textBox2.TabIndex = 7;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(777, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "State:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.comboboxCutlistsBindingSource, "STATEID", true));
+            this.comboBox1.DataSource = this.cUTSTATESBindingSource;
+            this.comboBox1.DisplayMember = "STATE";
+            this.comboBox1.Enabled = false;
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(818, 13);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(85, 21);
+            this.comboBox1.TabIndex = 9;
+            this.comboBox1.ValueMember = "ID";
+            // 
+            // cUTSTATESBindingSource
+            // 
+            this.cUTSTATESBindingSource.DataMember = "CUT_STATES";
+            this.cUTSTATESBindingSource.DataSource = this.cTDDataSet;
+            // 
+            // cUT_STATESTableAdapter
+            // 
+            this.cUT_STATESTableAdapter.ClearBeforeFill = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(909, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(18, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "by";
+            // 
+            // textBox3
+            // 
+            this.textBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.comboboxCutlistsBindingSource, "StateName", true));
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(933, 13);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(115, 20);
+            this.textBox3.TabIndex = 11;
+            // 
             // CutlistTableDisplayForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 416);
+            this.ClientSize = new System.Drawing.Size(1190, 416);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.cutlist_cbx);
@@ -623,6 +711,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cutlistCheckTableBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cTDDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboboxCutlistsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cUTSTATESBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -692,5 +781,13 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn cLPARTIDDataGridViewTextBoxColumn;
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.DateTimePicker dateTimePicker1;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.TextBox textBox2;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.BindingSource cUTSTATESBindingSource;
+		private CTDDataSetTableAdapters.CUT_STATESTableAdapter cUT_STATESTableAdapter;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.TextBox textBox3;
 	}
 }

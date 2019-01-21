@@ -63,6 +63,7 @@ namespace RedBrick2.CutlistTableDisplay {
 		}
 
 		private void CutlistTableDisplayForm_Load(object sender, EventArgs e) {
+			this.cUT_STATESTableAdapter.Fill(this.cTDDataSet.CUT_STATES);
 			Location = Properties.Settings.Default.CutlistDisplayLocation;
 			Size = Properties.Settings.Default.CutlistDisplaySize;
 			if (Item != string.Empty && Rev != string.Empty) {
