@@ -24,11 +24,11 @@
 		/// </summary>
 		private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tYPEDESCDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pARTNUMDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -190,9 +190,9 @@
             // lDataGridViewTextBoxColumn1
             // 
             this.lDataGridViewTextBoxColumn1.DataPropertyName = "L";
-            dataGridViewCellStyle16.Format = "N3";
-            dataGridViewCellStyle16.NullValue = null;
-            this.lDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle1.Format = "N3";
+            dataGridViewCellStyle1.NullValue = null;
+            this.lDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle1;
             this.lDataGridViewTextBoxColumn1.HeaderText = "L";
             this.lDataGridViewTextBoxColumn1.Name = "lDataGridViewTextBoxColumn1";
             this.lDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -200,8 +200,8 @@
             // wDataGridViewTextBoxColumn1
             // 
             this.wDataGridViewTextBoxColumn1.DataPropertyName = "W";
-            dataGridViewCellStyle17.Format = "N3";
-            this.wDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle2.Format = "N3";
+            this.wDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle2;
             this.wDataGridViewTextBoxColumn1.HeaderText = "W";
             this.wDataGridViewTextBoxColumn1.Name = "wDataGridViewTextBoxColumn1";
             this.wDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -209,8 +209,8 @@
             // tDataGridViewTextBoxColumn1
             // 
             this.tDataGridViewTextBoxColumn1.DataPropertyName = "T";
-            dataGridViewCellStyle18.Format = "N3";
-            this.tDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle3.Format = "N3";
+            this.tDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle3;
             this.tDataGridViewTextBoxColumn1.HeaderText = "T";
             this.tDataGridViewTextBoxColumn1.Name = "tDataGridViewTextBoxColumn1";
             this.tDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -225,8 +225,8 @@
             // oVERLDataGridViewTextBoxColumn1
             // 
             this.oVERLDataGridViewTextBoxColumn1.DataPropertyName = "OVERL";
-            dataGridViewCellStyle19.Format = "N3";
-            this.oVERLDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle4.Format = "N3";
+            this.oVERLDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle4;
             this.oVERLDataGridViewTextBoxColumn1.HeaderText = "OverL";
             this.oVERLDataGridViewTextBoxColumn1.Name = "oVERLDataGridViewTextBoxColumn1";
             this.oVERLDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -234,8 +234,8 @@
             // oVERWDataGridViewTextBoxColumn1
             // 
             this.oVERWDataGridViewTextBoxColumn1.DataPropertyName = "OVERW";
-            dataGridViewCellStyle20.Format = "N3";
-            this.oVERWDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle5.Format = "N3";
+            this.oVERWDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle5;
             this.oVERWDataGridViewTextBoxColumn1.HeaderText = "Over W";
             this.oVERWDataGridViewTextBoxColumn1.Name = "oVERWDataGridViewTextBoxColumn1";
             this.oVERWDataGridViewTextBoxColumn1.ReadOnly = true;
@@ -599,6 +599,7 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(237, 20);
             this.textBox1.TabIndex = 4;
+            this.textBox1.Visible = false;
             // 
             // dateTimePicker1
             // 
@@ -609,6 +610,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(97, 20);
             this.dateTimePicker1.TabIndex = 5;
+            this.dateTimePicker1.Visible = false;
             // 
             // label1
             // 
@@ -619,6 +621,7 @@
             this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 6;
             this.label1.Text = "Setup by:";
+            this.label1.Visible = false;
             // 
             // textBox2
             // 
@@ -629,6 +632,7 @@
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(115, 20);
             this.textBox2.TabIndex = 7;
+            this.textBox2.Visible = false;
             // 
             // label2
             // 
@@ -639,6 +643,7 @@
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 8;
             this.label2.Text = "State:";
+            this.label2.Visible = false;
             // 
             // comboBox1
             // 
@@ -653,6 +658,7 @@
             this.comboBox1.Size = new System.Drawing.Size(85, 21);
             this.comboBox1.TabIndex = 9;
             this.comboBox1.ValueMember = "ID";
+            this.comboBox1.Visible = false;
             // 
             // cUTSTATESBindingSource
             // 
@@ -672,6 +678,7 @@
             this.label3.Size = new System.Drawing.Size(18, 13);
             this.label3.TabIndex = 10;
             this.label3.Text = "by";
+            this.label3.Visible = false;
             // 
             // textBox3
             // 
@@ -682,6 +689,7 @@
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(115, 20);
             this.textBox3.TabIndex = 11;
+            this.textBox3.Visible = false;
             // 
             // CutlistTableDisplayForm
             // 

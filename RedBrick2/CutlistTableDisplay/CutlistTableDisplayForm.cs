@@ -59,6 +59,16 @@ namespace RedBrick2.CutlistTableDisplay {
 			Cursor = Cursors.WaitCursor;
 			this.comboboxCutlistsTableAdapter.Fill(this.cTDDataSet.ComboboxCutlists);
 			populated = true;
+
+			// unhide data displays that are tied to the cutlist combobox
+			textBox1.Visible = true;
+			dateTimePicker1.Visible = true;
+			label1.Visible = true;
+			textBox2.Visible = true;
+			label2.Visible = true;
+			comboBox1.Visible = true;
+			label3.Visible = true;
+			textBox3.Visible = true;
 			Cursor = Cursors.Default;
 		}
 
