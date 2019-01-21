@@ -247,7 +247,7 @@ namespace RedBrick2 {
 			selectedMetalAlertPath = string.Format(@"{0}{1}", _path, _file);
 			pathLabel.Text = selectedMetalAlertPath;
 			selectedMetalAlertPDFPath = selectedMetalAlertPath.Replace(@"K:\", metalPath);
-			selectedMetalAlertSWPath = selectedMetalAlertPDFPath.Replace(@"PDF", @"SLDDRW");
+			selectedMetalAlertSWPath = selectedMetalAlertPDFPath.ToUpper().Replace(@"PDF", @"SLDDRW");
 			ttSW.SetToolTip(sw_btn, selectedMetalAlertSWPath);
 		}
 
