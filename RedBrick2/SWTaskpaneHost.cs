@@ -339,6 +339,9 @@ namespace RedBrick2 {
 			if (mrb == null) {
 				return;
 			}
+			if (!(mrb.ActiveDoc is DrawingDoc)) {
+				return;
+			}
 			mrb.Archive();
 		}
 
