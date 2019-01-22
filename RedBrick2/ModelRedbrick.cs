@@ -103,7 +103,14 @@ namespace RedBrick2 {
 
 			ActiveDoc = md;
 			tabPage1.Text = @"Model Properties";
-			tabPage2.Text = @"DrawingProperties";
+			tabPage2.Text = @"Drawing Properties";
+
+			groupBox1.TabStop = true;
+			groupBox2.TabStop = true;
+			groupBox3.TabStop = true;
+			groupBox4.TabStop = true;
+			tabPage1.TabStop = true;
+			tabPage2.TabStop = true;
 
 			AutoCompleteStringCollection skdim_ = new AutoCompleteStringCollection();
 			lengthtb.AutoCompleteCustomSource = skdim_;
@@ -1819,7 +1826,6 @@ namespace RedBrick2 {
 			set {
 				//int gc_ = GC.GetGeneration(this);
 				//GC.Collect(gc_, GCCollectionMode.Optimized);
-				archive_btn.Enabled = value != null && value is DrawingDoc;
 				if (value != null && value != ActiveDoc) {
 					DisconnectEvents();
 					Show();
@@ -1985,8 +1991,6 @@ namespace RedBrick2 {
 			swap_tooltup.SetToolTip(swapWnT, Properties.Resources.DimensionSwapWarning);
 			//GetCutlistData();
 			//SelectTab();
-			grnchk_btn.Image = Image.FromFile(@"G:\Solid Works\Amstore_Macros\ICONS\greencheck.ico");
-			grnchk_btn.ImageAlign = ContentAlignment.MiddleCenter;
 			initialated = true;
 			AttachComboBoxEvents();
 		}

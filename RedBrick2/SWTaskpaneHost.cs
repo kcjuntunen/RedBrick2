@@ -164,6 +164,8 @@ namespace RedBrick2 {
 		private void BuildStuff() {
 			if (!initialated) {
 				mrb = new ModelRedbrick(SwApp, ActiveDoc);
+				mrb.TabIndex = 1;
+				mrb.TabStop = true;
 				tableLayoutPanel1.Controls.Add(mrb, 0, 1);
 				//Controls.Add(mrb);
 				mrb.Dock = DockStyle.Fill;

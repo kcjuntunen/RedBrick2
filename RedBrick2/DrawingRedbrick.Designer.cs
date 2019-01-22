@@ -185,7 +185,6 @@ namespace RedBrick2 {
             // 
             // label31
             // 
-            this.label31.AutoSize = true;
             this.label31.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label31.Location = new System.Drawing.Point(3, 0);
             this.label31.Name = "label31";
@@ -195,7 +194,6 @@ namespace RedBrick2 {
             // 
             // label32
             // 
-            this.label32.AutoSize = true;
             this.label32.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label32.Location = new System.Drawing.Point(106, 0);
             this.label32.Name = "label32";
@@ -205,7 +203,6 @@ namespace RedBrick2 {
             // 
             // label33
             // 
-            this.label33.AutoSize = true;
             this.label33.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label33.Location = new System.Drawing.Point(3, 40);
             this.label33.Name = "label33";
@@ -215,7 +212,6 @@ namespace RedBrick2 {
             // 
             // label34
             // 
-            this.label34.AutoSize = true;
             this.label34.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label34.Location = new System.Drawing.Point(106, 40);
             this.label34.Name = "label34";
@@ -225,7 +221,6 @@ namespace RedBrick2 {
             // 
             // label35
             // 
-            this.label35.AutoSize = true;
             this.label35.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label35.Location = new System.Drawing.Point(3, 80);
             this.label35.Name = "label35";
@@ -235,7 +230,6 @@ namespace RedBrick2 {
             // 
             // label36
             // 
-            this.label36.AutoSize = true;
             this.label36.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label36.Location = new System.Drawing.Point(106, 80);
             this.label36.Name = "label36";
@@ -245,7 +239,6 @@ namespace RedBrick2 {
             // 
             // label37
             // 
-            this.label37.AutoSize = true;
             this.label37.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label37.Location = new System.Drawing.Point(3, 120);
             this.label37.Name = "label37";
@@ -255,7 +248,6 @@ namespace RedBrick2 {
             // 
             // label38
             // 
-            this.label38.AutoSize = true;
             this.label38.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label38.Location = new System.Drawing.Point(106, 120);
             this.label38.Name = "label38";
@@ -265,7 +257,6 @@ namespace RedBrick2 {
             // 
             // label39
             // 
-            this.label39.AutoSize = true;
             this.label39.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label39.Location = new System.Drawing.Point(3, 160);
             this.label39.Name = "label39";
@@ -275,7 +266,6 @@ namespace RedBrick2 {
             // 
             // label40
             // 
-            this.label40.AutoSize = true;
             this.label40.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label40.Location = new System.Drawing.Point(106, 160);
             this.label40.Name = "label40";
@@ -520,7 +510,6 @@ namespace RedBrick2 {
             // 
             // label41
             // 
-            this.label41.AutoSize = true;
             this.tableLayoutPanel7.SetColumnSpan(this.label41, 2);
             this.label41.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label41.Location = new System.Drawing.Point(3, 0);
@@ -532,7 +521,6 @@ namespace RedBrick2 {
             // 
             // label42
             // 
-            this.label42.AutoSize = true;
             this.label42.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label42.Location = new System.Drawing.Point(210, 0);
             this.label42.Name = "label42";
@@ -543,7 +531,6 @@ namespace RedBrick2 {
             // 
             // label45
             // 
-            this.label45.AutoSize = true;
             this.label45.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label45.Location = new System.Drawing.Point(3, 108);
             this.label45.Name = "label45";
@@ -556,7 +543,6 @@ namespace RedBrick2 {
             // 
             // label44
             // 
-            this.label44.AutoSize = true;
             this.label44.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label44.Location = new System.Drawing.Point(3, 79);
             this.label44.Name = "label44";
@@ -568,7 +554,6 @@ namespace RedBrick2 {
             // 
             // label43
             // 
-            this.label43.AutoSize = true;
             this.label43.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label43.Location = new System.Drawing.Point(3, 40);
             this.label43.Name = "label43";
@@ -873,7 +858,6 @@ namespace RedBrick2 {
             ((System.ComponentModel.ISupportInitialize)(this.cUTDRAWINGMATERIALSBindingSource4)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
-            this.tableLayoutPanel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gENCUSTOMERSBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gENUSERSBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cUTSTATESBindingSource)).EndInit();

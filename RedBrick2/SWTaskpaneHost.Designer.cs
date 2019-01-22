@@ -86,7 +86,7 @@ namespace RedBrick2 {
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(276, 34);
-            this.panel1.TabIndex = 1;
+            this.panel1.TabIndex = 0;
             this.panel1.TabStop = true;
             // 
             // cfg_btn
@@ -186,7 +186,7 @@ namespace RedBrick2 {
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(282, 596);
-            this.tableLayoutPanel1.TabIndex = 2;
+            this.tableLayoutPanel1.TabIndex = 0;
             // 
             // SWTaskpaneHost
             // 
