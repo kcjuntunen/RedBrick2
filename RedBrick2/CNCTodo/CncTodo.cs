@@ -297,15 +297,36 @@ namespace RedBrick2 {
 			}
 		}
 
+		private void IgnoreOrNot(string job, string op) {
+			if (job == string.Empty) {
+				return;
+			}
+
+			if (op == string.Empty || !int.TryParse(op, out int op_)) {
+				return;
+			}
+
+			using (CNCTodo.CNCTodoDataSetTableAdapters.QueriesTableAdapter ta_ =
+				new CNCTodo.CNCTodoDataSetTableAdapters.QueriesTableAdapter()) {
+				int? igID = (int?)ta_.GetIgnID(job, op_);
+				if (igID != null) {
+					ta_.Unignore(Convert.ToInt32(igID));
+				} else {
+					ta_.Ignore(Redbrick.UID, job, op_);
+				}
+			}
+			QueryTab1();
+		}
+
 		private void ign_btn_Click(object sender, EventArgs e) {
 			if (listView1.SelectedItems.Count < 1) {
 				return;
 			}
 
 			ListViewItem lvi = listView1.SelectedItems[0];
-			MessageBox.Show(string.Format(@"Job: {0} Op: {1}",
-				lvi.SubItems[1].Text,
-				lvi.SubItems[12].Text));
+			string job = lvi.SubItems[1].Text;
+			string op = lvi.SubItems[12].Text;
+			IgnoreOrNot(job, op);
 		}
 	}
 }
