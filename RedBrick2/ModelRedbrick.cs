@@ -3115,6 +3115,10 @@ namespace RedBrick2 {
 		}
 
 		public void GreenCheck() {
+			if (ActiveDoc.GetPathName() == string.Empty) {
+				MessageBox.Show(this ,"Part must be saved first.", "Stop that.", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+				return;
+			}
 			Commit();
 			if (Properties.Settings.Default.MakeSounds)
 				System.Media.SystemSounds.Beep.Play();
