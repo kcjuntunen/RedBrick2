@@ -751,18 +751,15 @@ namespace RedBrick2 {
 			data_from_db = isIn;
 			if (isIn) {
 				groupBox1.ForeColor = Properties.Settings.Default.NormalForeground;
-				//using (ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter cpta =
-				//	new ENGINEERINGDataSetTableAdapters.CUT_PARTSTableAdapter()) {
 					string hash_ = Row.IsHASHNull() ? "\nOld part; no location information." : string.Empty;
 					if (!Row.IsHASHNull()) {
 						hash_ = PropertySet.Hash == Row.HASH ?
 							"\nLocation is correct." : "\nThis part has been moved.";
 					}
-				string msg_ = Properties.Resources.InfoFromDB + hash_;
+				string msg_ = Properties.Resources.InfoFromDB + hash_ + Redbrick.PurchasedData(partLookup);
 				groupbox_tooltip.SetToolTip(groupBox1, msg_);
-				//}
 			} else {
-				string msg_ = Properties.Resources.InfoNotFromDB;
+				string msg_ = Properties.Resources.InfoNotFromDB + Redbrick.PurchasedData(partLookup); 
 				groupbox_tooltip.SetToolTip(groupBox1, msg_);
 				Redbrick.SetGroupBoxColor(groupBox1, Color.Red);
 			}

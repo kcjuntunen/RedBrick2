@@ -220,7 +220,6 @@ namespace RedBrick2 {
 					int cust = 0;
 					Redbrick.GetCustAndDescr(partLookup, ref cust, ref projectDescr, ref title_tooltip, ref groupBox5);
 					ProjectCustomer = cust;
-					//ProjectCustomer = GetCorrectCustomer();
 					groupBox5.Text = projectDescr != string.Empty ? string.Format(@"{0} - {1}", partLookup, projectDescr) : partLookup;
 				} else {
 					groupBox5.Text = @"New Drawing";
@@ -231,6 +230,14 @@ namespace RedBrick2 {
 				}
 			}
 			GetFileDates();
+		}
+
+		private void ShowPurchased() {
+			if (Redbrick.IsPurchased(partLookup, rev_cbx.Text.Trim())) {
+					Redbrick.SetGroupBoxColor(groupBox5, Color.Green);
+			} else {
+					Redbrick.SetGroupBoxColor(groupBox5, Color.Black);
+			}
 		}
 
 		private int Dd__FileSaveAsNotify2(string FileName) {
@@ -544,6 +551,7 @@ namespace RedBrick2 {
 			dirtTracker.Besmirched += dirtTracker_Besmirched;
 			dirtTracker.IsDirty = false;
 			groupBox5.Text = groupBox5.Text.Replace(Properties.Settings.Default.NotSavedMark, string.Empty);
+			ShowPurchased();
 		}
 
 		private void BuildTree() {
