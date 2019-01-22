@@ -69,6 +69,37 @@ namespace RedBrick2 {
 			return ((UACC & 64) == 64);
 		}
 
+		public static bool IsPurchased(string item, string rev) {
+			using (RedbrickDataSetTableAdapters.QueriesTableAdapter q_ =
+				new RedbrickDataSetTableAdapters.QueriesTableAdapter()) {
+				string res = q_.IsPurchased(item.Trim(), rev.Trim());
+				return (res != null) && (res.Trim().ToUpper() == "Y");
+			}
+		}
+
+		public static string PurchasedData(string item) {
+			StringBuilder sb = new StringBuilder();
+			using (RedbrickDataSetTableAdapters.inmastTableAdapter im_ =
+				new RedbrickDataSetTableAdapters.inmastTableAdapter()) {
+				using (RedbrickDataSet.inmastDataTable dt = im_.GetDataByItem(item)) {
+					if (dt.Count > 0) {
+						sb.Append("\nPurchased revs:\n");
+					} else {
+						return string.Empty;
+					}
+					for (int i = 0; i < dt.Count; i++) {
+						RedbrickDataSet.inmastRow row = dt[i];
+						string status = row.fcstscode.Trim().Replace("A", "Active").Replace("S", "Stock").Replace("O", "Obsolete");
+						sb.AppendFormat("{0} → {1}", row.frev.Trim(), status);
+						if (i < dt.Count - 1) {
+							sb.Append(",\n");
+						}
+					}
+				}
+			}
+			return sb.ToString();
+		}
+
 		static private string _fullName = string.Empty;
 		static public string FullName
 		{
