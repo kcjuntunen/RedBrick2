@@ -3164,13 +3164,13 @@ namespace RedBrick2 {
 			ReQuery((SwApp.ActiveDoc as ModelDoc2));
 		}
 
-		public void Refresh() {
+		public void RefreshData() {
 			DumpActiveDoc();
 			ReStart();
 		}
 
 		private void refresh_btn_Click(object sender, EventArgs e) {
-			Refresh();
+			RefreshData();
 		}
 
 		private void overtb_Validating(object sender, CancelEventArgs e) {

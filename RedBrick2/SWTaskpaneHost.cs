@@ -330,7 +330,7 @@ namespace RedBrick2 {
 			if (mrb == null) {
 				return;
 			}
-			mrb.Refresh();
+			mrb.RefreshData();
 		}
 
 		private void archive_btn_Click(object sender, EventArgs e) {
