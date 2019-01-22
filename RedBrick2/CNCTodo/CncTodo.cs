@@ -75,7 +75,7 @@ namespace RedBrick2 {
 						Redbrick.TitleCase(row.JobStatus),	// 3
 						row.PartNumber,											// 4
 						row.PartRev,												// 5
-						Redbrick.TitleCase(row.CutStat),		// 6
+						Redbrick.TitleCase(row.IssChk),			// 6
 						lastprn,														// 7
 						row.IgnChk == 0 ? "No" : "Yes",			// 8
 						row.IsCutIDNull() ? string.Empty : row.CutID.ToString(),	// 9
