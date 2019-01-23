@@ -69,6 +69,8 @@ namespace RedBrick2 {
 					}
 					string lastprn = row.LastPrn == "NOT PRINTED" ? "Not Printed" : Convert.ToDateTime(row.LastPrn).ToString(@"yyyy-MM-dd");
 					string[] data = new string[] {
+					// If the comment numbers on the right side of the following don't line up,
+					// then we have an argument for spaces over tabs.
 						row.OpDue.ToString(@"yyyy-MM-dd"),	// 0
 						row.JobNumber,											// 1
 						row.JobQty.ToString(),							// 2
