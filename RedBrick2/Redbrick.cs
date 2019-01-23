@@ -28,6 +28,9 @@ namespace RedBrick2 {
 		private string UpdateMessage = string.Empty;
 
 		static private int _uacc = -1;
+		/// <summary>
+		/// User access level.
+		/// </summary>
 		static public int UACC
 		{
 			get
@@ -45,6 +48,9 @@ namespace RedBrick2 {
 		}
 
 		static private int _uid = -1;
+		/// <summary>
+		/// User ID.
+		/// </summary>
 		static public int UID
 		{
 			get
@@ -61,14 +67,28 @@ namespace RedBrick2 {
 			private set { _uid = value; }
 		}
 
+		/// <summary>
+		/// Find out if we're a developer.
+		/// </summary>
+		/// <returns>True if we are a developer.</returns>
 		public static bool IsDeveloper() {
 			return ((UACC & 32) == 32);
 		}
 
+		/// <summary>
+		/// Find out if we're a super admin.
+		/// </summary>
+		/// <returns>True if we're a super admin.</returns>
 		public static bool IsSuperAdmin() {
 			return ((UACC & 64) == 64);
 		}
 
+		/// <summary>
+		/// Find out if we're looking at a purchased item.
+		/// </summary>
+		/// <param name="item">M2M item number.</param>
+		/// <param name="rev">Revision.</param>
+		/// <returns>True if this item is purchased.</returns>
 		public static bool IsPurchased(string item, string rev) {
 			using (RedbrickDataSetTableAdapters.QueriesTableAdapter q_ =
 				new RedbrickDataSetTableAdapters.QueriesTableAdapter()) {
@@ -77,6 +97,11 @@ namespace RedBrick2 {
 			}
 		}
 
+		/// <summary>
+		/// Get some info ready to be inserted into a tooltip.
+		/// </summary>
+		/// <param name="item">M2M item number. We don't ask for rev because we rarely know it from model view.</param>
+		/// <returns>A list of purchased revs, and whether they're active.</returns>
 		public static string PurchasedData(string item) {
 			StringBuilder sb = new StringBuilder();
 			using (RedbrickDataSetTableAdapters.inmastTableAdapter im_ =
@@ -101,6 +126,9 @@ namespace RedBrick2 {
 		}
 
 		static private string _fullName = string.Empty;
+		/// <summary>
+		/// User's full name.
+		/// </summary>
 		static public string FullName
 		{
 			get
@@ -118,6 +146,9 @@ namespace RedBrick2 {
 		}
 
 		static private string _initial = string.Empty;
+		/// <summary>
+		/// User's drawing-ready initials.
+		/// </summary>
 		static public string Initial
 		{
 			get
@@ -134,8 +165,17 @@ namespace RedBrick2 {
 			private set { _initial = value; }
 		}
 
+		/// <summary>
+		/// A list of ECR numbers used since Redbrick started.
+		/// </summary>
 		static public System.Windows.Forms.AutoCompleteStringCollection ECRNos { get; set; } = new System.Windows.Forms.AutoCompleteStringCollection();
+		/// <summary>
+		/// A list of ECR descriptions used since Redbrick started.
+		/// </summary>
 		static public System.Windows.Forms.AutoCompleteStringCollection ECRDescriptions { get; set; } = new System.Windows.Forms.AutoCompleteStringCollection();
+		/// <summary>
+		/// Last used ECR number.
+		/// </summary>
 		static public string LastECRNo { get; set; } = string.Empty;
 		/// <summary>
 		/// A place to store the last ECR description that was typed.

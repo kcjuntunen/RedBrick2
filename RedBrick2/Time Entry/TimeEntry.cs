@@ -6,10 +6,16 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
 namespace RedBrick2.Time_Entry {
+	/// <summary>
+	/// A form for project time entry.
+	/// </summary>
 	public partial class TimeEntry : Form {
 		private List<ListViewItem> ListViewItems { get; set; } = new List<ListViewItem>();
 		private DateTime LastEnteredDate { get; set; } = DateTime.Now;
 
+		/// <summary>
+		/// Constructor
+		/// </summary>
 		public TimeEntry() {
 			InitializeComponent();
 			Setup();
