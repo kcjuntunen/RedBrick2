@@ -209,11 +209,10 @@ namespace RedBrick2 {
 					newDrawing = false;
 					PartFileInfo = new FileInfo(path_);
 					partLookup = Redbrick.FileInfoToLookup(PartFileInfo).ToUpper();
-					if (Redbrick.ContainsRev(partLookup)) {
-						string[] revcheck = Path.GetFileNameWithoutExtension(PartFileInfo.Name.ToUpper()).
-							Split(new string[] { @"REV" }, StringSplitOptions.RemoveEmptyEntries);
+					string fileName = Path.GetFileNameWithoutExtension(PartFileInfo.Name.ToUpper());
+					if (Redbrick.ContainsRev(fileName)) {
+						string[] revcheck = fileName.Split(new string[] { @"REV" }, StringSplitOptions.RemoveEmptyEntries);
 						RevFromFile = revcheck.Length > 1 ? revcheck[revcheck.Length - 1].Trim() : null;
-						partLookup = revcheck[0].Trim();
 					} else {
 						RevFromFile = null;
 					}

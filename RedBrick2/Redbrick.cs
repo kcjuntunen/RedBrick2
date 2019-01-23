@@ -1042,6 +1042,10 @@ namespace RedBrick2 {
 			string lookup_ =  System.IO.Path.GetFileNameWithoutExtension(_fi.FullName);
 			lookup_ = lookup_.Split(new char[] { '^' }, StringSplitOptions.RemoveEmptyEntries)[0];
 
+			if (ContainsRev(lookup_)) {
+				lookup_ = lookup_.Split(new string[] { @"REV" }, StringSplitOptions.RemoveEmptyEntries)[0].Trim();
+			}
+
 			if (IsConformingPartnumber(lookup_) && !lookup_.StartsWith(@"Z")) {
 				return lookup_.Trim().ToUpper();
 			}
