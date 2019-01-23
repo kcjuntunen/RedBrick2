@@ -1,1 +1,4 @@
-* test
+* Redbrick
+** What for?
+   - To constrain and sanitize part properties so they can be inserted into a cutlist.
+   - Be otherwise helpful.
