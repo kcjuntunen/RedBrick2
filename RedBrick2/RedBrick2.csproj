@@ -243,6 +243,7 @@
     <Compile Include="RenameCutlist.Designer.cs">
       <DependentUpon>RenameCutlist.cs</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="SWProperties\AuthorUIDProperty.cs" />
     <Compile Include="SWProperties\AuthorProperty.cs" />
     <Compile Include="SWProperties\BooleanProperty.cs" />

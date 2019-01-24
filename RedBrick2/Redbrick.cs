@@ -268,6 +268,11 @@ namespace RedBrick2 {
 
 		private void UISetup() {
 			CheckUpdate();
+			if (Properties.Settings.Default.resettwelve) {
+				Properties.Settings.Default.Reset();
+				Properties.Settings.Default.resettwelve = false;
+				Properties.Settings.Default.Save();
+			}
 			SetupTranslationAndActionTables();
 			using (ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter leol =
 				new ENGINEERINGDataSetTableAdapters.LegacyECRObjLookupTableAdapter()) {

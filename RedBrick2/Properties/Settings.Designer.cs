@@ -266,7 +266,7 @@ namespace RedBrick2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool ExportSTEP {
             get {
                 return ((bool)(this["ExportSTEP"]));
@@ -1369,6 +1369,18 @@ namespace RedBrick2.Properties {
             }
             set {
                 this["CutlistDisplayAfterUpload"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool resettwelve {
+            get {
+                return ((bool)(this["resettwelve"]));
+            }
+            set {
+                this["resettwelve"] = value;
             }
         }
     }
