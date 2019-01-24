@@ -1,8 +1,5 @@
 
-1. Added some useful information to Cutlist Overview window.
-2. Removed unnecessary layout tables from Model View.
-3. Fixed a bug on "Metal Alerts" tab on the CNC Todo window; the SolidWorks button sometimes found the wrong thing.
-4. Updated "Jobs Needing Attention" tab.
-   * Using new view to look up data.
-   * Implemented ignorance.
-5. Now preventing green check operating on unsaved parts.
+1. Indicate whether a part is purchased under the name of the thing you're looking at.
+   - In drawing view, the name of the item appears in green if it's purchased.
+   - In part/assembly view, purchase information, if any, is included in the tooltip when you hover the mouse cursor over the item name.
+2. "Export STEP" is switched on be default.
