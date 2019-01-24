@@ -82,7 +82,7 @@ namespace RedBrick2 {
 						row.IgnChk == 0 ? "No" : "Yes",			// 8
 						row.IsCutIDNull() ? string.Empty : row.CutID.ToString(),	// 9
 						row.CutDesc,												// 10
-						row.Linked == -1 ? "Y" : "N",				// 11
+						row.Linked == 0 ? "N" : "Y",				// 11
 						row.OpNumber.ToString()							// 12
 					};
 					ListViewItem l = new ListViewItem(data);
