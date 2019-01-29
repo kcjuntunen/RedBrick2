@@ -1,10 +1,3 @@
 
-* .1 - PDF Archiver
-1. Contrain STEP options.
-2. Small optimizations.
-
-* .0 - Redbrick
-1. Indicate whether a part is purchased under the name of the thing you're looking at.
-   - In drawing view, the name of the item appears in green if it's purchased.
-   - In part/assembly view, purchase information, if any, is included in the tooltip when you hover the mouse cursor over the item name.
-2. "Export STEP" is switched on be default.
+1. Now always pulls description data from part instead of DB.
+2. Added a Drawing/Model finder.
