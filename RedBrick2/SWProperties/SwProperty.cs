@@ -201,6 +201,9 @@ namespace RedBrick2 {
 					if (arrayContains(globprops_, Name)) {
 						GetResult = (swCustomInfoGetResult_e)globlProperty.Get5(Name, false, out v, out resolvedV, out wasResolved);
 					}
+					if (v == null || v == string.Empty) {
+						GetResult = (swCustomInfoGetResult_e)globlProperty.Get5(Name.ToUpper(), false, out v, out resolvedV, out wasResolved);
+					}
 				}
 			}
 		}

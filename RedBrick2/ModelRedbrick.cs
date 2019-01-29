@@ -318,6 +318,8 @@ namespace RedBrick2 {
 					wallthicknesstb.Text = Convert.ToString(PropertySet[@"WALL THICKNESS"].Value).Replace("\"", string.Empty);
 				}
 
+				descriptiontb.Text = StrTryProp("Description");
+
 				GetRouting();
 
 				if (Row != null) {
