@@ -192,6 +192,17 @@
     <Compile Include="DrawingCollector\PacketItem.cs" />
     <Compile Include="DrawingCollector\PDFMerger.cs" />
     <Compile Include="DrawingCollector\Steps.cs" />
+    <Compile Include="Drawings\DrawingDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DrawingDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Drawings\Drawings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drawings\Drawings.Designer.cs">
+      <DependentUpon>Drawings.cs</DependentUpon>
+    </Compile>
     <Compile Include="ECRViewer\ECRViewerDataSet.cs">
       <DependentUpon>ECRViewerDataSet.xsd</DependentUpon>
     </Compile>
@@ -443,6 +454,17 @@
     <None Include="CutlistTableDisplay\CTDDataSet.xss">
       <DependentUpon>CTDDataSet.xsd</DependentUpon>
     </None>
+    <None Include="Drawings\DrawingDataSet.xsc">
+      <DependentUpon>DrawingDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Drawings\DrawingDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DrawingDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Drawings\DrawingDataSet.xss">
+      <DependentUpon>DrawingDataSet.xsd</DependentUpon>
+    </None>
     <None Include="ECRViewer\ECRViewerDataSet.xsc">
       <DependentUpon>ECRViewerDataSet.xsd</DependentUpon>
     </None>
@@ -546,6 +568,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DrawingCollector\DrawingCollector.resx">
       <DependentUpon>DrawingCollector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Drawings\Drawings.resx">
+      <DependentUpon>Drawings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ErrorLog\ErrorLog.resx">
       <DependentUpon>ErrorLog.cs</DependentUpon>

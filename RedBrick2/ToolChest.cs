@@ -233,6 +233,16 @@ namespace RedBrick2 {
 			}
 		}
 
+		static void LaunchDrawings() {
+			using (Drawings.Drawings d = new Drawings.Drawings()) {
+				d.ShowInTaskbar = true;
+				try {
+					d.ShowDialog();
+				} catch(Exception e) {
+					Redbrick.ProcessError(e);
+				}
+			}
+		}
 
 		private void button9_MouseClick(object sender, MouseEventArgs e) {
 			Thread t = new Thread(new ThreadStart(LaunchCNCMAIN));
@@ -256,6 +266,13 @@ namespace RedBrick2 {
 
 		private void ctl_ovr_btn_Click(object sender, EventArgs e) {
 			Thread t = new Thread(new ThreadStart(LaunchCutlistOverView));
+			t.SetApartmentState(ApartmentState.STA);
+			t.Start();
+			Close();
+		}
+
+		private void button11_Click(object sender, EventArgs e) {
+			Thread t = new Thread(new ThreadStart(LaunchDrawings));
 			t.SetApartmentState(ApartmentState.STA);
 			t.Start();
 			Close();

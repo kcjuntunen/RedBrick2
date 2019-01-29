@@ -1383,5 +1383,29 @@ namespace RedBrick2.Properties {
                 this["resettwelve"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("800, 500")]
+        public global::System.Drawing.Size DrawingsSize {
+            get {
+                return ((global::System.Drawing.Size)(this["DrawingsSize"]));
+            }
+            set {
+                this["DrawingsSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
+        public global::System.Drawing.Point DrawingsLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["DrawingsLocation"]));
+            }
+            set {
+                this["DrawingsLocation"] = value;
+            }
+        }
     }
 }
