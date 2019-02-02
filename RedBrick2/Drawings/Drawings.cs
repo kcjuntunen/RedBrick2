@@ -9,6 +9,12 @@ namespace RedBrick2.Drawings {
 			InitializeComponent();
 			Size = Properties.Settings.Default.DrawingsSize;
 			Location = Properties.Settings.Default.DrawingsLocation;
+
+			listView1.FullRowSelect = true;
+			listView1.HideSelection = false;
+			listView1.MultiSelect = false;
+			listView1.View = View.Details;
+			listView1.SmallImageList = Redbrick.TreeViewIcons;
 		}
 
 		private void textBox1_TextChanged(object sender, EventArgs e) {
@@ -88,6 +94,58 @@ namespace RedBrick2.Drawings {
 			Properties.Settings.Default.DrawingsSize = Size;
 			Properties.Settings.Default.DrawingsLocation = Location;
 			Properties.Settings.Default.Save();
+		}
+
+		private void SearchQuery() {
+			if (srch_tb == null || srch_tb.Text.Trim() == string.Empty) {
+				return;
+			}
+			string srch_term = string.Format("{0}", srch_tb.Text.Trim());
+			Cursor = Cursors.WaitCursor;
+			genDrwPartTableAdapter.FillBy(drawingDataSet.GenDrwPart, srch_term);
+			listView1.Items.Clear();
+			if (drawingDataSet.GenDrwPart.Count < 1) {
+				Cursor = Cursors.Default;
+				return;
+			}
+			try {
+				foreach (DrawingDataSet.GenDrwPartRow row in drawingDataSet.GenDrwPart) {
+					string[] data = {
+					row.PARTNUM,
+					Convert.ToString(row.DESCR),
+					string.Format(@"{0} {1}", row.DateCreated.ToShortDateString(),
+					row.DateCreated.ToShortTimeString()),
+					string.Format(@"{0}{1}", row.FPath, row.FName)
+				};
+					listView1.Items.Add(new ListViewItem(data));
+				}
+				listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+			} catch (Exception e) {
+				Redbrick.ProcessError(e);
+			} finally {
+				Cursor = Cursors.Default;
+			}
+		}
+
+		private void srch_btn_Click(object sender, EventArgs e) {
+			SearchQuery();
+		}
+
+		private void button1_Click(object sender, EventArgs e) {
+			if (listView1.SelectedItems.Count < 1) {
+				return;
+			}
+			if (listView1.SelectedItems[0] == null) {
+				return;
+			}
+			string path = listView1.SelectedItems[0].SubItems[3].Text.Trim();
+			System.Diagnostics.Process.Start(path);
+		}
+
+		private void srch_tb_KeyDown(object sender, KeyEventArgs e) {
+			if (e.KeyCode == Keys.Enter) {
+				SearchQuery();
+			}
 		}
 	}
 }
