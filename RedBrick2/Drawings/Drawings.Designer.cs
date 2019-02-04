@@ -47,14 +47,14 @@
 			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.srch_btn = new System.Windows.Forms.Button();
 			this.srch_tb = new System.Windows.Forms.TextBox();
 			this.gEN_DRAWINGSTableAdapter = new RedBrick2.Drawings.DrawingDataSetTableAdapters.GEN_DRAWINGSTableAdapter();
 			this.gEN_DRAWINGS_EDRWTableAdapter = new RedBrick2.Drawings.DrawingDataSetTableAdapters.GEN_DRAWINGS_EDRWTableAdapter();
 			this.gEN_DRAWINGS_MTLTableAdapter = new RedBrick2.Drawings.DrawingDataSetTableAdapters.GEN_DRAWINGS_MTLTableAdapter();
-			this.genDrwPartBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.genDrwPartTableAdapter = new RedBrick2.Drawings.DrawingDataSetTableAdapters.GenDrwPartTableAdapter();
-			this.open_srch = new System.Windows.Forms.Button();
+			this.itemsTableAdapter1 = new RedBrick2.Drawings.DrawingDataSetTableAdapters.ItemsTableAdapter();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gENDRAWINGSBindingSource)).BeginInit();
@@ -64,7 +64,6 @@
 			this.groupBox3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.gENDRAWINGSMTLBindingSource)).BeginInit();
 			this.groupBox4.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.genDrwPartBindingSource)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tableLayoutPanel1
@@ -278,7 +277,6 @@
 			this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.groupBox4.Controls.Add(this.open_srch);
 			this.groupBox4.Controls.Add(this.listView1);
 			this.groupBox4.Controls.Add(this.srch_btn);
 			this.groupBox4.Controls.Add(this.srch_tb);
@@ -297,13 +295,16 @@
 			this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
-            this.columnHeader3});
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5});
 			this.listView1.Location = new System.Drawing.Point(7, 47);
 			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(380, 129);
+			this.listView1.Size = new System.Drawing.Size(380, 158);
 			this.listView1.TabIndex = 2;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.View = System.Windows.Forms.View.Details;
+			this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
 			// 
 			// columnHeader1
 			// 
@@ -315,7 +316,15 @@
 			// 
 			// columnHeader3
 			// 
-			this.columnHeader3.Text = "Date";
+			this.columnHeader3.Text = "Length";
+			// 
+			// columnHeader4
+			// 
+			this.columnHeader4.Text = "Width";
+			// 
+			// columnHeader5
+			// 
+			this.columnHeader5.Text = "Height";
 			// 
 			// srch_btn
 			// 
@@ -350,25 +359,9 @@
 			// 
 			this.gEN_DRAWINGS_MTLTableAdapter.ClearBeforeFill = true;
 			// 
-			// genDrwPartBindingSource
+			// itemsTableAdapter1
 			// 
-			this.genDrwPartBindingSource.DataMember = "GenDrwPart";
-			this.genDrwPartBindingSource.DataSource = this.drawingDataSet;
-			// 
-			// genDrwPartTableAdapter
-			// 
-			this.genDrwPartTableAdapter.ClearBeforeFill = true;
-			// 
-			// open_srch
-			// 
-			this.open_srch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.open_srch.Location = new System.Drawing.Point(7, 182);
-			this.open_srch.Name = "open_srch";
-			this.open_srch.Size = new System.Drawing.Size(135, 23);
-			this.open_srch.TabIndex = 3;
-			this.open_srch.Text = "Open Selected Drawing";
-			this.open_srch.UseVisualStyleBackColor = true;
-			this.open_srch.Click += new System.EventHandler(this.button1_Click);
+			this.itemsTableAdapter1.ClearBeforeFill = true;
 			// 
 			// Drawings
 			// 
@@ -394,7 +387,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.gENDRAWINGSMTLBindingSource)).EndInit();
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox4.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.genDrwPartBindingSource)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -426,11 +418,11 @@
 		private System.Windows.Forms.ListView listView1;
 		private System.Windows.Forms.Button srch_btn;
 		private System.Windows.Forms.TextBox srch_tb;
-		private System.Windows.Forms.BindingSource genDrwPartBindingSource;
-		private DrawingDataSetTableAdapters.GenDrwPartTableAdapter genDrwPartTableAdapter;
 		private System.Windows.Forms.ColumnHeader columnHeader1;
 		private System.Windows.Forms.ColumnHeader columnHeader2;
 		private System.Windows.Forms.ColumnHeader columnHeader3;
-		private System.Windows.Forms.Button open_srch;
+		private System.Windows.Forms.ColumnHeader columnHeader4;
+		private System.Windows.Forms.ColumnHeader columnHeader5;
+		private DrawingDataSetTableAdapters.ItemsTableAdapter itemsTableAdapter1;
 	}
 }

@@ -73,6 +73,7 @@ namespace RedBrick2.Drawings {
 				return;
 			}
 			System.Diagnostics.Process.Start(path);
+			Close();
 		}
 
 		private void open_sw_mtl_drw_Click(object sender, EventArgs e) {
@@ -88,6 +89,7 @@ namespace RedBrick2.Drawings {
 				return;
 			}
 			System.Diagnostics.Process.Start(path);
+			Close();
 		}
 
 		private void Drawings_FormClosing(object sender, FormClosingEventArgs e) {
@@ -102,20 +104,20 @@ namespace RedBrick2.Drawings {
 			}
 			string srch_term = string.Format("{0}", srch_tb.Text.Trim());
 			Cursor = Cursors.WaitCursor;
-			genDrwPartTableAdapter.FillBy(drawingDataSet.GenDrwPart, srch_term);
+			itemsTableAdapter1.FillByDescription(drawingDataSet.Items, srch_term);
 			listView1.Items.Clear();
-			if (drawingDataSet.GenDrwPart.Count < 1) {
+			if (drawingDataSet.Items.Count < 1) {
 				Cursor = Cursors.Default;
 				return;
 			}
 			try {
-				foreach (DrawingDataSet.GenDrwPartRow row in drawingDataSet.GenDrwPart) {
+				foreach (DrawingDataSet.ItemsRow row in drawingDataSet.Items) {
 					string[] data = {
 					row.PARTNUM,
 					Convert.ToString(row.DESCR),
-					string.Format(@"{0} {1}", row.DateCreated.ToShortDateString(),
-					row.DateCreated.ToShortTimeString()),
-					string.Format(@"{0}{1}", row.FPath, row.FName)
+					string.Format(@"{0:0.000}", row.LENGTH),
+					string.Format(@"{0:0.000}", row.WIDTH),
+					string.Format(@"{0:0.000}", row.HEIGHT)
 				};
 					listView1.Items.Add(new ListViewItem(data));
 				}
@@ -138,14 +140,25 @@ namespace RedBrick2.Drawings {
 			if (listView1.SelectedItems[0] == null) {
 				return;
 			}
-			string path = listView1.SelectedItems[0].SubItems[3].Text.Trim();
-			System.Diagnostics.Process.Start(path);
 		}
 
 		private void srch_tb_KeyDown(object sender, KeyEventArgs e) {
 			if (e.KeyCode == Keys.Enter) {
 				SearchQuery();
 			}
+		}
+
+		private void listView1_SelectedIndexChanged(object sender, EventArgs e) {
+			if (listView1.SelectedItems.Count < 1) {
+				return;
+			}
+
+			if (listView1.SelectedItems[0] == null) {
+				return;
+			}
+
+			ListViewItem lvi = listView1.SelectedItems[0];
+			textBox1.Text = lvi.Text;
 		}
 	}
 }
