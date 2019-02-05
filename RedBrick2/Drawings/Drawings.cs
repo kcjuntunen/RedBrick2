@@ -115,9 +115,9 @@ namespace RedBrick2.Drawings {
 					string[] data = {
 					row.PARTNUM,
 					Convert.ToString(row.DESCR),
-					string.Format(@"{0:0.000}", row.LENGTH),
-					string.Format(@"{0:0.000}", row.WIDTH),
-					string.Format(@"{0:0.000}", row.HEIGHT)
+					row.LENGTH < .001 ? "--" : string.Format(@"{0:0.000}", row.LENGTH),
+					row.WIDTH < .001 ? "--" : string.Format(@"{0:0.000}", row.WIDTH),
+					row.HEIGHT < .001 ? "--" : string.Format(@"{0:0.000}", row.HEIGHT)
 				};
 					listView1.Items.Add(new ListViewItem(data));
 				}
