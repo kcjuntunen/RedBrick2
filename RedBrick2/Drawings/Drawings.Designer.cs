@@ -317,14 +317,17 @@
 			// columnHeader3
 			// 
 			this.columnHeader3.Text = "Length";
+			this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// columnHeader4
 			// 
 			this.columnHeader4.Text = "Width";
+			this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// columnHeader5
 			// 
 			this.columnHeader5.Text = "Height";
+			this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// srch_btn
 			// 
