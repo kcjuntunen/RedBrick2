@@ -1395,5 +1395,17 @@ namespace RedBrick2.Properties {
                 this["DrawingsLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool CoolClickCopy {
+            get {
+                return ((bool)(this["CoolClickCopy"]));
+            }
+            set {
+                this["CoolClickCopy"] = value;
+            }
+        }
     }
 }

@@ -387,5 +387,8 @@
     <Setting Name="DrawingsLocation" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">100, 100</Value>
     </Setting>
+    <Setting Name="CoolClickCopy" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
