@@ -24,6 +24,7 @@
 		/// </summary>
 		private void InitializeComponent() {
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.button11 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -40,7 +41,6 @@
 			this.button9 = new System.Windows.Forms.Button();
 			this.button10 = new System.Windows.Forms.Button();
 			this.groupBox6 = new System.Windows.Forms.GroupBox();
-			this.button11 = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
@@ -60,6 +60,16 @@
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Drawing Tools";
+			// 
+			// button11
+			// 
+			this.button11.Location = new System.Drawing.Point(7, 81);
+			this.button11.Name = "button11";
+			this.button11.Size = new System.Drawing.Size(179, 23);
+			this.button11.TabIndex = 2;
+			this.button11.Text = "Drawings...";
+			this.button11.UseVisualStyleBackColor = true;
+			this.button11.Click += new System.EventHandler(this.button11_Click);
 			// 
 			// button2
 			// 
@@ -172,10 +182,9 @@
 			// groupBox5
 			// 
 			this.groupBox5.Controls.Add(this.button7);
-			this.groupBox5.Controls.Add(this.button8);
 			this.groupBox5.Location = new System.Drawing.Point(352, 141);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(140, 117);
+			this.groupBox5.Size = new System.Drawing.Size(140, 55);
 			this.groupBox5.TabIndex = 4;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "Metal";
@@ -192,9 +201,9 @@
 			// 
 			// button8
 			// 
-			this.button8.Location = new System.Drawing.Point(7, 84);
+			this.button8.Location = new System.Drawing.Point(368, 235);
 			this.button8.Name = "button8";
-			this.button8.Size = new System.Drawing.Size(118, 23);
+			this.button8.Size = new System.Drawing.Size(124, 23);
 			this.button8.TabIndex = 5;
 			this.button8.Text = "Error Log";
 			this.button8.UseVisualStyleBackColor = true;
@@ -233,22 +242,13 @@
 			this.groupBox6.TabStop = false;
 			this.groupBox6.Text = "Engineering";
 			// 
-			// button11
-			// 
-			this.button11.Location = new System.Drawing.Point(7, 81);
-			this.button11.Name = "button11";
-			this.button11.Size = new System.Drawing.Size(179, 23);
-			this.button11.TabIndex = 2;
-			this.button11.Text = "Drawings...";
-			this.button11.UseVisualStyleBackColor = true;
-			this.button11.Click += new System.EventHandler(this.button11_Click);
-			// 
 			// ToolChest
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(504, 270);
 			this.Controls.Add(this.groupBox6);
+			this.Controls.Add(this.button8);
 			this.Controls.Add(this.groupBox5);
 			this.Controls.Add(this.groupBox4);
 			this.Controls.Add(this.groupBox3);
