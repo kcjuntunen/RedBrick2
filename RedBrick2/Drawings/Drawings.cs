@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 namespace RedBrick2.Drawings {
@@ -20,6 +21,26 @@ namespace RedBrick2.Drawings {
 		private void textBox1_TextChanged(object sender, EventArgs e) {
 			string text = (sender as TextBox).Text.Trim();
 			string search_string = string.Format(@"FName LIKE '{0}%'", text);
+
+			try {
+				Filter(search_string);
+			} catch (EvaluateException) {
+				Filter(SplitFilterString(text));
+			} catch (Exception ex) {
+				Redbrick.ProcessError(ex);
+			}
+		}
+
+		private string SplitFilterString(string text) {
+			string[] s = text.Split(new char[] { '%', '*' });
+			StringBuilder ss = new StringBuilder(string.Format("FName LIKE '{0}%' ", s[0]));
+			for (int i = 1; i < s.Length; i++) {
+				ss.AppendFormat("AND FName LIKE '%{0}%' ", s[i]);
+			}
+			return ss.ToString();
+		}
+
+		private void Filter(string search_string) {
 			gENDRAWINGSBindingSource.Filter = search_string;
 			gENDRAWINGSEDRWBindingSource.Filter = search_string;
 			gENDRAWINGSMTLBindingSource.Filter = search_string;
@@ -102,7 +123,7 @@ namespace RedBrick2.Drawings {
 			if (srch_tb == null || srch_tb.Text.Trim() == string.Empty) {
 				return;
 			}
-			string srch_term = string.Format("{0}", srch_tb.Text.Trim());
+			string srch_term = string.Format("{0}", srch_tb.Text.Trim().Replace('*', '%'));
 			Cursor = Cursors.WaitCursor;
 			itemsTableAdapter1.FillByDescription(drawingDataSet.Items, srch_term);
 			listView1.Items.Clear();
