@@ -42,9 +42,7 @@ namespace RedBrick2.Drawings {
 		private static bool IsA4(Sheet sheet) {
 			double w = 0.0, h = 0.0;
 			sheet.GetSize(ref w, ref h);
-			double ww = (w * 1000) / 25.4;
-			double hh = (h * 1000) / 25.4;
-			return (ww * hh) < (BigSize[0] * BigSize[1]);
+			return Redbrick.FloatEquals(w * h, A4Size[0] * A4Size[1]);
 		}
 
 		private static void AdjustLayerVisibility(LayerMgr lm) {
