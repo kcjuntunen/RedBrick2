@@ -4155,7 +4155,8 @@ SELECT FileID, FName, FPath, DateCreated FROM GEN_DRAWINGS_MTL WHERE (FileID = @
             this._commandCollection[0].CommandText = @"SELECT        GEN_DRAWINGS.FileID, CUT_PARTS.PARTNUM, GEN_DRAWINGS.FName, GEN_DRAWINGS.FPath, GEN_DRAWINGS.DateCreated, CUT_PARTS.DESCR
 FROM            GEN_DRAWINGS INNER JOIN
                          CUT_PARTS ON GEN_DRAWINGS.FName LIKE CUT_PARTS.PARTNUM + '.pdf'
-WHERE        (CUT_PARTS.DESCR LIKE @descr)
+WHERE        (CUT_PARTS.DESCR LIKE @descr) OR
+                         (CUT_PARTS.PARTNUM LIKE @descr)
 ORDER BY GEN_DRAWINGS.DateCreated";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@descr", global::System.Data.SqlDbType.NVarChar, 35, global::System.Data.ParameterDirection.Input, 0, 0, "DESCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -4346,7 +4347,7 @@ FROM            (SELECT        PARTNUM, DESCR, LENGTH, WIDTH, HEIGHT
                           UNION
                           SELECT        PARTNUM, DESCR, FIN_L AS LENGTH, FIN_W AS WIDTH, THICKNESS AS HEIGHT
                           FROM            CUT_PARTS) AS derivedtbl_1
-WHERE        (DESCR LIKE @search_term)
+WHERE        (DESCR LIKE @search_term) OR  (PARTNUM LIKE @search_term)
 ORDER BY PARTNUM";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@search_term", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "DESCR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
