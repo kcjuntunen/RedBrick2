@@ -8,7 +8,6 @@ namespace RedBrick2.Drawings {
 		private static string templateNameA4 = @"G:\Solid Works\AMSTORE_SHEET_FORMATS\METAL_AM_PART.slddrt";
 
 		private static double[] A4Size = { 0.2794, 0.2159 };
-		private static double[] BigSize = { 0.4318, 0.2794 };
 
 		public static void SetMetalLayers(ModelDoc2 md) {
 			LayerMgr lm = (LayerMgr)md.GetLayerManager();
@@ -24,7 +23,6 @@ namespace RedBrick2.Drawings {
 			foreach (string sheetname in sheets) {
 				Sheet sheet = dd.Sheet[sheetname];
 				double[] props = sheet.GetProperties2();
-				double[] size = IsA4(sheet) ? A4Size : BigSize;
 
 				dd.SetupSheet6(
 					sheetname,
@@ -33,10 +31,11 @@ namespace RedBrick2.Drawings {
 					props[2], props[3],
 					true,
 					IsA4(sheet) ? templateNameA4 : templateName,
-					size[0], size[1],
+					props[5], props[6],
 					"Default",
 					true,
 					0, 0, 0, 0, 0, 0);
+				dd.SheetNext();
 			}
 		}
 
