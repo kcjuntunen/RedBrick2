@@ -41,22 +41,26 @@
 			this.button9 = new System.Windows.Forms.Button();
 			this.button10 = new System.Windows.Forms.Button();
 			this.groupBox6 = new System.Windows.Forms.GroupBox();
+			this.button12 = new System.Windows.Forms.Button();
+			this.groupBox7 = new System.Windows.Forms.GroupBox();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			this.groupBox4.SuspendLayout();
 			this.groupBox5.SuspendLayout();
 			this.groupBox6.SuspendLayout();
+			this.groupBox7.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.button12);
 			this.groupBox1.Controls.Add(this.button11);
 			this.groupBox1.Controls.Add(this.button2);
 			this.groupBox1.Controls.Add(this.button1);
 			this.groupBox1.Location = new System.Drawing.Point(12, 12);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(196, 123);
+			this.groupBox1.Size = new System.Drawing.Size(196, 148);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Drawing Tools";
@@ -100,7 +104,7 @@
 			this.groupBox2.Controls.Add(this.button3);
 			this.groupBox2.Location = new System.Drawing.Point(214, 12);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(131, 123);
+			this.groupBox2.Size = new System.Drawing.Size(131, 148);
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "ECR";
@@ -122,7 +126,7 @@
 			this.groupBox3.Controls.Add(this.button4);
 			this.groupBox3.Location = new System.Drawing.Point(352, 13);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(140, 122);
+			this.groupBox3.Size = new System.Drawing.Size(140, 147);
 			this.groupBox3.TabIndex = 2;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Inventory";
@@ -142,7 +146,7 @@
 			this.groupBox4.Controls.Add(this.ctl_ovr_btn);
 			this.groupBox4.Controls.Add(this.button6);
 			this.groupBox4.Controls.Add(this.button5);
-			this.groupBox4.Location = new System.Drawing.Point(12, 141);
+			this.groupBox4.Location = new System.Drawing.Point(12, 166);
 			this.groupBox4.Name = "groupBox4";
 			this.groupBox4.Size = new System.Drawing.Size(196, 117);
 			this.groupBox4.TabIndex = 3;
@@ -182,9 +186,9 @@
 			// groupBox5
 			// 
 			this.groupBox5.Controls.Add(this.button7);
-			this.groupBox5.Location = new System.Drawing.Point(352, 141);
+			this.groupBox5.Location = new System.Drawing.Point(352, 166);
 			this.groupBox5.Name = "groupBox5";
-			this.groupBox5.Size = new System.Drawing.Size(140, 55);
+			this.groupBox5.Size = new System.Drawing.Size(140, 88);
 			this.groupBox5.TabIndex = 4;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "Metal";
@@ -201,7 +205,7 @@
 			// 
 			// button8
 			// 
-			this.button8.Location = new System.Drawing.Point(368, 235);
+			this.button8.Location = new System.Drawing.Point(6, 21);
 			this.button8.Name = "button8";
 			this.button8.Size = new System.Drawing.Size(124, 23);
 			this.button8.TabIndex = 5;
@@ -235,20 +239,40 @@
 			// 
 			this.groupBox6.Controls.Add(this.button9);
 			this.groupBox6.Controls.Add(this.button10);
-			this.groupBox6.Location = new System.Drawing.Point(214, 141);
+			this.groupBox6.Location = new System.Drawing.Point(215, 166);
 			this.groupBox6.Name = "groupBox6";
 			this.groupBox6.Size = new System.Drawing.Size(131, 117);
 			this.groupBox6.TabIndex = 8;
 			this.groupBox6.TabStop = false;
 			this.groupBox6.Text = "Engineering";
 			// 
+			// button12
+			// 
+			this.button12.Location = new System.Drawing.Point(7, 110);
+			this.button12.Name = "button12";
+			this.button12.Size = new System.Drawing.Size(179, 23);
+			this.button12.TabIndex = 1;
+			this.button12.Text = "Set Metal Borders";
+			this.button12.UseVisualStyleBackColor = true;
+			this.button12.Click += new System.EventHandler(this.button12_Click);
+			// 
+			// groupBox7
+			// 
+			this.groupBox7.Controls.Add(this.button8);
+			this.groupBox7.Location = new System.Drawing.Point(13, 290);
+			this.groupBox7.Name = "groupBox7";
+			this.groupBox7.Size = new System.Drawing.Size(195, 104);
+			this.groupBox7.TabIndex = 9;
+			this.groupBox7.TabStop = false;
+			this.groupBox7.Text = "Development";
+			// 
 			// ToolChest
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(504, 270);
+			this.ClientSize = new System.Drawing.Size(504, 420);
+			this.Controls.Add(this.groupBox7);
 			this.Controls.Add(this.groupBox6);
-			this.Controls.Add(this.button8);
 			this.Controls.Add(this.groupBox5);
 			this.Controls.Add(this.groupBox4);
 			this.Controls.Add(this.groupBox3);
@@ -256,9 +280,9 @@
 			this.Controls.Add(this.groupBox1);
 			this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.MaximizeBox = false;
-			this.MaximumSize = new System.Drawing.Size(512, 300);
+			this.MaximumSize = new System.Drawing.Size(512, 450);
 			this.MinimizeBox = false;
-			this.MinimumSize = new System.Drawing.Size(512, 300);
+			this.MinimumSize = new System.Drawing.Size(512, 450);
 			this.Name = "ToolChest";
 			this.ShowIcon = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -271,6 +295,7 @@
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox5.ResumeLayout(false);
 			this.groupBox6.ResumeLayout(false);
+			this.groupBox7.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -295,5 +320,7 @@
 		private System.Windows.Forms.Button ctl_ovr_btn;
 		private System.Windows.Forms.Button button11;
 		private System.Windows.Forms.GroupBox groupBox6;
+		private System.Windows.Forms.Button button12;
+		private System.Windows.Forms.GroupBox groupBox7;
 	}
 }

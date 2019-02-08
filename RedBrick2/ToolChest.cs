@@ -45,6 +45,8 @@ namespace RedBrick2 {
 			if (not_null && swApp.ActiveDoc is DrawingDoc) {
 				SolidWorks.Interop.sldworks.View v_ = Redbrick.GetFirstView(swApp);
 				button2.Enabled = !(v_ == null) && v_.ReferencedDocument != null;
+			} else {
+				button12.Enabled = false;
 			}
 			button9.Visible = true;
 			button10.Visible = true;
@@ -275,6 +277,15 @@ namespace RedBrick2 {
 			Thread t = new Thread(new ThreadStart(LaunchDrawings));
 			t.SetApartmentState(ApartmentState.STA);
 			t.Start();
+			Close();
+		}
+
+		private void button12_Click(object sender, EventArgs e) {
+			ModelDoc2 md = swApp.ActiveDoc as ModelDoc2;
+			if (!(md is DrawingDoc)) {
+				return;
+			}
+			Drawings.DrawingStaticFunctions.SetMetalLayers(swApp.ActiveDoc as ModelDoc2);
 			Close();
 		}
 	}
