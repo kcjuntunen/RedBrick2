@@ -13,11 +13,12 @@ namespace RedBrick2.Drawings {
 		public static void SetMetalLayers(ModelDoc2 md) {
 			LayerMgr lm = (LayerMgr)md.GetLayerManager();
 			AdjustLayerVisibility(lm);
-
 			DrawingDoc dd = md as DrawingDoc;
+			SetupSheets(dd);
+		}
 
+		private static void SetupSheets(DrawingDoc dd) {
 			string[] sheets = dd.GetSheetNames();
-
 			string template = templateName;
 
 			foreach (string sheetname in sheets) {
@@ -27,7 +28,7 @@ namespace RedBrick2.Drawings {
 
 				dd.SetupSheet6(
 					sheetname,
-					(int)swDwgPaperSizes_e.swDwgPaperA4size,
+					(int)swDwgPaperSizes_e.swDwgPapersUserDefined,
 					(int)swDwgTemplates_e.swDwgTemplateCustom,
 					props[2], props[3],
 					true,
