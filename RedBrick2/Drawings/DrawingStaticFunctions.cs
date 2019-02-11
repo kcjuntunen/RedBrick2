@@ -28,10 +28,10 @@ namespace RedBrick2.Drawings {
 					sheetname,
 					(int)swDwgPaperSizes_e.swDwgPapersUserDefined,
 					(int)swDwgTemplates_e.swDwgTemplateCustom,
-					props[2], props[3],
-					true,
-					IsA4(sheet) ? templateNameA4 : templateName,
-					props[5], props[6],
+					props[2], props[3],															// Scale
+					false,																					// Third angle projection
+					IsA4(sheet) ? templateNameA4 : templateName,		// Template
+					props[5], props[6],															// Size
 					"Default",
 					true,
 					0, 0, 0, 0, 0, 0);
