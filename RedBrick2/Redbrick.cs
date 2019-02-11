@@ -701,20 +701,20 @@ namespace RedBrick2 {
 		/// <param name="sender">A control object.</param>
 		/// <param name="e">Mouse Event Args</param>
 		static public void FocusHere(object sender, System.Windows.Forms.MouseEventArgs e) {
-			return;
-			//if (sender is System.Windows.Forms.ComboBox) {
-			//	if ((sender as System.Windows.Forms.ComboBox).DroppedDown) {
-			//		//
-			//	} else {
-			//		(sender as System.Windows.Forms.ComboBox).Focus();
-			//	}
-			//} else if (sender is System.Windows.Forms.TextBox) {
-			//	(sender as System.Windows.Forms.TextBox).Focus();
-			//} else if (sender is System.Windows.Forms.NumericUpDown) {
-			//	(sender as System.Windows.Forms.NumericUpDown).Focus();
-			//} else if (sender is System.Windows.Forms.CheckBox) {
-			//	(sender as System.Windows.Forms.CheckBox).Focus();
-			//}
+			//return;
+			if (sender is System.Windows.Forms.ComboBox) {
+				if ((sender as System.Windows.Forms.ComboBox).DroppedDown) {
+					//
+				} else {
+					(sender as System.Windows.Forms.ComboBox).Focus();
+				}
+			} else if (sender is System.Windows.Forms.TextBox) {
+				(sender as System.Windows.Forms.TextBox).Focus();
+			} else if (sender is System.Windows.Forms.NumericUpDown) {
+				(sender as System.Windows.Forms.NumericUpDown).Focus();
+			} else if (sender is System.Windows.Forms.CheckBox) {
+				(sender as System.Windows.Forms.CheckBox).Focus();
+			}
 		}
 
 		/// <summary>
