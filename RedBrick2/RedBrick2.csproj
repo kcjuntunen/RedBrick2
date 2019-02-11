@@ -203,6 +203,7 @@
     <Compile Include="Drawings\Drawings.Designer.cs">
       <DependentUpon>Drawings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Drawings\DrawingStaticFunctions.cs" />
     <Compile Include="ECRViewer\ECRViewerDataSet.cs">
       <DependentUpon>ECRViewerDataSet.xsd</DependentUpon>
     </Compile>
