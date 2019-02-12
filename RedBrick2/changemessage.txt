@@ -1,3 +1,7 @@
 
-1. Now always pulls description data from part instead of DB.
-2. Added a Drawing/Model finder.
+1. Added a search by description function to "Drawings" window.
+2. Handled some potential wildcard weirdness in "Drawings" window.
+3. Click-copy now can be turned off if you'd rather have it that way.
+4. Added a function to set metal borders to "Tool Chest".
+5. Added a button to "Create Cutlist" for mass property setting.
+6. CTRL+C weirdness is back. Everything just works better with it than without it.
