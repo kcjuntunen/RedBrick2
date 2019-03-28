@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?><RedBrick><OdometerStart>2/17/2017 12:00:00 AM</OdometerStart><version>2.1.14.0</version><url>\\AMSTORE-SVR-22\cad\Solid Works\Amstore_Macros\Redbrick\InstallRedBrick.exe</url><message>
+1. Added a search by description function to "Drawings" window.
+2. Handled some potential wildcard weirdness in "Drawings" window.
+3. Click-copy now can be turned off if you'd rather have it that way.
+4. Added a function to set metal borders to "Tool Chest".
+5. Added a button to "Create Cutlist" for mass property setting.
+6. CTRL+C weirdness is back. Everything just works better with it than without it.
+</message><BuildDate>2/13/2019 1:18:09 PM</BuildDate></RedBrick>
