@@ -226,6 +226,13 @@
     <Compile Include="Estimation.cs" />
     <Compile Include="Exceptions\BuildPDFException.cs" />
     <Compile Include="ManageCutlistTime\Schema.cs" />
+    <Compile Include="Menus\MenuItems.cs" />
+    <Compile Include="Org\OrgDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrgDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Org\OrgGenerator.cs" />
     <Compile Include="PartsSummary\PartsSummaryGenerator.cs" />
     <Compile Include="RedbrickDataSet.cs">
       <DependentUpon>RedbrickDataSet.xsd</DependentUpon>
@@ -498,6 +505,17 @@
     </None>
     <None Include="ErrorLog\ErrorDataSet.xss">
       <DependentUpon>ErrorDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Org\OrgDataSet.xsc">
+      <DependentUpon>OrgDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Org\OrgDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OrgDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Org\OrgDataSet.xss">
+      <DependentUpon>OrgDataSet.xsd</DependentUpon>
     </None>
     <None Include="RedbrickDataSet.xsc">
       <DependentUpon>RedbrickDataSet.xsd</DependentUpon>

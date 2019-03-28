@@ -262,7 +262,7 @@ namespace RedBrick2.ECRViewer {
 			if (lv_.SelectedItems.Count > 0 && lv_.SelectedItems[0] != null) {
 				int idx = lv_.Items.IndexOf(lv_.SelectedItems[0]);
 				if (!(new System.IO.FileInfo(drawings[idx]).Exists)) {
-					string msg_ = string.Format(@"'{0}' was in the database, but I couldn't find it. This could happen if a) the file was deleted, or b) you don't have the network drives correctly mapped. (Running SolidWorks could have this effect.", drawings[idx]);
+					string msg_ = string.Format(@"'{0}' was in the database, but I couldn't find it. This could happen if a) the file was deleted, or b) you don't have the network drives correctly mapped.", drawings[idx]);
 					MessageBox.Show(this, msg_, @"Couldn't find the drawing.", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					return;
 				}

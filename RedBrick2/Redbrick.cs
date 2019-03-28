@@ -210,6 +210,8 @@ namespace RedBrick2 {
 				//Thread t = new Thread(new ThreadStart(UISetup));
 				//t.SetApartmentState(ApartmentState.STA);
 				//t.Start();
+				Menus.MenuItems m = new Menus.MenuItems(swApp, cookie);
+				m.add_menu_items();
 				return true;
 			} else {
 				swApp.SendMsgToUser2(Properties.Resources.NetworkNotAvailable,
@@ -319,27 +321,6 @@ namespace RedBrick2 {
 			}
 		}
 
-		private void add_menu_items() {
-			System.Reflection.Assembly thisAssembly = default(System.Reflection.Assembly);
-			int mId_ = 0;
-			string[] images = new string[3];
-
-			thisAssembly = System.Reflection.Assembly.GetAssembly(this.GetType());
-			mId_ = swApp.AddMenu((int)swDocumentTypes_e.swDocDRAWING, @"Redbrick Tools", 0);
-			mId_ = swApp.AddMenuItem5((int)swDocumentTypes_e.swDocDRAWING, cookie, @"Reformat Fixture Book@Redbrick Tools", 0,
-				@"RenumberFB", @"RenumberFBEnableMethod",
-				@"Renumber drawings in a fixture book according to a formatted Excel document.",
-				new string[3]);
-
-			thisAssembly = null;
-		}
-
-		private void RenumberFB() {
-			using (FormatFixtureBk ffb = new FormatFixtureBk(swApp)) {
-				ffb.ShowDialog(taskpaneHost);
-			}
-		}
-
 		private void AppDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) {
 			Exception e_ = (Exception)e.ExceptionObject;
 			string output_ = string.Format("{0}\n{1}\n{2}", e_.Message, e_.StackTrace, e_.Source);
@@ -441,6 +422,8 @@ namespace RedBrick2 {
 			taskpaneView.DeleteView();
 			Marshal.ReleaseComObject(taskpaneView);
 			Marshal.ReleaseComObject(swApp);
+			GC.Collect();
+			GC.WaitForPendingFinalizers();
 			GC.Collect();
 			GC.WaitForPendingFinalizers();
 			taskpaneView = null;
